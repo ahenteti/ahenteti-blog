@@ -5,4 +5,5 @@ export interface IArticleSummary {
   tags: string[];
   publishDate: Date;
   lastUpdateDate: Date;
+  searchKey: string;
 }

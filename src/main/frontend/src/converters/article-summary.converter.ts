@@ -16,6 +16,13 @@ export class ArticleSummaryConverter {
           ? article.lastUpdateDateIso8601
           : article.publishDateIso8601
       ),
+      searchKey: this.calculateSearchKey(article),
     };
+  }
+
+  private calculateSearchKey(
+    article: IGetByIdArticleSummaryApiResponse
+  ): string {
+    return [...article.title.split(" "), ...article.tags].join(" ");
   }
 }
