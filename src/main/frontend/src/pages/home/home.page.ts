@@ -14,7 +14,7 @@ export class HomePage implements OnInit {
   public displayedArticlesByCategory: ArticlesByCategory;
   public selectedTag: string;
   public tags: Set<string>;
-  public userSearch: string;
+  public searchText: string;
 
   constructor(private articleService: IArticleService) {}
 
@@ -24,8 +24,8 @@ export class HomePage implements OnInit {
       .subscribe(this.setInitialControllerState.bind(this));
   }
 
-  handleSearchInputChange(userSearch) {
-    this.userSearch = userSearch;
+  handleSearchTextChange(userSearch) {
+    this.searchText = userSearch;
     this.displayedArticlesByCategory = this.getArticlesToDisplay();
   }
 
@@ -73,19 +73,19 @@ export class HomePage implements OnInit {
 
   private keepArticle(article: IArticleSummary): boolean {
     if (this.selectedTag == ALL_TAGS) {
-      if (!this.userSearch) {
+      if (!this.searchText) {
         return true;
       } else {
-        for (let userSearchWord of this.userSearch.split(" ")) {
-          if (article.searchKey.indexOf(userSearchWord) > -1) return true;
+        for (let searchWord of this.searchText.split(" ")) {
+          if (article.searchKey.indexOf(searchWord) > -1) return true;
         }
         return false;
       }
     } else {
-      if (!this.userSearch) {
+      if (!this.searchText) {
         return article.tags.includes(this.selectedTag);
       } else {
-        for (let userSearchWord of this.userSearch.split(" ")) {
+        for (let userSearchWord of this.searchText.split(" ")) {
           if (
             article.searchKey.indexOf(userSearchWord) > -1 &&
             article.tags.includes(this.selectedTag)
