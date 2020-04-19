@@ -52,6 +52,7 @@ body.dark {
   --article-summary-title-color: #dedede;
   --article-summary-title-color-on-hover: var(--primary-color);
   --article-summary-icons-color: #888;
+  --article-summary-box-shadow: none;
 }
 
 body.light {
@@ -86,4 +87,10 @@ body.light {
   --tag-selected-color: white;
 
   --article-summary-background-color: #fafafa;
+  --article-summary-border-color: #fafafa;
+  --article-summary-border-color-on-hover: #fafafa;
+  --article-summary-title-color: #828286;
+  --article-summary-title-color-on-hover: var(--primary-color);
+  --article-summary-icons-color: #888;
+  --article-summary-box-shadow: var(--box-shadow);
 }
