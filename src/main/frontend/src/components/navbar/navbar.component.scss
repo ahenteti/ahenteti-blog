@@ -1,9 +1,14 @@
-.container {
+:host {
   position: fixed;
   top: 0;
   z-index: 100;
   width: 100%;
   background-color: var(--body-background-color);
+  transition: box-shadow 0.2s ease-in;
+}
+
+:host.shadow {
+  box-shadow: var(--box-shadow);
 }
 
 nav {
