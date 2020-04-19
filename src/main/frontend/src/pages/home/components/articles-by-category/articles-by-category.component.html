@@ -1,4 +1,7 @@
-<div *ngFor="let articles of articlesByCategory | keyvalue" class="container">
+<div
+  *ngFor="let articles of articlesByCategory | keyvalue: articlesOrder"
+  class="container"
+>
   <app-fancy-title [value]="articles.key"></app-fancy-title>
 
   <div class="articles-by-category">

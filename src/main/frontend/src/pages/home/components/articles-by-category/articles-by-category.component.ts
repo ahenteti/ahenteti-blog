@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { ArticlesByCategory } from "src/models/internal/articles-by-category.model";
+import { KeyValue } from "@angular/common";
+import { IArticleSummary } from "src/models/internal/article-summary.model";
 
 @Component({
   selector: "app-articles-by-category",
@@ -9,4 +11,11 @@ import { ArticlesByCategory } from "src/models/internal/articles-by-category.mod
 export class ArticlesByCategoryComponent {
   @Input()
   public articlesByCategory: ArticlesByCategory;
+
+  articlesOrder = (
+    a: KeyValue<string, IArticleSummary[]>,
+    b: KeyValue<string, IArticleSummary[]>
+  ): number => {
+    return b.value.length - a.value.length;
+  };
 }
