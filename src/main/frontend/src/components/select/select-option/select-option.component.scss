@@ -1,0 +1,15 @@
+:host {
+  display: block;
+  padding: 0.8rem 1.4rem;
+  font-size: 1.4rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  user-select: none;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--select-on-hover-option-color);
+    background-color: var(--select-on-hover-option-background-color);
+  }
+}

@@ -1,0 +1,12 @@
+body.dark {
+  --tooltip-background-color: #394048;
+}
+
+body.light {
+  --tooltip-background-color: #333;
+}
+
+.tooltip {
+  background-color: var(--tooltip-background-color);
+  font-size: var(--tooltip-font-size, 1.2rem);
+}

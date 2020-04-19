@@ -1,0 +1,33 @@
+.container {
+  @media screen and (max-width: 480px) {
+    --welcome-message-width: 90%;
+  }
+
+  @media screen and (min-width: 480px) and (max-width: 720px) {
+    --welcome-message-width: 80%;
+  }
+  @media screen and (min-width: 720px) {
+    --welcome-message-width: 70%;
+  }
+  width: var(--welcome-message-width);
+  margin: 0 auto;
+}
+
+h1 {
+  color: var(--welcome-message-title-color);
+  font-weight: 300;
+  font-size: 3.8rem;
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+p {
+  color: var(--welcome-message-color);
+  font-size: 1.8rem;
+  text-align: center;
+  line-height: 3.2rem;
+}
+
+.big-thanks {
+  font-weight: bold;
+}

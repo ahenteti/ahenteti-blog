@@ -1,0 +1,17 @@
+<app-welcome-message></app-welcome-message>
+<app-search-articles
+  [selectedTag]="selectedTag"
+  [tags]="tags"
+  (inputChange)="onSearchInputChange($event)"
+  (tagSelection)="onTagSelection($event)"
+></app-search-articles>
+
+<app-articles-by-category
+  [articlesByCategory]="articlesByCategory"
+></app-articles-by-category>
+
+<br />
+<br />
+<br />
+<br />
+<br />

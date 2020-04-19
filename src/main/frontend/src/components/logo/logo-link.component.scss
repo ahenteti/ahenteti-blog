@@ -1,0 +1,68 @@
+.container {
+  --logo-size: 2.5rem;
+  display: flex;
+  align-items: center;
+
+  &:hover .logo-text {
+    color: var(--primary-color);
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+.logo-text {
+  font-weight: bold;
+  margin-left: 1.3rem;
+  font-size: 1.8rem;
+  color: var(--logo-text-color);
+  transition: var(--transition);
+  transition-property: color;
+}
+
+.logo {
+  position: relative;
+  width: var(--logo-size);
+  height: var(--logo-size);
+  border-radius: calc(var(--logo-size) / 10);
+  background: var(--primary-color);
+}
+
+.backslash,
+.slash,
+.underscore {
+  position: absolute;
+  background: white;
+  height: calc(var(--logo-size) / 7);
+}
+
+.backslash,
+.slash {
+  left: calc(var(--logo-size) / 8);
+  width: 55.3%;
+}
+
+.backslash {
+  top: calc(var(--logo-size) / 15);
+  transform-origin: bottom left;
+  transform: rotate(45deg);
+  border-bottom-left-radius: calc(var(--logo-size) / 20);
+  border-top-left-radius: calc(var(--logo-size) / 20);
+}
+
+.slash {
+  bottom: calc(var(--logo-size) / 15);
+  transform-origin: top left;
+  transform: rotate(-45deg);
+  border-bottom-left-radius: calc(var(--logo-size) / 20);
+  border-top-left-radius: calc(var(--logo-size) / 20);
+}
+
+.underscore {
+  bottom: calc(var(--logo-size) / 8);
+  right: calc(var(--logo-size) / 8);
+  height: calc(var(--logo-size) / 10);
+  width: 40%;
+  border-radius: calc(var(--logo-size) / 20);
+}

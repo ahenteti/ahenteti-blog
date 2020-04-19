@@ -1,0 +1,106 @@
+:host {
+  @media screen and (max-width: 480px) {
+    --search-articles-width: 90%;
+  }
+
+  @media screen and (min-width: 480px) and (max-width: 720px) {
+    --search-articles-width: 80%;
+  }
+  @media screen and (min-width: 720px) {
+    --search-articles-width: 70%;
+  }
+  width: var(--search-articles-width);
+  margin: 0 auto;
+
+  &.active {
+    & .container {
+      border-color: var(--search-articles-tags-border-color-on-active);
+    }
+  }
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  font-size: 1.6rem;
+  border-radius: 100rem;
+  transition: var(--transition);
+  transition-property: color, background-color, border-color;
+  overflow: hidden;
+  border: 1px solid var(--search-articles-tags-border-color);
+
+  & > * {
+    padding: var(--search-articles-padding, 1rem);
+    height: var(--search-articles-height, 4rem);
+    transition: var(--transition);
+    transition-property: color, background-color, border-color;
+  }
+}
+
+.tags {
+  flex-grow: 0;
+  background: var(--search-articles-tags-background-color);
+  padding-left: 2rem !important;
+}
+
+::ng-deep .tags-overlay-panel {
+  background: var(--search-articles-tags-dropdown-background-color);
+
+  & .mat-option {
+    color: var(--search-articles-tags-dropdown-color);
+    line-height: 4rem !important;
+    height: 4rem !important;
+  }
+
+  & .mat-option:hover {
+    background-color: var(
+      --search-articles-tags-dropdown-on-hover-background-color
+    ) !important;
+  }
+
+  & .mat-active {
+    background-color: var(
+      --search-articles-tags-dropdown-active-tag-background-color
+    ) !important;
+  }
+}
+
+.tags ::ng-deep .mat-select-value,
+.tags ::ng-deep .mat-select-arrow {
+  color: var(--search-articles-tags-color);
+}
+
+.tags ::ng-deep .mat-select-arrow-wrapper {
+  padding-left: 1rem;
+}
+
+.tags ::ng-deep .mat-select-value {
+  max-width: 100%;
+  width: auto;
+}
+
+.tags ::ng-deep .mat-form-field {
+  width: auto !important;
+}
+
+.search-input {
+  flex-grow: 1;
+  font-size: 1.6rem;
+  border: none;
+  outline: none;
+  color: var(--search-articles-input-color);
+  background: var(--search-articles-input-background-color);
+  padding-left: 1.5rem !important;
+
+  &::placeholder {
+    color: var(--search-articles-input-placeholder-color);
+    opacity: 1; /* Firefox */
+  }
+}
+
+.icon {
+  font-size: 2.5rem;
+  color: var(--search-articles-icon-color);
+  background-color: var(--search-articles-icon-background-color);
+  padding-right: 1.5rem !important;
+}

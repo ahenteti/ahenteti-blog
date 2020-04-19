@@ -1,0 +1,13 @@
+<div appSlideIn>
+  <div class="container">
+    <h2 class="title">{{ article.title }}</h2>
+    <div class="tags">
+      <span class="iconify" data-icon="gridicons:tag"></span>
+      <app-tags [tags]="article.tags"></app-tags>
+    </div>
+    <div class="publish-date">
+      <span class="iconify" data-icon="mdi:calendar-today"></span>
+      {{ article.publishDate | date }}
+    </div>
+  </div>
+</div>

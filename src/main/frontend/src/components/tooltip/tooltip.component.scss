@@ -1,0 +1,8 @@
+:host {
+  color: var(--tooltip-color);
+  background-color: var(--tooltip-background-color);
+  font-size: var(--tooltip-font-size, 1.3rem);
+  padding: 0.8rem 1.2rem;
+  margin-top: 1rem;
+  border-radius: 0.3rem;
+}
