@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { IArticleService } from "src/services/article/article.service";
 import { IArticleSummary } from "src/models/internal/article-summary.model";
 import { SetUtils } from "src/utils/set.utils";
-import { MapUtils } from "src/utils/map.utils";
 import { ArticlesByCategory } from "src/models/internal/articles-by-category.model";
 import { ALL_TAGS } from "src/utils/constants.utils";
 
@@ -25,13 +24,18 @@ export class HomePage implements OnInit {
       .subscribe(this.setInitialControllerState.bind(this));
   }
 
-  onSearchInputChange(userSearch) {
+  handleSearchInputChange(userSearch) {
     this.userSearch = userSearch;
     this.displayedArticlesByCategory = this.getArticlesToDisplay();
   }
 
-  onTagSelection(userTagSelection) {
+  handleTagSelection(userTagSelection) {
     this.selectedTag = userTagSelection;
+    this.displayedArticlesByCategory = this.getArticlesToDisplay();
+  }
+
+  handleTagClickEvent(selectedTag) {
+    this.selectedTag = selectedTag;
     this.displayedArticlesByCategory = this.getArticlesToDisplay();
   }
 

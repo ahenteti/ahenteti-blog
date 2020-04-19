@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { ArticlesByCategory } from "src/models/internal/articles-by-category.model";
 import { KeyValue } from "@angular/common";
 import { IArticleSummary } from "src/models/internal/article-summary.model";
@@ -12,10 +12,20 @@ export class ArticlesByCategoryComponent {
   @Input()
   public articlesByCategory: ArticlesByCategory;
 
+  @Input()
+  public selectedTag: string;
+
+  @Output()
+  public tagClick = new EventEmitter<string>();
+
   articlesOrder = (
     a: KeyValue<string, IArticleSummary[]>,
     b: KeyValue<string, IArticleSummary[]>
   ): number => {
     return b.value.length - a.value.length;
   };
+
+  handleTagClickEvent(selectedTag) {
+    this.tagClick.emit(selectedTag);
+  }
 }

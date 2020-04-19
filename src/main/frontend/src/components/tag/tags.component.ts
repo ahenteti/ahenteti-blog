@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
   selector: "app-tags",
@@ -7,5 +7,15 @@ import { Component, Input } from "@angular/core";
 })
 export class TagsComponent {
   @Input()
+  public selectedTag: string;
+
+  @Input()
   public tags: string[];
+
+  @Output()
+  public tagClick = new EventEmitter<string>();
+
+  handleTagClickEvent(selectedTag) {
+    this.tagClick.emit(selectedTag);
+  }
 }

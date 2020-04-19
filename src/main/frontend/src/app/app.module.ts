@@ -27,6 +27,7 @@ import { ArticleSummaryComponent } from "src/components/article-summary/article-
 import { TagsComponent } from "src/components/tag/tags.component";
 import { SlideInDirective } from "src/components/slidein/slidein.directive";
 import { ArticleSummaryConverter } from "src/converters/article-summary.converter";
+import { TagComponent } from "src/components/tag/tag.component";
 
 @NgModule({
   entryComponents: [TooltipComponent],
@@ -46,6 +47,7 @@ import { ArticleSummaryConverter } from "src/converters/article-summary.converte
     FancyTitleComponent,
     ArticlesByCategoryComponent,
     ArticleSummaryComponent,
+    TagComponent,
     TagsComponent,
     SlideInDirective,
   ],

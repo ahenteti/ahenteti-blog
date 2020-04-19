@@ -2,16 +2,12 @@
 <app-search-articles
   [selectedTag]="selectedTag"
   [tags]="tags"
-  (inputChange)="onSearchInputChange($event)"
-  (tagSelection)="onTagSelection($event)"
+  (inputChange)="handleSearchInputChange($event)"
+  (tagSelection)="handleTagSelection($event)"
 ></app-search-articles>
 
 <app-articles-by-category
   [articlesByCategory]="displayedArticlesByCategory"
+  [selectedTag]="selectedTag"
+  (tagClick)="handleTagClickEvent($event)"
 ></app-articles-by-category>
-
-<br />
-<br />
-<br />
-<br />
-<br />

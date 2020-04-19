@@ -1,21 +1,6 @@
-span {
-  color: var(--tag-color);
-  background-color: var(--tag-background-color);
-  font-size: var(--tag-font-size, 1.5rem);
-  border-radius: 0.3rem;
-  padding: 0.5rem 1rem;
-  transition: var(--transition);
-  transition-property: color, background-color;
-  cursor: pointer;
+app-tag {
   margin-left: 1rem;
-
   &:first-child {
     margin-left: 0;
-  }
-
-  &:hover,
-  &.selected {
-    background-color: var(--primary-color);
-    color: var(--tag-selected-color);
   }
 }
