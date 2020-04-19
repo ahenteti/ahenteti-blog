@@ -1,12 +1,17 @@
 .container {
   @media screen and (max-width: 480px) {
-    --welcome-message-width: 90%;
+    --welcome-message-width: 100%;
   }
 
   @media screen and (min-width: 480px) and (max-width: 720px) {
+    --welcome-message-width: 90%;
+  }
+
+  @media screen and (min-width: 720px) and (max-width: 1024px) {
     --welcome-message-width: 80%;
   }
-  @media screen and (min-width: 720px) {
+
+  @media screen and (min-width: 1024px) {
     --welcome-message-width: 70%;
   }
   width: var(--welcome-message-width);

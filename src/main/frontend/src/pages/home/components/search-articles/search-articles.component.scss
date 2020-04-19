@@ -1,12 +1,17 @@
 :host {
   @media screen and (max-width: 480px) {
-    --search-articles-width: 90%;
+    --search-articles-width: 100%;
   }
 
   @media screen and (min-width: 480px) and (max-width: 720px) {
+    --search-articles-width: 90%;
+  }
+
+  @media screen and (min-width: 720px) and (max-width: 1024px) {
     --search-articles-width: 80%;
   }
-  @media screen and (min-width: 720px) {
+
+  @media screen and (min-width: 1024px) {
     --search-articles-width: 70%;
   }
   width: var(--search-articles-width);
