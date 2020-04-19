@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { IArticleService } from "src/services/article/article.service";
-import { IArticleSummary } from "src/models/article-summary.model";
+import { IArticleSummary } from "src/models/internal/article-summary.model";
 import { SetUtils } from "src/utils/set.utils";
 import { MapUtils } from "src/utils/map.utils";
-import { ArticlesByCategory } from "src/models/articles-by-category.model";
+import { ArticlesByCategory } from "src/models/internal/articles-by-category.model";
 
 @Component({
   templateUrl: "home.page.html",

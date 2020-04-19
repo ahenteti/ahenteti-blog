@@ -26,6 +26,7 @@ import { ArticlesByCategoryComponent } from "src/pages/home/components/articles-
 import { ArticleSummaryComponent } from "src/components/article-summary/article-summary.component";
 import { TagsComponent } from "src/components/tag/tags.component";
 import { SlideInDirective } from "src/components/slidein/slidein.directive";
+import { ArticleSummaryConverter } from "src/converters/article-summary.converter";
 
 @NgModule({
   entryComponents: [TooltipComponent],
@@ -59,6 +60,7 @@ import { SlideInDirective } from "src/components/slidein/slidein.directive";
   providers: [
     { provide: IThemeService, useClass: ThemeServiceImpl },
     { provide: IArticleService, useClass: ArticleServiceMock },
+    ArticleSummaryConverter,
   ],
   bootstrap: [AppComponent],
 })

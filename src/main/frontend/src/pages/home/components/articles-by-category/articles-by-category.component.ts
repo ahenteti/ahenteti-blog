@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { ArticlesByCategory } from "src/models/articles-by-category.model";
+import { ArticlesByCategory } from "src/models/internal/articles-by-category.model";
 
 @Component({
   selector: "app-articles-by-category",

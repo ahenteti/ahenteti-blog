@@ -1,3 +1,11 @@
+:host {
+  min-width: 0;
+}
+
+:host a {
+  text-decoration: none;
+}
+
 .container {
   background-color: var(--article-summary-background-color);
   padding: var(--article-summary-padding, 3.2rem);
@@ -18,9 +26,9 @@
   transition: var(--transition);
   transition-property: color;
   margin-bottom: 2rem;
+  text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 :host:hover .title {

@@ -1,4 +1,4 @@
-import { IArticleSummary } from "src/models/article-summary.model";
+import { IArticleSummary } from "src/models/internal/article-summary.model";
 import { Observable } from "rxjs";
 
 export abstract class IArticleService {
