@@ -11,7 +11,7 @@ import {
 import { SelectDropdownComponent } from "./select-dropdown/select-dropdown.component";
 import { SelectOptionComponent } from "./select-option/select-option.component";
 import { SelectService } from "./select.service";
-import { ISelectOption } from "src/models/internal/select-option.model";
+import { ISelectOption } from "src/app/models/internal/select-option.model";
 
 @Component({
   selector: "app-select",

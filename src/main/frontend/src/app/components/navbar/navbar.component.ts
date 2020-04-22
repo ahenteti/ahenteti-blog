@@ -1,5 +1,5 @@
 import { Component, HostBinding, OnInit } from "@angular/core";
-import { IThemeService } from "src/services/theme/theme.service";
+import { IThemeService } from "src/app/services/theme/theme.service";
 
 @Component({
   selector: "app-navbar",

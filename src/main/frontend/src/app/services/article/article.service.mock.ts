@@ -1,10 +1,10 @@
-import { IArticleSummary } from "src/models/internal/article-summary.model";
+import { IArticleSummary } from "src/app/models/internal/article-summary.model";
 import { Observable } from "rxjs";
 import { IArticleService } from "./article.service";
 import { Injectable } from "@angular/core";
 import { from } from "rxjs";
 import { map } from "rxjs/operators";
-import { ArticleSummaryConverter } from "src/converters/article-summary.converter";
+import { ArticleSummaryConverter } from "src/app/converters/article-summary.converter";
 
 @Injectable()
 export class ArticleServiceMock extends IArticleService {
