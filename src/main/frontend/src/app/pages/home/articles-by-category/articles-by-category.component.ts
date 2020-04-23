@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { ArticlesByCategory } from "src/app/models/internal/articles-by-category.model";
+import { ArticlesByCategory } from "src/app/models/internal/article/articles-by-category.model";
 import { KeyValue } from "@angular/common";
-import { IArticleSummary } from "src/app/models/internal/article-summary.model";
+import { IArticleSummary } from "src/app/models/internal/article/article-summary.model";
 
 @Component({
   selector: "app-articles-by-category",

@@ -1,4 +1,4 @@
-import { IArticleSummary } from "src/app/models/internal/article-summary.model";
+import { IArticleSummary } from "src/app/models/internal/article/article-summary.model";
 import { Observable } from "rxjs";
 import { IArticleService } from "./article.service";
 import { Injectable } from "@angular/core";

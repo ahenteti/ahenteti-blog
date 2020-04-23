@@ -1,5 +1,5 @@
 import { IGetByIdArticleSummaryApiResponse } from "src/app/models/backend/get-by-id-article-summary-api-response.model";
-import { IArticleSummary } from "src/app/models/internal/article-summary.model";
+import { IArticleSummary } from "src/app/models/internal/article/article-summary.model";
 import { Injectable } from "@angular/core";
 
 @Injectable()

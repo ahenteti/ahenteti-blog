@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { IArticleService } from "src/app/services/article/article.service";
-import { IArticleSummary } from "src/app/models/internal/article-summary.model";
+import { IArticleSummary } from "src/app/models/internal/article/article-summary.model";
 import { SetUtils } from "src/app/utils/set.utils";
-import { ArticlesByCategory } from "src/app/models/internal/articles-by-category.model";
+import { ArticlesByCategory } from "src/app/models/internal/article/articles-by-category.model";
 import { ALL_TAGS } from "src/app/utils/constants.utils";
 
 @Component({

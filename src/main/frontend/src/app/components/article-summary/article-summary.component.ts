@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { IArticleSummary } from "src/app/models/internal/article-summary.model";
+import { IArticleSummary } from "src/app/models/internal/article/article-summary.model";
 
 @Component({
   selector: "app-article-summary",
