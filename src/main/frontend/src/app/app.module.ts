@@ -6,7 +6,7 @@ import { AppComponent } from "./app.component";
 import { LogoLinkComponent } from "./components/logo/logo-link.component";
 import { NavBarComponent } from "./components/navbar/navbar.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { TooltipDirective } from "src/app/components/tooltip/tooltip.directive";
+import { TooltipDirective } from "src/app/directives/tooltip/tooltip.directive";
 import { IThemeService } from "src/app/services/theme/theme.service";
 import { ConsultArticlePage } from "src/app/pages/consult-article/consult-article.page";
 import { HomePage } from "src/app/pages/home/home.page";
@@ -15,7 +15,7 @@ import { WelcomeMessageComponent } from "src/app/pages/home/welcome-message/welc
 import { SelectComponent } from "src/app/components/select/select.component";
 import { OverlayModule } from "@angular/cdk/overlay";
 import { PortalModule } from "@angular/cdk/portal";
-import { TooltipComponent } from "src/app/components/tooltip/tooltip.component";
+import { TooltipComponent } from "src/app/directives/tooltip/tooltip.component";
 import { SelectOptionComponent } from "src/app/components/select/select-option/select-option.component";
 import { SearchArticlesComponent } from "src/app/pages/home/search-articles/search-articles.component";
 import { SelectDropdownComponent } from "src/app/components/select/select-dropdown/select-dropdown.component";
@@ -25,7 +25,7 @@ import { FancyTitleComponent } from "src/app/components/fancy-title/fancy-title.
 import { ArticlesByCategoryComponent } from "src/app/pages/home/articles-by-category/articles-by-category.component";
 import { ArticleSummaryComponent } from "src/app/components/article-summary/article-summary.component";
 import { TagsComponent } from "src/app/components/tag/tags.component";
-import { SlideInDirective } from "src/app/components/slidein/slidein.directive";
+import { SlideInDirective } from "src/app/directives/slidein/slidein.directive";
 import { ArticleSummaryConverter } from "src/app/converters/article-summary.converter";
 import { TagComponent } from "src/app/components/tag/tag.component";
 
