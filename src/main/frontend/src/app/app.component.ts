@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     AOS.init({
       once: true,
+      duration: 1200,
     });
   }
 }
