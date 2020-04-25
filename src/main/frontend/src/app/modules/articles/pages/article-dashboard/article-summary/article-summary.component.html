@@ -1,0 +1,19 @@
+<div appSlideIn>
+  <a [routerLink]="['/consult-article', article.id]">
+    <div class="container">
+      <h2 class="title">{{ article.title }}</h2>
+      <div class="tags">
+        <span class="iconify" data-icon="gridicons:tag"></span>
+        <app-tag-list
+          (tagClick)="handleTagClickEvent($event)"
+          [selectedTag]="selectedTag"
+          [tags]="article.tags"
+        ></app-tag-list>
+      </div>
+      <div class="publish-date">
+        <span class="iconify" data-icon="mdi:calendar-today"></span>
+        {{ article.publishDate | date }}
+      </div>
+    </div>
+  </a>
+</div>

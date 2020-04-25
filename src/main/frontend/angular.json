@@ -23,12 +23,12 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": false,
-            "assets": ["src/favicon.png", "src/assets"],
+            "assets": ["src/favicon.png", "src/shared/assets"],
             "styles": [
               "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/ionicons/dist/scss/ionicons.scss",
               "node_modules/aos/dist/aos.css",
-              "src/app/styles/styles.scss"
+              "src/styles/styles.scss"
             ]
           },
           "configurations": {
@@ -87,10 +87,10 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": ["src/favicon.ico", "src/assets"],
+            "assets": ["src/favicon.ico", "src/shared/assets"],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/app/styles/styles.scss"
+              "src/styles/styles.scss"
             ],
             "scripts": []
           }

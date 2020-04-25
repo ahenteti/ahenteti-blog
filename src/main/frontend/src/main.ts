@@ -2,17 +2,7 @@ import { enableProdMode, APP_ID } from "@angular/core";
 import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 
 import { AppModule } from "./app/app.module";
-import { environment } from "./app/environments/environment";
-
-import { Injectable, ReflectiveInjector } from "@angular/core";
-import { IThemeService } from "./app/services/theme/theme.service";
-
-// function createThemeService(): ThemeService {
-//   return ReflectiveInjector.resolveAndCreate([ThemeService]).get(ThemeService);
-// }
-
-// let themeService: ThemeService = createThemeService();
-// themeService.setWebsiteTheme();
+import { environment } from "./environments/environment";
 
 if (environment.production) {
   enableProdMode();
