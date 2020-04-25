@@ -1,13 +1,11 @@
 <app-articles-welcome-message></app-articles-welcome-message>
 <app-search-articles
-  [selectedTag]="selectedTag"
-  [tags]="tags"
+  [selectedTag]="state.selectedTag"
+  [tags]="state.allTags"
   (inputChange)="handleSearchTextChange($event)"
   (tagSelection)="handleTagSelection($event)"
 ></app-search-articles>
 
 <app-articles-by-category
-  [articlesByCategory]="displayedArticlesByCategory"
-  [selectedTag]="selectedTag"
-  (tagClick)="handleTagClickEvent($event)"
+  [articlesByCategory]="state.filteredArticles"
 ></app-articles-by-category>

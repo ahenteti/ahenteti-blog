@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { IArticleSummary } from "src/app/modules/articles/article.internal.models";
+import { IArticleSummary } from "src/app/modules/articles/models/article.internal.models";
 
 @Component({
   selector: "app-article-summary",
@@ -9,14 +9,4 @@ import { IArticleSummary } from "src/app/modules/articles/article.internal.model
 export class ArticleSummaryComponent {
   @Input()
   public article: IArticleSummary;
-
-  @Input()
-  public selectedTag: string;
-
-  @Output()
-  public tagClick = new EventEmitter<string>();
-
-  handleTagClickEvent(selectedTag) {
-    this.tagClick.emit(selectedTag);
-  }
 }

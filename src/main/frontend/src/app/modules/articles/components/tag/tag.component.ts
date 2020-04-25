@@ -1,11 +1,5 @@
-import {
-  Component,
-  Input,
-  HostBinding,
-  OnInit,
-  Output,
-  EventEmitter,
-} from "@angular/core";
+import { Component, Input, HostBinding, OnInit } from "@angular/core";
+import { ArticlesState } from "../../state/articles.state";
 
 @Component({
   selector: "app-tag",
@@ -13,25 +7,21 @@ import {
   styleUrls: ["./tag.component.scss"],
 })
 export class TagComponent implements OnInit {
-  @Input()
-  public selectedTag: string;
+  constructor(private state: ArticlesState) {}
 
   @Input()
   public tag: string;
-
-  @Output()
-  public click = new EventEmitter<string>();
 
   @HostBinding("class.selected")
   public selected: boolean;
 
   ngOnInit(): void {
-    this.selected = this.tag == this.selectedTag;
+    this.selected = this.tag == this.state.selectedTag;
   }
 
   handleClickEvent(event) {
     event.preventDefault();
     event.stopPropagation();
-    this.click.emit(this.tag);
+    this.state.selectedTag = this.tag;
   }
 }

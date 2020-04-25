@@ -1,6 +1,6 @@
-import { IArticleSummary } from "src/app/modules/articles/article.internal.models";
+import { IArticleSummary } from "src/app/modules/articles/models/article.internal.models";
+import { IGetByIdArticleSummaryApiResponse } from "../models/article.external.models";
 import { Injectable } from "@angular/core";
-import { IGetByIdArticleSummaryApiResponse } from "./article.external.models";
 
 @Injectable()
 export class ArticleConverter {

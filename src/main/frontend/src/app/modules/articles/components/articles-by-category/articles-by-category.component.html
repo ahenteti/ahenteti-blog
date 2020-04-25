@@ -8,8 +8,6 @@
     <app-article-summary
       *ngFor="let article of articles.value"
       [article]="article"
-      [selectedTag]="selectedTag"
-      (tagClick)="handleTagClickEvent($event)"
     ></app-article-summary>
   </div>
 </div>

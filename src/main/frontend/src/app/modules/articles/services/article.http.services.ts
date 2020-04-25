@@ -1,9 +1,9 @@
-import { IArticleSummary } from "src/app/modules/articles/article.internal.models";
+import { IArticleSummary } from "src/app/modules/articles/models/article.internal.models";
 import { Observable } from "rxjs";
 import { Injectable } from "@angular/core";
 import { from } from "rxjs";
 import { map } from "rxjs/operators";
-import { ArticleConverter } from "src/app/modules/articles/article.converter";
+import { ArticleConverter } from "src/app/modules/articles/converters/article.converter";
 
 @Injectable()
 export class ArticleHttpServices {

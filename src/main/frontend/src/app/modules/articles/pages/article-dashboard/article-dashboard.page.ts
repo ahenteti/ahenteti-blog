@@ -2,23 +2,21 @@ import { Component, OnInit } from "@angular/core";
 import {
   IArticleSummary,
   ArticlesByCategory,
-} from "src/app/modules/articles/article.internal.models";
+} from "src/app/modules/articles/models/article.internal.models";
 import { SetUtils } from "src/app/modules/shared/utils/set.utils";
 import { ALL_TAGS } from "src/app/modules/shared/utils/constants.utils";
-import { ArticleHttpServices } from "../../article.http.services";
+import { ArticleHttpServices } from "../../services/article.http.services";
+import { ArticlesState } from "src/app/modules/articles/state/articles.state";
 
 @Component({
   templateUrl: "article-dashboard.page.html",
   styleUrls: ["article-dashboard.page.scss"],
 })
 export class ArticleDashboardPage implements OnInit {
-  public allArticlesByCategory: ArticlesByCategory;
-  public displayedArticlesByCategory: ArticlesByCategory;
-  public selectedTag: string;
-  public tags: Set<string>;
-  public searchText: string;
-
-  constructor(private articleService: ArticleHttpServices) {}
+  constructor(
+    private articleService: ArticleHttpServices,
+    private state: ArticlesState
+  ) {}
 
   ngOnInit(): void {
     this.articleService
@@ -27,75 +25,25 @@ export class ArticleDashboardPage implements OnInit {
   }
 
   handleSearchTextChange(userSearch) {
-    this.searchText = userSearch;
-    this.displayedArticlesByCategory = this.getArticlesToDisplay();
+    this.state.articlesSearchText = userSearch;
   }
 
   handleTagSelection(userTagSelection) {
-    this.selectedTag = userTagSelection;
-    this.displayedArticlesByCategory = this.getArticlesToDisplay();
-  }
-
-  handleTagClickEvent(selectedTag) {
-    this.selectedTag = selectedTag;
-    this.displayedArticlesByCategory = this.getArticlesToDisplay();
+    this.state.selectedTag = userTagSelection;
   }
 
   private setInitialControllerState(articles: IArticleSummary[]): void {
-    this.allArticlesByCategory = new ArticlesByCategory();
+    const allArticlesByCategory = new ArticlesByCategory();
     const tags = new Set<string>();
     articles.forEach((article) => {
       article.tags.forEach((tag) => tags.add(tag));
-      if (!this.allArticlesByCategory.has(article.category)) {
-        this.allArticlesByCategory.set(article.category, []);
+      if (!allArticlesByCategory.has(article.category)) {
+        allArticlesByCategory.set(article.category, []);
       }
-      this.allArticlesByCategory.get(article.category).push(article);
+      allArticlesByCategory.get(article.category).push(article);
     });
-    this.selectedTag = ALL_TAGS;
-    this.tags = new Set([this.selectedTag, ...SetUtils.sort(tags)]);
-    this.displayedArticlesByCategory = this.getArticlesToDisplay();
-  }
-
-  private getArticlesToDisplay(): ArticlesByCategory {
-    const res = new ArticlesByCategory();
-    const articlesToDisplay = [];
-    for (let articles of this.allArticlesByCategory.values()) {
-      articlesToDisplay.push(
-        ...articles.filter((article) => this.keepArticle(article))
-      );
-    }
-    articlesToDisplay.forEach((article) => {
-      if (!res.has(article.category)) {
-        res.set(article.category, []);
-      }
-      res.get(article.category).push(article);
-    });
-    return res;
-  }
-
-  private keepArticle(article: IArticleSummary): boolean {
-    if (this.selectedTag == ALL_TAGS) {
-      if (!this.searchText) {
-        return true;
-      } else {
-        for (let searchWord of this.searchText.split(" ")) {
-          if (article.searchKey.indexOf(searchWord) > -1) return true;
-        }
-        return false;
-      }
-    } else {
-      if (!this.searchText) {
-        return article.tags.includes(this.selectedTag);
-      } else {
-        for (let userSearchWord of this.searchText.split(" ")) {
-          if (
-            article.searchKey.indexOf(userSearchWord) > -1 &&
-            article.tags.includes(this.selectedTag)
-          )
-            return true;
-        }
-        return false;
-      }
-    }
+    this.state.allArticles = allArticlesByCategory;
+    this.state.filteredArticles = allArticlesByCategory;
+    this.state.allTags = new Set([ALL_TAGS, ...SetUtils.sort(tags)]);
   }
 }
