@@ -1,0 +1,14 @@
+:host {
+  --text-with-icon-text-font-style: italic;
+  --text-with-icon-text-color: var(--quote-text-color);
+  --text-with-icon-background-color: var(--quote-background-color);
+}
+
+.author {
+  font-style: italic;
+  color: var(--primary-color);
+  padding-top: 1rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  float: right;
+}

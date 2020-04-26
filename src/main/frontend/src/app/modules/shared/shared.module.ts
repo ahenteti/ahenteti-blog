@@ -14,9 +14,15 @@ import { PortalModule } from "@angular/cdk/portal";
 import { MatSelectModule } from "@angular/material/select";
 import { RouterModule } from "@angular/router";
 import { ThemeLocalStorageServices } from "./services/theme.localstorage.services";
+import { TextWithIconComponent } from "./components/text-with-icon/text-with-icon.component";
+import { QuoteComponent } from "./components/text-with-icon/quote.component";
+import { ErrorComponent } from "./components/text-with-icon/error.component";
+import { WarnComponent } from "./components/text-with-icon/warn.component";
+import { InfoComponent } from "./components/text-with-icon/info.component";
+import { MarkdownComponent } from "./components/markdown/markdown.component";
 
 @NgModule({
-  entryComponents: [TooltipComponent],
+  entryComponents: [TooltipComponent, QuoteComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -34,6 +40,12 @@ import { ThemeLocalStorageServices } from "./services/theme.localstorage.service
     SlideInDirective,
     TooltipComponent,
     TooltipDirective,
+    TextWithIconComponent,
+    QuoteComponent,
+    ErrorComponent,
+    WarnComponent,
+    InfoComponent,
+    MarkdownComponent,
   ],
   exports: [
     FancyTitleComponent,
@@ -43,10 +55,15 @@ import { ThemeLocalStorageServices } from "./services/theme.localstorage.service
     SelectOptionComponent,
     SlideInDirective,
     TooltipDirective,
+    QuoteComponent,
     OverlayModule,
     PortalModule,
     MatSelectModule,
     RouterModule,
+    ErrorComponent,
+    WarnComponent,
+    InfoComponent,
+    MarkdownComponent,
   ],
   providers: [ThemeLocalStorageServices],
 })

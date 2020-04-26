@@ -1,0 +1,52 @@
+.app-markdown ::ng-deep {
+  & .text-with-icon {
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    border-radius: 0.3rem;
+    font-size: 1.6rem;
+    line-height: 2.5rem;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+
+    & img {
+      width: 4.5rem;
+      flex-grow: 0;
+      flex-shrink: 0;
+      padding-right: 1.6rem;
+    }
+
+    & p:first-of-type {
+      margin: 0;
+    }
+
+    &.quote {
+      font-style: italic;
+      background-color: var(--quote-background-color);
+      color: var(--quote-text-color);
+
+      & .author {
+        float: right;
+        margin-top: 0.5rem;
+        color: var(--primary-color);
+        font-size: 1.35rem;
+        font-weight: bold;
+      }
+    }
+
+    &.info {
+      background-color: var(--info-background-color);
+      color: var(--info-text-color);
+    }
+
+    &.warn {
+      background-color: var(--warn-background-color);
+      color: var(--warn-text-color);
+    }
+
+    &.error {
+      background-color: var(--error-background-color);
+      color: var(--error-text-color);
+    }
+  }
+}

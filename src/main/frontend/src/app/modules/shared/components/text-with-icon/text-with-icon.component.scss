@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  padding: 2rem;
+  border-radius: 0.3rem;
+  background-color: var(--text-with-icon-background-color);
+}
+
+.icon {
+  flex: 0 0 5rem;
+  padding-right: 2rem;
+  width: 2rem;
+}
+
+:host ::ng-deep {
+  color: var(--text-with-icon-text-color);
+  font-style: var(--text-with-icon-text-font-style, normal);
+  font-size: var(--text-with-icon-text-font-size, 1.6rem);
+  line-height: var(--text-with-icon-text-line-height, 2.5rem);
+}

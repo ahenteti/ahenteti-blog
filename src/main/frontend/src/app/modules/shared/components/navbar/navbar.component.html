@@ -3,10 +3,11 @@
     <app-logo-link></app-logo-link>
   </div>
   <div class="right">
-    <span
-      (click)="handleChangeThemeColorClickEvent()"
-      class="ion ion-ios-contrast"
-      tooltip="toggle light/dark theme"
-    ></span>
+    <div class="tooltip-bottom" data-tooltip="toggle light/dark theme">
+      <span
+        (click)="handleChangeThemeColorClickEvent()"
+        class="ion ion-ios-contrast"
+      ></span>
+    </div>
   </div>
 </nav>

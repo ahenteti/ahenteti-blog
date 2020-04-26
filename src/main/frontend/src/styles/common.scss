@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+* {
+  font-size: 1.6rem;
+}
+
 :root {
   --transition: all 0.2s ease-in;
   --navbar-height: 6.5rem;
@@ -42,11 +46,6 @@ main {
   margin: 0 auto;
 }
 
-a {
+a:hover {
   text-decoration: none;
-
-  &:hover {
-    color: var(--primary-color);
-    text-decoration: underline;
-  }
 }

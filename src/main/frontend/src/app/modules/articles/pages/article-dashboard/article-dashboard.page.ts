@@ -1,12 +1,13 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import {
-  IArticleSummary,
   ArticlesByCategory,
+  ArticlesSummaries,
 } from "src/app/modules/articles/models/article.internal.models";
 import { SetUtils } from "src/app/modules/shared/utils/set.utils";
 import { ALL_TAGS } from "src/app/modules/shared/utils/constants.utils";
-import { ArticleHttpServices } from "../../services/article.http.services";
 import { ArticlesState } from "src/app/modules/articles/state/articles.state";
+import { first } from "rxjs/operators";
+import { ArticleHttpServices } from "../../services/article.http.services";
 
 @Component({
   templateUrl: "article-dashboard.page.html",
@@ -21,6 +22,7 @@ export class ArticleDashboardPage implements OnInit {
   ngOnInit(): void {
     this.articleService
       .getArticlesSummary()
+      .pipe(first())
       .subscribe(this.setInitialControllerState.bind(this));
   }
 
@@ -32,7 +34,7 @@ export class ArticleDashboardPage implements OnInit {
     this.state.selectedTag = userTagSelection;
   }
 
-  private setInitialControllerState(articles: IArticleSummary[]): void {
+  private setInitialControllerState(articles: ArticlesSummaries): void {
     const allArticlesByCategory = new ArticlesByCategory();
     const tags = new Set<string>();
     articles.forEach((article) => {

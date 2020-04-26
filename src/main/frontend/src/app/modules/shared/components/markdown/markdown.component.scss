@@ -1,0 +1,70 @@
+.app-markdown ::ng-deep {
+  & h1 {
+    font-size: 3rem;
+    margin: 1rem 0;
+  }
+
+  & h2 {
+    font-size: 2.5rem;
+    margin: 1rem 0;
+  }
+
+  & h3 {
+    font-size: 2rem;
+    margin: 0.7rem 0;
+  }
+
+  & p {
+    margin: 0.7rem 0;
+  }
+
+  & a {
+    color: var(--primary-color);
+    text-decoration: none !important;
+
+    &:hover {
+      text-decoration: underline !important;
+    }
+  }
+
+  & ul,
+  & ol {
+    margin: 0.7rem 0;
+  }
+
+  & ul li,
+  & ol li {
+    list-style-position: inside;
+    padding-left: 1.5rem;
+    margin: 0.8rem 0;
+  }
+
+  & ul li {
+    list-style-type: square;
+  }
+
+  & ol li {
+    list-style-type: none;
+  }
+
+  & ol {
+    counter-reset: ordered-list;
+  }
+
+  & ol li::before {
+    counter-increment: ordered-list;
+    content: counter(ordered-list);
+    color: var(--primary-color);
+    font-weight: bold;
+    padding-right: 1.5rem;
+  }
+
+  & hr {
+    margin: 1rem 0;
+    height: 0.4rem;
+    background-color: var(--border-color);
+    color: var(--border-color);
+    border: none;
+    outline: none;
+  }
+}
