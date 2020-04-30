@@ -1,0 +1,11 @@
+span {
+  display: inline-block;
+  width: var(--avatar-size, 5rem);
+  height: var(--avatar-size, 5rem);
+  border-radius: 50%;
+  line-height: var(--avatar-size, 5rem);
+  font-size: 3rem;
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+}

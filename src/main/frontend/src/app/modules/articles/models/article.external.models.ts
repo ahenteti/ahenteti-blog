@@ -20,11 +20,13 @@ export interface IGetByIdArticleApiResponse {
   lastUpdatedAtIso8601?: string;
   bodyMarkdownBase64: string;
   author: string;
-  comment?: CommentExternalModel[];
+  comments?: CommentsExternalModel;
 }
 
-export interface CommentExternalModel {
+export interface ICommentExternalModel {
   author: string;
   createdAtIso8601: string;
-  markdownContentBase64: string;
+  value: string;
 }
+
+export class CommentsExternalModel extends Array<ICommentExternalModel> {}

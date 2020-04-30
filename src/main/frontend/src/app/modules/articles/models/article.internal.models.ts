@@ -13,13 +13,15 @@ export class ArticlesSummaries extends Array<IArticleSummary> {}
 export interface IArticle extends IArticleSummary {
   author: string;
   bodyMarkdown: string;
-  comments: CommentInternalModel[];
+  comments: Comments;
 }
 
 export class ArticlesByCategory extends Map<string, IArticleSummary[]> {}
 
-export interface CommentInternalModel {
+export interface IComment {
   author: string;
   createdAt: Date;
-  contentMarkdown: string;
+  value: string;
 }
+
+export class Comments extends Array<IComment> {}

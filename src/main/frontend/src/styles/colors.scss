@@ -78,6 +78,8 @@ body.dark {
   --code-line-numbers-background-color: #394048;
   --code-tab-background-color-on-hover: #394048;
   --code-copy-icon-color: #888;
+
+  --comment-background-color: #32373b;
 }
 
 body.light {
@@ -144,4 +146,6 @@ body.light {
   --code-line-numbers-background-color: #eee;
   --code-tab-background-color-on-hover: #eee;
   --code-copy-icon-color: #777;
+
+  --comment-background-color: #f8f9fa;
 }

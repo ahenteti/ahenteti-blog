@@ -20,6 +20,9 @@ import { ErrorComponent } from "./components/text-with-icon/error.component";
 import { WarnComponent } from "./components/text-with-icon/warn.component";
 import { InfoComponent } from "./components/text-with-icon/info.component";
 import { MarkdownComponent } from "./components/markdown/markdown.component";
+import { FirstLetterPipe } from "./pipes/first-letter.pipe";
+import { AvatarComponent } from "./components/profile-image/avatar.component";
+import { TimeAgoPipe } from "time-ago-pipe";
 
 @NgModule({
   entryComponents: [TooltipComponent, QuoteComponent],
@@ -46,6 +49,9 @@ import { MarkdownComponent } from "./components/markdown/markdown.component";
     WarnComponent,
     InfoComponent,
     MarkdownComponent,
+    FirstLetterPipe,
+    AvatarComponent,
+    TimeAgoPipe,
   ],
   exports: [
     FancyTitleComponent,
@@ -64,6 +70,9 @@ import { MarkdownComponent } from "./components/markdown/markdown.component";
     WarnComponent,
     InfoComponent,
     MarkdownComponent,
+    FirstLetterPipe,
+    AvatarComponent,
+    TimeAgoPipe,
   ],
   providers: [ThemeLocalStorageServices],
 })

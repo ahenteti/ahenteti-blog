@@ -58,6 +58,20 @@ const ARTICLE: IGetByIdArticleApiResponse = {
     "YGBgbXVsdGlwbGUNCk5hbWUxLmpzfGphdmFzY3JpcHQNCmZ1bmN0aW9uIGNsb3N1cmVGdW5jdGlvbigpIHsNCiAgICBsZXQgZGF0ZSA9IG5ldyBEYXRlKCk7DQogICAgcmV0dXJuIGZ1bmN0aW9uKCkgew0KICAgICAgICByZXR1cm4gZGF0ZS5nZXRNaWxsaXNlY29uZHMoKTsNCiAgICB9DQp9DQotLS0NCk5hbWUyLmpzfGphdmFzY3JpcHQNCmZ1bmN0aW9uIG5vbkNsb3N1cmVGdW5jdGlvbigpIHsNCiAgICBsZXQgZGF0ZSA9IG5ldyBEYXRlKCk7DQogICAgcmV0dXJuIGRhdGUuZ2V0TWlsbGlzZWNvbmRzKCk7DQp9DQpgYGA=",
   // "IyBoZWxsbywgVGhpcyBpcyBNYXJrZG93biBMaXZlIFByZXZpZXcNCg0KLS0tLQ0KIyMgd2hhdCBpcyBNYXJrZG93bj8NCnNlZSBbV2lraXBlZGlhXShodHRwczovL2VuLndpa2lwZWRpYS5vcmcvd2lraS9NYXJrZG93bikNCg0KPiBNYXJrZG93biBpcyBhIGxpZ2h0d2VpZ2h0IG1hcmt1cCBsYW5ndWFnZSwgb3JpZ2luYWxseSBjcmVhdGVkIGJ5IEpvaG4gR3J1YmVyIGFuZCBBYXJvbiBTd2FydHogYWxsb3dpbmcgcGVvcGxlICJ0byB3cml0ZSB1c2luZyBhbiBlYXN5LXRvLXJlYWQsIGVhc3ktdG8td3JpdGUgcGxhaW4gdGV4dCBmb3JtYXQsIHRoZW4gY29udmVydCBpdCB0byBzdHJ1Y3R1cmFsbHkgdmFsaWQgWEhUTUwgKG9yIEhUTUwpIi4NCg0KLS0tLQ0KIyMgdXNhZ2UNCjEuIFdyaXRlIG1hcmtkb3duIHRleHQgaW4gdGhpcyB0ZXh0YXJlYS4NCjIuIENsaWNrICdIVE1MIFByZXZpZXcnIGJ1dHRvbi4NCg0KLS0tLQ0KIyMgbWFya2Rvd24gcXVpY2sgcmVmZXJlbmNlDQojIGhlYWRlcnMNCg0KKmVtcGhhc2lzKg0KDQoqKnN0cm9uZyoqDQoNCiogbGlzdA0KDQo+YmxvY2sgcXVvdGUNCg0KICAgIGNvZGUgKDQgc3BhY2VzIGluZGVudCkNCltsaW5rc10oaHR0cHM6Ly93aWtpcGVkaWEub3JnKQ0KDQotLS0tDQojIyBjaGFuZ2Vsb2cNCiogMTctRmViLTIwMTMgcmUtZGVzaWduDQoNCi0tLS0NCiMjIHRoYW5rcw0KKiBbbWFya2Rvd24tanNdKGh0dHBzOi8vZ2l0aHViLmNvbS9ldmlsc3RyZWFrL21hcmtkb3duLWpzKQ0K",
   // "UmVmZXJlbmNlLXN0eWxlOiANCiFbYWx0IHRleHRdW2xvZ29dDQoNCltsb2dvXTogaHR0cHM6Ly9naXRodWIuY29tL2FkYW0tcC9tYXJrZG93bi1oZXJlL3Jhdy9tYXN0ZXIvc3JjL2NvbW1vbi9pbWFnZXMvaWNvbjQ4LnBuZyAiTG9nbyBUaXRsZSBUZXh0IDIi",
+  comments: [
+    {
+      author: "ahenteti",
+      createdAtIso8601: "2019-07-21T09:50:00Z",
+      value:
+        "loremEa veniam tempor aliquip mollit cillum veniam culpa. Occaecat excepteur tempor sint anim et cillum id sint exercitation. Id deserunt ea culpa sunt laboris magna sint nulla magna Lorem ex consequat anim in. Elit sunt qui eiusmod duis adipisicing adipisicing et ea do consequat enim. Sit fugiat irure proident in mollit tempor deserunt ipsum minim consectetur amet ex eu.",
+    },
+    {
+      author: "bob",
+      createdAtIso8601: "2020-07-10T11:53:00Z",
+      value:
+        "Incididunt veniam fugiat deserunt sint dolor anim voluptate sit eiusmod esse sunt ex aute. Culpa voluptate non ex dolor eu ea sit proident ea anim quis occaecat. Est qui id ullamco duis. Magna dolore Lorem ex mollit.",
+    },
+  ],
 };
 
 const ARTICLES_SUMMARY: IGetArticlesSummariesApiResponse = [

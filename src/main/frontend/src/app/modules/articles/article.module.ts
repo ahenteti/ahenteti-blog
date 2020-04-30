@@ -16,6 +16,8 @@ import { ArticleHttpServices } from "./services/article.http.services";
 import { ArticleLayoutComponent } from "./components/article-layout/article-layout.component";
 import { ArticleTitleComponent } from "./components/article-title/article-title.component";
 import { ArticleContentComponent } from "./components/article-content/article-content.component";
+import { CommentComponent } from "./components/comments/comment.component";
+import { CommentsComponent } from "./components/comments/comments.component";
 
 const routes: Routes = [
   { path: "", component: ArticleDashboardPage },
@@ -34,6 +36,8 @@ const routes: Routes = [
     ArticleLayoutComponent,
     ArticleTitleComponent,
     ArticleContentComponent,
+    CommentComponent,
+    CommentsComponent,
     ArticleDashboardPage,
     ConsultArticlePage,
   ],

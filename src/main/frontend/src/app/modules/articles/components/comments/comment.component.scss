@@ -1,0 +1,33 @@
+:host {
+  display: flex;
+  padding: 2rem;
+  background-color: var(--comment-background-color);
+  border-radius: 0.3rem;
+  transition: var(--transition);
+  transition-property: background-color;
+}
+
+app-avatar {
+  flex-grow: 0;
+  flex-shrink: 0;
+  margin-right: 2.5rem;
+}
+
+.author {
+  font-weight: bold;
+}
+
+.created-at {
+  font-size: 1.3rem;
+}
+
+.metadata {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.body {
+  text-align: justify;
+  font-size: 1.4rem;
+}

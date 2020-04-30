@@ -1,12 +1,12 @@
 import {
   IArticleSummary,
   IArticle,
-  CommentInternalModel,
+  IComment,
 } from "src/app/modules/articles/models/article.internal.models";
 import {
   IGetByIdArticleSummaryApiResponse,
   IGetByIdArticleApiResponse,
-  CommentExternalModel,
+  ICommentExternalModel,
 } from "../models/article.external.models";
 import { Injectable } from "@angular/core";
 
@@ -45,15 +45,15 @@ export class ArticleConverter {
       searchKey: this.calculateSearchKey(article.title, article.tags),
       author: article.author,
       bodyMarkdown: atob(article.bodyMarkdownBase64),
-      comments: [...(article.comment || []).map(this.from)],
+      comments: [...(article.comments || []).map(this.from)],
     };
   }
 
-  private from(comment: CommentExternalModel): CommentInternalModel {
+  private from(comment: ICommentExternalModel): IComment {
     return {
       author: comment.author,
       createdAt: new Date(comment.createdAtIso8601),
-      contentMarkdown: atob(comment.markdownContentBase64),
+      value: comment.value,
     };
   }
 
