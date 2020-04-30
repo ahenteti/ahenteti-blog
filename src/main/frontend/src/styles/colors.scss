@@ -80,6 +80,9 @@ body.dark {
   --code-copy-icon-color: #888;
 
   --comment-background-color: #32373b;
+  --comment-author-color: #f0f3f7;
+  --comment-created-at-color: #d1d2d3;
+  --comment-body-color: #c9c9c9;
 }
 
 body.light {
@@ -148,4 +151,7 @@ body.light {
   --code-copy-icon-color: #777;
 
   --comment-background-color: #f8f9fa;
+  --comment-author-color: rgb(68, 68, 68);
+  --comment-created-at-color: #555;
+  --comment-body-color: #555;
 }

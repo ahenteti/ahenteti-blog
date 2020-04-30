@@ -45,8 +45,17 @@ export class ArticleConverter {
       searchKey: this.calculateSearchKey(article.title, article.tags),
       author: article.author,
       bodyMarkdown: atob(article.bodyMarkdownBase64),
-      comments: [...(article.comments || []).map(this.from)],
+      comments: [...(article.comments || []).map(this.from)].sort(
+        this.sortByDate
+      ),
     };
+  }
+
+  private sortByDate(a: IComment, b: IComment) {
+    if (a.createdAt < b.createdAt) {
+      return 1;
+    }
+    return -1;
   }
 
   private from(comment: ICommentExternalModel): IComment {

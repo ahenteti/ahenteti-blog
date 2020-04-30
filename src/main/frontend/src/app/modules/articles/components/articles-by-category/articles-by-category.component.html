@@ -2,8 +2,9 @@
   *ngFor="let articles of articlesByCategory | keyvalue: articlesOrder"
   class="container"
 >
-  <app-fancy-title [value]="articles.key"></app-fancy-title>
-
+  <div appSlideIn>
+    <app-fancy-title [value]="articles.key"></app-fancy-title>
+  </div>
   <div class="articles-by-category">
     <app-article-summary
       *ngFor="let article of articles.value"

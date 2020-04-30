@@ -15,19 +15,26 @@ app-avatar {
 
 .author {
   font-weight: bold;
+  color: var(--comment-author-color);
 }
 
 .created-at {
   font-size: 1.3rem;
+  color: var(--comment-created-at-color);
 }
 
 .metadata {
   margin-bottom: 1.5rem;
   display: flex;
   justify-content: space-between;
+  transition: var(--transition);
+  transition-property: color, background-color;
 }
 
 .body {
   text-align: justify;
   font-size: 1.4rem;
+  color: var(--comment-body-color);
+  transition: var(--transition);
+  transition-property: color, background-color;
 }
