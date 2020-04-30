@@ -42,10 +42,10 @@
   }
 }
 
-.tags {
+.container .tags {
   flex-grow: 0;
   background: var(--search-posts-tags-background-color);
-  padding-left: 2rem !important;
+  padding-left: 2rem;
 }
 
 ::ng-deep .tags-overlay-panel {
@@ -88,14 +88,14 @@
   width: auto !important;
 }
 
-.search-input {
+.container .search-input {
   flex-grow: 1;
   font-size: 1.6rem;
   border: none;
   outline: none;
   color: var(--search-posts-input-color);
   background: var(--search-posts-input-background-color);
-  padding-left: 1.5rem !important;
+  padding-left: 1.5rem;
 
   &::placeholder {
     color: var(--search-posts-input-placeholder-color);
@@ -103,9 +103,9 @@
   }
 }
 
-.icon {
+.container .icon {
   font-size: 2.5rem;
   color: var(--search-posts-icon-color);
   background-color: var(--search-posts-icon-background-color);
-  padding-right: 1.5rem !important;
+  padding-right: 1.5rem;
 }

@@ -45,8 +45,8 @@
       overflow-x: overlay;
 
       & code {
-        padding: 1.6rem !important;
-        color: var(--code-color) !important;
+        padding: 1.6rem !important; // override hljs styles
+        color: var(--code-color) !important; // override hljs styles
         background-color: var(--code-background-color) !important;
         transition: var(--transition);
         transition-property: color, background-color;
