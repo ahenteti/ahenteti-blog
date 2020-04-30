@@ -1,0 +1,54 @@
+:host {
+  min-width: 0;
+}
+
+:host a {
+  text-decoration: none;
+}
+
+.container {
+  background-color: var(--post-summary-background-color);
+  padding: var(--post-summary-padding, 3.2rem);
+  border-bottom: 2px solid var(--post-summary-border-color);
+  transition: var(--transition);
+  transition-property: background-color, border-color, box-shadow;
+  cursor: pointer;
+}
+
+:host:hover .container {
+  border-color: var(--post-summary-border-color-on-hover);
+  box-shadow: var(--post-summary-box-shadow);
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--post-summary-title-color);
+  transition: var(--transition);
+  transition-property: color;
+  margin-bottom: 2rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+:host:hover .title {
+  color: var(--post-summary-title-color-on-hover);
+}
+
+.tags {
+  margin-bottom: 1.6rem;
+}
+
+.publish-date {
+  font-size: 1.4rem;
+  color: var(--post-summary-icons-color);
+}
+
+.iconify {
+  font-size: 1.5rem;
+  margin-right: 1.5rem;
+  color: var(--post-summary-icons-color);
+  transition: var(--transition);
+  transition-property: color;
+}

@@ -11,19 +11,19 @@ body.dark {
   --box-shadow: rgba(123, 124, 126, 0.15) 0px 1px 3px 1px;
   --border-color: #394048;
 
-  --search-articles-tags-border-color: #262a2d;
-  --search-articles-tags-border-color-on-active: var(--primary-color);
-  --search-articles-tags-color: #888;
-  --search-articles-tags-background-color: #32373b;
-  --search-articles-tags-dropdown-color: #888;
-  --search-articles-tags-dropdown-background-color: #262a2d;
-  --search-articles-tags-dropdown-active-tag-background-color: #32373b;
-  --search-articles-tags-dropdown-on-hover-background-color: #36393b;
-  --search-articles-input-color: #d1d2d3;
-  --search-articles-input-background-color: #262a2d;
-  --search-articles-input-placeholder-color: #888;
-  --search-articles-icon-color: #888;
-  --search-articles-icon-background-color: #262a2d;
+  --search-posts-tags-border-color: #262a2d;
+  --search-posts-tags-border-color-on-active: var(--primary-color);
+  --search-posts-tags-color: #888;
+  --search-posts-tags-background-color: #32373b;
+  --search-posts-tags-dropdown-color: #888;
+  --search-posts-tags-dropdown-background-color: #262a2d;
+  --search-posts-tags-dropdown-active-tag-background-color: #32373b;
+  --search-posts-tags-dropdown-on-hover-background-color: #36393b;
+  --search-posts-input-color: #d1d2d3;
+  --search-posts-input-background-color: #262a2d;
+  --search-posts-input-placeholder-color: #888;
+  --search-posts-icon-color: #888;
+  --search-posts-icon-background-color: #262a2d;
 
   --select-selected-option-color: var(--primary-color);
   --select-selected-option-border-color: var(--primary-color);
@@ -51,16 +51,16 @@ body.dark {
   --tag-background-color: #32373b;
   --tag-selected-color: white;
 
-  --article-summary-background-color: #262a2d;
-  --article-summary-border-color: #32373b;
-  --article-summary-border-color-on-hover: var(--primary-color);
-  --article-summary-title-color: #dedede;
-  --article-summary-title-color-on-hover: var(--primary-color);
-  --article-summary-icons-color: #888;
-  --article-summary-box-shadow: none;
+  --post-summary-background-color: #262a2d;
+  --post-summary-border-color: #32373b;
+  --post-summary-border-color-on-hover: var(--primary-color);
+  --post-summary-title-color: #dedede;
+  --post-summary-title-color-on-hover: var(--primary-color);
+  --post-summary-icons-color: #888;
+  --post-summary-box-shadow: none;
 
-  --article-background-color: #262a2d;
-  --article-box-shadow: none;
+  --post-background-color: #262a2d;
+  --post-box-shadow: none;
 
   /* colors inspiration: https://material-ui.com/fr/components/alert/ */
   --info-background-color: rgb(3, 14, 24);
@@ -98,19 +98,19 @@ body.light {
   --box-shadow: rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   --border-color: #eee;
 
-  --search-articles-tags-border-color: #ccc;
-  --search-articles-tags-border-color-on-active: var(--primary-color);
-  --search-articles-tags-color: #888;
-  --search-articles-tags-background-color: #eee;
-  --search-articles-tags-dropdown-color: #888;
-  --search-articles-tags-dropdown-background-color: white;
-  --search-articles-tags-dropdown-active-tag-background-color: #eee;
-  --search-articles-tags-dropdown-on-hover-background-color: rgb(223, 223, 223);
-  --search-articles-input-color: #555;
-  --search-articles-input-background-color: inherit;
-  --search-articles-input-placeholder-color: #888;
-  --search-articles-icon-color: #888;
-  --search-articles-icon-background-color: inherit;
+  --search-posts-tags-border-color: #ccc;
+  --search-posts-tags-border-color-on-active: var(--primary-color);
+  --search-posts-tags-color: #888;
+  --search-posts-tags-background-color: #eee;
+  --search-posts-tags-dropdown-color: #888;
+  --search-posts-tags-dropdown-background-color: white;
+  --search-posts-tags-dropdown-active-tag-background-color: #eee;
+  --search-posts-tags-dropdown-on-hover-background-color: rgb(223, 223, 223);
+  --search-posts-input-color: #555;
+  --search-posts-input-background-color: inherit;
+  --search-posts-input-placeholder-color: #888;
+  --search-posts-icon-color: #888;
+  --search-posts-icon-background-color: inherit;
 
   --fancy-title-background-color: var(--body-background-color);
 
@@ -121,16 +121,16 @@ body.light {
   --tag-background-color: #f2f2f2;
   --tag-selected-color: white;
 
-  --article-summary-background-color: #fafafa;
-  --article-summary-border-color: #fafafa;
-  --article-summary-border-color-on-hover: #fafafa;
-  --article-summary-title-color: #828286;
-  --article-summary-title-color-on-hover: var(--primary-color);
-  --article-summary-icons-color: #888;
-  --article-summary-box-shadow: var(--box-shadow);
+  --post-summary-background-color: #fafafa;
+  --post-summary-border-color: #fafafa;
+  --post-summary-border-color-on-hover: #fafafa;
+  --post-summary-title-color: #828286;
+  --post-summary-title-color-on-hover: var(--primary-color);
+  --post-summary-icons-color: #888;
+  --post-summary-box-shadow: var(--box-shadow);
 
-  --article-background-color: var(--body-background-color);
-  --article-box-shadow: var(--box-shadow);
+  --post-background-color: var(--body-background-color);
+  --post-box-shadow: var(--box-shadow);
 
   /* colors inspiration: https://material-ui.com/fr/components/alert/ */
   --info-background-color: rgb(232, 244, 253);

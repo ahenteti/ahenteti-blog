@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { ArticleModule } from "./modules/articles/article.module";
+import { PostModule } from "./modules/posts/post.module";
 import { SharedModule } from "./modules/shared/shared.module";
 
 @NgModule({
@@ -13,7 +13,7 @@ import { SharedModule } from "./modules/shared/shared.module";
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-    ArticleModule,
+    PostModule,
   ],
   bootstrap: [AppComponent],
 })

@@ -1,0 +1,9 @@
+<app-posts-welcome-message></app-posts-welcome-message>
+<app-search-posts
+  [selectedTag]="state.selectedTag"
+  [tags]="state.allTags"
+  (inputChange)="handleSearchTextChange($event)"
+  (tagSelection)="handleTagSelection($event)"
+></app-search-posts>
+
+<app-posts-by-category [posts]="state.filteredPosts"></app-posts-by-category>
