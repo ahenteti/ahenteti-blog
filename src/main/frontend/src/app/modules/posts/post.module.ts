@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { HttpClientModule } from "@angular/common/http";
 import { SharedModule } from "../shared/shared.module";
 import { SearchPostsComponent } from "./components/search-posts/search-posts.component";
 import { Routes, RouterModule } from "@angular/router";
@@ -17,6 +18,7 @@ import { PostDashboardPage } from "./pages/post-dashboard/post-dashboard.page";
 import { PostSummaryComponent } from "./components/post-summary/post-summary.component";
 import { PostsWelcomeMessageComponent } from "./components/posts-welcome-message/posts-welcome-message.component";
 import { PostsByCategoryComponent } from "./components/posts-by-category/posts-by-category.component";
+import { PostHttpServicesImpl } from "./services/post.http.services.impl";
 
 const routes: Routes = [
   { path: "", component: PostDashboardPage },
@@ -24,7 +26,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
+  imports: [
+    CommonModule,
+    SharedModule,
+    RouterModule.forChild(routes),
+    HttpClientModule,
+  ],
   declarations: [
     TagComponent,
     TagListComponent,
@@ -39,9 +46,9 @@ const routes: Routes = [
     PostDashboardPage,
     ConsultPostPage,
   ],
-  exports: [RouterModule],
+  exports: [RouterModule, HttpClientModule],
   providers: [
-    { provide: PostHttpServices, useClass: PostHttpServicesMock },
+    { provide: PostHttpServices, useClass: PostHttpServicesImpl },
     PostConverter,
   ],
 })

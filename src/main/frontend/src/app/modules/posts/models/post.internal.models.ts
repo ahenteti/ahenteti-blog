@@ -14,6 +14,19 @@ export interface IPost extends IPostSummary {
   comments: Comments;
 }
 
+export class EmptyPost implements IPost {
+  id = 1;
+  title = "";
+  category = "";
+  tags = [];
+  createdAt = new Date();
+  lastUpdatedAt = new Date();
+  searchKey = "";
+  author = "";
+  bodyMarkdown = "";
+  comments = [];
+}
+
 export interface IComment {
   author: string;
   createdAt: Date;
