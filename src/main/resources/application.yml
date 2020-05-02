@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: ${AHENTETI_BLOG_DATASOURCE_URL}
+    username: ${AHENTETI_BLOG_DATASOURCE_USERNAME}
+    password: ${AHENTETI_BLOG_DATASOURCE_PASSWORD}
+###########################################################################################
+#    uncomment the following properties to generate the @Entity associated SQL scripts    #
+###########################################################################################
+#  jpa:
+#    properties:
+#      hibernate:
+#        hbm2ddl:
+#          delimiter: ";"
+#      javax:
+#        persistence:
+#          schema-generation: 
+#            create-source: metadata
+#            scripts:
+#              action: create
+#              create-target: database/create.sql

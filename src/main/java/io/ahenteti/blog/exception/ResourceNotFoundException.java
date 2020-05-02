@@ -1,4 +1,4 @@
-package org.ahenteti.java.exception;
+package io.ahenteti.blog.exception;
 
 public class ResourceNotFoundException extends RuntimeException {
 
