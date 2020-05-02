@@ -2,7 +2,7 @@
 <div>
   <div class="metadata">
     <span class="author">{{ comment.author | titlecase }}</span>
-    <span class="created-at">{{ comment.createdAt | timeAgo }}</span>
+    <span class="created-at">{{ comment.createdAt.toString() | timeAgo }}</span>
   </div>
   <p class="body">{{ comment.value }}</p>
 </div>
