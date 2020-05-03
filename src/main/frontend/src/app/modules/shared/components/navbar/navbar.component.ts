@@ -12,15 +12,15 @@ export class NavBarComponent implements OnInit {
 
   constructor(private themeService: ThemeLocalStorageServices) {}
 
+  handleChangeThemeColorClickEvent() {
+    this.themeService.toggleTheme();
+  }
+
   ngOnInit(): void {
     window.addEventListener("scroll", () => this.handleWindowScrollEvent());
   }
 
   private handleWindowScrollEvent() {
     this.shadow = window.scrollY > 0;
-  }
-
-  handleChangeThemeColorClickEvent() {
-    this.themeService.toggleTheme();
   }
 }

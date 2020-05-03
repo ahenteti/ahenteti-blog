@@ -20,7 +20,7 @@ body.light {
 [data-tooltip]::before,
 [data-tooltip]::after {
   text-transform: initial;
-  z-index: 99;
+  z-index: 999;
   visibility: hidden;
   opacity: 0;
   transition: var(--transition);
