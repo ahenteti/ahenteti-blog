@@ -23,7 +23,7 @@ export class NavBarComponent implements OnInit {
   ) {}
 
   handleChangeThemeColorClickEvent(event: any) {
-    event.stopPropagation();
+    // event.stopPropagation();
     this.themeService.toggleTheme();
   }
 

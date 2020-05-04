@@ -4,6 +4,8 @@
 
 .mat-menu-item {
   color: var(--dropdown-color);
+  line-height: 5rem;
+  height: 5rem;
 
   &:hover {
     background: var(--dropdown-item-background-color-on-hover) !important;

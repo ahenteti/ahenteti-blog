@@ -44,48 +44,8 @@
 
 .container .tags {
   flex-grow: 0;
-  background: var(--search-posts-tags-background-color);
-  padding-left: 2rem;
-}
-
-::ng-deep .tags-overlay-panel {
-  background: var(--search-posts-tags-dropdown-background-color);
-
-  & .mat-option {
-    color: var(--search-posts-tags-dropdown-color);
-    line-height: 4rem !important;
-    height: 4rem !important;
-  }
-
-  & .mat-option:hover {
-    background-color: var(
-      --search-posts-tags-dropdown-on-hover-background-color
-    ) !important;
-  }
-
-  & .mat-active {
-    background-color: var(
-      --search-posts-tags-dropdown-active-tag-background-color
-    ) !important;
-  }
-}
-
-.tags ::ng-deep .mat-select-value,
-.tags ::ng-deep .mat-select-arrow {
-  color: var(--search-posts-tags-color);
-}
-
-.tags ::ng-deep .mat-select-arrow-wrapper {
-  padding-left: 1rem;
-}
-
-.tags ::ng-deep .mat-select-value {
-  max-width: 100%;
-  width: auto;
-}
-
-.tags ::ng-deep .mat-form-field {
-  width: auto !important;
+  padding: 0;
+  --select-padding-left: 2.6rem;
 }
 
 .container .search-input {

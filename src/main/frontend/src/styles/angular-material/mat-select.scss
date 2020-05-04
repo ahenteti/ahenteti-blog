@@ -1,0 +1,45 @@
+.mat-select {
+  background: var(--select-selected-option-background-color);
+  padding-left: var(--select-padding-left, 1.6rem);
+  padding-right: var(--select-padding-right, 1.6rem);
+  height: var(--select-height, 4rem);
+  display: flex !important;
+  align-items: center;
+}
+
+.mat-select-value,
+.mat-select-arrow {
+  color: var(--select-selected-value-color);
+}
+
+.mat-select-value {
+  max-width: initial !important;
+}
+
+.mat-select-arrow-wrapper {
+  padding-left: 1rem;
+}
+
+.mat-select-panel {
+  background: var(--dropdown-background-color);
+}
+
+.mat-option {
+  color: var(--dropdown-color);
+  line-height: 5rem;
+  height: 5rem;
+
+  &:hover {
+    background: var(--dropdown-item-background-color-on-hover) !important;
+  }
+}
+
+.mat-option.mat-active {
+  color: var(--dropdown-color) !important;
+  background: var(--dropdown-background-color) !important;
+  border-left: 0.5rem solid var(--primary-color);
+
+  &:hover {
+    background: var(--dropdown-item-background-color-on-hover) !important;
+  }
+}

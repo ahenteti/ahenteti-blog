@@ -13,12 +13,8 @@ body.dark {
 
   --search-posts-tags-border-color: #262a2d;
   --search-posts-tags-border-color-on-active: var(--primary-color);
-  --search-posts-tags-color: #888;
+  --select-selected-value-color: #888;
   --search-posts-tags-background-color: #32373b;
-  --search-posts-tags-dropdown-color: #888;
-  --search-posts-tags-dropdown-background-color: #262a2d;
-  --search-posts-tags-dropdown-active-tag-background-color: #32373b;
-  --search-posts-tags-dropdown-on-hover-background-color: #36393b;
   --search-posts-input-color: #d1d2d3;
   --search-posts-input-background-color: #262a2d;
   --search-posts-input-placeholder-color: #888;
@@ -90,6 +86,7 @@ body.dark {
   --dropdown-color: #888;
   --dropdown-background-color: #262a2d;
   --dropdown-item-background-color-on-hover: #36393b;
+  --select-selected-option-background-color: #32373b;
 }
 
 body.light {
@@ -107,12 +104,8 @@ body.light {
 
   --search-posts-tags-border-color: #ccc;
   --search-posts-tags-border-color-on-active: var(--primary-color);
-  --search-posts-tags-color: #888;
+  --select-selected-value-color: #888;
   --search-posts-tags-background-color: #eee;
-  --search-posts-tags-dropdown-color: #888;
-  --search-posts-tags-dropdown-background-color: white;
-  --search-posts-tags-dropdown-active-tag-background-color: #eee;
-  --search-posts-tags-dropdown-on-hover-background-color: rgb(223, 223, 223);
   --search-posts-input-color: #555;
   --search-posts-input-background-color: inherit;
   --search-posts-input-placeholder-color: #888;
@@ -168,4 +161,5 @@ body.light {
   --dropdown-color: #888;
   --dropdown-background-color: white;
   --dropdown-item-background-color-on-hover: #eee;
+  --select-selected-option-background-color: #eee;
 }
