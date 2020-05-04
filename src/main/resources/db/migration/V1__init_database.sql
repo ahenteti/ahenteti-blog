@@ -42,7 +42,7 @@ create table t_posts_bodies
 
 create table t_users
 (
-  id bigint not null,
+  id bigint not null default nextval('t_users_id_seq'),
   github_username varchar(255),
   github_avatar varchar(255),
   primary key (id)

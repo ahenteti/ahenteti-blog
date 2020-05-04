@@ -9,6 +9,8 @@ import io.ahenteti.blog.service.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class PostDao {
 
@@ -29,8 +31,7 @@ public class PostDao {
         return res;
     }
 
-    public Post getPostById(long id) {
-        PostEntity postEntity = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id + ""));
-        return postConverter.toPost(postEntity);
+    public Optional<Post> getPostById(long id) {
+        return postRepository.findById(id).map(postConverter::toPost);
     }
 }

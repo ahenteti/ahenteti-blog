@@ -40,13 +40,13 @@ public class PostConverter {
         res.setTags(toTagsArrayList(entity));
         res.setCreatedAt(entity.getCreatedAt());
         res.setLastUpdatedAt(getLastUpdatedAt(entity));
-        res.setAuthor(userConverter.from(entity.getAuthor()));
+        res.setAuthor(userConverter.toUserSummary(entity.getAuthor()));
         return res;
     }
 
     public Post toPost(PostEntity entity) {
         Post res = new Post();
-        UserSummary author = userConverter.from(entity.getAuthor());
+        UserSummary author = userConverter.toUserSummary(entity.getAuthor());
         Comments comments = commentConverter.toComments(entity.getComments(), author, res);
         res.setId(entity.getId());
         res.setTitle(entity.getTitle());

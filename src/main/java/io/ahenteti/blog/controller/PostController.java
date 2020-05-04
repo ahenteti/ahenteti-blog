@@ -1,5 +1,6 @@
 package io.ahenteti.blog.controller;
 
+import io.ahenteti.blog.exception.ResourceNotFoundException;
 import io.ahenteti.blog.model.api.PostApiResponse;
 import io.ahenteti.blog.model.api.PostsSummariesApiResponse;
 import io.ahenteti.blog.model.core.Post;
@@ -30,8 +31,8 @@ public class PostController {
     }
 
     @GetMapping("/api/posts/{id}")
-    public PostApiResponse getPostById(@PathVariable long id) {
-        Post post = postDao.getPostById(id);
+    public PostApiResponse getPostById(@PathVariable Long id) {
+        Post post = postDao.getPostById(id).orElseThrow(() -> new ResourceNotFoundException(id.toString()));
         return postConverter.toPostApiResponse(post);
     }
 

@@ -9,11 +9,11 @@ export class UserState {
   private _user: IUser;
 
   constructor() {
-    this.authenticated = true;
-    this._user = {
-      username: "ahenteti",
-      avatarUrl: "https://avatars3.githubusercontent.com/u/16677361?v=4",
-    };
+    // this.authenticated = true;
+    // this._user = {
+    //   username: "ahenteti",
+    //   avatarUrl: "https://avatars3.githubusercontent.com/u/16677361?v=4",
+    // };
     // this.authenticated = false;
     // this._user = undefined;
   }
