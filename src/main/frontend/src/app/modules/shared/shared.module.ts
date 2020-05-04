@@ -23,6 +23,12 @@ import { MarkdownComponent } from "./components/markdown/markdown.component";
 import { FirstLetterPipe } from "./pipes/first-letter.pipe";
 import { AvatarComponent } from "./components/profile-image/avatar.component";
 import { TimeAgoPipe } from "time-ago-pipe";
+import { HttpClientModule } from "@angular/common/http";
+import { UserHttpServices } from "./services/user.http.services";
+import { UserState } from "./state/user.state";
+import { UserConverter } from "./converter/user.converter";
+import { UserAvatarComponent } from "./components/user-avatar/user-avatar.component";
+import { MatMenuModule } from "@angular/material/menu";
 
 @NgModule({
   entryComponents: [TooltipComponent, QuoteComponent],
@@ -32,6 +38,8 @@ import { TimeAgoPipe } from "time-ago-pipe";
     OverlayModule,
     PortalModule,
     MatSelectModule,
+    MatMenuModule,
+    HttpClientModule,
   ],
   declarations: [
     FancyTitleComponent,
@@ -52,6 +60,7 @@ import { TimeAgoPipe } from "time-ago-pipe";
     FirstLetterPipe,
     AvatarComponent,
     TimeAgoPipe,
+    UserAvatarComponent,
   ],
   exports: [
     FancyTitleComponent,
@@ -73,7 +82,15 @@ import { TimeAgoPipe } from "time-ago-pipe";
     FirstLetterPipe,
     AvatarComponent,
     TimeAgoPipe,
+    HttpClientModule,
+    UserAvatarComponent,
+    MatMenuModule,
   ],
-  providers: [ThemeLocalStorageServices],
+  providers: [
+    ThemeLocalStorageServices,
+    UserConverter,
+    UserHttpServices,
+    UserState,
+  ],
 })
 export class SharedModule {}

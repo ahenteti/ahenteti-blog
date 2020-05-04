@@ -3,9 +3,10 @@ spring:
     url: ${AHENTETI_BLOG_DATASOURCE_URL}
     username: ${AHENTETI_BLOG_DATASOURCE_USERNAME}
     password: ${AHENTETI_BLOG_DATASOURCE_PASSWORD}
-###########################################################################################
-#    uncomment the following properties to generate the @Entity associated SQL scripts    #
-###########################################################################################
+####################################################
+#      Uncomment the following properties to       #
+#   generate the @Entity associated SQL scripts    #
+####################################################
 #  jpa:
 #    properties:
 #      hibernate:
@@ -17,4 +18,11 @@ spring:
 #            create-source: metadata
 #            scripts:
 #              action: create
-#              create-target: database/create.sql
+#              create-target: target/create.sql
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            clientId: ${AHENTETI_BLOG_GITHUB_OAUTH2_CLIENT_ID}
+            clientSecret: ${AHENTETI_BLOG_GITHUB_OAUTH2_CLIENT_SECRET}

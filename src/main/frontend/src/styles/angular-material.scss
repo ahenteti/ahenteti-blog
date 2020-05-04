@@ -1,0 +1,11 @@
+.mat-menu-panel {
+  background: var(--dropdown-background-color);
+}
+
+.mat-menu-item {
+  color: var(--dropdown-color);
+
+  &:hover {
+    background: var(--dropdown-item-background-color-on-hover) !important;
+  }
+}

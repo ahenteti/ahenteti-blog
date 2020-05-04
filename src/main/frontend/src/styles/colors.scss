@@ -84,7 +84,12 @@ body.dark {
   --comment-created-at-color: #d1d2d3;
   --comment-body-color: #c9c9c9;
 
+  --navbar-link-color: #d1d2d3;
   --navbar-link-background-color-on-hover: #262a2d;
+
+  --dropdown-color: #888;
+  --dropdown-background-color: #262a2d;
+  --dropdown-item-background-color-on-hover: #36393b;
 }
 
 body.light {
@@ -157,5 +162,10 @@ body.light {
   --comment-created-at-color: #555;
   --comment-body-color: #555;
 
+  --navbar-link-color: #555;
   --navbar-link-background-color-on-hover: #eee;
+
+  --dropdown-color: #888;
+  --dropdown-background-color: white;
+  --dropdown-item-background-color-on-hover: #eee;
 }

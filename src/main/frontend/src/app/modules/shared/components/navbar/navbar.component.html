@@ -3,7 +3,27 @@
     <app-logo-link></app-logo-link>
   </div>
   <div class="right">
-    <span (click)="handleChangeThemeColorClickEvent()">Toggle theme</span>
-    <span>Login</span>
+    <ng-container *ngIf="!userState.authenticated">
+      <span (click)="handleChangeThemeColorClickEvent($event)"
+        >Toggle theme</span
+      >
+      <a href="/oauth2/authorization/github">Login</a>
+    </ng-container>
+    <ng-container *ngIf="userState.authenticated">
+      <app-user-avatar
+        [matMenuTriggerFor]="menu"
+        (mouseover)="onMouseOver()"
+        #profileDropdownTrigger="matMenuTrigger"
+        [user]="userState.user"
+        [matMenuTriggerFor]="menu"
+      ></app-user-avatar>
+
+      <mat-menu #menu="matMenu" xPosition="before">
+        <span mat-menu-item (click)="handleChangeThemeColorClickEvent($event)"
+          >Toggle theme</span
+        >
+        <span mat-menu-item>Manage Posts</span>
+      </mat-menu>
+    </ng-container>
   </div>
 </nav>

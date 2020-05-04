@@ -20,14 +20,21 @@ nav {
   justify-content: space-between;
 }
 
-.right span {
+.right {
+  display: flex;
+  align-items: center;
+}
+
+.right > span,
+.right > a {
   padding: 0 2rem;
   line-height: var(--navbar-height);
   font-size: 1.5rem;
   height: var(--navbar-height);
-  display: inline-block;
   font-weight: bold;
   cursor: pointer;
+  text-decoration: none;
+  color: var(--navbar-link-color);
 
   &:hover {
     background-color: var(--navbar-link-background-color-on-hover);
