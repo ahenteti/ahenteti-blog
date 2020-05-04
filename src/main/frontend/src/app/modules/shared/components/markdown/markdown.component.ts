@@ -37,15 +37,15 @@ export class MarkdownComponent implements OnChanges, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.el.nativeElement
-      .querySelectorAll(".code-tabs span")
-      .forEach((tab) => tab.addEventListener("click", handleCodeTabClick));
-    this.el.nativeElement
-      .querySelectorAll(".copy-code-container")
-      .forEach((tab) => {
+    setTimeout(() => {
+      document
+        .querySelectorAll(".code-tabs span")
+        .forEach((tab) => tab.addEventListener("click", handleCodeTabClick));
+      document.querySelectorAll(".copy-code-container").forEach((tab) => {
         tab.addEventListener("click", handleCopyCode);
         tab.addEventListener("mouseleave", handleCopyCodeMouseLeave);
       });
+    }, 0);
   }
 
   ngOnChanges(changes: SimpleChanges): void {

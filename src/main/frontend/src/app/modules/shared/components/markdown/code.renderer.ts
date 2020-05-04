@@ -25,6 +25,7 @@ export function handleCodeTabClick(event) {
 }
 
 export function handleCopyCode(event) {
+  console.log(event);
   const codeContainer = event.target.closest(".code-container");
   const code = codeContainer.querySelector("code");
   var selection = window.getSelection();
