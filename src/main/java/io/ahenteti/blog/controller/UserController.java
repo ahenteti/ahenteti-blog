@@ -1,6 +1,6 @@
 package io.ahenteti.blog.controller;
 
-import io.ahenteti.blog.exception.UnauthenticatedUserException;
+import io.ahenteti.blog.exception.UserNotAuthenticatedException;
 import io.ahenteti.blog.model.api.UserApiResponse;
 import io.ahenteti.blog.service.converter.UserConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class UserController {
 
     private OAuth2User validate(Principal principal) {
         if (!(principal instanceof OAuth2AuthenticationToken)) {
-            throw new UnauthenticatedUserException();
+            throw new UserNotAuthenticatedException();
         }
         return ((OAuth2AuthenticationToken) principal).getPrincipal();
     }

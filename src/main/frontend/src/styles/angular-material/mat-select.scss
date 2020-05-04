@@ -5,11 +5,15 @@
   height: var(--select-height, 4rem);
   display: flex !important;
   align-items: center;
+  transition: var(--transition);
+  transition-property: background-color;
 }
 
 .mat-select-value,
 .mat-select-arrow {
   color: var(--select-selected-value-color);
+  transition: var(--transition);
+  transition-property: color;
 }
 
 .mat-select-value {
