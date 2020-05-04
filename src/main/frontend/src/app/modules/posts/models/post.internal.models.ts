@@ -1,3 +1,5 @@
+import { IUser } from "../../shared/models/user.internal.models";
+
 export interface IPostSummary {
   id: number;
   title: string;
@@ -28,7 +30,7 @@ export class EmptyPost implements IPost {
 }
 
 export interface IComment {
-  author: string;
+  author: IUser;
   createdAt: Date;
   value: string;
 }

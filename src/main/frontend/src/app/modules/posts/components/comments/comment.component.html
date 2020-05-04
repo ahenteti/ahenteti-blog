@@ -1,7 +1,7 @@
-<app-avatar [username]="comment.author"></app-avatar>
+<app-user-avatar [user]="comment.author"></app-user-avatar>
 <div>
   <div class="metadata">
-    <span class="author">{{ comment.author | titlecase }}</span>
+    <span class="author">{{ comment.author.username | titlecase }}</span>
     <span class="created-at">{{ comment.createdAt.toString() | timeAgo }}</span>
   </div>
   <p class="body">{{ comment.value }}</p>

@@ -19,10 +19,12 @@ import static java.util.stream.Collectors.toCollection;
 public class CommentConverter {
 
     private DateTimeConverter dateTimeConverter;
+    private UserConverter userConverter;
 
     @Autowired
-    public CommentConverter(DateTimeConverter dateTimeConverter) {
+    public CommentConverter(DateTimeConverter dateTimeConverter, UserConverter userConverter) {
         this.dateTimeConverter = dateTimeConverter;
+        this.userConverter = userConverter;
     }
 
     public CommentsApiResponse toCommentsApiResponse(Comments comments) {
@@ -31,7 +33,7 @@ public class CommentConverter {
 
     public CommentApiResponse toCommentApiResponse(Comment comment) {
         CommentApiResponse res = new CommentApiResponse();
-        res.setAuthor(comment.getAuthor().getGithubUsername());
+        res.setAuthor(userConverter.toUserApiResponse(comment.getAuthor()));
         res.setCreatedAtIso8601(dateTimeConverter.toIso8601(comment.getCreatedAt()));
         res.setValue(comment.getValue());
         return res;

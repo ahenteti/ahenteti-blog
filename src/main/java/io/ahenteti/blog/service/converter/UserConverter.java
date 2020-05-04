@@ -15,6 +15,7 @@ public class UserConverter {
     public UserSummary from(UserEntity entity) {
         UserSummary res = new UserSummary();
         res.setGithubUsername(entity.getGithubUsername());
+        res.setGithubAvatar(entity.getGithubAvatar());
         return res;
     }
     
@@ -22,6 +23,13 @@ public class UserConverter {
         UserApiResponse res = new UserApiResponse();
         res.setUsername(oAuth2User.getAttribute("name"));
         res.setAvatarUrl(oAuth2User.getAttribute("avatar_url"));
+        return res;
+    }
+
+    public UserApiResponse toUserApiResponse(UserSummary user) {
+        UserApiResponse res = new UserApiResponse();
+        res.setUsername(user.getGithubUsername());
+        res.setAvatarUrl(user.getGithubAvatar());
         return res;
     }
 }

@@ -1,3 +1,5 @@
+import { IUserApiResponse } from "../../shared/models/user.external.models";
+
 export interface IPostSummaryApiResponse {
   id: number;
   title: string;
@@ -14,7 +16,7 @@ export interface IPostApiResponse extends IPostSummaryApiResponse {
 }
 
 export interface ICommentApiResponse {
-  author: string;
+  author: IUserApiResponse;
   createdAtIso8601: string;
   value: string;
 }

@@ -44,6 +44,7 @@ create table t_users
 (
   id bigint not null,
   github_username varchar(255),
+  github_avatar varchar(255),
   primary key (id)
 );
 

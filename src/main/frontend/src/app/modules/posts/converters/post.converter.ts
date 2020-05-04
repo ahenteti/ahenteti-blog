@@ -5,9 +5,12 @@ import {
 } from "../models/post.external.models";
 import { Injectable } from "@angular/core";
 import { IPostSummary, IComment, IPost } from "../models/post.internal.models";
+import { UserConverter } from "../../shared/converter/user.converter";
 
 @Injectable()
 export class PostConverter {
+  constructor(private userConverter: UserConverter) {}
+
   fromPostSummary(post: IPostSummaryApiResponse): IPostSummary {
     return {
       id: post.id,
@@ -39,7 +42,9 @@ export class PostConverter {
       searchKey: this.calculateSearchKey(post.title, post.tags),
       author: post.author,
       bodyMarkdown: atob(post.bodyMarkdownBase64),
-      comments: [...(post.comments || []).map(this.from)].sort(this.sortByDate),
+      comments: [
+        ...(post.comments || []).map((comment) => this.from(comment)),
+      ].sort(this.sortByDate),
     };
   }
 
@@ -52,7 +57,7 @@ export class PostConverter {
 
   private from(comment: ICommentApiResponse): IComment {
     return {
-      author: comment.author,
+      author: this.userConverter.toUser(comment.author),
       createdAt: new Date(comment.createdAtIso8601),
       value: comment.value,
     };

@@ -25,6 +25,8 @@ public class UserEntity {
     private long id;
     @Column(name = "GITHUB_USERNAME")
     private String githubUsername;
+    @Column(name = "GITHUB_AVATAR")
+    private String githubAvatar;
     @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Collection<PostEntity> posts = new ArrayList<>();
 }
