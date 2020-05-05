@@ -8,6 +8,8 @@
     display: flex;
     flex-wrap: nowrap;
     align-items: flex-start;
+    transition: var(--transition);
+    transition-property: color, background-color;
 
     & img {
       width: 4.5rem;
