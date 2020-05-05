@@ -1,10 +1,8 @@
 import {
   Component,
   Input,
-  ViewEncapsulation,
   OnChanges,
   SimpleChanges,
-  AfterViewInit,
   ElementRef,
 } from "@angular/core";
 import { SafeHtml, DomSanitizer } from "@angular/platform-browser";
@@ -26,7 +24,7 @@ import {
     "./text-with-icon.component.scss",
   ],
 })
-export class MarkdownComponent implements OnChanges, AfterViewInit {
+export class MarkdownComponent implements OnChanges {
   @Input() text: string;
   data: SafeHtml;
   md: any;
@@ -36,7 +34,12 @@ export class MarkdownComponent implements OnChanges, AfterViewInit {
     this.md = marked.setOptions({ renderer });
   }
 
-  ngAfterViewInit(): void {
+  ngOnChanges(changes: SimpleChanges): void {
+    this.handleMarkdownChanges(changes);
+    this.handleCodeCopyClick();
+  }
+
+  private handleCodeCopyClick() {
     setTimeout(() => {
       document
         .querySelectorAll(".code-tabs span")
@@ -48,7 +51,7 @@ export class MarkdownComponent implements OnChanges, AfterViewInit {
     }, 0);
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  private handleMarkdownChanges(changes: SimpleChanges) {
     for (const propName in changes) {
       if (propName === "text") {
         const value = changes[propName].currentValue;

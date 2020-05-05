@@ -2,7 +2,6 @@ package io.ahenteti.blog.model.entity;
 
 import lombok.Data;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,15 +17,19 @@ import java.util.Collection;
 @Entity(name = "T_USERS")
 public class UserEntity {
     private static final String T_USERS_ID_SEQ = "T_USERS_ID_SEQ";
+
     @Id
     @SequenceGenerator(name = T_USERS_ID_SEQ, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = T_USERS_ID_SEQ)
     @Column(name = "ID")
     private long id;
+
     @Column(name = "GITHUB_USERNAME")
     private String githubUsername;
+
     @Column(name = "GITHUB_AVATAR")
     private String githubAvatar;
-    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
     private Collection<PostEntity> posts = new ArrayList<>();
 }

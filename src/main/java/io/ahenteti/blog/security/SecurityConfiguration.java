@@ -16,6 +16,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  */
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    public static final String SECURE_API_PREFIX = "/secure-api/";
     
     @Autowired
     private BlogAuthenticationSuccessHandler authenticationSuccessHandler;
@@ -27,7 +29,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/secure-api/**").authenticated();
+        http.authorizeRequests().antMatchers(SECURE_API_PREFIX + "**").authenticated();
         http.authorizeRequests().antMatchers("/**").permitAll();
         http.oauth2Login().successHandler(authenticationSuccessHandler);
         http.oauth2Client();

@@ -26,3 +26,8 @@ spring:
           github:
             clientId: ${AHENTETI_BLOG_GITHUB_OAUTH2_CLIENT_ID}
             clientSecret: ${AHENTETI_BLOG_GITHUB_OAUTH2_CLIENT_SECRET}
+
+logging:
+  level:
+    org:
+      springframework: DEBUG

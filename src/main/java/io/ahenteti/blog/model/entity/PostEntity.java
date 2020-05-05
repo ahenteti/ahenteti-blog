@@ -29,20 +29,28 @@ public class PostEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = T_POSTS_ID_SEQ)
     @Column(name = "ID")
     private Long id;
+    
     @Column(name = "TITLE", nullable = false)
     private String title;
+    
     @Column(name = "CATEGORY", nullable = false)
     private String category;
+    
     @Column(name = "TAGS", nullable = false)
     private String tags;
+    
     @Column(name = "CREATED_AT", nullable = false)
     private ZonedDateTime createdAt;
+    
     @Column(name = "LAST_UPDATED_AT")
     private ZonedDateTime lastUpdatedAt;
+    
     @ManyToOne(optional = false)
     private UserEntity author;
-    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private Collection<CommentEntity> comments = new ArrayList<>();
+    
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
     private PostBodyEntity body;
 }
