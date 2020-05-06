@@ -1,6 +1,7 @@
 package io.ahenteti.blog.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -24,6 +25,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private BlogAuthenticationSuccessHandler authenticationSuccessHandler;
 
+    @Value("${security.enable-csrf:true}")
+    private boolean csrfEnabled;
+
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers(RESOURCES_ANT_MATCHER);
@@ -37,6 +41,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(SECURE_API_ANT_MATCHER).authenticated()
                 .anyRequest().permitAll().and()
             .oauth2Login().successHandler(authenticationSuccessHandler);
+        if (!csrfEnabled) http.csrf().disable();
         // @formatter:on
     }
 }
