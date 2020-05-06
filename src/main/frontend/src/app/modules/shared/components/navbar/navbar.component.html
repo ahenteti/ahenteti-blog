@@ -7,7 +7,7 @@
       <span (click)="handleChangeThemeColorClickEvent($event)"
         >Toggle theme</span
       >
-      <a href="/oauth2/authorization/github">Login</a>
+      <a href="/oauth2/authorization/github" (click)="preLogin()">Login</a>
     </ng-container>
     <ng-container *ngIf="userState.authenticated">
       <app-user-avatar

@@ -20,3 +20,6 @@ export const OVERLAY_POSITION_BOTTOM: ConnectedPosition = {
 
 export const PAGE_CONTENT_READY_EVENT = "page-content-ready-event";
 export const ALL_TAGS = "all";
+export const WINDOW_LOCATION_BEFORE_LOGIN = "window-location-before-login";
+export const IS_BEFORE_RELOAD_USER_WAS_ALREADY_LOGGED_IN =
+  "is-before-reload-user-was-already-logged-in";
