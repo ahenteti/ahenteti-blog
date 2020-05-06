@@ -18,20 +18,25 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     public static final String SECURE_API_PREFIX = "/secure-api/";
-    
+    private static final String SECURE_API_ANT_MATCHER = SECURE_API_PREFIX + "**";
+    private static final String RESOURCES_ANT_MATCHER = "/resources/**";
+
     @Autowired
     private BlogAuthenticationSuccessHandler authenticationSuccessHandler;
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/resources/**");
+        web.ignoring().antMatchers(RESOURCES_ANT_MATCHER);
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers(SECURE_API_PREFIX + "**").authenticated();
-        http.authorizeRequests().antMatchers("/**").permitAll();
-        http.oauth2Login().successHandler(authenticationSuccessHandler);
-        http.oauth2Client();
+        // @formatter:off
+        http
+            .authorizeRequests()
+                .antMatchers(SECURE_API_ANT_MATCHER).authenticated()
+                .anyRequest().permitAll().and()
+            .oauth2Login().successHandler(authenticationSuccessHandler);
+        // @formatter:on
     }
 }
