@@ -22,7 +22,7 @@ public class UserDao {
     }
 
     public Optional<UserSummary> getUserByUsername(String username) {
-        return userRepository.findByGithubUsername(username).map(userConverter::toUserSummary);
+        return userRepository.findByUsername(username).map(userConverter::toUserSummary);
     }
 
     public void createIfNotExists(UserSummary user) {
