@@ -22,13 +22,13 @@ public class UserEntity {
     @SequenceGenerator(name = T_USERS_ID_SEQ, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = T_USERS_ID_SEQ)
     @Column(name = "ID")
-    private long id;
+    private Long id;
 
-    @Column(name = "GITHUB_USERNAME")
-    private String githubUsername;
+    @Column(name = "USERNAME")
+    private String username;
 
-    @Column(name = "GITHUB_AVATAR")
-    private String githubAvatar;
+    @Column(name = "AVATAR")
+    private String avatar;
 
     @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
     private Collection<PostEntity> posts = new ArrayList<>();

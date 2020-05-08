@@ -1,6 +1,5 @@
 package io.ahenteti.blog.security;
 
-import io.ahenteti.blog.service.converter.UserConverter;
 import io.ahenteti.blog.service.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -13,20 +12,19 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
-public class BlogAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
+public class OAuth2GithubAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
     private UserDao userDao;
-    private UserConverter userConverter;
 
     @Autowired
-    public BlogAuthenticationSuccessHandler(UserDao userDao, UserConverter userConverter) {
+    public OAuth2GithubAuthenticationSuccessHandler(UserDao userDao) {
         this.userDao = userDao;
-        this.userConverter = userConverter;
     }
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        userConverter.toUser(authentication).ifPresent(userDao::createIfNotExists);
+        OAuth2GithubUser user = (OAuth2GithubUser) authentication.getPrincipal();
+        user.setDatabaseUserId(userDao.createOrUpdate(user).getId());
         response.sendRedirect("/");
     }
 }

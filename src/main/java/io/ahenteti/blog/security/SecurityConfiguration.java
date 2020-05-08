@@ -21,9 +21,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public static final String SECURE_API_PREFIX = "/secure-api/";
     private static final String SECURE_API_ANT_MATCHER = SECURE_API_PREFIX + "**";
     private static final String RESOURCES_ANT_MATCHER = "/resources/**";
+    public static final String GITHUB_CLIENT_REGISTRATION_ID = "github";
 
     @Autowired
-    private BlogAuthenticationSuccessHandler authenticationSuccessHandler;
+    private OAuth2GithubAuthenticationSuccessHandler authenticationSuccessHandler;
 
     @Value("${security.enable-csrf:true}")
     private boolean csrfEnabled;
@@ -40,7 +41,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
                 .antMatchers(SECURE_API_ANT_MATCHER).authenticated()
                 .anyRequest().permitAll().and()
-            .oauth2Login().successHandler(authenticationSuccessHandler);
+            .oauth2Login()
+                .successHandler(authenticationSuccessHandler)
+                .userInfoEndpoint()
+                    .customUserType(OAuth2GithubUser.class, GITHUB_CLIENT_REGISTRATION_ID);
         if (!csrfEnabled) http.csrf().disable();
         // @formatter:on
     }

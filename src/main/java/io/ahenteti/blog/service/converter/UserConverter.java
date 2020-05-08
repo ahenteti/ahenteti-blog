@@ -1,67 +1,35 @@
 package io.ahenteti.blog.service.converter;
 
 import io.ahenteti.blog.model.api.UserApiResponse;
-import io.ahenteti.blog.model.core.UserSummary;
+import io.ahenteti.blog.model.core.IUser;
 import io.ahenteti.blog.model.entity.UserEntity;
-import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
-import org.springframework.security.oauth2.core.user.OAuth2User;
+import io.ahenteti.blog.security.OAuth2GithubUser;
 import org.springframework.stereotype.Service;
-
-import java.security.Principal;
-import java.util.Optional;
 
 @Service
 public class UserConverter {
-    
-    public UserSummary toUserSummary(UserEntity entity) {
-        UserSummary res = new UserSummary();
-        res.setGithubUsername(entity.getGithubUsername());
-        res.setGithubAvatar(entity.getGithubAvatar());
+
+    public IUser toUser(UserEntity entity) {
+        OAuth2GithubUser res = new OAuth2GithubUser();
+        res.setDatabaseUserId(entity.getId());
+        res.setName(entity.getUsername());
+        res.setAvatarUrl(entity.getAvatar());
         return res;
     }
 
-    public UserEntity toUserEntity(UserSummary user) {
+    public UserEntity toUserEntity(IUser user, Long userId) {
         UserEntity res = new UserEntity();
-        res.setGithubUsername(user.getGithubUsername());
-        res.setGithubAvatar(user.getGithubAvatar());
+        res.setId(userId);
+        res.setUsername(user.getUsername());
+        res.setAvatar(user.getAvatar());
         return res;
     }
 
-    public UserApiResponse toUserApiResponse(OAuth2User oAuth2User) {
+    public UserApiResponse toUserApiResponse(IUser user) {
         UserApiResponse res = new UserApiResponse();
-        res.setUsername(getUsername(oAuth2User));
-        res.setAvatarUrl(getUserAvatarUrl(oAuth2User));
+        res.setUsername(user.getUsername());
+        res.setAvatarUrl(user.getAvatar());
         return res;
     }
 
-    public UserApiResponse toUserApiResponse(UserSummary user) {
-        UserApiResponse res = new UserApiResponse();
-        res.setUsername(user.getGithubUsername());
-        res.setAvatarUrl(user.getGithubAvatar());
-        return res;
-    }
-
-    public Optional<OAuth2User> toOAuth2User(Principal principal) {
-        if (principal instanceof OAuth2AuthenticationToken) {
-            return Optional.of(((OAuth2AuthenticationToken) principal).getPrincipal());
-        }
-        return Optional.empty();
-    }
-
-    public Optional<UserSummary> toUser(Principal principal) {
-        return toOAuth2User(principal).map(oAuth2User -> {
-            UserSummary res = new UserSummary();
-            res.setGithubUsername(getUsername(oAuth2User));
-            res.setGithubAvatar(getUserAvatarUrl(oAuth2User));
-            return res;
-        });
-    }
-
-    private String getUserAvatarUrl(OAuth2User oAuth2User) {
-        return oAuth2User.getAttribute("avatar_url");
-    }
-
-    private String getUsername(OAuth2User oAuth2User) {
-        return oAuth2User.getAttribute("name");
-    }
 }

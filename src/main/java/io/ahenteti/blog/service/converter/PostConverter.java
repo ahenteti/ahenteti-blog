@@ -4,15 +4,15 @@ import io.ahenteti.blog.model.api.PostApiResponse;
 import io.ahenteti.blog.model.api.PostSummaryApiResponse;
 import io.ahenteti.blog.model.api.PostsSummariesApiResponse;
 import io.ahenteti.blog.model.core.Comments;
+import io.ahenteti.blog.model.core.IUser;
 import io.ahenteti.blog.model.core.Post;
 import io.ahenteti.blog.model.core.PostSummary;
 import io.ahenteti.blog.model.core.PostsSummaries;
-import io.ahenteti.blog.model.core.UserSummary;
 import io.ahenteti.blog.model.entity.PostEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.ZonedDateTime;
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Optional;
@@ -23,13 +23,11 @@ public class PostConverter {
 
     private UserConverter userConverter;
     private CommentConverter commentConverter;
-    private DateTimeConverter dateTimeConverter;
 
     @Autowired
-    public PostConverter(UserConverter userConverter, CommentConverter commentConverter, DateTimeConverter dateTimeConverter) {
+    public PostConverter(UserConverter userConverter, CommentConverter commentConverter) {
         this.userConverter = userConverter;
         this.commentConverter = commentConverter;
-        this.dateTimeConverter = dateTimeConverter;
     }
 
     public PostSummary toPostSummary(PostEntity entity) {
@@ -40,13 +38,13 @@ public class PostConverter {
         res.setTags(toTagsArrayList(entity));
         res.setCreatedAt(entity.getCreatedAt());
         res.setLastUpdatedAt(getLastUpdatedAt(entity));
-        res.setAuthor(userConverter.toUserSummary(entity.getAuthor()));
+        res.setAuthor(userConverter.toUser(entity.getAuthor()));
         return res;
     }
 
     public Post toPost(PostEntity entity) {
         Post res = new Post();
-        UserSummary author = userConverter.toUserSummary(entity.getAuthor());
+        IUser author = userConverter.toUser(entity.getAuthor());
         Comments comments = commentConverter.toComments(entity.getComments(), author, res);
         res.setId(entity.getId());
         res.setTitle(entity.getTitle());
@@ -71,9 +69,9 @@ public class PostConverter {
         res.setTitle(post.getTitle());
         res.setCategory(post.getCategory());
         res.setTags(post.getTags());
-        res.setCreatedAtIso8601(dateTimeConverter.toIso8601(post.getCreatedAt()));
-        post.getLastUpdatedAt().ifPresent(date -> res.setLastUpdatedAtIso8601(dateTimeConverter.toIso8601(date)));
-        res.setAuthor(post.getAuthor().getGithubUsername());
+        res.setCreatedAtIso8601(post.getCreatedAt().toString());
+        post.getLastUpdatedAt().ifPresent(date -> res.setLastUpdatedAtIso8601(date.toString()));
+        res.setAuthor(post.getAuthor().getUsername());
         return res;
     }
 
@@ -83,15 +81,15 @@ public class PostConverter {
         res.setTitle(post.getTitle());
         res.setCategory(post.getCategory());
         res.setTags(post.getTags());
-        res.setCreatedAtIso8601(dateTimeConverter.toIso8601(post.getCreatedAt()));
-        post.getLastUpdatedAt().ifPresent(date -> res.setLastUpdatedAtIso8601(dateTimeConverter.toIso8601(date)));
-        res.setAuthor(post.getAuthor().getGithubUsername());
+        res.setCreatedAtIso8601(post.getCreatedAt().toString());
+        post.getLastUpdatedAt().ifPresent(date -> res.setLastUpdatedAtIso8601(date.toString()));
+        res.setAuthor(post.getAuthor().getUsername());
         res.setBodyMarkdownBase64(post.getBody());
         res.setComments(commentConverter.toCommentsApiResponse(post.getComments()));
         return res;
     }
 
-    private Optional<ZonedDateTime> getLastUpdatedAt(PostEntity entity) {
+    private Optional<Instant> getLastUpdatedAt(PostEntity entity) {
         return entity.getLastUpdatedAt() != null ? Optional.of(entity.getLastUpdatedAt()) : Optional.empty();
     }
 

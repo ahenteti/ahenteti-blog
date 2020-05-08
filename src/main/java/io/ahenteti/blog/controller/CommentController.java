@@ -1,9 +1,14 @@
 package io.ahenteti.blog.controller;
 
 import io.ahenteti.blog.model.api.CommentApiRequest;
-import io.ahenteti.blog.model.api.CommentApiResponse;
+import io.ahenteti.blog.model.core.Comment;
+import io.ahenteti.blog.security.OAuth2GithubUser;
+import io.ahenteti.blog.service.converter.CommentConverter;
+import io.ahenteti.blog.service.dao.CommentDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -14,19 +19,21 @@ import static io.ahenteti.blog.security.SecurityConfiguration.SECURE_API_PREFIX;
 @RestController
 public class CommentController {
 
-    @PostMapping(SECURE_API_PREFIX + "comment")
-    @ResponseStatus(HttpStatus.CREATED)
-    public CommentApiResponse createComment(@RequestBody CommentApiRequest comment) {
-        
-        return new CommentApiResponse();
+    private CommentDao commentDao;
+    private CommentConverter commentConverter;
+
+    @Autowired
+    public CommentController(CommentDao commentDao, CommentConverter commentConverter) {
+        this.commentDao = commentDao;
+        this.commentConverter = commentConverter;
     }
 
-    // TODO: delete this dummy test
-    @GetMapping(SECURE_API_PREFIX + "comment/1")
-    public CommentApiRequest getComment() {
-        CommentApiRequest res = new CommentApiRequest();
-        res.setPostId(1L);
-        res.setValue("comment value");
-        return res;
+    @Transactional
+    @PostMapping(SECURE_API_PREFIX + "comment")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createComment(@RequestBody CommentApiRequest commentApiRequest, @AuthenticationPrincipal OAuth2GithubUser user) {
+        Comment comment = commentConverter.toComment(commentApiRequest, user);
+        commentDao.createComment(comment);
     }
+
 }

@@ -1,11 +1,10 @@
 package io.ahenteti.blog.service.dao;
 
-import io.ahenteti.blog.exception.ResourceNotFoundException;
 import io.ahenteti.blog.model.core.Post;
 import io.ahenteti.blog.model.core.PostsSummaries;
 import io.ahenteti.blog.model.entity.PostEntity;
 import io.ahenteti.blog.service.converter.PostConverter;
-import io.ahenteti.blog.service.repository.PostRepository;
+import io.ahenteti.blog.service.dao.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -2,7 +2,7 @@ package io.ahenteti.blog.model.core;
 
 import lombok.Data;
 
-import java.time.ZonedDateTime;
+import java.time.Instant;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -12,7 +12,7 @@ public class PostSummary {
     private String title;
     private String category;
     private Collection<String> tags;
-    private ZonedDateTime createdAt;
-    private Optional<ZonedDateTime> lastUpdatedAt;
-    private UserSummary author;
+    private Instant createdAt;
+    private Optional<Instant> lastUpdatedAt;
+    private IUser author;
 }

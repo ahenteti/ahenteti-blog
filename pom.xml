@@ -10,7 +10,7 @@
     </parent>
     <groupId>io.ahenteti.blog</groupId>
     <artifactId>ahenteti-blog</artifactId>
-    <version>2020.04.08</version>
+    <version>20200408</version>
     <name>ahenteti-blog</name>
 
     <properties>

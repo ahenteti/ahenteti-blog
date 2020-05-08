@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
-import java.time.ZonedDateTime;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -29,28 +29,28 @@ public class PostEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = T_POSTS_ID_SEQ)
     @Column(name = "ID")
     private Long id;
-    
+
     @Column(name = "TITLE", nullable = false)
     private String title;
-    
+
     @Column(name = "CATEGORY", nullable = false)
     private String category;
-    
+
     @Column(name = "TAGS", nullable = false)
     private String tags;
-    
+
     @Column(name = "CREATED_AT", nullable = false)
-    private ZonedDateTime createdAt;
-    
+    private Instant createdAt;
+
     @Column(name = "LAST_UPDATED_AT")
-    private ZonedDateTime lastUpdatedAt;
-    
-    @ManyToOne(optional = false)
+    private Instant lastUpdatedAt;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private UserEntity author;
-    
+
     @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private Collection<CommentEntity> comments = new ArrayList<>();
-    
+
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
     private PostBodyEntity body;
 }

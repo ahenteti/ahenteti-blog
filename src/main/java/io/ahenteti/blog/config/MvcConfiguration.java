@@ -11,7 +11,7 @@ import java.io.IOException;
 
 /**
  * MvcConfiguration class
- * 
+ * <p>
  * code inspiration: https://keepgrowing.in/java/springboot/make-spring-boot-surrender-routing-control-to-angular/
  */
 @Configuration

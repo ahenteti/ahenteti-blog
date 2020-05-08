@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class CommentApiRequest {
-    
+
     private Long postId;
     private String value;
-    
+
 }

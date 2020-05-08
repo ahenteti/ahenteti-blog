@@ -1,13 +1,11 @@
 package io.ahenteti.blog.service.dao;
 
-import io.ahenteti.blog.model.core.UserSummary;
+import io.ahenteti.blog.model.core.IUser;
 import io.ahenteti.blog.model.entity.UserEntity;
 import io.ahenteti.blog.service.converter.UserConverter;
-import io.ahenteti.blog.service.repository.UserRepository;
+import io.ahenteti.blog.service.dao.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class UserDao {
@@ -21,14 +19,9 @@ public class UserDao {
         this.userConverter = userConverter;
     }
 
-    public Optional<UserSummary> getUserByUsername(String username) {
-        return userRepository.findByUsername(username).map(userConverter::toUserSummary);
-    }
-
-    public void createIfNotExists(UserSummary user) {
-        if (!getUserByUsername(user.getGithubUsername()).isPresent()) {
-            UserEntity userEntity = userConverter.toUserEntity(user);
-            userRepository.save(userEntity);
-        }
+    public UserEntity createOrUpdate(IUser user) {
+        Long userId = userRepository.findByUsername(user.getUsername()).map(UserEntity::getId).orElse(null);
+        UserEntity userEntity = userConverter.toUserEntity(user, userId);
+        return userRepository.save(userEntity);
     }
 }
