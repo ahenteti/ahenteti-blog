@@ -49,3 +49,12 @@ main {
 a:hover {
   text-decoration: none;
 }
+
+hr {
+  color: var(--border-color);
+  background-color: var(--border-color);
+  transition: var(--transition);
+  transition-property: color, background-color;
+  height: 0.3rem;
+  border: none;
+}

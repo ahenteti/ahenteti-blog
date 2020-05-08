@@ -1,5 +1,7 @@
 package io.ahenteti.blog.security;
 
+import io.ahenteti.blog.model.core.GithubUser;
+import io.ahenteti.blog.model.core.IUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +23,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public static final String SECURE_API_PREFIX = "/secure-api/";
     private static final String SECURE_API_ANT_MATCHER = SECURE_API_PREFIX + "**";
     private static final String RESOURCES_ANT_MATCHER = "/resources/**";
-    public static final String GITHUB_CLIENT_REGISTRATION_ID = "github";
+    private static final String GITHUB_CLIENT_REGISTRATION_ID = "github";
 
     @Autowired
     private OAuth2GithubAuthenticationSuccessHandler authenticationSuccessHandler;
@@ -44,7 +46,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .oauth2Login()
                 .successHandler(authenticationSuccessHandler)
                 .userInfoEndpoint()
-                    .customUserType(OAuth2GithubUser.class, GITHUB_CLIENT_REGISTRATION_ID);
+                    .customUserType(GithubUser.class, GITHUB_CLIENT_REGISTRATION_ID);
         if (!csrfEnabled) http.csrf().disable();
         // @formatter:on
     }

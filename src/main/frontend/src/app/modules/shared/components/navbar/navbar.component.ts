@@ -62,7 +62,7 @@ export class NavBarComponent implements OnInit {
     if (
       localStorage.getItem(IS_BEFORE_RELOAD_USER_WAS_ALREADY_LOGGED_IN) ==
         "false" &&
-      localStorage.getItem(WINDOW_LOCATION_BEFORE_LOGIN)
+      localStorage.getItem(WINDOW_LOCATION_BEFORE_LOGIN) != window.location.href
     ) {
       window.location.href = localStorage.getItem(WINDOW_LOCATION_BEFORE_LOGIN);
     }

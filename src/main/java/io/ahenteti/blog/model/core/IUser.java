@@ -1,6 +1,8 @@
 package io.ahenteti.blog.model.core;
 
-public interface IUser {
+import org.springframework.security.oauth2.core.user.OAuth2User;
+
+public interface IUser extends OAuth2User {
     Long getId();
 
     String getUsername();

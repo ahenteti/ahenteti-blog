@@ -1,11 +1,10 @@
-package io.ahenteti.blog.security;
+package io.ahenteti.blog.model.core;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.ahenteti.blog.model.core.IUser;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -13,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @Data
-public class OAuth2GithubUser implements OAuth2User, IUser {
+public class GithubUser implements IUser {
 
     private List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList("ROLE_USER");
     private Map<String, Object> attributes;

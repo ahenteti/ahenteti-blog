@@ -2,7 +2,7 @@ package io.ahenteti.blog.controller;
 
 import io.ahenteti.blog.model.api.CommentApiRequest;
 import io.ahenteti.blog.model.core.Comment;
-import io.ahenteti.blog.security.OAuth2GithubUser;
+import io.ahenteti.blog.model.core.GithubUser;
 import io.ahenteti.blog.service.converter.CommentConverter;
 import io.ahenteti.blog.service.dao.CommentDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class CommentController {
     @Transactional
     @PostMapping(SECURE_API_PREFIX + "comment")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createComment(@RequestBody CommentApiRequest commentApiRequest, @AuthenticationPrincipal OAuth2GithubUser user) {
+    public void createComment(@RequestBody CommentApiRequest commentApiRequest, @AuthenticationPrincipal GithubUser user) {
         Comment comment = commentConverter.toComment(commentApiRequest, user);
         commentDao.createComment(comment);
     }

@@ -3,14 +3,14 @@ package io.ahenteti.blog.service.converter;
 import io.ahenteti.blog.model.api.UserApiResponse;
 import io.ahenteti.blog.model.core.IUser;
 import io.ahenteti.blog.model.entity.UserEntity;
-import io.ahenteti.blog.security.OAuth2GithubUser;
+import io.ahenteti.blog.model.core.GithubUser;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserConverter {
 
     public IUser toUser(UserEntity entity) {
-        OAuth2GithubUser res = new OAuth2GithubUser();
+        GithubUser res = new GithubUser();
         res.setDatabaseUserId(entity.getId());
         res.setName(entity.getUsername());
         res.setAvatarUrl(entity.getAvatar());
