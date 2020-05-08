@@ -15,8 +15,8 @@ public class ExceptionsHandler {
                 .getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler(UserNotAuthenticatedException.class)
-    public ResponseEntity<ErrorApiResponse> handleException(UserNotAuthenticatedException t) {
+    @ExceptionHandler(AuthenticationException.class)
+    public ResponseEntity<ErrorApiResponse> handleException(AuthenticationException t) {
         return new ResponseEntity<>(new ErrorApiResponse(HttpStatus.FORBIDDEN.value(), t
                 .getMessage()), HttpStatus.FORBIDDEN);
     }

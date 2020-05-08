@@ -34,11 +34,11 @@ public class PostController {
 
     @GetMapping("/api/posts/{id}")
     public PostApiResponse getPostById(@PathVariable Long id) {
-        Post post = postDao.getPostById(id).orElseThrow(getPostNotFoundExceptionSupplier(id));
+        Post post = postDao.getPostById(id).orElseThrow(throwPostNotFoundException(id));
         return postConverter.toPostApiResponse(post);
     }
 
-    private Supplier<ResourceNotFoundException> getPostNotFoundExceptionSupplier(Long id) {
+    private Supplier<ResourceNotFoundException> throwPostNotFoundException(Long id) {
         return () -> new ResourceNotFoundException("Post not found. id: " + id);
     }
 

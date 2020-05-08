@@ -1,9 +1,9 @@
 package io.ahenteti.blog.controller;
 
-import io.ahenteti.blog.exception.UserNotAuthenticatedException;
 import io.ahenteti.blog.model.api.UserApiResponse;
 import io.ahenteti.blog.model.core.IUser;
 import io.ahenteti.blog.service.converter.UserConverter;
+import io.ahenteti.blog.service.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -18,12 +18,18 @@ import java.io.IOException;
 @RestController
 public class UserController {
 
-    @Autowired
     private UserConverter userConverter;
+    private UserValidator userValidator;
+
+    @Autowired
+    public UserController(UserConverter userConverter, UserValidator userValidator) {
+        this.userConverter = userConverter;
+        this.userValidator = userValidator;
+    }
 
     @GetMapping("/api/isAuthenticated")
     public UserApiResponse getUser(@ModelAttribute IUser user) {
-        if (user == null) throw new UserNotAuthenticatedException();
+        userValidator.validate(user);
         return userConverter.toUserApiResponse(user);
     }
 
