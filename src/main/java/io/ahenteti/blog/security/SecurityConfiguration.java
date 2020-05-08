@@ -1,13 +1,13 @@
 package io.ahenteti.blog.security;
 
 import io.ahenteti.blog.model.core.GithubUser;
-import io.ahenteti.blog.model.core.IUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.logout.LogoutFilter;
 
 /**
  * Spring Security Configuration
@@ -46,7 +46,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .oauth2Login()
                 .successHandler(authenticationSuccessHandler)
                 .userInfoEndpoint()
-                    .customUserType(GithubUser.class, GITHUB_CLIENT_REGISTRATION_ID);
+                    .customUserType(GithubUser.class, GITHUB_CLIENT_REGISTRATION_ID).and().and()
+            .addFilterBefore(new BlogLogoutFilter(), LogoutFilter.class);
         if (!csrfEnabled) http.csrf().disable();
         // @formatter:on
     }
