@@ -3,10 +3,6 @@ import { ThemeLocalStorageServices } from "../../services/theme.localstorage.ser
 import { UserHttpServices } from "../../services/user.http.services";
 import { UserState } from "../../state/user.state";
 import { MatMenuTrigger } from "@angular/material/menu";
-import {
-  WINDOW_LOCATION_BEFORE_LOGIN,
-  IS_BEFORE_RELOAD_USER_WAS_ALREADY_LOGGED_IN,
-} from "../../utils/constants.utils";
 import { IUser } from "../../models/user.internal.models";
 
 @Component({
@@ -45,28 +41,11 @@ export class NavBarComponent implements OnInit {
   }
 
   preLogin() {
-    this.storeWindowPropertiesBeforeLogin();
+    document.cookie = `url_before_login=${window.location.href}`;
   }
 
   onGetUserSuccess(user: IUser) {
     this.userState.user = user;
-    this.restoreWindowPropertiesAfterLogin();
-  }
-
-  private storeWindowPropertiesBeforeLogin() {
-    localStorage.setItem(WINDOW_LOCATION_BEFORE_LOGIN, window.location.href);
-    localStorage.setItem(IS_BEFORE_RELOAD_USER_WAS_ALREADY_LOGGED_IN, "false");
-  }
-
-  private restoreWindowPropertiesAfterLogin() {
-    if (
-      localStorage.getItem(IS_BEFORE_RELOAD_USER_WAS_ALREADY_LOGGED_IN) ==
-        "false" &&
-      localStorage.getItem(WINDOW_LOCATION_BEFORE_LOGIN) != window.location.href
-    ) {
-      window.location.href = localStorage.getItem(WINDOW_LOCATION_BEFORE_LOGIN);
-    }
-    localStorage.setItem(IS_BEFORE_RELOAD_USER_WAS_ALREADY_LOGGED_IN, "true");
   }
 
   private handleWindowScrollEvent() {
