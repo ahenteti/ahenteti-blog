@@ -1,0 +1,5 @@
+@mixin avatar {
+  flex-grow: 0;
+  flex-shrink: 0;
+  margin-right: var(--comment-user-avatar-margin-right);
+}

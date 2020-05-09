@@ -4,6 +4,7 @@ import { UserHttpServices } from "../../services/user.http.services";
 import { UserState } from "../../state/user.state";
 import { MatMenuTrigger } from "@angular/material/menu";
 import { IUser } from "../../models/user.internal.models";
+import { UserLoginServices } from "../../services/user.login.services";
 
 @Component({
   selector: "app-navbar",
@@ -20,7 +21,8 @@ export class NavBarComponent implements OnInit {
   constructor(
     private themeService: ThemeLocalStorageServices,
     private userHttpService: UserHttpServices,
-    public userState: UserState
+    public userState: UserState,
+    private userLoginService: UserLoginServices
   ) {}
 
   handleChangeThemeColorClickEvent(event: any) {
@@ -41,7 +43,7 @@ export class NavBarComponent implements OnInit {
   }
 
   preLogin() {
-    document.cookie = `url_before_login=${window.location.href}`;
+    this.userLoginService.preLogin();
   }
 
   onGetUserSuccess(user: IUser) {

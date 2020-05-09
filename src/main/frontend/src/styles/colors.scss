@@ -87,6 +87,10 @@ body.dark {
   --dropdown-background-color: #262a2d;
   --dropdown-item-background-color-on-hover: #36393b;
   --select-selected-option-background-color: #32373b;
+
+  --input-color: #d1d2d3;
+  --input-background-color: #32373b;
+  --input-border-color: #394048;
 }
 
 body.light {
@@ -162,4 +166,8 @@ body.light {
   --dropdown-background-color: white;
   --dropdown-item-background-color-on-hover: #eee;
   --select-selected-option-background-color: #eee;
+
+  --input-color: #555;
+  --input-background-color: #f8f9fa;
+  --input-border-color: #eee;
 }

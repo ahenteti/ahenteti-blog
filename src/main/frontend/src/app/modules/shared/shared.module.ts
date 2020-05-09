@@ -21,7 +21,6 @@ import { WarnComponent } from "./components/text-with-icon/warn.component";
 import { InfoComponent } from "./components/text-with-icon/info.component";
 import { MarkdownComponent } from "./components/markdown/markdown.component";
 import { FirstLetterPipe } from "./pipes/first-letter.pipe";
-import { AvatarComponent } from "./components/profile-image/avatar.component";
 import { TimeAgoPipe } from "time-ago-pipe";
 import { HttpClientModule } from "@angular/common/http";
 import { UserHttpServices } from "./services/user.http.services";
@@ -29,6 +28,10 @@ import { UserState } from "./state/user.state";
 import { UserConverter } from "./converter/user.converter";
 import { UserAvatarComponent } from "./components/user-avatar/user-avatar.component";
 import { MatMenuModule } from "@angular/material/menu";
+import { TextareaAutoGrowDirective } from "./directives/textarea-auto-grow.directive";
+import { TextareaDisableSpellCheckDirective } from "./directives/textarea-disable-spellcheck.directive";
+import { LoginWithGithubComponent } from "./components/login-with-github/login-with-github.component";
+import { UserLoginServices } from "./services/user.login.services";
 
 @NgModule({
   entryComponents: [TooltipComponent, QuoteComponent],
@@ -58,9 +61,11 @@ import { MatMenuModule } from "@angular/material/menu";
     InfoComponent,
     MarkdownComponent,
     FirstLetterPipe,
-    AvatarComponent,
     TimeAgoPipe,
     UserAvatarComponent,
+    TextareaAutoGrowDirective,
+    TextareaDisableSpellCheckDirective,
+    LoginWithGithubComponent,
   ],
   exports: [
     FancyTitleComponent,
@@ -80,17 +85,20 @@ import { MatMenuModule } from "@angular/material/menu";
     InfoComponent,
     MarkdownComponent,
     FirstLetterPipe,
-    AvatarComponent,
     TimeAgoPipe,
     HttpClientModule,
     UserAvatarComponent,
     MatMenuModule,
+    TextareaAutoGrowDirective,
+    TextareaDisableSpellCheckDirective,
+    LoginWithGithubComponent,
   ],
   providers: [
     ThemeLocalStorageServices,
     UserConverter,
     UserHttpServices,
     UserState,
+    UserLoginServices,
   ],
 })
 export class SharedModule {}

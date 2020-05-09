@@ -1,3 +1,5 @@
+@import "../../../../../styles/mixin";
+
 :host {
   display: flex;
   padding: 2rem;
@@ -8,9 +10,7 @@
 }
 
 app-user-avatar {
-  flex-grow: 0;
-  flex-shrink: 0;
-  margin-right: 2.5rem;
+  @include avatar;
 }
 
 .author {

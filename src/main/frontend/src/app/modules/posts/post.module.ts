@@ -19,6 +19,7 @@ import { PostSummaryComponent } from "./components/post-summary/post-summary.com
 import { PostsWelcomeMessageComponent } from "./components/posts-welcome-message/posts-welcome-message.component";
 import { PostsByCategoryComponent } from "./components/posts-by-category/posts-by-category.component";
 import { PostHttpServicesImpl } from "./services/post.http.services.impl";
+import { AddCommentComponent } from "./components/comments/add-comment.component";
 
 const routes: Routes = [
   { path: "", component: PostDashboardPage },
@@ -45,6 +46,7 @@ const routes: Routes = [
     CommentsComponent,
     PostDashboardPage,
     ConsultPostPage,
+    AddCommentComponent,
   ],
   exports: [RouterModule, HttpClientModule],
   providers: [

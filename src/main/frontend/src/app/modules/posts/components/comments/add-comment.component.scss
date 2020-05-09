@@ -1,0 +1,51 @@
+@import "../../../../../styles/mixin";
+
+form {
+  padding: 2rem;
+  padding-right: 0;
+  margin-bottom: 2rem;
+}
+
+.comment-input {
+  display: flex;
+
+  & app-user-avatar {
+    @include avatar;
+  }
+
+  & textarea {
+    height: 7rem;
+  }
+}
+
+.comment-submit {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.not-authenticated {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 2.5rem;
+  & a {
+    text-decoration: none;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 1rem 2rem;
+    border-radius: 0.3rem;
+    display: flex;
+    transition: var(--transition);
+    transition-property: color, border-color background-color;
+
+    &:hover {
+      background-color: var(--primary-color);
+      color: var(--body-color);
+    }
+  }
+
+  & .iconify {
+    margin-left: 0.4rem;
+    margin-right: 0.4rem;
+    font-size: 2rem;
+  }
+}
