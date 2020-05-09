@@ -20,6 +20,8 @@ import { PostsWelcomeMessageComponent } from "./components/posts-welcome-message
 import { PostsByCategoryComponent } from "./components/posts-by-category/posts-by-category.component";
 import { PostHttpServicesImpl } from "./services/post.http.services.impl";
 import { AddCommentComponent } from "./components/comments/add-comment.component";
+import { AlertModule } from "../alert/alert.module";
+import { CommentConverter } from "./converters/comment.converter";
 
 const routes: Routes = [
   { path: "", component: PostDashboardPage },
@@ -32,6 +34,7 @@ const routes: Routes = [
     SharedModule,
     RouterModule.forChild(routes),
     HttpClientModule,
+    AlertModule,
   ],
   declarations: [
     TagComponent,
@@ -48,10 +51,11 @@ const routes: Routes = [
     ConsultPostPage,
     AddCommentComponent,
   ],
-  exports: [RouterModule, HttpClientModule],
+  exports: [RouterModule, HttpClientModule, AlertModule],
   providers: [
     { provide: PostHttpServices, useClass: PostHttpServicesImpl },
     PostConverter,
+    CommentConverter,
   ],
 })
 export class PostModule {}

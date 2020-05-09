@@ -5,6 +5,7 @@ import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { PostModule } from "./modules/posts/post.module";
 import { SharedModule } from "./modules/shared/shared.module";
+import { AlertModule } from "./modules/alert/alert.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,6 +15,7 @@ import { SharedModule } from "./modules/shared/shared.module";
     BrowserAnimationsModule,
     SharedModule,
     PostModule,
+    AlertModule,
   ],
   bootstrap: [AppComponent],
 })

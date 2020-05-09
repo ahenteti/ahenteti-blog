@@ -6,6 +6,7 @@ import * as AOS from "aos";
   selector: "app-root",
   template: /*html*/ `
     <app-navbar></app-navbar>
+    <app-alert></app-alert>
     <main>
       <router-outlet></router-outlet>
     </main>

@@ -11,10 +11,8 @@ import { PostsSummaries, IPost } from "../models/post.internal.models";
 import { PostConverter } from "../converters/post.converter";
 
 @Injectable()
-export class PostHttpServicesMock extends PostHttpServices {
-  constructor(private postConverter: PostConverter) {
-    super();
-  }
+export class PostHttpServicesMock {
+  constructor(private postConverter: PostConverter) {}
 
   getPostSummaries(): Observable<PostsSummaries> {
     return from([POSTS_SUMMARIES]).pipe(

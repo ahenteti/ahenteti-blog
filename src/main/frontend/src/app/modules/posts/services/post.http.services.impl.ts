@@ -5,6 +5,7 @@ import { map, catchError } from "rxjs/operators";
 import {
   IPostApiResponse,
   IPostSummaryApiResponse,
+  ICommentApiRequest,
 } from "../models/post.external.models";
 import { PostHttpServices } from "./post.http.services";
 import {
@@ -47,6 +48,10 @@ export class PostHttpServicesImpl extends PostHttpServices {
         })
       )
       .pipe(catchError(this.handleError("getPostById", new EmptyPost())));
+  }
+
+  createComment(comment: ICommentApiRequest) {
+    return this.http.post<any>("/secure-api/comment", comment).toPromise();
   }
 
   private handleError<T>(operation = "operation", result?: T) {

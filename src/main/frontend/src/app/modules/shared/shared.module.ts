@@ -33,6 +33,7 @@ import { TextareaDisableSpellCheckDirective } from "./directives/textarea-disabl
 import { LoginWithGithubComponent } from "./components/login-with-github/login-with-github.component";
 import { UserLoginServices } from "./services/user.login.services";
 import { UserObservableService } from "./services/user-observable.service";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   entryComponents: [TooltipComponent, QuoteComponent],
@@ -44,6 +45,7 @@ import { UserObservableService } from "./services/user-observable.service";
     MatSelectModule,
     MatMenuModule,
     HttpClientModule,
+    FormsModule,
   ],
   declarations: [
     FancyTitleComponent,
@@ -93,6 +95,7 @@ import { UserObservableService } from "./services/user-observable.service";
     TextareaAutoGrowDirective,
     TextareaDisableSpellCheckDirective,
     LoginWithGithubComponent,
+    FormsModule,
   ],
   providers: [
     ThemeLocalStorageServices,

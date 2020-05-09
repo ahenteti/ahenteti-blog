@@ -1,8 +1,18 @@
-<form *ngIf="userAuthenticated" action="/secure-api/comment" method="POST">
+<form
+  *ngIf="userAuthenticated"
+  (ngSubmit)="onSubmit(commentForm)"
+  #commentForm="ngForm"
+>
   <div class="comment-input">
-    <input type="text" hidden name="postId" [value]="postId" />
+    <input type="text" hidden name="postId" [ngModel]="postId" />
     <app-user-avatar [user]="user"></app-user-avatar>
-    <textarea placeholder="Add a comment..." name="value" rows="2"></textarea>
+    <textarea
+      #commentTextarea
+      placeholder="Add a comment..."
+      name="value"
+      rows="2"
+      ngModel
+    ></textarea>
   </div>
   <div class="comment-submit">
     <button type="submit">Add Comment</button>

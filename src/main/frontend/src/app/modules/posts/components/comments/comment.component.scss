@@ -9,6 +9,10 @@
   transition-property: background-color;
 }
 
+.container {
+  width: 100%;
+}
+
 app-user-avatar {
   @include avatar;
 }

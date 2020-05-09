@@ -1,40 +1,41 @@
-import { Component, Input, OnInit, OnDestroy } from "@angular/core";
+import {
+  Component,
+  Input,
+  OnInit,
+  OnDestroy,
+  Output,
+  EventEmitter,
+  ViewChild,
+  ElementRef,
+} from "@angular/core";
 import { IUser } from "src/app/modules/shared/models/user.internal.models";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
 import { UserObservableService } from "src/app/modules/shared/services/user-observable.service";
+import { NgForm } from "@angular/forms";
+import { ICommentApiRequest } from "../../models/post.external.models";
+import { UserAwareComponent } from "src/app/modules/shared/components/user-aware.component";
 
 @Component({
   selector: "app-add-comment",
   templateUrl: "./add-comment.component.html",
   styleUrls: ["./add-comment.component.scss"],
 })
-export class AddCommentComponent implements OnInit, OnDestroy {
+export class AddCommentComponent extends UserAwareComponent {
   postId: number;
-  user: IUser;
-  userAuthenticated = false;
-  private userSubscription: Subscription;
+  @Output() submit = new EventEmitter<ICommentApiRequest>();
+  @ViewChild("commentTextarea", { static: false }) commentTextarea: ElementRef;
 
   constructor(
     route: ActivatedRoute,
-    public userObservableService: UserObservableService
+    userObservableService: UserObservableService
   ) {
+    super(userObservableService);
     this.postId = route.snapshot.params["id"];
   }
 
-  ngOnInit(): void {
-    this.onUserChange(this.userObservableService.userSource.getValue());
-    this.userSubscription = this.userObservableService.currentUser.subscribe(
-      (user) => this.onUserChange(user)
-    );
-  }
-
-  private onUserChange(user: IUser) {
-    this.user = user;
-    this.userAuthenticated = user != undefined;
-  }
-
-  ngOnDestroy(): void {
-    this.userSubscription.unsubscribe();
+  onSubmit(form: NgForm) {
+    this.submit.emit(form.value);
+    this.commentTextarea.nativeElement.value = "";
   }
 }

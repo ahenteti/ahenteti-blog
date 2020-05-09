@@ -1,5 +1,5 @@
 export class CookieUtils {
-  static createCookie(name, value, days?) {
+  static createCookie(name, value, days = 1) {
     if (days) {
       var date = new Date();
       date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);

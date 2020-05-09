@@ -20,3 +20,8 @@ export interface ICommentApiResponse {
   createdAtIso8601: string;
   value: string;
 }
+
+export interface ICommentApiRequest {
+  postId: number;
+  value: string;
+}

@@ -9,7 +9,6 @@ export class UserObservableService {
   currentUser = this.userSource.asObservable();
 
   changeUser(user: IUser) {
-    console.log(user);
     this.userSource.next(user);
   }
 }
