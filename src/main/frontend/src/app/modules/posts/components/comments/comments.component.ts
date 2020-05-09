@@ -1,6 +1,5 @@
 import { Component, Input } from "@angular/core";
 import { IComment, Comments } from "../../models/post.internal.models";
-import { IUser } from "src/app/modules/shared/models/user.internal.models";
 import { ICommentApiRequest } from "../../models/post.external.models";
 import { PostHttpServices } from "../../services/post.http.services";
 import { AlertService } from "src/app/modules/alert/alert.service";
@@ -30,8 +29,12 @@ export class CommentsComponent extends UserAwareComponent {
     this.comments = [comment, ...this.comments];
     this.postHttpServices
       .createComment(commentApiRequest)
-      .then(() => this.alertSavingCommentSuccess())
-      .catch(() => {
+      .then((response) => {
+        console.log(response);
+        this.alertSavingCommentSuccess();
+      })
+      .catch((error) => {
+        console.log(error);
         this.alertSavingCommentError();
         this.removeLastAddedComment(comment);
       });
@@ -42,7 +45,6 @@ export class CommentsComponent extends UserAwareComponent {
   }
 
   private alertSavingCommentSuccess() {
-    console.log("alertSavingCommentSuccess");
     this.alertService.info("comment saved with success");
   }
 

@@ -1,0 +1,92 @@
+:host {
+  position: fixed;
+  top: calc(var(--navbar-height) + 2rem);
+  right: 2rem;
+  z-index: 10000;
+  width: 35rem;
+}
+
+.alert {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  padding: 2rem;
+  border-radius: 0.3rem;
+  margin-bottom: 1.5rem;
+  animation: alertFadeIn 0.2s ease-in;
+
+  &.fadeout {
+    animation: alertFadeOut 0.2s;
+  }
+}
+
+.alert-icon {
+  flex: 0 0 5rem;
+  padding-right: 2rem;
+  width: 2rem;
+}
+
+.message-container {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.message {
+  font-size: 1.6rem;
+  line-height: 2.5rem;
+}
+
+.close-icon {
+  flex: 0 0 2rem;
+  margin-left: 1rem;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.alert-error {
+  background-color: var(--error-background-color);
+  & .message,
+  & .close-icon {
+    color: var(--error-text-color);
+  }
+}
+
+.alert-warn {
+  background-color: var(--warn-background-color);
+  & .message,
+  & .close-icon {
+    color: var(--warn-text-color);
+  }
+}
+
+.alert-info {
+  background-color: var(--info-background-color);
+  & .message,
+  & .close-icon {
+    color: var(--info-text-color);
+  }
+}
+
+@keyframes alertFadeIn {
+  from {
+    transform: translateX(40rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes alertFadeOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(40rem);
+    opacity: 0;
+  }
+}

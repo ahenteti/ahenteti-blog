@@ -59,3 +59,9 @@ hr {
   height: 0.3rem;
   border: none;
 }
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}

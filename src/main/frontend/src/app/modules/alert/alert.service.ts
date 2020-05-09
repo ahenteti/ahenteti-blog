@@ -10,20 +10,42 @@ export class AlertService {
     return this.subject.asObservable();
   }
 
-  alter(alert: Alert) {
+  alert(alert: Alert) {
     this.subject.next(alert);
   }
 
   info(message: string, options?: any) {
-    this.alter(new Alert({ ...options, type: AlertType.INFO, message }));
+    this.alert(
+      new Alert({
+        ...options,
+        autoClose: true,
+        type: AlertType.INFO,
+        icon: "/assets/icon/info.svg",
+        message,
+      })
+    );
   }
 
   warn(message: string, options?: any) {
-    this.alter(new Alert({ ...options, type: AlertType.WARN, message }));
+    this.alert(
+      new Alert({
+        ...options,
+        type: AlertType.WARN,
+        icon: "/assets/icon/warn.svg",
+        message,
+      })
+    );
   }
 
   error(message: string, options?: any) {
-    this.alter(new Alert({ ...options, type: AlertType.ERROR, message }));
+    this.alert(
+      new Alert({
+        ...options,
+        type: AlertType.ERROR,
+        icon: "/assets/icon/error.svg",
+        message,
+      })
+    );
   }
 
   clear() {

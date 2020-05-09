@@ -1,4 +1,9 @@
 <div *ngFor="let alert of alerts" class="{{ cssClasses(alert) }}">
-  <a class="close" (click)="removeAlert(alert)">&times;</a>
-  <span [innerHTML]="alert.message"></span>
+  <img class="alert-icon" [src]="alert.icon" />
+  <div class="message-container">
+    <span class="message" [innerHTML]="alert.message"></span>
+    <span (click)="removeAlert(alert)">
+      <span class="close-icon iconify" data-icon="ic:round-close"></span>
+    </span>
+  </div>
 </div>

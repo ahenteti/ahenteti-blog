@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, ElementRef } from "@angular/core";
 import { Alerts, Alert, AlertType } from "./alert.model";
 import { Router, NavigationStart } from "@angular/router";
 import { AlertService } from "./alert.service";
@@ -48,20 +48,26 @@ export class AlertComponent implements OnInit, OnDestroy {
   }
 
   removeAlert(alert: Alert) {
-    this.alerts = this.alerts.filter((x) => x !== alert);
+    this.alerts.find((x) => x === alert).fadeout = true;
+    setTimeout(() => {
+      this.alerts = this.alerts.filter((x) => x !== alert);
+    }, 200);
   }
 
   cssClasses(alert: Alert) {
     if (!alert) return;
-    const classes = ["alter"];
+    const classes = ["alert"];
 
     const alertTypeClass = {
       [AlertType.ERROR]: "alert-error",
       [AlertType.WARN]: "alert-warn",
       [AlertType.INFO]: "alert-info",
     };
-
     classes.push(alertTypeClass[alert.type]);
+
+    if (alert.fadeout) {
+      classes.push("fadeout");
+    }
 
     return classes.join(" ");
   }
