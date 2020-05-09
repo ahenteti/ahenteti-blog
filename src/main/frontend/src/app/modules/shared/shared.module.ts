@@ -32,6 +32,7 @@ import { TextareaAutoGrowDirective } from "./directives/textarea-auto-grow.direc
 import { TextareaDisableSpellCheckDirective } from "./directives/textarea-disable-spellcheck.directive";
 import { LoginWithGithubComponent } from "./components/login-with-github/login-with-github.component";
 import { UserLoginServices } from "./services/user.login.services";
+import { UserObservableService } from "./services/user-observable.service";
 
 @NgModule({
   entryComponents: [TooltipComponent, QuoteComponent],

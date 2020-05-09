@@ -1,17 +1,13 @@
-<form
-  *ngIf="userState.authenticated"
-  action="/secure-api/comment"
-  method="POST"
->
+<form *ngIf="userAuthenticated" action="/secure-api/comment" method="POST">
   <div class="comment-input">
     <input type="text" hidden name="postId" [value]="postId" />
-    <app-user-avatar [user]="userState.user"></app-user-avatar>
+    <app-user-avatar [user]="user"></app-user-avatar>
     <textarea placeholder="Add a comment..." name="value" rows="2"></textarea>
   </div>
   <div class="comment-submit">
     <button type="submit">Add Comment</button>
   </div>
 </form>
-<div *ngIf="!userState.authenticated" class="not-authenticated">
+<div *ngIf="!userAuthenticated" class="not-authenticated">
   <app-login-with-github></app-login-with-github>
 </div>
