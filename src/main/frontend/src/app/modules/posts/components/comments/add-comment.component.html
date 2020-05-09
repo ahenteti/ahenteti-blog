@@ -6,13 +6,15 @@
   <div class="comment-input">
     <input type="text" hidden name="postId" [ngModel]="postId" />
     <app-user-avatar [user]="user"></app-user-avatar>
-    <textarea
-      #commentTextarea
-      placeholder="Leave a comment..."
-      name="value"
-      rows="2"
-      ngModel
-    ></textarea>
+    <div class="textarea">
+      <textarea
+        #commentTextarea
+        placeholder="Leave a comment..."
+        name="value"
+        rows="2"
+        ngModel
+      ></textarea>
+    </div>
   </div>
   <div class="comment-submit">
     <button type="submit">Add Comment</button>

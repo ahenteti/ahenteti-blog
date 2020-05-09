@@ -11,7 +11,7 @@ export class TextareaAutoGrowDirective implements AfterViewInit {
       const currentHeight = element.clientHeight;
       const scrollHeight = element.scrollHeight;
       if (currentHeight < scrollHeight) {
-        element.style.height = scrollHeight + "px";
+        element.style.height = scrollHeight + 10 + "px";
       }
     });
   }
