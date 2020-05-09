@@ -1,6 +1,5 @@
 import { Component, Input, OnInit, OnDestroy } from "@angular/core";
 import { IUser } from "src/app/modules/shared/models/user.internal.models";
-import { UserState } from "src/app/modules/shared/state/user.state";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
 import { UserObservableService } from "src/app/modules/shared/services/user-observable.service";
@@ -24,13 +23,15 @@ export class AddCommentComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.onUserChange(this.userObservableService.userSource.getValue());
     this.userSubscription = this.userObservableService.currentUser.subscribe(
-      (user) => {
-        console.log(user);
-        this.user = user;
-        this.userAuthenticated = user != undefined;
-      }
+      (user) => this.onUserChange(user)
     );
+  }
+
+  private onUserChange(user: IUser) {
+    this.user = user;
+    this.userAuthenticated = user != undefined;
   }
 
   ngOnDestroy(): void {

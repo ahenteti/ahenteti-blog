@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
 import { IUser } from "../models/user.internal.models";
-import { Subject } from "rxjs";
+import { Subject, BehaviorSubject } from "rxjs";
 
 // code inspiration: https://www.youtube.com/watch?v=I317BhehZKM
 @Injectable({ providedIn: "root" })
 export class UserObservableService {
-  private userSource = new Subject<IUser>();
+  userSource = new BehaviorSubject<IUser>(undefined);
   currentUser = this.userSource.asObservable();
 
   changeUser(user: IUser) {

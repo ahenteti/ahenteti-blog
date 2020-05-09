@@ -38,12 +38,9 @@ export class NavBarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     window.addEventListener("scroll", () => this.handleWindowScrollEvent());
+    this.onUserChange(this.userObservableService.userSource.getValue());
     this.userSubscription = this.userObservableService.currentUser.subscribe(
-      (user) => {
-        console.log("navbar: " + JSON.stringify(user));
-        this.user = user;
-        this.userAuthenticated = user != undefined;
-      }
+      (user) => this.onUserChange(user)
     );
     this.userHttpService
       .getUser()
@@ -53,6 +50,11 @@ export class NavBarComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.userSubscription.unsubscribe();
+  }
+
+  private onUserChange(user: IUser) {
+    this.user = user;
+    this.userAuthenticated = user != undefined;
   }
 
   handleChangeThemeColorClickEvent(event: any) {
