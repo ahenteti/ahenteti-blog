@@ -23,5 +23,6 @@ export class UserState {
   set user(user: IUser) {
     this._user = user;
     this.authenticated = user !== null || user !== undefined;
+    console.log(this.authenticated);
   }
 }

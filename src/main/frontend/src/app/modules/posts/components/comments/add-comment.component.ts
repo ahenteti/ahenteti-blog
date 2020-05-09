@@ -9,13 +9,9 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./add-comment.component.scss"],
 })
 export class AddCommentComponent {
-  user: IUser;
-  userAuthenticated: boolean;
   postId: number;
 
-  constructor(route: ActivatedRoute, state: UserState) {
+  constructor(route: ActivatedRoute, public userState: UserState) {
     this.postId = route.snapshot.params["id"];
-    this.user = state.user;
-    this.userAuthenticated = state.authenticated;
   }
 }
