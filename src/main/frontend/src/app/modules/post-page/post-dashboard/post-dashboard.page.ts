@@ -2,12 +2,12 @@ import { Component, OnInit } from "@angular/core";
 import { SetUtils } from "src/app/modules/shared/utils/set.utils";
 import { ALL_TAGS } from "src/app/modules/shared/utils/constants.utils";
 import { first } from "rxjs/operators";
-import { PostHttpServices } from "../../services/post.http.services";
-import { PostsState } from "../../state/posts.state";
+import { PostHttpServices } from "../../post/services/post.http.services";
+import { PostsState } from "../../post/state/posts.state";
 import {
   PostsSummaries,
   PostsByCategory,
-} from "../../models/post.internal.models";
+} from "../../post/models/post.internal.models";
 
 @Component({
   templateUrl: "post-dashboard.page.html",

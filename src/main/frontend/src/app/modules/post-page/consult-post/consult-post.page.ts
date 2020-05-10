@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { first } from "rxjs/operators";
-import { IPost, OfflinePost } from "../../models/post.internal.models";
-import { PostHttpServices } from "../../services/post.http.services";
+import { IPost, OfflinePost } from "../../post/models/post.internal.models";
+import { PostHttpServices } from "../../post/services/post.http.services";
 
 @Component({
   templateUrl: "./consult-post.page.html",

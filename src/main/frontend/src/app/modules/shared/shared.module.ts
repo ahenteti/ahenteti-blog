@@ -12,7 +12,6 @@ import { OverlayModule } from "@angular/cdk/overlay";
 import { PortalModule } from "@angular/cdk/portal";
 import { MatSelectModule } from "@angular/material/select";
 import { RouterModule } from "@angular/router";
-import { ThemeLocalStorageServices } from "./services/theme.localstorage.services";
 import { TextWithIconComponent } from "./components/text-with-icon/text-with-icon.component";
 import { QuoteComponent } from "./components/text-with-icon/quote.component";
 import { ErrorComponent } from "./components/text-with-icon/error.component";
@@ -87,6 +86,5 @@ import { HttpClientModule } from "@angular/common/http";
     TextareaDisableSpellCheckDirective,
     LoginWithGithubComponent,
   ],
-  providers: [ThemeLocalStorageServices],
 })
 export class SharedModule {}
