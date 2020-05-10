@@ -11,7 +11,7 @@
       ></a>
     </ng-container>
     <ng-container *ngIf="user.isAuthenticated">
-      <span class="welcome">Welcome</span>
+      <span class="welcome">Welcome {{ user.username }}</span>
       <app-user-avatar
         [matMenuTriggerFor]="menu"
         (mouseover)="onMouseOver()"
