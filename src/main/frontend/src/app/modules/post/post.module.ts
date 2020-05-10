@@ -11,7 +11,7 @@ import { PostSummaryComponent } from "./components/post-summary/post-summary.com
 import { PostsWelcomeMessageComponent } from "./components/posts-welcome-message/posts-welcome-message.component";
 import { PostsByCategoryComponent } from "./components/posts-by-category/posts-by-category.component";
 import { AlertModule } from "../alert/alert.module";
-import { PostCommentModule } from "../post-comment/post-comment.module";
+import { PostCommentModule } from "../post-comments/post-comment.module";
 import { RouterModule } from "@angular/router";
 
 @NgModule({
