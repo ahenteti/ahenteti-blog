@@ -3,9 +3,6 @@ package io.ahenteti.blog.model.api;
 import lombok.Data;
 
 @Data
-public class CommentApiRequest {
-
-    private Long postId;
+public class CreatePostCommentApiRequestBody {
     private String value;
-
 }

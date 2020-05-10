@@ -23,7 +23,7 @@ public class UserController {
 
     @GetMapping("/api/isAuthenticated")
     public UserApiResponse getUser(@ModelAttribute IUser user) {
-        userValidator.validate(user);
+        userValidator.validateUser(user);
         return userConverter.toUserApiResponse(user);
     }
 

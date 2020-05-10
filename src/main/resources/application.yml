@@ -7,18 +7,18 @@ spring:
 #      Uncomment the following properties to       #
 #   generate the @Entity associated SQL scripts    #
 ####################################################
-#  jpa:
-#    properties:
-#      hibernate:
-#        hbm2ddl:
-#          delimiter: ";"
-#      javax:
-#        persistence:
-#          schema-generation: 
-#            create-source: metadata
-#            scripts:
-#              action: create
-#              create-target: target/create.sql
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl:
+          delimiter: ";"
+      javax:
+        persistence:
+          schema-generation: 
+            create-source: metadata
+            scripts:
+              action: create
+              create-target: target/create.sql
   security:
     oauth2:
       client:

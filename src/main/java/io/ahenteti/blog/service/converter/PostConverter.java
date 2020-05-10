@@ -3,7 +3,6 @@ package io.ahenteti.blog.service.converter;
 import io.ahenteti.blog.model.api.PostApiResponse;
 import io.ahenteti.blog.model.api.PostSummaryApiResponse;
 import io.ahenteti.blog.model.api.PostsSummariesApiResponse;
-import io.ahenteti.blog.model.core.Comments;
 import io.ahenteti.blog.model.core.IUser;
 import io.ahenteti.blog.model.core.Post;
 import io.ahenteti.blog.model.core.PostSummary;
@@ -22,12 +21,10 @@ import java.util.stream.Collectors;
 public class PostConverter {
 
     private UserConverter userConverter;
-    private CommentConverter commentConverter;
 
     @Autowired
-    public PostConverter(UserConverter userConverter, CommentConverter commentConverter) {
+    public PostConverter(UserConverter userConverter) {
         this.userConverter = userConverter;
-        this.commentConverter = commentConverter;
     }
 
     public PostSummary toPostSummary(PostEntity entity) {
@@ -45,7 +42,6 @@ public class PostConverter {
     public Post toPost(PostEntity entity) {
         Post res = new Post();
         IUser author = userConverter.toUser(entity.getAuthor());
-        Comments comments = commentConverter.toComments(entity.getComments(), author, res);
         res.setId(entity.getId());
         res.setTitle(entity.getTitle());
         res.setCategory(entity.getCategory());
@@ -53,7 +49,6 @@ public class PostConverter {
         res.setCreatedAt(entity.getCreatedAt());
         res.setLastUpdatedAt(getLastUpdatedAt(entity));
         res.setAuthor(author);
-        res.setComments(comments);
         res.setBody(entity.getBody().getValue());
         return res;
     }
@@ -85,7 +80,6 @@ public class PostConverter {
         post.getLastUpdatedAt().ifPresent(date -> res.setLastUpdatedAtIso8601(date.toString()));
         res.setAuthor(post.getAuthor().getUsername());
         res.setBodyMarkdownBase64(post.getBody());
-        res.setComments(commentConverter.toCommentsApiResponse(post.getComments()));
         return res;
     }
 

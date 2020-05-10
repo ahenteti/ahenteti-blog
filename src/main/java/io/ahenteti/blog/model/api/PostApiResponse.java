@@ -7,5 +7,4 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PostApiResponse extends PostSummaryApiResponse {
     private String bodyMarkdownBase64;
-    private CommentsApiResponse comments = new CommentsApiResponse();
 }

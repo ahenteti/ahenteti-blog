@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CommentApiResponse {
+public class PostCommentApiResponse {
     private UserApiResponse author;
     private String createdAtIso8601;
     private String value;

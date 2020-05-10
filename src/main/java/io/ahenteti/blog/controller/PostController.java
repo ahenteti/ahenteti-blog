@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.function.Supplier;
 
+import static io.ahenteti.blog.exception.ResourceNotFoundException.throwPostNotFoundException;
+
 @RestController
 public class PostController {
 
@@ -36,10 +38,6 @@ public class PostController {
     public PostApiResponse getPostById(@PathVariable Long id) {
         Post post = postDao.getPostById(id).orElseThrow(throwPostNotFoundException(id));
         return postConverter.toPostApiResponse(post);
-    }
-
-    private Supplier<ResourceNotFoundException> throwPostNotFoundException(Long id) {
-        return () -> new ResourceNotFoundException("Post not found. id: " + id);
     }
 
 }
