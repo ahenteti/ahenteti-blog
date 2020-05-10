@@ -4,24 +4,19 @@ import { HttpClientModule } from "@angular/common/http";
 import { SharedModule } from "../shared/shared.module";
 import { SearchPostsComponent } from "./components/search-posts/search-posts.component";
 import { Routes, RouterModule } from "@angular/router";
-import { PostHttpServicesMock } from "./services/post.http.services.mock";
 import { PostConverter } from "./converters/post.converter";
 import { ConsultPostPage } from "./pages/consult-post/consult-post.page";
 import { TagComponent } from "./components/tag/tag.component";
 import { TagListComponent } from "./components/tag/tag-list.component";
-import { PostHttpServices } from "./services/post.http.services";
 import { PostLayoutComponent } from "./components/post-layout/post-layout.component";
 import { PostTitleComponent } from "./components/post-title/post-title.component";
-import { CommentComponent } from "./components/comments/comment.component";
-import { CommentsComponent } from "./components/comments/comments.component";
 import { PostDashboardPage } from "./pages/post-dashboard/post-dashboard.page";
 import { PostSummaryComponent } from "./components/post-summary/post-summary.component";
 import { PostsWelcomeMessageComponent } from "./components/posts-welcome-message/posts-welcome-message.component";
 import { PostsByCategoryComponent } from "./components/posts-by-category/posts-by-category.component";
-import { PostHttpServicesImpl } from "./services/post.http.services.impl";
-import { AddCommentComponent } from "./components/comments/add-comment.component";
+import { PostHttpServices } from "./services/post.http.services";
 import { AlertModule } from "../alert/alert.module";
-import { CommentConverter } from "./converters/comment.converter";
+import { PostCommentModule } from "../post-comment/post-comment.module";
 
 const routes: Routes = [
   { path: "", component: PostDashboardPage },
@@ -35,6 +30,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     HttpClientModule,
     AlertModule,
+    PostCommentModule,
   ],
   declarations: [
     TagComponent,
@@ -45,17 +41,10 @@ const routes: Routes = [
     PostsWelcomeMessageComponent,
     PostLayoutComponent,
     PostTitleComponent,
-    CommentComponent,
-    CommentsComponent,
     PostDashboardPage,
     ConsultPostPage,
-    AddCommentComponent,
   ],
   exports: [RouterModule, HttpClientModule, AlertModule],
-  providers: [
-    { provide: PostHttpServices, useClass: PostHttpServicesImpl },
-    PostConverter,
-    CommentConverter,
-  ],
+  providers: [PostHttpServices, PostConverter],
 })
 export class PostModule {}

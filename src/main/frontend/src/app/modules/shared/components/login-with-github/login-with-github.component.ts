@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { UserLoginServices } from "../../services/user.login.services";
+import { UserLoginServices } from "../../../user/services/user.login.services";
 
 @Component({
   selector: "app-login-with-github",

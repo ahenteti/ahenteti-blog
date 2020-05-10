@@ -3,6 +3,7 @@ package io.ahenteti.blog.exception;
 import io.ahenteti.blog.model.api.ErrorApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -25,6 +26,12 @@ public class ExceptionsHandler {
     public ResponseEntity<ErrorApiResponse> handleException(ResourceNotFoundException t) {
         return new ResponseEntity<>(new ErrorApiResponse(HttpStatus.NOT_FOUND.value(), t
                 .getMessage()), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler({MissingMandatoryRequestAttributeException.class, MissingServletRequestParameterException.class})
+    public ResponseEntity<ErrorApiResponse> handleException(Exception t) {
+        return new ResponseEntity<>(new ErrorApiResponse(HttpStatus.BAD_REQUEST.value(), t
+                .getMessage()), HttpStatus.BAD_REQUEST);
     }
 
 }

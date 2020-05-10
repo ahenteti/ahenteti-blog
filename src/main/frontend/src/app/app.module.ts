@@ -6,6 +6,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { PostModule } from "./modules/posts/post.module";
 import { SharedModule } from "./modules/shared/shared.module";
 import { AlertModule } from "./modules/alert/alert.module";
+import { NavbarModule } from "./modules/navbar/navbar.module";
+import { UserModule } from "./modules/user/user.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,8 +16,10 @@ import { AlertModule } from "./modules/alert/alert.module";
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-    PostModule,
+    UserModule,
     AlertModule,
+    NavbarModule,
+    PostModule,
   ],
   bootstrap: [AppComponent],
 })

@@ -66,7 +66,7 @@ public class PostConverter {
         res.setTags(post.getTags());
         res.setCreatedAtIso8601(post.getCreatedAt().toString());
         post.getLastUpdatedAt().ifPresent(date -> res.setLastUpdatedAtIso8601(date.toString()));
-        res.setAuthor(post.getAuthor().getUsername());
+        res.setAuthor(userConverter.toUserApiResponse(post.getAuthor()));
         return res;
     }
 
@@ -78,7 +78,7 @@ public class PostConverter {
         res.setTags(post.getTags());
         res.setCreatedAtIso8601(post.getCreatedAt().toString());
         post.getLastUpdatedAt().ifPresent(date -> res.setLastUpdatedAtIso8601(date.toString()));
-        res.setAuthor(post.getAuthor().getUsername());
+        res.setAuthor(userConverter.toUserApiResponse(post.getAuthor()));
         res.setBodyMarkdownBase64(post.getBody());
         return res;
     }

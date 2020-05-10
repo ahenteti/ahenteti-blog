@@ -1,11 +1,10 @@
 import {
   IPostSummaryApiResponse,
   IPostApiResponse,
-  ICommentApiResponse,
 } from "../models/post.external.models";
 import { Injectable } from "@angular/core";
-import { IPostSummary, IComment, IPost } from "../models/post.internal.models";
-import { UserConverter } from "../../shared/converter/user.converter";
+import { IPostSummary, IPost } from "../models/post.internal.models";
+import { UserConverter } from "../../user/converter/user.converter";
 
 @Injectable()
 export class PostConverter {
@@ -23,6 +22,7 @@ export class PostConverter {
           ? post.lastUpdatedAtIso8601
           : post.createdAtIso8601
       ),
+      author: this.userConverter.toUser(post.author),
       searchKey: this.calculateSearchKey(post.title, post.tags),
     };
   }
@@ -40,26 +40,8 @@ export class PostConverter {
           : post.createdAtIso8601
       ),
       searchKey: this.calculateSearchKey(post.title, post.tags),
-      author: post.author,
+      author: this.userConverter.toUser(post.author),
       bodyMarkdown: atob(post.bodyMarkdownBase64),
-      comments: [
-        ...(post.comments || []).map((comment) => this.from(comment)),
-      ].sort(this.sortByDate),
-    };
-  }
-
-  private sortByDate(a: IComment, b: IComment) {
-    if (a.createdAt < b.createdAt) {
-      return 1;
-    }
-    return -1;
-  }
-
-  private from(comment: ICommentApiResponse): IComment {
-    return {
-      author: this.userConverter.toUser(comment.author),
-      createdAt: new Date(comment.createdAtIso8601),
-      value: comment.value,
     };
   }
 

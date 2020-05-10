@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { first } from "rxjs/operators";
-import { IPost, EmptyPost } from "../../models/post.internal.models";
+import { IPost, OfflinePost } from "../../models/post.internal.models";
 import { PostHttpServices } from "../../services/post.http.services";
 
 @Component({
@@ -17,7 +17,7 @@ export class ConsultPostPage implements OnInit {
     private postHttpServices: PostHttpServices
   ) {
     this.postId = route.snapshot.params["id"];
-    this.post = new EmptyPost();
+    this.post = new OfflinePost();
   }
 
   ngOnInit(): void {

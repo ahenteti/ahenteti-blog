@@ -1,0 +1,9 @@
+import { User } from "../../user/models/user.internal.models";
+
+export interface IPostComment {
+  author: User;
+  createdAt: Date;
+  value: string;
+}
+
+export class PostComments extends Array<IPostComment> {}

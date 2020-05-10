@@ -1,0 +1,6 @@
+<app-fancy-title value="Comments"></app-fancy-title>
+<app-add-post-comment (submit)="onCommentSubmit($event)"></app-add-post-comment>
+<app-post-comment
+  *ngFor="let comment of comments"
+  [comment]="comment"
+></app-post-comment>

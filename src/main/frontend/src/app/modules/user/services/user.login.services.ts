@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { CookieUtils } from "../utils/cookie.utils";
-import { URL_BEFORE_LOGIN_COOKIE_NAME } from "../utils/constants.utils";
+import { CookieUtils } from "../../shared/utils/cookie.utils";
+import { URL_BEFORE_LOGIN_COOKIE_NAME } from "../../shared/utils/constants.utils";
 
 @Injectable()
 export class UserLoginServices {
