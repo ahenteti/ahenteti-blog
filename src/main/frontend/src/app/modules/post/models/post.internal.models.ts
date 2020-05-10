@@ -24,7 +24,8 @@ export class OfflinePost implements IPost {
   lastUpdatedAt = new Date();
   searchKey = "";
   author = undefined;
-  bodyMarkdown = "Hello world!";
+  bodyMarkdown =
+    "lorem content: Do amet eu tempor dolor cillum ullamco mollit nulla consectetur anim ut eiusmod aliquip occaecat. Ut sint adipisicing irure ex. Laboris magna excepteur ipsum et proident excepteur ipsum amet. Aliqua cupidatat cupidatat velit velit adipisicing nostrud sit aliqua nisi enim aliqua laboris.";
 }
 
 export class PostsByCategory extends Map<string, IPostSummary[]> {}

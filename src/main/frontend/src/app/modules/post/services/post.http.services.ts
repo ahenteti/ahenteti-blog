@@ -12,12 +12,17 @@ import {
 } from "../models/post.internal.models";
 import { PostConverter } from "../converters/post.converter";
 import { HttpClient } from "@angular/common/http";
-import { CommonHttpServices } from "../../shared/services/common.http.services";
+import { CommonHttpServices } from "../../alert/common.http.services";
+import { AlertService } from "../../alert/alert.service";
 
 @Injectable()
 export class PostHttpServices extends CommonHttpServices {
-  constructor(private postConverter: PostConverter, private http: HttpClient) {
-    super();
+  constructor(
+    private postConverter: PostConverter,
+    private http: HttpClient,
+    alertService: AlertService
+  ) {
+    super(alertService);
   }
 
   getPostSummaries(): Observable<PostsSummaries> {
@@ -32,7 +37,11 @@ export class PostHttpServices extends CommonHttpServices {
           return data;
         })
       )
-      .pipe(catchError(this.handleError("getPostSummaries", [])));
+      .pipe(
+        catchError(
+          this.handleError("Error while fetching post summaries :(", [])
+        )
+      );
   }
 
   getPostById(postId: number): Observable<IPost> {
@@ -45,6 +54,13 @@ export class PostHttpServices extends CommonHttpServices {
           return postAfterTransformation;
         })
       )
-      .pipe(catchError(this.handleError("getPostById", new OfflinePost())));
+      .pipe(
+        catchError(
+          this.handleError(
+            `Error while fetching post content :(`,
+            new OfflinePost()
+          )
+        )
+      );
   }
 }
