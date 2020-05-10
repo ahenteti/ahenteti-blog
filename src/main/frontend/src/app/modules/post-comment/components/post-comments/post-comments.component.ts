@@ -21,7 +21,7 @@ export class PostCommentsComponent extends UserAwareComponent
   private postId: number;
   private currentCommentsPage = -1;
   postComments: PostComments = new PostComments();
-  stillMoreComments = true;
+  stillMoreComments = false;
 
   constructor(
     route: ActivatedRoute,
