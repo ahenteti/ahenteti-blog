@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { UserLoginServices } from "../../../user/services/user.login.services";
 
 @Component({
@@ -7,6 +7,8 @@ import { UserLoginServices } from "../../../user/services/user.login.services";
   styleUrls: ["./login-with-github.component.scss"],
 })
 export class LoginWithGithubComponent {
+  @Input() suffix: string;
+
   constructor(private userLoginServices: UserLoginServices) {}
 
   preLogin() {

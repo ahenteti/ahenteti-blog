@@ -5,7 +5,10 @@
   <div class="right">
     <ng-container *ngIf="!user.isAuthenticated">
       <a (click)="handleChangeThemeColorClickEvent($event)">Toggle theme</a>
-      <a href="/oauth2/authorization/github" (click)="preLogin()">Login</a>
+      <a class="login" href="/oauth2/authorization/github" (click)="preLogin()"
+        >Login with
+        <span class="login-icon iconify" data-icon="fe:github"></span
+      ></a>
     </ng-container>
     <ng-container *ngIf="user.isAuthenticated">
       <span class="welcome">Welcome</span>
