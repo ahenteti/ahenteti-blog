@@ -21,7 +21,7 @@ public class UserController {
         this.userValidator = userValidator;
     }
 
-    @GetMapping("/api/isAuthenticated")
+    @GetMapping("/api/currentIdentity")
     public UserApiResponse getUser(@ModelAttribute IUser user) {
         userValidator.validateUser(user);
         return userConverter.toUserApiResponse(user);

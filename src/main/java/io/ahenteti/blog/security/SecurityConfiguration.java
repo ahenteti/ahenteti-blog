@@ -28,9 +28,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private OAuth2GithubAuthenticationSuccessHandler authenticationSuccessHandler;
 
-    @Value("${security.enable-csrf:true}")
-    private boolean csrfEnabled;
-
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers(RESOURCES_ANT_MATCHER);
@@ -40,6 +37,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         // @formatter:off
         http
+            .csrf().disable()
             .authorizeRequests()
                 .antMatchers(SECURE_API_ANT_MATCHER).authenticated()
                 .anyRequest().permitAll().and()
@@ -48,7 +46,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .userInfoEndpoint()
                     .customUserType(GithubUser.class, GITHUB_CLIENT_REGISTRATION_ID).and().and()
             .addFilterBefore(new BlogLogoutFilter(), LogoutFilter.class);
-        if (!csrfEnabled) http.csrf().disable();
         // @formatter:on
     }
 }

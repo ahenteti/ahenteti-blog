@@ -38,6 +38,8 @@ export class PostCommentHttpServices extends CommonHttpServices {
   createPostComment(request: ICreatePostCommentApiRequest): Promise<any> {
     const url = this.commentConverter.toCreatePostCommentApiUrl(request);
     const body = this.commentConverter.toCreatePostCommentApiBody(request);
-    return this.http.post<any>(url, body).toPromise();
+    return this.http
+      .post<any>(url, body, this.jsonContentTypeOption)
+      .toPromise();
   }
 }

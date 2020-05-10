@@ -11,7 +11,7 @@ export class UserHttpServices {
 
   getUser(): Promise<User> {
     return this.http
-      .get<IUserApiResponse>("/api/isAuthenticated")
+      .get<IUserApiResponse>("/api/currentIdentity")
       .pipe(map(this.userConverter.toUser))
       .toPromise();
   }
