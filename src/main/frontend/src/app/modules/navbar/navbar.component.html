@@ -24,7 +24,7 @@
         <span mat-menu-item (click)="handleChangeThemeColorClickEvent($event)"
           >Toggle theme</span
         >
-        <span mat-menu-item>Manage Posts</span>
+        <a mat-menu-item [routerLink]="['/posts']">Manage Posts</a>
         <hr />
         <a mat-menu-item href="/logout">Logout</a>
       </mat-menu>

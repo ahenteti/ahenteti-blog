@@ -16,6 +16,7 @@ import { UserObservable } from "./modules/user/services/user.observable";
 import { UserConverter } from "./modules/user/converter/user.converter";
 import { Routes, RouterModule } from "@angular/router";
 import { SharedModule } from "./modules/shared/shared.module";
+import { LoggedInGuard } from "./modules/user/guard/logged-in.guard";
 
 const routes: Routes = [
   {
@@ -46,6 +47,7 @@ const routes: Routes = [
     UserLoginServices,
     UserObservable,
     UserConverter,
+    LoggedInGuard,
   ],
 })
 export class AppModule {}
