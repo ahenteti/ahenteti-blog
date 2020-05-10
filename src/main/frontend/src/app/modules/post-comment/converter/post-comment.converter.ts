@@ -23,7 +23,7 @@ export class PostCommentConverter {
   toGetPostCommentsApiRequest(
     postId: number,
     page: number,
-    size = 10
+    size = 5
   ): GetPostCommentsApiRequest {
     return {
       postId,

@@ -9,7 +9,7 @@ export interface IPostCommentApiResponse {
 export class GetPostCommentsApiRequest {
   postId: number;
   page: number;
-  size = 10;
+  size: number;
 }
 
 export interface ICreatePostCommentApiRequestBody {
