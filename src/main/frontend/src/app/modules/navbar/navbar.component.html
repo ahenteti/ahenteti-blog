@@ -4,12 +4,11 @@
   </div>
   <div class="right">
     <ng-container *ngIf="!user.isAuthenticated">
-      <span (click)="handleChangeThemeColorClickEvent($event)"
-        >Toggle theme</span
-      >
+      <a (click)="handleChangeThemeColorClickEvent($event)">Toggle theme</a>
       <a href="/oauth2/authorization/github" (click)="preLogin()">Login</a>
     </ng-container>
     <ng-container *ngIf="user.isAuthenticated">
+      <span class="welcome">Welcome</span>
       <app-user-avatar
         [matMenuTriggerFor]="menu"
         (mouseover)="onMouseOver()"
