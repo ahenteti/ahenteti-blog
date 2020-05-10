@@ -9,10 +9,7 @@ import {
   IPostComment,
 } from "../../models/post-comment.internal.models";
 import { PostCommentConverter } from "../../converter/post-comment.converter";
-import {
-  ICreatePostCommentApiRequest,
-  GetPostCommentsApiRequest,
-} from "../../models/post-comment.external.models";
+import { ICreatePostCommentApiRequest } from "../../models/post-comment.external.models";
 
 @Component({
   selector: "app-post-comments",
