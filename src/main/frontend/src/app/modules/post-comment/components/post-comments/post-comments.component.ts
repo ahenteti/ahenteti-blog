@@ -39,11 +39,7 @@ export class PostCommentsComponent extends UserAwareComponent
 
   ngOnInit() {
     super.ngOnInit();
-    const request = this.commentConverter.toGetPostCommentsApiRequest(
-      this.postId,
-      ++this.currentCommentsPage
-    );
-    this.loadComments(request);
+    this.loadComments(true);
   }
 
   onCommentSubmit(createCommentApiRequest: ICreatePostCommentApiRequest) {
@@ -59,6 +55,10 @@ export class PostCommentsComponent extends UserAwareComponent
         this.alertSavingCommentError();
         this.removeLastAddedComment(comment);
       });
+  }
+
+  loadMorePostComments() {
+    this.loadComments();
   }
 
   private removeLastAddedComment(comment: IPostComment) {
@@ -85,16 +85,23 @@ export class PostCommentsComponent extends UserAwareComponent
     };
   }
 
-  private loadComments(request: GetPostCommentsApiRequest) {
+  private loadComments(onNgInit = false) {
+    const request = this.commentConverter.toGetPostCommentsApiRequest(
+      this.postId,
+      ++this.currentCommentsPage
+    );
     this.commentHttpServices
       .getPostComments(request)
       .then((comments) => {
         this.comments = new PostComments(...this.comments, ...comments);
-        this.stillMoreComments = comments.length == 0;
+        this.stillMoreComments = comments.length !== 0;
+        if (!this.stillMoreComments && !onNgInit) {
+          this.alertService.info("No more comments on this post");
+        }
       })
       .catch((error) => {
         console.error(error);
-        this.alertService.error("error while fetching post comments :(");
+        this.alertService.error("Error while fetching post comments :(");
       });
   }
 }
