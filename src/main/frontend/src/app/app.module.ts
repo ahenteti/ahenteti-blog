@@ -1,6 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AlertModule } from "./modules/alert/alert.module";
@@ -16,20 +15,25 @@ import { UserLoginServices } from "./modules/user/services/user.login.services";
 import { UserObservable } from "./modules/user/services/user.observable";
 import { UserConverter } from "./modules/user/converter/user.converter";
 import { Routes, RouterModule } from "@angular/router";
-import { PostDashboardPage } from "./modules/post-page/post-dashboard/post-dashboard.page";
-import { ConsultPostPage } from "./modules/post-page/consult-post/consult-post.page";
 import { SharedModule } from "./modules/shared/shared.module";
+
+const routes: Routes = [
+  {
+    path: "",
+    loadChildren: "./modules/post-page/post-page.module#PostPageModule",
+  },
+];
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
     AlertModule,
     NavbarModule,
     PostPageModule,
+    RouterModule.forRoot(routes),
   ],
   bootstrap: [AppComponent],
   providers: [
