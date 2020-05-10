@@ -10,6 +10,12 @@ import { NgForm } from "@angular/forms";
 import { UserAwareComponent } from "src/app/modules/user/user-aware.component";
 import { ICreatePostCommentApiRequest } from "../../models/post-comment.external.models";
 import { UserObservable } from "src/app/modules/user/services/user.observable";
+import { PostCommentHttpServices } from "../../services/post-comment.http.service";
+import { AlertService } from "src/app/modules/alert/alert.service";
+import {
+  IPostComment,
+  EmptyPostComment,
+} from "../../models/post-comment.internal.models";
 
 @Component({
   selector: "app-add-post-comment",
@@ -18,16 +24,50 @@ import { UserObservable } from "src/app/modules/user/services/user.observable";
 })
 export class AddPostCommentComponent extends UserAwareComponent {
   postId: number;
-  @Output() submit = new EventEmitter<ICreatePostCommentApiRequest>();
+  @Output() newPostComment = new EventEmitter<IPostComment>();
   @ViewChild("commentTextarea", { static: false }) commentTextarea: ElementRef;
 
-  constructor(route: ActivatedRoute, userObservable: UserObservable) {
+  constructor(
+    route: ActivatedRoute,
+    userObservable: UserObservable,
+    private commentHttpServices: PostCommentHttpServices,
+    private alertService: AlertService
+  ) {
     super(userObservable);
     this.postId = route.snapshot.params["id"];
   }
 
   onSubmit(form: NgForm) {
-    this.submit.emit(form.value);
     this.commentTextarea.nativeElement.value = "";
+    const comment = this.toComment(form.value);
+    this.newPostComment.emit(comment);
+    this.commentHttpServices
+      .createPostComment(form.value)
+      .then(() => this.alertSavingCommentSuccess())
+      .catch((error) => {
+        console.error(error);
+        this.alertSavingCommentError();
+        this.newPostComment.emit(new EmptyPostComment());
+      });
+  }
+
+  private toComment(
+    createCommentApiRequest: ICreatePostCommentApiRequest
+  ): IPostComment {
+    return {
+      author: this.user,
+      createdAt: new Date(),
+      value: createCommentApiRequest.value,
+    };
+  }
+
+  private alertSavingCommentSuccess() {
+    this.alertService.info("comment saved with success");
+  }
+
+  private alertSavingCommentError() {
+    this.alertService.error(
+      "error while saving your comment, please try again"
+    );
   }
 }

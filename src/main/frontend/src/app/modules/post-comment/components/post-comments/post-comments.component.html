@@ -1,7 +1,9 @@
 <app-fancy-title value="Comments"></app-fancy-title>
-<app-add-post-comment (submit)="onCommentSubmit($event)"></app-add-post-comment>
+<app-add-post-comment
+  (newPostComment)="onNewPostComment($event)"
+></app-add-post-comment>
 <app-post-comment
-  *ngFor="let comment of comments"
+  *ngFor="let comment of postComments"
   [comment]="comment"
 ></app-post-comment>
 <button

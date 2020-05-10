@@ -14,6 +14,7 @@
   border-radius: 0.3rem;
   margin-bottom: 1.5rem;
   animation: alertFadeIn 0.2s ease-in;
+  box-shadow: var(--box-shadow);
 
   &.fadeout {
     animation: alertFadeOut 0.2s;

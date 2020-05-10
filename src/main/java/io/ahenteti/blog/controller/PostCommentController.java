@@ -38,7 +38,7 @@ public class PostCommentController {
         this.commentValidator = commentValidator;
     }
 
-    @GetMapping(value = "/api/posts/{postId}/comment")
+    @GetMapping(value = "/api/posts/{postId}/comments")
     public PostCommentsApiResponse getPostComments(@PathVariable("postId") Long postId, @RequestParam Integer page, @RequestParam(required = false, defaultValue = "10") Integer size) {
         GetPostCommentsApiRequest request = commentConverter.toGetPostCommentsApiRequest(postId, page, size);
         commentValidator.validateGetPostCommentsApiRequest(request);
@@ -47,9 +47,9 @@ public class PostCommentController {
     }
 
     @Transactional
-    @PostMapping(SECURE_API_PREFIX + "/api/posts/{postId}/comment")
+    @PostMapping(SECURE_API_PREFIX + "/posts/{postId}/comments")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createComment(@ModelAttribute IUser user, @PathVariable("postId") Long postId, @RequestBody CreatePostCommentApiRequestBody requestBody) {
+    public void createPostComment(@ModelAttribute IUser user, @PathVariable("postId") Long postId, @RequestBody CreatePostCommentApiRequestBody requestBody) {
         CreatePostCommentApiRequest request = commentConverter.toCreatePostCommentApiRequest(user, postId, requestBody);
         commentValidator.validateCreateCommentApiRequest(request);
         PostComment comment = commentConverter.toPostComment(request);

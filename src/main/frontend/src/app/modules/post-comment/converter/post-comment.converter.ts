@@ -33,11 +33,11 @@ export class PostCommentConverter {
   }
 
   toGetPostCommentsApiRequestUrl(request: GetPostCommentsApiRequest): string {
-    return `/api/posts/${request.postId}/comment?page=${request.page}&size=${request.size}`;
+    return `/api/posts/${request.postId}/comments?page=${request.page}&size=${request.size}`;
   }
 
   toCreatePostCommentApiUrl(request: ICreatePostCommentApiRequest): string {
-    return `/secure-api/posts/${request.postId}/comment`;
+    return `/secure-api/posts/${request.postId}/comments`;
   }
 
   toCreatePostCommentApiBody(
