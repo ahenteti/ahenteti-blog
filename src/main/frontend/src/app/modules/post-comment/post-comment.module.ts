@@ -1,7 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { SharedModule } from "../shared/shared.module";
-import { HttpClientModule } from "@angular/common/http";
 import { PostCommentConverter } from "./converter/post-comment.converter";
 import { PostCommentHttpServices } from "./services/post-comment.http.service";
 import { PostCommentsComponent } from "./components/post-comments/post-comments.component";
@@ -10,8 +9,12 @@ import { PostCommentComponent } from "./components/post-comment/post-comment.com
 import { UserModule } from "../user/user.module";
 
 @NgModule({
-  imports: [CommonModule, SharedModule, UserModule, HttpClientModule],
-  exports: [SharedModule, HttpClientModule, UserModule, PostCommentsComponent],
+  imports: [CommonModule, SharedModule, UserModule],
+  exports: [
+    PostCommentsComponent,
+    PostCommentComponent,
+    AddPostCommentComponent,
+  ],
   declarations: [
     PostCommentsComponent,
     PostCommentComponent,

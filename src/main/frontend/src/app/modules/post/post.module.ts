@@ -28,7 +28,6 @@ const routes: Routes = [
     CommonModule,
     SharedModule,
     RouterModule.forChild(routes),
-    HttpClientModule,
     AlertModule,
     PostCommentModule,
   ],
@@ -44,7 +43,7 @@ const routes: Routes = [
     PostDashboardPage,
     ConsultPostPage,
   ],
-  exports: [RouterModule, HttpClientModule, AlertModule],
+  exports: [],
   providers: [PostHttpServices, PostConverter],
 })
 export class PostModule {}
