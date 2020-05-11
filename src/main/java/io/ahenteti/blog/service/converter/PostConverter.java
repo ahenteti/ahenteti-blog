@@ -93,10 +93,9 @@ public class PostConverter {
         return Arrays.asList(entity.getTags().split(PostEntity.TAGS_SEPARATOR_REGEX));
     }
 
-    public GetUserPostsApiRequest toGetUserPostsApiRequest(IUser user, String username, Integer page, Integer size) {
+    public GetUserPostsApiRequest toGetUserPostsApiRequest(IUser user, Integer page, Integer size) {
         GetUserPostsApiRequest res = new GetUserPostsApiRequest();
-        res.setCurrentSecurityUser(user);
-        res.setUsernameRequestParam(username);
+        res.setUser(user);
         res.setPage(page);
         res.setSize(size);
         return res;

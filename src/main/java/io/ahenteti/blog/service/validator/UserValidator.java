@@ -2,7 +2,6 @@ package io.ahenteti.blog.service.validator;
 
 import io.ahenteti.blog.exception.AuthenticationException;
 import io.ahenteti.blog.exception.MissingMandatoryRequestAttributeException;
-import io.ahenteti.blog.model.api.GetPostCommentsApiRequest;
 import io.ahenteti.blog.model.api.GetUserPostsApiRequest;
 import io.ahenteti.blog.model.core.IUser;
 import org.apache.commons.lang3.StringUtils;
@@ -25,19 +24,9 @@ public class UserValidator {
     }
 
     public void validateGetUserPostsApiRequest(GetUserPostsApiRequest request) {
-        validateUser(request.getCurrentSecurityUser());
-        validateUsername(request);
+        validateUser(request.getUser());
         validateUserPostsPage((request));
         validateUserPostsSize(request);
-    }
-
-    private void validateUsername(GetUserPostsApiRequest request) {
-        if (StringUtils.isBlank(request.getUsernameRequestParam())) {
-            throw new MissingMandatoryRequestAttributeException("username is mandatory");
-        }
-        if (!request.getCurrentSecurityUser().getUsername().equals(request.getUsernameRequestParam())) {
-            throw new AuthenticationException("logged in user is different between backend and frontend applications");
-        }
     }
 
     private void validateUserPostsSize(GetUserPostsApiRequest request) {

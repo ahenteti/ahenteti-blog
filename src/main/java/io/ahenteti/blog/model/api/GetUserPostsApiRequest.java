@@ -5,8 +5,7 @@ import lombok.Data;
 
 @Data
 public class GetUserPostsApiRequest {
-    private String usernameRequestParam;
-    private IUser currentSecurityUser;
+    private IUser user;
     private Integer page;
     private Integer size;
 }

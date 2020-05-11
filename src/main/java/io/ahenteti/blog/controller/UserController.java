@@ -39,9 +39,9 @@ public class UserController {
         return userConverter.toUserApiResponse(user);
     }
 
-    @GetMapping(SECURE_API_PREFIX + "user/{username}/posts-summaries")
-    public PostsSummariesApiResponse getUserPostsSummaries(@ModelAttribute IUser user, @RequestParam String username, @RequestParam Integer page, @RequestParam Integer size) {
-        GetUserPostsApiRequest request = postConverter.toGetUserPostsApiRequest(user, username, page, size);
+    @GetMapping(SECURE_API_PREFIX + "user/posts-summaries")
+    public PostsSummariesApiResponse getUserPostsSummaries(@ModelAttribute IUser user, @RequestParam Integer page, @RequestParam Integer size) {
+        GetUserPostsApiRequest request = postConverter.toGetUserPostsApiRequest(user, page, size);
         userValidator.validateGetUserPostsApiRequest(request);
         PostsSummaries posts = postDao.getPostsSummaries(request);
         return postConverter.toPostsSummariesApiResponse(posts);
