@@ -39,10 +39,10 @@ public class PostCommentController {
     }
 
     @GetMapping(value = "/api/posts/{postId}/comments")
-    public PostCommentsApiResponse getPostComments(@PathVariable("postId") Long postId, @RequestParam Integer page, @RequestParam(required = false, defaultValue = "10") Integer size) {
+    public PostCommentsApiResponse getPostComments(@PathVariable("postId") Long postId, @RequestParam Integer page, @RequestParam Integer size) {
         GetPostCommentsApiRequest request = commentConverter.toGetPostCommentsApiRequest(postId, page, size);
         commentValidator.validateGetPostCommentsApiRequest(request);
-        PostComments postComments = commentDao.getPostComments(page, size);
+        PostComments postComments = commentDao.getPostComments(request);
         return commentConverter.toPostCommentsApiResponse(postComments);
     }
 

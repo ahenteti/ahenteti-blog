@@ -1,5 +1,6 @@
 package io.ahenteti.blog.service.dao;
 
+import io.ahenteti.blog.model.api.GetPostCommentsApiRequest;
 import io.ahenteti.blog.model.core.PostComment;
 import io.ahenteti.blog.model.core.PostComments;
 import io.ahenteti.blog.model.entity.PostCommentEntity;
@@ -29,8 +30,9 @@ public class PostCommentDao {
         return commentRepository.save(entity);
     }
 
-    public PostComments getPostComments(Integer page, Integer size) {
-        PageRequest commentsPage = PageRequest.of(page, size, Sort.by("createdAt").descending());
+    public PostComments getPostComments(GetPostCommentsApiRequest request) {
+        PageRequest commentsPage = PageRequest
+                .of(request.getPage(), request.getSize(), Sort.by("createdAt").descending());
         List<PostCommentEntity> comments = commentRepository.findAll(commentsPage).getContent();
         return commentConverter.toPostComments(comments);
     }

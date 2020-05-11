@@ -50,7 +50,6 @@ public class PostCommentValidator {
 
     private void validateCommentSize(GetPostCommentsApiRequest request) {
         if (request.getSize() == null) {
-            // this mean that spring framework ignores the defaultValue set on this query param :(
             throw new MissingMandatoryRequestAttributeException("size query param is mandatory");
         }
     }

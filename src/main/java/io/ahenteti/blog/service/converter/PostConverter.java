@@ -1,5 +1,6 @@
 package io.ahenteti.blog.service.converter;
 
+import io.ahenteti.blog.model.api.GetUserPostsApiRequest;
 import io.ahenteti.blog.model.api.PostApiResponse;
 import io.ahenteti.blog.model.api.PostSummaryApiResponse;
 import io.ahenteti.blog.model.api.PostsSummariesApiResponse;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -89,5 +91,22 @@ public class PostConverter {
 
     private Collection<String> toTagsArrayList(PostEntity entity) {
         return Arrays.asList(entity.getTags().split(PostEntity.TAGS_SEPARATOR_REGEX));
+    }
+
+    public GetUserPostsApiRequest toGetUserPostsApiRequest(IUser user, String username, Integer page, Integer size) {
+        GetUserPostsApiRequest res = new GetUserPostsApiRequest();
+        res.setCurrentSecurityUser(user);
+        res.setUsernameRequestParam(username);
+        res.setPage(page);
+        res.setSize(size);
+        return res;
+    }
+
+    public PostsSummaries toPostsSummaries(List<PostEntity> posts) {
+        PostsSummaries res = new PostsSummaries();
+        for (PostEntity postEntity : posts) {
+            res.add(toPostSummary(postEntity));
+        }
+        return res;
     }
 }

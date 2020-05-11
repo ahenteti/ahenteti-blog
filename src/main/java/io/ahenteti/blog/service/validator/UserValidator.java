@@ -1,6 +1,9 @@
 package io.ahenteti.blog.service.validator;
 
 import io.ahenteti.blog.exception.AuthenticationException;
+import io.ahenteti.blog.exception.MissingMandatoryRequestAttributeException;
+import io.ahenteti.blog.model.api.GetPostCommentsApiRequest;
+import io.ahenteti.blog.model.api.GetUserPostsApiRequest;
 import io.ahenteti.blog.model.core.IUser;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -18,6 +21,34 @@ public class UserValidator {
         }
         if (StringUtils.isBlank(user.getUsername())) {
             throw new AuthenticationException("authenticated user must have username");
+        }
+    }
+
+    public void validateGetUserPostsApiRequest(GetUserPostsApiRequest request) {
+        validateUser(request.getCurrentSecurityUser());
+        validateUsername(request);
+        validateUserPostsPage((request));
+        validateUserPostsSize(request);
+    }
+
+    private void validateUsername(GetUserPostsApiRequest request) {
+        if (StringUtils.isBlank(request.getUsernameRequestParam())) {
+            throw new MissingMandatoryRequestAttributeException("username is mandatory");
+        }
+        if (!request.getCurrentSecurityUser().getUsername().equals(request.getUsernameRequestParam())) {
+            throw new AuthenticationException("logged in user is different between backend and frontend applications");
+        }
+    }
+
+    private void validateUserPostsSize(GetUserPostsApiRequest request) {
+        if (request.getSize() == null) {
+            throw new MissingMandatoryRequestAttributeException("size query param is mandatory");
+        }
+    }
+
+    private void validateUserPostsPage(GetUserPostsApiRequest request) {
+        if (request.getPage() == null) {
+            throw new MissingMandatoryRequestAttributeException("page query param is mandatory");
         }
     }
 }
