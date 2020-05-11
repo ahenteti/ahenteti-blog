@@ -1,4 +1,4 @@
-import { IUserApiResponse } from "../../user/models/user.external.models";
+import { IUserApiResponse } from "../../../user/models/user.external.models";
 
 export interface IPostSummaryApiResponse {
   id: number;

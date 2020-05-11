@@ -1,4 +1,4 @@
-import { User } from "../../user/models/user.internal.models";
+import { User } from "../../../user/models/user.internal.models";
 
 export interface IPostSummary {
   id: number;

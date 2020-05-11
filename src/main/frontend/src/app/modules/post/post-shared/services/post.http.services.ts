@@ -12,8 +12,8 @@ import {
 } from "../models/post.internal.models";
 import { PostConverter } from "../converters/post.converter";
 import { HttpClient } from "@angular/common/http";
-import { CommonHttpServices } from "../../alert/common.http.services";
-import { AlertService } from "../../alert/alert.service";
+import { CommonHttpServices } from "../../../alert/common.http.services";
+import { AlertService } from "../../../alert/alert.service";
 
 @Injectable()
 export class PostHttpServices extends CommonHttpServices {

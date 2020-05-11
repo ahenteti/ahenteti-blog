@@ -4,7 +4,7 @@ import {
 } from "../models/post.external.models";
 import { Injectable } from "@angular/core";
 import { IPostSummary, IPost } from "../models/post.internal.models";
-import { UserConverter } from "../../user/converter/user.converter";
+import { UserConverter } from "../../../user/converter/user.converter";
 
 @Injectable()
 export class PostConverter {

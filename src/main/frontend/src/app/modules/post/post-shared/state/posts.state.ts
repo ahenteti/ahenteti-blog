@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { ALL_TAGS } from "../../shared/utils/constants.utils";
+import { ALL_TAGS } from "../../../shared/utils/constants.utils";
 import { PostsByCategory, IPostSummary } from "../models/post.internal.models";
 
 @Injectable({
