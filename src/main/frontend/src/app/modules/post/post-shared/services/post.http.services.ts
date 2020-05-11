@@ -1,4 +1,3 @@
-import { Observable } from "rxjs";
 import { Injectable } from "@angular/core";
 import { map, catchError } from "rxjs/operators";
 import {
@@ -25,7 +24,7 @@ export class PostHttpServices extends CommonHttpServices {
     super(alertService);
   }
 
-  getPostSummaries(): Observable<PostsSummaries> {
+  getAllPostsSummaries(): Promise<PostsSummaries> {
     return this.http
       .get<IPostSummaryApiResponse[]>("/api/posts-summaries")
       .pipe(
@@ -41,10 +40,11 @@ export class PostHttpServices extends CommonHttpServices {
         catchError(
           this.handleError("Error while fetching post summaries :(", [])
         )
-      );
+      )
+      .toPromise();
   }
 
-  getPostById(postId: number): Observable<IPost> {
+  getPostById(postId: number): Promise<IPost> {
     return this.http
       .get<IPostApiResponse>(`/api/posts/${postId}`)
       .pipe(
@@ -61,6 +61,7 @@ export class PostHttpServices extends CommonHttpServices {
             new OfflinePost()
           )
         )
-      );
+      )
+      .toPromise();
   }
 }

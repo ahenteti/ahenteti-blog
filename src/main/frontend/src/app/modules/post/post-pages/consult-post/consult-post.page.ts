@@ -26,8 +26,7 @@ export class ConsultPostPage implements OnInit {
   ngOnInit(): void {
     this.postHttpServices
       .getPostById(this.postId)
-      .pipe(first())
-      .subscribe((post) => this.onLoadPost(post));
+      .then((post) => this.onLoadPost(post));
   }
 
   private onLoadPost(post: IPost) {

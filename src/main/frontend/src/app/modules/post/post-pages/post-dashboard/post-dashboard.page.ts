@@ -21,9 +21,8 @@ export class PostDashboardPage implements OnInit {
 
   ngOnInit(): void {
     this.postService
-      .getPostSummaries()
-      .pipe(first())
-      .subscribe(this.setInitialControllerState.bind(this));
+      .getAllPostsSummaries()
+      .then(this.setInitialControllerState.bind(this));
   }
 
   handleSearchTextChange(userSearch) {
