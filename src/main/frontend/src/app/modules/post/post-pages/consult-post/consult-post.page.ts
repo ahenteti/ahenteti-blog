@@ -1,11 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild, AfterViewInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { first } from "rxjs/operators";
 import {
   IPost,
   OfflinePost,
 } from "../../post-shared/models/post.internal.models";
 import { PostHttpServices } from "../../post-shared/services/post.http.services";
+import { LoaderComponent } from "src/app/modules/shared/components/loader/loader.component";
 
 @Component({
   templateUrl: "./consult-post.page.html",
@@ -13,23 +13,20 @@ import { PostHttpServices } from "../../post-shared/services/post.http.services"
 })
 export class ConsultPostPage implements OnInit {
   postId: number;
-  post: IPost;
+  post = new OfflinePost();
+  @ViewChild(LoaderComponent, { static: true }) loader: LoaderComponent;
 
   constructor(
     route: ActivatedRoute,
     private postHttpServices: PostHttpServices
   ) {
     this.postId = route.snapshot.params["id"];
-    this.post = new OfflinePost();
   }
 
   ngOnInit(): void {
-    this.postHttpServices
-      .getPostById(this.postId)
-      .then((post) => this.onLoadPost(post));
-  }
-
-  private onLoadPost(post: IPost) {
-    this.post = post;
+    this.postHttpServices.getPostById(this.postId).then((post) => {
+      this.post = post;
+      this.loader.hide();
+    });
   }
 }

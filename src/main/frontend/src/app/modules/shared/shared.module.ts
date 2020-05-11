@@ -26,6 +26,7 @@ import { TextareaDisableSpellCheckDirective } from "./directives/textarea-disabl
 import { LoginWithGithubComponent } from "./components/login-with-github/login-with-github.component";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
+import { LoaderComponent } from "./components/loader/loader.component";
 
 @NgModule({
   entryComponents: [TooltipComponent, QuoteComponent],
@@ -59,6 +60,7 @@ import { HttpClientModule } from "@angular/common/http";
     TextareaAutoGrowDirective,
     TextareaDisableSpellCheckDirective,
     LoginWithGithubComponent,
+    LoaderComponent,
   ],
   exports: [
     RouterModule,
@@ -85,6 +87,7 @@ import { HttpClientModule } from "@angular/common/http";
     TextareaAutoGrowDirective,
     TextareaDisableSpellCheckDirective,
     LoginWithGithubComponent,
+    LoaderComponent,
   ],
 })
 export class SharedModule {}

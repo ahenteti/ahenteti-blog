@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { AlertService } from "src/app/modules/alert/alert.service";
 import { UserAwareComponent } from "src/app/modules/user/user-aware.component";
 import { UserObservable } from "src/app/modules/user/services/user.observable";
