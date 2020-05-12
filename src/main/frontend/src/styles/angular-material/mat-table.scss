@@ -1,0 +1,43 @@
+.mat-table {
+  width: 100%;
+  border-radius: 0.3rem;
+  overflow: hidden;
+  background-color: inherit;
+}
+
+.mat-table button:hover {
+  background: initial;
+  color: var(--primary-color);
+}
+
+.mat-header-row {
+  background-color: var(--mat-table-header-background-color);
+}
+
+.mat-header-row th {
+  border: none !important;
+}
+
+.mat-header-cell {
+  color: var(--mat-table-header-color);
+}
+
+.mat-sort-header-arrow {
+  color: var(--primary-color);
+}
+
+.mat-table tbody {
+  background-color: var(--mat-table-body-background-color);
+}
+
+.mat-table tbody .mat-row td {
+  border-bottom: 1px solid var(--mat-table-body-row-border-color);
+}
+
+.mat-table tbody .mat-row:last-child td {
+  border-color: var(--mat-table-body-last-row-border-color);
+}
+
+.mat-table tbody .mat-cell {
+  color: var(--mat-table-body-color);
+}

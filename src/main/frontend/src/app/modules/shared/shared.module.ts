@@ -27,6 +27,8 @@ import { LoginWithGithubComponent } from "./components/login-with-github/login-w
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { LoaderComponent } from "./components/loader/loader.component";
+import { MatTableModule } from "@angular/material/table";
+import { MatSortModule } from "@angular/material/sort";
 
 @NgModule({
   entryComponents: [TooltipComponent, QuoteComponent],
@@ -35,10 +37,12 @@ import { LoaderComponent } from "./components/loader/loader.component";
     RouterModule,
     OverlayModule,
     PortalModule,
-    MatSelectModule,
-    MatMenuModule,
     HttpClientModule,
     FormsModule,
+    MatSelectModule,
+    MatMenuModule,
+    MatTableModule,
+    MatSortModule,
   ],
   declarations: [
     FancyTitleComponent,
@@ -66,10 +70,12 @@ import { LoaderComponent } from "./components/loader/loader.component";
     RouterModule,
     OverlayModule,
     PortalModule,
-    MatSelectModule,
-    MatMenuModule,
     HttpClientModule,
     FormsModule,
+    MatSelectModule,
+    MatMenuModule,
+    MatTableModule,
+    MatSortModule,
 
     FancyTitleComponent,
     LogoLinkComponent,

@@ -45,7 +45,6 @@ export class PostHttpServices extends CommonHttpServices {
     } else {
       request = this.postConverter.toGetUserPostsApiRequest(arg);
     }
-    console.log(request);
     const url = this.postConverter.toGetUserPostsApiRequestUrl(request);
     // prettier-ignore
     return this.http
