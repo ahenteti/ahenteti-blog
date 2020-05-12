@@ -6,6 +6,7 @@ export class CommonHttpServices {
 
   protected handleError<T>(message, result?: T) {
     return (error: any): Observable<T> => {
+      console.error(error);
       this.alertService.error(message);
       return of(result);
     };

@@ -36,7 +36,7 @@ public class PostDao {
 
     public PostsSummaries getPostsSummaries(GetUserPostsApiRequest request) {
         PageRequest postsPage = PageRequest.of(request.getPage(), request.getSize(), Sort.by("createdAt").descending());
-        List<PostEntity> posts = postRepository.findAll(postsPage).getContent();
+        List<PostEntity> posts = postRepository.findByAuthorId(request.getUser().getId(), postsPage).getContent();
         return postConverter.toPostsSummaries(posts);
     }
 

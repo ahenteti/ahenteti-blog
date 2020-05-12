@@ -4,7 +4,7 @@ import { ConsultPostPage } from "./consult-post/consult-post.page";
 import { PostDashboardPage } from "./post-dashboard/post-dashboard.page";
 import { SharedModule } from "../../shared/shared.module";
 import { Routes, RouterModule } from "@angular/router";
-import { ManagePostsComponent } from "./manage-posts/manage-posts.page";
+import { ManagePostsPage } from "./manage-posts/manage-posts.page";
 import { LoggedInGuard } from "../../user/guard/logged-in.guard";
 import { PostSharedModule } from "../post-shared/post-shared.module";
 import { PostCommentModule } from "../post-comments/post-comment.module";
@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: "posts/:id", component: ConsultPostPage },
   {
     path: "posts",
-    component: ManagePostsComponent,
+    component: ManagePostsPage,
     canActivate: [LoggedInGuard],
   },
 ];
@@ -28,6 +28,6 @@ const routes: Routes = [
     RouterModule.forChild(routes),
   ],
   exports: [],
-  declarations: [PostDashboardPage, ConsultPostPage, ManagePostsComponent],
+  declarations: [PostDashboardPage, ConsultPostPage, ManagePostsPage],
 })
 export class PostPageModule {}

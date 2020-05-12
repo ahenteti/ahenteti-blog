@@ -1,9 +1,14 @@
 import {
   IPostSummaryApiResponse,
   IPostApiResponse,
+  GetUserPostsApiRequest,
 } from "../models/post.external.models";
 import { Injectable } from "@angular/core";
-import { IPostSummary, IPost } from "../models/post.internal.models";
+import {
+  IPostSummary,
+  IPost,
+  PostsSummaries,
+} from "../models/post.internal.models";
 import { UserConverter } from "../../../user/converter/user.converter";
 
 @Injectable()
@@ -43,6 +48,25 @@ export class PostConverter {
       author: this.userConverter.toUser(post.author),
       bodyMarkdown: atob(post.bodyMarkdownBase64),
     };
+  }
+
+  fromPostSummaryApiResponseArray(
+    posts: IPostSummaryApiResponse[]
+  ): PostsSummaries {
+    let data = new PostsSummaries();
+    posts.forEach((post) => data.push(this.fromPostSummary(post)));
+    return data;
+  }
+
+  toGetUserPostsApiRequest(page: number, size = 5): GetUserPostsApiRequest {
+    return {
+      page,
+      size,
+    };
+  }
+
+  toGetUserPostsApiRequestUrl(request: GetUserPostsApiRequest) {
+    return `/secure-api/user/posts-summaries?page=${request.page}&size=${request.size}`;
   }
 
   private calculateSearchKey(postTitle: string, postTags: string[]): string {

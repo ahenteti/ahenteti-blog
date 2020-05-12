@@ -13,3 +13,8 @@ export interface IPostSummaryApiResponse {
 export interface IPostApiResponse extends IPostSummaryApiResponse {
   bodyMarkdownBase64: string;
 }
+
+export class GetUserPostsApiRequest {
+  page: number;
+  size: number;
+}
