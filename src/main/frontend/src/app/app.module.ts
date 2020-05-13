@@ -4,7 +4,7 @@ import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AlertModule } from "./modules/alert/alert.module";
 import { NavbarModule } from "./modules/navbar/navbar.module";
-import { PostPageModule } from "./modules/post/post-pages/post-page.module";
+import { PostPageModule } from "./modules/post/post-pages/post-pages.module";
 import { ThemeLocalStorageServices } from "./modules/shared/services/theme.localstorage.services";
 import { UserHttpServices } from "./modules/user/services/user.http.services";
 import { UserLoginServices } from "./modules/user/services/user.login.services";
@@ -21,7 +21,7 @@ import { PostCommentHttpServices } from "./modules/post/post-comments/services/p
 const routes: Routes = [
   {
     path: "",
-    loadChildren: "./modules/post/post-pages/post-page.module#PostPageModule",
+    loadChildren: "./modules/post/post-pages/post-pages.module#PostPageModule",
   },
 ];
 
