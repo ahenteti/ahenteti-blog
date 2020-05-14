@@ -1,6 +1,13 @@
 <app-loader></app-loader>
 
-<app-fancy-title value="My Posts"></app-fancy-title>
+<div class="header">
+  <app-fancy-title value="My Posts"></app-fancy-title>
+  <app-new-button
+    routerLink="/posts/new"
+    class="tooltip-bottom"
+    data-tooltip="create new post"
+  ></app-new-button>
+</div>
 <table mat-table matSort [dataSource]="userPosts">
   <ng-container matColumnDef="title">
     <th mat-header-cell mat-sort-header *matHeaderCellDef>Title</th>

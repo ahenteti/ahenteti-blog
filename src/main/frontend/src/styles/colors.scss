@@ -39,6 +39,7 @@ body.dark {
   --select-on-open-options-border-color: var(--primary-color);
 
   --fancy-title-background-color: var(--body-background-color);
+  --fancy-title-border-background-color: var(--body-background-color);
 
   --tooltip-color: #fff;
   --tooltip-background-color: #32373b;
@@ -128,6 +129,7 @@ body.light {
   --search-posts-icon-background-color: inherit;
 
   --fancy-title-background-color: var(--body-background-color);
+  --fancy-title-border-background-color: var(--body-background-color);
 
   --tooltip-color: #fff;
   --tooltip-background-color: #333;

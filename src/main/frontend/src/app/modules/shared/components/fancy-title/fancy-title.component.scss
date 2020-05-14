@@ -1,5 +1,4 @@
 :host h2 {
-  margin: 2.5rem 0;
   color: var(--title-color);
   text-transform: uppercase;
   position: relative;
@@ -39,7 +38,7 @@ h2::after {
   background: linear-gradient(
     to right,
     var(--primary-color),
-    var(--fancy-title-background-color)
+    var(--fancy-title-border-background-color)
   );
   transition: vat(--transition);
   transition-property: color, background-color, opacity;

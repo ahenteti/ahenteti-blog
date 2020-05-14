@@ -29,6 +29,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { LoaderComponent } from "./components/loader/loader.component";
 import { MatTableModule } from "@angular/material/table";
 import { MatSortModule } from "@angular/material/sort";
+import { RouterLinkComponent } from "./components/router-link/router-link.component";
+import { NewButtonComponent } from "./components/new-button/new-button.component";
 
 @NgModule({
   entryComponents: [TooltipComponent, QuoteComponent],
@@ -65,6 +67,8 @@ import { MatSortModule } from "@angular/material/sort";
     TextareaDisableSpellCheckDirective,
     LoginWithGithubComponent,
     LoaderComponent,
+    RouterLinkComponent,
+    NewButtonComponent,
   ],
   exports: [
     RouterModule,
@@ -94,6 +98,8 @@ import { MatSortModule } from "@angular/material/sort";
     TextareaDisableSpellCheckDirective,
     LoginWithGithubComponent,
     LoaderComponent,
+    RouterLinkComponent,
+    NewButtonComponent,
   ],
 })
 export class SharedModule {}

@@ -1,6 +1,12 @@
 app-fancy-title {
-  --fancy-title-underline-width: 35%;
+  --fancy-title-underline-width: 250%;
+  --fancy-title-background-color: var(--primary-color);
   display: block;
-  margin-top: 3rem;
-  margin-bottom: 5rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 3rem 0 2rem;
 }
