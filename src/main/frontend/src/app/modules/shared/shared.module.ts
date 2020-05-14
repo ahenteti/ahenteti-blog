@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { FancyTitleComponent } from "./components/fancy-title/fancy-title.component";
+import { SectionTitleComponent } from "./components/section-title/section-title.component";
 import { LogoLinkComponent } from "./components/logo/logo-link.component";
 import { SelectComponent } from "./components/select/select.component";
 import { SelectOptionComponent } from "./components/select/select-option/select-option.component";
@@ -31,6 +31,9 @@ import { MatTableModule } from "@angular/material/table";
 import { MatSortModule } from "@angular/material/sort";
 import { RouterLinkComponent } from "./components/router-link/router-link.component";
 import { NewButtonComponent } from "./components/new-button/new-button.component";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { PageTitleComponent } from "./components/page-title/page-title.component";
 
 @NgModule({
   entryComponents: [TooltipComponent, QuoteComponent],
@@ -45,9 +48,11 @@ import { NewButtonComponent } from "./components/new-button/new-button.component
     MatMenuModule,
     MatTableModule,
     MatSortModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   declarations: [
-    FancyTitleComponent,
+    SectionTitleComponent,
     LogoLinkComponent,
     SelectComponent,
     SelectOptionComponent,
@@ -69,6 +74,7 @@ import { NewButtonComponent } from "./components/new-button/new-button.component
     LoaderComponent,
     RouterLinkComponent,
     NewButtonComponent,
+    PageTitleComponent,
   ],
   exports: [
     RouterModule,
@@ -80,8 +86,10 @@ import { NewButtonComponent } from "./components/new-button/new-button.component
     MatMenuModule,
     MatTableModule,
     MatSortModule,
+    MatFormFieldModule,
+    MatInputModule,
 
-    FancyTitleComponent,
+    SectionTitleComponent,
     LogoLinkComponent,
     SelectComponent,
     SelectOptionComponent,
@@ -100,6 +108,7 @@ import { NewButtonComponent } from "./components/new-button/new-button.component
     LoaderComponent,
     RouterLinkComponent,
     NewButtonComponent,
+    PageTitleComponent,
   ],
 })
 export class SharedModule {}

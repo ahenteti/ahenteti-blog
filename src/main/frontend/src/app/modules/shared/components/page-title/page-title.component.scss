@@ -1,0 +1,11 @@
+:host h1 {
+  color: var(--title-color);
+  position: relative;
+  font-size: 5rem;
+  font-weight: 100;
+  color: var(--primary-color);
+  transition: vat(--transition);
+  transition-property: color;
+  margin: 2rem 0;
+  margin-bottom: var(--post-title-margin-bottom, 4rem);
+}

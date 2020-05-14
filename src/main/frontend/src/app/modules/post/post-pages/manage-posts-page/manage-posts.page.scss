@@ -1,12 +1,18 @@
-app-fancy-title {
+app-section-title {
   --fancy-title-underline-width: 250%;
   --fancy-title-background-color: var(--primary-color);
   display: block;
 }
 
 .header {
+  --post-title-margin-bottom: 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 3rem 0 2rem;
+}
+
+.table-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }

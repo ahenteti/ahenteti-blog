@@ -1,11 +1,11 @@
 import { Component, Input } from "@angular/core";
 
 @Component({
-  selector: "app-fancy-title",
+  selector: "app-section-title",
   template: "<div><h2>{{ value | uppercase }}</h2></div>",
-  styleUrls: ["./fancy-title.component.scss"],
+  styleUrls: ["./section-title.component.scss"],
 })
-export class FancyTitleComponent {
+export class SectionTitleComponent {
   @Input()
   public value: string;
 }
