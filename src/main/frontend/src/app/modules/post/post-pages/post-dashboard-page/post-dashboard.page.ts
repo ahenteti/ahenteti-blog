@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { SetUtils } from "src/app/modules/shared/utils/set.utils";
 import { ALL_TAGS } from "src/app/modules/shared/utils/constants.utils";
 import { first } from "rxjs/operators";
@@ -8,21 +8,30 @@ import {
   PostsSummaries,
   PostsByCategory,
 } from "../../post-shared/models/post.internal.models";
+import { Router } from "@angular/router";
 
 @Component({
   templateUrl: "post-dashboard.page.html",
   styleUrls: ["post-dashboard.page.scss"],
 })
-export class PostDashboardPage implements OnInit {
+export class PostDashboardPage implements OnInit, OnDestroy {
   constructor(
     private postService: PostHttpServices,
-    public state: PostsState
+    public state: PostsState,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.postService
       .getAllPostsSummaries()
       .then(this.setInitialControllerState.bind(this));
+    // this.router.events.subscribe(event => {
+    //   if (event in)
+    // })
+  }
+
+  ngOnDestroy(): void {
+    this.state.selectedTag = ALL_TAGS;
   }
 
   handleSearchTextChange(userSearch) {

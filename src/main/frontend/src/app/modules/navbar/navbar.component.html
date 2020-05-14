@@ -12,13 +12,18 @@
     </ng-container>
     <ng-container *ngIf="user.isAuthenticated">
       <span class="welcome">Welcome {{ user.username }}</span>
-      <app-user-avatar
+      <div
+        class="user-avatar"
         [matMenuTriggerFor]="menu"
         (mouseover)="onMouseOver()"
         #profileDropdownTrigger="matMenuTrigger"
-        [user]="user"
-        [matMenuTriggerFor]="menu"
-      ></app-user-avatar>
+      >
+        <app-user-avatar [user]="user"></app-user-avatar>
+        <span
+          class="dropdown-icon iconify"
+          data-icon="ic:round-keyboard-arrow-down"
+        ></span>
+      </div>
 
       <mat-menu #menu="matMenu" xPosition="before">
         <span mat-menu-item (click)="handleChangeThemeColorClickEvent($event)"
