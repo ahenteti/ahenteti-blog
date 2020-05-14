@@ -1,0 +1,97 @@
+body.light {
+  --primary-color: #078eed;
+  --color-0: #888888;
+  --color-1: #555555;
+  --color-2: #333333;
+  --background-color-0: #ffffff;
+  --background-color-1: #fafafa;
+  --background-color-2: #eeeeee;
+  --background-color-3: #cccccc;
+  --border-color-0: #eeeeee;
+  --border-color-1: #cccccc;
+
+  --body-color: var(--color-1);
+  --body-background-color: var(--background-color-0);
+  --navbar-icon-color: var(--color-2);
+  --welcome-message-title-color: var(--color-1);
+  --welcome-message-color: var(--color-1);
+  --logo-text-color: var(--color-2);
+  --box-shadow: rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  --border-color: var(--background-color-2);
+
+  --search-posts-border-color: var(--border-color-1);
+  --search-posts-border-color-on-active: var(--primary-color);
+  --select-selected-value-color: var(--color-0);
+  --search-posts-tags-background-color: var(--background-color-2);
+  --search-posts-input-color: var(--color-1);
+  --search-posts-input-background-color: inherit;
+  --search-posts-input-placeholder-color: var(--color-0);
+  --search-posts-icon-color: var(--color-0);
+  --search-posts-icon-background-color: inherit;
+
+  --fancy-title-background-color: var(--body-background-color);
+  --fancy-title-border-background-color: var(--body-background-color);
+
+  --tooltip-color: var(--background-color-1);
+  --tooltip-background-color: var(--color-2);
+
+  --tag-color: var(--color-0);
+  --tag-background-color: var(--background-color-2);
+  --tag-selected-color: var(--background-color-1);
+
+  --post-summary-background-color: var(--background-color-1);
+  --post-summary-border-color: var(--background-color-1);
+  --post-summary-border-color-on-hover: var(--background-color-1);
+  --post-summary-title-color: var(--color-0);
+  --post-summary-title-color-on-hover: var(--primary-color);
+  --post-summary-icons-color: var(--color-0);
+  --post-summary-box-shadow: var(--box-shadow);
+
+  --post-background-color: var(--body-background-color);
+  --post-box-shadow: var(--box-shadow);
+
+  /* colors inspiration: https://material-ui.com/fr/components/alert/ */
+  --info-background-color: #e8f4fd;
+  --info-text-color: #0d3c61;
+  --warn-background-color: #fff4e5;
+  --warn-text-color: #663c00;
+  --error-background-color: #fdecea;
+  --error-text-color: #611a15;
+  --quote-background-color: var(--background-color-1);
+  --quote-text-color: var(--color-0);
+  --quote-text-font-style: italic;
+
+  --code-color: var(--color-1);
+  --code-background-color: var(--background-color-1);
+  --code-line-numbers-color: var(--color-0);
+  --code-line-numbers-background-color: var(--background-color-2);
+  --code-tab-background-color-on-hover: var(--background-color-2);
+  --code-copy-icon-color: var(--color-0);
+
+  --comment-background-color: var(--background-color-1);
+  --comment-author-color: var(--color-1);
+  --comment-created-at-color: var(--color-1);
+  --comment-metadata-border-color: var(--background-color-2);
+  --comment-body-color: var(--color-1);
+
+  --navbar-link-color: var(--color-1);
+  --navbar-link-background-color-on-hover: var(--background-color-2);
+
+  --dropdown-color: var(--color-0);
+  --dropdown-background-color: var(--background-color-1);
+  --dropdown-item-background-color-on-hover: var(--background-color-2);
+  --select-selected-option-background-color: var(--background-color-2);
+
+  --input-color: var(--color-1);
+  --input-background-color: var(--background-color-1);
+  --input-border-color: var(--background-color-2);
+
+  --mat-table-header-color: var(--body-color);
+  --mat-table-header-background-color: var(--background-color-2);
+  --mat-table-body-color: var(--body-color);
+  --mat-table-body-background-color: var(--background-color-1);
+  --mat-table-body-row-border-color: var(--background-color-2);
+  --mat-table-body-last-row-border-color: var(
+    --mat-table-body-row-border-color
+  );
+}

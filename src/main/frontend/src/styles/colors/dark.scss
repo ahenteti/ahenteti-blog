@@ -1,0 +1,112 @@
+body.dark {
+  --primary-color: #078eed;
+  --color-0: #888888;
+  --color-1: #d1d2d3;
+  --color-2: #eeeeee;
+  --background-color-0: #1c1f23;
+  --background-color-1: #262a2d;
+  --background-color-2: #32373b;
+  --background-color-3: #394048;
+  --border-color: #394048;
+
+  --body-color: var(--color-1);
+  --body-background-color: var(--background-color-0);
+  --navbar-icon-color: var(--color-2);
+  --welcome-message-title-color: var(--color-2);
+  --welcome-message-color: var(--color-1);
+  --logo-text-color: var(--color-1);
+  --box-shadow: rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+
+  --search-posts-border-color: var(--background-color-1);
+  --search-posts-border-color-on-active: var(--primary-color);
+  --select-selected-value-color: var(--color-0);
+  --search-posts-tags-background-color: var(--background-color-2);
+  --search-posts-input-color: var(--color-1);
+  --search-posts-input-background-color: var(--background-color-1);
+  --search-posts-input-placeholder-color: var(--color-0);
+  --search-posts-icon-color: var(--color-0);
+  --search-posts-icon-background-color: var(--background-color-1);
+
+  --select-selected-option-color: var(--primary-color);
+  --select-selected-option-border-color: var(--primary-color);
+  --select-selected-option-background-color: inherit;
+  --select-options-color: var(--color-0);
+  --select-options-border-color: var(--background-color-1);
+  --select-options-background-color: var(--background-color-1);
+  --select-on-hover-selected-option-color: var(--color-1);
+  --select-on-hover-selected-option-border-color: var(--primary-color);
+  --select-on-hover-selected-option-background-color: var(--primary-color);
+  --select-on-hover-options-color: var(--color-0);
+  --select-on-hover-options-border-color: var(--primary-color);
+  --select-on-hover-options-background-color: var(--background-color-2);
+  --select-on-hover-option-border-color: var(--primary-color);
+  --select-on-hover-option-background-color: var(--background-color-2);
+  --select-on-open-selected-option-border-color: var(--primary-color);
+  --select-on-open-options-border-color: var(--primary-color);
+
+  --fancy-title-background-color: var(--body-background-color);
+  --fancy-title-border-background-color: var(--body-background-color);
+
+  --tooltip-color: var(--color-1);
+  --tooltip-background-color: var(--background-color-2);
+
+  --tag-color: var(--color-0);
+  --tag-background-color: var(--background-color-2);
+  --tag-selected-color: var(--color-1);
+
+  --post-summary-background-color: var(--background-color-1);
+  --post-summary-border-color: var(--background-color-2);
+  --post-summary-border-color-on-hover: var(--primary-color);
+  --post-summary-title-color: var(--color-2);
+  --post-summary-title-color-on-hover: var(--primary-color);
+  --post-summary-icons-color: var(--color-0);
+  --post-summary-box-shadow: none;
+
+  --post-background-color: var(--background-color-1);
+  --post-box-shadow: none;
+
+  /* colors inspiration: https://material-ui.com/fr/components/alert/ */
+  --info-background-color: #030e18;
+  --info-text-color: #a6d5fa;
+  --warn-background-color: #190f00;
+  --warn-text-color: #ffd599;
+  --error-background-color: #180605;
+  --error-text-color: #fab3ae;
+  --quote-background-color: var(--background-color-2);
+  --quote-text-color: var(--color-0);
+
+  --code-color: var(--color-1);
+  --code-background-color: var(--background-color-2);
+  --code-line-numbers-color: var(--color-0);
+  --code-line-numbers-background-color: var(--background-color-3);
+  --code-tab-background-color-on-hover: var(--background-color-3);
+  --code-copy-icon-color: var(--color-0);
+
+  --comment-background-color: var(--background-color-2);
+  --comment-author-color: var(--color-2);
+  --comment-created-at-color: var(--color-1);
+  --comment-metadata-border-color: var(--background-color-3);
+  --comment-metadata-color: var(--color-1);
+  --comment-body-color: var(--color-1);
+
+  --navbar-link-color: var(--color-1);
+  --navbar-link-background-color-on-hover: var(--background-color-1);
+
+  --dropdown-color: var(--color-0);
+  --dropdown-background-color: var(--background-color-1);
+  --dropdown-item-background-color-on-hover: var(--background-color-2);
+  --select-selected-option-background-color: var(--background-color-2);
+
+  --input-color: var(--color-1);
+  --input-background-color: var(--background-color-2);
+  --input-border-color: var(--background-color-3);
+
+  --mat-table-header-color: var(--body-color);
+  --mat-table-header-background-color: var(--background-color-2);
+  --mat-table-body-color: var(--body-color);
+  --mat-table-body-background-color: var(--background-color-1);
+  --mat-table-body-row-border-color: var(--background-color-2);
+  --mat-table-body-last-row-border-color: var(
+    --mat-table-body-background-color
+  );
+}
