@@ -1,6 +1,6 @@
 package io.ahenteti.blog.service.dao;
 
-import io.ahenteti.blog.model.core.IUser;
+import io.ahenteti.blog.model.core.user.IUser;
 import io.ahenteti.blog.model.entity.UserEntity;
 import io.ahenteti.blog.service.converter.UserConverter;
 import io.ahenteti.blog.service.dao.repository.UserRepository;

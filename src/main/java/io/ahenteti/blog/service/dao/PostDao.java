@@ -1,8 +1,10 @@
 package io.ahenteti.blog.service.dao;
 
-import io.ahenteti.blog.model.api.GetUserPostsApiRequest;
-import io.ahenteti.blog.model.core.Post;
-import io.ahenteti.blog.model.core.PostsSummaries;
+import io.ahenteti.blog.model.api.post.GetUserPostsApiRequest;
+import io.ahenteti.blog.model.core.post.Post;
+import io.ahenteti.blog.model.core.post.PostsSummaries;
+import io.ahenteti.blog.model.core.post.ReadyToCreatePost;
+import io.ahenteti.blog.model.core.post.ReadyToUpdatePost;
 import io.ahenteti.blog.model.entity.PostEntity;
 import io.ahenteti.blog.service.converter.PostConverter;
 import io.ahenteti.blog.service.dao.repository.PostRepository;
@@ -34,13 +36,21 @@ public class PostDao {
         return postRepository.findById(id).map(postConverter::toPost);
     }
 
-    public PostsSummaries getPostsSummaries(GetUserPostsApiRequest request) {
+    public PostsSummaries getUserPosts(GetUserPostsApiRequest request) {
         PageRequest postsPage = PageRequest.of(request.getPage(), request.getSize(), Sort.by("createdAt").descending());
         List<PostEntity> posts = postRepository.findByAuthorId(request.getUser().getId(), postsPage).getContent();
         return postConverter.toPostsSummaries(posts);
     }
-    
-    public PostEntity createOrUpdatePost(Post post) {
+
+    public PostEntity createPost(ReadyToCreatePost post) {
+        return createOrUpdatePost(post);
+    }
+
+    public PostEntity updatePost(ReadyToUpdatePost post) {
+        return createOrUpdatePost(post);
+    }
+
+    private PostEntity createOrUpdatePost(Post post) {
         PostEntity entity = postConverter.toPostEntity(post);
         return postRepository.save(entity);
     }

@@ -1,8 +1,7 @@
 package io.ahenteti.blog.security;
 
-import io.ahenteti.blog.model.core.GithubUser;
+import io.ahenteti.blog.model.core.user.GithubUser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;

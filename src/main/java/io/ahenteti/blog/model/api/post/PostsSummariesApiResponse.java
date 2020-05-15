@@ -1,4 +1,4 @@
-package io.ahenteti.blog.model.api;
+package io.ahenteti.blog.model.api.post;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

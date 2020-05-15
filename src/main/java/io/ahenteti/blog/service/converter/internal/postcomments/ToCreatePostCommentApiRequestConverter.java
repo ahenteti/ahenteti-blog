@@ -1,8 +1,8 @@
 package io.ahenteti.blog.service.converter.internal.postcomments;
 
-import io.ahenteti.blog.model.api.CreatePostCommentApiRequest;
-import io.ahenteti.blog.model.api.CreatePostCommentApiRequestBody;
-import io.ahenteti.blog.model.core.IUser;
+import io.ahenteti.blog.model.api.postcomments.CreatePostCommentApiRequest;
+import io.ahenteti.blog.model.api.postcomments.CreatePostCommentApiRequestBody;
+import io.ahenteti.blog.model.core.user.IUser;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,5 +15,5 @@ public class ToCreatePostCommentApiRequestConverter {
         res.setValue(body.getValue());
         return res;
     }
-    
+
 }

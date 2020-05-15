@@ -1,6 +1,7 @@
-package io.ahenteti.blog.model.api;
+package io.ahenteti.blog.model.api.post;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.ahenteti.blog.model.api.user.UserApiResponse;
 import lombok.Data;
 
 import java.util.ArrayList;

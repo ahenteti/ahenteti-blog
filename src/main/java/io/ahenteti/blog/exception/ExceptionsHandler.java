@@ -1,6 +1,6 @@
 package io.ahenteti.blog.exception;
 
-import io.ahenteti.blog.model.api.ErrorApiResponse;
+import io.ahenteti.blog.model.api.error.ErrorApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MissingServletRequestParameterException;

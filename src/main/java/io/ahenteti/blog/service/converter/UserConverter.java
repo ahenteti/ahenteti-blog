@@ -1,9 +1,9 @@
 package io.ahenteti.blog.service.converter;
 
-import io.ahenteti.blog.model.api.UserApiResponse;
-import io.ahenteti.blog.model.core.IUser;
+import io.ahenteti.blog.model.api.user.UserApiResponse;
+import io.ahenteti.blog.model.core.user.GithubUser;
+import io.ahenteti.blog.model.core.user.IUser;
 import io.ahenteti.blog.model.entity.UserEntity;
-import io.ahenteti.blog.model.core.GithubUser;
 import org.springframework.stereotype.Service;
 
 @Service

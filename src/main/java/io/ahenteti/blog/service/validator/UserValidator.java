@@ -2,8 +2,8 @@ package io.ahenteti.blog.service.validator;
 
 import io.ahenteti.blog.exception.AuthenticationException;
 import io.ahenteti.blog.exception.MissingMandatoryRequestAttributeException;
-import io.ahenteti.blog.model.api.GetUserPostsApiRequest;
-import io.ahenteti.blog.model.core.IUser;
+import io.ahenteti.blog.model.api.post.GetUserPostsApiRequest;
+import io.ahenteti.blog.model.core.user.IUser;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 

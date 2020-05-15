@@ -1,8 +1,8 @@
 package io.ahenteti.blog.service.converter.internal.post;
 
-import io.ahenteti.blog.model.api.UpdatePostApiRequest;
-import io.ahenteti.blog.model.api.UpdatePostApiRequestBody;
-import io.ahenteti.blog.model.core.IUser;
+import io.ahenteti.blog.model.api.post.UpdatePostApiRequest;
+import io.ahenteti.blog.model.api.post.UpdatePostApiRequestBody;
+import io.ahenteti.blog.model.core.user.IUser;
 import org.springframework.stereotype.Service;
 
 @Service

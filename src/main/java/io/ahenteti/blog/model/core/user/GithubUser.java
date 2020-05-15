@@ -1,7 +1,6 @@
-package io.ahenteti.blog.model.core;
+package io.ahenteti.blog.model.core.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.ahenteti.blog.model.core.IUser;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;

@@ -1,4 +1,4 @@
-package io.ahenteti.blog.model.core;
+package io.ahenteti.blog.model.core.post;
 
 import java.util.ArrayList;
 

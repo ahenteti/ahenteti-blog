@@ -1,7 +1,7 @@
 package io.ahenteti.blog.service.converter.internal.post;
 
-import io.ahenteti.blog.model.api.GetUserPostsApiRequest;
-import io.ahenteti.blog.model.core.IUser;
+import io.ahenteti.blog.model.api.post.GetUserPostsApiRequest;
+import io.ahenteti.blog.model.core.user.IUser;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,5 +14,5 @@ public class ToGetPostApiRequestConverter {
         res.setSize(size);
         return res;
     }
-    
+
 }

@@ -1,15 +1,19 @@
 package io.ahenteti.blog.controller;
 
-import io.ahenteti.blog.model.api.CreatePostApiRequest;
-import io.ahenteti.blog.model.api.CreatePostApiRequestBody;
-import io.ahenteti.blog.model.api.PostApiResponse;
-import io.ahenteti.blog.model.api.PostSummaryApiResponse;
-import io.ahenteti.blog.model.api.PostsSummariesApiResponse;
-import io.ahenteti.blog.model.api.UpdatePostApiRequest;
-import io.ahenteti.blog.model.api.UpdatePostApiRequestBody;
-import io.ahenteti.blog.model.core.IUser;
-import io.ahenteti.blog.model.core.Post;
-import io.ahenteti.blog.model.core.PostsSummaries;
+import io.ahenteti.blog.model.api.post.CreatePostApiRequest;
+import io.ahenteti.blog.model.api.post.CreatePostApiRequestBody;
+import io.ahenteti.blog.model.api.post.PostApiResponse;
+import io.ahenteti.blog.model.api.post.PostSummaryApiResponse;
+import io.ahenteti.blog.model.api.post.PostsSummariesApiResponse;
+import io.ahenteti.blog.model.api.post.UpdatePostApiRequest;
+import io.ahenteti.blog.model.api.post.UpdatePostApiRequestBody;
+import io.ahenteti.blog.model.api.post.ValidCreatePostApiRequest;
+import io.ahenteti.blog.model.api.post.ValidUpdatePostApiRequest;
+import io.ahenteti.blog.model.core.post.Post;
+import io.ahenteti.blog.model.core.post.PostsSummaries;
+import io.ahenteti.blog.model.core.post.ReadyToCreatePost;
+import io.ahenteti.blog.model.core.post.ReadyToUpdatePost;
+import io.ahenteti.blog.model.core.user.IUser;
 import io.ahenteti.blog.model.entity.PostEntity;
 import io.ahenteti.blog.service.converter.PostConverter;
 import io.ahenteti.blog.service.dao.PostDao;
@@ -57,18 +61,18 @@ public class PostController {
     @ResponseStatus(HttpStatus.CREATED)
     public PostSummaryApiResponse createPost(@ModelAttribute IUser user, @RequestBody CreatePostApiRequestBody requestBody) {
         CreatePostApiRequest request = postConverter.toCreatePostApiRequestBody(user, requestBody);
-        postValidator.validateCreatePostApiRequest(request);
-        Post post = postConverter.toPost(request);
-        PostEntity entity = postDao.createOrUpdatePost(post);
+        ValidCreatePostApiRequest validRequest = postValidator.validateCreatePostApiRequest(request);
+        ReadyToCreatePost post = postConverter.toPost(validRequest);
+        PostEntity entity = postDao.createPost(post);
         return postConverter.toPostSummaryApiResponse(entity);
     }
 
     @PutMapping("/secure-api/posts/{id}")
     public PostSummaryApiResponse updatePost(@ModelAttribute IUser user, @PathVariable Long id, @RequestBody UpdatePostApiRequestBody requestBody) {
         UpdatePostApiRequest request = postConverter.toUpdatePostApiRequest(user, id, requestBody);
-        postValidator.validateUpdatePostApiRequest(request);
-        Post post = postConverter.toPost(request);
-        PostEntity entity = postDao.createOrUpdatePost(post);
+        ValidUpdatePostApiRequest validRequest = postValidator.validateUpdatePostApiRequest(request);
+        ReadyToUpdatePost post = postConverter.toPost(validRequest);
+        PostEntity entity = postDao.updatePost(post);
         return postConverter.toPostSummaryApiResponse(entity);
     }
 

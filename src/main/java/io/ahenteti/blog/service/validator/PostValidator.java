@@ -2,8 +2,10 @@ package io.ahenteti.blog.service.validator;
 
 import io.ahenteti.blog.exception.InvalidRequestAttributeException;
 import io.ahenteti.blog.exception.MissingMandatoryRequestAttributeException;
-import io.ahenteti.blog.model.api.CreatePostApiRequest;
-import io.ahenteti.blog.model.api.UpdatePostApiRequest;
+import io.ahenteti.blog.model.api.post.CreatePostApiRequest;
+import io.ahenteti.blog.model.api.post.UpdatePostApiRequest;
+import io.ahenteti.blog.model.api.post.ValidCreatePostApiRequest;
+import io.ahenteti.blog.model.api.post.ValidUpdatePostApiRequest;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,15 +24,16 @@ public class PostValidator {
         this.userValidator = userValidator;
     }
 
-    public void validateCreatePostApiRequest(CreatePostApiRequest request) {
+    public ValidCreatePostApiRequest validateCreatePostApiRequest(CreatePostApiRequest request) {
         userValidator.validateUser(request.getAuthor());
         validateTitle(request.getTitle());
         validateCategory(request.getCategory());
         validateTags(request.getTags());
         validateBody(request.getBodyMarkdownBase64());
+        return new ValidCreatePostApiRequest(request);
     }
 
-    public void validateUpdatePostApiRequest(UpdatePostApiRequest request) {
+    public ValidUpdatePostApiRequest validateUpdatePostApiRequest(UpdatePostApiRequest request) {
         userValidator.validateUser(request.getAuthor());
         validateId(request.getId());
         validateTitle(request.getTitle());
@@ -38,6 +41,7 @@ public class PostValidator {
         validateTags(request.getTags());
         validateBody(request.getBodyMarkdownBase64());
         validateCreatedAt(request.getCreatedAt());
+        return new ValidUpdatePostApiRequest(request);
     }
 
     private void validateId(Long id) {

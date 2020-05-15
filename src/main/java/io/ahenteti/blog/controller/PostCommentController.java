@@ -1,12 +1,13 @@
 package io.ahenteti.blog.controller;
 
-import io.ahenteti.blog.model.api.CreatePostCommentApiRequest;
-import io.ahenteti.blog.model.api.CreatePostCommentApiRequestBody;
-import io.ahenteti.blog.model.api.GetPostCommentsApiRequest;
-import io.ahenteti.blog.model.api.PostCommentsApiResponse;
-import io.ahenteti.blog.model.core.IUser;
-import io.ahenteti.blog.model.core.PostComment;
-import io.ahenteti.blog.model.core.PostComments;
+import io.ahenteti.blog.model.api.postcomments.CreatePostCommentApiRequest;
+import io.ahenteti.blog.model.api.postcomments.CreatePostCommentApiRequestBody;
+import io.ahenteti.blog.model.api.postcomments.GetPostCommentsApiRequest;
+import io.ahenteti.blog.model.api.postcomments.PostCommentsApiResponse;
+import io.ahenteti.blog.model.api.postcomments.ValidCreatePostCommentApiRequest;
+import io.ahenteti.blog.model.core.postcomments.PostComments;
+import io.ahenteti.blog.model.core.postcomments.ReadyToCreatePostComment;
+import io.ahenteti.blog.model.core.user.IUser;
 import io.ahenteti.blog.service.converter.PostCommentConverter;
 import io.ahenteti.blog.service.dao.PostCommentDao;
 import io.ahenteti.blog.service.validator.PostCommentValidator;
@@ -21,8 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
-import static io.ahenteti.blog.security.SecurityConfiguration.SECURE_API_PREFIX;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 public class PostCommentController {
@@ -47,12 +47,12 @@ public class PostCommentController {
     }
 
     @Transactional
-    @PostMapping(SECURE_API_PREFIX + "/posts/{postId}/comments")
+    @PostMapping("/secure-api/posts/{postId}/comments")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createPostComment(@ModelAttribute IUser user, @PathVariable("postId") Long postId, @RequestBody CreatePostCommentApiRequestBody requestBody) {
+    public void createPostComment(UriComponentsBuilder uriComponentsBuilder, @ModelAttribute IUser user, @PathVariable("postId") Long postId, @RequestBody CreatePostCommentApiRequestBody requestBody) {
         CreatePostCommentApiRequest request = commentConverter.toCreatePostCommentApiRequest(user, postId, requestBody);
-        commentValidator.validateCreateCommentApiRequest(request);
-        PostComment comment = commentConverter.toPostComment(request);
+        ValidCreatePostCommentApiRequest validRequest = commentValidator.validateCreateCommentApiRequest(request);
+        ReadyToCreatePostComment comment = commentConverter.toPostComment(validRequest);
         commentDao.createComment(comment);
     }
 

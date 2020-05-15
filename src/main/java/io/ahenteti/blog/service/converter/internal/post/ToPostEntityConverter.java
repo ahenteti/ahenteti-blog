@@ -1,6 +1,6 @@
 package io.ahenteti.blog.service.converter.internal.post;
 
-import io.ahenteti.blog.model.core.Post;
+import io.ahenteti.blog.model.core.post.Post;
 import io.ahenteti.blog.model.entity.PostEntity;
 import io.ahenteti.blog.service.dao.repository.UserRepository;
 import org.apache.commons.lang3.StringUtils;

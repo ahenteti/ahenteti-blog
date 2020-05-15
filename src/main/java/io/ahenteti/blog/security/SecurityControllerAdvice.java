@@ -1,6 +1,6 @@
 package io.ahenteti.blog.security;
 
-import io.ahenteti.blog.model.core.IUser;
+import io.ahenteti.blog.model.core.user.IUser;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;

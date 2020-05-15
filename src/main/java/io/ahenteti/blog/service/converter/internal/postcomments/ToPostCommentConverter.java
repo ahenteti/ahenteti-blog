@@ -1,7 +1,8 @@
 package io.ahenteti.blog.service.converter.internal.postcomments;
 
-import io.ahenteti.blog.model.api.CreatePostCommentApiRequest;
-import io.ahenteti.blog.model.core.PostComment;
+import io.ahenteti.blog.model.api.postcomments.ValidCreatePostCommentApiRequest;
+import io.ahenteti.blog.model.core.postcomments.PostComment;
+import io.ahenteti.blog.model.core.postcomments.ReadyToCreatePostComment;
 import io.ahenteti.blog.model.entity.PostCommentEntity;
 import io.ahenteti.blog.service.converter.UserConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,9 @@ public class ToPostCommentConverter {
         this.userConverter = userConverter;
     }
 
-    public PostComment toPostComment(CreatePostCommentApiRequest request) {
-        PostComment res = new PostComment();
+    public ReadyToCreatePostComment toPostComment(ValidCreatePostCommentApiRequest request) {
+        ReadyToCreatePostComment res = new ReadyToCreatePostComment();
+        res.setId(null);
         res.setAuthor(request.getAuthor());
         res.setValue(request.getValue());
         res.setCreatedAt(Instant.now());
@@ -30,6 +32,7 @@ public class ToPostCommentConverter {
 
     public PostComment toPostComment(PostCommentEntity entity) {
         PostComment res = new PostComment();
+        res.setId(entity.getId());
         res.setAuthor(userConverter.toUser(entity.getAuthor()));
         res.setValue(entity.getValue());
         res.setCreatedAt(entity.getCreatedAt());

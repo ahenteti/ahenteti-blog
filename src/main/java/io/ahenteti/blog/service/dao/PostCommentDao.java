@@ -1,8 +1,8 @@
 package io.ahenteti.blog.service.dao;
 
-import io.ahenteti.blog.model.api.GetPostCommentsApiRequest;
-import io.ahenteti.blog.model.core.PostComment;
-import io.ahenteti.blog.model.core.PostComments;
+import io.ahenteti.blog.model.api.postcomments.GetPostCommentsApiRequest;
+import io.ahenteti.blog.model.core.postcomments.PostComments;
+import io.ahenteti.blog.model.core.postcomments.ReadyToCreatePostComment;
 import io.ahenteti.blog.model.entity.PostCommentEntity;
 import io.ahenteti.blog.service.converter.PostCommentConverter;
 import io.ahenteti.blog.service.dao.repository.PostCommentRepository;
@@ -25,7 +25,7 @@ public class PostCommentDao {
         this.commentConverter = commentConverter;
     }
 
-    public PostCommentEntity createComment(PostComment comment) {
+    public PostCommentEntity createComment(ReadyToCreatePostComment comment) {
         PostCommentEntity entity = commentConverter.toCommentEntity(comment);
         return commentRepository.save(entity);
     }

@@ -1,4 +1,4 @@
-package io.ahenteti.blog.model.core;
+package io.ahenteti.blog.model.core.user;
 
 import org.springframework.security.oauth2.core.user.OAuth2User;
 

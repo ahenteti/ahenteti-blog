@@ -1,4 +1,4 @@
-package io.ahenteti.blog.model.api;
+package io.ahenteti.blog.model.api.error;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,17 +1,21 @@
 package io.ahenteti.blog.service.converter;
 
-import io.ahenteti.blog.model.api.CreatePostApiRequest;
-import io.ahenteti.blog.model.api.CreatePostApiRequestBody;
-import io.ahenteti.blog.model.api.GetUserPostsApiRequest;
-import io.ahenteti.blog.model.api.PostApiResponse;
-import io.ahenteti.blog.model.api.PostSummaryApiResponse;
-import io.ahenteti.blog.model.api.PostsSummariesApiResponse;
-import io.ahenteti.blog.model.api.UpdatePostApiRequest;
-import io.ahenteti.blog.model.api.UpdatePostApiRequestBody;
-import io.ahenteti.blog.model.core.IUser;
-import io.ahenteti.blog.model.core.Post;
-import io.ahenteti.blog.model.core.PostSummary;
-import io.ahenteti.blog.model.core.PostsSummaries;
+import io.ahenteti.blog.model.api.post.CreatePostApiRequest;
+import io.ahenteti.blog.model.api.post.CreatePostApiRequestBody;
+import io.ahenteti.blog.model.api.post.GetUserPostsApiRequest;
+import io.ahenteti.blog.model.api.post.PostApiResponse;
+import io.ahenteti.blog.model.api.post.PostSummaryApiResponse;
+import io.ahenteti.blog.model.api.post.PostsSummariesApiResponse;
+import io.ahenteti.blog.model.api.post.UpdatePostApiRequest;
+import io.ahenteti.blog.model.api.post.UpdatePostApiRequestBody;
+import io.ahenteti.blog.model.api.post.ValidCreatePostApiRequest;
+import io.ahenteti.blog.model.api.post.ValidUpdatePostApiRequest;
+import io.ahenteti.blog.model.core.post.Post;
+import io.ahenteti.blog.model.core.post.PostSummary;
+import io.ahenteti.blog.model.core.post.PostsSummaries;
+import io.ahenteti.blog.model.core.post.ReadyToCreatePost;
+import io.ahenteti.blog.model.core.post.ReadyToUpdatePost;
+import io.ahenteti.blog.model.core.user.IUser;
 import io.ahenteti.blog.model.entity.PostEntity;
 import io.ahenteti.blog.service.converter.internal.post.ToCreatePostApiRequestConverter;
 import io.ahenteti.blog.service.converter.internal.post.ToGetPostApiRequestConverter;
@@ -61,11 +65,11 @@ public class PostConverter {
         return toPostConverter.toPost(entity);
     }
 
-    public Post toPost(CreatePostApiRequest request) {
+    public ReadyToCreatePost toPost(ValidCreatePostApiRequest request) {
         return toPostConverter.toPost(request);
     }
 
-    public Post toPost(UpdatePostApiRequest request) {
+    public ReadyToUpdatePost toPost(ValidUpdatePostApiRequest request) {
         return toPostConverter.toPost(request);
     }
 

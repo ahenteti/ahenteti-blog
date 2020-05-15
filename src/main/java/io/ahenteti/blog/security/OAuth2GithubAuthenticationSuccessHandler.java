@@ -1,6 +1,6 @@
 package io.ahenteti.blog.security;
 
-import io.ahenteti.blog.model.core.GithubUser;
+import io.ahenteti.blog.model.core.user.GithubUser;
 import io.ahenteti.blog.service.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -29,8 +29,9 @@ public class OAuth2GithubAuthenticationSuccessHandler implements AuthenticationS
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         GithubUser user = (GithubUser) authentication.getPrincipal();
         user.setDatabaseUserId(userDao.createOrUpdate(user).getId());
-        String redirectUrl = Arrays.stream(request.getCookies()).filter(c -> USER_URL_BEFORE_LOGIN_COOKIE.equals(c.getName()))
-                .findFirst().map(Cookie::getValue).orElse("/");
+        String redirectUrl = Arrays.stream(request.getCookies())
+                .filter(c -> USER_URL_BEFORE_LOGIN_COOKIE.equals(c.getName())).findFirst().map(Cookie::getValue)
+                .orElse("/");
         response.sendRedirect(redirectUrl);
     }
 }

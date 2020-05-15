@@ -1,6 +1,6 @@
 package io.ahenteti.blog.service.converter.internal.postcomments;
 
-import io.ahenteti.blog.model.api.GetPostCommentsApiRequest;
+import io.ahenteti.blog.model.api.postcomments.GetPostCommentsApiRequest;
 import org.springframework.stereotype.Service;
 
 @Service

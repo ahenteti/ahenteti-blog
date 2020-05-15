@@ -1,8 +1,9 @@
 package io.ahenteti.blog.service.validator;
 
 import io.ahenteti.blog.exception.MissingMandatoryRequestAttributeException;
-import io.ahenteti.blog.model.api.CreatePostCommentApiRequest;
-import io.ahenteti.blog.model.api.GetPostCommentsApiRequest;
+import io.ahenteti.blog.model.api.postcomments.CreatePostCommentApiRequest;
+import io.ahenteti.blog.model.api.postcomments.GetPostCommentsApiRequest;
+import io.ahenteti.blog.model.api.postcomments.ValidCreatePostCommentApiRequest;
 import io.ahenteti.blog.service.dao.PostDao;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +31,11 @@ public class PostCommentValidator {
         postDao.getPostById(postId).orElseThrow(throwPostNotFoundException(postId));
     }
 
-    public void validateCreateCommentApiRequest(CreatePostCommentApiRequest request) {
+    public ValidCreatePostCommentApiRequest validateCreateCommentApiRequest(CreatePostCommentApiRequest request) {
         userValidator.validateUser(request.getAuthor());
         validateCommentPostId(request.getPostId());
         validateCommentValue(request);
+        return new ValidCreatePostCommentApiRequest(request);
     }
 
     private void validateCommentValue(CreatePostCommentApiRequest request) {

@@ -1,8 +1,8 @@
-package io.ahenteti.blog.model.core;
+package io.ahenteti.blog.model.core.post;
 
 import lombok.Data;
 
 @Data
 public class Post extends PostSummary {
-    private String body;
+    protected String body;
 }

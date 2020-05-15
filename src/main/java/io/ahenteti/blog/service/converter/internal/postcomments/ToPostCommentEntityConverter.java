@@ -1,6 +1,6 @@
 package io.ahenteti.blog.service.converter.internal.postcomments;
 
-import io.ahenteti.blog.model.core.PostComment;
+import io.ahenteti.blog.model.core.postcomments.ReadyToCreatePostComment;
 import io.ahenteti.blog.model.entity.PostCommentEntity;
 import io.ahenteti.blog.service.dao.repository.PostRepository;
 import io.ahenteti.blog.service.dao.repository.UserRepository;
@@ -19,8 +19,9 @@ public class ToPostCommentEntityConverter {
         this.postRepository = postRepository;
     }
 
-    public PostCommentEntity toCommentEntity(PostComment comment) {
+    public PostCommentEntity toCommentEntity(ReadyToCreatePostComment comment) {
         PostCommentEntity res = new PostCommentEntity();
+        res.setId(null);
         res.setValue(comment.getValue());
         res.setCreatedAt(comment.getCreatedAt());
         res.setPost(postRepository.getOne(comment.getPostId()));
