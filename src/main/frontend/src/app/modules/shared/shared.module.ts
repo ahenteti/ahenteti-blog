@@ -34,6 +34,11 @@ import { NewButtonComponent } from "./components/new-button/new-button.component
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { PageTitleComponent } from "./components/page-title/page-title.component";
+import { MatChipsModule } from "@angular/material/chips";
+import { MatIconModule } from "@angular/material/icon";
+import { MatTabsModule } from "@angular/material/tabs";
+import { EditButtonComponent } from "./components/edit-button/edit-button.component";
+import { PreviewButtonComponent } from "./components/preview-button/preview-button.component";
 
 @NgModule({
   entryComponents: [TooltipComponent, QuoteComponent],
@@ -50,6 +55,9 @@ import { PageTitleComponent } from "./components/page-title/page-title.component
     MatSortModule,
     MatFormFieldModule,
     MatInputModule,
+    MatChipsModule,
+    MatIconModule,
+    MatTabsModule,
   ],
   declarations: [
     SectionTitleComponent,
@@ -75,6 +83,8 @@ import { PageTitleComponent } from "./components/page-title/page-title.component
     RouterLinkComponent,
     NewButtonComponent,
     PageTitleComponent,
+    EditButtonComponent,
+    PreviewButtonComponent,
   ],
   exports: [
     RouterModule,
@@ -88,6 +98,9 @@ import { PageTitleComponent } from "./components/page-title/page-title.component
     MatSortModule,
     MatFormFieldModule,
     MatInputModule,
+    MatChipsModule,
+    MatIconModule,
+    MatTabsModule,
 
     SectionTitleComponent,
     LogoLinkComponent,
@@ -109,6 +122,8 @@ import { PageTitleComponent } from "./components/page-title/page-title.component
     RouterLinkComponent,
     NewButtonComponent,
     PageTitleComponent,
+    EditButtonComponent,
+    PreviewButtonComponent,
   ],
 })
 export class SharedModule {}

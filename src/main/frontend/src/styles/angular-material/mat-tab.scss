@@ -1,0 +1,16 @@
+.mat-tab-label {
+  color: var(--mat-tab-label-color);
+  opacity: 1 !important;
+}
+
+.mat-tab-label-active .mat-tab-label-content {
+  color: var(--primary-color) !important;
+}
+
+.mat-ink-bar {
+  background-color: var(--primary-color) !important;
+}
+
+.mat-tab-group .mat-form-field-infix {
+  border-top: 0 !important;
+}

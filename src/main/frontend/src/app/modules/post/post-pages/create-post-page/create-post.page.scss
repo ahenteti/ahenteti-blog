@@ -1,0 +1,20 @@
+:host {
+  --post-title-margin-top: 0rem;
+  --post-title-margin-bottom: 0rem;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3.5rem;
+}
+
+.page-footer-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.page-footer-actions button {
+  margin-left: 1.5rem;
+}

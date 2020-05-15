@@ -1,0 +1,57 @@
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-form-field-flex {
+  background-color: var(--form-field-background-color) !important;
+  border-radius: 0.3rem !important;
+}
+
+.mat-form-field-type-mat-chip-list .mat-form-field-flex {
+  padding: 0.75em !important;
+}
+
+.mat-form-field-type-mat-chip-list:not(.mat-form-field-should-float)
+  .mat-form-field-label {
+  top: 1em;
+}
+
+.mat-form-field-underline::before,
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+  background-color: var(--form-field-border-color) !important;
+  border-bottom-left-radius: 0.3rem;
+  border-bottom-right-radius: 0.3rem;
+  transition: var(--transition);
+  transition-property: background-color;
+}
+
+.mat-form-field-ripple {
+  background-color: var(--primary-color) !important;
+  transition: var(--transition);
+  transition-property: background-color;
+}
+
+.mat-form-field-empty {
+  color: var(--color-0) !important;
+}
+
+.mat-form-field-label:not(.mat-form-field-empty) {
+  color: var(--primary-color) !important;
+}
+
+.mat-input-element {
+  color: var(--input-color) !important;
+}
+
+.mat-chip {
+  color: var(--chip-color) !important;
+  background-color: var(--chip-background-color) !important;
+  border-radius: 0.3rem !important;
+  transition: var(--transition);
+  transition-property: color, background-color;
+
+  &:hover {
+    color: white !important;
+    background-color: var(--primary-color) !important;
+  }
+}

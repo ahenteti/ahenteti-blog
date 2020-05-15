@@ -15,6 +15,18 @@ export interface IPost extends IPostSummary {
   bodyMarkdown: string;
 }
 
+export class DefaultPost implements IPost {
+  id = undefined;
+  title = "";
+  category = "";
+  tags = [];
+  createdAt = new Date();
+  lastUpdatedAt = new Date();
+  searchKey = "";
+  author = undefined;
+  bodyMarkdown = "";
+}
+
 export class OfflinePost implements IPost {
   id = undefined;
   title = "post title";

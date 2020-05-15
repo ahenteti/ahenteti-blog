@@ -1,8 +1,69 @@
-<app-page-title value="Create new post"></app-page-title>
-<p>
-  Dolor deserunt laboris cupidatat irure enim eu Lorem dolore fugiat officia
-  nulla ullamco. Laboris exercitation ea dolor veniam proident fugiat culpa esse
-  ad. Cillum pariatur dolor eu deserunt ut nostrud quis ad in reprehenderit
-  excepteur. Nisi minim sint pariatur quis enim Lorem. Reprehenderit laborum qui
-  excepteur Lorem consequat ad ut tempor. Velit in eiusmod elit sit ad sint.
-</p>
+<app-post-layout>
+  <div class="page-header">
+    <app-page-title value="Create new post"></app-page-title>
+    <div class="page-header-actions">
+      <app-preview-button
+        (click)="togglePreviewMode()"
+        *ngIf="!previewMode"
+        data-tooltip="preview post"
+        class="tooltip-bottom"
+      ></app-preview-button>
+      <app-edit-button
+        (click)="togglePreviewMode()"
+        *ngIf="previewMode"
+        data-tooltip="continue post creation"
+        class="tooltip-bottom"
+      ></app-edit-button>
+    </div>
+  </div>
+
+  <ng-container *ngIf="previewMode">
+    <app-post-title [post]="post"></app-post-title>
+    <app-markdown [text]="post.bodyMarkdown"></app-markdown>
+  </ng-container>
+
+  <form (ngSubmit)="onSubmit(form)" #form="ngForm" *ngIf="!previewMode">
+    <mat-form-field appearance="fill">
+      <mat-label>Title</mat-label>
+      <input name="title" matInput [(ngModel)]="post.title" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Category</mat-label>
+      <input name="category" matInput [(ngModel)]="post.category" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-chip-list #tagsRef>
+        <mat-chip
+          *ngFor="let tag of post.tags"
+          removable="true"
+          (removed)="removeTag(tag)"
+        >
+          {{tag}}
+        </mat-chip>
+        <input
+          placeholder="Tags"
+          [matChipInputFor]="tagsRef"
+          [matChipInputAddOnBlur]="true"
+          [matChipInputSeparatorKeyCodes]="separators"
+          (matChipInputTokenEnd)="addTag($event)"
+        />
+      </mat-chip-list>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Content</mat-label>
+      <textarea
+        matInput
+        name="content"
+        [(ngModel)]="post.bodyMarkdown"
+      ></textarea>
+    </mat-form-field>
+
+    <div class="page-footer-actions">
+      <button type="reset">Reset</button>
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+</app-post-layout>
