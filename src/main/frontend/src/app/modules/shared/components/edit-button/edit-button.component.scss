@@ -3,6 +3,7 @@
   color: var(--icon-color);
   transition: var(--transition);
   transition-property: color;
+  cursor: pointer;
 
   &:hover {
     color: var(--primary-color);

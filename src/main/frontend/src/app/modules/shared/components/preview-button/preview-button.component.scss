@@ -1,8 +1,9 @@
 .iconify {
-  font-size: 4.5rem;
+  font-size: 6rem;
   color: var(--icon-color);
   transition: var(--transition);
   transition-property: color;
+  cursor: pointer;
 
   &:hover {
     color: var(--primary-color);

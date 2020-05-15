@@ -4,9 +4,9 @@ body.light {
   --color-1: #555555;
   --color-2: #333333;
   --background-color-0: #ffffff;
-  --background-color-1: #fafafa;
-  --background-color-2: #eeeeee;
-  --background-color-3: #cccccc;
+  --background-color-1: #ffffff;
+  --background-color-2: #fafafa;
+  --background-color-3: #eeeeee;
   --border-color-0: #eeeeee;
   --border-color-1: #cccccc;
 
@@ -17,12 +17,12 @@ body.light {
   --welcome-message-color: var(--color-1);
   --logo-text-color: var(--color-2);
   --box-shadow: rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-  --border-color: var(--background-color-2);
+  --border-color: var(--background-color-3);
 
   --search-posts-border-color: var(--border-color-1);
   --search-posts-border-color-on-active: var(--primary-color);
   --select-selected-value-color: var(--color-0);
-  --search-posts-tags-background-color: var(--background-color-2);
+  --search-posts-tags-background-color: var(--background-color-3);
   --search-posts-input-color: var(--color-1);
   --search-posts-input-background-color: inherit;
   --search-posts-input-placeholder-color: var(--color-0);
@@ -32,16 +32,16 @@ body.light {
   --fancy-title-background-color: var(--body-background-color);
   --fancy-title-border-background-color: var(--body-background-color);
 
-  --tooltip-color: var(--background-color-1);
+  --tooltip-color: var(--background-color-2);
   --tooltip-background-color: var(--color-2);
 
   --tag-color: var(--color-0);
-  --tag-background-color: var(--background-color-2);
-  --tag-selected-color: var(--background-color-1);
+  --tag-background-color: var(--background-color-3);
+  --tag-selected-color: var(--background-color-2);
 
-  --post-summary-background-color: var(--background-color-1);
-  --post-summary-border-color: var(--background-color-1);
-  --post-summary-border-color-on-hover: var(--background-color-1);
+  --post-summary-background-color: var(--background-color-2);
+  --post-summary-border-color: var(--background-color-2);
+  --post-summary-border-color-on-hover: var(--background-color-2);
   --post-summary-title-color: var(--color-0);
   --post-summary-title-color-on-hover: var(--primary-color);
   --post-summary-icons-color: var(--color-0);
@@ -57,49 +57,49 @@ body.light {
   --warn-text-color: #663c00;
   --error-background-color: #fdecea;
   --error-text-color: #611a15;
-  --quote-background-color: var(--background-color-1);
+  --quote-background-color: var(--background-color-2);
   --quote-text-color: var(--color-0);
   --quote-text-font-style: italic;
 
   --code-color: var(--color-1);
-  --code-background-color: var(--background-color-1);
+  --code-background-color: var(--background-color-2);
   --code-line-numbers-color: var(--color-0);
-  --code-line-numbers-background-color: var(--background-color-2);
-  --code-tab-background-color-on-hover: var(--background-color-2);
+  --code-line-numbers-background-color: var(--background-color-3);
+  --code-tab-background-color-on-hover: var(--background-color-3);
   --code-copy-icon-color: var(--color-0);
 
-  --comment-background-color: var(--background-color-1);
+  --comment-background-color: var(--background-color-2);
   --comment-author-color: var(--color-1);
   --comment-created-at-color: var(--color-1);
-  --comment-metadata-border-color: var(--background-color-2);
+  --comment-metadata-border-color: var(--background-color-3);
   --comment-body-color: var(--color-1);
 
   --navbar-link-color: var(--color-1);
-  --navbar-link-background-color-on-hover: var(--background-color-2);
+  --navbar-link-background-color-on-hover: var(--background-color-3);
 
   --dropdown-color: var(--color-0);
-  --dropdown-background-color: var(--background-color-1);
-  --dropdown-item-background-color-on-hover: var(--background-color-2);
-  --select-selected-option-background-color: var(--background-color-2);
+  --dropdown-background-color: var(--background-color-2);
+  --dropdown-item-background-color-on-hover: var(--background-color-3);
+  --select-selected-option-background-color: var(--background-color-3);
 
   --input-color: var(--color-1);
-  --input-background-color: var(--background-color-1);
-  --input-border-color: var(--background-color-2);
+  --input-background-color: var(--background-color-2);
+  --input-border-color: var(--background-color-3);
 
   --mat-table-header-color: var(--body-color);
-  --mat-table-header-background-color: var(--background-color-2);
+  --mat-table-header-background-color: var(--background-color-3);
   --mat-table-body-color: var(--body-color);
-  --mat-table-body-background-color: var(--background-color-1);
-  --mat-table-body-row-border-color: var(--background-color-2);
+  --mat-table-body-background-color: var(--background-color-2);
+  --mat-table-body-row-border-color: var(--background-color-3);
   --mat-table-body-last-row-border-color: var(
     --mat-table-body-row-border-color
   );
 
   --form-field-color: var(--color-0);
-  --form-field-background-color: var(--background-color-1);
+  --form-field-background-color: var(--background-color-2);
   --form-field-border-color: var(--border-color);
   --chip-color: var(--color-1);
-  --chip-background-color: var(--background-color-2);
+  --chip-background-color: var(--background-color-3);
   --mat-tab-label-color: var(--color-1);
   --icon-color: var(--color-0);
 }
