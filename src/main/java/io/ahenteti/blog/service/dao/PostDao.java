@@ -39,5 +39,10 @@ public class PostDao {
         List<PostEntity> posts = postRepository.findByAuthorId(request.getUser().getId(), postsPage).getContent();
         return postConverter.toPostsSummaries(posts);
     }
+    
+    public PostEntity createOrUpdatePost(Post post) {
+        PostEntity entity = postConverter.toPostEntity(post);
+        return postRepository.save(entity);
+    }
 
 }

@@ -9,44 +9,43 @@ import io.ahenteti.blog.model.core.IUser;
 import io.ahenteti.blog.model.core.PostComment;
 import io.ahenteti.blog.model.core.PostComments;
 import io.ahenteti.blog.model.entity.PostCommentEntity;
-import io.ahenteti.blog.service.dao.repository.PostRepository;
-import io.ahenteti.blog.service.dao.repository.UserRepository;
+import io.ahenteti.blog.service.converter.internal.postcomments.ToCreatePostCommentApiRequestConverter;
+import io.ahenteti.blog.service.converter.internal.postcomments.ToGetPostCommentsApiRequestConverter;
+import io.ahenteti.blog.service.converter.internal.postcomments.ToPostCommentApiResponseConverter;
+import io.ahenteti.blog.service.converter.internal.postcomments.ToPostCommentConverter;
+import io.ahenteti.blog.service.converter.internal.postcomments.ToPostCommentEntityConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toCollection;
 
 @Service
 public class PostCommentConverter {
 
-    private UserConverter userConverter;
-    private UserRepository userRepository;
-    private PostRepository postRepository;
+    private ToCreatePostCommentApiRequestConverter toCreatePostCommentApiRequestConverter;
+    private ToGetPostCommentsApiRequestConverter toGetPostCommentsApiRequestConverter;
+    private ToPostCommentApiResponseConverter toPostCommentApiResponseConverter;
+    private ToPostCommentConverter toPostCommentConverter;
+    private ToPostCommentEntityConverter toPostCommentEntityConverter;
 
     @Autowired
-    public PostCommentConverter(UserConverter userConverter, UserRepository userRepository, PostRepository postRepository) {
-        this.userConverter = userConverter;
-        this.userRepository = userRepository;
-        this.postRepository = postRepository;
+    public PostCommentConverter(ToCreatePostCommentApiRequestConverter toCreatePostCommentApiRequestConverter, ToGetPostCommentsApiRequestConverter toGetPostCommentsApiRequestConverter, ToPostCommentApiResponseConverter toPostCommentApiResponseConverter, ToPostCommentConverter toPostCommentConverter, ToPostCommentEntityConverter toPostCommentEntityConverter) {
+        this.toCreatePostCommentApiRequestConverter = toCreatePostCommentApiRequestConverter;
+        this.toGetPostCommentsApiRequestConverter = toGetPostCommentsApiRequestConverter;
+        this.toPostCommentApiResponseConverter = toPostCommentApiResponseConverter;
+        this.toPostCommentConverter = toPostCommentConverter;
+        this.toPostCommentEntityConverter = toPostCommentEntityConverter;
     }
 
     public CreatePostCommentApiRequest toCreatePostCommentApiRequest(IUser author, Long postId, CreatePostCommentApiRequestBody body) {
-        CreatePostCommentApiRequest res = new CreatePostCommentApiRequest();
-        res.setAuthor(author);
-        res.setPostId(postId);
-        res.setValue(body.getValue());
-        return res;
+        return this.toCreatePostCommentApiRequestConverter.toCreatePostCommentApiRequest(author, postId, body);
     }
 
     public GetPostCommentsApiRequest toGetPostCommentsApiRequest(Long postId, Integer page, Integer size) {
-        GetPostCommentsApiRequest res = new GetPostCommentsApiRequest();
-        res.setPostId(postId);
-        res.setPage(page);
-        res.setSize(size);
-        return res;
+        return this.toGetPostCommentsApiRequestConverter.toGetPostCommentsApiRequest(postId, page, size);
     }
 
     public PostCommentsApiResponse toPostCommentsApiResponse(PostComments comments) {
@@ -54,43 +53,22 @@ public class PostCommentConverter {
     }
 
     public PostCommentApiResponse toCommentApiResponse(PostComment comment) {
-        PostCommentApiResponse res = new PostCommentApiResponse();
-        res.setAuthor(userConverter.toUserApiResponse(comment.getAuthor()));
-        res.setCreatedAtIso8601(comment.getCreatedAt().toString());
-        res.setValue(comment.getValue());
-        return res;
+        return toPostCommentApiResponseConverter.toCommentApiResponse(comment);
     }
 
     public PostComment toPostComment(CreatePostCommentApiRequest request) {
-        PostComment res = new PostComment();
-        res.setAuthor(request.getAuthor());
-        res.setValue(request.getValue());
-        res.setCreatedAt(Instant.now());
-        res.setPostId(request.getPostId());
-        return res;
+        return this.toPostCommentConverter.toPostComment(request);
     }
 
     public PostComments toPostComments(List<PostCommentEntity> entities) {
-        PostComments res = new PostComments();
-        entities.stream().map(this::toPostComment).forEach(res::add);
-        return res;
+        return entities.stream().map(this::toPostComment).collect(Collectors.toCollection(PostComments::new));
     }
 
     public PostComment toPostComment(PostCommentEntity entity) {
-        PostComment res = new PostComment();
-        res.setAuthor(userConverter.toUser(entity.getAuthor()));
-        res.setValue(entity.getValue());
-        res.setCreatedAt(entity.getCreatedAt());
-        res.setPostId(entity.getPost().getId());
-        return res;
+        return toPostComment(entity);
     }
 
     public PostCommentEntity toCommentEntity(PostComment comment) {
-        PostCommentEntity res = new PostCommentEntity();
-        res.setValue(comment.getValue());
-        res.setCreatedAt(comment.getCreatedAt());
-        res.setPost(postRepository.getOne(comment.getPostId()));
-        res.setAuthor(userRepository.getOne(comment.getAuthor().getId()));
-        return res;
+        return toPostCommentEntityConverter.toCommentEntity(comment);
     }
 }
