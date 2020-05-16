@@ -13,7 +13,11 @@ import { CreatePostPage } from "./create-post-page/create-post.page";
 const routes: Routes = [
   { path: "", component: PostDashboardPage },
   { path: "posts/:id/consult", component: ConsultPostPage },
-  { path: "posts/:id/edit", component: ConsultPostPage },
+  {
+    path: "posts/:id/edit",
+    component: ConsultPostPage,
+    canActivate: [LoggedInGuard],
+  },
   {
     path: "posts/new",
     component: CreatePostPage,
