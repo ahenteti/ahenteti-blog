@@ -18,3 +18,15 @@ export class GetUserPostsApiRequest {
   page: number;
   size: number;
 }
+
+export class CreatePostApiRequest {
+  url: string;
+  body: CreatePostApiRequestBody;
+}
+
+export class CreatePostApiRequestBody {
+  title: string;
+  category: string;
+  tags: Array<string>;
+  bodyMarkdownBase64: string;
+}

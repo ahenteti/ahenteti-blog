@@ -7,4 +7,8 @@ export class AnimatedLoadingPage {
   hideLoader() {
     this.loader.hide();
   }
+
+  showLoader() {
+    this.loader.show();
+  }
 }

@@ -2,6 +2,7 @@ import {
   IPostSummaryApiResponse,
   IPostApiResponse,
   GetUserPostsApiRequest,
+  CreatePostApiRequest,
 } from "../models/post.external.models";
 import { Injectable } from "@angular/core";
 import {
@@ -15,7 +16,7 @@ import { UserConverter } from "../../../user/converter/user.converter";
 export class PostConverter {
   constructor(private userConverter: UserConverter) {}
 
-  fromPostSummary(post: IPostSummaryApiResponse): IPostSummary {
+  fromPostSummaryApiResponse(post: IPostSummaryApiResponse): IPostSummary {
     return {
       id: post.id,
       title: post.title,
@@ -32,7 +33,7 @@ export class PostConverter {
     };
   }
 
-  fromPost(post: IPostApiResponse): IPost {
+  fromPostApiResponse(post: IPostApiResponse): IPost {
     return {
       id: post.id,
       title: post.title,
@@ -54,7 +55,7 @@ export class PostConverter {
     posts: IPostSummaryApiResponse[]
   ): PostsSummaries {
     let data = new PostsSummaries();
-    posts.forEach((post) => data.push(this.fromPostSummary(post)));
+    posts.forEach((post) => data.push(this.fromPostSummaryApiResponse(post)));
     return data;
   }
 
@@ -67,6 +68,18 @@ export class PostConverter {
 
   toGetUserPostsApiRequestUrl(request: GetUserPostsApiRequest) {
     return `/secure-api/user/posts-summaries?page=${request.page}&size=${request.size}`;
+  }
+
+  toCreatePostApiRequest(post: IPost): CreatePostApiRequest {
+    return {
+      url: "/secure-api/posts",
+      body: {
+        title: post.title,
+        category: post.category,
+        tags: post.tags,
+        bodyMarkdownBase64: btoa(post.bodyMarkdown),
+      },
+    };
   }
 
   private calculateSearchKey(postTitle: string, postTags: string[]): string {

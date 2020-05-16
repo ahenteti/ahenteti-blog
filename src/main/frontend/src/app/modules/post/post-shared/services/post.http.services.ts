@@ -4,13 +4,15 @@ import {
   IPostApiResponse,
   IPostSummaryApiResponse,
   GetUserPostsApiRequest,
+  CreatePostApiRequest,
 } from "../models/post.external.models";
 import {
   PostsSummaries,
   IPost,
   OfflinePost,
+  IPostSummary,
 } from "../models/post.internal.models";
-import { PostConverter } from "../converters/post.converter";
+import { PostConverter } from "./post.converter";
 import { HttpClient } from "@angular/common/http";
 import { CommonHttpServices } from "../../../alert/common.http.services";
 import { AlertService } from "../../../alert/alert.service";
@@ -58,9 +60,25 @@ export class PostHttpServices extends CommonHttpServices {
   getPostById(postId: number): Promise<IPost> {
     return this.http
       .get<IPostApiResponse>(`/api/posts/${postId}`)
-      .pipe(map((post) => this.postConverter.fromPost(post)))
+      .pipe(map((post) => this.postConverter.fromPostApiResponse(post)))
       .pipe(this.catchGetPostByIdError())
       .toPromise();
+  }
+
+  createPost(request: CreatePostApiRequest): Promise<IPostSummary> {
+    // prettier-ignore
+    return this.http
+      .post<IPostSummaryApiResponse>(request.url, request.body)
+      .pipe(map((post) => this.postConverter.fromPostSummaryApiResponse(post)))
+      .pipe(this.catchCreatePostError())
+      .toPromise();
+    // prettier-ignore
+  }
+
+  private catchCreatePostError(): OperatorFunction<IPost, null> {
+    return catchError(
+      this.handleError(`Error while creating your post :(`, null)
+    );
   }
 
   private catchGetPostByIdError(): OperatorFunction<IPost, IPost> {

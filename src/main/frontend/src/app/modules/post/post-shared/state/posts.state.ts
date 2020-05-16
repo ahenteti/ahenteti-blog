@@ -1,6 +1,11 @@
 import { Injectable } from "@angular/core";
 import { ALL_TAGS } from "../../../shared/utils/constants.utils";
-import { PostsByCategory, IPostSummary } from "../models/post.internal.models";
+import {
+  PostsByCategory,
+  IPostSummary,
+  PostsSummaries,
+} from "../models/post.internal.models";
+import { SetUtils } from "src/app/modules/shared/utils/set.utils";
 
 @Injectable({
   providedIn: "root",
@@ -33,6 +38,23 @@ export class PostsState {
   set postsSearchText(postsSearchText: string) {
     this._postsSearchText = postsSearchText;
     this.filteredPosts = this.calculateFilteredPosts();
+  }
+
+  public addPost(post: IPostSummary): void {}
+
+  public setPosts(posts: PostsSummaries): void {
+    const allPostsByCategory = new PostsByCategory();
+    const tags = new Set<string>();
+    posts.forEach((post) => {
+      post.tags.forEach((tag) => tags.add(tag));
+      if (!allPostsByCategory.has(post.category)) {
+        allPostsByCategory.set(post.category, []);
+      }
+      allPostsByCategory.get(post.category).push(post);
+    });
+    this.allPosts = allPostsByCategory;
+    this.filteredPosts = allPostsByCategory;
+    this.allTags = new Set([ALL_TAGS, ...SetUtils.sort(tags)]);
   }
 
   private calculateFilteredPosts(): PostsByCategory {

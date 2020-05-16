@@ -14,7 +14,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { SharedModule } from "./modules/shared/shared.module";
 import { LoggedInGuard } from "./modules/user/guard/logged-in.guard";
 import { PostHttpServices } from "./modules/post/post-shared/services/post.http.services";
-import { PostConverter } from "./modules/post/post-shared/converters/post.converter";
+import { PostConverter } from "./modules/post/post-shared/services/post.converter";
 import { PostCommentConverter } from "./modules/post/post-comments/converter/post-comment.converter";
 import { PostCommentHttpServices } from "./modules/post/post-comments/services/post-comment.http.service";
 import { PostValidator } from "./modules/post/post-shared/services/post.validator";

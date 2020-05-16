@@ -12,4 +12,8 @@ export class LoaderComponent {
   hide() {
     setTimeout(() => (this.fadeout = true), 500);
   }
+
+  show() {
+    this.fadeout = false;
+  }
 }
