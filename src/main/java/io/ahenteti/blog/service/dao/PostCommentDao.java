@@ -31,10 +31,11 @@ public class PostCommentDao {
     }
 
     public PostComments getPostComments(GetPostCommentsApiRequest request) {
-        PageRequest commentsPage = PageRequest
-                .of(request.getPage(), request.getSize(), Sort.by("createdAt").descending());
-        List<PostCommentEntity> comments = commentRepository.findAll(commentsPage).getContent();
+        // @formatter:off
+        PageRequest commentsPage = PageRequest.of(request.getPage(), request.getSize(), Sort.by("createdAt").descending());
+        List<PostCommentEntity> comments = commentRepository.findByPostId(request.getPostId(), commentsPage).getContent();
         return commentConverter.toPostComments(comments);
+        // @formatter:on
     }
 
 }
