@@ -50,6 +50,7 @@ public class ToPostConverter {
         res.setAuthor(request.getAuthor());
         res.setCreatedAt(request.getCreatedAt());
         res.setLastUpdatedAt(Optional.of(Instant.now()));
+        res.setEntity(request.getPostEntity());
         return res;
     }
 

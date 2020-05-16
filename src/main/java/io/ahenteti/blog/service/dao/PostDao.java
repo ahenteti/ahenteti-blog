@@ -43,14 +43,11 @@ public class PostDao {
     }
 
     public PostEntity createPost(ReadyToCreatePost post) {
-        return createOrUpdatePost(post);
+        PostEntity entity = postConverter.toPostEntity(post);
+        return postRepository.save(entity);
     }
 
     public PostEntity updatePost(ReadyToUpdatePost post) {
-        return createOrUpdatePost(post);
-    }
-
-    private PostEntity createOrUpdatePost(Post post) {
         PostEntity entity = postConverter.toPostEntity(post);
         return postRepository.save(entity);
     }

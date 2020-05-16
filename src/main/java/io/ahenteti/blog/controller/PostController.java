@@ -20,6 +20,7 @@ import io.ahenteti.blog.service.dao.PostDao;
 import io.ahenteti.blog.service.validator.PostValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -57,6 +58,7 @@ public class PostController {
         return postConverter.toPostApiResponse(post);
     }
 
+    @Transactional
     @PostMapping("/secure-api/posts")
     @ResponseStatus(HttpStatus.CREATED)
     public PostSummaryApiResponse createPost(@ModelAttribute IUser user, @RequestBody CreatePostApiRequestBody requestBody) {
@@ -67,6 +69,7 @@ public class PostController {
         return postConverter.toPostSummaryApiResponse(entity);
     }
 
+    @Transactional
     @PutMapping("/secure-api/posts/{id}")
     public PostSummaryApiResponse updatePost(@ModelAttribute IUser user, @PathVariable Long id, @RequestBody UpdatePostApiRequestBody requestBody) {
         UpdatePostApiRequest request = postConverter.toUpdatePostApiRequest(user, id, requestBody);

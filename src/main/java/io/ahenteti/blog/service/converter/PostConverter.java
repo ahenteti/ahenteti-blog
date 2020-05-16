@@ -106,7 +106,11 @@ public class PostConverter {
         return toUpdatePostApiRequestConverter.toUpdatePostApiRequest(user, id, requestBody);
     }
 
-    public PostEntity toPostEntity(Post post) {
+    public PostEntity toPostEntity(ReadyToUpdatePost post) {
+        return toPostEntityConverter.toPostEntity(post);
+    }
+
+    public PostEntity toPostEntity(ReadyToCreatePost post) {
         return toPostEntityConverter.toPostEntity(post);
     }
 
