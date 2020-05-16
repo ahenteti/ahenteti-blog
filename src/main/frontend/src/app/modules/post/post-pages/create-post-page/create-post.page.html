@@ -3,12 +3,12 @@
   <div class="page-header">
     <app-page-title value="Create new post"></app-page-title>
     <div class="page-header-actions">
-      <app-preview-button
+      <app-consult-button
         (click)="togglePreviewMode()"
         *ngIf="!previewMode"
         data-tooltip="preview post"
         class="tooltip-bottom"
-      ></app-preview-button>
+      ></app-consult-button>
       <app-edit-button
         (click)="togglePreviewMode()"
         *ngIf="previewMode"

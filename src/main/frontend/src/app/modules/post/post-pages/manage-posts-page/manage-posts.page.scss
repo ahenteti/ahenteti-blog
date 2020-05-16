@@ -16,3 +16,31 @@ app-section-title {
   align-items: center;
   justify-content: flex-end;
 }
+
+.post {
+  position: relative;
+  box-shadow: var(--box-shadow);
+  & .post-actions {
+    --edit-button-size: 3rem;
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 2rem;
+
+    & > * {
+      margin-left: 0.8rem;
+    }
+  }
+
+  &:hover .post-actions {
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .mat-column-category,
+  .mat-column-createdAt {
+    display: none;
+  }
+}

@@ -38,9 +38,11 @@ import { MatChipsModule } from "@angular/material/chips";
 import { MatIconModule } from "@angular/material/icon";
 import { MatTabsModule } from "@angular/material/tabs";
 import { EditButtonComponent } from "./components/edit-button/edit-button.component";
-import { PreviewButtonComponent } from "./components/preview-button/preview-button.component";
+import { ConsultButtonComponent } from "./components/consult-button/consult-button.component";
 import { SimplemdeModule } from "ng2-simplemde";
 import { ErrorModule } from "../error/error.module";
+import { EditButtonLinkComponent } from "./components/edit-button/edit-button-link.component";
+import { ConsultButtonLinkComponent } from "./components/consult-button/consult-button-link.component";
 
 @NgModule({
   entryComponents: [TooltipComponent, QuoteComponent],
@@ -88,7 +90,9 @@ import { ErrorModule } from "../error/error.module";
     NewButtonComponent,
     PageTitleComponent,
     EditButtonComponent,
-    PreviewButtonComponent,
+    ConsultButtonComponent,
+    EditButtonLinkComponent,
+    ConsultButtonLinkComponent,
   ],
   exports: [
     RouterModule,
@@ -129,7 +133,9 @@ import { ErrorModule } from "../error/error.module";
     NewButtonComponent,
     PageTitleComponent,
     EditButtonComponent,
-    PreviewButtonComponent,
+    ConsultButtonComponent,
+    EditButtonLinkComponent,
+    ConsultButtonLinkComponent,
   ],
 })
 export class SharedModule {}

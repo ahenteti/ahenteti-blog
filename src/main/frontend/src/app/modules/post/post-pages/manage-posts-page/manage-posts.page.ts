@@ -12,7 +12,7 @@ import { MatTableDataSource } from "@angular/material/table";
 export class ManagePostsPage extends AnimatedLoadingPage implements OnInit {
   userPosts = new MatTableDataSource(new PostsSummaries());
   currentUserPostsPage = -1;
-  displayedColumns: string[] = ["title", "category", "createdAt"];
+  displayedColumns: string[] = ["title", "category", "createdAt", "actions"];
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(private postHttpServices: PostHttpServices) {
