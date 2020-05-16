@@ -22,7 +22,7 @@
     <app-markdown [text]="post.bodyMarkdown"></app-markdown>
   </ng-container>
 
-  <form (ngSubmit)="onSubmit(form)" #form="ngForm" *ngIf="!previewMode">
+  <form (ngSubmit)="onSubmit()" *ngIf="!previewMode">
     <mat-form-field appearance="fill">
       <mat-label>Title</mat-label>
       <input name="title" matInput [(ngModel)]="post.title" />

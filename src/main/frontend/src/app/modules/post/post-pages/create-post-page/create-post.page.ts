@@ -7,6 +7,7 @@ import {
   DefaultPost,
 } from "../../post-shared/models/post.internal.models";
 import { SIMPLEMDE_CONFIG } from "src/app/modules/shared/utils/constants.utils";
+import { PostValidator } from "../../post-shared/services/post.validator";
 
 @Component({
   templateUrl: "create-post.page.html",
@@ -17,6 +18,8 @@ export class CreatePostPage {
   public previewMode = false;
   public post: IPost = new DefaultPost();
   public simpleMdeOptions = SIMPLEMDE_CONFIG;
+
+  constructor(private postValidator: PostValidator) {}
 
   addTag(event: MatChipInputEvent): void {
     const value = event.value;
@@ -39,8 +42,9 @@ export class CreatePostPage {
 
   togglePreviewMode() {
     this.previewMode = !this.previewMode;
-    console.log(this.post.bodyMarkdown);
   }
 
-  onSubmit(form: NgForm) {}
+  onSubmit() {
+    this.postValidator.validate(this.post);
+  }
 }

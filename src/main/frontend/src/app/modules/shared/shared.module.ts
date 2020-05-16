@@ -40,6 +40,7 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { EditButtonComponent } from "./components/edit-button/edit-button.component";
 import { PreviewButtonComponent } from "./components/preview-button/preview-button.component";
 import { SimplemdeModule } from "ng2-simplemde";
+import { ErrorModule } from "../error/error.module";
 
 @NgModule({
   entryComponents: [TooltipComponent, QuoteComponent],
@@ -60,6 +61,7 @@ import { SimplemdeModule } from "ng2-simplemde";
     MatChipsModule,
     MatIconModule,
     MatTabsModule,
+    ErrorModule,
   ],
   declarations: [
     SectionTitleComponent,
@@ -104,6 +106,7 @@ import { SimplemdeModule } from "ng2-simplemde";
     MatChipsModule,
     MatIconModule,
     MatTabsModule,
+    ErrorModule,
 
     SectionTitleComponent,
     LogoLinkComponent,

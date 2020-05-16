@@ -35,11 +35,6 @@ simplemde {
     line-height: 1.6;
   }
 
-  .CodeMirror
-    .cm-spell-error:not(.cm-url):not(.cm-comment):not(.cm-tag):not(.cm-word) {
-    background-color: inherit;
-  }
-
   .CodeMirror-cursor {
     border: 1px solid var(--primary-color) !important;
   }
