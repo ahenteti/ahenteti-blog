@@ -53,10 +53,11 @@
       </mat-chip-list>
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Body</mat-label>
-      <textarea matInput name="body" [(ngModel)]="post.bodyMarkdown"></textarea>
-    </mat-form-field>
+    <simplemde
+      name="body"
+      [(ngModel)]="post.bodyMarkdown"
+      [options]="simpleMdeOptions"
+    ></simplemde>
 
     <div class="page-footer-actions">
       <button type="reset">Reset</button>

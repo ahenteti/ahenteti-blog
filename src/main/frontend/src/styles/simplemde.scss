@@ -1,0 +1,46 @@
+simplemde {
+  display: block;
+  margin-bottom: 2rem;
+
+  .editor-statusbar {
+    display: none;
+  }
+
+  .editor-toolbar {
+    opacity: 1 !important;
+    border: none !important;
+    background-color: var(--simplemde-header-background-color);
+    a {
+      background-color: inherit !important;
+      color: var(--simplemde-header-color) !important;
+      transition: var(--transition);
+      transition-property: color;
+    }
+
+    a.active,
+    a:hover {
+      color: var(--primary-color) !important;
+      border-color: transparent;
+    }
+
+    .separator {
+      border: 1.5px solid var(--simplemde-header-separator-color) !important;
+    }
+  }
+
+  .CodeMirror {
+    color: var(--simplemde-body-color);
+    background-color: var(--simplemde-body-background-color);
+    border: none !important;
+    line-height: 1.6;
+  }
+
+  .CodeMirror
+    .cm-spell-error:not(.cm-url):not(.cm-comment):not(.cm-tag):not(.cm-word) {
+    background-color: inherit;
+  }
+
+  .CodeMirror-cursor {
+    border: 1px solid var(--primary-color) !important;
+  }
+}

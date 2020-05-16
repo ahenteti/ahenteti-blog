@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { HttpClientModule } from "@angular/common/http";
 import { SharedModule } from "../../shared/shared.module";
 import { SearchPostsComponent } from "./components/search-posts/search-posts.component";
 import { TagComponent } from "./components/tag/tag.component";
@@ -11,7 +10,6 @@ import { PostSummaryComponent } from "./components/post-summary/post-summary.com
 import { PostsWelcomeMessageComponent } from "./components/posts-welcome-message/posts-welcome-message.component";
 import { PostsByCategoryComponent } from "./components/posts-by-category/posts-by-category.component";
 import { AlertModule } from "../../alert/alert.module";
-import { RouterModule } from "@angular/router";
 import { PostCommentModule } from "../post-comments/post-comment.module";
 
 @NgModule({

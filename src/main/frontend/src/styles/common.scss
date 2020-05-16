@@ -65,3 +65,8 @@ hr {
   clear: both;
   display: table;
 }
+
+input,
+textarea {
+  caret-color: var(--primary-color) !important;
+}

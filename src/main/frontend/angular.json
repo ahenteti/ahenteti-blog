@@ -29,6 +29,7 @@
               "node_modules/ionicons/dist/scss/ionicons.scss",
               "node_modules/aos/dist/aos.css",
               "node_modules/highlight.js/styles/atom-one-light.css",
+              "node_modules/simplemde/dist/simplemde.min.css",
               "src/styles/styles.scss"
             ]
           },

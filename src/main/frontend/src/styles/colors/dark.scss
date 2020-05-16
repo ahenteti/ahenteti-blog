@@ -1,4 +1,8 @@
 body.dark {
+  & input,
+  & textarea {
+    caret-color: var(--primary-color) !important;
+  }
   --primary-color: #078eed;
   --color-0: #888888;
   --color-1: #d1d2d3;
@@ -118,4 +122,10 @@ body.dark {
   --chip-background-color: var(--background-color-4);
   --mat-tab-label-color: var(--color-1);
   --icon-color: var(--color-0);
+
+  --simplemde-header-background-color: var(--background-color-3);
+  --simplemde-header-color: var(--color-0);
+  --simplemde-header-separator-color: var(--color-0);
+  --simplemde-body-color: var(--color-1);
+  --simplemde-body-background-color: var(--background-color-2);
 }

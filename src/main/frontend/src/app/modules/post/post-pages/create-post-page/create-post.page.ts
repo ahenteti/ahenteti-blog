@@ -6,6 +6,7 @@ import {
   IPost,
   DefaultPost,
 } from "../../post-shared/models/post.internal.models";
+import { SIMPLEMDE_CONFIG } from "src/app/modules/shared/utils/constants.utils";
 
 @Component({
   templateUrl: "create-post.page.html",
@@ -15,6 +16,7 @@ export class CreatePostPage {
   readonly separators: number[] = [ENTER, COMMA];
   public previewMode = false;
   public post: IPost = new DefaultPost();
+  public simpleMdeOptions = SIMPLEMDE_CONFIG;
 
   addTag(event: MatChipInputEvent): void {
     const value = event.value;
@@ -37,6 +39,7 @@ export class CreatePostPage {
 
   togglePreviewMode() {
     this.previewMode = !this.previewMode;
+    console.log(this.post.bodyMarkdown);
   }
 
   onSubmit(form: NgForm) {}

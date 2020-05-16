@@ -39,6 +39,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatTabsModule } from "@angular/material/tabs";
 import { EditButtonComponent } from "./components/edit-button/edit-button.component";
 import { PreviewButtonComponent } from "./components/preview-button/preview-button.component";
+import { SimplemdeModule } from "ng2-simplemde";
 
 @NgModule({
   entryComponents: [TooltipComponent, QuoteComponent],
@@ -49,6 +50,7 @@ import { PreviewButtonComponent } from "./components/preview-button/preview-butt
     PortalModule,
     HttpClientModule,
     FormsModule,
+    SimplemdeModule.forRoot(),
     MatSelectModule,
     MatMenuModule,
     MatTableModule,
@@ -92,6 +94,7 @@ import { PreviewButtonComponent } from "./components/preview-button/preview-butt
     PortalModule,
     HttpClientModule,
     FormsModule,
+    SimplemdeModule,
     MatSelectModule,
     MatMenuModule,
     MatTableModule,
