@@ -43,6 +43,7 @@ import { SimplemdeModule } from "ng2-simplemde";
 import { EditButtonLinkComponent } from "./components/edit-button/edit-button-link.component";
 import { ConsultButtonLinkComponent } from "./components/consult-button/consult-button-link.component";
 import { DeleteButtonComponent } from "./components/delete-button/delete-button.component";
+import { InputDisableAutoCompleteDirective } from "./directives/input-disable-autocomplete.directive";
 
 @NgModule({
   entryComponents: [TooltipComponent, QuoteComponent],
@@ -93,6 +94,7 @@ import { DeleteButtonComponent } from "./components/delete-button/delete-button.
     EditButtonLinkComponent,
     ConsultButtonLinkComponent,
     DeleteButtonComponent,
+    InputDisableAutoCompleteDirective,
   ],
   exports: [
     RouterModule,
@@ -136,6 +138,7 @@ import { DeleteButtonComponent } from "./components/delete-button/delete-button.
     EditButtonLinkComponent,
     ConsultButtonLinkComponent,
     DeleteButtonComponent,
+    InputDisableAutoCompleteDirective,
   ],
 })
 export class SharedModule {}
