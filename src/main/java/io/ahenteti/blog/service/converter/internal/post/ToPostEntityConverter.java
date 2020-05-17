@@ -24,7 +24,7 @@ public class ToPostEntityConverter {
         res.setId(post.getId());
         res.setTitle(post.getTitle());
         res.setCategory(post.getCategory());
-        res.setTags(StringUtils.join(post.getTags(), PostEntity.TAGS_SEPARATOR_REGEX));
+        res.setTags(StringUtils.join(post.getTags(), PostEntity.TAGS_SEPARATOR));
         res.setAuthor(userRepository.getOne(post.getAuthor().getId()));
         res.setCreatedAt(post.getCreatedAt());
         res.setLastUpdatedAt(null);
@@ -39,7 +39,7 @@ public class ToPostEntityConverter {
         res.setId(post.getId());
         res.setTitle(post.getTitle());
         res.setCategory(post.getCategory());
-        res.setTags(StringUtils.join(post.getTags(), PostEntity.TAGS_SEPARATOR_REGEX));
+        res.setTags(StringUtils.join(post.getTags(), PostEntity.TAGS_SEPARATOR));
         res.setAuthor(userRepository.getOne(post.getAuthor().getId()));
         res.setCreatedAt(post.getCreatedAt());
         res.setLastUpdatedAt(post.getLastUpdatedAtValue());

@@ -20,6 +20,7 @@ import java.util.Collection;
 public class PostEntity {
 
     public static final String TAGS_SEPARATOR_REGEX = "\\|";
+    public static final String TAGS_SEPARATOR = "|";
 
     @Id
     @GeneratedValue
