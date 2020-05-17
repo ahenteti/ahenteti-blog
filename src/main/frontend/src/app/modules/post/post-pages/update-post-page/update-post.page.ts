@@ -2,8 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import {
   OfflinePost,
-  IPost,
-  IPostSummary,
+  Post,
+  PostSummary,
 } from "../../post-shared/models/post.internal.models";
 import { PostHttpServices } from "../../post-shared/services/post.http.services";
 import { AnimatedLoadingPage } from "src/app/modules/shared/pages/animated-loading.page";
@@ -40,7 +40,7 @@ export class UpdatePostPage extends AnimatedLoadingPage implements OnInit {
     });
   }
 
-  onSubmit(post: IPost) {
+  onSubmit(post: Post) {
     try {
       this.postValidator.validateUpdatePost(post);
       this.showLoader();
@@ -60,7 +60,7 @@ export class UpdatePostPage extends AnimatedLoadingPage implements OnInit {
     this.alertService.error("Error while updating your post :(");
   }
 
-  private handleUpdatePostSuccessEvent(post: IPostSummary) {
+  private handleUpdatePostSuccessEvent(post: PostSummary) {
     this.postsState.updatePost(post);
     this.alertService.info("Post updated with success", {
       keepAfterRouteChange: true,

@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { map, catchError } from "rxjs/operators";
 import {
-  IPostApiResponse,
-  IPostSummaryApiResponse,
+  PostApiResponse,
+  PostSummaryApiResponse,
   GetUserPostsApiRequest,
   CreatePostApiRequest,
   UpdatePostApiRequest,
@@ -12,9 +12,9 @@ import {
 } from "../models/post.external.models";
 import {
   PostsSummaries,
-  IPost,
+  Post,
   OfflinePost,
-  IPostSummary,
+  PostSummary,
   PostsSummariesPage,
 } from "../models/post.internal.models";
 import { PostConverter } from "./post.converter";
@@ -36,7 +36,7 @@ export class PostHttpServices extends CommonHttpServices {
   getAllPostsSummaries(): Promise<PostsSummaries> {
     // prettier-ignore
     return this.http
-      .get<IPostSummaryApiResponse[]>("/api/posts-summaries")
+      .get<PostSummaryApiResponse[]>("/api/posts-summaries")
       .pipe(map((posts) => this.postConverter.toPostsSummaries(posts)))
       .pipe(this.catchGetAllPostsSummariesError())
       .toPromise();
@@ -52,27 +52,27 @@ export class PostHttpServices extends CommonHttpServices {
     // prettier-ignore
   }
 
-  getPostById(postId: number): Promise<IPost> {
+  getPostById(postId: number): Promise<Post> {
     return this.http
-      .get<IPostApiResponse>(`/api/posts/${postId}`)
+      .get<PostApiResponse>(`/api/posts/${postId}`)
       .pipe(map((post) => this.postConverter.toPost(post)))
       .pipe(this.catchGetPostByIdError())
       .toPromise();
   }
 
-  createPost(request: CreatePostApiRequest): Promise<IPostSummary> {
+  createPost(request: CreatePostApiRequest): Promise<PostSummary> {
     // prettier-ignore
     return this.http
-      .post<IPostSummaryApiResponse>(request.url, request.body)
+      .post<PostSummaryApiResponse>(request.url, request.body)
       .pipe(map((post) => this.postConverter.toPostSummary(post)))
       .toPromise();
     // prettier-ignore
   }
 
-  updatePost(request: UpdatePostApiRequest): Promise<IPostSummary> {
+  updatePost(request: UpdatePostApiRequest): Promise<PostSummary> {
     // prettier-ignore
     return this.http
-      .put<IPostSummaryApiResponse>(request.url, request.body)
+      .put<PostSummaryApiResponse>(request.url, request.body)
       .pipe(map((post) => this.postConverter.toPostSummary(post)))
       .toPromise();
     // prettier-ignore
@@ -86,7 +86,7 @@ export class PostHttpServices extends CommonHttpServices {
     // prettier-ignore
   }
 
-  private catchGetPostByIdError(): OperatorFunction<IPost, IPost> {
+  private catchGetPostByIdError(): OperatorFunction<Post, Post> {
     return catchError(
       this.handleError(
         `Error while fetching post content :(`,

@@ -9,7 +9,7 @@ import {
 import {
   OVERLAY_POSITION_BOTTOM,
   OVERLAY_POSITION_TOP,
-} from "src/app/modules/shared/utils/constants.utils";
+} from "src/app/modules/shared/services/constants.utils";
 
 @Component({
   selector: "app-select-dropdown",

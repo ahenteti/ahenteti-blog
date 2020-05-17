@@ -4,7 +4,7 @@ import { MatMenuTrigger } from "@angular/material/menu";
 import { UserLoginServices } from "../user/services/user.login.services";
 import { User } from "src/app/modules/user/models/user.internal.models";
 import { UserObservable } from "src/app/modules/user/services/user.observable";
-import { UserAwareComponent } from "src/app/modules/user/user-aware.component";
+import { UserAwareComponent } from "src/app/modules/user/components/user-aware.component";
 
 @Component({
   selector: "app-navbar",

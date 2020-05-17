@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { IPost } from "../../models/post.internal.models";
+import { Post } from "../../models/post.internal.models";
 
 @Component({
   selector: "app-post-title",
@@ -8,5 +8,5 @@ import { IPost } from "../../models/post.internal.models";
 })
 export class PostTitleComponent {
   @Input()
-  post: IPost;
+  post: Post;
 }

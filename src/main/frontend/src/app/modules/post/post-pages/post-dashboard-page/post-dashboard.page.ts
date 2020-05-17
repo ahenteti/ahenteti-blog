@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { SetUtils } from "src/app/modules/shared/utils/set.utils";
-import { ALL_TAGS } from "src/app/modules/shared/utils/constants.utils";
+import { SetUtils } from "src/app/modules/shared/services/set.utils";
+import { ALL_TAGS } from "src/app/modules/shared/services/constants.utils";
 import { first } from "rxjs/operators";
 import { PostHttpServices } from "../../post-shared/services/post.http.services";
 import { PostsState } from "../../post-shared/state/posts.state";

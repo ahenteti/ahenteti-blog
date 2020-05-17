@@ -1,6 +1,6 @@
 import {
-  IPostSummaryApiResponse,
-  IPostApiResponse,
+  PostSummaryApiResponse,
+  PostApiResponse,
   GetUserPostsApiRequest,
   CreatePostApiRequest,
   UpdatePostApiRequest,
@@ -9,18 +9,18 @@ import {
 } from "../models/post.external.models";
 import { Injectable } from "@angular/core";
 import {
-  IPostSummary,
-  IPost,
+  PostSummary,
+  Post,
   PostsSummaries,
   PostsSummariesPage,
 } from "../models/post.internal.models";
-import { UserConverter } from "../../../user/converter/user.converter";
+import { UserConverter } from "../../../user/services/user.converter";
 
 @Injectable()
 export class PostConverter {
   constructor(private userConverter: UserConverter) {}
 
-  toPostSummary(post: IPostSummaryApiResponse): IPostSummary {
+  toPostSummary(post: PostSummaryApiResponse): PostSummary {
     return {
       id: post.id,
       title: post.title,
@@ -37,7 +37,7 @@ export class PostConverter {
     };
   }
 
-  toPost(post: IPostApiResponse): IPost {
+  toPost(post: PostApiResponse): Post {
     return {
       id: post.id,
       title: post.title,
@@ -55,7 +55,7 @@ export class PostConverter {
     };
   }
 
-  toPostsSummaries(posts: IPostSummaryApiResponse[]): PostsSummaries {
+  toPostsSummaries(posts: PostSummaryApiResponse[]): PostsSummaries {
     let data = new PostsSummaries();
     posts.forEach((post) => data.push(this.toPostSummary(post)));
     return data;
@@ -67,7 +67,7 @@ export class PostConverter {
     res.firstPage = posts.page == 0;
     res.lastPage = posts.lastPage;
     res.page = posts.page;
-    const items = new Array<IPostSummary>();
+    const items = new Array<PostSummary>();
     posts.items.forEach((post) => items.push(this.toPostSummary(post)));
     res.items = items;
     return res;
@@ -79,7 +79,7 @@ export class PostConverter {
     };
   }
 
-  toCreatePostApiRequest(post: IPost): CreatePostApiRequest {
+  toCreatePostApiRequest(post: Post): CreatePostApiRequest {
     return {
       url: "/secure-api/posts",
       body: {
@@ -91,7 +91,7 @@ export class PostConverter {
     };
   }
 
-  toUpdatePostApiRequest(post: IPost): UpdatePostApiRequest {
+  toUpdatePostApiRequest(post: Post): UpdatePostApiRequest {
     return {
       url: `/secure-api/posts/${post.id}`,
       body: {

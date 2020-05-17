@@ -1,4 +1,4 @@
-export interface IUserApiResponse {
+export class UserApiResponse {
   username: string;
   avatarUrl: string;
 }

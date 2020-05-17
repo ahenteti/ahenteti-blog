@@ -5,9 +5,9 @@ import {
   RouterStateSnapshot,
   Router,
 } from "@angular/router";
-import { UserObservable } from "../services/user.observable";
+import { UserObservable } from "./user.observable";
 import { AlertService } from "../../alert/alert.service";
-import { UserHttpServices } from "../services/user.http.services";
+import { UserHttpServices } from "./user.http.services";
 
 @Injectable({ providedIn: "root" })
 export class LoggedInGuard implements CanActivate {

@@ -1,19 +1,19 @@
 import { Injectable } from "@angular/core";
-import { IPost } from "../models/post.internal.models";
+import { Post } from "../models/post.internal.models";
 import { AlertService } from "src/app/modules/alert/alert.service";
-import { StringUtils } from "src/app/modules/shared/utils/string.utils";
+import { StringUtils } from "src/app/modules/shared/services/string.utils";
 import { ValidationError } from "src/app/modules/shared/models/validation.error";
 
 @Injectable({ providedIn: "root" })
 export class PostValidator {
   constructor(private alertService: AlertService) {}
 
-  validateCreatePost(post: IPost) {
+  validateCreatePost(post: Post) {
     const errors = this.createPostErrors(post);
     this.throwValidationErrorIfNotEmpty(errors);
   }
 
-  validateUpdatePost(post: IPost) {
+  validateUpdatePost(post: Post) {
     const errors = this.createPostErrors(post);
     if (!post.createdAt) {
       errors.push("Post createAt is mandatory");
@@ -21,7 +21,7 @@ export class PostValidator {
     this.throwValidationErrorIfNotEmpty(errors);
   }
 
-  private createPostErrors(post: IPost) {
+  private createPostErrors(post: Post) {
     const errors = [];
     if (StringUtils.isBlank(post.title)) {
       errors.push("Post title is mandatory");

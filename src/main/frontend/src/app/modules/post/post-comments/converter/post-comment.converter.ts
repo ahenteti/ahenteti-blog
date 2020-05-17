@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { UserConverter } from "../../../user/converter/user.converter";
+import { UserConverter } from "../../../user/services/user.converter";
 import {
   IPostCommentApiResponse,
   GetPostCommentsApiRequest,

@@ -2,7 +2,7 @@ import { Component, Input } from "@angular/core";
 import { KeyValue } from "@angular/common";
 import {
   PostsByCategory,
-  IPostSummary,
+  PostSummary,
 } from "../../models/post.internal.models";
 
 @Component({
@@ -15,8 +15,8 @@ export class PostsByCategoryComponent {
   public posts: PostsByCategory;
 
   postsOrder = (
-    a: KeyValue<string, IPostSummary[]>,
-    b: KeyValue<string, IPostSummary[]>
+    a: KeyValue<string, PostSummary[]>,
+    b: KeyValue<string, PostSummary[]>
   ): number => {
     return b.value.length - a.value.length;
   };

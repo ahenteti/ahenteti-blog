@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { NgForm } from "@angular/forms";
-import { UserAwareComponent } from "src/app/modules/user/user-aware.component";
+import { UserAwareComponent } from "src/app/modules/user/components/user-aware.component";
 import { ICreatePostCommentApiRequest } from "../../models/post-comment.external.models";
 import { UserObservable } from "src/app/modules/user/services/user.observable";
 import { PostCommentHttpServices } from "../../services/post-comment.http.service";

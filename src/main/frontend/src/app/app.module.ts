@@ -9,10 +9,10 @@ import { ThemeLocalStorageServices } from "./modules/shared/services/theme.local
 import { UserHttpServices } from "./modules/user/services/user.http.services";
 import { UserLoginServices } from "./modules/user/services/user.login.services";
 import { UserObservable } from "./modules/user/services/user.observable";
-import { UserConverter } from "./modules/user/converter/user.converter";
+import { UserConverter } from "./modules/user/services/user.converter";
 import { Routes, RouterModule } from "@angular/router";
 import { SharedModule } from "./modules/shared/shared.module";
-import { LoggedInGuard } from "./modules/user/guard/logged-in.guard";
+import { LoggedInGuard } from "./modules/user/services/logged-in.guard";
 import { PostHttpServices } from "./modules/post/post-shared/services/post.http.services";
 import { PostConverter } from "./modules/post/post-shared/services/post.converter";
 import { PostCommentConverter } from "./modules/post/post-comments/converter/post-comment.converter";

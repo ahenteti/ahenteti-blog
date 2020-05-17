@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import {
-  IPost,
+  Post,
   DefaultPost,
-  IPostSummary,
+  PostSummary,
 } from "../../post-shared/models/post.internal.models";
 import { PostValidator } from "../../post-shared/services/post.validator";
 import { PostConverter } from "../../post-shared/services/post.converter";
@@ -17,7 +17,7 @@ import { Router } from "@angular/router";
   styleUrls: ["create-post.page.scss"],
 })
 export class CreatePostPage extends AnimatedLoadingPage implements OnInit {
-  public post: IPost = new DefaultPost();
+  public post: Post = new DefaultPost();
 
   constructor(
     private postValidator: PostValidator,
@@ -34,7 +34,7 @@ export class CreatePostPage extends AnimatedLoadingPage implements OnInit {
     this.hideLoader();
   }
 
-  onSubmit(post: IPost) {
+  onSubmit(post: Post) {
     try {
       this.postValidator.validateCreatePost(post);
       this.showLoader();
@@ -54,7 +54,7 @@ export class CreatePostPage extends AnimatedLoadingPage implements OnInit {
     this.alertService.error("Error while creating your post :(");
   }
 
-  private handleCreatePostSuccessEvent(post: IPostSummary) {
+  private handleCreatePostSuccessEvent(post: PostSummary) {
     this.postsState.addPost(post);
     this.alertService.info("Post added with success", {
       keepAfterRouteChange: true,

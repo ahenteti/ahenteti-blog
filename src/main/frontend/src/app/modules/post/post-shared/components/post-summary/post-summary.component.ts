@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { IPostSummary } from "../../models/post.internal.models";
+import { PostSummary } from "../../models/post.internal.models";
 
 @Component({
   selector: "app-post-summary",
@@ -8,5 +8,5 @@ import { IPostSummary } from "../../models/post.internal.models";
 })
 export class PostSummaryComponent {
   @Input()
-  post: IPostSummary;
+  post: PostSummary;
 }

@@ -1,4 +1,4 @@
-import { IUserApiResponse } from "../../../user/models/user.external.models";
+import { UserApiResponse } from "../../../user/models/user.external.models";
 
 export class PageApiResponse<T> {
   page: number;
@@ -8,17 +8,17 @@ export class PageApiResponse<T> {
   items: Array<T>;
 }
 
-export interface IPostSummaryApiResponse {
+export class PostSummaryApiResponse {
   id: number;
   title: string;
   category: string;
   tags: string[];
   createdAtIso8601: string;
   lastUpdatedAtIso8601?: string;
-  author: IUserApiResponse;
+  author: UserApiResponse;
 }
 
-export interface IPostApiResponse extends IPostSummaryApiResponse {
+export class PostApiResponse extends PostSummaryApiResponse {
   bodyMarkdownBase64: string;
 }
 
@@ -27,7 +27,7 @@ export class GetUserPostsApiRequest {
 }
 
 export class GetUserPostsApiResponse extends PageApiResponse<
-  IPostSummaryApiResponse
+  PostSummaryApiResponse
 > {}
 
 export class CreatePostApiRequest {

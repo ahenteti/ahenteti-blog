@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
-import { ALL_TAGS } from "../../../shared/utils/constants.utils";
+import { ALL_TAGS } from "../../../shared/services/constants.utils";
 import {
   PostsByCategory,
-  IPostSummary,
+  PostSummary,
   PostsSummaries,
 } from "../models/post.internal.models";
-import { SetUtils } from "src/app/modules/shared/utils/set.utils";
+import { SetUtils } from "src/app/modules/shared/services/set.utils";
 
 @Injectable({
   providedIn: "root",
@@ -40,9 +40,9 @@ export class PostsState {
     this.filteredPosts = this.calculateFilteredPosts();
   }
 
-  public addPost(post: IPostSummary): void {}
+  public addPost(post: PostSummary): void {}
 
-  public updatePost(post: IPostSummary): void {}
+  public updatePost(post: PostSummary): void {}
 
   public setPosts(posts: PostsSummaries): void {
     const allPostsByCategory = new PostsByCategory();
@@ -74,7 +74,7 @@ export class PostsState {
     return res;
   }
 
-  private keepPost(post: IPostSummary): boolean {
+  private keepPost(post: PostSummary): boolean {
     if (this.selectedTag == ALL_TAGS) {
       if (!this.postsSearchText) {
         return true;

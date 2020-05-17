@@ -8,7 +8,7 @@ export class Page<T> {
   items: Array<T>;
 }
 
-export interface IPostSummary {
+export class PostSummary {
   id: number;
   title: string;
   category: string;
@@ -19,11 +19,11 @@ export interface IPostSummary {
   author: User;
 }
 
-export interface IPost extends IPostSummary {
+export class Post extends PostSummary {
   bodyMarkdown: string;
 }
 
-export class DefaultPost implements IPost {
+export class DefaultPost implements Post {
   id = undefined;
   title = "";
   category = "";
@@ -35,7 +35,7 @@ export class DefaultPost implements IPost {
   bodyMarkdown = "";
 }
 
-export class OfflinePost implements IPost {
+export class OfflinePost implements Post {
   id = undefined;
   title = "post title";
   category = "post category";
@@ -48,6 +48,6 @@ export class OfflinePost implements IPost {
     "lorem content: Do amet eu tempor dolor cillum ullamco mollit nulla consectetur anim ut eiusmod aliquip occaecat. Ut sint adipisicing irure ex. Laboris magna excepteur ipsum et proident excepteur ipsum amet. Aliqua cupidatat cupidatat velit velit adipisicing nostrud sit aliqua nisi enim aliqua laboris.";
 }
 
-export class PostsByCategory extends Map<string, IPostSummary[]> {}
-export class PostsSummaries extends Array<IPostSummary> {}
-export class PostsSummariesPage extends Page<IPostSummary> {}
+export class PostsByCategory extends Map<string, PostSummary[]> {}
+export class PostsSummaries extends Array<PostSummary> {}
+export class PostsSummariesPage extends Page<PostSummary> {}

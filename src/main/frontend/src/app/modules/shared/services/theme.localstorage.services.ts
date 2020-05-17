@@ -1,4 +1,4 @@
-import * as constants from "../utils/constants.utils";
+import * as constants from "./constants.utils";
 import { Injectable } from "@angular/core";
 
 @Injectable()

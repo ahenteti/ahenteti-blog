@@ -5,7 +5,7 @@ import { PostDashboardPage } from "./post-dashboard-page/post-dashboard.page";
 import { SharedModule } from "../../shared/shared.module";
 import { Routes, RouterModule } from "@angular/router";
 import { ManagePostsPage } from "./manage-posts-page/manage-posts.page";
-import { LoggedInGuard } from "../../user/guard/logged-in.guard";
+import { LoggedInGuard } from "../../user/services/logged-in.guard";
 import { PostSharedModule } from "../post-shared/post-shared.module";
 import { PostCommentModule } from "../post-comments/post-comment.module";
 import { CreatePostPage } from "./create-post-page/create-post.page";
