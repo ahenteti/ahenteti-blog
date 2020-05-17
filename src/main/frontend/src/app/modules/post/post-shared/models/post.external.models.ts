@@ -1,5 +1,13 @@
 import { IUserApiResponse } from "../../../user/models/user.external.models";
 
+export class PageApiResponse<T> {
+  page: number;
+  size: number;
+  totalItems: number;
+  lastPage: boolean;
+  items: Array<T>;
+}
+
 export interface IPostSummaryApiResponse {
   id: number;
   title: string;
@@ -15,9 +23,12 @@ export interface IPostApiResponse extends IPostSummaryApiResponse {
 }
 
 export class GetUserPostsApiRequest {
-  page: number;
-  size: number;
+  url: string;
 }
+
+export class GetUserPostsApiResponse extends PageApiResponse<
+  IPostSummaryApiResponse
+> {}
 
 export class CreatePostApiRequest {
   url: string;

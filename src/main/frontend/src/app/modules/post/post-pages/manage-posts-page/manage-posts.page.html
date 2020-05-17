@@ -9,7 +9,7 @@
     ></app-new-button>
   </div>
 </div>
-<table mat-table matSort [dataSource]="userPosts">
+<table mat-table matSort [dataSource]="userPostsDataSource">
   <ng-container matColumnDef="title">
     <th mat-header-cell mat-sort-header *matHeaderCellDef>Title</th>
     <td mat-cell *matCellDef="let element">{{element.title}}</td>
@@ -49,6 +49,12 @@
 </table>
 
 <div class="table-actions">
-  <app-previous-button></app-previous-button>
-  <app-next-button></app-next-button>
+  <app-previous-button
+    class="{{ previousButtonCssClasses$ | async }}"
+    (click)="handlePreviousButtonClickEvent()"
+  ></app-previous-button>
+  <app-next-button
+    class="{{ nextButtonCssClasses$ | async }}"
+    (click)="handleNextButtonClickEvent()"
+  ></app-next-button>
 </div>

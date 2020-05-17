@@ -4,6 +4,8 @@ import io.ahenteti.blog.model.core.user.IUser;
 import lombok.Data;
 
 @Data
-public class GetUserPostsApiRequest extends PageApiRequest {
-    private IUser user;
+public class PageApiRequest {
+    private Integer page;
+    private Integer size;
+    private String sortBy;
 }

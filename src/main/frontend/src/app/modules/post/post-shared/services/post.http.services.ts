@@ -7,12 +7,15 @@ import {
   CreatePostApiRequest,
   UpdatePostApiRequest,
   DeletePostApiRequest,
+  PageApiResponse,
+  GetUserPostsApiResponse,
 } from "../models/post.external.models";
 import {
   PostsSummaries,
   IPost,
   OfflinePost,
   IPostSummary,
+  PostsSummariesPage,
 } from "../models/post.internal.models";
 import { PostConverter } from "./post.converter";
 import { HttpClient } from "@angular/common/http";
@@ -34,26 +37,17 @@ export class PostHttpServices extends CommonHttpServices {
     // prettier-ignore
     return this.http
       .get<IPostSummaryApiResponse[]>("/api/posts-summaries")
-      .pipe(map((posts) => this.postConverter.fromPostSummaryApiResponseArray(posts)))
+      .pipe(map((posts) => this.postConverter.toPostsSummaries(posts)))
       .pipe(this.catchGetAllPostsSummariesError())
       .toPromise();
     // prettier-ignore
   }
 
-  getUserPosts(page: number): Promise<PostsSummaries>;
-  getUserPosts(request: GetUserPostsApiRequest): Promise<PostsSummaries>;
-  getUserPosts(arg: any): Promise<PostsSummaries> {
-    let request: GetUserPostsApiRequest;
-    if (arg instanceof GetUserPostsApiRequest) {
-      request = <GetUserPostsApiRequest>arg;
-    } else {
-      request = this.postConverter.toGetUserPostsApiRequest(arg);
-    }
-    const url = this.postConverter.toGetUserPostsApiRequestUrl(request);
+  getUserPosts(request: GetUserPostsApiRequest): Promise<PostsSummariesPage> {
     // prettier-ignore
     return this.http
-      .get<IPostSummaryApiResponse[]>(url)
-      .pipe(map((posts) => this.postConverter.fromPostSummaryApiResponseArray(posts)))
+      .get<GetUserPostsApiResponse>(request.url)
+      .pipe(map((posts) => this.postConverter.toPostsSummariesPage(posts)))
       .toPromise();
     // prettier-ignore
   }
@@ -61,7 +55,7 @@ export class PostHttpServices extends CommonHttpServices {
   getPostById(postId: number): Promise<IPost> {
     return this.http
       .get<IPostApiResponse>(`/api/posts/${postId}`)
-      .pipe(map((post) => this.postConverter.fromPostApiResponse(post)))
+      .pipe(map((post) => this.postConverter.toPost(post)))
       .pipe(this.catchGetPostByIdError())
       .toPromise();
   }
@@ -70,7 +64,7 @@ export class PostHttpServices extends CommonHttpServices {
     // prettier-ignore
     return this.http
       .post<IPostSummaryApiResponse>(request.url, request.body)
-      .pipe(map((post) => this.postConverter.fromPostSummaryApiResponse(post)))
+      .pipe(map((post) => this.postConverter.toPostSummary(post)))
       .toPromise();
     // prettier-ignore
   }
@@ -79,7 +73,7 @@ export class PostHttpServices extends CommonHttpServices {
     // prettier-ignore
     return this.http
       .put<IPostSummaryApiResponse>(request.url, request.body)
-      .pipe(map((post) => this.postConverter.fromPostSummaryApiResponse(post)))
+      .pipe(map((post) => this.postConverter.toPostSummary(post)))
       .toPromise();
     // prettier-ignore
   }

@@ -9,3 +9,6 @@
     color: var(--primary-color);
   }
 }
+:host(.disabled) .iconify {
+  color: var(--disabled-color) !important;
+}

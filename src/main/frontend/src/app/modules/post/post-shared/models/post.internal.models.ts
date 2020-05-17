@@ -1,5 +1,13 @@
 import { User } from "../../../user/models/user.internal.models";
 
+export class Page<T> {
+  page: number;
+  firstPage: boolean;
+  lastPage: boolean;
+  totalItems: number;
+  items: Array<T>;
+}
+
 export interface IPostSummary {
   id: number;
   title: string;
@@ -42,3 +50,4 @@ export class OfflinePost implements IPost {
 
 export class PostsByCategory extends Map<string, IPostSummary[]> {}
 export class PostsSummaries extends Array<IPostSummary> {}
+export class PostsSummariesPage extends Page<IPostSummary> {}

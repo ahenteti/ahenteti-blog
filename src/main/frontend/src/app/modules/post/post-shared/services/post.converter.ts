@@ -5,12 +5,14 @@ import {
   CreatePostApiRequest,
   UpdatePostApiRequest,
   DeletePostApiRequest,
+  GetUserPostsApiResponse,
 } from "../models/post.external.models";
 import { Injectable } from "@angular/core";
 import {
   IPostSummary,
   IPost,
   PostsSummaries,
+  PostsSummariesPage,
 } from "../models/post.internal.models";
 import { UserConverter } from "../../../user/converter/user.converter";
 
@@ -18,7 +20,7 @@ import { UserConverter } from "../../../user/converter/user.converter";
 export class PostConverter {
   constructor(private userConverter: UserConverter) {}
 
-  fromPostSummaryApiResponse(post: IPostSummaryApiResponse): IPostSummary {
+  toPostSummary(post: IPostSummaryApiResponse): IPostSummary {
     return {
       id: post.id,
       title: post.title,
@@ -35,7 +37,7 @@ export class PostConverter {
     };
   }
 
-  fromPostApiResponse(post: IPostApiResponse): IPost {
+  toPost(post: IPostApiResponse): IPost {
     return {
       id: post.id,
       title: post.title,
@@ -53,23 +55,28 @@ export class PostConverter {
     };
   }
 
-  fromPostSummaryApiResponseArray(
-    posts: IPostSummaryApiResponse[]
-  ): PostsSummaries {
+  toPostsSummaries(posts: IPostSummaryApiResponse[]): PostsSummaries {
     let data = new PostsSummaries();
-    posts.forEach((post) => data.push(this.fromPostSummaryApiResponse(post)));
+    posts.forEach((post) => data.push(this.toPostSummary(post)));
     return data;
   }
 
-  toGetUserPostsApiRequest(page: number, size = 5): GetUserPostsApiRequest {
-    return {
-      page,
-      size,
-    };
+  toPostsSummariesPage(posts: GetUserPostsApiResponse): PostsSummariesPage {
+    const res = new PostsSummariesPage();
+    res.totalItems = posts.totalItems;
+    res.firstPage = posts.page == 0;
+    res.lastPage = posts.lastPage;
+    res.page = posts.page;
+    const items = new Array<IPostSummary>();
+    posts.items.forEach((post) => items.push(this.toPostSummary(post)));
+    res.items = items;
+    return res;
   }
 
-  toGetUserPostsApiRequestUrl(request: GetUserPostsApiRequest) {
-    return `/secure-api/user/posts-summaries?page=${request.page}&size=${request.size}`;
+  toGetUserPostsApiRequest(page = 0, size = 5): GetUserPostsApiRequest {
+    return {
+      url: `/secure-api/user/posts-summaries?page=${page}&size=${size}`,
+    };
   }
 
   toCreatePostApiRequest(post: IPost): CreatePostApiRequest {

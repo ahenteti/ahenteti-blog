@@ -1,8 +1,11 @@
 package io.ahenteti.blog.service.validator;
 
 import io.ahenteti.blog.exception.AuthenticationException;
+import io.ahenteti.blog.exception.InvalidRequestAttributeException;
 import io.ahenteti.blog.exception.MissingMandatoryRequestAttributeException;
+import io.ahenteti.blog.model.api.post.EGetUserPostsSortBy;
 import io.ahenteti.blog.model.api.post.GetUserPostsApiRequest;
+import io.ahenteti.blog.model.api.post.ValidGetUserPostsApiRequest;
 import io.ahenteti.blog.model.core.user.IUser;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -23,10 +26,29 @@ public class UserValidator {
         }
     }
 
-    public void validateGetUserPostsApiRequest(GetUserPostsApiRequest request) {
+    public ValidGetUserPostsApiRequest validateGetUserPostsApiRequest(GetUserPostsApiRequest request) {
         validateUser(request.getUser());
         validateUserPostsPage((request));
         validateUserPostsSize(request);
+        validateUserPostsSortBy(request);
+        return new ValidGetUserPostsApiRequest(request);
+    }
+
+    private void validateUserPostsSortBy(GetUserPostsApiRequest request) {
+        if (request.getSortBy() == null) {
+            throw new MissingMandatoryRequestAttributeException("sortBy query param is mandatory");
+        }
+        if (EGetUserPostsSortBy.getByValue(request.getSortBy()) == null) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("Unknown sortBy query param value: ");
+            sb.append(request.getSortBy());
+            sb.append(". Accepted values: ");
+            for (EGetUserPostsSortBy sortBy : EGetUserPostsSortBy.values()) {
+                sb.append(sortBy.getValue());
+                sb.append(" ");
+            }
+            throw new InvalidRequestAttributeException(sb.toString());
+        }
     }
 
     private void validateUserPostsSize(GetUserPostsApiRequest request) {
