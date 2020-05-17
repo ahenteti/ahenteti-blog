@@ -40,7 +40,6 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { EditButtonComponent } from "./components/edit-button/edit-button.component";
 import { ConsultButtonComponent } from "./components/consult-button/consult-button.component";
 import { SimplemdeModule } from "ng2-simplemde";
-import { ErrorModule } from "../error/error.module";
 import { EditButtonLinkComponent } from "./components/edit-button/edit-button-link.component";
 import { ConsultButtonLinkComponent } from "./components/consult-button/consult-button-link.component";
 
@@ -63,7 +62,6 @@ import { ConsultButtonLinkComponent } from "./components/consult-button/consult-
     MatChipsModule,
     MatIconModule,
     MatTabsModule,
-    ErrorModule,
   ],
   declarations: [
     SectionTitleComponent,
@@ -110,7 +108,6 @@ import { ConsultButtonLinkComponent } from "./components/consult-button/consult-
     MatChipsModule,
     MatIconModule,
     MatTabsModule,
-    ErrorModule,
 
     SectionTitleComponent,
     LogoLinkComponent,

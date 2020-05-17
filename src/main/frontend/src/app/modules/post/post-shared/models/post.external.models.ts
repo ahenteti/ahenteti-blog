@@ -30,3 +30,16 @@ export class CreatePostApiRequestBody {
   tags: Array<string>;
   bodyMarkdownBase64: string;
 }
+
+export class UpdatePostApiRequest {
+  url: string;
+  body: UpdatePostApiRequestBody;
+}
+
+export class UpdatePostApiRequestBody {
+  title: string;
+  category: string;
+  tags: Array<string>;
+  bodyMarkdownBase64: string;
+  createdAtIso8601: string;
+}

@@ -11,6 +11,7 @@ import { PostsWelcomeMessageComponent } from "./components/posts-welcome-message
 import { PostsByCategoryComponent } from "./components/posts-by-category/posts-by-category.component";
 import { AlertModule } from "../../alert/alert.module";
 import { PostCommentModule } from "../post-comments/post-comment.module";
+import { CreateUpdatePostFormComponent } from "./components/create-update-post-form/create-update-post-form.component";
 
 @NgModule({
   imports: [CommonModule, SharedModule, AlertModule, PostCommentModule],
@@ -23,6 +24,7 @@ import { PostCommentModule } from "../post-comments/post-comment.module";
     PostsWelcomeMessageComponent,
     PostLayoutComponent,
     PostTitleComponent,
+    CreateUpdatePostFormComponent,
   ],
   exports: [
     PostLayoutComponent,
@@ -30,6 +32,7 @@ import { PostCommentModule } from "../post-comments/post-comment.module";
     PostsWelcomeMessageComponent,
     SearchPostsComponent,
     PostsByCategoryComponent,
+    CreateUpdatePostFormComponent,
   ],
 })
 export class PostSharedModule {}

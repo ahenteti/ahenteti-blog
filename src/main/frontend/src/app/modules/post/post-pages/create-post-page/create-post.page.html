@@ -23,46 +23,10 @@
     <app-markdown [text]="post.bodyMarkdown"></app-markdown>
   </ng-container>
 
-  <form (ngSubmit)="onSubmit()" *ngIf="!previewMode">
-    <mat-form-field appearance="fill">
-      <mat-label>Title</mat-label>
-      <input name="title" matInput [(ngModel)]="post.title" />
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-      <mat-label>Category</mat-label>
-      <input name="category" matInput [(ngModel)]="post.category" />
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-chip-list #tagsRef>
-        <mat-chip
-          *ngFor="let tag of post.tags"
-          removable="true"
-          (removed)="removeTag(tag)"
-        >
-          {{tag}}
-          <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
-        </mat-chip>
-        <input
-          placeholder="Tags"
-          [matChipInputFor]="tagsRef"
-          [matChipInputAddOnBlur]="true"
-          [matChipInputSeparatorKeyCodes]="separators"
-          (matChipInputTokenEnd)="addTag($event)"
-        />
-      </mat-chip-list>
-    </mat-form-field>
-
-    <simplemde
-      name="body"
-      [(ngModel)]="post.bodyMarkdown"
-      [options]="simpleMdeOptions"
-    ></simplemde>
-
-    <div class="page-footer-actions">
-      <button type="reset">Reset</button>
-      <button type="submit">Submit</button>
-    </div>
-  </form>
+  <ng-container *ngIf="!previewMode">
+    <app-create-update-post-form
+      [post]="post"
+      (formSubmit)="onSubmit($event)"
+    ></app-create-update-post-form>
+  </ng-container>
 </app-post-layout>

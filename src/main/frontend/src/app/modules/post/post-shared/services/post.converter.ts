@@ -3,6 +3,7 @@ import {
   IPostApiResponse,
   GetUserPostsApiRequest,
   CreatePostApiRequest,
+  UpdatePostApiRequest,
 } from "../models/post.external.models";
 import { Injectable } from "@angular/core";
 import {
@@ -78,6 +79,19 @@ export class PostConverter {
         category: post.category,
         tags: post.tags,
         bodyMarkdownBase64: btoa(post.bodyMarkdown),
+      },
+    };
+  }
+
+  toUpdatePostApiRequest(post: IPost): UpdatePostApiRequest {
+    return {
+      url: `/secure-api/posts/${post.id}`,
+      body: {
+        title: post.title,
+        category: post.category,
+        tags: post.tags,
+        bodyMarkdownBase64: btoa(post.bodyMarkdown),
+        createdAtIso8601: post.createdAt.toISOString(),
       },
     };
   }

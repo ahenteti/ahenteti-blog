@@ -42,6 +42,8 @@ export class PostsState {
 
   public addPost(post: IPostSummary): void {}
 
+  public updatePost(post: IPostSummary): void {}
+
   public setPosts(posts: PostsSummaries): void {
     const allPostsByCategory = new PostsByCategory();
     const tags = new Set<string>();

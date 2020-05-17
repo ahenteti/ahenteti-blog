@@ -16,7 +16,7 @@ public class ToUpdatePostApiRequestConverter {
         res.setTags(requestBody.getTags());
         res.setBodyMarkdownBase64(requestBody.getBodyMarkdownBase64());
         res.setAuthor(user);
-        res.setCreatedAt(requestBody.getCreatedAt());
+        res.setCreatedAtIso8601(requestBody.getCreatedAtIso8601());
         return res;
     }
 }

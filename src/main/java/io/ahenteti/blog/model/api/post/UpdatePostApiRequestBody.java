@@ -12,5 +12,5 @@ public class UpdatePostApiRequestBody {
     protected String category;
     protected List<String> tags = new ArrayList<>();
     protected String bodyMarkdownBase64;
-    protected Instant createdAt;
+    protected Instant createdAtIso8601;
 }

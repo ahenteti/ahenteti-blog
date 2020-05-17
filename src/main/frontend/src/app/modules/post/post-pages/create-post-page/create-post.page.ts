@@ -1,11 +1,9 @@
-import { COMMA, ENTER } from "@angular/cdk/keycodes";
 import { Component, OnInit } from "@angular/core";
-import { MatChipInputEvent } from "@angular/material/chips";
 import {
   IPost,
   DefaultPost,
+  IPostSummary,
 } from "../../post-shared/models/post.internal.models";
-import { SIMPLEMDE_CONFIG } from "src/app/modules/shared/utils/constants.utils";
 import { PostValidator } from "../../post-shared/services/post.validator";
 import { PostConverter } from "../../post-shared/services/post.converter";
 import { PostHttpServices } from "../../post-shared/services/post.http.services";
@@ -19,10 +17,8 @@ import { Router } from "@angular/router";
   styleUrls: ["create-post.page.scss"],
 })
 export class CreatePostPage extends AnimatedLoadingPage implements OnInit {
-  readonly separators: number[] = [ENTER, COMMA];
   public previewMode = false;
   public post: IPost = new DefaultPost();
-  public simpleMdeOptions = SIMPLEMDE_CONFIG;
 
   constructor(
     private postValidator: PostValidator,
@@ -39,46 +35,35 @@ export class CreatePostPage extends AnimatedLoadingPage implements OnInit {
     this.hideLoader();
   }
 
-  addTag(event: MatChipInputEvent): void {
-    const value = event.value;
-    if ((value || "").trim()) {
-      this.post.tags.push(value.trim());
-    }
-
-    const input = event.input;
-    if (input) {
-      input.value = "";
-    }
-  }
-
-  removeTag(tag: string): void {
-    const index = this.post.tags.indexOf(tag);
-    if (index >= 0) {
-      this.post.tags.splice(index, 1);
-    }
-  }
-
   togglePreviewMode() {
     this.previewMode = !this.previewMode;
   }
 
-  onSubmit() {
-    this.postValidator.validate(this.post);
-    this.showLoader();
-    const request = this.postConverter.toCreatePostApiRequest(this.post);
-    this.postHttpServices
-      .createPost(request)
-      .then((post) => {
-        this.postsState.addPost(post);
-        this.notifyUser();
-        this.router.navigate(["/"]);
-      })
-      .finally(() => this.hideLoader());
+  onSubmit(post: IPost) {
+    try {
+      this.postValidator.validateCreatePost(post);
+      this.showLoader();
+      const request = this.postConverter.toCreatePostApiRequest(post);
+      this.postHttpServices
+        .createPost(request)
+        .then((post) => this.handleCreatePostSuccessEvent(post))
+        .catch((error) => this.handleCreatePostErrorEvent(error))
+        .finally(() => this.hideLoader());
+    } catch (error) {
+      this.alertService.error(error.message);
+    }
   }
 
-  private notifyUser() {
+  private handleCreatePostErrorEvent(error) {
+    console.error(error);
+    this.alertService.error("Error while creating your post :(");
+  }
+
+  private handleCreatePostSuccessEvent(post: IPostSummary) {
+    this.postsState.addPost(post);
     this.alertService.info("Post added with success", {
       keepAfterRouteChange: true,
     });
+    this.router.navigate(["/"]);
   }
 }

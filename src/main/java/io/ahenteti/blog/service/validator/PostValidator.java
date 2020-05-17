@@ -48,7 +48,7 @@ public class PostValidator {
         validateCategory(request.getCategory());
         validateTags(request.getTags());
         validateBody(request.getBodyMarkdownBase64());
-        validateCreatedAt(request.getCreatedAt());
+        validateCreatedAt(request.getCreatedAtIso8601());
         return new ValidUpdatePostApiRequest(request, postEntity);
     }
 

@@ -14,7 +14,7 @@ public class ValidUpdatePostApiRequest extends UpdatePostApiRequest {
         this.tags = request.getTags();
         this.bodyMarkdownBase64 = request.getBodyMarkdownBase64();
         this.author = request.getAuthor();
-        this.createdAt = request.getCreatedAt();
+        this.createdAtIso8601 = request.getCreatedAtIso8601();
         this.postEntity = postEntity;
     }
 }

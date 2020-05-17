@@ -48,7 +48,7 @@ public class ToPostConverter {
         res.setTags(request.getTags());
         res.setBody(request.getBodyMarkdownBase64());
         res.setAuthor(request.getAuthor());
-        res.setCreatedAt(request.getCreatedAt());
+        res.setCreatedAt(request.getCreatedAtIso8601());
         res.setLastUpdatedAt(Optional.of(Instant.now()));
         res.setEntity(request.getPostEntity());
         return res;

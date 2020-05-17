@@ -9,13 +9,14 @@ import { LoggedInGuard } from "../../user/guard/logged-in.guard";
 import { PostSharedModule } from "../post-shared/post-shared.module";
 import { PostCommentModule } from "../post-comments/post-comment.module";
 import { CreatePostPage } from "./create-post-page/create-post.page";
+import { UpdatePostPage } from "./update-post-page/update-post.page";
 
 const routes: Routes = [
   { path: "", component: PostDashboardPage },
   { path: "posts/:id/consult", component: ConsultPostPage },
   {
     path: "posts/:id/edit",
-    component: ConsultPostPage,
+    component: UpdatePostPage,
     canActivate: [LoggedInGuard],
   },
   {
@@ -44,6 +45,7 @@ const routes: Routes = [
     ConsultPostPage,
     ManagePostsPage,
     CreatePostPage,
+    UpdatePostPage,
   ],
 })
 export class PostPageModule {}

@@ -5,6 +5,7 @@ import {
   IPostSummaryApiResponse,
   GetUserPostsApiRequest,
   CreatePostApiRequest,
+  UpdatePostApiRequest,
 } from "../models/post.external.models";
 import {
   PostsSummaries,
@@ -70,15 +71,17 @@ export class PostHttpServices extends CommonHttpServices {
     return this.http
       .post<IPostSummaryApiResponse>(request.url, request.body)
       .pipe(map((post) => this.postConverter.fromPostSummaryApiResponse(post)))
-      .pipe(this.catchCreatePostError())
       .toPromise();
     // prettier-ignore
   }
 
-  private catchCreatePostError(): OperatorFunction<IPost, null> {
-    return catchError(
-      this.handleError(`Error while creating your post :(`, null)
-    );
+  updatePost(request: UpdatePostApiRequest): Promise<IPostSummary> {
+    // prettier-ignore
+    return this.http
+      .put<IPostSummaryApiResponse>(request.url, request.body)
+      .pipe(map((post) => this.postConverter.fromPostSummaryApiResponse(post)))
+      .toPromise();
+    // prettier-ignore
   }
 
   private catchGetPostByIdError(): OperatorFunction<IPost, IPost> {
