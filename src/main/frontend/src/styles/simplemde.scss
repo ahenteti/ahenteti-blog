@@ -35,6 +35,16 @@ simplemde {
     line-height: 1.6;
   }
 
+  .CodeMirror-selected {
+    background-color: var(
+      --simplemde-body-background-color-on-selection
+    ) !important;
+  }
+
+  .CodeMirror-selectedtext {
+    color: var(--simplemde-body-color-on-selection) !important;
+  }
+
   .CodeMirror-cursor {
     border: 1px solid var(--primary-color) !important;
   }

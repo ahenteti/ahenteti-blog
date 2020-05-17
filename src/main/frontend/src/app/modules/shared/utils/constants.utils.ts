@@ -22,6 +22,7 @@ export const PAGE_CONTENT_READY_EVENT = "page-content-ready-event";
 export const ALL_TAGS = "all";
 export const URL_BEFORE_LOGIN_COOKIE_NAME = "url_before_login";
 export const SIMPLEMDE_CONFIG = {
+  spellChecker: false,
   toolbar: [
     "bold",
     "italic",
@@ -33,7 +34,40 @@ export const SIMPLEMDE_CONFIG = {
     "|",
     "link",
     "code",
+    {
+      name: "multiple-file-code",
+      action: function customFunction(editor) {
+        console.log(editor);
+      },
+      className: "fa fa-columns",
+      title: "multiple file code",
+    },
     "table",
+    "|",
+    {
+      name: "info",
+      action: function customFunction(editor) {
+        console.log(editor);
+      },
+      className: "fa fa-info",
+      title: "Info message",
+    },
+    {
+      name: "warn",
+      action: function customFunction(editor) {
+        console.log(editor);
+      },
+      className: "fa fa-exclamation",
+      title: "Warn message",
+    },
+    {
+      name: "error",
+      action: function customFunction(editor) {
+        console.log(editor);
+      },
+      className: "fa fa-exclamation-triangle",
+      title: "Error message",
+    },
     "guide",
   ],
 };
