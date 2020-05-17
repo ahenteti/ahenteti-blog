@@ -4,6 +4,7 @@ import {
   GetUserPostsApiRequest,
   CreatePostApiRequest,
   UpdatePostApiRequest,
+  DeletePostApiRequest,
 } from "../models/post.external.models";
 import { Injectable } from "@angular/core";
 import {
@@ -93,6 +94,12 @@ export class PostConverter {
         bodyMarkdownBase64: btoa(post.bodyMarkdown),
         createdAtIso8601: post.createdAt.toISOString(),
       },
+    };
+  }
+
+  toDeletePostApiRequest(postId: number): DeletePostApiRequest {
+    return {
+      url: `/secure-api/posts/${postId}`,
     };
   }
 

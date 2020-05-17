@@ -43,3 +43,7 @@ export class UpdatePostApiRequestBody {
   bodyMarkdownBase64: string;
   createdAtIso8601: string;
 }
+
+export class DeletePostApiRequest {
+  url: string;
+}

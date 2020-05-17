@@ -6,6 +6,7 @@ import {
   GetUserPostsApiRequest,
   CreatePostApiRequest,
   UpdatePostApiRequest,
+  DeletePostApiRequest,
 } from "../models/post.external.models";
 import {
   PostsSummaries,
@@ -53,7 +54,6 @@ export class PostHttpServices extends CommonHttpServices {
     return this.http
       .get<IPostSummaryApiResponse[]>(url)
       .pipe(map((posts) => this.postConverter.fromPostSummaryApiResponseArray(posts)))
-      .pipe(this.catchGetUserPostsError())
       .toPromise();
     // prettier-ignore
   }
@@ -84,6 +84,14 @@ export class PostHttpServices extends CommonHttpServices {
     // prettier-ignore
   }
 
+  deletePost(request: DeletePostApiRequest): Promise<void> {
+    // prettier-ignore
+    return this.http
+      .delete<void>(request.url)
+      .toPromise();
+    // prettier-ignore
+  }
+
   private catchGetPostByIdError(): OperatorFunction<IPost, IPost> {
     return catchError(
       this.handleError(
@@ -99,15 +107,6 @@ export class PostHttpServices extends CommonHttpServices {
   > {
     return catchError(
       this.handleError("Error while fetching post summaries :(", [])
-    );
-  }
-
-  private catchGetUserPostsError(): OperatorFunction<
-    PostsSummaries,
-    PostsSummaries
-  > {
-    return catchError(
-      this.handleError("Error while fetching user posts :(", [])
     );
   }
 }
