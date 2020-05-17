@@ -42,6 +42,7 @@ import { ConsultButtonComponent } from "./components/consult-button/consult-butt
 import { SimplemdeModule } from "ng2-simplemde";
 import { EditButtonLinkComponent } from "./components/edit-button/edit-button-link.component";
 import { ConsultButtonLinkComponent } from "./components/consult-button/consult-button-link.component";
+import { DeleteButtonComponent } from "./components/delete-button/delete-button.component";
 
 @NgModule({
   entryComponents: [TooltipComponent, QuoteComponent],
@@ -91,6 +92,7 @@ import { ConsultButtonLinkComponent } from "./components/consult-button/consult-
     ConsultButtonComponent,
     EditButtonLinkComponent,
     ConsultButtonLinkComponent,
+    DeleteButtonComponent,
   ],
   exports: [
     RouterModule,
@@ -133,6 +135,7 @@ import { ConsultButtonLinkComponent } from "./components/consult-button/consult-
     ConsultButtonComponent,
     EditButtonLinkComponent,
     ConsultButtonLinkComponent,
+    DeleteButtonComponent,
   ],
 })
 export class SharedModule {}

@@ -21,10 +21,10 @@ app-section-title {
   position: relative;
   box-shadow: var(--box-shadow);
   & .post-actions {
-    --edit-button-size: 3rem;
+    --button-size: 3.5rem;
     display: none;
     position: absolute;
-    top: 0;
+    top: 0.8rem;
     right: 2rem;
 
     & > * {
