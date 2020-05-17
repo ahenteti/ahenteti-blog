@@ -65,6 +65,6 @@ export class UpdatePostPage extends AnimatedLoadingPage implements OnInit {
     this.alertService.info("Post updated with success", {
       keepAfterRouteChange: true,
     });
-    this.router.navigate(["/"]);
+    this.router.navigate(["/posts"]);
   }
 }
