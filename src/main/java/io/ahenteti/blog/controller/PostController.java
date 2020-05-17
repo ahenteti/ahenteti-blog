@@ -2,12 +2,14 @@ package io.ahenteti.blog.controller;
 
 import io.ahenteti.blog.model.api.post.CreatePostApiRequest;
 import io.ahenteti.blog.model.api.post.CreatePostApiRequestBody;
+import io.ahenteti.blog.model.api.post.DeletePostApiRequest;
 import io.ahenteti.blog.model.api.post.PostApiResponse;
 import io.ahenteti.blog.model.api.post.PostSummaryApiResponse;
 import io.ahenteti.blog.model.api.post.PostsSummariesApiResponse;
 import io.ahenteti.blog.model.api.post.UpdatePostApiRequest;
 import io.ahenteti.blog.model.api.post.UpdatePostApiRequestBody;
 import io.ahenteti.blog.model.api.post.ValidCreatePostApiRequest;
+import io.ahenteti.blog.model.api.post.ValidDeletePostApiRequest;
 import io.ahenteti.blog.model.api.post.ValidUpdatePostApiRequest;
 import io.ahenteti.blog.model.core.post.Post;
 import io.ahenteti.blog.model.core.post.PostsSummaries;
@@ -21,6 +23,7 @@ import io.ahenteti.blog.service.validator.PostValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -77,6 +80,14 @@ public class PostController {
         ReadyToUpdatePost post = postConverter.toPost(validRequest);
         PostEntity entity = postDao.updatePost(post);
         return postConverter.toPostSummaryApiResponse(entity);
+    }
+
+    @Transactional
+    @DeleteMapping("/secure-api/posts/{id}")
+    public void deletePost(@ModelAttribute IUser user, @PathVariable Long id) {
+        DeletePostApiRequest request = postConverter.toDeletePostApiRequest(user, id);
+        ValidDeletePostApiRequest validRequest = postValidator.validateDeletePostApiRequest(request);
+        postDao.deletePost(validRequest);
     }
 
 }

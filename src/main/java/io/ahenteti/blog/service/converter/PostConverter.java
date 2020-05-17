@@ -2,6 +2,7 @@ package io.ahenteti.blog.service.converter;
 
 import io.ahenteti.blog.model.api.post.CreatePostApiRequest;
 import io.ahenteti.blog.model.api.post.CreatePostApiRequestBody;
+import io.ahenteti.blog.model.api.post.DeletePostApiRequest;
 import io.ahenteti.blog.model.api.post.GetUserPostsApiRequest;
 import io.ahenteti.blog.model.api.post.PostApiResponse;
 import io.ahenteti.blog.model.api.post.PostSummaryApiResponse;
@@ -114,4 +115,10 @@ public class PostConverter {
         return toPostEntityConverter.toPostEntity(post);
     }
 
+    public DeletePostApiRequest toDeletePostApiRequest(IUser user, Long postId) {
+        DeletePostApiRequest res = new DeletePostApiRequest();
+        res.setUser(user);
+        res.setPostId(postId);
+        return res;
+    }
 }

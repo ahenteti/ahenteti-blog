@@ -3,8 +3,10 @@ package io.ahenteti.blog.service.validator;
 import io.ahenteti.blog.exception.InvalidRequestAttributeException;
 import io.ahenteti.blog.exception.MissingMandatoryRequestAttributeException;
 import io.ahenteti.blog.model.api.post.CreatePostApiRequest;
+import io.ahenteti.blog.model.api.post.DeletePostApiRequest;
 import io.ahenteti.blog.model.api.post.UpdatePostApiRequest;
 import io.ahenteti.blog.model.api.post.ValidCreatePostApiRequest;
+import io.ahenteti.blog.model.api.post.ValidDeletePostApiRequest;
 import io.ahenteti.blog.model.api.post.ValidUpdatePostApiRequest;
 import io.ahenteti.blog.model.entity.PostEntity;
 import io.ahenteti.blog.service.dao.repository.PostBodyRepository;
@@ -50,6 +52,12 @@ public class PostValidator {
         validateBody(request.getBodyMarkdownBase64());
         validateCreatedAt(request.getCreatedAtIso8601());
         return new ValidUpdatePostApiRequest(request, postEntity);
+    }
+
+    public ValidDeletePostApiRequest validateDeletePostApiRequest(DeletePostApiRequest request) {
+        userValidator.validateUser(request.getUser());
+        validateId(request.getPostId());
+        return new ValidDeletePostApiRequest(request);
     }
 
     private PostEntity validateId(Long id) {

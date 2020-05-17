@@ -1,6 +1,7 @@
 package io.ahenteti.blog.service.dao;
 
 import io.ahenteti.blog.model.api.post.GetUserPostsApiRequest;
+import io.ahenteti.blog.model.api.post.ValidDeletePostApiRequest;
 import io.ahenteti.blog.model.core.post.Post;
 import io.ahenteti.blog.model.core.post.PostsSummaries;
 import io.ahenteti.blog.model.core.post.ReadyToCreatePost;
@@ -52,4 +53,7 @@ public class PostDao {
         return postRepository.save(entity);
     }
 
+    public void deletePost(ValidDeletePostApiRequest request) {
+        postRepository.deleteById(request.getPostId());
+    }
 }
