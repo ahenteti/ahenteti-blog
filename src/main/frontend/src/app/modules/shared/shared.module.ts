@@ -44,6 +44,8 @@ import { EditButtonLinkComponent } from "./components/buttons/edit-button/edit-b
 import { ConsultButtonLinkComponent } from "./components/buttons/consult-button/consult-button-link.component";
 import { DeleteButtonComponent } from "./components/buttons/delete-button/delete-button.component";
 import { InputDisableAutoCompleteDirective } from "./directives/input-disable-autocomplete.directive";
+import { PreviousButtonComponent } from "./components/buttons/previous-button/previous-button.component";
+import { NextButtonComponent } from "./components/buttons/next-button/next-button.component";
 
 @NgModule({
   entryComponents: [TooltipComponent, QuoteComponent],
@@ -95,6 +97,8 @@ import { InputDisableAutoCompleteDirective } from "./directives/input-disable-au
     ConsultButtonLinkComponent,
     DeleteButtonComponent,
     InputDisableAutoCompleteDirective,
+    PreviousButtonComponent,
+    NextButtonComponent,
   ],
   exports: [
     RouterModule,
@@ -139,6 +143,8 @@ import { InputDisableAutoCompleteDirective } from "./directives/input-disable-au
     ConsultButtonLinkComponent,
     DeleteButtonComponent,
     InputDisableAutoCompleteDirective,
+    PreviousButtonComponent,
+    NextButtonComponent,
   ],
 })
 export class SharedModule {}

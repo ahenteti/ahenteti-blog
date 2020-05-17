@@ -44,3 +44,15 @@ app-section-title {
     display: none;
   }
 }
+
+.table-actions {
+  --button-size: 3rem;
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  & > * {
+    margin-left: 1rem;
+  }
+}
