@@ -1,8 +1,8 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { IPost } from "../../models/post.internal.models";
-import { SIMPLEMDE_CONFIG } from "src/app/modules/shared/utils/constants.utils";
 import { MatChipInputEvent } from "@angular/material/chips";
 import { COMMA, ENTER } from "@angular/cdk/keycodes";
+import { SIMPLEMDE_OPTIONS } from "src/app/modules/shared/utils/simplemde.utils";
 
 @Component({
   selector: "app-create-update-post-form",
@@ -10,7 +10,7 @@ import { COMMA, ENTER } from "@angular/cdk/keycodes";
   styleUrls: ["./create-update-post-form.component.scss"],
 })
 export class CreateUpdatePostFormComponent {
-  public simpleMdeOptions = SIMPLEMDE_CONFIG;
+  public simpleMdeOptions = SIMPLEMDE_OPTIONS;
   readonly separators: number[] = [ENTER, COMMA];
   @Input() pageTitle: string;
   @Input() post: IPost;
