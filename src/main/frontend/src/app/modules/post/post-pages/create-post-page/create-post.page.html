@@ -1,32 +1,6 @@
 <app-loader></app-loader>
-<app-post-layout>
-  <div class="page-header">
-    <app-page-title value="Create new post"></app-page-title>
-    <div class="page-header-actions">
-      <app-consult-button
-        (click)="togglePreviewMode()"
-        *ngIf="!previewMode"
-        data-tooltip="preview post"
-        class="tooltip-bottom"
-      ></app-consult-button>
-      <app-edit-button
-        (click)="togglePreviewMode()"
-        *ngIf="previewMode"
-        data-tooltip="continue post creation"
-        class="tooltip-bottom"
-      ></app-edit-button>
-    </div>
-  </div>
-
-  <ng-container *ngIf="previewMode">
-    <app-post-title [post]="post"></app-post-title>
-    <app-markdown [text]="post.bodyMarkdown"></app-markdown>
-  </ng-container>
-
-  <ng-container *ngIf="!previewMode">
-    <app-create-update-post-form
-      [post]="post"
-      (formSubmit)="onSubmit($event)"
-    ></app-create-update-post-form>
-  </ng-container>
-</app-post-layout>
+<app-create-update-post-form
+  pageTitle="Create new post"
+  [post]="post"
+  (formSubmit)="onSubmit($event)"
+></app-create-update-post-form>

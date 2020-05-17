@@ -17,7 +17,6 @@ import { Router } from "@angular/router";
   styleUrls: ["create-post.page.scss"],
 })
 export class CreatePostPage extends AnimatedLoadingPage implements OnInit {
-  public previewMode = false;
   public post: IPost = new DefaultPost();
 
   constructor(
@@ -33,10 +32,6 @@ export class CreatePostPage extends AnimatedLoadingPage implements OnInit {
 
   ngOnInit(): void {
     this.hideLoader();
-  }
-
-  togglePreviewMode() {
-    this.previewMode = !this.previewMode;
   }
 
   onSubmit(post: IPost) {

@@ -12,8 +12,14 @@ import { COMMA, ENTER } from "@angular/cdk/keycodes";
 export class CreateUpdatePostFormComponent {
   public simpleMdeOptions = SIMPLEMDE_CONFIG;
   readonly separators: number[] = [ENTER, COMMA];
+  @Input() pageTitle: string;
   @Input() post: IPost;
   @Output() public formSubmit = new EventEmitter<IPost>();
+  public previewMode = false;
+
+  togglePreviewMode() {
+    this.previewMode = !this.previewMode;
+  }
 
   onSubmit() {
     this.formSubmit.emit(this.post);
