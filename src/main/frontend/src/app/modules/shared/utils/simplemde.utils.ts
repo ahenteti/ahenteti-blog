@@ -11,20 +11,36 @@ export const SIMPLEMDE_OPTIONS = {
     "|",
     "link",
     "code",
-    {
-      name: "multiple-file-code",
-      action: function customFunction(editor) {
-        console.log(editor);
-      },
-      className: "fa fa-columns",
-      title: "multiple file code",
-    },
     "table",
     "|",
     {
       name: "info",
       action: function customFunction(editor) {
-        console.log(editor);
+        // code inspiration: https://github.com/sparksuite/simplemde-markdown-editor/blob/6abda7ab68cc20f4aca870eb243747951b90ab04/src/js/simplemde.js#L895
+        const cm = editor.codemirror;
+        const startPoint = cm.getCursor("start");
+        const endPoint = cm.getCursor("end");
+        for (var i = startPoint.line; i <= endPoint.line; i++) {
+          let text = cm.getLine(i);
+          if (/\[INFO\] /.test(text)) {
+            text = text.replace(/\[INFO\] /, "");
+          } else {
+            text = "[INFO] " + text;
+          }
+
+          cm.replaceRange(
+            text,
+            {
+              line: i,
+              ch: 0,
+            },
+            {
+              line: i,
+              ch: 99999999999999,
+            }
+          );
+        }
+        cm.focus();
       },
       className: "fa fa-info",
       title: "Info message",
