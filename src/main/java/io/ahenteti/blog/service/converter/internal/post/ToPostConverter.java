@@ -1,7 +1,7 @@
 package io.ahenteti.blog.service.converter.internal.post;
 
-import io.ahenteti.blog.model.api.post.ValidCreatePostApiRequest;
-import io.ahenteti.blog.model.api.post.ValidUpdatePostApiRequest;
+import io.ahenteti.blog.model.api.post.request.valid.ValidCreatePostApiRequest;
+import io.ahenteti.blog.model.api.post.request.valid.ValidUpdatePostApiRequest;
 import io.ahenteti.blog.model.core.post.Post;
 import io.ahenteti.blog.model.core.post.ReadyToCreatePost;
 import io.ahenteti.blog.model.core.post.ReadyToUpdatePost;

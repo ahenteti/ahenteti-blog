@@ -1,102 +1,121 @@
 import { Injectable } from "@angular/core";
 import { ALL_TAGS } from "../../../shared/services/constants.utils";
 import {
-  PostsByCategory,
-  PostSummary,
+  PostsGroups,
+  PostGroupByStrategies,
   PostsSummaries,
+  PostSummary,
 } from "../models/post.internal.models";
+import { BehaviorSubject } from "rxjs";
+import { PostConverter } from "../services/post.converter";
+import { PostHttpServices } from "../services/post.http.services";
+import { AlertService } from "src/app/modules/alert/alert.service";
+import { GetPostsGroupsApiRequest } from "../models/post.external.models";
 import { SetUtils } from "src/app/modules/shared/services/set.utils";
 
 @Injectable({
   providedIn: "root",
 })
 export class PostsState {
-  allTags = new Set<string>();
-  allPosts = new PostsByCategory();
-  filteredPosts = new PostsByCategory();
-  private _selectedTag: string;
-  private _postsSearchText: string;
+  private allTags = new BehaviorSubject<Set<string>>(new Set<string>(ALL_TAGS));
+  public allTags$ = this.allTags.asObservable();
 
-  constructor() {
-    this.selectedTag = ALL_TAGS;
-    this.postsSearchText = "";
+  private selectedTag = new BehaviorSubject<string>(ALL_TAGS);
+  public selectedTag$ = this.selectedTag.asObservable();
+
+  // prettier-ignore
+  private loadedPostsGroups = new BehaviorSubject<PostsGroups>(new PostsGroups());
+  public loadedPostsGroups$ = this.loadedPostsGroups.asObservable();
+
+  // prettier-ignore
+  private displayedPostsGroups = new BehaviorSubject<PostsGroups>(new PostsGroups());
+  public displayedPostsGroups$ = this.displayedPostsGroups.asObservable();
+
+  // prettier-ignore
+  private postGroupByStrategies = new BehaviorSubject<PostGroupByStrategies>(new PostGroupByStrategies());
+  public postGroupByStrategies$ = this.postGroupByStrategies.asObservable();
+
+  constructor(
+    private postConverter: PostConverter,
+    private postHttpServices: PostHttpServices,
+    private alertService: AlertService
+  ) {
+    this.init();
   }
 
-  get selectedTag(): string {
-    return this._selectedTag;
+  // prettier-ignore
+  init(): void {
+    const request = this.postConverter.toGetPostGroupByStrategiesApiRequest();
+    this.postHttpServices
+      .getPostGroupByStrategies(request)
+      .then((strategies) => this.handleGetPostGroupByStrategiesSuccessEvent(strategies))
+      .catch((error) => this.handleGetPostGroupByStrategiesErrorEvent(error));
   }
 
-  set selectedTag(selectedTag: string) {
-    this._selectedTag = selectedTag;
-    this.filteredPosts = this.calculateFilteredPosts();
+  addPost(post: PostSummary) {}
+
+  updatePost(post: PostSummary) {}
+
+  selectTag(tag: string) {
+    this.selectedTag.next(tag);
   }
 
-  get postsSearchText(): string {
-    return this._postsSearchText;
+  private handleGetPostGroupByStrategiesErrorEvent(error: any): any {
+    console.error(error);
+    this.alertService.error("Error while fetching posts :(");
   }
 
-  set postsSearchText(postsSearchText: string) {
-    this._postsSearchText = postsSearchText;
-    this.filteredPosts = this.calculateFilteredPosts();
+  // prettier-ignore
+  private handleGetPostGroupByStrategiesSuccessEvent(strategies: PostGroupByStrategies): any {
+    this.postGroupByStrategies.next(strategies);
+    const getPostsGroupsApiRequest = this.calculateGetPostsGroupsApiRequest();
+    this.postHttpServices
+      .getPostsGroups(getPostsGroupsApiRequest)
+      .then((postsGroups) => this.handleGetPostsGroupsSuccessEvent(postsGroups))
+      .catch((error) => this.handleGetPostsGroupsErrorEvent(error));
   }
 
-  public addPost(post: PostSummary): void {}
+  private handleGetPostsGroupsErrorEvent(error: any): any {
+    console.error(error);
+    this.alertService.error("Error while fetching posts :(");
+  }
 
-  public updatePost(post: PostSummary): void {}
+  // prettier-ignore
+  private handleGetPostsGroupsSuccessEvent(postsGroups: PostsGroups): any {
+    this.loadedPostsGroups.next([...this.loadedPostsGroups.getValue(), ...postsGroups]);
+    this.displayedPostsGroups.next(this.loadedPostsGroups.getValue());
+    this.recalculateAllTags();
+  }
 
-  public setPosts(posts: PostsSummaries): void {
-    const allPostsByCategory = new PostsByCategory();
+  // prettier-ignore
+  private recalculateAllTags() {
     const tags = new Set<string>();
-    posts.forEach((post) => {
-      post.tags.forEach((tag) => tags.add(tag));
-      if (!allPostsByCategory.has(post.category)) {
-        allPostsByCategory.set(post.category, []);
-      }
-      allPostsByCategory.get(post.category).push(post);
-    });
-    this.allPosts = allPostsByCategory;
-    this.filteredPosts = allPostsByCategory;
-    this.allTags = new Set([ALL_TAGS, ...SetUtils.sort(tags)]);
+    let loadedPosts = new PostsSummaries();
+    this.loadedPostsGroups.getValue().forEach(group => loadedPosts = loadedPosts.concat(group.posts));
+    loadedPosts.forEach(post => post.tags.forEach(tag => tags.add(tag)));
+    this.allTags.next(new Set([ALL_TAGS, ...SetUtils.sort(tags)]))
   }
 
-  private calculateFilteredPosts(): PostsByCategory {
-    const res = new PostsByCategory();
-    const postsToDisplay = [];
-    for (let posts of this.allPosts.values()) {
-      postsToDisplay.push(...posts.filter((post) => this.keepPost(post)));
-    }
-    postsToDisplay.forEach((post) => {
-      if (!res.has(post.category)) {
-        res.set(post.category, []);
-      }
-      res.get(post.category).push(post);
-    });
-    return res;
-  }
-
-  private keepPost(post: PostSummary): boolean {
-    if (this.selectedTag == ALL_TAGS) {
-      if (!this.postsSearchText) {
-        return true;
-      } else {
-        for (let searchWord of this.postsSearchText.split(" ")) {
-          if (post.searchKey.indexOf(searchWord) > -1) return true;
-        }
-        return false;
-      }
+  // prettier-ignore
+  private calculateGetPostsGroupsApiRequest(): GetPostsGroupsApiRequest {
+    const groupByPostCategory = this.postGroupByStrategies.getValue().find(s => s.name == 'category');
+    if (groupByPostCategory) {
+      const groups = this.calculateNextGroupsToLoad(groupByPostCategory.values);
+      return this.postConverter.toGetPostsGroupsApiRequest(groupByPostCategory.name, groups);
+    } else if (this.postGroupByStrategies.getValue().length > 0) {
+      const groupByStrategy = this.postGroupByStrategies.getValue()[0];
+      const groups = this.calculateNextGroupsToLoad(groupByStrategy.values);
+      return this.postConverter.toGetPostsGroupsApiRequest(groupByPostCategory.name, groups);
     } else {
-      if (!this.postsSearchText) {
-        return post.tags.includes(this.selectedTag);
-      } else {
-        for (let userSearchWord of this.postsSearchText.split(" ")) {
-          if (
-            post.searchKey.indexOf(userSearchWord) > -1 &&
-            post.tags.includes(this.selectedTag)
-          )
-            return true;
-        }
-        return false;
-      }
+      throw new Error("No post groupBy strategy");
     }
+  }
+
+  // prettier-ignore
+  private calculateNextGroupsToLoad(groupByStrategyValues: Array<string>): Array<string> {
+    const loadedGroups = this.loadedPostsGroups.getValue().map(p => p.name);
+    let notYetLoadedGroups = groupByStrategyValues.filter(group => loadedGroups.indexOf(group) == -1);
+    notYetLoadedGroups = notYetLoadedGroups.sort();
+    return notYetLoadedGroups.slice(0, 2);
   }
 }

@@ -5,7 +5,12 @@ import {
   CreatePostApiRequest,
   UpdatePostApiRequest,
   DeletePostApiRequest,
-  GetUserPostsApiResponse,
+  UserPostsApiResponse,
+  PostsSummariesGroupApiResponse,
+  PostGroupByStrategyApiResponse,
+  GetPostGroupByStrategiesApiRequest,
+  GetPostsGroupsApiRequest,
+  PostsGroupApiResponse,
 } from "../models/post.external.models";
 import { Injectable } from "@angular/core";
 import {
@@ -13,6 +18,10 @@ import {
   Post,
   PostsSummaries,
   PostsSummariesPage,
+  PostsGroups,
+  PostsGroup,
+  PostGroupByStrategies,
+  PostGroupByStrategy,
 } from "../models/post.internal.models";
 import { UserConverter } from "../../../user/services/user.converter";
 
@@ -55,13 +64,51 @@ export class PostConverter {
     };
   }
 
-  toPostsSummaries(posts: PostSummaryApiResponse[]): PostsSummaries {
-    let data = new PostsSummaries();
-    posts.forEach((post) => data.push(this.toPostSummary(post)));
-    return data;
+  // prettier-ignore
+  toPostGroupByStrategies(strategies: PostGroupByStrategyApiResponse[]): PostGroupByStrategies {
+    const res = new PostGroupByStrategies();
+    strategies.forEach(strategy => res.push(this.toPostGroupByStrategy(strategy)));
+    return res;
   }
 
-  toPostsSummariesPage(posts: GetUserPostsApiResponse): PostsSummariesPage {
+  // prettier-ignore
+  toPostGroupByStrategy(strategy: PostGroupByStrategyApiResponse): PostGroupByStrategy {
+    const res = new PostGroupByStrategy();
+    res.name = strategy.name;
+    res.values = strategy.values;
+    return res;
+  }
+
+  toPostsSummaries(posts: PostsSummariesGroupApiResponse[]): PostsGroups {
+    let res = new PostsGroups();
+    posts.forEach((postsGroupApiResponse) => {
+      let postsGroup = new PostsGroup();
+      postsGroup.name = postsGroupApiResponse.groupName;
+      postsGroup.posts = [];
+      postsGroupApiResponse.posts.forEach((post) =>
+        postsGroup.posts.push(this.toPostSummary(post))
+      );
+      res.push(postsGroup);
+    });
+    return res;
+  }
+
+  // prettier-ignore
+  toPostsGroups(postsGroups: PostsGroupApiResponse[]): PostsGroups {
+    const res = new PostsGroups();
+    postsGroups.forEach(postsGroup => res.push(this.toPostsGroup(postsGroup)));
+    return res;
+  }
+
+  // prettier-ignore
+  toPostsGroup(postsGroupApiResponse: PostsGroupApiResponse): PostsGroup {
+    const res = new PostsGroup();
+    res.name = postsGroupApiResponse.name;
+    postsGroupApiResponse.posts.forEach(post => res.posts.push(this.toPostSummary(post)));
+    return res;
+  }
+
+  toPostsSummariesPage(posts: UserPostsApiResponse): PostsSummariesPage {
     const res = new PostsSummariesPage();
     res.totalItems = posts.totalItems;
     res.firstPage = posts.page == 0;
@@ -107,6 +154,19 @@ export class PostConverter {
   toDeletePostApiRequest(postId: number): DeletePostApiRequest {
     return {
       url: `/secure-api/posts/${postId}`,
+    };
+  }
+
+  toGetPostGroupByStrategiesApiRequest(): GetPostGroupByStrategiesApiRequest {
+    return {
+      url: "/api/post-group-by-strategies",
+    };
+  }
+
+  // prettier-ignore
+  toGetPostsGroupsApiRequest(groupBy: string, groups: Array<string>): GetPostsGroupsApiRequest {
+    return {
+      url: `/api/posts-groups?groupBy=${groupBy}&groups=${groups.join(',')}`,
     };
   }
 

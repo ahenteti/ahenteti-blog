@@ -15,13 +15,16 @@ export class TagComponent implements OnInit {
   @HostBinding("class.selected")
   public selected: boolean;
 
+  // prettier-ignore
   ngOnInit(): void {
-    this.selected = this.tag == this.state.selectedTag;
+    this.state.selectedTag$.subscribe(selectedTag => {
+      this.selected = this.tag == selectedTag;
+    });
   }
 
   handleClickEvent(event) {
     event.preventDefault();
     event.stopPropagation();
-    this.state.selectedTag = this.tag;
+    this.state.selectTag(this.tag);
   }
 }

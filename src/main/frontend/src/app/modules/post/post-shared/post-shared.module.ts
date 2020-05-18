@@ -8,7 +8,7 @@ import { PostLayoutComponent } from "./components/post-layout/post-layout.compon
 import { PostTitleComponent } from "./components/post-title/post-title.component";
 import { PostSummaryComponent } from "./components/post-summary/post-summary.component";
 import { PostsWelcomeMessageComponent } from "./components/posts-welcome-message/posts-welcome-message.component";
-import { PostsByCategoryComponent } from "./components/posts-by-category/posts-by-category.component";
+import { PostsGroupComponent } from "./components/posts-group/posts-group.component";
 import { AlertModule } from "../../alert/alert.module";
 import { PostCommentModule } from "../post-comments/post-comment.module";
 import { CreateUpdatePostFormComponent } from "./components/create-update-post-form/create-update-post-form.component";
@@ -19,7 +19,7 @@ import { CreateUpdatePostFormComponent } from "./components/create-update-post-f
     TagComponent,
     TagListComponent,
     PostSummaryComponent,
-    PostsByCategoryComponent,
+    PostsGroupComponent,
     SearchPostsComponent,
     PostsWelcomeMessageComponent,
     PostLayoutComponent,
@@ -31,7 +31,7 @@ import { CreateUpdatePostFormComponent } from "./components/create-update-post-f
     PostTitleComponent,
     PostsWelcomeMessageComponent,
     SearchPostsComponent,
-    PostsByCategoryComponent,
+    PostsGroupComponent,
     CreateUpdatePostFormComponent,
   ],
 })

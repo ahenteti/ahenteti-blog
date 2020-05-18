@@ -1,9 +1,13 @@
 package io.ahenteti.blog.service.dao;
 
-import io.ahenteti.blog.model.api.post.ValidDeletePostApiRequest;
-import io.ahenteti.blog.model.api.post.ValidGetUserPostsApiRequest;
+import io.ahenteti.blog.model.api.post.request.valid.ValidDeletePostApiRequest;
+import io.ahenteti.blog.model.api.post.request.valid.ValidGetPostsGroupsApiRequest;
+import io.ahenteti.blog.model.api.post.request.valid.ValidGetUserPostsApiRequest;
+import io.ahenteti.blog.model.core.IGroupByStrategy;
+import io.ahenteti.blog.model.core.post.GroupByPostAuthorStrategy;
+import io.ahenteti.blog.model.core.post.GroupByPostCategoryStrategy;
 import io.ahenteti.blog.model.core.post.Post;
-import io.ahenteti.blog.model.core.post.PostsSummaries;
+import io.ahenteti.blog.model.core.post.PostsGroups;
 import io.ahenteti.blog.model.core.post.PostsSummariesPage;
 import io.ahenteti.blog.model.core.post.ReadyToCreatePost;
 import io.ahenteti.blog.model.core.post.ReadyToUpdatePost;
@@ -16,7 +20,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.SortedMap;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 @Service
 public class PostDao {
@@ -30,8 +39,25 @@ public class PostDao {
         this.postConverter = postConverter;
     }
 
-    public PostsSummaries getAllPostsSummaries() {
-        return postConverter.toPostsSummaries(postRepository.findAll());
+    public PostsGroups getPostsGroups(ValidGetPostsGroupsApiRequest request) {
+        List<PostEntity> posts;
+        SortedMap<String, List<PostEntity>> map = new TreeMap<>();
+        switch (request.getGroupBy()) {
+            case CATEGORY:
+                posts = postRepository.findByCategoryIn(request.getGroups());
+                for (PostEntity post : posts) {
+                    map.computeIfAbsent(post.getCategory(), x -> new ArrayList<>()).add(post);
+                }
+                return postConverter.toPostsGroups(map);
+            case AUTHOR:
+                posts = postRepository.findByAuthorUsernameIn(request.getGroups());
+                for (PostEntity post : posts) {
+                    map.computeIfAbsent(post.getAuthor().getUsername(), x -> new ArrayList<>()).add(post);
+                }
+                return postConverter.toPostsGroups(map);
+            default:
+                throw new UnsupportedOperationException("not yet implemented");
+        }
     }
 
     public Optional<Post> getPostById(long id) {
@@ -58,5 +84,12 @@ public class PostDao {
 
     public void deletePost(ValidDeletePostApiRequest request) {
         postRepository.deleteById(request.getPostId());
+    }
+
+    public List<IGroupByStrategy> getPostGroupByStrategies() {
+        List<IGroupByStrategy> res = new ArrayList<>();
+        res.add(new GroupByPostCategoryStrategy(new TreeSet<>(postRepository.getPostCategories())));
+        res.add(new GroupByPostAuthorStrategy(new TreeSet<>(postRepository.getPostAuthors())));
+        return res;
     }
 }

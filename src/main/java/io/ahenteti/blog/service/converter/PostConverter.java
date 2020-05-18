@@ -1,20 +1,24 @@
 package io.ahenteti.blog.service.converter;
 
-import io.ahenteti.blog.model.api.post.CreatePostApiRequest;
-import io.ahenteti.blog.model.api.post.CreatePostApiRequestBody;
-import io.ahenteti.blog.model.api.post.DeletePostApiRequest;
-import io.ahenteti.blog.model.api.post.GetUserPostsApiRequest;
-import io.ahenteti.blog.model.api.post.GetUserPostsApiResponse;
-import io.ahenteti.blog.model.api.post.PostApiResponse;
-import io.ahenteti.blog.model.api.post.PostSummaryApiResponse;
-import io.ahenteti.blog.model.api.post.PostsSummariesApiResponse;
-import io.ahenteti.blog.model.api.post.UpdatePostApiRequest;
-import io.ahenteti.blog.model.api.post.UpdatePostApiRequestBody;
-import io.ahenteti.blog.model.api.post.ValidCreatePostApiRequest;
-import io.ahenteti.blog.model.api.post.ValidPageApiRequest;
-import io.ahenteti.blog.model.api.post.ValidUpdatePostApiRequest;
+import io.ahenteti.blog.model.api.post.request.CreatePostApiRequest;
+import io.ahenteti.blog.model.api.post.request.CreatePostApiRequestBody;
+import io.ahenteti.blog.model.api.post.request.DeletePostApiRequest;
+import io.ahenteti.blog.model.api.post.request.GetPostsGroupsApiRequest;
+import io.ahenteti.blog.model.api.post.request.GetUserPostsApiRequest;
+import io.ahenteti.blog.model.api.post.request.UpdatePostApiRequest;
+import io.ahenteti.blog.model.api.post.request.UpdatePostApiRequestBody;
+import io.ahenteti.blog.model.api.post.request.valid.ValidCreatePostApiRequest;
+import io.ahenteti.blog.model.api.post.request.valid.ValidPageApiRequest;
+import io.ahenteti.blog.model.api.post.request.valid.ValidUpdatePostApiRequest;
+import io.ahenteti.blog.model.api.post.response.PostsGroupsApiResponse;
+import io.ahenteti.blog.model.api.post.response.UserPostsApiResponse;
+import io.ahenteti.blog.model.api.post.response.PostApiResponse;
+import io.ahenteti.blog.model.api.post.response.PostGroupByStrategiesApiResponse;
+import io.ahenteti.blog.model.api.post.response.PostSummaryApiResponse;
+import io.ahenteti.blog.model.core.IGroupByStrategy;
 import io.ahenteti.blog.model.core.post.Post;
 import io.ahenteti.blog.model.core.post.PostSummary;
+import io.ahenteti.blog.model.core.post.PostsGroups;
 import io.ahenteti.blog.model.core.post.PostsSummaries;
 import io.ahenteti.blog.model.core.post.PostsSummariesPage;
 import io.ahenteti.blog.model.core.post.ReadyToCreatePost;
@@ -22,13 +26,18 @@ import io.ahenteti.blog.model.core.post.ReadyToUpdatePost;
 import io.ahenteti.blog.model.core.user.IUser;
 import io.ahenteti.blog.model.entity.PostEntity;
 import io.ahenteti.blog.service.converter.internal.post.ToCreatePostApiRequestConverter;
+import io.ahenteti.blog.service.converter.internal.post.ToDeletePostApiRequestConverter;
+import io.ahenteti.blog.service.converter.internal.post.ToGetPostsGroupsApiRequestConverter;
+import io.ahenteti.blog.service.converter.internal.post.ToGetPostsGroupsApiResponseConverter;
 import io.ahenteti.blog.service.converter.internal.post.ToGetUserPostsApiRequestConverter;
-import io.ahenteti.blog.service.converter.internal.post.ToGetUserPostsApiResponseConverter;
+import io.ahenteti.blog.service.converter.internal.post.ToUserPostsApiResponseConverter;
 import io.ahenteti.blog.service.converter.internal.post.ToPostApiResponseConverter;
 import io.ahenteti.blog.service.converter.internal.post.ToPostConverter;
 import io.ahenteti.blog.service.converter.internal.post.ToPostEntityConverter;
+import io.ahenteti.blog.service.converter.internal.post.ToPostGroupByStrategiesApiResponseConverter;
 import io.ahenteti.blog.service.converter.internal.post.ToPostSummaryApiResponseConverter;
 import io.ahenteti.blog.service.converter.internal.post.ToPostSummaryConverter;
+import io.ahenteti.blog.service.converter.internal.post.ToPostsGroupsConverter;
 import io.ahenteti.blog.service.converter.internal.post.ToPostsSummariesPageConverter;
 import io.ahenteti.blog.service.converter.internal.post.ToUpdatePostApiRequestConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +45,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.SortedMap;
 import java.util.stream.Collectors;
 
 @Service
@@ -50,10 +60,15 @@ public class PostConverter {
     private final ToPostEntityConverter toPostEntityConverter;
     private final ToGetUserPostsApiRequestConverter toGetUserPostsApiRequestConverter;
     private final ToPostsSummariesPageConverter toPostsSummariesPageConverter;
-    private final ToGetUserPostsApiResponseConverter toGetUserPostsApiResponseConverter;
+    private final ToUserPostsApiResponseConverter toUserPostsApiResponseConverter;
+    private final ToGetPostsGroupsApiRequestConverter toGetPostsGroupsApiRequestConverter;
+    private final ToDeletePostApiRequestConverter toDeletePostApiRequestConverter;
+    private final ToGetPostsGroupsApiResponseConverter toGetPostsGroupsApiResponseConverter;
+    private final ToPostsGroupsConverter toPostsGroupsConverter;
+    private final ToPostGroupByStrategiesApiResponseConverter toPostGroupByStrategiesApiResponseConverter;
 
     @Autowired
-    public PostConverter(ToPostSummaryConverter toPostSummaryConverter, ToPostConverter toPostConverter, ToPostSummaryApiResponseConverter toPostSummaryApiResponseConverter, ToPostApiResponseConverter toPostApiResponseConverter, ToCreatePostApiRequestConverter toCreatePostApiRequestConverter, ToUpdatePostApiRequestConverter toUpdatePostApiRequestConverter, ToPostEntityConverter toPostEntityConverter, ToGetUserPostsApiRequestConverter toGetUserPostsApiRequestConverter, ToPostsSummariesPageConverter toPostsSummariesPageConverter, ToGetUserPostsApiResponseConverter toGetUserPostsApiResponseConverter) {
+    public PostConverter(ToPostSummaryConverter toPostSummaryConverter, ToPostConverter toPostConverter, ToPostSummaryApiResponseConverter toPostSummaryApiResponseConverter, ToPostApiResponseConverter toPostApiResponseConverter, ToCreatePostApiRequestConverter toCreatePostApiRequestConverter, ToUpdatePostApiRequestConverter toUpdatePostApiRequestConverter, ToPostEntityConverter toPostEntityConverter, ToGetUserPostsApiRequestConverter toGetUserPostsApiRequestConverter, ToPostsSummariesPageConverter toPostsSummariesPageConverter, ToUserPostsApiResponseConverter toUserPostsApiResponseConverter, ToGetPostsGroupsApiRequestConverter toGetPostsGroupsApiRequestConverter, ToDeletePostApiRequestConverter toDeletePostApiRequestConverter, ToGetPostsGroupsApiResponseConverter toGetPostsGroupsApiResponseConverter, ToPostsGroupsConverter toPostsGroupsConverter, ToPostGroupByStrategiesApiResponseConverter toPostGroupByStrategiesApiResponseConverter) {
         this.toPostSummaryConverter = toPostSummaryConverter;
         this.toPostConverter = toPostConverter;
         this.toPostSummaryApiResponseConverter = toPostSummaryApiResponseConverter;
@@ -63,7 +78,12 @@ public class PostConverter {
         this.toPostEntityConverter = toPostEntityConverter;
         this.toGetUserPostsApiRequestConverter = toGetUserPostsApiRequestConverter;
         this.toPostsSummariesPageConverter = toPostsSummariesPageConverter;
-        this.toGetUserPostsApiResponseConverter = toGetUserPostsApiResponseConverter;
+        this.toUserPostsApiResponseConverter = toUserPostsApiResponseConverter;
+        this.toGetPostsGroupsApiRequestConverter = toGetPostsGroupsApiRequestConverter;
+        this.toDeletePostApiRequestConverter = toDeletePostApiRequestConverter;
+        this.toGetPostsGroupsApiResponseConverter = toGetPostsGroupsApiResponseConverter;
+        this.toPostsGroupsConverter = toPostsGroupsConverter;
+        this.toPostGroupByStrategiesApiResponseConverter = toPostGroupByStrategiesApiResponseConverter;
     }
 
     public PostSummary toPostSummary(PostEntity entity) {
@@ -82,13 +102,12 @@ public class PostConverter {
         return toPostConverter.toPost(request);
     }
 
-    public PostsSummariesApiResponse toPostsSummariesApiResponse(PostsSummaries posts) {
-        return posts.stream().map(this::toPostSummaryApiResponse)
-                .collect(Collectors.toCollection(PostsSummariesApiResponse::new));
+    public PostsGroupsApiResponse toGetPostsGroupsApiResponse(PostsGroups posts) {
+        return toGetPostsGroupsApiResponseConverter.toGetPostsGroupsApiResponse(posts);
     }
 
-    public GetUserPostsApiResponse toGetUserPostsApiResponse(PostsSummariesPage postsPage) {
-        return toGetUserPostsApiResponseConverter.toGetUserPostsApiResponse(postsPage);
+    public UserPostsApiResponse toUserPostsApiResponse(PostsSummariesPage postsPage) {
+        return toUserPostsApiResponseConverter.toUserPostsApiResponse(postsPage);
     }
 
     public PostSummaryApiResponse toPostSummaryApiResponse(PostSummary post) {
@@ -132,9 +151,18 @@ public class PostConverter {
     }
 
     public DeletePostApiRequest toDeletePostApiRequest(IUser user, Long postId) {
-        DeletePostApiRequest res = new DeletePostApiRequest();
-        res.setUser(user);
-        res.setPostId(postId);
-        return res;
+        return toDeletePostApiRequestConverter.toDeletePostApiRequest(user, postId);
+    }
+
+    public GetPostsGroupsApiRequest toGetPostsGroupsApiRequest(List<String> groups, String groupBy) {
+        return toGetPostsGroupsApiRequestConverter.toGetPostsGroupsApiRequest(groups, groupBy);
+    }
+
+    public PostsGroups toPostsGroups(SortedMap<String, List<PostEntity>> map) {
+        return toPostsGroupsConverter.toPostsGroups(map);
+    }
+
+    public PostGroupByStrategiesApiResponse toPostGroupByStrategiesApiResponse(List<IGroupByStrategy> strategies) {
+        return toPostGroupByStrategiesApiResponseConverter.toPostGroupByStrategiesApiResponse(strategies);
     }
 }

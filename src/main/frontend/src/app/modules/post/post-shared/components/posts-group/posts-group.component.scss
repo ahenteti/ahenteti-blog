@@ -1,0 +1,14 @@
+.posts {
+  margin-top: 4rem;
+  margin-bottom: 6rem;
+  display: grid;
+  grid-gap: 2rem;
+
+  @media screen and (max-width: 720px) {
+    grid-template-columns: 1fr;
+  }
+
+  @media screen and (min-width: 720px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}

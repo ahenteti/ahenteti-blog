@@ -8,6 +8,11 @@ export class PageApiResponse<T> {
   items: Array<T>;
 }
 
+export class PostsSummariesGroupApiResponse {
+  groupName: string;
+  posts: Array<PostSummaryApiResponse>;
+}
+
 export class PostSummaryApiResponse {
   id: number;
   title: string;
@@ -26,7 +31,7 @@ export class GetUserPostsApiRequest {
   url: string;
 }
 
-export class GetUserPostsApiResponse extends PageApiResponse<
+export class UserPostsApiResponse extends PageApiResponse<
   PostSummaryApiResponse
 > {}
 
@@ -57,4 +62,22 @@ export class UpdatePostApiRequestBody {
 
 export class DeletePostApiRequest {
   url: string;
+}
+
+export class GetPostGroupByStrategiesApiRequest {
+  url: string;
+}
+
+export class PostGroupByStrategyApiResponse {
+  name: string;
+  values: Array<string>;
+}
+
+export class GetPostsGroupsApiRequest {
+  url: string;
+}
+
+export class PostsGroupApiResponse {
+  name: string;
+  posts: Array<PostSummaryApiResponse>;
 }

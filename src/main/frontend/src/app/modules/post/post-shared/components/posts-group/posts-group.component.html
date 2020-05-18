@@ -1,0 +1,7 @@
+<app-section-title [value]="postsGroup.name"></app-section-title>
+<div class="posts">
+  <app-post-summary
+    *ngFor="let post of postsGroup.posts"
+    [post]="post"
+  ></app-post-summary>
+</div>

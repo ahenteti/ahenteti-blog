@@ -1,6 +1,6 @@
 package io.ahenteti.blog.service.converter.internal.post;
 
-import io.ahenteti.blog.model.api.post.PostSummaryApiResponse;
+import io.ahenteti.blog.model.api.post.response.PostSummaryApiResponse;
 import io.ahenteti.blog.model.core.post.PostSummary;
 import io.ahenteti.blog.service.converter.UserConverter;
 import org.springframework.beans.factory.annotation.Autowired;

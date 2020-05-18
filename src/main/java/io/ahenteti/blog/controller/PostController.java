@@ -1,18 +1,22 @@
 package io.ahenteti.blog.controller;
 
-import io.ahenteti.blog.model.api.post.CreatePostApiRequest;
-import io.ahenteti.blog.model.api.post.CreatePostApiRequestBody;
-import io.ahenteti.blog.model.api.post.DeletePostApiRequest;
-import io.ahenteti.blog.model.api.post.PostApiResponse;
-import io.ahenteti.blog.model.api.post.PostSummaryApiResponse;
-import io.ahenteti.blog.model.api.post.PostsSummariesApiResponse;
-import io.ahenteti.blog.model.api.post.UpdatePostApiRequest;
-import io.ahenteti.blog.model.api.post.UpdatePostApiRequestBody;
-import io.ahenteti.blog.model.api.post.ValidCreatePostApiRequest;
-import io.ahenteti.blog.model.api.post.ValidDeletePostApiRequest;
-import io.ahenteti.blog.model.api.post.ValidUpdatePostApiRequest;
+import io.ahenteti.blog.model.api.post.request.CreatePostApiRequest;
+import io.ahenteti.blog.model.api.post.request.CreatePostApiRequestBody;
+import io.ahenteti.blog.model.api.post.request.DeletePostApiRequest;
+import io.ahenteti.blog.model.api.post.request.GetPostsGroupsApiRequest;
+import io.ahenteti.blog.model.api.post.request.UpdatePostApiRequest;
+import io.ahenteti.blog.model.api.post.request.UpdatePostApiRequestBody;
+import io.ahenteti.blog.model.api.post.request.valid.ValidCreatePostApiRequest;
+import io.ahenteti.blog.model.api.post.request.valid.ValidDeletePostApiRequest;
+import io.ahenteti.blog.model.api.post.request.valid.ValidGetPostsGroupsApiRequest;
+import io.ahenteti.blog.model.api.post.request.valid.ValidUpdatePostApiRequest;
+import io.ahenteti.blog.model.api.post.response.PostsGroupsApiResponse;
+import io.ahenteti.blog.model.api.post.response.PostApiResponse;
+import io.ahenteti.blog.model.api.post.response.PostGroupByStrategiesApiResponse;
+import io.ahenteti.blog.model.api.post.response.PostSummaryApiResponse;
+import io.ahenteti.blog.model.core.IGroupByStrategy;
 import io.ahenteti.blog.model.core.post.Post;
-import io.ahenteti.blog.model.core.post.PostsSummaries;
+import io.ahenteti.blog.model.core.post.PostsGroups;
 import io.ahenteti.blog.model.core.post.ReadyToCreatePost;
 import io.ahenteti.blog.model.core.post.ReadyToUpdatePost;
 import io.ahenteti.blog.model.core.user.IUser;
@@ -30,8 +34,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 import static io.ahenteti.blog.exception.ResourceNotFoundException.throwPostNotFoundException;
 
@@ -49,10 +56,18 @@ public class PostController {
         this.postValidator = postValidator;
     }
 
-    @GetMapping("/api/posts-summaries")
-    public PostsSummariesApiResponse getPostsSummaries() {
-        PostsSummaries postsSummaries = postDao.getAllPostsSummaries();
-        return postConverter.toPostsSummariesApiResponse(postsSummaries);
+    @GetMapping("/api/post-group-by-strategies")
+    public PostGroupByStrategiesApiResponse getPostGroupByStrategies() {
+        List<IGroupByStrategy> strategies = postDao.getPostGroupByStrategies();
+        return postConverter.toPostGroupByStrategiesApiResponse(strategies);
+    }
+
+    @GetMapping("/api/posts-groups")
+    public PostsGroupsApiResponse getPostsGroups(@RequestParam(required = false, defaultValue = "category") String groupBy, @RequestParam List<String> groups) {
+        GetPostsGroupsApiRequest request = postConverter.toGetPostsGroupsApiRequest(groups, groupBy);
+        ValidGetPostsGroupsApiRequest validRequest = postValidator.validateGetPostsGroupsApiRequest(request);
+        PostsGroups postsGroups = postDao.getPostsGroups(validRequest);
+        return postConverter.toGetPostsGroupsApiResponse(postsGroups);
     }
 
     @GetMapping("/api/posts/{id}")

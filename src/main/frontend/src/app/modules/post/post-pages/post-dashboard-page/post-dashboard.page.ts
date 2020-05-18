@@ -7,36 +7,18 @@ import { PostsState } from "../../post-shared/state/posts.state";
 import {
   PostsSummaries,
   PostsByCategory,
+  PostsGroups,
 } from "../../post-shared/models/post.internal.models";
 import { Router } from "@angular/router";
+import { AlertService } from "src/app/modules/alert/alert.service";
+import { Observable } from "rxjs";
 
 @Component({
   templateUrl: "post-dashboard.page.html",
   styleUrls: ["post-dashboard.page.scss"],
 })
-export class PostDashboardPage implements OnInit, OnDestroy {
-  constructor(
-    private postService: PostHttpServices,
-    public state: PostsState,
-    private router: Router
-  ) {}
+export class PostDashboardPage {
+  constructor(public state: PostsState, private alertService: AlertService) {}
 
-  ngOnInit(): void {
-    this.state.selectedTag = ALL_TAGS;
-    this.postService
-      .getAllPostsSummaries()
-      .then((posts) => this.state.setPosts(posts));
-  }
-
-  ngOnDestroy(): void {
-    this.state.selectedTag = ALL_TAGS;
-  }
-
-  handleSearchTextChange(userSearch) {
-    this.state.postsSearchText = userSearch;
-  }
-
-  handleTagSelection(userTagSelection) {
-    this.state.selectedTag = userTagSelection;
-  }
+  handleSearchTextChange(userSearch) {}
 }

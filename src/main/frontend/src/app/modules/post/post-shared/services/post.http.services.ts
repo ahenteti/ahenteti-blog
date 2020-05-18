@@ -8,7 +8,12 @@ import {
   UpdatePostApiRequest,
   DeletePostApiRequest,
   PageApiResponse,
-  GetUserPostsApiResponse,
+  UserPostsApiResponse,
+  PostsSummariesGroupApiResponse,
+  PostGroupByStrategyApiResponse,
+  GetPostGroupByStrategiesApiRequest,
+  GetPostsGroupsApiRequest,
+  PostsGroupApiResponse,
 } from "../models/post.external.models";
 import {
   PostsSummaries,
@@ -16,6 +21,8 @@ import {
   OfflinePost,
   PostSummary,
   PostsSummariesPage,
+  PostsGroups,
+  PostGroupByStrategies,
 } from "../models/post.internal.models";
 import { PostConverter } from "./post.converter";
 import { HttpClient } from "@angular/common/http";
@@ -33,20 +40,26 @@ export class PostHttpServices extends CommonHttpServices {
     super(alertService);
   }
 
-  getAllPostsSummaries(): Promise<PostsSummaries> {
-    // prettier-ignore
+  // prettier-ignore
+  getPostGroupByStrategies(request: GetPostGroupByStrategiesApiRequest): Promise<PostGroupByStrategies> {
     return this.http
-      .get<PostSummaryApiResponse[]>("/api/posts-summaries")
-      .pipe(map((posts) => this.postConverter.toPostsSummaries(posts)))
-      .pipe(this.catchGetAllPostsSummariesError())
+      .get<PostGroupByStrategyApiResponse[]>(request.url)
+      .pipe(map((strategies) => this.postConverter.toPostGroupByStrategies(strategies)))
       .toPromise();
-    // prettier-ignore
+  }
+
+  // prettier-ignore
+  getPostsGroups(request: GetPostsGroupsApiRequest): Promise<PostsGroups> {
+    return this.http
+      .get<PostsGroupApiResponse[]>(request.url)
+      .pipe(map((postsGroups) => this.postConverter.toPostsGroups(postsGroups)))
+      .toPromise();
   }
 
   getUserPosts(request: GetUserPostsApiRequest): Promise<PostsSummariesPage> {
     // prettier-ignore
     return this.http
-      .get<GetUserPostsApiResponse>(request.url)
+      .get<UserPostsApiResponse>(request.url)
       .pipe(map((posts) => this.postConverter.toPostsSummariesPage(posts)))
       .toPromise();
     // prettier-ignore
@@ -92,15 +105,6 @@ export class PostHttpServices extends CommonHttpServices {
         `Error while fetching post content :(`,
         new OfflinePost()
       )
-    );
-  }
-
-  private catchGetAllPostsSummariesError(): OperatorFunction<
-    PostsSummaries,
-    PostsSummaries
-  > {
-    return catchError(
-      this.handleError("Error while fetching post summaries :(", [])
     );
   }
 }

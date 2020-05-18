@@ -1,7 +1,7 @@
 package io.ahenteti.blog.service.converter.internal.post;
 
-import io.ahenteti.blog.model.api.post.CreatePostApiRequest;
-import io.ahenteti.blog.model.api.post.CreatePostApiRequestBody;
+import io.ahenteti.blog.model.api.post.request.CreatePostApiRequest;
+import io.ahenteti.blog.model.api.post.request.CreatePostApiRequestBody;
 import io.ahenteti.blog.model.core.user.IUser;
 import org.springframework.stereotype.Service;
 

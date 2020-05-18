@@ -23,6 +23,16 @@ export class Post extends PostSummary {
   bodyMarkdown: string;
 }
 
+export class PostsGroup {
+  name: string;
+  posts: Array<PostSummary> = [];
+}
+
+export class PostGroupByStrategy {
+  name: string;
+  values: Array<string> = [];
+}
+
 export class DefaultPost implements Post {
   id = undefined;
   title = "";
@@ -51,3 +61,5 @@ export class OfflinePost implements Post {
 export class PostsByCategory extends Map<string, PostSummary[]> {}
 export class PostsSummaries extends Array<PostSummary> {}
 export class PostsSummariesPage extends Page<PostSummary> {}
+export class PostsGroups extends Array<PostsGroup> {}
+export class PostGroupByStrategies extends Array<PostGroupByStrategy> {}

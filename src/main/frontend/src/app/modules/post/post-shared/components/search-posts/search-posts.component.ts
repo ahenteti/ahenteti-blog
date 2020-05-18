@@ -7,6 +7,7 @@ import {
   EventEmitter,
 } from "@angular/core";
 import { MatSelectChange } from "@angular/material/select";
+import { PostsState } from "../../state/posts.state";
 
 @Component({
   selector: "app-search-posts",
@@ -14,6 +15,8 @@ import { MatSelectChange } from "@angular/material/select";
   styleUrls: ["./search-posts.component.scss"],
 })
 export class SearchPostsComponent {
+  constructor(private postState: PostsState) {}
+
   @Input()
   public selectedTag: string;
 
@@ -25,9 +28,6 @@ export class SearchPostsComponent {
 
   @Output()
   public inputChange = new EventEmitter<string>();
-
-  @Output()
-  public tagSelection = new EventEmitter<string>();
 
   public inputFocus: boolean;
   public mouseHover: boolean;
@@ -67,7 +67,7 @@ export class SearchPostsComponent {
   }
 
   onTagSelection(event: MatSelectChange) {
-    this.tagSelection.emit(event.value);
+    this.postState.selectTag(event.value);
   }
 
   private updateActiveState() {

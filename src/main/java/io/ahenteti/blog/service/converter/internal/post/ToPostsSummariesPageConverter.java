@@ -1,6 +1,6 @@
 package io.ahenteti.blog.service.converter.internal.post;
 
-import io.ahenteti.blog.model.api.post.ValidPageApiRequest;
+import io.ahenteti.blog.model.api.post.request.valid.ValidPageApiRequest;
 import io.ahenteti.blog.model.core.post.PostsSummariesPage;
 import io.ahenteti.blog.model.entity.PostEntity;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,14 +2,16 @@ package io.ahenteti.blog.service.validator;
 
 import io.ahenteti.blog.exception.InvalidRequestAttributeException;
 import io.ahenteti.blog.exception.MissingMandatoryRequestAttributeException;
-import io.ahenteti.blog.model.api.post.CreatePostApiRequest;
-import io.ahenteti.blog.model.api.post.DeletePostApiRequest;
-import io.ahenteti.blog.model.api.post.UpdatePostApiRequest;
-import io.ahenteti.blog.model.api.post.ValidCreatePostApiRequest;
-import io.ahenteti.blog.model.api.post.ValidDeletePostApiRequest;
-import io.ahenteti.blog.model.api.post.ValidUpdatePostApiRequest;
+import io.ahenteti.blog.model.api.post.request.CreatePostApiRequest;
+import io.ahenteti.blog.model.api.post.request.DeletePostApiRequest;
+import io.ahenteti.blog.model.api.post.request.GetPostsGroupsApiRequest;
+import io.ahenteti.blog.model.api.post.request.UpdatePostApiRequest;
+import io.ahenteti.blog.model.api.post.request.valid.ValidCreatePostApiRequest;
+import io.ahenteti.blog.model.api.post.request.valid.ValidDeletePostApiRequest;
+import io.ahenteti.blog.model.api.post.request.valid.ValidGetPostsGroupsApiRequest;
+import io.ahenteti.blog.model.api.post.request.valid.ValidUpdatePostApiRequest;
+import io.ahenteti.blog.model.core.post.EPostsGroupByStrategyName;
 import io.ahenteti.blog.model.entity.PostEntity;
-import io.ahenteti.blog.service.dao.repository.PostBodyRepository;
 import io.ahenteti.blog.service.dao.repository.PostRepository;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -25,13 +27,11 @@ public class PostValidator {
 
     private UserValidator userValidator;
     private PostRepository postRepository;
-    private PostBodyRepository postBodyRepository;
 
     @Autowired
-    public PostValidator(UserValidator userValidator, PostRepository postRepository, PostBodyRepository postBodyRepository) {
+    public PostValidator(UserValidator userValidator, PostRepository postRepository) {
         this.userValidator = userValidator;
         this.postRepository = postRepository;
-        this.postBodyRepository = postBodyRepository;
     }
 
     public ValidCreatePostApiRequest validateCreatePostApiRequest(CreatePostApiRequest request) {
@@ -58,6 +58,32 @@ public class PostValidator {
         userValidator.validateUser(request.getUser());
         validateId(request.getPostId());
         return new ValidDeletePostApiRequest(request);
+    }
+
+    public ValidGetPostsGroupsApiRequest validateGetPostsGroupsApiRequest(GetPostsGroupsApiRequest request) {
+        validatePostsGroups(request);
+        validatePostsGroupBy(request);
+        return new ValidGetPostsGroupsApiRequest(request);
+    }
+
+    private void validatePostsGroupBy(GetPostsGroupsApiRequest request) {
+        if (StringUtils.isBlank(request.getGroupBy())) {
+            throw new MissingMandatoryRequestAttributeException("post groupBy is mandatory");
+        }
+        if (EPostsGroupByStrategyName.getByValue(request.getGroupBy()) == null) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("Unknown groupBy query param value: ");
+            sb.append(request.getGroupBy());
+            sb.append(". Accepted values: ");
+            sb.append(StringUtils.join(EPostsGroupByStrategyName.getAcceptedValues(), ", "));
+            throw new InvalidRequestAttributeException(sb.toString());
+        }
+    }
+
+    private void validatePostsGroups(GetPostsGroupsApiRequest request) {
+        if (request.getGroups() == null || request.getGroups().isEmpty()) {
+            throw new MissingMandatoryRequestAttributeException("post groups is mandatory");
+        }
     }
 
     private PostEntity validateId(Long id) {
