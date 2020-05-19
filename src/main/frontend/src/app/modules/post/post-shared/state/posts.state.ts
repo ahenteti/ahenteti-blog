@@ -43,6 +43,9 @@ export class PostsState {
   private supportedGroupByStrategiesName = ["category", "author"];
   private defaultGroupByStrategyName = "category";
 
+  private noMorePostsToLoad = false;
+  private loadPostsInProgress = false;
+
   constructor(
     private postConverter: PostConverter,
     private postHttpServices: PostHttpServices,
@@ -76,15 +79,17 @@ export class PostsState {
     this.calculateDisplayedPostsGroups();
   }
 
+  // prettier-ignore
   loadMorePosts(init = false) {
+    if (this.noMorePostsToLoad || this.loadPostsInProgress) return;
     try {
+      this.loadPostsInProgress = true;
       const getPostsGroupsApiRequest = this.calculateGetPostsGroupsApiRequest();
       this.postHttpServices
         .getPostsGroups(getPostsGroupsApiRequest)
-        .then((postsGroups) =>
-          this.handleGetPostsGroupsSuccessEvent(postsGroups)
-        )
-        .catch((error) => this.handleGetPostsGroupsErrorEvent(error));
+        .then((postsGroups) => this.handleGetPostsGroupsSuccessEvent(postsGroups))
+        .catch((error) => this.handleGetPostsGroupsErrorEvent(error))
+        .finally(() => this.loadPostsInProgress = false);
     } catch (e) {
       this.handleLoadMorePostsError(e, init);
     }
@@ -195,6 +200,7 @@ export class PostsState {
   // prettier-ignore
   private handleLoadMorePostsError(e: any, init: boolean) {
     if (e instanceof NoMoreResourceToLoadError) {
+      this.noMorePostsToLoad = true;
       if (init) {
         this.alertService.info("No posts has been created yet. <br/>Be the first to create the first blog on this website :)");
       }

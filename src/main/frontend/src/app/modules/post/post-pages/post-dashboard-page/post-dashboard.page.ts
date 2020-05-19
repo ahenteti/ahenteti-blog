@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, HostListener } from "@angular/core";
 import { SetUtils } from "src/app/modules/shared/services/set.utils";
 import { ALL_TAGS } from "src/app/modules/shared/services/constants.utils";
 import { first } from "rxjs/operators";
@@ -36,5 +36,12 @@ export class PostDashboardPage implements OnInit, OnDestroy {
 
   loadMorePosts() {
     this.postsState.loadMorePosts();
+  }
+
+  @HostListener("window:scroll", [])
+  onScroll(): void {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+      this.postsState.loadMorePosts();
+    }
   }
 }

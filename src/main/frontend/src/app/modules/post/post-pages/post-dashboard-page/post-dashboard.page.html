@@ -9,8 +9,3 @@
   *ngFor="let postsGroup of (postsState.displayedPostsGroups$ | async)"
   [postsGroup]="postsGroup"
 ></app-posts-group>
-
-<app-load-more-button
-  text="Load more posts..."
-  (click)="loadMorePosts()"
-></app-load-more-button>
