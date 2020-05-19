@@ -30,6 +30,9 @@ export class PostsState {
   // prettier-ignore
   private loadedPostsGroups = new BehaviorSubject<PostsGroups>(new PostsGroups());
   public loadedPostsGroups$ = this.loadedPostsGroups.asObservable();
+  private noMorePosts = new BehaviorSubject<boolean>(false);
+  public noMorePosts$ = this.noMorePosts.asObservable();
+  private loadPostsInProgress = false;
 
   // prettier-ignore
   private displayedPostsGroups = new BehaviorSubject<PostsGroups>(new PostsGroups());
@@ -43,9 +46,6 @@ export class PostsState {
   private selectedGroupByStrategy: PostGroupByStrategy;
   private supportedGroupByStrategiesName = ["category", "author"];
   private defaultGroupByStrategyName = "category";
-
-  private noMorePostsToLoad = false;
-  private loadPostsInProgress = false;
 
   // prettier-ignore
   private userPostsPage = new BehaviorSubject<PostsSummariesPage>(new PostsSummariesPage());
@@ -85,7 +85,7 @@ export class PostsState {
 
   // prettier-ignore
   loadMorePosts(init = false) {
-    if (this.noMorePostsToLoad || this.loadPostsInProgress) return;
+    if (this.noMorePosts.getValue() || this.loadPostsInProgress) return;
     try {
       this.loadPostsInProgress = true;
       const getPostsGroupsApiRequest = this.calculateGetPostsGroupsApiRequest();
@@ -204,7 +204,7 @@ export class PostsState {
   // prettier-ignore
   private handleLoadMorePostsError(e: any, init: boolean) {
     if (e instanceof NoMoreResourceToLoadError) {
-      this.noMorePostsToLoad = true;
+      this.noMorePosts.next(true);
       if (init) {
         this.alertService.info("No posts has been created yet. <br/>Be the first to create the first blog on this website :)");
       }

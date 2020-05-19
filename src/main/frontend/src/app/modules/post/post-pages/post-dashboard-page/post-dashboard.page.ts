@@ -1,4 +1,10 @@
-import { Component, OnInit, OnDestroy, HostListener } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  HostListener,
+  HostBinding,
+} from "@angular/core";
 import { SetUtils } from "src/app/modules/shared/services/set.utils";
 import { ALL_TAGS } from "src/app/modules/shared/services/constants.utils";
 import { first } from "rxjs/operators";
@@ -18,14 +24,17 @@ import { Observable } from "rxjs";
   styleUrls: ["post-dashboard.page.scss"],
 })
 export class PostDashboardPage implements OnInit, OnDestroy {
-  constructor(
-    public postsState: PostsState,
-    private alertService: AlertService
-  ) {}
+  public noMorePosts = false;
+
+  constructor(public postsState: PostsState) {}
 
   ngOnInit(): void {
     this.postsState.resetFilters();
+    this.postsState.noMorePosts$.subscribe(
+      (value) => (this.noMorePosts = value)
+    );
   }
+
   ngOnDestroy(): void {
     this.postsState.resetFilters();
   }

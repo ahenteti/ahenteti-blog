@@ -11,6 +11,7 @@
 ></app-posts-group>
 
 <app-load-more-button
+  *ngIf="!noMorePosts"
   text="Load more posts"
   (click)="loadMorePosts()"
 ></app-load-more-button>
