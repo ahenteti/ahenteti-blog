@@ -6,10 +6,9 @@
   *ngFor="let comment of postComments"
   [comment]="comment"
 ></app-post-comment>
-<button
+<app-load-more-button
   *ngIf="stillMoreComments"
   class="more-comments-button"
+  text="Load more comments"
   (click)="loadMorePostComments()"
->
-  Load more comments
-</button>
+></app-load-more-button>

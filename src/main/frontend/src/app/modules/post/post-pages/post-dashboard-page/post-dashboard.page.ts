@@ -37,11 +37,4 @@ export class PostDashboardPage implements OnInit, OnDestroy {
   loadMorePosts() {
     this.postsState.loadMorePosts();
   }
-
-  @HostListener("window:scroll", [])
-  onScroll(): void {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-      this.postsState.loadMorePosts();
-    }
-  }
 }

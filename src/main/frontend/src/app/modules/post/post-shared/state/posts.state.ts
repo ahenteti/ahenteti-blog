@@ -7,6 +7,7 @@ import {
   PostSummary,
   PostsGroup,
   PostGroupByStrategy,
+  PostsSummariesPage,
 } from "../models/post.internal.models";
 import { BehaviorSubject } from "rxjs";
 import { PostConverter } from "../services/post.converter";
@@ -45,6 +46,9 @@ export class PostsState {
 
   private noMorePostsToLoad = false;
   private loadPostsInProgress = false;
+
+  // prettier-ignore
+  private userPostsPage = new BehaviorSubject<PostsSummariesPage>(new PostsSummariesPage());
 
   constructor(
     private postConverter: PostConverter,
