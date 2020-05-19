@@ -5,6 +5,7 @@ import {
   PostGroupByStrategies,
   PostsSummaries,
   PostSummary,
+  PostsGroup,
 } from "../models/post.internal.models";
 import { BehaviorSubject } from "rxjs";
 import { PostConverter } from "../services/post.converter";
@@ -35,6 +36,8 @@ export class PostsState {
   private postGroupByStrategies = new BehaviorSubject<PostGroupByStrategies>(new PostGroupByStrategies());
   public postGroupByStrategies$ = this.postGroupByStrategies.asObservable();
 
+  private searchText: string = "";
+
   constructor(
     private postConverter: PostConverter,
     private postHttpServices: PostHttpServices,
@@ -52,12 +55,65 @@ export class PostsState {
       .catch((error) => this.handleGetPostGroupByStrategiesErrorEvent(error));
   }
 
+  setSearchText(searchText: string) {
+    this.searchText = searchText;
+    this.calculateDisplayedPostsGroups();
+  }
+
+  resetFilters() {
+    this.selectedTag.next(ALL_TAGS);
+    this.searchText = "";
+    this.calculateDisplayedPostsGroups();
+  }
+
+  selectTag(tag: string) {
+    this.selectedTag.next(tag);
+    this.calculateDisplayedPostsGroups();
+  }
+
   addPost(post: PostSummary) {}
 
   updatePost(post: PostSummary) {}
 
-  selectTag(tag: string) {
-    this.selectedTag.next(tag);
+  private calculateDisplayedPostsGroups() {
+    const displayedPostsGroups = new PostsGroups();
+    this.loadedPostsGroups.getValue().forEach((group) => {
+      let posts = group.posts.filter((post) => this.keepPost(post));
+      if (posts.length > 0) {
+        let postsGroup = new PostsGroup();
+        postsGroup.name = group.name;
+        postsGroup.posts = posts;
+        displayedPostsGroups.push(postsGroup);
+      }
+    });
+    this.displayedPostsGroups.next(displayedPostsGroups);
+  }
+
+  // prettier-ignore
+  private keepPost(post: PostSummary): boolean {
+    const selectedTag = this.selectedTag.getValue();
+    if (selectedTag == ALL_TAGS) {
+      if (!this.searchText) {
+        return true;
+      } else {
+        for (let searchWord of this.searchText.split(" ")) {
+          if (post.searchKey.toLowerCase().indexOf(searchWord.toLowerCase()) > -1) return true;
+        }
+        return false;
+      }
+    } else {
+      if (!this.searchText) {
+        return post.tags.includes(selectedTag);
+      } else {
+        for (let searchWord of this.searchText.split(" ")) {
+          if (
+            post.searchKey.toLowerCase().indexOf(searchWord.toLowerCase()) > -1 &&
+            post.tags.includes(selectedTag)
+          ) return true;
+        }
+        return false;
+      }
+    }
   }
 
   private handleGetPostGroupByStrategiesErrorEvent(error: any): any {

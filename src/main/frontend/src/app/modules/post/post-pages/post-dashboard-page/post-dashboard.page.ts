@@ -17,8 +17,17 @@ import { Observable } from "rxjs";
   templateUrl: "post-dashboard.page.html",
   styleUrls: ["post-dashboard.page.scss"],
 })
-export class PostDashboardPage {
+export class PostDashboardPage implements OnInit, OnDestroy {
   constructor(public state: PostsState, private alertService: AlertService) {}
 
-  handleSearchTextChange(userSearch) {}
+  ngOnInit(): void {
+    this.state.resetFilters();
+  }
+  ngOnDestroy(): void {
+    this.state.resetFilters();
+  }
+
+  handleSearchTextChange(searchText: string) {
+    this.state.setSearchText(searchText);
+  }
 }
