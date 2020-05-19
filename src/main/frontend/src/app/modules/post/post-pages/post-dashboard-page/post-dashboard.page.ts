@@ -18,16 +18,23 @@ import { Observable } from "rxjs";
   styleUrls: ["post-dashboard.page.scss"],
 })
 export class PostDashboardPage implements OnInit, OnDestroy {
-  constructor(public state: PostsState, private alertService: AlertService) {}
+  constructor(
+    public postsState: PostsState,
+    private alertService: AlertService
+  ) {}
 
   ngOnInit(): void {
-    this.state.resetFilters();
+    this.postsState.resetFilters();
   }
   ngOnDestroy(): void {
-    this.state.resetFilters();
+    this.postsState.resetFilters();
   }
 
   handleSearchTextChange(searchText: string) {
-    this.state.setSearchText(searchText);
+    this.postsState.setSearchText(searchText);
+  }
+
+  loadMorePosts() {
+    this.postsState.loadMorePosts();
   }
 }

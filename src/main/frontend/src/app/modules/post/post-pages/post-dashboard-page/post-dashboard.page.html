@@ -1,11 +1,16 @@
 <app-posts-welcome-message></app-posts-welcome-message>
 <app-search-posts
-  [selectedTag]="state.selectedTag$ | async"
-  [tags]="state.allTags$ | async"
+  [selectedTag]="postsState.selectedTag$ | async"
+  [tags]="postsState.allTags$ | async"
   (inputChange)="handleSearchTextChange($event)"
 ></app-search-posts>
 
 <app-posts-group
-  *ngFor="let postsGroup of (state.displayedPostsGroups$ | async)"
+  *ngFor="let postsGroup of (postsState.displayedPostsGroups$ | async)"
   [postsGroup]="postsGroup"
 ></app-posts-group>
+
+<app-load-more-button
+  text="Load more posts..."
+  (click)="loadMorePosts()"
+></app-load-more-button>

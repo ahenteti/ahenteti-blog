@@ -6,6 +6,7 @@ import {
   PostsSummaries,
   PostSummary,
   PostsGroup,
+  PostGroupByStrategy,
 } from "../models/post.internal.models";
 import { BehaviorSubject } from "rxjs";
 import { PostConverter } from "../services/post.converter";
@@ -13,6 +14,7 @@ import { PostHttpServices } from "../services/post.http.services";
 import { AlertService } from "src/app/modules/alert/alert.service";
 import { GetPostsGroupsApiRequest } from "../models/post.external.models";
 import { SetUtils } from "src/app/modules/shared/services/set.utils";
+import { NoMoreResourceToLoadError } from "src/app/modules/error/no-more-resources-load.exception";
 
 @Injectable({
   providedIn: "root",
@@ -37,6 +39,9 @@ export class PostsState {
   public postGroupByStrategies$ = this.postGroupByStrategies.asObservable();
 
   private searchText: string = "";
+  private selectedGroupByStrategy: PostGroupByStrategy;
+  private supportedGroupByStrategiesName = ["category", "author"];
+  private defaultGroupByStrategyName = "category";
 
   constructor(
     private postConverter: PostConverter,
@@ -69,6 +74,20 @@ export class PostsState {
   selectTag(tag: string) {
     this.selectedTag.next(tag);
     this.calculateDisplayedPostsGroups();
+  }
+
+  loadMorePosts(init = false) {
+    try {
+      const getPostsGroupsApiRequest = this.calculateGetPostsGroupsApiRequest();
+      this.postHttpServices
+        .getPostsGroups(getPostsGroupsApiRequest)
+        .then((postsGroups) =>
+          this.handleGetPostsGroupsSuccessEvent(postsGroups)
+        )
+        .catch((error) => this.handleGetPostsGroupsErrorEvent(error));
+    } catch (e) {
+      this.handleLoadMorePostsError(e, init);
+    }
   }
 
   addPost(post: PostSummary) {}
@@ -124,11 +143,17 @@ export class PostsState {
   // prettier-ignore
   private handleGetPostGroupByStrategiesSuccessEvent(strategies: PostGroupByStrategies): any {
     this.postGroupByStrategies.next(strategies);
-    const getPostsGroupsApiRequest = this.calculateGetPostsGroupsApiRequest();
-    this.postHttpServices
-      .getPostsGroups(getPostsGroupsApiRequest)
-      .then((postsGroups) => this.handleGetPostsGroupsSuccessEvent(postsGroups))
-      .catch((error) => this.handleGetPostsGroupsErrorEvent(error));
+    this.selectedGroupByStrategy = this.calculateSelectedGroupByStrategy();
+    this.loadMorePosts(true);
+  }
+
+  // prettier-ignore
+  calculateSelectedGroupByStrategy(): PostGroupByStrategy {
+    let groupByStrategy = this.postGroupByStrategies.getValue().find(s => s.name == this.defaultGroupByStrategyName);
+    if (groupByStrategy) return groupByStrategy;
+    groupByStrategy = this.postGroupByStrategies.getValue().find(s => this.supportedGroupByStrategiesName.includes(s.name));
+    if (groupByStrategy) return groupByStrategy;
+    throw new Error("No groupBy strategy is supported by the current Angular frontend app");
   }
 
   private handleGetPostsGroupsErrorEvent(error: any): any {
@@ -154,17 +179,9 @@ export class PostsState {
 
   // prettier-ignore
   private calculateGetPostsGroupsApiRequest(): GetPostsGroupsApiRequest {
-    const groupByPostCategory = this.postGroupByStrategies.getValue().find(s => s.name == 'category');
-    if (groupByPostCategory) {
-      const groups = this.calculateNextGroupsToLoad(groupByPostCategory.values);
-      return this.postConverter.toGetPostsGroupsApiRequest(groupByPostCategory.name, groups);
-    } else if (this.postGroupByStrategies.getValue().length > 0) {
-      const groupByStrategy = this.postGroupByStrategies.getValue()[0];
-      const groups = this.calculateNextGroupsToLoad(groupByStrategy.values);
-      return this.postConverter.toGetPostsGroupsApiRequest(groupByPostCategory.name, groups);
-    } else {
-      throw new Error("No post groupBy strategy");
-    }
+    const groups = this.calculateNextGroupsToLoad(this.selectedGroupByStrategy.values);
+    if (groups.length == 0) throw new NoMoreResourceToLoadError();
+    return this.postConverter.toGetPostsGroupsApiRequest(this.selectedGroupByStrategy.name, groups);
   }
 
   // prettier-ignore
@@ -172,6 +189,21 @@ export class PostsState {
     const loadedGroups = this.loadedPostsGroups.getValue().map(p => p.name);
     let notYetLoadedGroups = groupByStrategyValues.filter(group => loadedGroups.indexOf(group) == -1);
     notYetLoadedGroups = notYetLoadedGroups.sort();
-    return notYetLoadedGroups.slice(0, 2);
+    return notYetLoadedGroups.slice(0, 1);
+  }
+
+  // prettier-ignore
+  private handleLoadMorePostsError(e: any, init: boolean) {
+    if (e instanceof NoMoreResourceToLoadError) {
+      if (init) {
+        this.alertService.info("No posts has been created yet. <br/>Be the first to create the first blog on this website :)");
+      }
+      else {
+        this.alertService.info("No more posts to load");
+      }
+    }
+    else {
+      throw e;
+    }
   }
 }
