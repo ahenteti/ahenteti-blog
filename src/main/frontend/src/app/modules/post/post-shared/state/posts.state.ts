@@ -128,6 +128,7 @@ export class PostsState {
     }
     this.loadedPostsGroups.next(postsGroups);
     this.displayedPostsGroups.next(postsGroups);
+    this.calculateAllTags();
   }
 
   updatePost(post: PostSummary) {
@@ -146,6 +147,7 @@ export class PostsState {
     });
     this.loadedPostsGroups.next(postsGroups);
     this.displayedPostsGroups.next(postsGroups);
+    this.calculateAllTags();
   }
 
   deletePost(postId: number) {
@@ -161,6 +163,7 @@ export class PostsState {
     });
     this.loadedPostsGroups.next(postsGroupsToKeep);
     this.displayedPostsGroups.next(postsGroupsToKeep);
+    this.calculateAllTags();
   }
 
   private calculateDisplayedPostsGroups() {
@@ -239,11 +242,11 @@ export class PostsState {
     } else {
       this.windowService.scrollToBottom();
     }
-    this.recalculateAllTags();
+    this.calculateAllTags();
   }
 
   // prettier-ignore
-  private recalculateAllTags() {
+  private calculateAllTags() {
     const tags = new Set<string>();
     let loadedPosts = new PostsSummaries();
     this.loadedPostsGroups.getValue().forEach(group => loadedPosts = loadedPosts.concat(group.posts));
@@ -262,17 +265,18 @@ export class PostsState {
     const loadedGroups = this.loadedPostsGroups.getValue().map(p => p.name);
     let notYetLoadedGroups = groupByStrategyValues.filter(group => loadedGroups.indexOf(group) == -1);
     notYetLoadedGroups = notYetLoadedGroups.sort();
-    if (notYetLoadedGroups.length < this.postGroupsToLoadNumber) this.handleLoadMorePostsEvent();
-    return notYetLoadedGroups.slice(0, 1);
+    if (notYetLoadedGroups.length <= this.postGroupsToLoadNumber) this.handleNoMorePostsToLoadEvent(notYetLoadedGroups.length);
+    return notYetLoadedGroups.slice(0, this.postGroupsToLoadNumber);
   }
 
   // prettier-ignore
-  private handleLoadMorePostsEvent() {
+  private handleNoMorePostsToLoadEvent(notYetLoadedGroupsLength: number) {
     this.noMorePosts.next(true);
     if (this.initialPostsLoad) {
-      this.alertService.info("No posts has been created yet. <br/>Be the first to create the first blog on this website :)");
-    }
-    else {
+      if (notYetLoadedGroupsLength == 0) {
+        this.alertService.info("No posts has been created yet. <br/>Be the first to create the first blog on this website :)");
+      }
+    } else {
       this.alertService.info("No more posts to load");
     }
   }

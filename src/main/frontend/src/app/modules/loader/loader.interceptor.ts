@@ -21,7 +21,6 @@ export class LoaderInterceptor implements HttpInterceptor {
     if (HTTP_REQUEST_WITHOUT_LOADER.includes(req.url)) {
       return next.handle(req);
     } else {
-      console.log(req);
       this.loaderService.show();
       return next.handle(req).pipe(finalize(() => this.loaderService.hide()));
     }
