@@ -8,6 +8,8 @@ import { AlertService } from "src/app/modules/alert/alert.service";
 import { PostConverter } from "../../post-shared/services/post.converter";
 import { Observable, Subject } from "rxjs";
 import { PostsState } from "../../post-shared/state/posts.state";
+import { MatDialog } from "@angular/material/dialog";
+import { ConfirmationDialogComponent } from "src/app/modules/shared/components/confirmation-dialog/confirmation-dialog.component";
 
 @Component({
   templateUrl: "manage-posts.page.html",
@@ -25,7 +27,8 @@ export class ManagePostsPage extends AnimatedLoadingPage implements OnInit {
     private postHttpServices: PostHttpServices,
     private postConverter: PostConverter,
     private alertService: AlertService,
-    private postsState: PostsState
+    private postsState: PostsState,
+    private dialog: MatDialog
   ) {
     super();
   }
@@ -40,11 +43,19 @@ export class ManagePostsPage extends AnimatedLoadingPage implements OnInit {
   }
 
   deletePost(postId: number) {
-    const request = this.postConverter.toDeletePostApiRequest(postId);
-    this.postHttpServices
-      .deletePost(request)
-      .then(() => this.handleDeletePostSuccessEvent(postId))
-      .catch((error) => this.handleDeletePostErrorEvent(error));
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: "Do you confirm the deletion of this post ?",
+      width: "340px",
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        const request = this.postConverter.toDeletePostApiRequest(postId);
+        this.postHttpServices
+          .deletePost(request)
+          .then(() => this.handleDeletePostSuccessEvent(postId))
+          .catch((error) => this.handleDeletePostErrorEvent(error));
+      }
+    });
   }
 
   handleNextButtonClickEvent() {

@@ -47,9 +47,15 @@ import { InputDisableAutoCompleteDirective } from "./directives/input-disable-au
 import { PreviousButtonComponent } from "./components/buttons/previous-button/previous-button.component";
 import { NextButtonComponent } from "./components/buttons/next-button/next-button.component";
 import { LoadMoreButtonComponent } from "./components/buttons/load-more-button/load-more-button.component";
+import { MatDialogModule } from "@angular/material/dialog";
+import { ConfirmationDialogComponent } from "./components/confirmation-dialog/confirmation-dialog.component";
 
 @NgModule({
-  entryComponents: [TooltipComponent, QuoteComponent],
+  entryComponents: [
+    TooltipComponent,
+    QuoteComponent,
+    ConfirmationDialogComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule,
@@ -67,6 +73,7 @@ import { LoadMoreButtonComponent } from "./components/buttons/load-more-button/l
     MatChipsModule,
     MatIconModule,
     MatTabsModule,
+    MatDialogModule,
   ],
   declarations: [
     SectionTitleComponent,
@@ -101,6 +108,7 @@ import { LoadMoreButtonComponent } from "./components/buttons/load-more-button/l
     PreviousButtonComponent,
     NextButtonComponent,
     LoadMoreButtonComponent,
+    ConfirmationDialogComponent,
   ],
   exports: [
     RouterModule,
@@ -118,6 +126,7 @@ import { LoadMoreButtonComponent } from "./components/buttons/load-more-button/l
     MatChipsModule,
     MatIconModule,
     MatTabsModule,
+    MatDialogModule,
 
     SectionTitleComponent,
     LogoLinkComponent,
@@ -148,6 +157,7 @@ import { LoadMoreButtonComponent } from "./components/buttons/load-more-button/l
     PreviousButtonComponent,
     NextButtonComponent,
     LoadMoreButtonComponent,
+    ConfirmationDialogComponent,
   ],
 })
 export class SharedModule {}
