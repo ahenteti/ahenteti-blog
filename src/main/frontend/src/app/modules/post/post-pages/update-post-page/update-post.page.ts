@@ -6,7 +6,6 @@ import {
   PostSummary,
 } from "../../post-shared/models/post.internal.models";
 import { PostHttpServices } from "../../post-shared/services/post.http.services";
-import { AnimatedLoadingPage } from "src/app/modules/shared/pages/animated-loading.page";
 import { PostValidator } from "../../post-shared/services/post.validator";
 import { PostConverter } from "../../post-shared/services/post.converter";
 import { PostsState } from "../../post-shared/state/posts.state";
@@ -16,7 +15,7 @@ import { AlertService } from "src/app/modules/alert/alert.service";
   templateUrl: "./update-post.page.html",
   styleUrls: ["./update-post.page.scss"],
 })
-export class UpdatePostPage extends AnimatedLoadingPage implements OnInit {
+export class UpdatePostPage implements OnInit {
   postId: number;
   post = new OfflinePost();
 
@@ -29,27 +28,23 @@ export class UpdatePostPage extends AnimatedLoadingPage implements OnInit {
     private router: Router,
     route: ActivatedRoute
   ) {
-    super();
     this.postId = route.snapshot.params["id"];
   }
 
   ngOnInit(): void {
     this.postHttpServices.getPostById(this.postId).then((post) => {
       this.post = post;
-      this.hideLoader();
     });
   }
 
   onSubmit(post: Post) {
     try {
       this.postValidator.validateUpdatePost(post);
-      this.showLoader();
       const request = this.postConverter.toUpdatePostApiRequest(post);
       this.postHttpServices
         .updatePost(request)
         .then((post) => this.handleUpdatePostSuccessEvent(post))
-        .catch((error) => this.handleUpdatePostErrorEvent(error))
-        .finally(() => this.hideLoader());
+        .catch((error) => this.handleUpdatePostErrorEvent(error));
     } catch (error) {
       this.alertService.error(error.message);
     }

@@ -19,6 +19,10 @@ import { PostCommentConverter } from "./modules/post/post-comments/converter/pos
 import { PostCommentHttpServices } from "./modules/post/post-comments/services/post-comment.http.service";
 import { PostValidator } from "./modules/post/post-shared/services/post.validator";
 import { WindowService } from "./modules/shared/services/window.service";
+import { LoaderModule } from "./modules/loader/loader.module";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { LoaderInterceptor } from "./modules/loader/loader.interceptor";
+import { LoaderService } from "./modules/loader/loader.service";
 
 const routes: Routes = [
   {
@@ -33,6 +37,7 @@ const routes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     SharedModule,
+    LoaderModule,
     AlertModule,
     NavbarModule,
     PostPageModule,
@@ -52,6 +57,8 @@ const routes: Routes = [
     LoggedInGuard,
     PostValidator,
     WindowService,
+    LoaderService,
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
   ],
 })
 export class AppModule {}

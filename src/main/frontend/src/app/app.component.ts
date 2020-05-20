@@ -7,6 +7,7 @@ import * as AOS from "aos";
   template: /*html*/ `
     <app-navbar></app-navbar>
     <app-alert></app-alert>
+    <app-loader></app-loader>
     <main>
       <router-outlet></router-outlet>
     </main>

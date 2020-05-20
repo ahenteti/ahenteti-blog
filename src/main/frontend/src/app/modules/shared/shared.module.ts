@@ -26,7 +26,6 @@ import { TextareaDisableSpellCheckDirective } from "./directives/textarea-disabl
 import { LoginWithGithubComponent } from "./components/login-with-github/login-with-github.component";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
-import { LoaderComponent } from "./components/loader/loader.component";
 import { MatTableModule } from "@angular/material/table";
 import { MatSortModule } from "@angular/material/sort";
 import { RouterLinkComponent } from "./components/router-link/router-link.component";
@@ -95,7 +94,6 @@ import { ConfirmationDialogComponent } from "./components/confirmation-dialog/co
     TextareaAutoGrowDirective,
     TextareaDisableSpellCheckDirective,
     LoginWithGithubComponent,
-    LoaderComponent,
     RouterLinkComponent,
     NewButtonComponent,
     PageTitleComponent,
@@ -144,7 +142,6 @@ import { ConfirmationDialogComponent } from "./components/confirmation-dialog/co
     TextareaAutoGrowDirective,
     TextareaDisableSpellCheckDirective,
     LoginWithGithubComponent,
-    LoaderComponent,
     RouterLinkComponent,
     NewButtonComponent,
     PageTitleComponent,

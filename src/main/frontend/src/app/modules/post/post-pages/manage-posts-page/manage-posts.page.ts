@@ -1,12 +1,11 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { PostHttpServices } from "../../post-shared/services/post.http.services";
 import { PostsSummariesPage } from "../../post-shared/models/post.internal.models";
-import { AnimatedLoadingPage } from "src/app/modules/shared/pages/animated-loading.page";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { AlertService } from "src/app/modules/alert/alert.service";
 import { PostConverter } from "../../post-shared/services/post.converter";
-import { Observable, Subject } from "rxjs";
+import { Subject } from "rxjs";
 import { PostsState } from "../../post-shared/state/posts.state";
 import { MatDialog } from "@angular/material/dialog";
 import { ConfirmationDialogComponent } from "src/app/modules/shared/components/confirmation-dialog/confirmation-dialog.component";
@@ -15,7 +14,7 @@ import { ConfirmationDialogComponent } from "src/app/modules/shared/components/c
   templateUrl: "manage-posts.page.html",
   styleUrls: ["manage-posts.page.scss"],
 })
-export class ManagePostsPage extends AnimatedLoadingPage implements OnInit {
+export class ManagePostsPage implements OnInit {
   currentUserPostsPage = new PostsSummariesPage();
   userPostsDataSource = new MatTableDataSource([]);
   displayedColumns: string[] = ["title", "category", "createdAt", "actions"];
@@ -29,17 +28,14 @@ export class ManagePostsPage extends AnimatedLoadingPage implements OnInit {
     private alertService: AlertService,
     private postsState: PostsState,
     private dialog: MatDialog
-  ) {
-    super();
-  }
+  ) {}
 
   ngOnInit() {
     const request = this.postConverter.toGetUserPostsApiRequest(0);
     this.postHttpServices
       .getUserPosts(request)
       .then((posts) => this.handleGetUserPostsSuccessEvent(posts))
-      .catch((error) => this.handleGetUserPostsErrorEvent(error))
-      .finally(() => this.hideLoader());
+      .catch((error) => this.handleGetUserPostsErrorEvent(error));
   }
 
   deletePost(postId: number) {
