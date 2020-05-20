@@ -1,0 +1,20 @@
+.mat-dialog-container {
+  color: var(--dialog-color);
+  background: var(--dialog-background-color);
+  transition: var(--transition);
+  transition-property: color, background-color;
+}
+
+.mat-dialog-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 !important;
+  margin: 2rem 0 0 !important;
+  min-height: 0 !important;
+
+  & button {
+    padding: 0.5rem 1rem;
+    margin-left: 1.5rem;
+  }
+}
