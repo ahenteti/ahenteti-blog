@@ -130,7 +130,23 @@ export class PostsState {
     this.displayedPostsGroups.next(postsGroups);
   }
 
-  updatePost(post: PostSummary) {}
+  updatePost(post: PostSummary) {
+    const postsGroups = new PostsGroups();
+    this.loadedPostsGroups.getValue().forEach((group) => {
+      const postsGroup = new PostsGroup();
+      postsGroup.name = group.name;
+      group.posts.forEach((originalPost) => {
+        if (originalPost.id === post.id) {
+          postsGroup.posts.push(post);
+        } else {
+          postsGroup.posts.push(originalPost);
+        }
+      });
+      postsGroups.push(postsGroup);
+    });
+    this.loadedPostsGroups.next(postsGroups);
+    this.displayedPostsGroups.next(postsGroups);
+  }
 
   deletePost(postId: number) {
     const postsGroupsToKeep = new PostsGroups();
