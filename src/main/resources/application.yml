@@ -1,3 +1,8 @@
+server:
+  servlet:
+    session:
+      timeout: 60m
+
 spring:
   datasource:
     url: ${AHENTETI_BLOG_DATASOURCE_URL}
