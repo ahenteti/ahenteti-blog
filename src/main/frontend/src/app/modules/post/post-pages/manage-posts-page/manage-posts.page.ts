@@ -7,6 +7,7 @@ import { MatTableDataSource } from "@angular/material/table";
 import { AlertService } from "src/app/modules/alert/alert.service";
 import { PostConverter } from "../../post-shared/services/post.converter";
 import { Observable, Subject } from "rxjs";
+import { PostsState } from "../../post-shared/state/posts.state";
 
 @Component({
   templateUrl: "manage-posts.page.html",
@@ -23,7 +24,8 @@ export class ManagePostsPage extends AnimatedLoadingPage implements OnInit {
   constructor(
     private postHttpServices: PostHttpServices,
     private postConverter: PostConverter,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private postsState: PostsState
   ) {
     super();
   }
@@ -84,13 +86,14 @@ export class ManagePostsPage extends AnimatedLoadingPage implements OnInit {
     this.alertService.error("Error while fetching user posts :(");
   }
 
+  // prettier-ignore
   private handleDeletePostSuccessEvent(postId: number) {
     this.alertService.info("Post deleted with success");
     this.userPostsDataSource.data = this.userPostsDataSource.data.filter(
       (post) => post.id !== postId
     );
-    this.userPostsDataSource._updateChangeSubscription(); // <-- Refresh the data source
-    // reference: https://stackoverflow.com/questions/54744770/how-to-delete-particular-row-from-angular-material-table-which-doesnt-have-filte
+    this.userPostsDataSource._updateChangeSubscription(); // <-- Refresh the data source, reference: https://stackoverflow.com/questions/54744770/how-to-delete-particular-row-from-angular-material-table-which-doesnt-have-filte
+    this.postsState.deletePost(postId);
   }
 
   private handleGetUserPostsSuccessEvent(postsPage: PostsSummariesPage) {

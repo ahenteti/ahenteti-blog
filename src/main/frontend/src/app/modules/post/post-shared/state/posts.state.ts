@@ -17,6 +17,9 @@ import { GetPostsGroupsApiRequest } from "../models/post.external.models";
 import { SetUtils } from "src/app/modules/shared/services/set.utils";
 import { WindowService } from "src/app/modules/shared/services/window.service";
 
+const GROUP_BY_POST_CATEGORY = "category";
+const GROUP_BY_POST_AUTHOR = "author";
+
 @Injectable({
   providedIn: "root",
 })
@@ -45,9 +48,8 @@ export class PostsState {
   private searchText: string = "";
   private selectedGroupByStrategy: PostGroupByStrategy;
   private supportedGroupByStrategiesName = ["category", "author"];
-  private defaultGroupByStrategyName = "category";
 
-  private initializationPhase = false;
+  private initialPostsLoad = true;
   private postGroupsToLoadNumber = 2;
 
   // prettier-ignore
@@ -64,16 +66,11 @@ export class PostsState {
 
   // prettier-ignore
   init() {
-    try {
-      this.initializationPhase = true;
-      const request = this.postConverter.toGetPostGroupByStrategiesApiRequest();
-      this.postHttpServices
-        .getPostGroupByStrategies(request)
-        .then((strategies) => this.handleGetPostGroupByStrategiesSuccessEvent(strategies))
-        .catch((error) => this.handleGetPostGroupByStrategiesErrorEvent(error));
-    } finally {
-      this.initializationPhase = false;
-    }
+    const request = this.postConverter.toGetPostGroupByStrategiesApiRequest();
+    this.postHttpServices
+      .getPostGroupByStrategies(request)
+      .then((strategies) => this.handleGetPostGroupByStrategiesSuccessEvent(strategies))
+      .catch((error) => this.handleGetPostGroupByStrategiesErrorEvent(error));
   }
 
   setSearchText(searchText: string) {
@@ -107,9 +104,48 @@ export class PostsState {
     }
   }
 
-  addPost(post: PostSummary) {}
+  addPost(post: PostSummary) {
+    const postGroup = this.calculatePostGroup(post);
+    const postsGroups = new PostsGroups();
+    let alreadyExistingGroup = false;
+    this.loadedPostsGroups.getValue().forEach((group) => {
+      if (group.name === postGroup) {
+        const updatedPostsGroup = new PostsGroup();
+        updatedPostsGroup.name = group.name;
+        updatedPostsGroup.posts = group.posts;
+        updatedPostsGroup.posts.push(post);
+        postsGroups.push(updatedPostsGroup);
+        alreadyExistingGroup = true;
+      } else {
+        postsGroups.push(group);
+      }
+    });
+    if (!alreadyExistingGroup) {
+      const newPostsGroup = new PostsGroup();
+      newPostsGroup.name = postGroup;
+      newPostsGroup.posts.push(post);
+      postsGroups.unshift(newPostsGroup);
+    }
+    this.loadedPostsGroups.next(postsGroups);
+    this.displayedPostsGroups.next(postsGroups);
+  }
 
   updatePost(post: PostSummary) {}
+
+  deletePost(postId: number) {
+    const postsGroupsToKeep = new PostsGroups();
+    this.loadedPostsGroups.getValue().forEach((group) => {
+      let posts = group.posts.filter((post) => post.id !== postId);
+      if (posts.length > 0) {
+        let postsGroup = new PostsGroup();
+        postsGroup.name = group.name;
+        postsGroup.posts = posts;
+        postsGroupsToKeep.push(postsGroup);
+      }
+    });
+    this.loadedPostsGroups.next(postsGroupsToKeep);
+    this.displayedPostsGroups.next(postsGroupsToKeep);
+  }
 
   private calculateDisplayedPostsGroups() {
     const displayedPostsGroups = new PostsGroups();
@@ -166,7 +202,7 @@ export class PostsState {
 
   // prettier-ignore
   calculateSelectedGroupByStrategy(): PostGroupByStrategy {
-    let groupByStrategy = this.postGroupByStrategies.getValue().find(s => s.name == this.defaultGroupByStrategyName);
+    let groupByStrategy = this.postGroupByStrategies.getValue().find(s => s.name == GROUP_BY_POST_CATEGORY);
     if (groupByStrategy) return groupByStrategy;
     groupByStrategy = this.postGroupByStrategies.getValue().find(s => this.supportedGroupByStrategiesName.includes(s.name));
     if (groupByStrategy) return groupByStrategy;
@@ -179,10 +215,14 @@ export class PostsState {
   }
 
   // prettier-ignore
-  private handleGetPostsGroupsSuccessEvent(postsGroups: PostsGroups): any {
+  private handleGetPostsGroupsSuccessEvent(postsGroups: PostsGroups) {
     this.loadedPostsGroups.next([...this.loadedPostsGroups.getValue(), ...postsGroups]);
     this.displayedPostsGroups.next(this.loadedPostsGroups.getValue());
-    this.windowService.scrollToBottom();
+    if (this.initialPostsLoad) {
+      this.initialPostsLoad = false;
+    } else {
+      this.windowService.scrollToBottom();
+    }
     this.recalculateAllTags();
   }
 
@@ -213,11 +253,19 @@ export class PostsState {
   // prettier-ignore
   private handleLoadMorePostsEvent() {
     this.noMorePosts.next(true);
-    if (this.initializationPhase) {
+    if (this.initialPostsLoad) {
       this.alertService.info("No posts has been created yet. <br/>Be the first to create the first blog on this website :)");
     }
     else {
       this.alertService.info("No more posts to load");
+    }
+  }
+
+  private calculatePostGroup(post: PostSummary) {
+    if (this.selectedGroupByStrategy.name == GROUP_BY_POST_CATEGORY) {
+      return post.category;
+    } else {
+      return post.author.username;
     }
   }
 }
