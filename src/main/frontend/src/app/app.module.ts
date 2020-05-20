@@ -18,6 +18,7 @@ import { PostConverter } from "./modules/post/post-shared/services/post.converte
 import { PostCommentConverter } from "./modules/post/post-comments/converter/post-comment.converter";
 import { PostCommentHttpServices } from "./modules/post/post-comments/services/post-comment.http.service";
 import { PostValidator } from "./modules/post/post-shared/services/post.validator";
+import { WindowService } from "./modules/shared/services/window.service";
 
 const routes: Routes = [
   {
@@ -50,6 +51,7 @@ const routes: Routes = [
     UserConverter,
     LoggedInGuard,
     PostValidator,
+    WindowService,
   ],
 })
 export class AppModule {}
