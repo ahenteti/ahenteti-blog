@@ -1,6 +1,7 @@
 package io.ahenteti.blog.security;
 
-import io.ahenteti.blog.model.core.user.GithubUser;
+import io.ahenteti.blog.model.core.user.oauth2.OAuth2GithubUser;
+import io.ahenteti.blog.service.oauth2.OAuth2UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -26,7 +27,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private static final String GITHUB_CLIENT_REGISTRATION_ID = "github";
 
     @Autowired
-    private OAuth2GithubAuthenticationSuccessHandler authenticationSuccessHandler;
+    private OAuth2AuthenticationSuccessHandler authenticationSuccessHandler;
+    
+    @Autowired
+    private OAuth2UserService oidcUserService;
 
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -45,7 +49,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .oauth2Login()
                 .successHandler(authenticationSuccessHandler)
                 .userInfoEndpoint()
-                    .customUserType(GithubUser.class, GITHUB_CLIENT_REGISTRATION_ID).and().and()
+                    .oidcUserService(this.oidcUserService)
+                    .customUserType(OAuth2GithubUser.class, GITHUB_CLIENT_REGISTRATION_ID).and().and()
             .addFilterBefore(new BlogLogoutFilter(), LogoutFilter.class);
         // @formatter:on
     }

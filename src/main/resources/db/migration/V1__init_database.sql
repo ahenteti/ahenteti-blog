@@ -36,6 +36,7 @@ create table t_users
   id bigint not null default nextval('hibernate_sequence'),
   username varchar(255),
   avatar varchar(255),
+  provider varchar(255),
   primary key (id)
 );
 
@@ -58,4 +59,7 @@ add constraint FKokccyllx0jvai5gss2lopupm3 foreign key (author_id) references t_
 alter table
 if exists t_posts
 add constraint FKrw27s0gpmeikhecl65e10ga2u foreign key (body_id) references t_post_bodies;
+
+insert into t_users (id, username, avatar, provider) 
+values (1, 'ahenteti', 'https://avatars3.githubusercontent.com/u/16677361?v=4', 'github');
 

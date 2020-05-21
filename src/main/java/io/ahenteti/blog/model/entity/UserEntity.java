@@ -23,6 +23,9 @@ public class UserEntity {
     @Column(name = "USERNAME")
     private String username;
 
+    @Column(name = "PROVIDER")
+    private String provider;
+
     @Column(name = "AVATAR")
     private String avatar;
 

@@ -6,18 +6,18 @@ import io.ahenteti.blog.exception.MissingMandatoryRequestAttributeException;
 import io.ahenteti.blog.model.core.post.EPostsSortBy;
 import io.ahenteti.blog.model.api.post.request.GetUserPostsApiRequest;
 import io.ahenteti.blog.model.api.post.request.valid.ValidGetUserPostsApiRequest;
-import io.ahenteti.blog.model.core.user.IUser;
+import io.ahenteti.blog.model.core.user.oauth2.IOAuth2User;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserValidator {
 
-    public void validateUser(IUser user) {
+    public void validateUser(IOAuth2User user) {
         if (user == null) {
             throw new AuthenticationException("user not authenticated");
         }
-        if (user.getId() == null) {
+        if (user.getPrimaryKey() == null) {
             // must be set in the io.ahenteti.blog.security.OAuth2GithubAuthenticationSuccessHandler handler 
             throw new AuthenticationException("authenticated user must have user id");
         }

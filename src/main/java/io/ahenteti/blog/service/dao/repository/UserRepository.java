@@ -10,7 +10,7 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
-    @Query(value = "SELECT u.* FROM T_USERS u WHERE u.USERNAME = :username LIMIT 1", nativeQuery = true)
-    Optional<UserEntity> findByUsername(String username);
+    @Query(value = "SELECT u.* FROM T_USERS u WHERE u.USERNAME = :username AND u.PROVIDER = :provider LIMIT 1", nativeQuery = true)
+    Optional<UserEntity> findByUsernameAndProvider(String username, String provider);
 
 }

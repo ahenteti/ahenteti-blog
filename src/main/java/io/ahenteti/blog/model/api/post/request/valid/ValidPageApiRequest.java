@@ -1,13 +1,13 @@
 package io.ahenteti.blog.model.api.post.request.valid;
 
 import io.ahenteti.blog.model.core.ISortBy;
-import io.ahenteti.blog.model.core.user.IUser;
+import io.ahenteti.blog.model.core.user.oauth2.IOAuth2User;
 import lombok.Data;
 
 @Data
 public class ValidPageApiRequest<T extends ISortBy> {
 
-    protected IUser user;
+    protected IOAuth2User user;
     protected Integer page;
     protected Integer size;
     protected T sortBy;

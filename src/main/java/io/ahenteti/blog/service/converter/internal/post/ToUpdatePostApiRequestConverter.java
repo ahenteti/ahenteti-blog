@@ -2,13 +2,13 @@ package io.ahenteti.blog.service.converter.internal.post;
 
 import io.ahenteti.blog.model.api.post.request.UpdatePostApiRequest;
 import io.ahenteti.blog.model.api.post.request.UpdatePostApiRequestBody;
-import io.ahenteti.blog.model.core.user.IUser;
+import io.ahenteti.blog.model.core.user.oauth2.IOAuth2User;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ToUpdatePostApiRequestConverter {
 
-    public UpdatePostApiRequest toUpdatePostApiRequest(IUser user, Long id, UpdatePostApiRequestBody requestBody) {
+    public UpdatePostApiRequest toUpdatePostApiRequest(IOAuth2User user, Long id, UpdatePostApiRequestBody requestBody) {
         UpdatePostApiRequest res = new UpdatePostApiRequest();
         res.setId(id);
         res.setTitle(requestBody.getTitle());

@@ -1,3 +1,18 @@
-<a class="login" href="/oauth2/authorization/github" (click)="preLogin()"
-  >Login with <span class="login-icon iconify" data-icon="fe:github"></span
-></a>
+<div
+  class="login"
+  [matMenuTriggerFor]="menu"
+  (mouseover)="onMouseOver()"
+  #dropdownTrigger="matMenuTrigger"
+>
+  <span>Login</span>
+  <app-dropdown-icon class="dropdown-icon"></app-dropdown-icon>
+</div>
+
+<mat-menu #menu="matMenu" xPosition="before">
+  <a mat-menu-item href="/oauth2/authorization/github" (click)="preLogin()"
+    >Login with <span class="login-icon iconify" data-icon="fe:github"></span
+  ></a>
+  <a mat-menu-item href="/oauth2/authorization/google" (click)="preLogin()"
+    >Login with <span class="login-icon iconify" data-icon="fe:google"></span
+  ></a>
+</mat-menu>

@@ -9,7 +9,7 @@ import io.ahenteti.blog.model.api.postcomments.ValidCreatePostCommentApiRequest;
 import io.ahenteti.blog.model.core.postcomments.PostComment;
 import io.ahenteti.blog.model.core.postcomments.PostComments;
 import io.ahenteti.blog.model.core.postcomments.ReadyToCreatePostComment;
-import io.ahenteti.blog.model.core.user.IUser;
+import io.ahenteti.blog.model.core.user.oauth2.IOAuth2User;
 import io.ahenteti.blog.model.entity.PostCommentEntity;
 import io.ahenteti.blog.service.converter.internal.postcomments.ToCreatePostCommentApiRequestConverter;
 import io.ahenteti.blog.service.converter.internal.postcomments.ToGetPostCommentsApiRequestConverter;
@@ -45,7 +45,7 @@ public class PostCommentConverter {
         this.toPostCommentsApiResponseConverter = toPostCommentsApiResponseConverter;
     }
 
-    public CreatePostCommentApiRequest toCreatePostCommentApiRequest(IUser author, Long postId, CreatePostCommentApiRequestBody body) {
+    public CreatePostCommentApiRequest toCreatePostCommentApiRequest(IOAuth2User author, Long postId, CreatePostCommentApiRequestBody body) {
         return this.toCreatePostCommentApiRequestConverter.toCreatePostCommentApiRequest(author, postId, body);
     }
 

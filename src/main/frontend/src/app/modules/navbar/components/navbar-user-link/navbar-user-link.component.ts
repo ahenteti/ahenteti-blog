@@ -2,7 +2,6 @@ import { Component, ViewChild } from "@angular/core";
 import { MatMenuTrigger } from "@angular/material/menu";
 import { UserAwareComponent } from "src/app/modules/user/components/user-aware.component";
 import { ThemeLocalStorageServices } from "src/app/modules/shared/services/theme.localstorage.services";
-import { UserLoginServices } from "src/app/modules/user/services/user.login.services";
 import { UserObservable } from "src/app/modules/user/services/user.observable";
 
 @Component({
@@ -11,12 +10,11 @@ import { UserObservable } from "src/app/modules/user/services/user.observable";
   styleUrls: ["./navbar-user-link.component.scss"],
 })
 export class NavbarUserLinkComponent extends UserAwareComponent {
-  @ViewChild("profileDropdownTrigger", { static: false })
-  profileDropdownTrigger: MatMenuTrigger;
+  @ViewChild("dropdownTrigger", { static: false })
+  dropdownTrigger: MatMenuTrigger;
 
   constructor(
     private themeService: ThemeLocalStorageServices,
-    private userLoginService: UserLoginServices,
     userObservable: UserObservable
   ) {
     super(userObservable);
@@ -28,6 +26,6 @@ export class NavbarUserLinkComponent extends UserAwareComponent {
   }
 
   onMouseOver() {
-    this.profileDropdownTrigger.openMenu();
+    this.dropdownTrigger.openMenu();
   }
 }

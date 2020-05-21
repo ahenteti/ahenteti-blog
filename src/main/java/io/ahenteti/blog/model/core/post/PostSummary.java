@@ -1,6 +1,6 @@
 package io.ahenteti.blog.model.core.post;
 
-import io.ahenteti.blog.model.core.user.IUser;
+import io.ahenteti.blog.model.core.user.User;
 import lombok.Data;
 
 import java.time.Instant;
@@ -16,5 +16,5 @@ public class PostSummary {
     protected Collection<String> tags = new ArrayList<>();
     protected Instant createdAt;
     protected Optional<Instant> lastUpdatedAt = Optional.empty();
-    protected IUser author;
+    protected User author;
 }

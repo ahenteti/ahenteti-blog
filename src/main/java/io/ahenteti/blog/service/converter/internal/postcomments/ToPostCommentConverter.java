@@ -23,7 +23,7 @@ public class ToPostCommentConverter {
     public ReadyToCreatePostComment toPostComment(ValidCreatePostCommentApiRequest request) {
         ReadyToCreatePostComment res = new ReadyToCreatePostComment();
         res.setId(null);
-        res.setAuthor(request.getAuthor());
+        res.setAuthor(userConverter.toUser(request.getAuthor()));
         res.setValue(request.getValue());
         res.setCreatedAt(Instant.now());
         res.setPostId(request.getPostId());

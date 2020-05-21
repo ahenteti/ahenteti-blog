@@ -5,7 +5,7 @@ import io.ahenteti.blog.model.api.post.response.UserPostsApiResponse;
 import io.ahenteti.blog.model.api.post.request.valid.ValidGetUserPostsApiRequest;
 import io.ahenteti.blog.model.api.user.UserApiResponse;
 import io.ahenteti.blog.model.core.post.PostsSummariesPage;
-import io.ahenteti.blog.model.core.user.IUser;
+import io.ahenteti.blog.model.core.user.oauth2.IOAuth2User;
 import io.ahenteti.blog.service.converter.PostConverter;
 import io.ahenteti.blog.service.converter.UserConverter;
 import io.ahenteti.blog.service.dao.PostDao;
@@ -33,13 +33,13 @@ public class UserController {
     }
 
     @GetMapping("/api/currentIdentity")
-    public UserApiResponse getUser(@ModelAttribute IUser user) {
+    public UserApiResponse getUser(@ModelAttribute IOAuth2User user) {
         userValidator.validateUser(user);
         return userConverter.toUserApiResponse(user);
     }
 
     @GetMapping("/secure-api/user/posts-summaries")
-    public UserPostsApiResponse getUserPosts(@ModelAttribute IUser user, @RequestParam Integer page, @RequestParam Integer size, @RequestParam(required = false, defaultValue = "createdAt") String sortBy) {
+    public UserPostsApiResponse getUserPosts(@ModelAttribute IOAuth2User user, @RequestParam Integer page, @RequestParam Integer size, @RequestParam(required = false, defaultValue = "createdAt") String sortBy) {
         GetUserPostsApiRequest request = postConverter.toGetUserPostsApiRequest(user, page, size, sortBy);
         ValidGetUserPostsApiRequest validRequest = userValidator.validateGetUserPostsApiRequest(request);
         PostsSummariesPage postsPage = postDao.getUserPosts(validRequest);

@@ -19,7 +19,7 @@ import io.ahenteti.blog.model.core.post.Post;
 import io.ahenteti.blog.model.core.post.PostsGroups;
 import io.ahenteti.blog.model.core.post.ReadyToCreatePost;
 import io.ahenteti.blog.model.core.post.ReadyToUpdatePost;
-import io.ahenteti.blog.model.core.user.IUser;
+import io.ahenteti.blog.model.core.user.oauth2.IOAuth2User;
 import io.ahenteti.blog.model.entity.PostEntity;
 import io.ahenteti.blog.service.converter.PostConverter;
 import io.ahenteti.blog.service.dao.PostDao;
@@ -79,7 +79,7 @@ public class PostController {
     @Transactional
     @PostMapping("/secure-api/posts")
     @ResponseStatus(HttpStatus.CREATED)
-    public PostSummaryApiResponse createPost(@ModelAttribute IUser user, @RequestBody CreatePostApiRequestBody requestBody) {
+    public PostSummaryApiResponse createPost(@ModelAttribute IOAuth2User user, @RequestBody CreatePostApiRequestBody requestBody) {
         CreatePostApiRequest request = postConverter.toCreatePostApiRequestBody(user, requestBody);
         ValidCreatePostApiRequest validRequest = postValidator.validateCreatePostApiRequest(request);
         ReadyToCreatePost post = postConverter.toPost(validRequest);
@@ -89,7 +89,7 @@ public class PostController {
 
     @Transactional
     @PutMapping("/secure-api/posts/{id}")
-    public PostSummaryApiResponse updatePost(@ModelAttribute IUser user, @PathVariable Long id, @RequestBody UpdatePostApiRequestBody requestBody) {
+    public PostSummaryApiResponse updatePost(@ModelAttribute IOAuth2User user, @PathVariable Long id, @RequestBody UpdatePostApiRequestBody requestBody) {
         UpdatePostApiRequest request = postConverter.toUpdatePostApiRequest(user, id, requestBody);
         ValidUpdatePostApiRequest validRequest = postValidator.validateUpdatePostApiRequest(request);
         ReadyToUpdatePost post = postConverter.toPost(validRequest);
@@ -99,7 +99,7 @@ public class PostController {
 
     @Transactional
     @DeleteMapping("/secure-api/posts/{id}")
-    public void deletePost(@ModelAttribute IUser user, @PathVariable Long id) {
+    public void deletePost(@ModelAttribute IOAuth2User user, @PathVariable Long id) {
         DeletePostApiRequest request = postConverter.toDeletePostApiRequest(user, id);
         ValidDeletePostApiRequest validRequest = postValidator.validateDeletePostApiRequest(request);
         postDao.deletePost(validRequest);

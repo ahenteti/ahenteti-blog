@@ -1,6 +1,6 @@
 package io.ahenteti.blog.model.core.postcomments;
 
-import io.ahenteti.blog.model.core.user.IUser;
+import io.ahenteti.blog.model.core.user.User;
 import lombok.Data;
 
 import java.time.Instant;
@@ -10,6 +10,6 @@ public class PostComment {
     private Long id;
     private String value;
     private Instant createdAt;
-    private IUser author;
+    private User author;
     private Long postId;
 }

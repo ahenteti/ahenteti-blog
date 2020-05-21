@@ -5,7 +5,16 @@
   text-decoration: none;
 }
 
+a {
+  display: flex;
+  align-items: center;
+}
+
 .login-icon {
-  font-size: 2.5rem;
-  margin-left: 1.2rem;
+  margin-left: 1rem;
+  font-size: 2.3rem;
+}
+
+app-dropdown-icon {
+  line-height: initial;
 }

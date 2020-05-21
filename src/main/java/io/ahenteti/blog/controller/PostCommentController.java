@@ -7,7 +7,7 @@ import io.ahenteti.blog.model.api.postcomments.PostCommentsApiResponse;
 import io.ahenteti.blog.model.api.postcomments.ValidCreatePostCommentApiRequest;
 import io.ahenteti.blog.model.core.postcomments.PostComments;
 import io.ahenteti.blog.model.core.postcomments.ReadyToCreatePostComment;
-import io.ahenteti.blog.model.core.user.IUser;
+import io.ahenteti.blog.model.core.user.oauth2.IOAuth2User;
 import io.ahenteti.blog.service.converter.PostCommentConverter;
 import io.ahenteti.blog.service.dao.PostCommentDao;
 import io.ahenteti.blog.service.validator.PostCommentValidator;
@@ -49,7 +49,7 @@ public class PostCommentController {
     @Transactional
     @PostMapping("/secure-api/posts/{postId}/comments")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createPostComment(UriComponentsBuilder uriComponentsBuilder, @ModelAttribute IUser user, @PathVariable("postId") Long postId, @RequestBody CreatePostCommentApiRequestBody requestBody) {
+    public void createPostComment(UriComponentsBuilder uriComponentsBuilder, @ModelAttribute IOAuth2User user, @PathVariable("postId") Long postId, @RequestBody CreatePostCommentApiRequestBody requestBody) {
         CreatePostCommentApiRequest request = commentConverter.toCreatePostCommentApiRequest(user, postId, requestBody);
         ValidCreatePostCommentApiRequest validRequest = commentValidator.validateCreateCommentApiRequest(request);
         ReadyToCreatePostComment comment = commentConverter.toPostComment(validRequest);

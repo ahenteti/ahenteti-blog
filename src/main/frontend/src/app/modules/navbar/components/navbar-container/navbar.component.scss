@@ -23,14 +23,15 @@ nav {
 .not-authenticated-user-links {
   display: flex;
   align-items: center;
+  height: var(--navbar-height);
 }
 
 .not-authenticated-user-links > * {
   padding: 0 2rem;
-  line-height: var(--navbar-height);
   font-size: 1.5rem;
-  height: var(--navbar-height);
   font-weight: bold;
+  height: var(--navbar-height);
+  line-height: var(--navbar-height);
   cursor: pointer;
   color: var(--navbar-link-color);
 

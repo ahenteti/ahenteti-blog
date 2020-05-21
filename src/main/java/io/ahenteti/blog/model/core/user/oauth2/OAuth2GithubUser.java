@@ -1,4 +1,4 @@
-package io.ahenteti.blog.model.core.user;
+package io.ahenteti.blog.model.core.user.oauth2;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -11,11 +11,11 @@ import java.util.List;
 import java.util.Map;
 
 @Data
-public class GithubUser implements IUser {
+public class OAuth2GithubUser implements IOAuth2User {
 
     private List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList("ROLE_USER");
     private Map<String, Object> attributes;
-    private Long databaseUserId;
+    private Long primaryKey;
     private String name;
     @JsonProperty("avatar_url")
     private String avatarUrl;
@@ -41,16 +41,13 @@ public class GithubUser implements IUser {
     }
 
     @Override
-    public Long getId() {
-        return this.databaseUserId;
+    public Long getPrimaryKey() {
+        return this.primaryKey;
     }
 
-    public Long getDatabaseUserId() {
-        return this.databaseUserId;
-    }
-
-    public void setDatabaseUserId(Long id) {
-        this.databaseUserId = id;
+    @Override
+    public void setPrimaryKey(Long id) {
+        this.primaryKey = id;
     }
 
     @Override
@@ -59,9 +56,13 @@ public class GithubUser implements IUser {
     }
 
     @Override
-    public String getAvatar() {
+    public String getAvatarUrl() {
         return this.avatarUrl;
     }
 
+    @Override
+    public String getProvider() {
+        return "github";
+    }
 
 }

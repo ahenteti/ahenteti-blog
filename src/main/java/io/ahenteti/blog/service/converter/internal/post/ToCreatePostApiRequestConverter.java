@@ -2,13 +2,13 @@ package io.ahenteti.blog.service.converter.internal.post;
 
 import io.ahenteti.blog.model.api.post.request.CreatePostApiRequest;
 import io.ahenteti.blog.model.api.post.request.CreatePostApiRequestBody;
-import io.ahenteti.blog.model.core.user.IUser;
+import io.ahenteti.blog.model.core.user.oauth2.IOAuth2User;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ToCreatePostApiRequestConverter {
 
-    public CreatePostApiRequest toCreatePostApiRequestBody(IUser user, CreatePostApiRequestBody requestBody) {
+    public CreatePostApiRequest toCreatePostApiRequestBody(IOAuth2User user, CreatePostApiRequestBody requestBody) {
         CreatePostApiRequest res = new CreatePostApiRequest();
         res.setTitle(requestBody.getTitle());
         res.setCategory(requestBody.getCategory());

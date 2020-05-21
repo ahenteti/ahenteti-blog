@@ -23,7 +23,7 @@ import io.ahenteti.blog.model.core.post.PostsSummaries;
 import io.ahenteti.blog.model.core.post.PostsSummariesPage;
 import io.ahenteti.blog.model.core.post.ReadyToCreatePost;
 import io.ahenteti.blog.model.core.post.ReadyToUpdatePost;
-import io.ahenteti.blog.model.core.user.IUser;
+import io.ahenteti.blog.model.core.user.oauth2.IOAuth2User;
 import io.ahenteti.blog.model.entity.PostEntity;
 import io.ahenteti.blog.service.converter.internal.post.ToCreatePostApiRequestConverter;
 import io.ahenteti.blog.service.converter.internal.post.ToDeletePostApiRequestConverter;
@@ -122,7 +122,7 @@ public class PostConverter {
         return toPostApiResponseConverter.toPostApiResponse(post);
     }
 
-    public GetUserPostsApiRequest toGetUserPostsApiRequest(IUser user, Integer page, Integer size, String sortBy) {
+    public GetUserPostsApiRequest toGetUserPostsApiRequest(IOAuth2User user, Integer page, Integer size, String sortBy) {
         return toGetUserPostsApiRequestConverter.toGetUserPostsApiRequest(user, page, size, sortBy);
     }
 
@@ -134,11 +134,11 @@ public class PostConverter {
         return toPostsSummariesPageConverter.toPostsSummariesPage(posts, request);
     }
 
-    public CreatePostApiRequest toCreatePostApiRequestBody(IUser user, CreatePostApiRequestBody requestBody) {
+    public CreatePostApiRequest toCreatePostApiRequestBody(IOAuth2User user, CreatePostApiRequestBody requestBody) {
         return toCreatePostApiRequestConverter.toCreatePostApiRequestBody(user, requestBody);
     }
 
-    public UpdatePostApiRequest toUpdatePostApiRequest(IUser user, Long id, UpdatePostApiRequestBody requestBody) {
+    public UpdatePostApiRequest toUpdatePostApiRequest(IOAuth2User user, Long id, UpdatePostApiRequestBody requestBody) {
         return toUpdatePostApiRequestConverter.toUpdatePostApiRequest(user, id, requestBody);
     }
 
@@ -150,7 +150,7 @@ public class PostConverter {
         return toPostEntityConverter.toPostEntity(post);
     }
 
-    public DeletePostApiRequest toDeletePostApiRequest(IUser user, Long postId) {
+    public DeletePostApiRequest toDeletePostApiRequest(IOAuth2User user, Long postId) {
         return toDeletePostApiRequestConverter.toDeletePostApiRequest(user, postId);
     }
 
