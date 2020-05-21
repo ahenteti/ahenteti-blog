@@ -14,7 +14,7 @@ export class PostCommentConverter {
 
   toPostComment(postComment: IPostCommentApiResponse): IPostComment {
     return {
-      author: this.userConverter.toUser(postComment.author),
+      author: this.userConverter.toAuthor(postComment.author),
       createdAt: new Date(postComment.createdAtIso8601),
       value: postComment.value,
     };

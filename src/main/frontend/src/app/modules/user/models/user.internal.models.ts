@@ -1,8 +1,13 @@
+export class Author {
+  username: string;
+  avatarUrl: string;
+}
+
 export class User {
   username: string;
   avatarUrl: string;
-  roles: Array<string>;
   isAuthenticated = false;
+  isAdmin = false;
 }
 
 export class AnonymousUser extends User {

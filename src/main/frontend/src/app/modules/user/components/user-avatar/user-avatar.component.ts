@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { User } from "../../models/user.internal.models";
+import { Author } from "../../models/user.internal.models";
 
 @Component({
   selector: "app-user-avatar",
@@ -11,5 +11,5 @@ import { User } from "../../models/user.internal.models";
   styleUrls: ["./user-avatar.component.scss"],
 })
 export class UserAvatarComponent {
-  @Input() user: User;
+  @Input() user: Author;
 }

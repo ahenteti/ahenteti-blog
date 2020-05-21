@@ -1,7 +1,7 @@
 package io.ahenteti.blog.model.api.post.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import io.ahenteti.blog.model.api.user.UserApiResponse;
+import io.ahenteti.blog.model.api.user.AuthorApiResponse;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -16,5 +16,5 @@ public class PostSummaryApiResponse {
     private Collection<String> tags = new ArrayList<>();
     private String createdAtIso8601;
     private String lastUpdatedAtIso8601;
-    private UserApiResponse author;
+    private AuthorApiResponse author;
 }

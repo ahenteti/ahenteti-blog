@@ -1,7 +1,10 @@
-import { User, AnonymousUser } from "../../../user/models/user.internal.models";
+import {
+  Author,
+  AnonymousUser,
+} from "../../../user/models/user.internal.models";
 
 export interface IPostComment {
-  author: User;
+  author: Author;
   createdAt: Date;
   value: string;
 }

@@ -1,7 +1,7 @@
-import { UserApiResponse } from "../../../user/models/user.external.models";
+import { AuthorApiResponse } from "../../../user/models/user.external.models";
 
 export interface IPostCommentApiResponse {
-  author: UserApiResponse;
+  author: AuthorApiResponse;
   createdAtIso8601: string;
   value: string;
 }

@@ -1,6 +1,7 @@
 package io.ahenteti.blog.service.converter;
 
 import io.ahenteti.blog.exception.InvalidApplicationStateException;
+import io.ahenteti.blog.model.api.user.AuthorApiResponse;
 import io.ahenteti.blog.model.api.user.UserApiResponse;
 import io.ahenteti.blog.model.core.user.EUserRole;
 import io.ahenteti.blog.model.core.user.User;
@@ -58,11 +59,10 @@ public class UserConverter {
         return res;
     }
 
-    public UserApiResponse toUserApiResponse(User user) {
-        UserApiResponse res = new UserApiResponse();
+    public AuthorApiResponse toAuthorApiResponse(User user) {
+        AuthorApiResponse res = new AuthorApiResponse();
         res.setUsername(user.getUsername());
         res.setAvatarUrl(user.getAvatarUrl());
-        user.getRoles().forEach(role -> res.getRoles().add(role.getValue()));
         return res;
     }
 

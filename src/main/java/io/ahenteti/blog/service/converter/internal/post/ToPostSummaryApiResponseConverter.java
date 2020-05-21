@@ -24,7 +24,7 @@ public class ToPostSummaryApiResponseConverter {
         res.setTags(post.getTags());
         res.setCreatedAtIso8601(post.getCreatedAt().toString());
         post.getLastUpdatedAt().ifPresent(date -> res.setLastUpdatedAtIso8601(date.toString()));
-        res.setAuthor(userConverter.toUserApiResponse(post.getAuthor()));
+        res.setAuthor(userConverter.toAuthorApiResponse(post.getAuthor()));
         return res;
     }
 }

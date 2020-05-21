@@ -41,7 +41,7 @@ export class PostConverter {
           ? post.lastUpdatedAtIso8601
           : post.createdAtIso8601
       ),
-      author: this.userConverter.toUser(post.author),
+      author: this.userConverter.toAuthor(post.author),
       searchKey: this.calculateSearchKey(post.title, post.tags),
     };
   }
@@ -59,7 +59,7 @@ export class PostConverter {
           : post.createdAtIso8601
       ),
       searchKey: this.calculateSearchKey(post.title, post.tags),
-      author: this.userConverter.toUser(post.author),
+      author: this.userConverter.toAuthor(post.author),
       bodyMarkdown: atob(post.bodyMarkdownBase64),
     };
   }

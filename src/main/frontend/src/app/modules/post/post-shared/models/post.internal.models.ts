@@ -1,4 +1,4 @@
-import { User } from "../../../user/models/user.internal.models";
+import { Author } from "../../../user/models/user.internal.models";
 
 export class Page<T> {
   page: number;
@@ -16,7 +16,7 @@ export class PostSummary {
   createdAt: Date;
   lastUpdatedAt: Date;
   searchKey: string;
-  author: User;
+  author: Author;
 }
 
 export class Post extends PostSummary {

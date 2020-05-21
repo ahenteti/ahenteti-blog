@@ -18,7 +18,7 @@ public class ToPostCommentApiResponseConverter {
 
     public PostCommentApiResponse toPostCommentApiResponse(PostComment comment) {
         PostCommentApiResponse res = new PostCommentApiResponse();
-        res.setAuthor(userConverter.toUserApiResponse(comment.getAuthor()));
+        res.setAuthor(userConverter.toAuthorApiResponse(comment.getAuthor()));
         res.setCreatedAtIso8601(comment.getCreatedAt().toString());
         res.setValue(comment.getValue());
         return res;

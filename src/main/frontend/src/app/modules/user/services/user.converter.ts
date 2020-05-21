@@ -1,15 +1,25 @@
 import { Injectable } from "@angular/core";
-import { UserApiResponse } from "../models/user.external.models";
-import { User } from "../models/user.internal.models";
+import {
+  AuthorApiResponse,
+  UserApiResponse,
+} from "../models/user.external.models";
+import { Author, User } from "../models/user.internal.models";
 
 @Injectable()
 export class UserConverter {
+  toAuthor(author: AuthorApiResponse): Author {
+    return {
+      username: author.username,
+      avatarUrl: author.avatarUrl,
+    };
+  }
+
   toUser(user: UserApiResponse): User {
     return {
       username: user.username,
       avatarUrl: user.avatarUrl,
-      roles: user.roles,
       isAuthenticated: user.username !== undefined && user.username !== null,
+      isAdmin: user.roles.includes("ADMIN"),
     };
   }
 }

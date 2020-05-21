@@ -1,4 +1,4 @@
-import { UserApiResponse } from "../../../user/models/user.external.models";
+import { AuthorApiResponse } from "../../../user/models/user.external.models";
 
 export class PageApiResponse<T> {
   page: number;
@@ -20,7 +20,7 @@ export class PostSummaryApiResponse {
   tags: string[];
   createdAtIso8601: string;
   lastUpdatedAtIso8601?: string;
-  author: UserApiResponse;
+  author: AuthorApiResponse;
 }
 
 export class PostApiResponse extends PostSummaryApiResponse {
