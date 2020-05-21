@@ -25,7 +25,8 @@ const GROUP_BY_POST_AUTHOR = "author";
   providedIn: "root",
 })
 export class PostsState {
-  private allTags = new BehaviorSubject<Set<string>>(new Set<string>(ALL_TAGS));
+  // prettier-ignore
+  private allTags = new BehaviorSubject<Set<string>>(new Set<string>([ALL_TAGS]));
   public allTags$ = this.allTags.asObservable();
 
   private selectedTag = new BehaviorSubject<string>(ALL_TAGS);
@@ -101,8 +102,11 @@ export class PostsState {
         .then((postsGroups) => this.handleGetPostsGroupsSuccessEvent(postsGroups))
         .catch((error) => this.handleGetPostsGroupsErrorEvent(error));
     } catch (e) {
-      if (e instanceof NoPostsGroupsToLoadError) console.log('no posts groups to load');
-      throw e;
+      if (e instanceof NoPostsGroupsToLoadError) {
+        console.log('no posts groups to load');
+      } else {
+        throw e;
+      }
     } finally {
       this.loadPostsInProgress = false;
     }

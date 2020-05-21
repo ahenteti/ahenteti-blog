@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Author, AnonymousUser } from "../models/user.internal.models";
 import { BehaviorSubject, Observable } from "rxjs";
 import { UserHttpServices } from "./user.http.services";
-import { Router, NavigationEnd, NavigationStart } from "@angular/router";
+import { Router, NavigationEnd } from "@angular/router";
 
 // code inspiration: https://www.youtube.com/watch?v=I317BhehZKM
 @Injectable({ providedIn: "root" })
