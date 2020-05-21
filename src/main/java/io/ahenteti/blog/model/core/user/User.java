@@ -2,6 +2,7 @@ package io.ahenteti.blog.model.core.user;
 
 import lombok.Data;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,5 +12,6 @@ public class User {
     private String username;
     private String avatarUrl;
     private String provider;
+    private Instant jointAt;
     private List<EUserRole> roles = new ArrayList<>();
 }

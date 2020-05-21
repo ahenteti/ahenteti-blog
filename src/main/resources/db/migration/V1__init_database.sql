@@ -37,6 +37,7 @@ create table t_users
   username varchar(255),
   avatar varchar(255),
   provider varchar(255),
+  join_at timestamp,
   primary key (id)
 );
 
@@ -87,8 +88,8 @@ values (1, 'ADMIN');
 insert into t_roles (id, name) 
 values (2, 'USER');
 
-insert into t_users (id, username, avatar, provider) 
-values (3, 'ahenteti', 'https://avatars3.githubusercontent.com/u/16677361?v=4', 'github');
+insert into t_users (id, username, avatar, provider, join_at) 
+values (3, 'ahenteti', 'https://avatars3.githubusercontent.com/u/16677361?v=4', 'github', '2020-04-19 17:00:00');
 
 insert into t_user_role (user_id, role_id) 
 values (3, 1);

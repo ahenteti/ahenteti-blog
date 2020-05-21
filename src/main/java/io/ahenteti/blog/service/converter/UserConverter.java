@@ -12,6 +12,7 @@ import io.ahenteti.blog.service.dao.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.function.Supplier;
 
 @Service
@@ -48,6 +49,7 @@ public class UserConverter {
         res.setProvider(user.getProvider());
         RoleEntity role = roleRepository.findByName("USER").orElseThrow(throwInvalidApplicationStateException());
         res.getRoles().add(role);
+        res.setJointAt(Instant.now());
         return res;
     }
 

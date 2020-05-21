@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -28,11 +29,14 @@ public class UserEntity {
     @Column(name = "USERNAME")
     private String username;
 
+    @Column(name = "AVATAR")
+    private String avatar;
+
     @Column(name = "PROVIDER")
     private String provider;
 
-    @Column(name = "AVATAR")
-    private String avatar;
+    @Column(name = "JOIN_AT")
+    private Instant jointAt;
 
     // @formatter:off
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)

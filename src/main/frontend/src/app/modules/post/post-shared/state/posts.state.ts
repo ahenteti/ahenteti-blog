@@ -16,6 +16,7 @@ import { AlertService } from "src/app/modules/alert/alert.service";
 import { GetPostsGroupsApiRequest } from "../models/post.external.models";
 import { SetUtils } from "src/app/modules/shared/services/set.utils";
 import { WindowService } from "src/app/modules/shared/services/window.service";
+import { NoPostsGroupsToLoadError } from "src/app/modules/shared/models/no-posts-groups-to-load.error";
 
 const GROUP_BY_POST_CATEGORY = "category";
 const GROUP_BY_POST_AUTHOR = "author";
@@ -99,6 +100,9 @@ export class PostsState {
         .getPostsGroups(getPostsGroupsApiRequest)
         .then((postsGroups) => this.handleGetPostsGroupsSuccessEvent(postsGroups))
         .catch((error) => this.handleGetPostsGroupsErrorEvent(error));
+    } catch (e) {
+      if (e instanceof NoPostsGroupsToLoadError) console.log('no posts groups to load');
+      throw e;
     } finally {
       this.loadPostsInProgress = false;
     }
@@ -278,6 +282,9 @@ export class PostsState {
       }
     } else {
       this.alertService.info("No more posts to load");
+    }
+    if (notYetLoadedGroupsLength == 0) {
+      throw new NoPostsGroupsToLoadError()
     }
   }
 
