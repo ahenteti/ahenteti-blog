@@ -48,6 +48,7 @@ import { NextButtonComponent } from "./components/buttons/next-button/next-butto
 import { LoadMoreButtonComponent } from "./components/buttons/load-more-button/load-more-button.component";
 import { MatDialogModule } from "@angular/material/dialog";
 import { ConfirmationDialogComponent } from "./components/confirmation-dialog/confirmation-dialog.component";
+import { DropdownIconComponent } from "./components/icons/dropdown-icon/dropdown-icon.component";
 
 @NgModule({
   entryComponents: [
@@ -107,6 +108,7 @@ import { ConfirmationDialogComponent } from "./components/confirmation-dialog/co
     NextButtonComponent,
     LoadMoreButtonComponent,
     ConfirmationDialogComponent,
+    DropdownIconComponent,
   ],
   exports: [
     RouterModule,
@@ -155,6 +157,7 @@ import { ConfirmationDialogComponent } from "./components/confirmation-dialog/co
     NextButtonComponent,
     LoadMoreButtonComponent,
     ConfirmationDialogComponent,
+    DropdownIconComponent,
   ],
 })
 export class SharedModule {}

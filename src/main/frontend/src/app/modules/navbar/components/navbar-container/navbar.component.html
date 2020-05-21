@@ -1,0 +1,14 @@
+<nav>
+  <div class="left">
+    <app-logo-link></app-logo-link>
+  </div>
+  <div class="right">
+    <div class="not-authenticated-user-links" *ngIf="!user.isAuthenticated">
+      <a (click)="handleChangeThemeColorClickEvent($event)">Toggle theme</a>
+      <app-navbar-login></app-navbar-login>
+    </div>
+    <div *ngIf="user.isAuthenticated">
+      <app-navbar-user-link></app-navbar-user-link>
+    </div>
+  </div>
+</nav>

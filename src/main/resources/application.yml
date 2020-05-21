@@ -8,10 +8,6 @@ spring:
     url: ${AHENTETI_BLOG_DATASOURCE_URL}
     username: ${AHENTETI_BLOG_DATASOURCE_USERNAME}
     password: ${AHENTETI_BLOG_DATASOURCE_PASSWORD}
-####################################################
-#      Uncomment the following properties to       #
-#   generate the @Entity associated SQL scripts    #
-####################################################
   jpa:
     properties:
       hibernate:
@@ -31,8 +27,6 @@ spring:
           github:
             clientId: ${AHENTETI_BLOG_GITHUB_OAUTH2_CLIENT_ID}
             clientSecret: ${AHENTETI_BLOG_GITHUB_OAUTH2_CLIENT_SECRET}
-
-logging:
-  level:
-    org:
-      springframework: INFO
+          google:
+            clientId: ${AHENTETI_BLOG_GOOGLE_OAUTH2_CLIENT_ID}
+            clientSecret: ${AHENTETI_BLOG_GOOGLE_OAUTH2_CLIENT_SECRET}

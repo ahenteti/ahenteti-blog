@@ -1,10 +1,9 @@
-import { Component, HostBinding, ViewChild } from "@angular/core";
-import { ThemeLocalStorageServices } from "../shared/services/theme.localstorage.services";
-import { MatMenuTrigger } from "@angular/material/menu";
-import { UserLoginServices } from "../user/services/user.login.services";
+import { Component, HostBinding } from "@angular/core";
 import { User } from "src/app/modules/user/models/user.internal.models";
 import { UserObservable } from "src/app/modules/user/services/user.observable";
 import { UserAwareComponent } from "src/app/modules/user/components/user-aware.component";
+import { ThemeLocalStorageServices } from "src/app/modules/shared/services/theme.localstorage.services";
+import { UserLoginServices } from "src/app/modules/user/services/user.login.services";
 
 @Component({
   selector: "app-navbar",
@@ -16,12 +15,8 @@ export class NavbarComponent extends UserAwareComponent {
   public shadow = false;
   user: User;
 
-  @ViewChild("profileDropdownTrigger", { static: false })
-  profileDropdownTrigger: MatMenuTrigger;
-
   constructor(
     private themeService: ThemeLocalStorageServices,
-    private userLoginService: UserLoginServices,
     userObservable: UserObservable
   ) {
     super(userObservable);
@@ -35,14 +30,6 @@ export class NavbarComponent extends UserAwareComponent {
   handleChangeThemeColorClickEvent(event: any) {
     // event.stopPropagation();
     this.themeService.toggleTheme();
-  }
-
-  onMouseOver() {
-    this.profileDropdownTrigger.openMenu();
-  }
-
-  preLogin() {
-    this.userLoginService.preLogin();
   }
 
   private handleWindowScrollEvent() {

@@ -20,45 +20,21 @@ nav {
   justify-content: space-between;
 }
 
-.right,
-.user-avatar {
+.not-authenticated-user-links {
   display: flex;
   align-items: center;
 }
 
-.right > a {
+.not-authenticated-user-links > * {
   padding: 0 2rem;
   line-height: var(--navbar-height);
   font-size: 1.5rem;
   height: var(--navbar-height);
   font-weight: bold;
   cursor: pointer;
-  text-decoration: none;
   color: var(--navbar-link-color);
 
   &:hover {
     background-color: var(--navbar-link-background-color-on-hover);
   }
-}
-
-.welcome {
-  font-weight: bold;
-  margin-right: 1.5rem;
-  font-size: 1.85rem;
-}
-
-.login {
-  display: flex;
-  align-items: center;
-}
-
-.login-icon {
-  font-size: 2.5rem;
-  margin-left: 1.2rem;
-}
-
-.dropdown-icon {
-  font-size: 2.5rem;
-  margin-left: -0.3rem;
-  margin-right: -1rem;
 }
