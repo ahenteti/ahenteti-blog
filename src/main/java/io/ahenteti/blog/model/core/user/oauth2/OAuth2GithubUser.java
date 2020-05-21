@@ -1,10 +1,12 @@
 package io.ahenteti.blog.model.core.user.oauth2;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.ahenteti.blog.model.core.user.EUserRole;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +21,7 @@ public class OAuth2GithubUser implements IOAuth2User {
     private String name;
     @JsonProperty("avatar_url")
     private String avatarUrl;
+    private List<EUserRole> roles = new ArrayList<>();
 
     @Override
     public Map<String, Object> getAttributes() {
@@ -63,6 +66,16 @@ public class OAuth2GithubUser implements IOAuth2User {
     @Override
     public String getProvider() {
         return "github";
+    }
+
+    @Override
+    public void setRoles(List<EUserRole> roles) {
+        this.roles = roles;
+    }
+
+    @Override
+    public List<EUserRole> getRoles() {
+        return this.roles;
     }
 
 }

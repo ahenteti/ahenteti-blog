@@ -1,6 +1,7 @@
 package io.ahenteti.blog.security;
 
 import io.ahenteti.blog.model.core.user.oauth2.OAuth2GithubUser;
+import io.ahenteti.blog.service.oauth2.OAuth2AuthenticationSuccessHandler;
 import io.ahenteti.blog.service.oauth2.OAuth2UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

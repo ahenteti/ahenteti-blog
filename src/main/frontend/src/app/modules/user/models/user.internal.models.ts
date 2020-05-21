@@ -1,6 +1,7 @@
 export class User {
   username: string;
   avatarUrl: string;
+  roles: Array<string>;
   isAuthenticated = false;
 }
 

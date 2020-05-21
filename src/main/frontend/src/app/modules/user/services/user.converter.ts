@@ -8,6 +8,7 @@ export class UserConverter {
     return {
       username: user.username,
       avatarUrl: user.avatarUrl,
+      roles: user.roles,
       isAuthenticated: user.username !== undefined && user.username !== null,
     };
   }

@@ -1,8 +1,10 @@
-package io.ahenteti.blog.security;
+package io.ahenteti.blog.service.oauth2;
 
+import io.ahenteti.blog.model.core.user.User;
+import io.ahenteti.blog.model.core.user.oauth2.IOAuth2User;
 import io.ahenteti.blog.model.core.user.oauth2.OAuth2GithubUser;
 import io.ahenteti.blog.model.core.user.oauth2.OAuth2OidcUser;
-import io.ahenteti.blog.model.core.user.oauth2.IOAuth2User;
+import io.ahenteti.blog.model.entity.UserEntity;
 import io.ahenteti.blog.service.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -20,7 +22,7 @@ import java.util.Arrays;
 @Component
 public class OAuth2AuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
-    public static final String USER_URL_BEFORE_LOGIN_COOKIE = "url_before_login";
+    private static final String USER_URL_BEFORE_LOGIN_COOKIE = "url_before_login";
     private UserDao userDao;
 
     @Autowired
@@ -30,8 +32,10 @@ public class OAuth2AuthenticationSuccessHandler implements AuthenticationSuccess
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        IOAuth2User user = getPrincipal(authentication);
-        user.setPrimaryKey(userDao.createIfNotExists(user).getId());
+        IOAuth2User oAuth2User = getPrincipal(authentication);
+        User user = userDao.createIfNotExists(oAuth2User);
+        oAuth2User.setPrimaryKey(user.getId());
+        oAuth2User.setRoles(user.getRoles());
         String redirectUrl = Arrays.stream(request.getCookies())
                 .filter(c -> USER_URL_BEFORE_LOGIN_COOKIE.equals(c.getName())).findFirst().map(Cookie::getValue)
                 .orElse("/");

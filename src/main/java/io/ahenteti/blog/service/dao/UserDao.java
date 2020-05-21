@@ -1,5 +1,6 @@
 package io.ahenteti.blog.service.dao;
 
+import io.ahenteti.blog.model.core.user.User;
 import io.ahenteti.blog.model.core.user.oauth2.IOAuth2User;
 import io.ahenteti.blog.model.entity.UserEntity;
 import io.ahenteti.blog.service.converter.UserConverter;
@@ -21,14 +22,17 @@ public class UserDao {
         this.userConverter = userConverter;
     }
 
-    public UserEntity createIfNotExists(IOAuth2User user) {
+    public User createIfNotExists(IOAuth2User user) {
         // @formatter:off
         Optional<UserEntity> userEntityOptional = userRepository.findByUsernameAndProvider(user.getUsername(), user.getProvider());
+        UserEntity entity;
         if (userEntityOptional.isPresent()) {
-            return userEntityOptional.get();
+            entity = userEntityOptional.get();
+        } else {
+            UserEntity userEntity = userConverter.toUserEntity(user);
+            entity = userRepository.save(userEntity);
         }
-        UserEntity userEntity = userConverter.toUserEntity(user);
-        return userRepository.save(userEntity);
+        return userConverter.toUser(entity);
         // @formatter:on
     }
 }

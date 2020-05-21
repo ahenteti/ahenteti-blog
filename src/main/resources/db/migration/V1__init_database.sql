@@ -40,6 +40,19 @@ create table t_users
   primary key (id)
 );
 
+create table t_roles 
+(
+    id bigint not null default nextval('hibernate_sequence'), 
+    name varchar(255), 
+    primary key (id)
+);
+
+create table t_user_role 
+(
+    user_id bigint not null default nextval('hibernate_sequence'),
+    role_id bigint not null default nextval('hibernate_sequence')
+);
+
 alter table
 if exists t_posts
 add constraint UK_oy5kuurj0ua601ok5crdsni4q unique (body_id);
@@ -60,6 +73,25 @@ alter table
 if exists t_posts
 add constraint FKrw27s0gpmeikhecl65e10ga2u foreign key (body_id) references t_post_bodies;
 
+alter table 
+if exists t_user_role
+add constraint FKeu3341s63d3junskh7qsnmf39 foreign key (role_id) references t_roles;
+
+alter table 
+if exists t_user_role 
+add constraint FK3egxedenh4m4v816i0y8tvvd foreign key (user_id) references t_users;
+
+insert into t_roles (id, name) 
+values (1, 'ADMIN');
+
+insert into t_roles (id, name) 
+values (2, 'USER');
+
 insert into t_users (id, username, avatar, provider) 
-values (1, 'ahenteti', 'https://avatars3.githubusercontent.com/u/16677361?v=4', 'github');
+values (3, 'ahenteti', 'https://avatars3.githubusercontent.com/u/16677361?v=4', 'github');
+
+insert into t_user_role (user_id, role_id) 
+values (3, 1);
+
+select setval('hibernate_sequence', 3, true);
 

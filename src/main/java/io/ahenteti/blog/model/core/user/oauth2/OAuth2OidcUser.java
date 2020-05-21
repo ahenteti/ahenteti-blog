@@ -1,12 +1,17 @@
 package io.ahenteti.blog.model.core.user.oauth2;
 
+import io.ahenteti.blog.model.core.user.EUserRole;
 import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class OAuth2OidcUser extends DefaultOidcUser implements IOAuth2User {
 
     private Long primaryKey;
     private String provider;
+    private List<EUserRole> roles = new ArrayList<>();
 
     public OAuth2OidcUser(OidcUser user, String provider) {
         super(user.getAuthorities(), user.getIdToken());
@@ -37,5 +42,15 @@ public class OAuth2OidcUser extends DefaultOidcUser implements IOAuth2User {
     @Override
     public String getProvider() {
         return this.provider;
+    }
+
+    @Override
+    public void setRoles(List<EUserRole> roles) {
+        this.roles = roles;
+    }
+
+    @Override
+    public List<EUserRole> getRoles() {
+        return this.roles;
     }
 }
