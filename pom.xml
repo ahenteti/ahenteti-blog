@@ -81,6 +81,9 @@
     <profiles>
         <profile>
             <id>bf</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <build>
                 <plugins>
                     <plugin>
