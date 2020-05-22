@@ -16,5 +16,9 @@
   <a mat-menu-item [routerLink]="['/posts']">Manage your posts</a>
   <a mat-menu-item [routerLink]="['/posts/new']">Create new post</a>
   <hr />
+  <a *ngIf="user.isAdmin" mat-menu-item [routerLink]="['/users']"
+    >Manage website users</a
+  >
+  <hr />
   <a mat-menu-item href="/logout">Logout</a>
 </mat-menu>

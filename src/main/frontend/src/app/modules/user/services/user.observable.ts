@@ -1,5 +1,9 @@
 import { Injectable } from "@angular/core";
-import { Author, AnonymousUser } from "../models/user.internal.models";
+import {
+  Author,
+  AnonymousUser,
+  CurrentUser,
+} from "../models/user.internal.models";
 import { BehaviorSubject, Observable } from "rxjs";
 import { UserHttpServices } from "./user.http.services";
 import { Router, NavigationEnd } from "@angular/router";
@@ -7,7 +11,7 @@ import { Router, NavigationEnd } from "@angular/router";
 // code inspiration: https://www.youtube.com/watch?v=I317BhehZKM
 @Injectable({ providedIn: "root" })
 export class UserObservable {
-  private subject = new BehaviorSubject<Author>(new AnonymousUser());
+  private subject = new BehaviorSubject<CurrentUser>(new AnonymousUser());
 
   constructor(
     private router: Router,
@@ -28,15 +32,15 @@ export class UserObservable {
       .catch((error) => console.log("user not yet authenticated"));
   }
 
-  currentUser(): Author {
+  currentUser(): CurrentUser {
     return this.subject.getValue();
   }
 
-  onUser(): Observable<Author> {
+  onUser(): Observable<CurrentUser> {
     return this.subject.asObservable();
   }
 
-  newUser(user: Author) {
+  newUser(user: CurrentUser) {
     this.subject.next(user);
   }
 }

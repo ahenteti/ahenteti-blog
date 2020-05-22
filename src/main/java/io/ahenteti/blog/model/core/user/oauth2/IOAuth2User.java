@@ -21,4 +21,8 @@ public interface IOAuth2User extends OAuth2User {
     
     List<EUserRole> getRoles();
     
+    default boolean isAdmin() {
+        return getRoles().stream().anyMatch(EUserRole.ADMIN::equals);
+    }
+    
 }

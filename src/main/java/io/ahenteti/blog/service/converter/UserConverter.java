@@ -2,18 +2,26 @@ package io.ahenteti.blog.service.converter;
 
 import io.ahenteti.blog.exception.InvalidApplicationStateException;
 import io.ahenteti.blog.model.api.user.AuthorApiResponse;
+import io.ahenteti.blog.model.api.user.CurrentUserApiResponse;
+import io.ahenteti.blog.model.api.user.GetUsersPageApiRequest;
 import io.ahenteti.blog.model.api.user.UserApiResponse;
+import io.ahenteti.blog.model.api.user.UsersPageApiResponse;
+import io.ahenteti.blog.model.api.user.ValidGetUsersPageApiRequest;
 import io.ahenteti.blog.model.core.user.EUserRole;
 import io.ahenteti.blog.model.core.user.User;
+import io.ahenteti.blog.model.core.user.UsersPage;
 import io.ahenteti.blog.model.core.user.oauth2.IOAuth2User;
 import io.ahenteti.blog.model.entity.RoleEntity;
 import io.ahenteti.blog.model.entity.UserEntity;
 import io.ahenteti.blog.service.dao.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 @Service
 public class UserConverter {
@@ -53,8 +61,8 @@ public class UserConverter {
         return res;
     }
 
-    public UserApiResponse toUserApiResponse(IOAuth2User user) {
-        UserApiResponse res = new UserApiResponse();
+    public CurrentUserApiResponse toCurrentUserApiResponse(IOAuth2User user) {
+        CurrentUserApiResponse res = new CurrentUserApiResponse();
         res.setUsername(user.getUsername());
         res.setAvatarUrl(user.getAvatarUrl());
         user.getRoles().forEach(role -> res.getRoles().add(role.getValue()));
@@ -68,8 +76,46 @@ public class UserConverter {
         return res;
     }
 
+    public UserApiResponse toUserApiResponse(User user) {
+        UserApiResponse res = new UserApiResponse();
+        res.setUsername(user.getUsername());
+        res.setAvatarUrl(user.getAvatarUrl());
+        res.setJoinAtIso8601(user.getJointAt().toString());
+        return res;
+    }
+
     private Supplier<InvalidApplicationStateException> throwInvalidApplicationStateException() {
         return () -> new InvalidApplicationStateException("USER role not found in database");
     }
 
+    public GetUsersPageApiRequest toGetUsersPageApiRequest(IOAuth2User user, Integer page, Integer size, String sortBy, String sortDirection, String filter) {
+        GetUsersPageApiRequest res = new GetUsersPageApiRequest();
+        res.setUser(user);
+        res.setPage(page);
+        res.setSize(size);
+        res.setSortBy(sortBy);
+        res.setSortDirection(sortDirection);
+        res.setFilter(filter);
+        return res;
+
+    }
+
+    public UsersPageApiResponse toUsersPageApiResponse(UsersPage usersPage) {
+        UsersPageApiResponse res = new UsersPageApiResponse();
+        res.setPage(usersPage.getPage());
+        res.setSize(usersPage.getSize());
+        res.setTotalItems(usersPage.getTotalItems());
+        res.setItems(usersPage.getItems().stream().map(this::toUserApiResponse).collect(Collectors.toList()));
+        return res;
+    }
+
+    public UsersPage toUsersPage(Page<UserEntity> users, ValidGetUsersPageApiRequest request) {
+        UsersPage res = new UsersPage();
+        res.setPage(request.getPage());
+        res.setSize(request.getSize());
+        res.setSortBy(request.getSortByValue());
+        res.setTotalItems(users.getTotalElements());
+        res.setItems(users.getContent().stream().map(this::toUser).collect(Collectors.toCollection(ArrayList::new)));
+        return res;
+    }
 }

@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import {
   AuthorApiResponse,
-  UserApiResponse,
+  CurrentUserApiResponse,
 } from "../models/user.external.models";
-import { Author, User } from "../models/user.internal.models";
+import { Author, CurrentUser } from "../models/user.internal.models";
 
 @Injectable()
 export class UserConverter {
@@ -14,7 +14,7 @@ export class UserConverter {
     };
   }
 
-  toUser(user: UserApiResponse): User {
+  toUser(user: CurrentUserApiResponse): CurrentUser {
     return {
       username: user.username,
       avatarUrl: user.avatarUrl,

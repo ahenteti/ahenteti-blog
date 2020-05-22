@@ -4,23 +4,22 @@ import io.ahenteti.blog.model.api.post.request.CreatePostApiRequest;
 import io.ahenteti.blog.model.api.post.request.CreatePostApiRequestBody;
 import io.ahenteti.blog.model.api.post.request.DeletePostApiRequest;
 import io.ahenteti.blog.model.api.post.request.GetPostsGroupsApiRequest;
-import io.ahenteti.blog.model.api.post.request.GetUserPostsApiRequest;
+import io.ahenteti.blog.model.api.post.request.GetUserPostsPageApiRequest;
 import io.ahenteti.blog.model.api.post.request.UpdatePostApiRequest;
 import io.ahenteti.blog.model.api.post.request.UpdatePostApiRequestBody;
 import io.ahenteti.blog.model.api.post.request.valid.ValidCreatePostApiRequest;
-import io.ahenteti.blog.model.api.post.request.valid.ValidPageApiRequest;
+import io.ahenteti.blog.model.api.post.ValidPageApiRequest;
 import io.ahenteti.blog.model.api.post.request.valid.ValidUpdatePostApiRequest;
-import io.ahenteti.blog.model.api.post.response.PostsGroupsApiResponse;
-import io.ahenteti.blog.model.api.post.response.UserPostsApiResponse;
 import io.ahenteti.blog.model.api.post.response.PostApiResponse;
 import io.ahenteti.blog.model.api.post.response.PostGroupByStrategiesApiResponse;
 import io.ahenteti.blog.model.api.post.response.PostSummaryApiResponse;
+import io.ahenteti.blog.model.api.post.response.PostsGroupsApiResponse;
+import io.ahenteti.blog.model.api.post.response.UserPostsPageApiResponse;
 import io.ahenteti.blog.model.core.IGroupByStrategy;
 import io.ahenteti.blog.model.core.post.Post;
 import io.ahenteti.blog.model.core.post.PostSummary;
 import io.ahenteti.blog.model.core.post.PostsGroups;
-import io.ahenteti.blog.model.core.post.PostsSummaries;
-import io.ahenteti.blog.model.core.post.PostsSummariesPage;
+import io.ahenteti.blog.model.core.post.PostsPage;
 import io.ahenteti.blog.model.core.post.ReadyToCreatePost;
 import io.ahenteti.blog.model.core.post.ReadyToUpdatePost;
 import io.ahenteti.blog.model.core.user.oauth2.IOAuth2User;
@@ -29,8 +28,7 @@ import io.ahenteti.blog.service.converter.internal.post.ToCreatePostApiRequestCo
 import io.ahenteti.blog.service.converter.internal.post.ToDeletePostApiRequestConverter;
 import io.ahenteti.blog.service.converter.internal.post.ToGetPostsGroupsApiRequestConverter;
 import io.ahenteti.blog.service.converter.internal.post.ToGetPostsGroupsApiResponseConverter;
-import io.ahenteti.blog.service.converter.internal.post.ToGetUserPostsApiRequestConverter;
-import io.ahenteti.blog.service.converter.internal.post.ToUserPostsApiResponseConverter;
+import io.ahenteti.blog.service.converter.internal.post.ToGetUserPostsPageApiRequestConverter;
 import io.ahenteti.blog.service.converter.internal.post.ToPostApiResponseConverter;
 import io.ahenteti.blog.service.converter.internal.post.ToPostConverter;
 import io.ahenteti.blog.service.converter.internal.post.ToPostEntityConverter;
@@ -38,15 +36,15 @@ import io.ahenteti.blog.service.converter.internal.post.ToPostGroupByStrategiesA
 import io.ahenteti.blog.service.converter.internal.post.ToPostSummaryApiResponseConverter;
 import io.ahenteti.blog.service.converter.internal.post.ToPostSummaryConverter;
 import io.ahenteti.blog.service.converter.internal.post.ToPostsGroupsConverter;
-import io.ahenteti.blog.service.converter.internal.post.ToPostsSummariesPageConverter;
+import io.ahenteti.blog.service.converter.internal.post.ToPostsPageConverter;
 import io.ahenteti.blog.service.converter.internal.post.ToUpdatePostApiRequestConverter;
+import io.ahenteti.blog.service.converter.internal.post.ToUserPostsPageApiResponseConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.SortedMap;
-import java.util.stream.Collectors;
 
 @Service
 public class PostConverter {
@@ -58,9 +56,9 @@ public class PostConverter {
     private final ToCreatePostApiRequestConverter toCreatePostApiRequestConverter;
     private final ToUpdatePostApiRequestConverter toUpdatePostApiRequestConverter;
     private final ToPostEntityConverter toPostEntityConverter;
-    private final ToGetUserPostsApiRequestConverter toGetUserPostsApiRequestConverter;
-    private final ToPostsSummariesPageConverter toPostsSummariesPageConverter;
-    private final ToUserPostsApiResponseConverter toUserPostsApiResponseConverter;
+    private final ToGetUserPostsPageApiRequestConverter toGetUserPostsPageApiRequestConverter;
+    private final ToPostsPageConverter toPostsPageConverter;
+    private final ToUserPostsPageApiResponseConverter toUserPostsApiResponseConverter;
     private final ToGetPostsGroupsApiRequestConverter toGetPostsGroupsApiRequestConverter;
     private final ToDeletePostApiRequestConverter toDeletePostApiRequestConverter;
     private final ToGetPostsGroupsApiResponseConverter toGetPostsGroupsApiResponseConverter;
@@ -68,7 +66,7 @@ public class PostConverter {
     private final ToPostGroupByStrategiesApiResponseConverter toPostGroupByStrategiesApiResponseConverter;
 
     @Autowired
-    public PostConverter(ToPostSummaryConverter toPostSummaryConverter, ToPostConverter toPostConverter, ToPostSummaryApiResponseConverter toPostSummaryApiResponseConverter, ToPostApiResponseConverter toPostApiResponseConverter, ToCreatePostApiRequestConverter toCreatePostApiRequestConverter, ToUpdatePostApiRequestConverter toUpdatePostApiRequestConverter, ToPostEntityConverter toPostEntityConverter, ToGetUserPostsApiRequestConverter toGetUserPostsApiRequestConverter, ToPostsSummariesPageConverter toPostsSummariesPageConverter, ToUserPostsApiResponseConverter toUserPostsApiResponseConverter, ToGetPostsGroupsApiRequestConverter toGetPostsGroupsApiRequestConverter, ToDeletePostApiRequestConverter toDeletePostApiRequestConverter, ToGetPostsGroupsApiResponseConverter toGetPostsGroupsApiResponseConverter, ToPostsGroupsConverter toPostsGroupsConverter, ToPostGroupByStrategiesApiResponseConverter toPostGroupByStrategiesApiResponseConverter) {
+    public PostConverter(ToPostSummaryConverter toPostSummaryConverter, ToPostConverter toPostConverter, ToPostSummaryApiResponseConverter toPostSummaryApiResponseConverter, ToPostApiResponseConverter toPostApiResponseConverter, ToCreatePostApiRequestConverter toCreatePostApiRequestConverter, ToUpdatePostApiRequestConverter toUpdatePostApiRequestConverter, ToPostEntityConverter toPostEntityConverter, ToGetUserPostsPageApiRequestConverter toGetUserPostsPageApiRequestConverter, ToPostsPageConverter toPostsPageConverter, ToUserPostsPageApiResponseConverter toUserPostsApiResponseConverter, ToGetPostsGroupsApiRequestConverter toGetPostsGroupsApiRequestConverter, ToDeletePostApiRequestConverter toDeletePostApiRequestConverter, ToGetPostsGroupsApiResponseConverter toGetPostsGroupsApiResponseConverter, ToPostsGroupsConverter toPostsGroupsConverter, ToPostGroupByStrategiesApiResponseConverter toPostGroupByStrategiesApiResponseConverter) {
         this.toPostSummaryConverter = toPostSummaryConverter;
         this.toPostConverter = toPostConverter;
         this.toPostSummaryApiResponseConverter = toPostSummaryApiResponseConverter;
@@ -76,8 +74,8 @@ public class PostConverter {
         this.toCreatePostApiRequestConverter = toCreatePostApiRequestConverter;
         this.toUpdatePostApiRequestConverter = toUpdatePostApiRequestConverter;
         this.toPostEntityConverter = toPostEntityConverter;
-        this.toGetUserPostsApiRequestConverter = toGetUserPostsApiRequestConverter;
-        this.toPostsSummariesPageConverter = toPostsSummariesPageConverter;
+        this.toGetUserPostsPageApiRequestConverter = toGetUserPostsPageApiRequestConverter;
+        this.toPostsPageConverter = toPostsPageConverter;
         this.toUserPostsApiResponseConverter = toUserPostsApiResponseConverter;
         this.toGetPostsGroupsApiRequestConverter = toGetPostsGroupsApiRequestConverter;
         this.toDeletePostApiRequestConverter = toDeletePostApiRequestConverter;
@@ -106,8 +104,8 @@ public class PostConverter {
         return toGetPostsGroupsApiResponseConverter.toGetPostsGroupsApiResponse(posts);
     }
 
-    public UserPostsApiResponse toUserPostsApiResponse(PostsSummariesPage postsPage) {
-        return toUserPostsApiResponseConverter.toUserPostsApiResponse(postsPage);
+    public UserPostsPageApiResponse toUserPostsPageApiResponse(PostsPage postsPage) {
+        return toUserPostsApiResponseConverter.toUserPostsPageApiResponse(postsPage);
     }
 
     public PostSummaryApiResponse toPostSummaryApiResponse(PostSummary post) {
@@ -122,16 +120,12 @@ public class PostConverter {
         return toPostApiResponseConverter.toPostApiResponse(post);
     }
 
-    public GetUserPostsApiRequest toGetUserPostsApiRequest(IOAuth2User user, Integer page, Integer size, String sortBy) {
-        return toGetUserPostsApiRequestConverter.toGetUserPostsApiRequest(user, page, size, sortBy);
+    public GetUserPostsPageApiRequest toGetUserPostsPageApiRequest(IOAuth2User user, Integer page, Integer size, String sortBy, String sortDirection, String filter) {
+        return toGetUserPostsPageApiRequestConverter.toGetUserPostsPageApiRequest(user, page, size, sortBy, sortDirection, filter);
     }
 
-    public PostsSummaries toPostsSummaries(List<PostEntity> posts) {
-        return posts.stream().map(this::toPostSummary).collect(Collectors.toCollection(PostsSummaries::new));
-    }
-
-    public PostsSummariesPage toPostsSummariesPage(Page<PostEntity> posts, ValidPageApiRequest request) {
-        return toPostsSummariesPageConverter.toPostsSummariesPage(posts, request);
+    public PostsPage toPostsPage(Page<PostEntity> posts, ValidPageApiRequest request) {
+        return toPostsPageConverter.toPostsPage(posts, request);
     }
 
     public CreatePostApiRequest toCreatePostApiRequestBody(IOAuth2User user, CreatePostApiRequestBody requestBody) {

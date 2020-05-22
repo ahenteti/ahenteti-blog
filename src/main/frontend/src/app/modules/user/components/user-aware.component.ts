@@ -1,10 +1,10 @@
 import { OnInit, OnDestroy } from "@angular/core";
 import { Subscription } from "rxjs";
 import { UserObservable } from "../services/user.observable";
-import { Author } from "../models/user.internal.models";
+import { CurrentUser } from "../models/user.internal.models";
 
 export class UserAwareComponent implements OnInit, OnDestroy {
-  user: Author;
+  user: CurrentUser;
   private userSubscription: Subscription;
 
   constructor(private userObservable: UserObservable) {}

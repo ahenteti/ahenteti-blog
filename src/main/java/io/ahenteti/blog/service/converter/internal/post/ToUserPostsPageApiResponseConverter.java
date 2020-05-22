@@ -1,7 +1,7 @@
 package io.ahenteti.blog.service.converter.internal.post;
 
-import io.ahenteti.blog.model.api.post.response.UserPostsApiResponse;
-import io.ahenteti.blog.model.core.post.PostsSummariesPage;
+import io.ahenteti.blog.model.api.post.response.UserPostsPageApiResponse;
+import io.ahenteti.blog.model.core.post.PostsPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,17 +9,17 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 @Service
-public class ToUserPostsApiResponseConverter {
+public class ToUserPostsPageApiResponseConverter {
 
     private ToPostSummaryApiResponseConverter toPostSummaryApiResponseConverter;
 
     @Autowired
-    public ToUserPostsApiResponseConverter(ToPostSummaryApiResponseConverter toPostSummaryApiResponseConverter) {
+    public ToUserPostsPageApiResponseConverter(ToPostSummaryApiResponseConverter toPostSummaryApiResponseConverter) {
         this.toPostSummaryApiResponseConverter = toPostSummaryApiResponseConverter;
     }
 
-    public UserPostsApiResponse toUserPostsApiResponse(PostsSummariesPage postsPage) {
-        UserPostsApiResponse res = new UserPostsApiResponse();
+    public UserPostsPageApiResponse toUserPostsPageApiResponse(PostsPage postsPage) {
+        UserPostsPageApiResponse res = new UserPostsPageApiResponse();
         res.setPage(postsPage.getPage());
         res.setSize(postsPage.getSize());
         res.setTotalItems(postsPage.getTotalItems());

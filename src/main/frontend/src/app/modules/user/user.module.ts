@@ -1,10 +1,22 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { UserAvatarComponent } from "./components/user-avatar/user-avatar.component";
+import { ManageUsersPage } from "./pages/manage-users/manage-users.page";
+import { Routes, RouterModule } from "@angular/router";
+import { AdminGuard } from "./services/admin.guard";
+import { SharedModule } from "../shared/shared.module";
+
+const routes: Routes = [
+  {
+    path: "users",
+    component: ManageUsersPage,
+    canActivate: [AdminGuard],
+  },
+];
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
   exports: [UserAvatarComponent],
-  declarations: [UserAvatarComponent],
+  declarations: [UserAvatarComponent, ManageUsersPage],
 })
 export class UserModule {}

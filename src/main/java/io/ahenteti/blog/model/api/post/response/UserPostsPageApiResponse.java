@@ -4,6 +4,6 @@ import io.ahenteti.blog.model.api.PageApiResponse;
 import lombok.Data;
 
 @Data
-public class UserPostsApiResponse extends PageApiResponse<PostSummaryApiResponse> {
+public class UserPostsPageApiResponse extends PageApiResponse<PostSummaryApiResponse> {
 
 }

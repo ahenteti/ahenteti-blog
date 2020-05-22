@@ -3,15 +3,31 @@ package io.ahenteti.blog.service.validator;
 import io.ahenteti.blog.exception.AuthenticationException;
 import io.ahenteti.blog.exception.InvalidRequestAttributeException;
 import io.ahenteti.blog.exception.MissingMandatoryRequestAttributeException;
-import io.ahenteti.blog.model.core.post.EPostsSortBy;
-import io.ahenteti.blog.model.api.post.request.GetUserPostsApiRequest;
+import io.ahenteti.blog.model.api.post.request.GetUserPostsPageApiRequest;
 import io.ahenteti.blog.model.api.post.request.valid.ValidGetUserPostsApiRequest;
+import io.ahenteti.blog.model.api.user.GetUsersPageApiRequest;
+import io.ahenteti.blog.model.api.user.ValidGetUsersPageApiRequest;
+import io.ahenteti.blog.model.core.post.EPostsSortBy;
 import io.ahenteti.blog.model.core.user.oauth2.IOAuth2User;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserValidator {
+    
+    private PageApiRequestValidator pageApiRequestValidator;
+
+    @Autowired
+    public UserValidator(PageApiRequestValidator pageApiRequestValidator) {
+        this.pageApiRequestValidator = pageApiRequestValidator;
+    }
+
+    public ValidGetUsersPageApiRequest validateGetUsersPageApiRequest(GetUsersPageApiRequest request) {
+        validateAdminUser(request.getUser());
+        pageApiRequestValidator.validatePageApiRequest(request);
+        return new ValidGetUsersPageApiRequest(request);
+    }
 
     public void validateUser(IOAuth2User user) {
         if (user == null) {
@@ -26,7 +42,7 @@ public class UserValidator {
         }
     }
 
-    public ValidGetUserPostsApiRequest validateGetUserPostsApiRequest(GetUserPostsApiRequest request) {
+    public ValidGetUserPostsApiRequest validateGetUserPostsApiRequest(GetUserPostsPageApiRequest request) {
         validateUser(request.getUser());
         validateUserPostsPage((request));
         validateUserPostsSize(request);
@@ -34,7 +50,14 @@ public class UserValidator {
         return new ValidGetUserPostsApiRequest(request);
     }
 
-    private void validateUserPostsSortBy(GetUserPostsApiRequest request) {
+    private void validateAdminUser(IOAuth2User user) {
+        if (!user.isAdmin()) {
+            throw new AuthenticationException("user is not admin");
+        }
+        validateUser(user);
+    }
+
+    private void validateUserPostsSortBy(GetUserPostsPageApiRequest request) {
         if (request.getSortBy() == null) {
             throw new MissingMandatoryRequestAttributeException("sortBy query param is mandatory");
         }
@@ -51,15 +74,17 @@ public class UserValidator {
         }
     }
 
-    private void validateUserPostsSize(GetUserPostsApiRequest request) {
+    private void validateUserPostsSize(GetUserPostsPageApiRequest request) {
         if (request.getSize() == null) {
             throw new MissingMandatoryRequestAttributeException("size query param is mandatory");
         }
     }
 
-    private void validateUserPostsPage(GetUserPostsApiRequest request) {
+    private void validateUserPostsPage(GetUserPostsPageApiRequest request) {
         if (request.getPage() == null) {
             throw new MissingMandatoryRequestAttributeException("page query param is mandatory");
         }
     }
+
+
 }

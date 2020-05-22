@@ -1,4 +1,4 @@
-export class UserApiResponse {
+export class CurrentUserApiResponse {
   username: string;
   avatarUrl: string;
   roles: Array<string>;

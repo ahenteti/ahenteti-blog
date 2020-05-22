@@ -2,11 +2,11 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import {
   AuthorApiResponse,
-  UserApiResponse,
+  CurrentUserApiResponse,
 } from "../models/user.external.models";
 import { map } from "rxjs/operators";
 import { UserConverter } from "./user.converter";
-import { User } from "../models/user.internal.models";
+import { CurrentUser } from "../models/user.internal.models";
 
 export const GET_CURRENT_IDENTITY_URL = "/api/currentIdentity";
 
@@ -14,9 +14,9 @@ export const GET_CURRENT_IDENTITY_URL = "/api/currentIdentity";
 export class UserHttpServices {
   constructor(private http: HttpClient, private userConverter: UserConverter) {}
 
-  getUser(): Promise<User> {
+  getUser(): Promise<CurrentUser> {
     return this.http
-      .get<UserApiResponse>(GET_CURRENT_IDENTITY_URL)
+      .get<CurrentUserApiResponse>(GET_CURRENT_IDENTITY_URL)
       .pipe(map(this.userConverter.toUser))
       .toPromise();
   }

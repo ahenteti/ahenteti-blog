@@ -1,7 +1,7 @@
 package io.ahenteti.blog.service.converter.internal.post;
 
-import io.ahenteti.blog.model.api.post.request.valid.ValidPageApiRequest;
-import io.ahenteti.blog.model.core.post.PostsSummariesPage;
+import io.ahenteti.blog.model.api.post.ValidPageApiRequest;
+import io.ahenteti.blog.model.core.post.PostsPage;
 import io.ahenteti.blog.model.entity.PostEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,17 +11,17 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 @Service
-public class ToPostsSummariesPageConverter {
+public class ToPostsPageConverter {
 
     private ToPostSummaryConverter toPostSummaryConverter;
 
     @Autowired
-    public ToPostsSummariesPageConverter(ToPostSummaryConverter toPostSummaryConverter) {
+    public ToPostsPageConverter(ToPostSummaryConverter toPostSummaryConverter) {
         this.toPostSummaryConverter = toPostSummaryConverter;
     }
 
-    public PostsSummariesPage toPostsSummariesPage(Page<PostEntity> posts, ValidPageApiRequest request) {
-        PostsSummariesPage res = new PostsSummariesPage();
+    public PostsPage toPostsPage(Page<PostEntity> posts, ValidPageApiRequest request) {
+        PostsPage res = new PostsPage();
         res.setPage(request.getPage());
         res.setSize(request.getSize());
         res.setSortBy(request.getSortByValue());

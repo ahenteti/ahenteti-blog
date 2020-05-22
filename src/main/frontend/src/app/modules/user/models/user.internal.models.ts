@@ -3,14 +3,14 @@ export class Author {
   avatarUrl: string;
 }
 
-export class User {
+export class CurrentUser {
   username: string;
   avatarUrl: string;
   isAuthenticated = false;
   isAdmin = false;
 }
 
-export class AnonymousUser extends User {
+export class AnonymousUser extends CurrentUser {
   constructor() {
     super();
     this.username = "Anonymous";

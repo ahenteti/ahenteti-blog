@@ -9,5 +9,7 @@ public abstract class PageApiRequest {
     private Integer page;
     private Integer size;
     private String sortBy;
+    private String sortDirection;
+    private String filter;
     public abstract List<String> getSortByAcceptedValues();
 }

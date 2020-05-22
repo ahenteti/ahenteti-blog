@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class UserApiResponse {
+public class CurrentUserApiResponse {
     private String username;
     private String avatarUrl;
-    private String joinAtIso8601;
+    private List<String> roles = new ArrayList<>();
 }

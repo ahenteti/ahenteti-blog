@@ -8,10 +8,11 @@ import io.ahenteti.blog.model.core.post.GroupByPostAuthorStrategy;
 import io.ahenteti.blog.model.core.post.GroupByPostCategoryStrategy;
 import io.ahenteti.blog.model.core.post.Post;
 import io.ahenteti.blog.model.core.post.PostsGroups;
-import io.ahenteti.blog.model.core.post.PostsSummariesPage;
+import io.ahenteti.blog.model.core.post.PostsPage;
 import io.ahenteti.blog.model.core.post.ReadyToCreatePost;
 import io.ahenteti.blog.model.core.post.ReadyToUpdatePost;
 import io.ahenteti.blog.model.entity.PostEntity;
+import io.ahenteti.blog.service.converter.PageConverter;
 import io.ahenteti.blog.service.converter.PostConverter;
 import io.ahenteti.blog.service.dao.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,11 +33,13 @@ public class PostDao {
 
     private PostRepository postRepository;
     private PostConverter postConverter;
+    private PageConverter pageConverter;
 
     @Autowired
-    public PostDao(PostRepository postRepository, PostConverter postConverter) {
+    public PostDao(PostRepository postRepository, PostConverter postConverter, PageConverter pageConverter) {
         this.postRepository = postRepository;
         this.postConverter = postConverter;
+        this.pageConverter = pageConverter;
     }
 
     public PostsGroups getPostsGroups(ValidGetPostsGroupsApiRequest request) {
@@ -64,11 +67,11 @@ public class PostDao {
         return postRepository.findById(id).map(postConverter::toPost);
     }
 
-    public PostsSummariesPage getUserPosts(ValidGetUserPostsApiRequest request) {
+    public PostsPage getUserPosts(ValidGetUserPostsApiRequest request) {
         // @formatter:off
-        PageRequest postsPage = PageRequest.of(request.getPage(), request.getSize(), Sort.by(request.getSortByValue()).descending());
-        Page<PostEntity> posts = postRepository.findByAuthorId(request.getUser().getPrimaryKey(), postsPage);
-        return postConverter.toPostsSummariesPage(posts, request);
+        PageRequest pageRequest = pageConverter.toPageRequest(request);
+        Page<PostEntity> posts = postRepository.findByAuthorId(request.getUser().getPrimaryKey(), pageRequest);
+        return postConverter.toPostsPage(posts, request);
         // @formatter:on
     }
 

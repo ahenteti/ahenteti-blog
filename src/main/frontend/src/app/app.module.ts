@@ -23,11 +23,16 @@ import { LoaderModule } from "./modules/loader/loader.module";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { LoaderInterceptor } from "./modules/loader/loader.interceptor";
 import { LoaderService } from "./modules/loader/loader.service";
+import { AdminGuard } from "./modules/user/services/admin.guard";
 
 const routes: Routes = [
   {
     path: "",
     loadChildren: "./modules/post/post-pages/post-pages.module#PostPageModule",
+  },
+  {
+    path: "",
+    loadChildren: "./modules/user/user.module#UserModule",
   },
 ];
 
@@ -58,6 +63,7 @@ const routes: Routes = [
     PostValidator,
     WindowService,
     LoaderService,
+    AdminGuard,
     { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
   ],
 })
