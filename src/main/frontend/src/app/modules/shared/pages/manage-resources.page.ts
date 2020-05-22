@@ -1,44 +1,43 @@
-import { OnInit } from "@angular/core";
+import { OnInit, ViewChild } from "@angular/core";
 import { MatTableDataSource } from "@angular/material/table";
-import { AlertService } from "src/app/modules/alert/alert.service";
-import { Subject } from "rxjs";
 import { Page } from "../models/page.model";
+import { MatSort } from "@angular/material/sort";
 
 export abstract class AbstractManageResourcesPage<T> implements OnInit {
   currentPage: Page<T>;
-  dataSource = new MatTableDataSource([]);
+  dataSource: MatTableDataSource<T>;
   columns: string[];
-  previousButtonCssClasses$ = new Subject<string>();
-  nextButtonCssClasses$ = new Subject<string>();
+  previousButtonCssClasses = "";
+  nextButtonCssClasses = "";
   filter = "";
-
-  constructor(private alertService: AlertService) {}
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   ngOnInit(): void {
     this.fetchPage(0);
   }
 
+  abstract fetchPage(page: number): void;
+
   handleNextButtonClickEvent() {
+    if (this.currentPage.lastPage) return;
     this.fetchPage(this.currentPage.page + 1);
   }
 
   handlePreviousButtonClickEvent() {
+    if (this.currentPage.firstPage) return;
     this.fetchPage(this.currentPage.page - 1);
   }
-
-  // prettier-ignore
-  abstract fetchPage(page: number): void;
 
   recalculatePreviousNextButtonCssClasses() {
     let classes = [];
     if (this.currentPage.firstPage) {
       classes.push("disabled");
     }
-    this.previousButtonCssClasses$.next(classes.join(" "));
+    this.previousButtonCssClasses = classes.join(" ");
     classes = [];
     if (this.currentPage.lastPage) {
       classes.push("disabled");
     }
-    this.nextButtonCssClasses$.next(classes.join(" "));
+    this.nextButtonCssClasses = classes.join(" ");
   }
 }

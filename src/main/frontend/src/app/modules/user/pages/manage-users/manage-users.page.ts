@@ -1,61 +1,34 @@
 import { Component, OnInit } from "@angular/core";
 import { MatTableDataSource } from "@angular/material/table";
-import { UsersPage } from "../../models/user.internal.models";
+import { UsersPage, User } from "../../models/user.internal.models";
 import { AlertService } from "src/app/modules/alert/alert.service";
 import { UserHttpServices } from "../../services/user.http.services";
 import { UserConverter } from "../../services/user.converter";
-import { Subject } from "rxjs";
+import { AbstractManageResourcesPage } from "src/app/modules/shared/pages/manage-resources.page";
 
 @Component({
   templateUrl: "./manage-users.page.html",
   styleUrls: ["./manage-users.page.scss"],
 })
-export class ManageUsersPage implements OnInit {
-  currentPage = new UsersPage();
-  dataSource = new MatTableDataSource([]);
-  columns: string[] = ["username", "joinAt", "actions"];
-  previousButtonCssClasses = "";
-  nextButtonCssClasses = "";
-  filter = "";
-
+export class ManageUsersPage extends AbstractManageResourcesPage<User>
+  implements OnInit {
   constructor(
     private alertService: AlertService,
     private userHttpService: UserHttpServices,
     private userConverter: UserConverter
-  ) {}
-
-  // prettier-ignore
-  ngOnInit(): void {
-    this.getNewPage(0);
-  }
-
-  handleNextButtonClickEvent() {
-    this.getNewPage(this.currentPage.page + 1);
-  }
-
-  handlePreviousButtonClickEvent() {
-    this.getNewPage(this.currentPage.page - 1);
+  ) {
+    super();
+    this.currentPage = new UsersPage();
+    this.dataSource = new MatTableDataSource([]);
+    this.columns = ["username", "joinAt", "actions"];
   }
 
   // prettier-ignore
-  private getNewPage(page: number) {
+  fetchPage(page: number) {
     const request  = this.userConverter.toGetUsersPageApiRequest(this.filter, page);
     this.userHttpService.getUsersPage(request)
       .then(usersPage => this.handleGetUsersPageSuccessEvent(usersPage))
       .catch(error => this.handleGetUsersPageErrorEvent(error));
-  }
-
-  private recalculatePreviousNextButtonCssClasses() {
-    let classes = [];
-    if (this.currentPage.firstPage) {
-      classes.push("disabled");
-    }
-    this.previousButtonCssClasses = classes.join(" ");
-    classes = [];
-    if (this.currentPage.lastPage) {
-      classes.push("disabled");
-    }
-    this.nextButtonCssClasses = classes.join(" ");
   }
 
   private handleGetUsersPageErrorEvent(error) {
@@ -66,6 +39,7 @@ export class ManageUsersPage implements OnInit {
   private handleGetUsersPageSuccessEvent(usersPage: UsersPage) {
     this.currentPage = usersPage;
     this.dataSource = new MatTableDataSource(usersPage.items);
+    this.dataSource.sort = this.sort;
     this.recalculatePreviousNextButtonCssClasses();
   }
 }
