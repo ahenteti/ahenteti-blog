@@ -41,3 +41,23 @@
 .mat-table tbody .mat-cell {
   color: var(--mat-table-body-color);
 }
+
+.mat-row {
+  position: relative;
+  & .row-actions {
+    --button-size: 3.5rem;
+    display: none;
+    position: absolute;
+    top: 0.8rem;
+    right: 2rem;
+
+    & > * {
+      margin-left: 0.8rem;
+    }
+  }
+
+  &:hover .row-actions {
+    display: flex;
+    align-items: center;
+  }
+}

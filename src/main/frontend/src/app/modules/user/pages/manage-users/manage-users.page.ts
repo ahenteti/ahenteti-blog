@@ -8,17 +8,14 @@ import { Subject } from "rxjs";
 
 @Component({
   templateUrl: "./manage-users.page.html",
-  styleUrls: [
-    "../../../shared/pages/manage-resources.page.scss",
-    "./manage-users.page.scss",
-  ],
+  styleUrls: ["./manage-users.page.scss"],
 })
 export class ManageUsersPage implements OnInit {
   currentPage = new UsersPage();
   dataSource = new MatTableDataSource([]);
-  displayedColumns: string[] = ["username", "joinAt", "actions"];
-  previousButtonCssClasses$ = new Subject<string>();
-  nextButtonCssClasses$ = new Subject<string>();
+  columns: string[] = ["username", "joinAt", "actions"];
+  previousButtonCssClasses = "";
+  nextButtonCssClasses = "";
   filter = "";
 
   constructor(
@@ -53,12 +50,12 @@ export class ManageUsersPage implements OnInit {
     if (this.currentPage.firstPage) {
       classes.push("disabled");
     }
-    this.previousButtonCssClasses$.next(classes.join(" "));
+    this.previousButtonCssClasses = classes.join(" ");
     classes = [];
     if (this.currentPage.lastPage) {
       classes.push("disabled");
     }
-    this.nextButtonCssClasses$.next(classes.join(" "));
+    this.nextButtonCssClasses = classes.join(" ");
   }
 
   private handleGetUsersPageErrorEvent(error) {

@@ -1,0 +1,17 @@
+<div class="header">
+  <app-page-title [value]="pageTitle"></app-page-title>
+  <ng-content select=".top-table-actions"></ng-content>
+</div>
+
+<ng-content select=".table"></ng-content>
+
+<div class="bottom-table-actions">
+  <app-previous-button
+    class="{{ previousButtonCssClasses }}"
+    (click)="handlePreviousButtonClickEvent()"
+  ></app-previous-button>
+  <app-next-button
+    class="{{ nextButtonCssClasses }}"
+    (click)="handleNextButtonClickEvent()"
+  ></app-next-button>
+</div>

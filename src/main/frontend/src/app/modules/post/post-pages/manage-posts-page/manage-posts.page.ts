@@ -12,17 +12,14 @@ import { ConfirmationDialogComponent } from "src/app/modules/shared/components/c
 
 @Component({
   templateUrl: "manage-posts.page.html",
-  styleUrls: [
-    "../../../shared/pages/manage-resources.page.scss",
-    "manage-posts.page.scss",
-  ],
+  styleUrls: ["manage-posts.page.scss"],
 })
 export class ManagePostsPage implements OnInit {
-  currentUserPostsPage = new PostsPage();
-  userPostsDataSource = new MatTableDataSource([]);
-  displayedColumns: string[] = ["title", "category", "createdAt", "actions"];
-  previousButtonCssClasses$ = new Subject<string>();
-  nextButtonCssClasses$ = new Subject<string>();
+  currentPage = new PostsPage();
+  dataSource = new MatTableDataSource([]);
+  columns: string[] = ["title", "category", "createdAt", "actions"];
+  previousButtonCssClasses = "";
+  nextButtonCssClasses = "";
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   filter = "";
 
@@ -59,11 +56,11 @@ export class ManagePostsPage implements OnInit {
   }
 
   handleNextButtonClickEvent() {
-    this.getNewUserPostsPage(this.currentUserPostsPage.page + 1);
+    this.getNewUserPostsPage(this.currentPage.page + 1);
   }
 
   handlePreviousButtonClickEvent() {
-    this.getNewUserPostsPage(this.currentUserPostsPage.page - 1);
+    this.getNewUserPostsPage(this.currentPage.page - 1);
   }
 
   // prettier-ignore
@@ -77,15 +74,15 @@ export class ManagePostsPage implements OnInit {
 
   private recalculatePreviousNextButtonCssClasses() {
     let classes = [];
-    if (this.currentUserPostsPage.firstPage) {
+    if (this.currentPage.firstPage) {
       classes.push("disabled");
     }
-    this.previousButtonCssClasses$.next(classes.join(" "));
+    this.previousButtonCssClasses = classes.join(" ");
     classes = [];
-    if (this.currentUserPostsPage.lastPage) {
+    if (this.currentPage.lastPage) {
       classes.push("disabled");
     }
-    this.nextButtonCssClasses$.next(classes.join(" "));
+    this.nextButtonCssClasses = classes.join(" ");
   }
 
   private handleDeletePostErrorEvent(error) {
@@ -101,17 +98,17 @@ export class ManagePostsPage implements OnInit {
   // prettier-ignore
   private handleDeletePostSuccessEvent(postId: number) {
     this.alertService.info("Post deleted with success");
-    this.userPostsDataSource.data = this.userPostsDataSource.data.filter(
+    this.dataSource.data = this.dataSource.data.filter(
       (post) => post.id !== postId
     );
-    this.userPostsDataSource._updateChangeSubscription(); // <-- Refresh the data source, reference: https://stackoverflow.com/questions/54744770/how-to-delete-particular-row-from-angular-material-table-which-doesnt-have-filte
+    this.dataSource._updateChangeSubscription(); // <-- Refresh the data source, reference: https://stackoverflow.com/questions/54744770/how-to-delete-particular-row-from-angular-material-table-which-doesnt-have-filte
     this.postsState.deletePost(postId);
   }
 
   private handleGetUserPostsSuccessEvent(postsPage: PostsPage) {
-    this.currentUserPostsPage = postsPage;
-    this.userPostsDataSource = new MatTableDataSource(postsPage.items);
-    this.userPostsDataSource.sort = this.sort;
+    this.currentPage = postsPage;
+    this.dataSource = new MatTableDataSource(postsPage.items);
+    this.dataSource.sort = this.sort;
     this.recalculatePreviousNextButtonCssClasses();
   }
 }
