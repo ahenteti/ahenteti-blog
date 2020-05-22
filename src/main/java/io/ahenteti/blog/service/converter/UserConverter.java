@@ -35,6 +35,7 @@ public class UserConverter {
         res.setUsername(entity.getUsername());
         res.setAvatarUrl(entity.getAvatar());
         res.setProvider(entity.getProvider());
+        res.setJoinAt(entity.getJoinAt());
         entity.getRoles().forEach(role -> res.getRoles().add(EUserRole.from(role.getName())));
         return res;
     }
@@ -57,7 +58,7 @@ public class UserConverter {
         res.setProvider(user.getProvider());
         RoleEntity role = roleRepository.findByName("USER").orElseThrow(throwInvalidApplicationStateException());
         res.getRoles().add(role);
-        res.setJointAt(Instant.now());
+        res.setJoinAt(Instant.now());
         return res;
     }
 
@@ -80,7 +81,7 @@ public class UserConverter {
         UserApiResponse res = new UserApiResponse();
         res.setUsername(user.getUsername());
         res.setAvatarUrl(user.getAvatarUrl());
-        res.setJoinAtIso8601(user.getJointAt().toString());
+        res.setJoinAtIso8601(user.getJoinAt().toString());
         return res;
     }
 

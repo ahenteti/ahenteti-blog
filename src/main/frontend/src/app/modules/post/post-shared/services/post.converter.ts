@@ -5,7 +5,7 @@ import {
   CreatePostApiRequest,
   UpdatePostApiRequest,
   DeletePostApiRequest,
-  UserPostsApiResponse,
+  UserPostsPageApiResponse,
   PostsSummariesGroupApiResponse,
   PostGroupByStrategyApiResponse,
   GetPostGroupByStrategiesApiRequest,
@@ -16,8 +16,7 @@ import { Injectable } from "@angular/core";
 import {
   PostSummary,
   Post,
-  PostsSummaries,
-  PostsSummariesPage,
+  PostsPage,
   PostsGroups,
   PostsGroup,
   PostGroupByStrategies,
@@ -108,8 +107,8 @@ export class PostConverter {
     return res;
   }
 
-  toPostsSummariesPage(posts: UserPostsApiResponse): PostsSummariesPage {
-    const res = new PostsSummariesPage();
+  toPostsSummariesPage(posts: UserPostsPageApiResponse): PostsPage {
+    const res = new PostsPage();
     res.totalItems = posts.totalItems;
     res.firstPage = posts.page == 0;
     res.lastPage = posts.lastPage;
@@ -120,9 +119,13 @@ export class PostConverter {
     return res;
   }
 
-  toGetUserPostsApiRequest(page = 0, size = 5): GetUserPostsApiRequest {
+  toGetUserPostsApiRequest(
+    filter: string,
+    page: number,
+    size = 5
+  ): GetUserPostsApiRequest {
     return {
-      url: `/secure-api/user/posts-summaries?page=${page}&size=${size}`,
+      url: `/secure-api/user/posts-summaries?filter=${filter}&page=${page}&size=${size}`,
     };
   }
 

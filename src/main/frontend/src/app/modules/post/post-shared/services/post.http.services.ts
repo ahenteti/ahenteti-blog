@@ -7,20 +7,17 @@ import {
   CreatePostApiRequest,
   UpdatePostApiRequest,
   DeletePostApiRequest,
-  PageApiResponse,
-  UserPostsApiResponse,
-  PostsSummariesGroupApiResponse,
+  UserPostsPageApiResponse,
   PostGroupByStrategyApiResponse,
   GetPostGroupByStrategiesApiRequest,
   GetPostsGroupsApiRequest,
   PostsGroupApiResponse,
 } from "../models/post.external.models";
 import {
-  PostsSummaries,
   Post,
   OfflinePost,
   PostSummary,
-  PostsSummariesPage,
+  PostsPage,
   PostsGroups,
   PostGroupByStrategies,
 } from "../models/post.internal.models";
@@ -56,10 +53,10 @@ export class PostHttpServices extends CommonHttpServices {
       .toPromise();
   }
 
-  getUserPosts(request: GetUserPostsApiRequest): Promise<PostsSummariesPage> {
+  getUserPosts(request: GetUserPostsApiRequest): Promise<PostsPage> {
     // prettier-ignore
     return this.http
-      .get<UserPostsApiResponse>(request.url)
+      .get<UserPostsPageApiResponse>(request.url)
       .pipe(map((posts) => this.postConverter.toPostsSummariesPage(posts)))
       .toPromise();
     // prettier-ignore

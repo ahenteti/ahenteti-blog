@@ -24,6 +24,7 @@ import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { LoaderInterceptor } from "./modules/loader/loader.interceptor";
 import { LoaderService } from "./modules/loader/loader.service";
 import { AdminGuard } from "./modules/user/services/admin.guard";
+import { ManageUsersPage } from "./modules/user/pages/manage-users/manage-users.page";
 
 const routes: Routes = [
   {

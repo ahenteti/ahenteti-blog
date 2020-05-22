@@ -27,7 +27,7 @@ export class UserObservable {
 
   private checkUser() {
     this.userHttpService
-      .getUser()
+      .getCurrentUser()
       .then((user) => this.newUser(user))
       .catch((error) => console.log("user not yet authenticated"));
   }

@@ -1,0 +1,10 @@
+:host {
+  display: flex;
+  align-items: center;
+}
+
+img {
+  width: var(--avatar-size, 4rem);
+  height: var(--avatar-size, 4rem);
+  margin-right: 1rem;
+}

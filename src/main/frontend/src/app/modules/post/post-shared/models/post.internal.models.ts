@@ -1,12 +1,5 @@
 import { Author } from "../../../user/models/user.internal.models";
-
-export class Page<T> {
-  page: number;
-  firstPage: boolean;
-  lastPage: boolean;
-  totalItems: number;
-  items: Array<T>;
-}
+import { Page } from "src/app/modules/shared/models/page.model";
 
 export class PostSummary {
   id: number;
@@ -60,6 +53,6 @@ export class OfflinePost implements Post {
 
 export class PostsByCategory extends Map<string, PostSummary[]> {}
 export class PostsSummaries extends Array<PostSummary> {}
-export class PostsSummariesPage extends Page<PostSummary> {}
+export class PostsPage extends Page<PostSummary> {}
 export class PostsGroups extends Array<PostsGroup> {}
 export class PostGroupByStrategies extends Array<PostGroupByStrategy> {}

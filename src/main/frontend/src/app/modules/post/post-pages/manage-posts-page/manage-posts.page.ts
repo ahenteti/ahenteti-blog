@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { PostHttpServices } from "../../post-shared/services/post.http.services";
-import { PostsSummariesPage } from "../../post-shared/models/post.internal.models";
+import { PostsPage } from "../../post-shared/models/post.internal.models";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { AlertService } from "src/app/modules/alert/alert.service";
@@ -12,15 +12,19 @@ import { ConfirmationDialogComponent } from "src/app/modules/shared/components/c
 
 @Component({
   templateUrl: "manage-posts.page.html",
-  styleUrls: ["manage-posts.page.scss"],
+  styleUrls: [
+    "../../../shared/pages/manage-resources.page.scss",
+    "manage-posts.page.scss",
+  ],
 })
 export class ManagePostsPage implements OnInit {
-  currentUserPostsPage = new PostsSummariesPage();
+  currentUserPostsPage = new PostsPage();
   userPostsDataSource = new MatTableDataSource([]);
   displayedColumns: string[] = ["title", "category", "createdAt", "actions"];
   previousButtonCssClasses$ = new Subject<string>();
   nextButtonCssClasses$ = new Subject<string>();
   @ViewChild(MatSort, { static: true }) sort: MatSort;
+  filter = "";
 
   constructor(
     private postHttpServices: PostHttpServices,
@@ -31,7 +35,7 @@ export class ManagePostsPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    const request = this.postConverter.toGetUserPostsApiRequest(0);
+    const request = this.postConverter.toGetUserPostsApiRequest(this.filter, 0);
     this.postHttpServices
       .getUserPosts(request)
       .then((posts) => this.handleGetUserPostsSuccessEvent(posts))
@@ -62,8 +66,9 @@ export class ManagePostsPage implements OnInit {
     this.getNewUserPostsPage(this.currentUserPostsPage.page - 1);
   }
 
+  // prettier-ignore
   private getNewUserPostsPage(page: number) {
-    const request = this.postConverter.toGetUserPostsApiRequest(page);
+    const request = this.postConverter.toGetUserPostsApiRequest(this.filter, page);
     this.postHttpServices
       .getUserPosts(request)
       .then((posts) => this.handleGetUserPostsSuccessEvent(posts))
@@ -103,7 +108,7 @@ export class ManagePostsPage implements OnInit {
     this.postsState.deletePost(postId);
   }
 
-  private handleGetUserPostsSuccessEvent(postsPage: PostsSummariesPage) {
+  private handleGetUserPostsSuccessEvent(postsPage: PostsPage) {
     this.currentUserPostsPage = postsPage;
     this.userPostsDataSource = new MatTableDataSource(postsPage.items);
     this.userPostsDataSource.sort = this.sort;

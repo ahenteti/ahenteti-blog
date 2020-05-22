@@ -5,6 +5,7 @@ import { ManageUsersPage } from "./pages/manage-users/manage-users.page";
 import { Routes, RouterModule } from "@angular/router";
 import { AdminGuard } from "./services/admin.guard";
 import { SharedModule } from "../shared/shared.module";
+import { UserComponent } from "./components/user/user.component";
 
 const routes: Routes = [
   {
@@ -17,6 +18,6 @@ const routes: Routes = [
 @NgModule({
   imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
   exports: [UserAvatarComponent],
-  declarations: [UserAvatarComponent, ManageUsersPage],
+  declarations: [UserAvatarComponent, UserComponent, ManageUsersPage],
 })
 export class UserModule {}

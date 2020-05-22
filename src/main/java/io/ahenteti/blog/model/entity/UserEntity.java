@@ -36,7 +36,7 @@ public class UserEntity {
     private String provider;
 
     @Column(name = "JOIN_AT")
-    private Instant jointAt;
+    private Instant joinAt;
 
     // @formatter:off
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)

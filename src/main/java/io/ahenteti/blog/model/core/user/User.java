@@ -12,6 +12,6 @@ public class User {
     private String username;
     private String avatarUrl;
     private String provider;
-    private Instant jointAt;
+    private Instant joinAt;
     private List<EUserRole> roles = new ArrayList<>();
 }

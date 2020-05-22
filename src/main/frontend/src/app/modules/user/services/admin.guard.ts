@@ -18,7 +18,7 @@ export class AdminGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this.userHttpService
-      .getUser()
+      .getCurrentUser()
       .then((user) => {
         if (user.isAdmin) return true;
         this.alertService.error("Only Admin user can access this page", {

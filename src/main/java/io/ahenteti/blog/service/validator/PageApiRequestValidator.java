@@ -24,7 +24,7 @@ public class PageApiRequestValidator {
         if (ESortDirection.getByValue(request.getSortDirection()) == null) {
             StringBuilder sb = new StringBuilder();
             sb.append("Unknown sortDirection query param value: ");
-            sb.append(request.getSortBy());
+            sb.append(request.getSortDirection());
             sb.append(". Accepted values: ");
             sb.append(StringUtils.join(ESortDirection.values(), ", "));
             throw new InvalidRequestAttributeException(sb.toString());

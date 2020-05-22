@@ -1,12 +1,5 @@
 import { AuthorApiResponse } from "../../../user/models/user.external.models";
-
-export class PageApiResponse<T> {
-  page: number;
-  size: number;
-  totalItems: number;
-  lastPage: boolean;
-  items: Array<T>;
-}
+import { PageApiResponse } from "src/app/modules/shared/models/page.model";
 
 export class PostsSummariesGroupApiResponse {
   groupName: string;
@@ -31,7 +24,7 @@ export class GetUserPostsApiRequest {
   url: string;
 }
 
-export class UserPostsApiResponse extends PageApiResponse<
+export class UserPostsPageApiResponse extends PageApiResponse<
   PostSummaryApiResponse
 > {}
 

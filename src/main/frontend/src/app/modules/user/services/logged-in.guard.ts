@@ -19,7 +19,7 @@ export class LoggedInGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this.userHttpService
-      .getUser()
+      .getCurrentUser()
       .then(() => true)
       .catch((error) => {
         console.error("user not yet authenticated. error: " + error);

@@ -49,11 +49,11 @@ public class UserController {
     @GetMapping("/secure-api/users")
     public UsersPageApiResponse getUsers(
             @ModelAttribute IOAuth2User user, 
+            @RequestParam String filter,
             @RequestParam Integer page, 
             @RequestParam Integer size, 
             @RequestParam(required = false, defaultValue = "username") String sortBy,
-            @RequestParam(required = false, defaultValue = "desc") String sortDirection,
-            @RequestParam(required = false, defaultValue = "") String filter) {
+            @RequestParam(required = false, defaultValue = "asc") String sortDirection) {
         GetUsersPageApiRequest request = userConverter.toGetUsersPageApiRequest(user, page, size, sortBy, sortDirection, filter);
         ValidGetUsersPageApiRequest validRequest = userValidator.validateGetUsersPageApiRequest(request);
         UsersPage usersPage = userDao.getUsers(validRequest);
@@ -65,11 +65,11 @@ public class UserController {
     @GetMapping("/secure-api/user/posts-summaries")
     public UserPostsPageApiResponse getUserPosts(
             @ModelAttribute IOAuth2User user, 
+            @RequestParam String filter,
             @RequestParam Integer page, 
             @RequestParam Integer size, 
             @RequestParam(required = false, defaultValue = "createdAt") String sortBy, 
-            @RequestParam(required = false, defaultValue = "desc") String sortDirection, 
-            @RequestParam(required = false, defaultValue = "") String filter) {
+            @RequestParam(required = false, defaultValue = "desc") String sortDirection) {
         GetUserPostsPageApiRequest request = postConverter.toGetUserPostsPageApiRequest(user, page, size, sortBy, sortDirection, filter);
         ValidGetUserPostsApiRequest validRequest = userValidator.validateGetUserPostsApiRequest(request);
         PostsPage postsPage = postDao.getUserPosts(validRequest);

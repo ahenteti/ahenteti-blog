@@ -1,9 +1,7 @@
 import { Component, HostBinding } from "@angular/core";
-import { Author } from "src/app/modules/user/models/user.internal.models";
 import { UserObservable } from "src/app/modules/user/services/user.observable";
 import { UserAwareComponent } from "src/app/modules/user/components/user-aware.component";
 import { ThemeLocalStorageServices } from "src/app/modules/shared/services/theme.localstorage.services";
-import { UserLoginServices } from "src/app/modules/user/services/user.login.services";
 
 @Component({
   selector: "app-navbar",
@@ -13,7 +11,6 @@ import { UserLoginServices } from "src/app/modules/user/services/user.login.serv
 export class NavbarComponent extends UserAwareComponent {
   @HostBinding("class.shadow")
   public shadow = false;
-  user: Author;
 
   constructor(
     private themeService: ThemeLocalStorageServices,
