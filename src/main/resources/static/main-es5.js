@@ -56,7 +56,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
   /***/
   function $$_lazy_route_resourceLazyRecursive(module, exports, __webpack_require__) {
     var map = {
-      "./modules/post/post-pages/post-pages.module": "./src/app/modules/post/post-pages/post-pages.module.ts"
+      "./modules/post/post-pages/post-pages.module": "./src/app/modules/post/post-pages/post-pages.module.ts",
+      "./modules/user/user.module": "./src/app/modules/user/user.module.ts"
     };
 
     function webpackAsyncContext(req) {
@@ -191,7 +192,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<span class=\"welcome\">Welcome {{ user.username }}</span>\r\n<div\r\n  class=\"user-avatar\"\r\n  [matMenuTriggerFor]=\"menu\"\r\n  (mouseover)=\"onMouseOver()\"\r\n  #dropdownTrigger=\"matMenuTrigger\"\r\n>\r\n  <app-user-avatar [user]=\"user\"></app-user-avatar>\r\n  <app-dropdown-icon class=\"dropdown-icon\"></app-dropdown-icon>\r\n</div>\r\n\r\n<mat-menu #menu=\"matMenu\" xPosition=\"before\">\r\n  <span mat-menu-item (click)=\"handleChangeThemeColorClickEvent($event)\"\r\n    >Toggle theme</span\r\n  >\r\n  <a mat-menu-item [routerLink]=\"['/posts']\">Manage your posts</a>\r\n  <a mat-menu-item [routerLink]=\"['/posts/new']\">Create new post</a>\r\n  <hr />\r\n  <a mat-menu-item href=\"/logout\">Logout</a>\r\n</mat-menu>\r\n";
+    __webpack_exports__["default"] = "<span class=\"welcome\">Welcome {{ user.username }}</span>\r\n<div\r\n  class=\"user-avatar\"\r\n  [matMenuTriggerFor]=\"menu\"\r\n  (mouseover)=\"onMouseOver()\"\r\n  #dropdownTrigger=\"matMenuTrigger\"\r\n>\r\n  <app-user-avatar [user]=\"user\"></app-user-avatar>\r\n  <app-dropdown-icon class=\"dropdown-icon\"></app-dropdown-icon>\r\n</div>\r\n\r\n<mat-menu #menu=\"matMenu\" xPosition=\"before\">\r\n  <span mat-menu-item (click)=\"handleChangeThemeColorClickEvent($event)\"\r\n    >Toggle theme</span\r\n  >\r\n  <a mat-menu-item [routerLink]=\"['/posts']\">Manage your posts</a>\r\n  <a mat-menu-item [routerLink]=\"['/posts/new']\">Create new post</a>\r\n  <hr />\r\n  <a *ngIf=\"user.isAdmin\" mat-menu-item [routerLink]=\"['/users']\"\r\n    >Manage users</a\r\n  >\r\n  <hr />\r\n  <a mat-menu-item href=\"/logout\">Logout</a>\r\n</mat-menu>\r\n";
     /***/
   },
 
@@ -311,7 +312,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"header\">\r\n  <app-page-title value=\"My Posts\"></app-page-title>\r\n  <div class=\"table-actions\">\r\n    <app-new-button\r\n      routerLink=\"/posts/new\"\r\n      class=\"tooltip-bottom\"\r\n      data-tooltip=\"create new post\"\r\n    ></app-new-button>\r\n  </div>\r\n</div>\r\n<table mat-table matSort [dataSource]=\"userPostsDataSource\">\r\n  <ng-container matColumnDef=\"title\">\r\n    <th mat-header-cell mat-sort-header *matHeaderCellDef>Title</th>\r\n    <td mat-cell *matCellDef=\"let element\">{{element.title}}</td>\r\n  </ng-container>\r\n\r\n  <ng-container matColumnDef=\"category\">\r\n    <th mat-header-cell mat-sort-header *matHeaderCellDef>Category</th>\r\n    <td mat-cell *matCellDef=\"let element\">{{element.category}}</td>\r\n  </ng-container>\r\n\r\n  <ng-container matColumnDef=\"createdAt\">\r\n    <th mat-header-cell mat-sort-header *matHeaderCellDef>Created At</th>\r\n    <td mat-cell *matCellDef=\"let element\">{{element.createdAt | date}}</td>\r\n  </ng-container>\r\n\r\n  <ng-container matColumnDef=\"actions\">\r\n    <th mat-header-cell mat-sort-header *matHeaderCellDef></th>\r\n    <td mat-cell *matCellDef=\"let element\">\r\n      <div class=\"post-actions\">\r\n        <app-consult-button-link\r\n          [routerLink]=\"['/posts', element.id, 'consult']\"\r\n        ></app-consult-button-link>\r\n        <app-edit-button-link\r\n          [routerLink]=\"['/posts', element.id, 'edit']\"\r\n        ></app-edit-button-link>\r\n        <app-delete-button (click)=\"deletePost(element.id)\"></app-delete-button>\r\n      </div>\r\n    </td>\r\n  </ng-container>\r\n\r\n  <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n  <tr\r\n    mat-row\r\n    class=\"post\"\r\n    *matRowDef=\"let row; columns: displayedColumns;\"\r\n  ></tr>\r\n</table>\r\n\r\n<div class=\"table-actions\">\r\n  <app-previous-button\r\n    class=\"{{ previousButtonCssClasses$ | async }}\"\r\n    (click)=\"handlePreviousButtonClickEvent()\"\r\n  ></app-previous-button>\r\n  <app-next-button\r\n    class=\"{{ nextButtonCssClasses$ | async }}\"\r\n    (click)=\"handleNextButtonClickEvent()\"\r\n  ></app-next-button>\r\n</div>\r\n";
+    __webpack_exports__["default"] = "<app-manage-resources-page-layout\r\n  pageTitle=\"My Posts\"\r\n  [previousButtonCssClasses]=\"previousButtonCssClasses\"\r\n  [nextButtonCssClasses]=\"nextButtonCssClasses\"\r\n  (previousButtonClick)=\"handlePreviousButtonClickEvent()\"\r\n  (nextButtonClick)=\"handleNextButtonClickEvent()\"\r\n>\r\n  <ng-container class=\"top-table-actions\">\r\n    <app-new-button\r\n      routerLink=\"/posts/new\"\r\n      class=\"tooltip-bottom\"\r\n      data-tooltip=\"create new post\"\r\n    ></app-new-button>\r\n  </ng-container>\r\n\r\n  <ng-container class=\"table\">\r\n    <table mat-table matSort [dataSource]=\"dataSource\">\r\n      <ng-container matColumnDef=\"title\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Title</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.title}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"category\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Category</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.category}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"createdAt\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Created At</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.createdAt | date}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"actions\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef></th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <div class=\"row-actions\">\r\n            <app-consult-button-link\r\n              [routerLink]=\"['/posts', element.id, 'consult']\"\r\n            ></app-consult-button-link>\r\n            <app-edit-button-link\r\n              [routerLink]=\"['/posts', element.id, 'edit']\"\r\n            ></app-edit-button-link>\r\n            <app-delete-button\r\n              (click)=\"deletePost(element.id)\"\r\n            ></app-delete-button>\r\n          </div>\r\n        </td>\r\n      </ng-container>\r\n\r\n      <tr mat-header-row *matHeaderRowDef=\"columns\"></tr>\r\n      <tr mat-row class=\"row\" *matRowDef=\"let row; columns: columns;\"></tr>\r\n    </table>\r\n  </ng-container>\r\n</app-manage-resources-page-layout>\r\n";
     /***/
   },
 
@@ -892,6 +893,46 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
     __webpack_exports__["default"] = "<img class=\"icon\" src=\"/assets/icon/{{ icon }}.svg\" />\r\n<div>\r\n  <ng-content></ng-content>\r\n</div>\r\n";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/layouts/manage-resources-page.layout.html":
+  /*!****************************************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/layouts/manage-resources-page.layout.html ***!
+    \****************************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppModulesSharedLayoutsManageResourcesPageLayoutHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<div class=\"header\">\r\n  <app-page-title [value]=\"pageTitle\"></app-page-title>\r\n  <ng-content select=\".top-table-actions\"></ng-content>\r\n</div>\r\n\r\n<ng-content select=\".table\"></ng-content>\r\n\r\n<div class=\"bottom-table-actions\">\r\n  <app-previous-button\r\n    class=\"{{ previousButtonCssClasses }}\"\r\n    (click)=\"handlePreviousButtonClickEvent()\"\r\n  ></app-previous-button>\r\n  <app-next-button\r\n    class=\"{{ nextButtonCssClasses }}\"\r\n    (click)=\"handleNextButtonClickEvent()\"\r\n  ></app-next-button>\r\n</div>\r\n";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/user/pages/manage-users/manage-users.page.html":
+  /*!**************************************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/modules/user/pages/manage-users/manage-users.page.html ***!
+    \**************************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppModulesUserPagesManageUsersManageUsersPageHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<app-manage-resources-page-layout\r\n  pageTitle=\"Users\"\r\n  [previousButtonCssClasses]=\"previousButtonCssClasses\"\r\n  [nextButtonCssClasses]=\"nextButtonCssClasses\"\r\n  (previousButtonClick)=\"handlePreviousButtonClickEvent()\"\r\n  (nextButtonClick)=\"handleNextButtonClickEvent()\"\r\n>\r\n  <ng-container class=\"table\">\r\n    <table mat-table matSort [dataSource]=\"dataSource\">\r\n      <ng-container matColumnDef=\"username\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Username</th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <app-user [user]=\"element\"></app-user>\r\n        </td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"joinAt\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Join At</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.joinAt | date}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"actions\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef></th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <div class=\"row-actions\">\r\n            <app-delete-button></app-delete-button>\r\n          </div>\r\n        </td>\r\n      </ng-container>\r\n\r\n      <tr mat-header-row *matHeaderRowDef=\"columns\"></tr>\r\n      <tr mat-row *matRowDef=\"let row; columns: columns;\"></tr>\r\n    </table>\r\n  </ng-container>\r\n</app-manage-resources-page-layout>\r\n";
     /***/
   },
 
@@ -2084,10 +2125,19 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var _modules_loader_loader_service__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(
     /*! ./modules/loader/loader.service */
     "./src/app/modules/loader/loader.service.ts");
+    /* harmony import */
+
+
+    var _modules_user_services_admin_guard__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(
+    /*! ./modules/user/services/admin.guard */
+    "./src/app/modules/user/services/admin.guard.ts");
 
     var routes = [{
       path: "",
       loadChildren: "./modules/post/post-pages/post-pages.module#PostPageModule"
+    }, {
+      path: "",
+      loadChildren: "./modules/user/user.module#UserModule"
     }];
 
     var AppModule = function AppModule() {
@@ -2098,7 +2148,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       declarations: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]],
       imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_4__["BrowserAnimationsModule"], _modules_shared_shared_module__WEBPACK_IMPORTED_MODULE_14__["SharedModule"], _modules_loader_loader_module__WEBPACK_IMPORTED_MODULE_22__["LoaderModule"], _modules_alert_alert_module__WEBPACK_IMPORTED_MODULE_5__["AlertModule"], _modules_navbar_navbar_module__WEBPACK_IMPORTED_MODULE_6__["NavbarModule"], _modules_post_post_pages_post_pages_module__WEBPACK_IMPORTED_MODULE_7__["PostPageModule"], _angular_router__WEBPACK_IMPORTED_MODULE_13__["RouterModule"].forRoot(routes)],
       bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]],
-      providers: [_modules_post_post_shared_services_post_http_services__WEBPACK_IMPORTED_MODULE_16__["PostHttpServices"], _modules_post_post_shared_services_post_converter__WEBPACK_IMPORTED_MODULE_17__["PostConverter"], _modules_post_post_comments_converter_post_comment_converter__WEBPACK_IMPORTED_MODULE_18__["PostCommentConverter"], _modules_post_post_comments_services_post_comment_http_service__WEBPACK_IMPORTED_MODULE_19__["PostCommentHttpServices"], _modules_shared_services_theme_localstorage_services__WEBPACK_IMPORTED_MODULE_8__["ThemeLocalStorageServices"], _modules_user_services_user_http_services__WEBPACK_IMPORTED_MODULE_9__["UserHttpServices"], _modules_user_services_user_login_services__WEBPACK_IMPORTED_MODULE_10__["UserLoginServices"], _modules_user_services_user_observable__WEBPACK_IMPORTED_MODULE_11__["UserObservable"], _modules_user_services_user_converter__WEBPACK_IMPORTED_MODULE_12__["UserConverter"], _modules_user_services_logged_in_guard__WEBPACK_IMPORTED_MODULE_15__["LoggedInGuard"], _modules_post_post_shared_services_post_validator__WEBPACK_IMPORTED_MODULE_20__["PostValidator"], _modules_shared_services_window_service__WEBPACK_IMPORTED_MODULE_21__["WindowService"], _modules_loader_loader_service__WEBPACK_IMPORTED_MODULE_25__["LoaderService"], {
+      providers: [_modules_post_post_shared_services_post_http_services__WEBPACK_IMPORTED_MODULE_16__["PostHttpServices"], _modules_post_post_shared_services_post_converter__WEBPACK_IMPORTED_MODULE_17__["PostConverter"], _modules_post_post_comments_converter_post_comment_converter__WEBPACK_IMPORTED_MODULE_18__["PostCommentConverter"], _modules_post_post_comments_services_post_comment_http_service__WEBPACK_IMPORTED_MODULE_19__["PostCommentHttpServices"], _modules_shared_services_theme_localstorage_services__WEBPACK_IMPORTED_MODULE_8__["ThemeLocalStorageServices"], _modules_user_services_user_http_services__WEBPACK_IMPORTED_MODULE_9__["UserHttpServices"], _modules_user_services_user_login_services__WEBPACK_IMPORTED_MODULE_10__["UserLoginServices"], _modules_user_services_user_observable__WEBPACK_IMPORTED_MODULE_11__["UserObservable"], _modules_user_services_user_converter__WEBPACK_IMPORTED_MODULE_12__["UserConverter"], _modules_user_services_logged_in_guard__WEBPACK_IMPORTED_MODULE_15__["LoggedInGuard"], _modules_post_post_shared_services_post_validator__WEBPACK_IMPORTED_MODULE_20__["PostValidator"], _modules_shared_services_window_service__WEBPACK_IMPORTED_MODULE_21__["WindowService"], _modules_loader_loader_service__WEBPACK_IMPORTED_MODULE_25__["LoaderService"], _modules_user_services_admin_guard__WEBPACK_IMPORTED_MODULE_26__["AdminGuard"], {
         provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_23__["HTTP_INTERCEPTORS"],
         useClass: _modules_loader_loader_interceptor__WEBPACK_IMPORTED_MODULE_24__["LoaderInterceptor"],
         multi: true
@@ -4412,7 +4462,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "app-section-title {\n  --fancy-title-underline-width: 250%;\n  --fancy-title-background-color: var(--primary-color);\n  display: block;\n}\n\n.header {\n  --post-title-margin-bottom: 2rem;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n\n.table-actions {\n  display: flex;\n  align-items: center;\n  justify-content: flex-end;\n}\n\n.post {\n  position: relative;\n  box-shadow: var(--box-shadow);\n}\n\n.post .post-actions {\n  --button-size: 3.5rem;\n  display: none;\n  position: absolute;\n  top: 0.8rem;\n  right: 2rem;\n}\n\n.post .post-actions > * {\n  margin-left: 0.8rem;\n}\n\n.post:hover .post-actions {\n  display: flex;\n  align-items: center;\n}\n\n@media screen and (max-width: 720px) {\n  .mat-column-category,\n.mat-column-createdAt {\n    display: none;\n  }\n}\n\n.table-actions {\n  --button-size: 3rem;\n  margin-top: 1.5rem;\n  display: flex;\n  align-items: center;\n  justify-content: flex-end;\n}\n\n.table-actions > * {\n  margin-left: 1rem;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9wb3N0L3Bvc3QtcGFnZXMvbWFuYWdlLXBvc3RzLXBhZ2UvQzpcXGRldlxccHJvamVjdHNcXGFoZW50ZXRpLWJsb2dcXHNyY1xcbWFpblxcZnJvbnRlbmQvc3JjXFxhcHBcXG1vZHVsZXNcXHBvc3RcXHBvc3QtcGFnZXNcXG1hbmFnZS1wb3N0cy1wYWdlXFxtYW5hZ2UtcG9zdHMucGFnZS5zY3NzIiwic3JjL2FwcC9tb2R1bGVzL3Bvc3QvcG9zdC1wYWdlcy9tYW5hZ2UtcG9zdHMtcGFnZS9tYW5hZ2UtcG9zdHMucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsbUNBQUE7RUFDQSxvREFBQTtFQUNBLGNBQUE7QUNDRjs7QURFQTtFQUNFLGdDQUFBO0VBQ0EsYUFBQTtFQUNBLG1CQUFBO0VBQ0EsOEJBQUE7QUNDRjs7QURFQTtFQUNFLGFBQUE7RUFDQSxtQkFBQTtFQUNBLHlCQUFBO0FDQ0Y7O0FERUE7RUFDRSxrQkFBQTtFQUNBLDZCQUFBO0FDQ0Y7O0FEQUU7RUFDRSxxQkFBQTtFQUNBLGFBQUE7RUFDQSxrQkFBQTtFQUNBLFdBQUE7RUFDQSxXQUFBO0FDRUo7O0FEQUk7RUFDRSxtQkFBQTtBQ0VOOztBREVFO0VBQ0UsYUFBQTtFQUNBLG1CQUFBO0FDQUo7O0FESUE7RUFDRTs7SUFFRSxhQUFBO0VDREY7QUFDRjs7QURJQTtFQUNFLG1CQUFBO0VBQ0Esa0JBQUE7RUFDQSxhQUFBO0VBQ0EsbUJBQUE7RUFDQSx5QkFBQTtBQ0ZGOztBRElFO0VBQ0UsaUJBQUE7QUNGSiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvcG9zdC9wb3N0LXBhZ2VzL21hbmFnZS1wb3N0cy1wYWdlL21hbmFnZS1wb3N0cy5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJhcHAtc2VjdGlvbi10aXRsZSB7XHJcbiAgLS1mYW5jeS10aXRsZS11bmRlcmxpbmUtd2lkdGg6IDI1MCU7XHJcbiAgLS1mYW5jeS10aXRsZS1iYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1wcmltYXJ5LWNvbG9yKTtcclxuICBkaXNwbGF5OiBibG9jaztcclxufVxyXG5cclxuLmhlYWRlciB7XHJcbiAgLS1wb3N0LXRpdGxlLW1hcmdpbi1ib3R0b206IDJyZW07XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcclxufVxyXG5cclxuLnRhYmxlLWFjdGlvbnMge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtZW5kO1xyXG59XHJcblxyXG4ucG9zdCB7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIGJveC1zaGFkb3c6IHZhcigtLWJveC1zaGFkb3cpO1xyXG4gICYgLnBvc3QtYWN0aW9ucyB7XHJcbiAgICAtLWJ1dHRvbi1zaXplOiAzLjVyZW07XHJcbiAgICBkaXNwbGF5OiBub25lO1xyXG4gICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gICAgdG9wOiAwLjhyZW07XHJcbiAgICByaWdodDogMnJlbTtcclxuXHJcbiAgICAmID4gKiB7XHJcbiAgICAgIG1hcmdpbi1sZWZ0OiAwLjhyZW07XHJcbiAgICB9XHJcbiAgfVxyXG5cclxuICAmOmhvdmVyIC5wb3N0LWFjdGlvbnMge1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgfVxyXG59XHJcblxyXG5AbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiA3MjBweCkge1xyXG4gIC5tYXQtY29sdW1uLWNhdGVnb3J5LFxyXG4gIC5tYXQtY29sdW1uLWNyZWF0ZWRBdCB7XHJcbiAgICBkaXNwbGF5OiBub25lO1xyXG4gIH1cclxufVxyXG5cclxuLnRhYmxlLWFjdGlvbnMge1xyXG4gIC0tYnV0dG9uLXNpemU6IDNyZW07XHJcbiAgbWFyZ2luLXRvcDogMS41cmVtO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtZW5kO1xyXG5cclxuICAmID4gKiB7XHJcbiAgICBtYXJnaW4tbGVmdDogMXJlbTtcclxuICB9XHJcbn1cclxuIiwiYXBwLXNlY3Rpb24tdGl0bGUge1xuICAtLWZhbmN5LXRpdGxlLXVuZGVybGluZS13aWR0aDogMjUwJTtcbiAgLS1mYW5jeS10aXRsZS1iYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1wcmltYXJ5LWNvbG9yKTtcbiAgZGlzcGxheTogYmxvY2s7XG59XG5cbi5oZWFkZXIge1xuICAtLXBvc3QtdGl0bGUtbWFyZ2luLWJvdHRvbTogMnJlbTtcbiAgZGlzcGxheTogZmxleDtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xufVxuXG4udGFibGUtYWN0aW9ucyB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGp1c3RpZnktY29udGVudDogZmxleC1lbmQ7XG59XG5cbi5wb3N0IHtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICBib3gtc2hhZG93OiB2YXIoLS1ib3gtc2hhZG93KTtcbn1cbi5wb3N0IC5wb3N0LWFjdGlvbnMge1xuICAtLWJ1dHRvbi1zaXplOiAzLjVyZW07XG4gIGRpc3BsYXk6IG5vbmU7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgdG9wOiAwLjhyZW07XG4gIHJpZ2h0OiAycmVtO1xufVxuLnBvc3QgLnBvc3QtYWN0aW9ucyA+ICoge1xuICBtYXJnaW4tbGVmdDogMC44cmVtO1xufVxuLnBvc3Q6aG92ZXIgLnBvc3QtYWN0aW9ucyB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG59XG5cbkBtZWRpYSBzY3JlZW4gYW5kIChtYXgtd2lkdGg6IDcyMHB4KSB7XG4gIC5tYXQtY29sdW1uLWNhdGVnb3J5LFxuLm1hdC1jb2x1bW4tY3JlYXRlZEF0IHtcbiAgICBkaXNwbGF5OiBub25lO1xuICB9XG59XG4udGFibGUtYWN0aW9ucyB7XG4gIC0tYnV0dG9uLXNpemU6IDNyZW07XG4gIG1hcmdpbi10b3A6IDEuNXJlbTtcbiAgZGlzcGxheTogZmxleDtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAganVzdGlmeS1jb250ZW50OiBmbGV4LWVuZDtcbn1cbi50YWJsZS1hY3Rpb25zID4gKiB7XG4gIG1hcmdpbi1sZWZ0OiAxcmVtO1xufSJdfQ== */";
+    __webpack_exports__["default"] = "@media screen and (max-width: 720px) {\n  .mat-column-category,\n.mat-column-createdAt {\n    display: none;\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9wb3N0L3Bvc3QtcGFnZXMvbWFuYWdlLXBvc3RzLXBhZ2UvQzpcXGRldlxccHJvamVjdHNcXGFoZW50ZXRpLWJsb2dcXHNyY1xcbWFpblxcZnJvbnRlbmQvc3JjXFxhcHBcXG1vZHVsZXNcXHBvc3RcXHBvc3QtcGFnZXNcXG1hbmFnZS1wb3N0cy1wYWdlXFxtYW5hZ2UtcG9zdHMucGFnZS5zY3NzIiwic3JjL2FwcC9tb2R1bGVzL3Bvc3QvcG9zdC1wYWdlcy9tYW5hZ2UtcG9zdHMtcGFnZS9tYW5hZ2UtcG9zdHMucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0U7O0lBRUUsYUFBQTtFQ0NGO0FBQ0YiLCJmaWxlIjoic3JjL2FwcC9tb2R1bGVzL3Bvc3QvcG9zdC1wYWdlcy9tYW5hZ2UtcG9zdHMtcGFnZS9tYW5hZ2UtcG9zdHMucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiQG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aDogNzIwcHgpIHtcclxuICAubWF0LWNvbHVtbi1jYXRlZ29yeSxcclxuICAubWF0LWNvbHVtbi1jcmVhdGVkQXQge1xyXG4gICAgZGlzcGxheTogbm9uZTtcclxuICB9XHJcbn1cclxuIiwiQG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aDogNzIwcHgpIHtcbiAgLm1hdC1jb2x1bW4tY2F0ZWdvcnksXG4ubWF0LWNvbHVtbi1jcmVhdGVkQXQge1xuICAgIGRpc3BsYXk6IG5vbmU7XG4gIH1cbn0iXX0= */";
     /***/
   },
 
@@ -4462,140 +4512,101 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony import */
 
 
-    var _angular_material_sort__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-    /*! @angular/material/sort */
-    "./node_modules/@angular/material/esm2015/sort.js");
-    /* harmony import */
-
-
-    var _angular_material_table__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    var _angular_material_table__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! @angular/material/table */
     "./node_modules/@angular/material/esm2015/table.js");
     /* harmony import */
 
 
-    var src_app_modules_alert_alert_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    var src_app_modules_alert_alert_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! src/app/modules/alert/alert.service */
     "./src/app/modules/alert/alert.service.ts");
     /* harmony import */
 
 
-    var _post_shared_services_post_converter__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    var _post_shared_services_post_converter__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! ../../post-shared/services/post.converter */
     "./src/app/modules/post/post-shared/services/post.converter.ts");
     /* harmony import */
 
 
-    var rxjs__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
-    /*! rxjs */
-    "./node_modules/rxjs/_esm2015/index.js");
-    /* harmony import */
-
-
-    var _post_shared_state_posts_state__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+    var _post_shared_state_posts_state__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
     /*! ../../post-shared/state/posts.state */
     "./src/app/modules/post/post-shared/state/posts.state.ts");
     /* harmony import */
 
 
-    var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+    var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
     /*! @angular/material/dialog */
     "./node_modules/@angular/material/esm2015/dialog.js");
     /* harmony import */
 
 
-    var src_app_modules_shared_components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+    var src_app_modules_shared_components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
     /*! src/app/modules/shared/components/confirmation-dialog/confirmation-dialog.component */
     "./src/app/modules/shared/components/confirmation-dialog/confirmation-dialog.component.ts");
+    /* harmony import */
 
-    var ManagePostsPage = /*#__PURE__*/function () {
+
+    var src_app_modules_shared_pages_manage_resources_page__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+    /*! src/app/modules/shared/pages/manage-resources.page */
+    "./src/app/modules/shared/pages/manage-resources.page.ts");
+
+    var ManagePostsPage = /*#__PURE__*/function (_src_app_modules_shar) {
+      _inherits(ManagePostsPage, _src_app_modules_shar);
+
+      var _super8 = _createSuper(ManagePostsPage);
+
       function ManagePostsPage(postHttpServices, postConverter, alertService, postsState, dialog) {
+        var _this16;
+
         _classCallCheck(this, ManagePostsPage);
 
-        this.postHttpServices = postHttpServices;
-        this.postConverter = postConverter;
-        this.alertService = alertService;
-        this.postsState = postsState;
-        this.dialog = dialog;
-        this.currentUserPostsPage = new _post_shared_models_post_internal_models__WEBPACK_IMPORTED_MODULE_3__["PostsSummariesPage"]();
-        this.userPostsDataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_5__["MatTableDataSource"]([]);
-        this.displayedColumns = ["title", "category", "createdAt", "actions"];
-        this.previousButtonCssClasses$ = new rxjs__WEBPACK_IMPORTED_MODULE_8__["Subject"]();
-        this.nextButtonCssClasses$ = new rxjs__WEBPACK_IMPORTED_MODULE_8__["Subject"]();
-      }
+        _this16 = _super8.call(this);
+        _this16.postHttpServices = postHttpServices;
+        _this16.postConverter = postConverter;
+        _this16.alertService = alertService;
+        _this16.postsState = postsState;
+        _this16.dialog = dialog;
+        _this16.currentPage = new _post_shared_models_post_internal_models__WEBPACK_IMPORTED_MODULE_3__["PostsPage"]();
+        _this16.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"]([]);
+        _this16.columns = ["title", "category", "createdAt", "actions"];
+        return _this16;
+      } // prettier-ignore
+
 
       _createClass(ManagePostsPage, [{
-        key: "ngOnInit",
-        value: function ngOnInit() {
-          var _this16 = this;
+        key: "fetchPage",
+        value: function fetchPage(page) {
+          var _this17 = this;
 
-          var request = this.postConverter.toGetUserPostsApiRequest(0);
+          var request = this.postConverter.toGetUserPostsApiRequest(this.filter, page);
           this.postHttpServices.getUserPosts(request).then(function (posts) {
-            return _this16.handleGetUserPostsSuccessEvent(posts);
+            return _this17.handleGetUserPostsSuccessEvent(posts);
           })["catch"](function (error) {
-            return _this16.handleGetUserPostsErrorEvent(error);
+            return _this17.handleGetUserPostsErrorEvent(error);
           });
         }
       }, {
         key: "deletePost",
         value: function deletePost(postId) {
-          var _this17 = this;
+          var _this18 = this;
 
-          var dialogRef = this.dialog.open(src_app_modules_shared_components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_11__["ConfirmationDialogComponent"], {
+          var dialogRef = this.dialog.open(src_app_modules_shared_components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_9__["ConfirmationDialogComponent"], {
             data: "Do you confirm the deletion of this post ?",
             width: "340px"
           });
           dialogRef.afterClosed().subscribe(function (result) {
             if (result) {
-              var request = _this17.postConverter.toDeletePostApiRequest(postId);
+              var request = _this18.postConverter.toDeletePostApiRequest(postId);
 
-              _this17.postHttpServices.deletePost(request).then(function () {
-                return _this17.handleDeletePostSuccessEvent(postId);
+              _this18.postHttpServices.deletePost(request).then(function () {
+                return _this18.handleDeletePostSuccessEvent(postId);
               })["catch"](function (error) {
-                return _this17.handleDeletePostErrorEvent(error);
+                return _this18.handleDeletePostErrorEvent(error);
               });
             }
           });
-        }
-      }, {
-        key: "handleNextButtonClickEvent",
-        value: function handleNextButtonClickEvent() {
-          this.getNewUserPostsPage(this.currentUserPostsPage.page + 1);
-        }
-      }, {
-        key: "handlePreviousButtonClickEvent",
-        value: function handlePreviousButtonClickEvent() {
-          this.getNewUserPostsPage(this.currentUserPostsPage.page - 1);
-        }
-      }, {
-        key: "getNewUserPostsPage",
-        value: function getNewUserPostsPage(page) {
-          var _this18 = this;
-
-          var request = this.postConverter.toGetUserPostsApiRequest(page);
-          this.postHttpServices.getUserPosts(request).then(function (posts) {
-            return _this18.handleGetUserPostsSuccessEvent(posts);
-          })["catch"](function (error) {
-            return _this18.handleGetUserPostsErrorEvent(error);
-          });
-        }
-      }, {
-        key: "recalculatePreviousNextButtonCssClasses",
-        value: function recalculatePreviousNextButtonCssClasses() {
-          var classes = [];
-
-          if (this.currentUserPostsPage.firstPage) {
-            classes.push("disabled");
-          }
-
-          this.previousButtonCssClasses$.next(classes.join(" "));
-          classes = [];
-
-          if (this.currentUserPostsPage.lastPage) {
-            classes.push("disabled");
-          }
-
-          this.nextButtonCssClasses$.next(classes.join(" "));
         }
       }, {
         key: "handleDeletePostErrorEvent",
@@ -4614,11 +4625,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         key: "handleDeletePostSuccessEvent",
         value: function handleDeletePostSuccessEvent(postId) {
           this.alertService.info("Post deleted with success");
-          this.userPostsDataSource.data = this.userPostsDataSource.data.filter(function (post) {
+          this.dataSource.data = this.dataSource.data.filter(function (post) {
             return post.id !== postId;
           });
 
-          this.userPostsDataSource._updateChangeSubscription(); // <-- Refresh the data source, reference: https://stackoverflow.com/questions/54744770/how-to-delete-particular-row-from-angular-material-table-which-doesnt-have-filte
+          this.dataSource._updateChangeSubscription(); // <-- Refresh the data source, reference: https://stackoverflow.com/questions/54744770/how-to-delete-particular-row-from-angular-material-table-which-doesnt-have-filte
 
 
           this.postsState.deletePost(postId);
@@ -4626,33 +4637,30 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "handleGetUserPostsSuccessEvent",
         value: function handleGetUserPostsSuccessEvent(postsPage) {
-          this.currentUserPostsPage = postsPage;
-          this.userPostsDataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_5__["MatTableDataSource"](postsPage.items);
-          this.userPostsDataSource.sort = this.sort;
+          this.currentPage = postsPage;
+          this.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"](postsPage.items);
+          this.dataSource.sort = this.sort;
           this.recalculatePreviousNextButtonCssClasses();
         }
       }]);
 
       return ManagePostsPage;
-    }();
+    }(src_app_modules_shared_pages_manage_resources_page__WEBPACK_IMPORTED_MODULE_10__["AbstractManageResourcesPage"]);
 
     ManagePostsPage.ctorParameters = function () {
       return [{
         type: _post_shared_services_post_http_services__WEBPACK_IMPORTED_MODULE_2__["PostHttpServices"]
       }, {
-        type: _post_shared_services_post_converter__WEBPACK_IMPORTED_MODULE_7__["PostConverter"]
+        type: _post_shared_services_post_converter__WEBPACK_IMPORTED_MODULE_6__["PostConverter"]
       }, {
-        type: src_app_modules_alert_alert_service__WEBPACK_IMPORTED_MODULE_6__["AlertService"]
+        type: src_app_modules_alert_alert_service__WEBPACK_IMPORTED_MODULE_5__["AlertService"]
       }, {
-        type: _post_shared_state_posts_state__WEBPACK_IMPORTED_MODULE_9__["PostsState"]
+        type: _post_shared_state_posts_state__WEBPACK_IMPORTED_MODULE_7__["PostsState"]
       }, {
-        type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_10__["MatDialog"]
+        type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_8__["MatDialog"]
       }];
     };
 
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(_angular_material_sort__WEBPACK_IMPORTED_MODULE_4__["MatSort"], {
-      "static": true
-    })], ManagePostsPage.prototype, "sort", void 0);
     ManagePostsPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./manage-posts.page.html */
@@ -5885,19 +5893,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     !*** ./src/app/modules/post/post-shared/models/post.internal.models.ts ***!
     \*************************************************************************/
 
-  /*! exports provided: Page, PostSummary, Post, PostsGroup, PostGroupByStrategy, DefaultPost, OfflinePost, PostsByCategory, PostsSummaries, PostsSummariesPage, PostsGroups, PostGroupByStrategies */
+  /*! exports provided: PostSummary, Post, PostsGroup, PostGroupByStrategy, DefaultPost, OfflinePost, PostsByCategory, PostsSummaries, PostsPage, PostsGroups, PostGroupByStrategies */
 
   /***/
   function srcAppModulesPostPostSharedModelsPostInternalModelsTs(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "Page", function () {
-      return Page;
-    });
     /* harmony export (binding) */
 
 
@@ -5949,8 +5951,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony export (binding) */
 
 
-    __webpack_require__.d(__webpack_exports__, "PostsSummariesPage", function () {
-      return PostsSummariesPage;
+    __webpack_require__.d(__webpack_exports__, "PostsPage", function () {
+      return PostsPage;
     });
     /* harmony export (binding) */
 
@@ -5970,10 +5972,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
     /*! tslib */
     "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
 
-    var Page = function Page() {
-      _classCallCheck(this, Page);
-    };
+
+    var src_app_modules_shared_models_page_model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! src/app/modules/shared/models/page.model */
+    "./src/app/modules/shared/models/page.model.ts");
 
     var PostSummary = function PostSummary() {
       _classCallCheck(this, PostSummary);
@@ -5982,12 +5986,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var Post = /*#__PURE__*/function (_PostSummary) {
       _inherits(Post, _PostSummary);
 
-      var _super8 = _createSuper(Post);
+      var _super9 = _createSuper(Post);
 
       function Post() {
         _classCallCheck(this, Post);
 
-        return _super8.apply(this, arguments);
+        return _super9.apply(this, arguments);
       }
 
       return Post;
@@ -6036,12 +6040,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var PostsByCategory = /*#__PURE__*/function (_Map) {
       _inherits(PostsByCategory, _Map);
 
-      var _super9 = _createSuper(PostsByCategory);
+      var _super10 = _createSuper(PostsByCategory);
 
       function PostsByCategory() {
         _classCallCheck(this, PostsByCategory);
 
-        return _super9.apply(this, arguments);
+        return _super10.apply(this, arguments);
       }
 
       return PostsByCategory;
@@ -6050,40 +6054,40 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var PostsSummaries = /*#__PURE__*/function (_Array3) {
       _inherits(PostsSummaries, _Array3);
 
-      var _super10 = _createSuper(PostsSummaries);
+      var _super11 = _createSuper(PostsSummaries);
 
       function PostsSummaries() {
         _classCallCheck(this, PostsSummaries);
 
-        return _super10.apply(this, arguments);
+        return _super11.apply(this, arguments);
       }
 
       return PostsSummaries;
     }( /*#__PURE__*/_wrapNativeSuper(Array));
 
-    var PostsSummariesPage = /*#__PURE__*/function (_Page) {
-      _inherits(PostsSummariesPage, _Page);
+    var PostsPage = /*#__PURE__*/function (_src_app_modules_shar2) {
+      _inherits(PostsPage, _src_app_modules_shar2);
 
-      var _super11 = _createSuper(PostsSummariesPage);
+      var _super12 = _createSuper(PostsPage);
 
-      function PostsSummariesPage() {
-        _classCallCheck(this, PostsSummariesPage);
+      function PostsPage() {
+        _classCallCheck(this, PostsPage);
 
-        return _super11.apply(this, arguments);
+        return _super12.apply(this, arguments);
       }
 
-      return PostsSummariesPage;
-    }(Page);
+      return PostsPage;
+    }(src_app_modules_shared_models_page_model__WEBPACK_IMPORTED_MODULE_1__["Page"]);
 
     var PostsGroups = /*#__PURE__*/function (_Array4) {
       _inherits(PostsGroups, _Array4);
 
-      var _super12 = _createSuper(PostsGroups);
+      var _super13 = _createSuper(PostsGroups);
 
       function PostsGroups() {
         _classCallCheck(this, PostsGroups);
 
-        return _super12.apply(this, arguments);
+        return _super13.apply(this, arguments);
       }
 
       return PostsGroups;
@@ -6092,12 +6096,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var PostGroupByStrategies = /*#__PURE__*/function (_Array5) {
       _inherits(PostGroupByStrategies, _Array5);
 
-      var _super13 = _createSuper(PostGroupByStrategies);
+      var _super14 = _createSuper(PostGroupByStrategies);
 
       function PostGroupByStrategies() {
         _classCallCheck(this, PostGroupByStrategies);
 
-        return _super13.apply(this, arguments);
+        return _super14.apply(this, arguments);
       }
 
       return PostGroupByStrategies;
@@ -6376,7 +6380,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function toPostsSummariesPage(posts) {
           var _this28 = this;
 
-          var res = new _models_post_internal_models__WEBPACK_IMPORTED_MODULE_2__["PostsSummariesPage"]();
+          var res = new _models_post_internal_models__WEBPACK_IMPORTED_MODULE_2__["PostsPage"]();
           res.totalItems = posts.totalItems;
           res.firstPage = posts.page == 0;
           res.lastPage = posts.lastPage;
@@ -6390,11 +6394,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         }
       }, {
         key: "toGetUserPostsApiRequest",
-        value: function toGetUserPostsApiRequest() {
-          var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-          var size = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 5;
+        value: function toGetUserPostsApiRequest(filter, page) {
+          var size = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 5;
           return {
-            url: "/secure-api/user/posts-summaries?page=".concat(page, "&size=").concat(size)
+            url: "/secure-api/user/posts-summaries?filter=".concat(filter, "&page=").concat(page, "&size=").concat(size)
           };
         }
       }, {
@@ -6537,14 +6540,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var PostHttpServices = /*#__PURE__*/function (_alert_common_http_se2) {
       _inherits(PostHttpServices, _alert_common_http_se2);
 
-      var _super14 = _createSuper(PostHttpServices);
+      var _super15 = _createSuper(PostHttpServices);
 
       function PostHttpServices(postConverter, http, alertService) {
         var _this29;
 
         _classCallCheck(this, PostHttpServices);
 
-        _this29 = _super14.call(this, alertService);
+        _this29 = _super15.call(this, alertService);
         _this29.postConverter = postConverter;
         _this29.http = http;
         return _this29;
@@ -6879,7 +6882,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.initialPostsLoad = true;
         this.postGroupsToLoadNumber = 2; // prettier-ignore
 
-        this.userPostsPage = new rxjs__WEBPACK_IMPORTED_MODULE_4__["BehaviorSubject"](new _models_post_internal_models__WEBPACK_IMPORTED_MODULE_3__["PostsSummariesPage"]());
+        this.userPostsPage = new rxjs__WEBPACK_IMPORTED_MODULE_4__["BehaviorSubject"](new _models_post_internal_models__WEBPACK_IMPORTED_MODULE_3__["PostsPage"]());
         this.init();
       } // prettier-ignore
 
@@ -10049,6 +10052,98 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
   },
 
   /***/
+  "./src/app/modules/shared/layouts/manage-resources-page.layout.scss":
+  /*!**************************************************************************!*\
+    !*** ./src/app/modules/shared/layouts/manage-resources-page.layout.scss ***!
+    \**************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppModulesSharedLayoutsManageResourcesPageLayoutScss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = ".header {\n  --post-title-margin-bottom: 2rem;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n\n.bottom-table-actions {\n  --button-size: 3rem;\n  margin-top: 1.5rem;\n  display: flex;\n  align-items: center;\n  justify-content: flex-end;\n}\n\n.bottom-table-actions > * {\n  margin-left: 1rem;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9zaGFyZWQvbGF5b3V0cy9DOlxcZGV2XFxwcm9qZWN0c1xcYWhlbnRldGktYmxvZ1xcc3JjXFxtYWluXFxmcm9udGVuZC9zcmNcXGFwcFxcbW9kdWxlc1xcc2hhcmVkXFxsYXlvdXRzXFxtYW5hZ2UtcmVzb3VyY2VzLXBhZ2UubGF5b3V0LnNjc3MiLCJzcmMvYXBwL21vZHVsZXMvc2hhcmVkL2xheW91dHMvbWFuYWdlLXJlc291cmNlcy1wYWdlLmxheW91dC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsZ0NBQUE7RUFDQSxhQUFBO0VBQ0EsbUJBQUE7RUFDQSw4QkFBQTtBQ0NGOztBREVBO0VBQ0UsbUJBQUE7RUFDQSxrQkFBQTtFQUNBLGFBQUE7RUFDQSxtQkFBQTtFQUNBLHlCQUFBO0FDQ0Y7O0FEQ0U7RUFDRSxpQkFBQTtBQ0NKIiwiZmlsZSI6InNyYy9hcHAvbW9kdWxlcy9zaGFyZWQvbGF5b3V0cy9tYW5hZ2UtcmVzb3VyY2VzLXBhZ2UubGF5b3V0LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuaGVhZGVyIHtcclxuICAtLXBvc3QtdGl0bGUtbWFyZ2luLWJvdHRvbTogMnJlbTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xyXG59XHJcblxyXG4uYm90dG9tLXRhYmxlLWFjdGlvbnMge1xyXG4gIC0tYnV0dG9uLXNpemU6IDNyZW07XHJcbiAgbWFyZ2luLXRvcDogMS41cmVtO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtZW5kO1xyXG5cclxuICAmID4gKiB7XHJcbiAgICBtYXJnaW4tbGVmdDogMXJlbTtcclxuICB9XHJcbn1cclxuIiwiLmhlYWRlciB7XG4gIC0tcG9zdC10aXRsZS1tYXJnaW4tYm90dG9tOiAycmVtO1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XG59XG5cbi5ib3R0b20tdGFibGUtYWN0aW9ucyB7XG4gIC0tYnV0dG9uLXNpemU6IDNyZW07XG4gIG1hcmdpbi10b3A6IDEuNXJlbTtcbiAgZGlzcGxheTogZmxleDtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAganVzdGlmeS1jb250ZW50OiBmbGV4LWVuZDtcbn1cbi5ib3R0b20tdGFibGUtYWN0aW9ucyA+ICoge1xuICBtYXJnaW4tbGVmdDogMXJlbTtcbn0iXX0= */";
+    /***/
+  },
+
+  /***/
+  "./src/app/modules/shared/layouts/manage-resources-page.layout.ts":
+  /*!************************************************************************!*\
+    !*** ./src/app/modules/shared/layouts/manage-resources-page.layout.ts ***!
+    \************************************************************************/
+
+  /*! exports provided: ManageResourcesPageLayout */
+
+  /***/
+  function srcAppModulesSharedLayoutsManageResourcesPageLayoutTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "ManageResourcesPageLayout", function () {
+      return ManageResourcesPageLayout;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    var ManageResourcesPageLayout = /*#__PURE__*/function () {
+      function ManageResourcesPageLayout() {
+        _classCallCheck(this, ManageResourcesPageLayout);
+
+        this.previousButtonClick = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.nextButtonClick = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+      }
+
+      _createClass(ManageResourcesPageLayout, [{
+        key: "handlePreviousButtonClickEvent",
+        value: function handlePreviousButtonClickEvent() {
+          this.previousButtonClick.next();
+        }
+      }, {
+        key: "handleNextButtonClickEvent",
+        value: function handleNextButtonClickEvent() {
+          this.nextButtonClick.next();
+        }
+      }]);
+
+      return ManageResourcesPageLayout;
+    }();
+
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()], ManageResourcesPageLayout.prototype, "pageTitle", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()], ManageResourcesPageLayout.prototype, "previousButtonCssClasses", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()], ManageResourcesPageLayout.prototype, "nextButtonCssClasses", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()], ManageResourcesPageLayout.prototype, "previousButtonClick", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()], ManageResourcesPageLayout.prototype, "nextButtonClick", void 0);
+    ManageResourcesPageLayout = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: "app-manage-resources-page-layout",
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./manage-resources-page.layout.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/layouts/manage-resources-page.layout.html"))["default"],
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./manage-resources-page.layout.scss */
+      "./src/app/modules/shared/layouts/manage-resources-page.layout.scss"))["default"]]
+    })], ManageResourcesPageLayout);
+    /***/
+  },
+
+  /***/
   "./src/app/modules/shared/models/no-posts-groups-to-load.error.ts":
   /*!************************************************************************!*\
     !*** ./src/app/modules/shared/models/no-posts-groups-to-load.error.ts ***!
@@ -10077,16 +10172,63 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var NoPostsGroupsToLoadError = /*#__PURE__*/function (_Error) {
       _inherits(NoPostsGroupsToLoadError, _Error);
 
-      var _super15 = _createSuper(NoPostsGroupsToLoadError);
+      var _super16 = _createSuper(NoPostsGroupsToLoadError);
 
       function NoPostsGroupsToLoadError() {
         _classCallCheck(this, NoPostsGroupsToLoadError);
 
-        return _super15.apply(this, arguments);
+        return _super16.apply(this, arguments);
       }
 
       return NoPostsGroupsToLoadError;
     }( /*#__PURE__*/_wrapNativeSuper(Error));
+    /***/
+
+  },
+
+  /***/
+  "./src/app/modules/shared/models/page.model.ts":
+  /*!*****************************************************!*\
+    !*** ./src/app/modules/shared/models/page.model.ts ***!
+    \*****************************************************/
+
+  /*! exports provided: Page, PageApiResponse */
+
+  /***/
+  function srcAppModulesSharedModelsPageModelTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "Page", function () {
+      return Page;
+    });
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "PageApiResponse", function () {
+      return PageApiResponse;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+
+    var Page = function Page() {
+      _classCallCheck(this, Page);
+
+      this.items = [];
+    };
+
+    var PageApiResponse = function PageApiResponse() {
+      _classCallCheck(this, PageApiResponse);
+
+      this.items = [];
+    };
     /***/
 
   },
@@ -10120,14 +10262,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var ValidationError = /*#__PURE__*/function (_Error2) {
       _inherits(ValidationError, _Error2);
 
-      var _super16 = _createSuper(ValidationError);
+      var _super17 = _createSuper(ValidationError);
 
       function ValidationError(message) {
         var _this42;
 
         _classCallCheck(this, ValidationError);
 
-        _this42 = _super16.call(this, message); // Set the prototype explicitly.
+        _this42 = _super17.call(this, message); // Set the prototype explicitly.
         // reference: https://stackoverflow.com/questions/41102060/typescript-extending-error-class
 
         Object.setPrototypeOf(_assertThisInitialized(_this42), ValidationError.prototype);
@@ -10138,6 +10280,99 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }( /*#__PURE__*/_wrapNativeSuper(Error));
     /***/
 
+  },
+
+  /***/
+  "./src/app/modules/shared/pages/manage-resources.page.ts":
+  /*!***************************************************************!*\
+    !*** ./src/app/modules/shared/pages/manage-resources.page.ts ***!
+    \***************************************************************/
+
+  /*! exports provided: AbstractManageResourcesPage */
+
+  /***/
+  function srcAppModulesSharedPagesManageResourcesPageTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "AbstractManageResourcesPage", function () {
+      return AbstractManageResourcesPage;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_material_sort__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/material/sort */
+    "./node_modules/@angular/material/esm2015/sort.js");
+
+    var AbstractManageResourcesPage = /*#__PURE__*/function () {
+      function AbstractManageResourcesPage() {
+        _classCallCheck(this, AbstractManageResourcesPage);
+
+        this.previousButtonCssClasses = "";
+        this.nextButtonCssClasses = "";
+        this.filter = "";
+      }
+
+      _createClass(AbstractManageResourcesPage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          this.fetchPage(0);
+        }
+      }, {
+        key: "handleNextButtonClickEvent",
+        value: function handleNextButtonClickEvent() {
+          if (this.currentPage.lastPage) return;
+          this.fetchPage(this.currentPage.page + 1);
+        }
+      }, {
+        key: "handlePreviousButtonClickEvent",
+        value: function handlePreviousButtonClickEvent() {
+          if (this.currentPage.firstPage) return;
+          this.fetchPage(this.currentPage.page - 1);
+        }
+      }, {
+        key: "recalculatePreviousNextButtonCssClasses",
+        value: function recalculatePreviousNextButtonCssClasses() {
+          var classes = [];
+
+          if (this.currentPage.firstPage) {
+            classes.push("disabled");
+          }
+
+          this.previousButtonCssClasses = classes.join(" ");
+          classes = [];
+
+          if (this.currentPage.lastPage) {
+            classes.push("disabled");
+          }
+
+          this.nextButtonCssClasses = classes.join(" ");
+        }
+      }]);
+
+      return AbstractManageResourcesPage;
+    }();
+
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(_angular_material_sort__WEBPACK_IMPORTED_MODULE_2__["MatSort"], {
+      "static": true
+    })], AbstractManageResourcesPage.prototype, "sort", void 0);
+    /***/
   },
 
   /***/
@@ -11009,6 +11244,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var _components_icons_dropdown_icon_dropdown_icon_component__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__(
     /*! ./components/icons/dropdown-icon/dropdown-icon.component */
     "./src/app/modules/shared/components/icons/dropdown-icon/dropdown-icon.component.ts");
+    /* harmony import */
+
+
+    var _layouts_manage_resources_page_layout__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__(
+    /*! ./layouts/manage-resources-page.layout */
+    "./src/app/modules/shared/layouts/manage-resources-page.layout.ts");
 
     var SharedModule = function SharedModule() {
       _classCallCheck(this, SharedModule);
@@ -11017,8 +11258,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     SharedModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       entryComponents: [_directives_tooltip_tooltip_component__WEBPACK_IMPORTED_MODULE_9__["TooltipComponent"], _components_text_text_with_icon_quote_component__WEBPACK_IMPORTED_MODULE_16__["QuoteComponent"], _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_50__["ConfirmationDialogComponent"]],
       imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_router__WEBPACK_IMPORTED_MODULE_14__["RouterModule"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["OverlayModule"], _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_12__["PortalModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_28__["HttpClientModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_27__["FormsModule"], ng2_simplemde__WEBPACK_IMPORTED_MODULE_41__["SimplemdeModule"].forRoot(), _angular_material_select__WEBPACK_IMPORTED_MODULE_13__["MatSelectModule"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_23__["MatMenuModule"], _angular_material_table__WEBPACK_IMPORTED_MODULE_29__["MatTableModule"], _angular_material_sort__WEBPACK_IMPORTED_MODULE_30__["MatSortModule"], _angular_material_form_field__WEBPACK_IMPORTED_MODULE_33__["MatFormFieldModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_34__["MatInputModule"], _angular_material_chips__WEBPACK_IMPORTED_MODULE_36__["MatChipsModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_37__["MatIconModule"], _angular_material_tabs__WEBPACK_IMPORTED_MODULE_38__["MatTabsModule"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_49__["MatDialogModule"]],
-      declarations: [_components_text_section_title_section_title_component__WEBPACK_IMPORTED_MODULE_3__["SectionTitleComponent"], _components_logo_logo_link_component__WEBPACK_IMPORTED_MODULE_4__["LogoLinkComponent"], _components_select_select_component__WEBPACK_IMPORTED_MODULE_5__["SelectComponent"], _components_select_select_option_select_option_component__WEBPACK_IMPORTED_MODULE_6__["SelectOptionComponent"], _components_select_select_dropdown_select_dropdown_component__WEBPACK_IMPORTED_MODULE_7__["SelectDropdownComponent"], _directives_slidein_slidein_directive__WEBPACK_IMPORTED_MODULE_8__["SlideInDirective"], _directives_tooltip_tooltip_component__WEBPACK_IMPORTED_MODULE_9__["TooltipComponent"], _directives_tooltip_tooltip_directive__WEBPACK_IMPORTED_MODULE_10__["TooltipDirective"], _components_text_text_with_icon_text_with_icon_component__WEBPACK_IMPORTED_MODULE_15__["TextWithIconComponent"], _components_text_text_with_icon_quote_component__WEBPACK_IMPORTED_MODULE_16__["QuoteComponent"], _components_text_text_with_icon_error_component__WEBPACK_IMPORTED_MODULE_17__["ErrorComponent"], _components_text_text_with_icon_warn_component__WEBPACK_IMPORTED_MODULE_18__["WarnComponent"], _components_text_text_with_icon_info_component__WEBPACK_IMPORTED_MODULE_19__["InfoComponent"], _components_markdown_markdown_component__WEBPACK_IMPORTED_MODULE_20__["MarkdownComponent"], _pipes_first_letter_pipe__WEBPACK_IMPORTED_MODULE_21__["FirstLetterPipe"], time_ago_pipe__WEBPACK_IMPORTED_MODULE_22__["TimeAgoPipe"], _directives_textarea_auto_grow_directive__WEBPACK_IMPORTED_MODULE_24__["TextareaAutoGrowDirective"], _directives_textarea_disable_spellcheck_directive__WEBPACK_IMPORTED_MODULE_25__["TextareaDisableSpellCheckDirective"], _components_login_with_github_login_with_github_component__WEBPACK_IMPORTED_MODULE_26__["LoginWithGithubComponent"], _components_router_link_router_link_component__WEBPACK_IMPORTED_MODULE_31__["RouterLinkComponent"], _components_buttons_new_button_new_button_component__WEBPACK_IMPORTED_MODULE_32__["NewButtonComponent"], _components_text_page_title_page_title_component__WEBPACK_IMPORTED_MODULE_35__["PageTitleComponent"], _components_buttons_edit_button_edit_button_component__WEBPACK_IMPORTED_MODULE_39__["EditButtonComponent"], _components_buttons_consult_button_consult_button_component__WEBPACK_IMPORTED_MODULE_40__["ConsultButtonComponent"], _components_buttons_edit_button_edit_button_link_component__WEBPACK_IMPORTED_MODULE_42__["EditButtonLinkComponent"], _components_buttons_consult_button_consult_button_link_component__WEBPACK_IMPORTED_MODULE_43__["ConsultButtonLinkComponent"], _components_buttons_delete_button_delete_button_component__WEBPACK_IMPORTED_MODULE_44__["DeleteButtonComponent"], _directives_input_disable_autocomplete_directive__WEBPACK_IMPORTED_MODULE_45__["InputDisableAutoCompleteDirective"], _components_buttons_previous_button_previous_button_component__WEBPACK_IMPORTED_MODULE_46__["PreviousButtonComponent"], _components_buttons_next_button_next_button_component__WEBPACK_IMPORTED_MODULE_47__["NextButtonComponent"], _components_buttons_load_more_button_load_more_button_component__WEBPACK_IMPORTED_MODULE_48__["LoadMoreButtonComponent"], _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_50__["ConfirmationDialogComponent"], _components_icons_dropdown_icon_dropdown_icon_component__WEBPACK_IMPORTED_MODULE_51__["DropdownIconComponent"]],
-      exports: [_angular_router__WEBPACK_IMPORTED_MODULE_14__["RouterModule"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["OverlayModule"], _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_12__["PortalModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_28__["HttpClientModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_27__["FormsModule"], ng2_simplemde__WEBPACK_IMPORTED_MODULE_41__["SimplemdeModule"], _angular_material_select__WEBPACK_IMPORTED_MODULE_13__["MatSelectModule"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_23__["MatMenuModule"], _angular_material_table__WEBPACK_IMPORTED_MODULE_29__["MatTableModule"], _angular_material_sort__WEBPACK_IMPORTED_MODULE_30__["MatSortModule"], _angular_material_form_field__WEBPACK_IMPORTED_MODULE_33__["MatFormFieldModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_34__["MatInputModule"], _angular_material_chips__WEBPACK_IMPORTED_MODULE_36__["MatChipsModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_37__["MatIconModule"], _angular_material_tabs__WEBPACK_IMPORTED_MODULE_38__["MatTabsModule"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_49__["MatDialogModule"], _components_text_section_title_section_title_component__WEBPACK_IMPORTED_MODULE_3__["SectionTitleComponent"], _components_logo_logo_link_component__WEBPACK_IMPORTED_MODULE_4__["LogoLinkComponent"], _components_select_select_component__WEBPACK_IMPORTED_MODULE_5__["SelectComponent"], _components_select_select_option_select_option_component__WEBPACK_IMPORTED_MODULE_6__["SelectOptionComponent"], _directives_slidein_slidein_directive__WEBPACK_IMPORTED_MODULE_8__["SlideInDirective"], _directives_tooltip_tooltip_directive__WEBPACK_IMPORTED_MODULE_10__["TooltipDirective"], _components_text_text_with_icon_quote_component__WEBPACK_IMPORTED_MODULE_16__["QuoteComponent"], _components_text_text_with_icon_error_component__WEBPACK_IMPORTED_MODULE_17__["ErrorComponent"], _components_text_text_with_icon_warn_component__WEBPACK_IMPORTED_MODULE_18__["WarnComponent"], _components_text_text_with_icon_info_component__WEBPACK_IMPORTED_MODULE_19__["InfoComponent"], _components_markdown_markdown_component__WEBPACK_IMPORTED_MODULE_20__["MarkdownComponent"], _pipes_first_letter_pipe__WEBPACK_IMPORTED_MODULE_21__["FirstLetterPipe"], time_ago_pipe__WEBPACK_IMPORTED_MODULE_22__["TimeAgoPipe"], _directives_textarea_auto_grow_directive__WEBPACK_IMPORTED_MODULE_24__["TextareaAutoGrowDirective"], _directives_textarea_disable_spellcheck_directive__WEBPACK_IMPORTED_MODULE_25__["TextareaDisableSpellCheckDirective"], _components_login_with_github_login_with_github_component__WEBPACK_IMPORTED_MODULE_26__["LoginWithGithubComponent"], _components_router_link_router_link_component__WEBPACK_IMPORTED_MODULE_31__["RouterLinkComponent"], _components_buttons_new_button_new_button_component__WEBPACK_IMPORTED_MODULE_32__["NewButtonComponent"], _components_text_page_title_page_title_component__WEBPACK_IMPORTED_MODULE_35__["PageTitleComponent"], _components_buttons_edit_button_edit_button_component__WEBPACK_IMPORTED_MODULE_39__["EditButtonComponent"], _components_buttons_consult_button_consult_button_component__WEBPACK_IMPORTED_MODULE_40__["ConsultButtonComponent"], _components_buttons_edit_button_edit_button_link_component__WEBPACK_IMPORTED_MODULE_42__["EditButtonLinkComponent"], _components_buttons_consult_button_consult_button_link_component__WEBPACK_IMPORTED_MODULE_43__["ConsultButtonLinkComponent"], _components_buttons_delete_button_delete_button_component__WEBPACK_IMPORTED_MODULE_44__["DeleteButtonComponent"], _directives_input_disable_autocomplete_directive__WEBPACK_IMPORTED_MODULE_45__["InputDisableAutoCompleteDirective"], _components_buttons_previous_button_previous_button_component__WEBPACK_IMPORTED_MODULE_46__["PreviousButtonComponent"], _components_buttons_next_button_next_button_component__WEBPACK_IMPORTED_MODULE_47__["NextButtonComponent"], _components_buttons_load_more_button_load_more_button_component__WEBPACK_IMPORTED_MODULE_48__["LoadMoreButtonComponent"], _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_50__["ConfirmationDialogComponent"], _components_icons_dropdown_icon_dropdown_icon_component__WEBPACK_IMPORTED_MODULE_51__["DropdownIconComponent"]]
+      declarations: [_components_text_section_title_section_title_component__WEBPACK_IMPORTED_MODULE_3__["SectionTitleComponent"], _components_logo_logo_link_component__WEBPACK_IMPORTED_MODULE_4__["LogoLinkComponent"], _components_select_select_component__WEBPACK_IMPORTED_MODULE_5__["SelectComponent"], _components_select_select_option_select_option_component__WEBPACK_IMPORTED_MODULE_6__["SelectOptionComponent"], _components_select_select_dropdown_select_dropdown_component__WEBPACK_IMPORTED_MODULE_7__["SelectDropdownComponent"], _directives_slidein_slidein_directive__WEBPACK_IMPORTED_MODULE_8__["SlideInDirective"], _directives_tooltip_tooltip_component__WEBPACK_IMPORTED_MODULE_9__["TooltipComponent"], _directives_tooltip_tooltip_directive__WEBPACK_IMPORTED_MODULE_10__["TooltipDirective"], _components_text_text_with_icon_text_with_icon_component__WEBPACK_IMPORTED_MODULE_15__["TextWithIconComponent"], _components_text_text_with_icon_quote_component__WEBPACK_IMPORTED_MODULE_16__["QuoteComponent"], _components_text_text_with_icon_error_component__WEBPACK_IMPORTED_MODULE_17__["ErrorComponent"], _components_text_text_with_icon_warn_component__WEBPACK_IMPORTED_MODULE_18__["WarnComponent"], _components_text_text_with_icon_info_component__WEBPACK_IMPORTED_MODULE_19__["InfoComponent"], _components_markdown_markdown_component__WEBPACK_IMPORTED_MODULE_20__["MarkdownComponent"], _pipes_first_letter_pipe__WEBPACK_IMPORTED_MODULE_21__["FirstLetterPipe"], time_ago_pipe__WEBPACK_IMPORTED_MODULE_22__["TimeAgoPipe"], _directives_textarea_auto_grow_directive__WEBPACK_IMPORTED_MODULE_24__["TextareaAutoGrowDirective"], _directives_textarea_disable_spellcheck_directive__WEBPACK_IMPORTED_MODULE_25__["TextareaDisableSpellCheckDirective"], _components_login_with_github_login_with_github_component__WEBPACK_IMPORTED_MODULE_26__["LoginWithGithubComponent"], _components_router_link_router_link_component__WEBPACK_IMPORTED_MODULE_31__["RouterLinkComponent"], _components_buttons_new_button_new_button_component__WEBPACK_IMPORTED_MODULE_32__["NewButtonComponent"], _components_text_page_title_page_title_component__WEBPACK_IMPORTED_MODULE_35__["PageTitleComponent"], _components_buttons_edit_button_edit_button_component__WEBPACK_IMPORTED_MODULE_39__["EditButtonComponent"], _components_buttons_consult_button_consult_button_component__WEBPACK_IMPORTED_MODULE_40__["ConsultButtonComponent"], _components_buttons_edit_button_edit_button_link_component__WEBPACK_IMPORTED_MODULE_42__["EditButtonLinkComponent"], _components_buttons_consult_button_consult_button_link_component__WEBPACK_IMPORTED_MODULE_43__["ConsultButtonLinkComponent"], _components_buttons_delete_button_delete_button_component__WEBPACK_IMPORTED_MODULE_44__["DeleteButtonComponent"], _directives_input_disable_autocomplete_directive__WEBPACK_IMPORTED_MODULE_45__["InputDisableAutoCompleteDirective"], _components_buttons_previous_button_previous_button_component__WEBPACK_IMPORTED_MODULE_46__["PreviousButtonComponent"], _components_buttons_next_button_next_button_component__WEBPACK_IMPORTED_MODULE_47__["NextButtonComponent"], _components_buttons_load_more_button_load_more_button_component__WEBPACK_IMPORTED_MODULE_48__["LoadMoreButtonComponent"], _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_50__["ConfirmationDialogComponent"], _components_icons_dropdown_icon_dropdown_icon_component__WEBPACK_IMPORTED_MODULE_51__["DropdownIconComponent"], _layouts_manage_resources_page_layout__WEBPACK_IMPORTED_MODULE_52__["ManageResourcesPageLayout"]],
+      exports: [_angular_router__WEBPACK_IMPORTED_MODULE_14__["RouterModule"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["OverlayModule"], _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_12__["PortalModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_28__["HttpClientModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_27__["FormsModule"], ng2_simplemde__WEBPACK_IMPORTED_MODULE_41__["SimplemdeModule"], _angular_material_select__WEBPACK_IMPORTED_MODULE_13__["MatSelectModule"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_23__["MatMenuModule"], _angular_material_table__WEBPACK_IMPORTED_MODULE_29__["MatTableModule"], _angular_material_sort__WEBPACK_IMPORTED_MODULE_30__["MatSortModule"], _angular_material_form_field__WEBPACK_IMPORTED_MODULE_33__["MatFormFieldModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_34__["MatInputModule"], _angular_material_chips__WEBPACK_IMPORTED_MODULE_36__["MatChipsModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_37__["MatIconModule"], _angular_material_tabs__WEBPACK_IMPORTED_MODULE_38__["MatTabsModule"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_49__["MatDialogModule"], _components_text_section_title_section_title_component__WEBPACK_IMPORTED_MODULE_3__["SectionTitleComponent"], _components_logo_logo_link_component__WEBPACK_IMPORTED_MODULE_4__["LogoLinkComponent"], _components_select_select_component__WEBPACK_IMPORTED_MODULE_5__["SelectComponent"], _components_select_select_option_select_option_component__WEBPACK_IMPORTED_MODULE_6__["SelectOptionComponent"], _directives_slidein_slidein_directive__WEBPACK_IMPORTED_MODULE_8__["SlideInDirective"], _directives_tooltip_tooltip_directive__WEBPACK_IMPORTED_MODULE_10__["TooltipDirective"], _components_text_text_with_icon_quote_component__WEBPACK_IMPORTED_MODULE_16__["QuoteComponent"], _components_text_text_with_icon_error_component__WEBPACK_IMPORTED_MODULE_17__["ErrorComponent"], _components_text_text_with_icon_warn_component__WEBPACK_IMPORTED_MODULE_18__["WarnComponent"], _components_text_text_with_icon_info_component__WEBPACK_IMPORTED_MODULE_19__["InfoComponent"], _components_markdown_markdown_component__WEBPACK_IMPORTED_MODULE_20__["MarkdownComponent"], _pipes_first_letter_pipe__WEBPACK_IMPORTED_MODULE_21__["FirstLetterPipe"], time_ago_pipe__WEBPACK_IMPORTED_MODULE_22__["TimeAgoPipe"], _directives_textarea_auto_grow_directive__WEBPACK_IMPORTED_MODULE_24__["TextareaAutoGrowDirective"], _directives_textarea_disable_spellcheck_directive__WEBPACK_IMPORTED_MODULE_25__["TextareaDisableSpellCheckDirective"], _components_login_with_github_login_with_github_component__WEBPACK_IMPORTED_MODULE_26__["LoginWithGithubComponent"], _components_router_link_router_link_component__WEBPACK_IMPORTED_MODULE_31__["RouterLinkComponent"], _components_buttons_new_button_new_button_component__WEBPACK_IMPORTED_MODULE_32__["NewButtonComponent"], _components_text_page_title_page_title_component__WEBPACK_IMPORTED_MODULE_35__["PageTitleComponent"], _components_buttons_edit_button_edit_button_component__WEBPACK_IMPORTED_MODULE_39__["EditButtonComponent"], _components_buttons_consult_button_consult_button_component__WEBPACK_IMPORTED_MODULE_40__["ConsultButtonComponent"], _components_buttons_edit_button_edit_button_link_component__WEBPACK_IMPORTED_MODULE_42__["EditButtonLinkComponent"], _components_buttons_consult_button_consult_button_link_component__WEBPACK_IMPORTED_MODULE_43__["ConsultButtonLinkComponent"], _components_buttons_delete_button_delete_button_component__WEBPACK_IMPORTED_MODULE_44__["DeleteButtonComponent"], _directives_input_disable_autocomplete_directive__WEBPACK_IMPORTED_MODULE_45__["InputDisableAutoCompleteDirective"], _components_buttons_previous_button_previous_button_component__WEBPACK_IMPORTED_MODULE_46__["PreviousButtonComponent"], _components_buttons_next_button_next_button_component__WEBPACK_IMPORTED_MODULE_47__["NextButtonComponent"], _components_buttons_load_more_button_load_more_button_component__WEBPACK_IMPORTED_MODULE_48__["LoadMoreButtonComponent"], _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_50__["ConfirmationDialogComponent"], _components_icons_dropdown_icon_dropdown_icon_component__WEBPACK_IMPORTED_MODULE_51__["DropdownIconComponent"], _layouts_manage_resources_page_layout__WEBPACK_IMPORTED_MODULE_52__["ManageResourcesPageLayout"]]
     })], SharedModule);
     /***/
   },
@@ -11147,12 +11388,79 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
   },
 
   /***/
+  "./src/app/modules/user/components/user/user.component.scss":
+  /*!******************************************************************!*\
+    !*** ./src/app/modules/user/components/user/user.component.scss ***!
+    \******************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppModulesUserComponentsUserUserComponentScss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = ":host {\n  display: flex;\n  align-items: center;\n}\n\nimg {\n  width: var(--avatar-size, 4rem);\n  height: var(--avatar-size, 4rem);\n  margin-right: 1rem;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy91c2VyL2NvbXBvbmVudHMvdXNlci9DOlxcZGV2XFxwcm9qZWN0c1xcYWhlbnRldGktYmxvZ1xcc3JjXFxtYWluXFxmcm9udGVuZC9zcmNcXGFwcFxcbW9kdWxlc1xcdXNlclxcY29tcG9uZW50c1xcdXNlclxcdXNlci5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvbW9kdWxlcy91c2VyL2NvbXBvbmVudHMvdXNlci91c2VyLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsYUFBQTtFQUNBLG1CQUFBO0FDQ0Y7O0FERUE7RUFDRSwrQkFBQTtFQUNBLGdDQUFBO0VBQ0Esa0JBQUE7QUNDRiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvdXNlci9jb21wb25lbnRzL3VzZXIvdXNlci5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0IHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbn1cclxuXHJcbmltZyB7XHJcbiAgd2lkdGg6IHZhcigtLWF2YXRhci1zaXplLCA0cmVtKTtcclxuICBoZWlnaHQ6IHZhcigtLWF2YXRhci1zaXplLCA0cmVtKTtcclxuICBtYXJnaW4tcmlnaHQ6IDFyZW07XHJcbn1cclxuIiwiOmhvc3Qge1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xufVxuXG5pbWcge1xuICB3aWR0aDogdmFyKC0tYXZhdGFyLXNpemUsIDRyZW0pO1xuICBoZWlnaHQ6IHZhcigtLWF2YXRhci1zaXplLCA0cmVtKTtcbiAgbWFyZ2luLXJpZ2h0OiAxcmVtO1xufSJdfQ== */";
+    /***/
+  },
+
+  /***/
+  "./src/app/modules/user/components/user/user.component.ts":
+  /*!****************************************************************!*\
+    !*** ./src/app/modules/user/components/user/user.component.ts ***!
+    \****************************************************************/
+
+  /*! exports provided: UserComponent */
+
+  /***/
+  function srcAppModulesUserComponentsUserUserComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "UserComponent", function () {
+      return UserComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    var UserComponent = function UserComponent() {
+      _classCallCheck(this, UserComponent);
+    };
+
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()], UserComponent.prototype, "user", void 0);
+    UserComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: "app-user",
+      template: "\n    <img [src]=\"user.avatarUrl\" />\n    <span>{{ user.username }}</span>\n  ",
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./user.component.scss */
+      "./src/app/modules/user/components/user/user.component.scss"))["default"]]
+    })], UserComponent);
+    /***/
+  },
+
+  /***/
   "./src/app/modules/user/models/user.internal.models.ts":
   /*!*************************************************************!*\
     !*** ./src/app/modules/user/models/user.internal.models.ts ***!
     \*************************************************************/
 
-  /*! exports provided: Author, User, AnonymousUser */
+  /*! exports provided: Author, CurrentUser, User, AnonymousUser, UsersPage */
 
   /***/
   function srcAppModulesUserModelsUserInternalModelsTs(module, __webpack_exports__, __webpack_require__) {
@@ -11168,6 +11476,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony export (binding) */
 
 
+    __webpack_require__.d(__webpack_exports__, "CurrentUser", function () {
+      return CurrentUser;
+    });
+    /* harmony export (binding) */
+
+
     __webpack_require__.d(__webpack_exports__, "User", function () {
       return User;
     });
@@ -11177,43 +11491,341 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     __webpack_require__.d(__webpack_exports__, "AnonymousUser", function () {
       return AnonymousUser;
     });
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "UsersPage", function () {
+      return UsersPage;
+    });
     /* harmony import */
 
 
     var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
     /*! tslib */
     "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _shared_models_page_model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! ../../shared/models/page.model */
+    "./src/app/modules/shared/models/page.model.ts");
 
     var Author = function Author() {
       _classCallCheck(this, Author);
     };
 
-    var User = function User() {
-      _classCallCheck(this, User);
+    var CurrentUser = function CurrentUser() {
+      _classCallCheck(this, CurrentUser);
 
       this.isAuthenticated = false;
       this.isAdmin = false;
     };
 
-    var AnonymousUser = /*#__PURE__*/function (_User) {
-      _inherits(AnonymousUser, _User);
+    var User = function User() {
+      _classCallCheck(this, User);
+    };
 
-      var _super17 = _createSuper(AnonymousUser);
+    var AnonymousUser = /*#__PURE__*/function (_CurrentUser) {
+      _inherits(AnonymousUser, _CurrentUser);
+
+      var _super18 = _createSuper(AnonymousUser);
 
       function AnonymousUser() {
         var _this44;
 
         _classCallCheck(this, AnonymousUser);
 
-        _this44 = _super17.call(this);
+        _this44 = _super18.call(this);
         _this44.username = "Anonymous";
         return _this44;
       }
 
       return AnonymousUser;
-    }(User);
+    }(CurrentUser);
+
+    var UsersPage = /*#__PURE__*/function (_shared_models_page_m) {
+      _inherits(UsersPage, _shared_models_page_m);
+
+      var _super19 = _createSuper(UsersPage);
+
+      function UsersPage() {
+        _classCallCheck(this, UsersPage);
+
+        return _super19.apply(this, arguments);
+      }
+
+      return UsersPage;
+    }(_shared_models_page_model__WEBPACK_IMPORTED_MODULE_1__["Page"]);
     /***/
 
+  },
+
+  /***/
+  "./src/app/modules/user/pages/manage-users/manage-users.page.scss":
+  /*!************************************************************************!*\
+    !*** ./src/app/modules/user/pages/manage-users/manage-users.page.scss ***!
+    \************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppModulesUserPagesManageUsersManageUsersPageScss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvdXNlci9wYWdlcy9tYW5hZ2UtdXNlcnMvbWFuYWdlLXVzZXJzLnBhZ2Uuc2NzcyJ9 */";
+    /***/
+  },
+
+  /***/
+  "./src/app/modules/user/pages/manage-users/manage-users.page.ts":
+  /*!**********************************************************************!*\
+    !*** ./src/app/modules/user/pages/manage-users/manage-users.page.ts ***!
+    \**********************************************************************/
+
+  /*! exports provided: ManageUsersPage */
+
+  /***/
+  function srcAppModulesUserPagesManageUsersManageUsersPageTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "ManageUsersPage", function () {
+      return ManageUsersPage;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_material_table__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/material/table */
+    "./node_modules/@angular/material/esm2015/table.js");
+    /* harmony import */
+
+
+    var _models_user_internal_models__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ../../models/user.internal.models */
+    "./src/app/modules/user/models/user.internal.models.ts");
+    /* harmony import */
+
+
+    var src_app_modules_alert_alert_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! src/app/modules/alert/alert.service */
+    "./src/app/modules/alert/alert.service.ts");
+    /* harmony import */
+
+
+    var _services_user_http_services__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! ../../services/user.http.services */
+    "./src/app/modules/user/services/user.http.services.ts");
+    /* harmony import */
+
+
+    var _services_user_converter__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! ../../services/user.converter */
+    "./src/app/modules/user/services/user.converter.ts");
+    /* harmony import */
+
+
+    var src_app_modules_shared_pages_manage_resources_page__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! src/app/modules/shared/pages/manage-resources.page */
+    "./src/app/modules/shared/pages/manage-resources.page.ts");
+
+    var ManageUsersPage = /*#__PURE__*/function (_src_app_modules_shar3) {
+      _inherits(ManageUsersPage, _src_app_modules_shar3);
+
+      var _super20 = _createSuper(ManageUsersPage);
+
+      function ManageUsersPage(alertService, userHttpService, userConverter) {
+        var _this45;
+
+        _classCallCheck(this, ManageUsersPage);
+
+        _this45 = _super20.call(this);
+        _this45.alertService = alertService;
+        _this45.userHttpService = userHttpService;
+        _this45.userConverter = userConverter;
+        _this45.currentPage = new _models_user_internal_models__WEBPACK_IMPORTED_MODULE_3__["UsersPage"]();
+        _this45.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"]([]);
+        _this45.columns = ["username", "joinAt", "actions"];
+        return _this45;
+      } // prettier-ignore
+
+
+      _createClass(ManageUsersPage, [{
+        key: "fetchPage",
+        value: function fetchPage(page) {
+          var _this46 = this;
+
+          var request = this.userConverter.toGetUsersPageApiRequest(this.filter, page);
+          this.userHttpService.getUsersPage(request).then(function (usersPage) {
+            return _this46.handleGetUsersPageSuccessEvent(usersPage);
+          })["catch"](function (error) {
+            return _this46.handleGetUsersPageErrorEvent(error);
+          });
+        }
+      }, {
+        key: "handleGetUsersPageErrorEvent",
+        value: function handleGetUsersPageErrorEvent(error) {
+          console.error(error);
+          this.alertService.error("Error while fetching users :(");
+        }
+      }, {
+        key: "handleGetUsersPageSuccessEvent",
+        value: function handleGetUsersPageSuccessEvent(usersPage) {
+          this.currentPage = usersPage;
+          this.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"](usersPage.items);
+          this.dataSource.sort = this.sort;
+          this.recalculatePreviousNextButtonCssClasses();
+        }
+      }]);
+
+      return ManageUsersPage;
+    }(src_app_modules_shared_pages_manage_resources_page__WEBPACK_IMPORTED_MODULE_7__["AbstractManageResourcesPage"]);
+
+    ManageUsersPage.ctorParameters = function () {
+      return [{
+        type: src_app_modules_alert_alert_service__WEBPACK_IMPORTED_MODULE_4__["AlertService"]
+      }, {
+        type: _services_user_http_services__WEBPACK_IMPORTED_MODULE_5__["UserHttpServices"]
+      }, {
+        type: _services_user_converter__WEBPACK_IMPORTED_MODULE_6__["UserConverter"]
+      }];
+    };
+
+    ManageUsersPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./manage-users.page.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/user/pages/manage-users/manage-users.page.html"))["default"],
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./manage-users.page.scss */
+      "./src/app/modules/user/pages/manage-users/manage-users.page.scss"))["default"]]
+    })], ManageUsersPage);
+    /***/
+  },
+
+  /***/
+  "./src/app/modules/user/services/admin.guard.ts":
+  /*!******************************************************!*\
+    !*** ./src/app/modules/user/services/admin.guard.ts ***!
+    \******************************************************/
+
+  /*! exports provided: AdminGuard */
+
+  /***/
+  function srcAppModulesUserServicesAdminGuardTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "AdminGuard", function () {
+      return AdminGuard;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/router */
+    "./node_modules/@angular/router/fesm2015/router.js");
+    /* harmony import */
+
+
+    var _alert_alert_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ../../alert/alert.service */
+    "./src/app/modules/alert/alert.service.ts");
+    /* harmony import */
+
+
+    var _user_http_services__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! ./user.http.services */
+    "./src/app/modules/user/services/user.http.services.ts");
+
+    var AdminGuard = /*#__PURE__*/function () {
+      function AdminGuard(userHttpService, alertService, router) {
+        _classCallCheck(this, AdminGuard);
+
+        this.userHttpService = userHttpService;
+        this.alertService = alertService;
+        this.router = router;
+      }
+
+      _createClass(AdminGuard, [{
+        key: "canActivate",
+        value: function canActivate(route, state) {
+          var _this47 = this;
+
+          return this.userHttpService.getCurrentUser().then(function (user) {
+            if (user.isAdmin) return true;
+
+            _this47.alertService.error("Only Admin user can access this page", {
+              keepAfterRouteChange: true
+            });
+
+            _this47.router.navigate(["/"]);
+
+            return false;
+          })["catch"](function (error) {
+            console.error("user not yet authenticated. error: " + error);
+
+            _this47.alertService.error("Please login to access this page", {
+              keepAfterRouteChange: true
+            });
+
+            _this47.router.navigate(["/"]);
+
+            return false;
+          });
+        }
+      }]);
+
+      return AdminGuard;
+    }();
+
+    AdminGuard.ctorParameters = function () {
+      return [{
+        type: _user_http_services__WEBPACK_IMPORTED_MODULE_4__["UserHttpServices"]
+      }, {
+        type: _alert_alert_service__WEBPACK_IMPORTED_MODULE_3__["AlertService"]
+      }, {
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
+      }];
+    };
+
+    AdminGuard = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+      providedIn: "root"
+    })], AdminGuard);
+    /***/
   },
 
   /***/
@@ -11278,18 +11890,18 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(LoggedInGuard, [{
         key: "canActivate",
         value: function canActivate(route, state) {
-          var _this45 = this;
+          var _this48 = this;
 
-          return this.userHttpService.getUser().then(function () {
+          return this.userHttpService.getCurrentUser().then(function () {
             return true;
           })["catch"](function (error) {
             console.error("user not yet authenticated. error: " + error);
 
-            _this45.alertService.error("Please login to access your page", {
+            _this48.alertService.error("Please login to access this page", {
               keepAfterRouteChange: true
             });
 
-            _this45.router.navigate(["/"]);
+            _this48.router.navigate(["/"]);
 
             return false;
           });
@@ -11346,6 +11958,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
     /*! @angular/core */
     "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _models_user_internal_models__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ../models/user.internal.models */
+    "./src/app/modules/user/models/user.internal.models.ts");
 
     var UserConverter = /*#__PURE__*/function () {
       function UserConverter() {
@@ -11361,14 +11979,48 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           };
         }
       }, {
-        key: "toUser",
-        value: function toUser(user) {
+        key: "toCurrentUser",
+        value: function toCurrentUser(user) {
           return {
             username: user.username,
             avatarUrl: user.avatarUrl,
             isAuthenticated: user.username !== undefined && user.username !== null,
             isAdmin: user.roles.includes("ADMIN")
           };
+        }
+      }, {
+        key: "toUser",
+        value: function toUser(user) {
+          return {
+            username: user.username,
+            avatarUrl: user.avatarUrl,
+            joinAt: new Date(user.joinAtIso8601)
+          };
+        }
+      }, {
+        key: "toGetUsersPageApiRequest",
+        value: function toGetUsersPageApiRequest(filter, page) {
+          var size = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 5;
+          var sortBy = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "username";
+          var sortDirection = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : "asc";
+          return {
+            url: "/secure-api/users?filter=".concat(filter, "&page=").concat(page, "&size=").concat(size, "&sortBy=").concat(sortBy, "&sortDirection=").concat(sortDirection)
+          };
+        }
+      }, {
+        key: "toUsersPage",
+        value: function toUsersPage(usersPage) {
+          var _this49 = this;
+
+          var res = new _models_user_internal_models__WEBPACK_IMPORTED_MODULE_2__["UsersPage"]();
+          res.totalItems = usersPage.totalItems;
+          res.firstPage = usersPage.page == 0;
+          res.lastPage = usersPage.lastPage;
+          res.page = usersPage.page;
+          usersPage.items.forEach(function (user) {
+            return res.items.push(_this49.toUser(user));
+          });
+          return res;
         }
       }]);
 
@@ -11446,9 +12098,18 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }
 
       _createClass(UserHttpServices, [{
-        key: "getUser",
-        value: function getUser() {
-          return this.http.get(GET_CURRENT_IDENTITY_URL).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(this.userConverter.toUser)).toPromise();
+        key: "getCurrentUser",
+        value: function getCurrentUser() {
+          return this.http.get(GET_CURRENT_IDENTITY_URL).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(this.userConverter.toCurrentUser)).toPromise();
+        }
+      }, {
+        key: "getUsersPage",
+        value: function getUsersPage(request) {
+          var _this50 = this;
+
+          return this.http.get(request.url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (users) {
+            return _this50.userConverter.toUsersPage(users);
+          })).toPromise();
         }
       }]);
 
@@ -11591,7 +12252,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     var UserObservable = /*#__PURE__*/function () {
       function UserObservable(router, userHttpService) {
-        var _this46 = this;
+        var _this51 = this;
 
         _classCallCheck(this, UserObservable);
 
@@ -11601,7 +12262,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.checkUser();
         this.router.events.subscribe(function (event) {
           if (event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_5__["NavigationEnd"]) {
-            _this46.checkUser();
+            _this51.checkUser();
           }
         });
       }
@@ -11609,10 +12270,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(UserObservable, [{
         key: "checkUser",
         value: function checkUser() {
-          var _this47 = this;
+          var _this52 = this;
 
-          this.userHttpService.getUser().then(function (user) {
-            return _this47.newUser(user);
+          this.userHttpService.getCurrentUser().then(function (user) {
+            return _this52.newUser(user);
           })["catch"](function (error) {
             return console.log("user not yet authenticated");
           });
@@ -11694,15 +12355,51 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var _components_user_avatar_user_avatar_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! ./components/user-avatar/user-avatar.component */
     "./src/app/modules/user/components/user-avatar/user-avatar.component.ts");
+    /* harmony import */
+
+
+    var _pages_manage_users_manage_users_page__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! ./pages/manage-users/manage-users.page */
+    "./src/app/modules/user/pages/manage-users/manage-users.page.ts");
+    /* harmony import */
+
+
+    var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! @angular/router */
+    "./node_modules/@angular/router/fesm2015/router.js");
+    /* harmony import */
+
+
+    var _services_admin_guard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! ./services/admin.guard */
+    "./src/app/modules/user/services/admin.guard.ts");
+    /* harmony import */
+
+
+    var _shared_shared_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! ../shared/shared.module */
+    "./src/app/modules/shared/shared.module.ts");
+    /* harmony import */
+
+
+    var _components_user_user_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    /*! ./components/user/user.component */
+    "./src/app/modules/user/components/user/user.component.ts");
+
+    var routes = [{
+      path: "users",
+      component: _pages_manage_users_manage_users_page__WEBPACK_IMPORTED_MODULE_4__["ManageUsersPage"],
+      canActivate: [_services_admin_guard__WEBPACK_IMPORTED_MODULE_6__["AdminGuard"]]
+    }];
 
     var UserModule = function UserModule() {
       _classCallCheck(this, UserModule);
     };
 
     UserModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-      imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"]],
+      imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _shared_shared_module__WEBPACK_IMPORTED_MODULE_7__["SharedModule"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"].forChild(routes)],
       exports: [_components_user_avatar_user_avatar_component__WEBPACK_IMPORTED_MODULE_3__["UserAvatarComponent"]],
-      declarations: [_components_user_avatar_user_avatar_component__WEBPACK_IMPORTED_MODULE_3__["UserAvatarComponent"]]
+      declarations: [_components_user_avatar_user_avatar_component__WEBPACK_IMPORTED_MODULE_3__["UserAvatarComponent"], _components_user_user_component__WEBPACK_IMPORTED_MODULE_8__["UserComponent"], _pages_manage_users_manage_users_page__WEBPACK_IMPORTED_MODULE_4__["ManageUsersPage"]]
     })], UserModule);
     /***/
   },
