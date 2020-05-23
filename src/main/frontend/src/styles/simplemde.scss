@@ -6,8 +6,8 @@ simplemde {
     display: none;
   }
 
-  & .editor-toolbar {
-    z-index: 2;
+  & .editor-toolbar,
+  & .editor-toolbar.fullscreen {
     height: var(--simplemde-toolbar-height, 5rem);
     opacity: 1 !important;
     border: none !important;
@@ -27,6 +27,16 @@ simplemde {
 
     & .separator {
       border: 1.5px solid var(--simplemde-header-separator-color) !important;
+    }
+  }
+
+  & .editor-toolbar.fullscreen,
+  & .CodeMirror-fullscreen {
+    z-index: calc(var(--navbar-z-index) + 10);
+
+    &::before,
+    &::after {
+      display: none;
     }
   }
 
@@ -50,7 +60,4 @@ simplemde {
   & .CodeMirror-cursor {
     border: 1px solid var(--primary-color) !important;
   }
-}
-
-simplemde.sticky {
 }

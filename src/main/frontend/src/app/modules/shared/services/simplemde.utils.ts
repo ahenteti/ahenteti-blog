@@ -32,6 +32,7 @@ export const SIMPLEMDE_OPTIONS = {
       title: "Error message",
     },
     "|",
+    "fullscreen",
     "guide",
   ],
 };
