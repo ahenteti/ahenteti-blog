@@ -2,50 +2,55 @@ simplemde {
   display: block;
   margin-bottom: 2rem;
 
-  .editor-statusbar {
+  & .editor-statusbar {
     display: none;
   }
 
-  .editor-toolbar {
+  & .editor-toolbar {
+    z-index: 2;
+    height: var(--simplemde-toolbar-height, 5rem);
     opacity: 1 !important;
     border: none !important;
     background-color: var(--simplemde-header-background-color);
-    a {
+    & a {
       background-color: inherit !important;
       color: var(--simplemde-header-color) !important;
       transition: var(--transition);
       transition-property: color;
     }
 
-    a.active,
-    a:hover {
+    & a.active,
+    & a:hover {
       color: var(--primary-color) !important;
       border-color: transparent;
     }
 
-    .separator {
+    & .separator {
       border: 1.5px solid var(--simplemde-header-separator-color) !important;
     }
   }
 
-  .CodeMirror {
+  & .CodeMirror {
     color: var(--simplemde-body-color);
     background-color: var(--simplemde-body-background-color);
     border: none !important;
     line-height: 1.6;
   }
 
-  .CodeMirror-selected {
+  & .CodeMirror-selected {
     background-color: var(
       --simplemde-body-background-color-on-selection
     ) !important;
   }
 
-  .CodeMirror-selectedtext {
+  & .CodeMirror-selectedtext {
     color: var(--simplemde-body-color-on-selection) !important;
   }
 
-  .CodeMirror-cursor {
+  & .CodeMirror-cursor {
     border: 1px solid var(--primary-color) !important;
   }
+}
+
+simplemde.sticky {
 }

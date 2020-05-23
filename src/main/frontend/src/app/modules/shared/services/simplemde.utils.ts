@@ -31,6 +31,7 @@ export const SIMPLEMDE_OPTIONS = {
       className: "fa fa-exclamation-triangle",
       title: "Error message",
     },
+    "|",
     "guide",
   ],
 };
