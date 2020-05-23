@@ -51,6 +51,9 @@ body.light {
 
   --post-background-color: var(--body-background-color);
   --post-box-shadow: var(--box-shadow);
+  @media screen and (max-width: 480px) {
+    --post-box-shadow: none;
+  }
 
   /* colors inspiration: https://material-ui.com/fr/components/alert/ */
   --info-background-color: #e8f4fd;
