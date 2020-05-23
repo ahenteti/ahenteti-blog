@@ -24,11 +24,16 @@ export class ManageUsersPage extends AbstractManageResourcesPage<User>
   }
 
   // prettier-ignore
-  fetchPage(page: number) {
-    const request  = this.userConverter.toGetUsersPageApiRequest(this.filter, page);
+  fetchPage(filter: string, page: number) {
+    const request  = this.userConverter.toGetUsersPageApiRequest(filter, page);
     this.userHttpService.getUsersPage(request)
       .then(usersPage => this.handleGetUsersPageSuccessEvent(usersPage))
       .catch(error => this.handleGetUsersPageErrorEvent(error));
+  }
+
+  onFilter(filter) {
+    this.filter = filter;
+    this.fetchPage(this.filter, 0);
   }
 
   private handleGetUsersPageErrorEvent(error) {

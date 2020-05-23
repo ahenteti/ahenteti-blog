@@ -13,19 +13,19 @@ export abstract class AbstractManageResourcesPage<T> implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   ngOnInit(): void {
-    this.fetchPage(0);
+    this.fetchPage(this.filter, 0);
   }
 
-  abstract fetchPage(page: number): void;
+  abstract fetchPage(filter: string, page: number): void;
 
   handleNextButtonClickEvent() {
     if (this.currentPage.lastPage) return;
-    this.fetchPage(this.currentPage.page + 1);
+    this.fetchPage(this.filter, this.currentPage.page + 1);
   }
 
   handlePreviousButtonClickEvent() {
     if (this.currentPage.firstPage) return;
-    this.fetchPage(this.currentPage.page - 1);
+    this.fetchPage(this.filter, this.currentPage.page - 1);
   }
 
   recalculatePreviousNextButtonCssClasses() {

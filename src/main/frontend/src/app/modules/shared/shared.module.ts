@@ -50,6 +50,7 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { ConfirmationDialogComponent } from "./components/confirmation-dialog/confirmation-dialog.component";
 import { DropdownIconComponent } from "./components/icons/dropdown-icon/dropdown-icon.component";
 import { ManageResourcesPageLayout } from "./layouts/manage-resources-page.layout";
+import { FilterComponent } from "./components/filter/filter.component";
 
 @NgModule({
   entryComponents: [
@@ -111,6 +112,7 @@ import { ManageResourcesPageLayout } from "./layouts/manage-resources-page.layou
     ConfirmationDialogComponent,
     DropdownIconComponent,
     ManageResourcesPageLayout,
+    FilterComponent,
   ],
   exports: [
     RouterModule,
@@ -161,6 +163,7 @@ import { ManageResourcesPageLayout } from "./layouts/manage-resources-page.layou
     ConfirmationDialogComponent,
     DropdownIconComponent,
     ManageResourcesPageLayout,
+    FilterComponent,
   ],
 })
 export class SharedModule {}

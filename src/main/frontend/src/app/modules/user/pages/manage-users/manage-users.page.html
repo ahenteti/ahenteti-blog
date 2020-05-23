@@ -5,6 +5,10 @@
   (previousButtonClick)="handlePreviousButtonClickEvent()"
   (nextButtonClick)="handleNextButtonClickEvent()"
 >
+  <ng-container class="top-table-actions">
+    <app-filter (onFilter)="onFilter($event)"></app-filter>
+  </ng-container>
+
   <ng-container class="table">
     <table mat-table matSort [dataSource]="dataSource">
       <ng-container matColumnDef="username">

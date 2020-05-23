@@ -33,8 +33,8 @@ export class ManagePostsPage extends AbstractManageResourcesPage<PostSummary>
   }
 
   // prettier-ignore
-  fetchPage(page: number) {
-      const request = this.postConverter.toGetUserPostsApiRequest(this.filter, page);
+  fetchPage(filter: string, page: number) {
+      const request = this.postConverter.toGetUserPostsApiRequest(filter, page);
       this.postHttpServices
         .getUserPosts(request)
         .then((posts) => this.handleGetUserPostsSuccessEvent(posts))

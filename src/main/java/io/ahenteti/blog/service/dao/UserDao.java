@@ -45,7 +45,7 @@ public class UserDao {
 
     public UsersPage getUsers(ValidGetUsersPageApiRequest request) {
         PageRequest pageRequest = pageConverter.toPageRequest(request);
-        Page<UserEntity> users = userRepository.findAll(pageRequest);
+        Page<UserEntity> users = userRepository.find(request.getSqlFilter(), pageRequest);
         return userConverter.toUsersPage(users, request);
     }
 }
