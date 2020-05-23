@@ -51,7 +51,7 @@ export class AlertComponent implements OnInit, OnDestroy {
     this.alerts.find((x) => x === alert).fadeout = true;
     setTimeout(() => {
       this.alerts = this.alerts.filter((x) => x !== alert);
-    }, 180);
+    }, 200);
   }
 
   cssClasses(alert: Alert) {

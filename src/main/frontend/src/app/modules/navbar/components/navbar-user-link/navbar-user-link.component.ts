@@ -24,8 +24,4 @@ export class NavbarUserLinkComponent extends UserAwareComponent {
     // event.stopPropagation();
     this.themeService.toggleTheme();
   }
-
-  onMouseOver() {
-    this.dropdownTrigger.openMenu();
-  }
 }

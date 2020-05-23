@@ -16,8 +16,4 @@ export class NavbarLoginComponent {
   preLogin() {
     this.userLoginService.preLogin();
   }
-
-  onMouseOver() {
-    this.dropdownTrigger.openMenu();
-  }
 }
