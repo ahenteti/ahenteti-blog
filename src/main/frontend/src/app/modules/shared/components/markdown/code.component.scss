@@ -13,6 +13,20 @@
     --code-border-bottom-right-radius: 0.3rem;
   }
 
+  & .single-code-container,
+  & .multiple-code-container .code-inside-multiple-code-container {
+    max-height: var(--code-height);
+    scrollbar-width: none;
+    overflow-y: auto;
+  }
+
+  & .single-code-container::-webkit-scrollbar,
+  &
+    .multiple-code-container
+    .code-inside-multiple-code-container::-webkit-scrollbar {
+    display: none;
+  }
+
   & .code-container {
     display: flex;
     font-size: 1.6rem;
@@ -52,6 +66,10 @@
         transition-property: color, background-color;
         scrollbar-width: none;
       }
+    }
+
+    & .code code::-webkit-scrollbar {
+      display: none;
     }
 
     & .copy-code-container {

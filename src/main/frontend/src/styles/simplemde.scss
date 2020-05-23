@@ -45,6 +45,24 @@ simplemde {
     background-color: var(--simplemde-body-background-color);
     border: none !important;
     line-height: 1.6;
+    padding: 1rem;
+    height: calc(
+      var(--code-height) + 2rem
+    ); // 2rem = padding-top + padding-bottom
+  }
+
+  // code inspiration: https://github.com/sparksuite/simplemde-markdown-editor/issues/205
+  & .CodeMirror-scroll {
+    scrollbar-width: none;
+    max-height: var(--code-height);
+  }
+
+  & .CodeMirror-fullscreen.CodeMirror {
+    max-height: none;
+  }
+
+  & .CodeMirror-fullscreen .CodeMirror-scroll {
+    max-height: none;
   }
 
   & .CodeMirror-selected {
