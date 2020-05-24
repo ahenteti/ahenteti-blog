@@ -20,7 +20,7 @@ export class ManageUsersPage extends AbstractManageResourcesPage<User>
     super();
     this.currentPage = new UsersPage();
     this.dataSource = new MatTableDataSource([]);
-    this.columns = ["username", "joinAt", "actions"];
+    this.columns = ["username", "provider", "joinAt", "actions"];
   }
 
   // prettier-ignore
@@ -34,6 +34,11 @@ export class ManageUsersPage extends AbstractManageResourcesPage<User>
   onFilter(filter) {
     this.filter = filter;
     this.fetchPage(this.filter, 0);
+  }
+
+  deleteUser(user: User) {
+    console.log(user);
+    this.alertService.error("Delete functionality not yet implemented");
   }
 
   private handleGetUsersPageErrorEvent(error) {

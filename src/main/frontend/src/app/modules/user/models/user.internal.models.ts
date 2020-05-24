@@ -15,6 +15,7 @@ export class CurrentUser {
 export class User {
   username: string;
   avatarUrl: string;
+  provider: string;
   joinAt: Date;
 }
 

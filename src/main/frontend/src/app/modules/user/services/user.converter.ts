@@ -35,6 +35,7 @@ export class UserConverter {
     return {
       username: user.username,
       avatarUrl: user.avatarUrl,
+      provider: user.provider,
       joinAt: new Date(user.joinAtIso8601),
     };
   }

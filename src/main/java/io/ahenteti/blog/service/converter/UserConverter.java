@@ -81,6 +81,7 @@ public class UserConverter {
         UserApiResponse res = new UserApiResponse();
         res.setUsername(user.getUsername());
         res.setAvatarUrl(user.getAvatarUrl());
+        res.setProvider(user.getProvider());
         res.setJoinAtIso8601(user.getJoinAt().toString());
         return res;
     }

@@ -14,6 +14,7 @@ export class AuthorApiResponse {
 export class UserApiResponse {
   username: string;
   avatarUrl: string;
+  provider: string;
   joinAtIso8601: string;
 }
 
