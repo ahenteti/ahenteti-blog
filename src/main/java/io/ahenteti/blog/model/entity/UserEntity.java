@@ -39,15 +39,18 @@ public class UserEntity {
     private Instant joinAt;
 
     // @formatter:off
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(
         name = "T_USER_ROLE", 
         joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")}, 
         inverseJoinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")}
     )
     // @formatter:on
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<RoleEntity> roles = new ArrayList<>();
 
-    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private Collection<PostEntity> posts = new ArrayList<>();
+
+    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    private Collection<PostCommentEntity> comments = new ArrayList<>();
 }
