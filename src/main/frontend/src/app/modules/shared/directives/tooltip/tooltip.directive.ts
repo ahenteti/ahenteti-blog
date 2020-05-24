@@ -5,6 +5,7 @@ import {
   OnInit,
   ComponentRef,
   ElementRef,
+  OnDestroy,
 } from "@angular/core";
 import {
   Overlay,
@@ -17,7 +18,7 @@ import { TooltipComponent } from "./tooltip.component";
 @Directive({
   selector: "[tooltip]",
 })
-export class TooltipDirective implements OnInit {
+export class TooltipDirective implements OnInit, OnDestroy {
   @Input("tooltip")
   private text = "";
 
@@ -41,6 +42,10 @@ export class TooltipDirective implements OnInit {
         },
       ]);
     this.overlayRef = this.overlay.create({ positionStrategy });
+  }
+
+  ngOnDestroy() {
+    this.hide();
   }
 
   @HostListener("mouseenter")

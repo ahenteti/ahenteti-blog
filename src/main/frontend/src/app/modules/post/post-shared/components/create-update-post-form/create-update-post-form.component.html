@@ -2,18 +2,16 @@
   <div class="page-header">
     <app-page-title [value]="pageTitle"></app-page-title>
     <div class="page-header-actions">
-      <app-consult-button
+      <app-page-title-consult-button
         (click)="togglePreviewMode()"
         *ngIf="!previewMode"
-        data-tooltip="preview post"
-        class="tooltip-bottom"
-      ></app-consult-button>
-      <app-edit-button
+        tooltip="preview post"
+      ></app-page-title-consult-button>
+      <app-page-title-edit-button
+        tooltip="continue post creation / update"
         (click)="togglePreviewMode()"
         *ngIf="previewMode"
-        data-tooltip="continue post creation"
-        class="tooltip-bottom"
-      ></app-edit-button>
+      ></app-page-title-edit-button>
     </div>
   </div>
 

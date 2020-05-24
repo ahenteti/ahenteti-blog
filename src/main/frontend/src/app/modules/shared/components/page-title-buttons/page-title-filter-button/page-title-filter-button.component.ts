@@ -9,11 +9,11 @@ import {
 } from "@angular/core";
 
 @Component({
-  selector: "app-filter",
-  templateUrl: "./filter.component.html",
-  styleUrls: ["./filter.component.scss"],
+  selector: "app-page-title-filter-button",
+  templateUrl: "./page-title-filter-button.component.html",
+  styleUrls: ["./page-title-filter-button.component.scss"],
 })
-export class FilterComponent {
+export class PageTitleFilterButtonComponent {
   private hover = false;
   private focus = false;
   filter = "";

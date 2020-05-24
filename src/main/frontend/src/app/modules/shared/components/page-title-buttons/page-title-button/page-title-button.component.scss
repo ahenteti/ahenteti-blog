@@ -1,0 +1,19 @@
+.button {
+  border-radius: 100rem;
+  padding: 0.5rem;
+  height: var(--page-title-button-size);
+  width: var(--page-title-button-size);
+  background-color: var(--page-title-button-background-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconify {
+  font-size: var(--page-title-button-icon-font-size);
+  border-radius: 100rem;
+  color: var(--primary-color);
+  background-color: var(--page-title-button-background-color);
+  transition: var(--transition);
+  transition-property: color, background-color;
+}

@@ -29,7 +29,6 @@ import { HttpClientModule } from "@angular/common/http";
 import { MatTableModule } from "@angular/material/table";
 import { MatSortModule } from "@angular/material/sort";
 import { RouterLinkComponent } from "./components/router-link/router-link.component";
-import { NewButtonComponent } from "./components/buttons/new-button/new-button.component";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { PageTitleComponent } from "./components/text/page-title/page-title.component";
@@ -50,7 +49,11 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { ConfirmationDialogComponent } from "./components/confirmation-dialog/confirmation-dialog.component";
 import { DropdownIconComponent } from "./components/icons/dropdown-icon/dropdown-icon.component";
 import { ManageResourcesPageLayout } from "./layouts/manage-resources-page.layout";
-import { FilterComponent } from "./components/filter/filter.component";
+import { PageTitleButtonComponent } from "./components/page-title-buttons/page-title-button/page-title-button.component";
+import { PageTitleFilterButtonComponent } from "./components/page-title-buttons/page-title-filter-button/page-title-filter-button.component";
+import { PageTitleNewButtonComponent } from "./components/page-title-buttons/page-title-new-button/page-title-new-button.component";
+import { PageTitleConsultButtonComponent } from "./components/page-title-buttons/page-title-consult-button/page-title-consult-button.component";
+import { PageTitleEditButtonComponent } from "./components/page-title-buttons/page-title-edit-button/page-title-edit-button.component";
 
 @NgModule({
   entryComponents: [
@@ -98,7 +101,7 @@ import { FilterComponent } from "./components/filter/filter.component";
     TextareaDisableSpellCheckDirective,
     LoginWithGithubComponent,
     RouterLinkComponent,
-    NewButtonComponent,
+    PageTitleNewButtonComponent,
     PageTitleComponent,
     EditButtonComponent,
     ConsultButtonComponent,
@@ -112,7 +115,10 @@ import { FilterComponent } from "./components/filter/filter.component";
     ConfirmationDialogComponent,
     DropdownIconComponent,
     ManageResourcesPageLayout,
-    FilterComponent,
+    PageTitleFilterButtonComponent,
+    PageTitleButtonComponent,
+    PageTitleConsultButtonComponent,
+    PageTitleEditButtonComponent,
   ],
   exports: [
     RouterModule,
@@ -149,7 +155,7 @@ import { FilterComponent } from "./components/filter/filter.component";
     TextareaDisableSpellCheckDirective,
     LoginWithGithubComponent,
     RouterLinkComponent,
-    NewButtonComponent,
+    PageTitleNewButtonComponent,
     PageTitleComponent,
     EditButtonComponent,
     ConsultButtonComponent,
@@ -163,7 +169,9 @@ import { FilterComponent } from "./components/filter/filter.component";
     ConfirmationDialogComponent,
     DropdownIconComponent,
     ManageResourcesPageLayout,
-    FilterComponent,
+    PageTitleFilterButtonComponent,
+    PageTitleConsultButtonComponent,
+    PageTitleEditButtonComponent,
   ],
 })
 export class SharedModule {}
