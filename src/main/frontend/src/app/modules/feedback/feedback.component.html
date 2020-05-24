@@ -1,25 +1,27 @@
-<div class="icon-container">
-  <span
-    (click)="handleFeedbackIconClick($event)"
-    class="tooltip-left"
-    data-tooltip="Give us your feedback :)"
-  >
-    <span class="iconify" data-icon="topcoat:feedback"></span>
-  </span>
-</div>
-<div class="feedback-container">
-  <div class="feedback-input">
-    <h2 class="feedback-title">Feedback</h2>
-    <textarea
-      name="feedback"
-      [(ngModel)]="feedback"
-      placeholder="Give us your feedback to improve..."
-    ></textarea>
+<div *ngIf="user.isAuthenticated">
+  <div class="icon-container">
+    <span
+      (click)="handleFeedbackIconClick($event)"
+      class="tooltip-left"
+      data-tooltip="Give us your feedback :)"
+    >
+      <span class="iconify" data-icon="topcoat:feedback"></span>
+    </span>
   </div>
+  <div class="feedback-container">
+    <div class="feedback-input">
+      <h2 class="feedback-title">Feedback</h2>
+      <textarea
+        name="feedback"
+        [(ngModel)]="feedback.value"
+        placeholder="Give us your feedback to improve..."
+      ></textarea>
+    </div>
 
-  <div class="feedback-actions">
-    <button (click)="cancelFeedback()">Cancel</button>
-    <button>Submit</button>
+    <div class="feedback-actions">
+      <button (click)="cancel()">Cancel</button>
+      <button (click)="submit()">Submit</button>
+    </div>
   </div>
+  <div class="feedback-background"></div>
 </div>
-<div class="feedback-background"></div>

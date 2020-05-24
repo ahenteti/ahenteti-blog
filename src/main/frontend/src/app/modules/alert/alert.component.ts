@@ -47,7 +47,8 @@ export class AlertComponent implements OnInit, OnDestroy {
     this.routeSubscription.unsubscribe();
   }
 
-  removeAlert(alert: Alert) {
+  removeAlert(alert: Alert, event?) {
+    if (event) event.stopPropagation();
     this.alerts.find((x) => x === alert).fadeout = true;
     setTimeout(() => {
       this.alerts = this.alerts.filter((x) => x !== alert);

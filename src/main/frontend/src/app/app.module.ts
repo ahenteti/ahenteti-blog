@@ -26,6 +26,10 @@ import { LoaderService } from "./modules/loader/loader.service";
 import { AdminGuard } from "./modules/user/services/admin.guard";
 import { ManageUsersPage } from "./modules/user/pages/manage-users/manage-users.page";
 import { FeedbackModule } from "./modules/feedback/feedback.module";
+import { FeedbackConverter } from "./modules/feedback/feedback.converter";
+import { FeedbackValidator } from "./modules/feedback/feedback.validator";
+import { FeedbackHttpServices } from "./modules/feedback/feedback.http.services";
+import { AlertService } from "./modules/alert/alert.service";
 
 const routes: Routes = [
   {
@@ -53,6 +57,7 @@ const routes: Routes = [
   ],
   bootstrap: [AppComponent],
   providers: [
+    AlertService,
     PostHttpServices,
     PostConverter,
     PostCommentConverter,
@@ -67,6 +72,9 @@ const routes: Routes = [
     WindowService,
     LoaderService,
     AdminGuard,
+    FeedbackConverter,
+    FeedbackValidator,
+    FeedbackHttpServices,
     { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
   ],
 })

@@ -7,6 +7,6 @@ import { SharedModule } from "../shared/shared.module";
   imports: [CommonModule, SharedModule],
   exports: [FeedbackComponent],
   declarations: [FeedbackComponent],
-  providers: [FeedbackComponent],
+  providers: [],
 })
 export class FeedbackModule {}
