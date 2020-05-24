@@ -44,7 +44,7 @@ export class UserConverter {
     filter: string,
     page: number,
     size = 5,
-    sortBy = "username",
+    sortBy = "USERNAME",
     sortDirection = "asc"
   ): GetUsersPageApiRequest {
     return {
