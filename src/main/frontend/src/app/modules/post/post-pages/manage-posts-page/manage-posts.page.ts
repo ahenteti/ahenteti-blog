@@ -34,12 +34,12 @@ export class ManagePostsPage extends AbstractManageResourcesPage<PostSummary>
 
   // prettier-ignore
   fetchPage(filter: string, page: number) {
-      const request = this.postConverter.toGetUserPostsApiRequest(filter, page);
-      this.postHttpServices
-        .getUserPosts(request)
-        .then((posts) => this.handleGetUserPostsSuccessEvent(posts))
-        .catch((error) => this.handleGetUserPostsErrorEvent(error));
-    }
+    const request = this.postConverter.toGetUserPostsApiRequest(filter, page);
+    this.postHttpServices
+      .getUserPosts(request)
+      .then((posts) => this.handleGetUserPostsSuccessEvent(posts))
+      .catch((error) => this.handleGetUserPostsErrorEvent(error));
+  }
 
   deletePost(postId: number) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {

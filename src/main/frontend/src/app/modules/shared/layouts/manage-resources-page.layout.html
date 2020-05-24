@@ -1,6 +1,9 @@
 <div class="header">
   <app-page-title [value]="pageTitle"></app-page-title>
-  <ng-content select=".top-table-actions"></ng-content>
+  <div class="top-table-actions-container">
+    <app-filter (onFilter)="onFilter($event)"></app-filter>
+    <ng-content select=".top-table-actions"></ng-content>
+  </div>
 </div>
 
 <ng-content select=".table"></ng-content>

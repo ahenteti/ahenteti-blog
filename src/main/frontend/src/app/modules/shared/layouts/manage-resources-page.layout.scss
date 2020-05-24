@@ -5,6 +5,15 @@
   justify-content: space-between;
 }
 
+.top-table-actions-container {
+  display: flex;
+  align-items: center;
+}
+
+:host ::ng-deep .top-table-actions-container > * {
+  margin-left: 1rem;
+}
+
 .bottom-table-actions {
   --button-size: 3rem;
   margin-top: 1.5rem;

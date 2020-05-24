@@ -4,6 +4,7 @@
   [nextButtonCssClasses]="nextButtonCssClasses"
   (previousButtonClick)="handlePreviousButtonClickEvent()"
   (nextButtonClick)="handleNextButtonClickEvent()"
+  (filter)="onFilter($event)"
 >
   <ng-container class="top-table-actions">
     <app-new-button

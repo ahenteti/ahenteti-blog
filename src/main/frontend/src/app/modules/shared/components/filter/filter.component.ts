@@ -21,7 +21,6 @@ export class FilterComponent {
   @ViewChild("input", { static: true }) input: ElementRef;
 
   onSubmit() {
-    if (!this.filter) return;
     this.onFilter.emit(this.filter);
     this.input.nativeElement.focus();
   }

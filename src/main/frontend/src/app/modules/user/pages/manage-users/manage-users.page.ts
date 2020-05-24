@@ -31,11 +31,6 @@ export class ManageUsersPage extends AbstractManageResourcesPage<User>
       .catch(error => this.handleGetUsersPageErrorEvent(error));
   }
 
-  onFilter(filter) {
-    this.filter = filter;
-    this.fetchPage(this.filter, 0);
-  }
-
   deleteUser(user: User) {
     console.log(user);
     this.alertService.error("Delete functionality not yet implemented");

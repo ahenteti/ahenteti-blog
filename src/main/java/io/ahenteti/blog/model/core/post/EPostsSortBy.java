@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum EPostsSortBy implements ISortBy {
-    CREATED_AT("createdAt");
+    CREATED_AT("CREATED_AT");
 
     private String value;
 

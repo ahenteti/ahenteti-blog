@@ -4,11 +4,8 @@
   [nextButtonCssClasses]="nextButtonCssClasses"
   (previousButtonClick)="handlePreviousButtonClickEvent()"
   (nextButtonClick)="handleNextButtonClickEvent()"
+  (filter)="onFilter($event)"
 >
-  <ng-container class="top-table-actions">
-    <app-filter (onFilter)="onFilter($event)"></app-filter>
-  </ng-container>
-
   <ng-container class="table">
     <table mat-table matSort [dataSource]="dataSource">
       <ng-container matColumnDef="username">

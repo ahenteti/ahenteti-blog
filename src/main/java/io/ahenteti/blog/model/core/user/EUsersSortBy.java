@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum EUsersSortBy implements ISortBy {
-    JOIN_AT("joinAt"), USERNAME("username");
+    JOIN_AT("JOIN_AT"), USERNAME("USERNAME");
 
     private String value;
 

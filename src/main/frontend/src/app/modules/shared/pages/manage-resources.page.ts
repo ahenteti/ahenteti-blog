@@ -18,6 +18,11 @@ export abstract class AbstractManageResourcesPage<T> implements OnInit {
 
   abstract fetchPage(filter: string, page: number): void;
 
+  onFilter(filter) {
+    this.filter = filter;
+    this.fetchPage(this.filter, 0);
+  }
+
   handleNextButtonClickEvent() {
     if (this.currentPage.lastPage) return;
     this.fetchPage(this.filter, this.currentPage.page + 1);

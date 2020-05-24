@@ -12,6 +12,7 @@ export class ManageResourcesPageLayout {
 
   @Output() previousButtonClick = new EventEmitter<void>();
   @Output() nextButtonClick = new EventEmitter<void>();
+  @Output() filter = new EventEmitter<string>();
 
   handlePreviousButtonClickEvent() {
     this.previousButtonClick.next();
@@ -19,5 +20,9 @@ export class ManageResourcesPageLayout {
 
   handleNextButtonClickEvent() {
     this.nextButtonClick.next();
+  }
+
+  onFilter(filter: string) {
+    this.filter.emit(filter);
   }
 }

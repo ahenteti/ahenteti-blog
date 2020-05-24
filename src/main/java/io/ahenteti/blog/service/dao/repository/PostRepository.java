@@ -11,7 +11,6 @@ import java.util.List;
 
 @Repository
 public interface PostRepository extends JpaRepository<PostEntity, Long> {
-    Page<PostEntity> findByAuthorId(Long authorId, Pageable pageable);
     List<PostEntity> findByCategoryIn(List<String> categories);
     List<PostEntity> findByAuthorUsernameIn(List<String> authors);
 
@@ -20,4 +19,12 @@ public interface PostRepository extends JpaRepository<PostEntity, Long> {
 
     @Query(value = "SELECT DISTINCT u.USERNAME FROM T_POSTS p INNER JOIN T_USERS u ON p.AUTHOR_ID = u.ID", nativeQuery = true)
     List<String> getPostAuthors();
+
+    // @formatter:off
+    @Query(value = "SELECT p.* " +
+                   "FROM T_POSTS p " +
+                   "WHERE p.AUTHOR_ID = :authorId " +
+                   "      AND (p.TITLE LIKE :sqlFilter OR p.CATEGORY LIKE :sqlFilter OR p.TAGS LIKE :sqlFilter OR p.CREATED_AT\\:\\:text LIKE :sqlFilter)", nativeQuery = true)
+    Page<PostEntity> findByAuthorId(Long authorId, String sqlFilter, Pageable pageable);
+    // @formatter:on
 }

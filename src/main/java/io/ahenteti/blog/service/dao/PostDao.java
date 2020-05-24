@@ -70,7 +70,7 @@ public class PostDao {
     public PostsPage getUserPosts(ValidGetUserPostsApiRequest request) {
         // @formatter:off
         PageRequest pageRequest = pageConverter.toPageRequest(request);
-        Page<PostEntity> posts = postRepository.findByAuthorId(request.getUser().getPrimaryKey(), pageRequest);
+        Page<PostEntity> posts = postRepository.findByAuthorId(request.getUser().getPrimaryKey(), request.getSqlFilter(), pageRequest);
         return postConverter.toPostsPage(posts, request);
         // @formatter:on
     }
