@@ -112,7 +112,27 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div *ngFor=\"let alert of alerts\" class=\"{{ cssClasses(alert) }}\">\r\n  <img class=\"alert-icon\" [src]=\"alert.icon\" />\r\n  <div class=\"message-container\">\r\n    <span class=\"message\" [innerHTML]=\"alert.message\"></span>\r\n    <span (click)=\"removeAlert(alert)\">\r\n      <span class=\"close-icon iconify\" data-icon=\"ic:round-close\"></span>\r\n    </span>\r\n  </div>\r\n</div>\r\n";
+    __webpack_exports__["default"] = "<div *ngFor=\"let alert of alerts\" class=\"{{ cssClasses(alert) }}\">\r\n  <img class=\"alert-icon\" [src]=\"alert.icon\" />\r\n  <div class=\"message-container\">\r\n    <span class=\"message\" [innerHTML]=\"alert.message\"></span>\r\n    <span (click)=\"removeAlert(alert, $event)\">\r\n      <span class=\"close-icon iconify\" data-icon=\"ic:round-close\"></span>\r\n    </span>\r\n  </div>\r\n</div>\r\n";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/feedback/feedback.component.html":
+  /*!************************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/modules/feedback/feedback.component.html ***!
+    \************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppModulesFeedbackFeedbackComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<div *ngIf=\"user.isAuthenticated\">\r\n  <div class=\"icon-container\">\r\n    <span\r\n      (click)=\"handleFeedbackIconClick($event)\"\r\n      class=\"tooltip-left\"\r\n      data-tooltip=\"Give us your feedback :)\"\r\n    >\r\n      <span class=\"iconify\" data-icon=\"topcoat:feedback\"></span>\r\n    </span>\r\n  </div>\r\n  <div class=\"feedback-container\">\r\n    <div class=\"feedback-input\">\r\n      <h2 class=\"feedback-title\">Feedback</h2>\r\n      <textarea\r\n        name=\"feedback\"\r\n        [(ngModel)]=\"feedback.value\"\r\n        placeholder=\"Give us your feedback to improve...\"\r\n      ></textarea>\r\n    </div>\r\n\r\n    <div class=\"feedback-actions\">\r\n      <button (click)=\"cancel()\">Cancel</button>\r\n      <button (click)=\"submit()\">Submit</button>\r\n    </div>\r\n  </div>\r\n  <div class=\"feedback-background\"></div>\r\n</div>\r\n";
     /***/
   },
 
@@ -332,7 +352,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<app-posts-welcome-message></app-posts-welcome-message>\r\n<app-search-posts\r\n  [selectedTag]=\"postsState.selectedTag$ | async\"\r\n  [tags]=\"postsState.allTags$ | async\"\r\n  (inputChange)=\"handleSearchTextChange($event)\"\r\n></app-search-posts>\r\n\r\n<app-posts-group\r\n  *ngFor=\"let postsGroup of (postsState.displayedPostsGroups$ | async)\"\r\n  [postsGroup]=\"postsGroup\"\r\n></app-posts-group>\r\n\r\n<app-load-more-button\r\n  *ngIf=\"!noMorePosts\"\r\n  text=\"Load more posts\"\r\n  (click)=\"loadMorePosts()\"\r\n></app-load-more-button>\r\n";
+    __webpack_exports__["default"] = "<app-posts-welcome-message></app-posts-welcome-message>\r\n<app-search-posts\r\n  [selectedTag]=\"postsState.selectedTag$ | async\"\r\n  [tags]=\"postsState.allTags$ | async\"\r\n  (inputChange)=\"handleSearchTextChange($event)\"\r\n></app-search-posts>\r\n\r\n<app-posts-group\r\n  *ngFor=\"let postsGroup of (postsState.displayedPostsGroups$ | async)\"\r\n  [postsGroup]=\"postsGroup\"\r\n></app-posts-group>\r\n\r\n<app-load-more-button\r\n  appSlideIn\r\n  *ngIf=\"!noMorePosts\"\r\n  text=\"Load more posts\"\r\n  (click)=\"loadMorePosts()\"\r\n></app-load-more-button>\r\n";
     /***/
   },
 
@@ -1962,7 +1982,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       selector: "app-root",
       template:
       /*html*/
-      "\n    <app-navbar></app-navbar>\n    <app-alert></app-alert>\n    <app-loader></app-loader>\n    <main>\n      <router-outlet></router-outlet>\n    </main>\n  ",
+      "\n    <app-navbar></app-navbar>\n    <app-alert></app-alert>\n    <app-loader></app-loader>\n    <app-feedback></app-feedback>\n    <main>\n      <router-outlet></router-outlet>\n    </main>\n  ",
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./app.component.scss */
       "./src/app/app.component.scss"))["default"]]
@@ -2151,6 +2171,36 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var _modules_user_services_admin_guard__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(
     /*! ./modules/user/services/admin.guard */
     "./src/app/modules/user/services/admin.guard.ts");
+    /* harmony import */
+
+
+    var _modules_feedback_feedback_module__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(
+    /*! ./modules/feedback/feedback.module */
+    "./src/app/modules/feedback/feedback.module.ts");
+    /* harmony import */
+
+
+    var _modules_feedback_feedback_converter__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(
+    /*! ./modules/feedback/feedback.converter */
+    "./src/app/modules/feedback/feedback.converter.ts");
+    /* harmony import */
+
+
+    var _modules_feedback_feedback_validator__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(
+    /*! ./modules/feedback/feedback.validator */
+    "./src/app/modules/feedback/feedback.validator.ts");
+    /* harmony import */
+
+
+    var _modules_feedback_feedback_http_services__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(
+    /*! ./modules/feedback/feedback.http.services */
+    "./src/app/modules/feedback/feedback.http.services.ts");
+    /* harmony import */
+
+
+    var _modules_alert_alert_service__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(
+    /*! ./modules/alert/alert.service */
+    "./src/app/modules/alert/alert.service.ts");
 
     var routes = [{
       path: "",
@@ -2166,9 +2216,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
       declarations: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]],
-      imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_4__["BrowserAnimationsModule"], _modules_shared_shared_module__WEBPACK_IMPORTED_MODULE_14__["SharedModule"], _modules_loader_loader_module__WEBPACK_IMPORTED_MODULE_22__["LoaderModule"], _modules_alert_alert_module__WEBPACK_IMPORTED_MODULE_5__["AlertModule"], _modules_navbar_navbar_module__WEBPACK_IMPORTED_MODULE_6__["NavbarModule"], _modules_post_post_pages_post_pages_module__WEBPACK_IMPORTED_MODULE_7__["PostPageModule"], _angular_router__WEBPACK_IMPORTED_MODULE_13__["RouterModule"].forRoot(routes)],
+      imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_4__["BrowserAnimationsModule"], _modules_shared_shared_module__WEBPACK_IMPORTED_MODULE_14__["SharedModule"], _modules_loader_loader_module__WEBPACK_IMPORTED_MODULE_22__["LoaderModule"], _modules_alert_alert_module__WEBPACK_IMPORTED_MODULE_5__["AlertModule"], _modules_navbar_navbar_module__WEBPACK_IMPORTED_MODULE_6__["NavbarModule"], _modules_post_post_pages_post_pages_module__WEBPACK_IMPORTED_MODULE_7__["PostPageModule"], _modules_feedback_feedback_module__WEBPACK_IMPORTED_MODULE_27__["FeedbackModule"], _angular_router__WEBPACK_IMPORTED_MODULE_13__["RouterModule"].forRoot(routes)],
       bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]],
-      providers: [_modules_post_post_shared_services_post_http_services__WEBPACK_IMPORTED_MODULE_16__["PostHttpServices"], _modules_post_post_shared_services_post_converter__WEBPACK_IMPORTED_MODULE_17__["PostConverter"], _modules_post_post_comments_converter_post_comment_converter__WEBPACK_IMPORTED_MODULE_18__["PostCommentConverter"], _modules_post_post_comments_services_post_comment_http_service__WEBPACK_IMPORTED_MODULE_19__["PostCommentHttpServices"], _modules_shared_services_theme_localstorage_services__WEBPACK_IMPORTED_MODULE_8__["ThemeLocalStorageServices"], _modules_user_services_user_http_services__WEBPACK_IMPORTED_MODULE_9__["UserHttpServices"], _modules_user_services_user_login_services__WEBPACK_IMPORTED_MODULE_10__["UserLoginServices"], _modules_user_services_user_observable__WEBPACK_IMPORTED_MODULE_11__["UserObservable"], _modules_user_services_user_converter__WEBPACK_IMPORTED_MODULE_12__["UserConverter"], _modules_user_services_logged_in_guard__WEBPACK_IMPORTED_MODULE_15__["LoggedInGuard"], _modules_post_post_shared_services_post_validator__WEBPACK_IMPORTED_MODULE_20__["PostValidator"], _modules_shared_services_window_service__WEBPACK_IMPORTED_MODULE_21__["WindowService"], _modules_loader_loader_service__WEBPACK_IMPORTED_MODULE_25__["LoaderService"], _modules_user_services_admin_guard__WEBPACK_IMPORTED_MODULE_26__["AdminGuard"], {
+      providers: [_modules_alert_alert_service__WEBPACK_IMPORTED_MODULE_31__["AlertService"], _modules_post_post_shared_services_post_http_services__WEBPACK_IMPORTED_MODULE_16__["PostHttpServices"], _modules_post_post_shared_services_post_converter__WEBPACK_IMPORTED_MODULE_17__["PostConverter"], _modules_post_post_comments_converter_post_comment_converter__WEBPACK_IMPORTED_MODULE_18__["PostCommentConverter"], _modules_post_post_comments_services_post_comment_http_service__WEBPACK_IMPORTED_MODULE_19__["PostCommentHttpServices"], _modules_shared_services_theme_localstorage_services__WEBPACK_IMPORTED_MODULE_8__["ThemeLocalStorageServices"], _modules_user_services_user_http_services__WEBPACK_IMPORTED_MODULE_9__["UserHttpServices"], _modules_user_services_user_login_services__WEBPACK_IMPORTED_MODULE_10__["UserLoginServices"], _modules_user_services_user_observable__WEBPACK_IMPORTED_MODULE_11__["UserObservable"], _modules_user_services_user_converter__WEBPACK_IMPORTED_MODULE_12__["UserConverter"], _modules_user_services_logged_in_guard__WEBPACK_IMPORTED_MODULE_15__["LoggedInGuard"], _modules_post_post_shared_services_post_validator__WEBPACK_IMPORTED_MODULE_20__["PostValidator"], _modules_shared_services_window_service__WEBPACK_IMPORTED_MODULE_21__["WindowService"], _modules_loader_loader_service__WEBPACK_IMPORTED_MODULE_25__["LoaderService"], _modules_user_services_admin_guard__WEBPACK_IMPORTED_MODULE_26__["AdminGuard"], _modules_feedback_feedback_converter__WEBPACK_IMPORTED_MODULE_28__["FeedbackConverter"], _modules_feedback_feedback_validator__WEBPACK_IMPORTED_MODULE_29__["FeedbackValidator"], _modules_feedback_feedback_http_services__WEBPACK_IMPORTED_MODULE_30__["FeedbackHttpServices"], {
         provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_23__["HTTP_INTERCEPTORS"],
         useClass: _modules_loader_loader_interceptor__WEBPACK_IMPORTED_MODULE_24__["LoaderInterceptor"],
         multi: true
@@ -2299,9 +2349,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         }
       }, {
         key: "removeAlert",
-        value: function removeAlert(alert) {
+        value: function removeAlert(alert, event) {
           var _this2 = this;
 
+          if (event) event.stopPropagation();
           this.alerts.find(function (x) {
             return x === alert;
           }).fadeout = true;
@@ -2646,6 +2697,498 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
   },
 
   /***/
+  "./src/app/modules/feedback/feedback.component.scss":
+  /*!**********************************************************!*\
+    !*** ./src/app/modules/feedback/feedback.component.scss ***!
+    \**********************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppModulesFeedbackFeedbackComponentScss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = ":host {\n  --feedback-form-width: 30rem;\n}\n\n.icon-container {\n  position: fixed;\n  bottom: 2rem;\n  right: 2rem;\n}\n\n.icon-container .iconify {\n  font-size: 2.8rem;\n  cursor: pointer;\n  transition: var(--transition);\n  transition-property: color;\n}\n\n.icon-container .iconify:hover {\n  color: var(--primary-color);\n}\n\n.feedback-container {\n  position: fixed;\n  z-index: calc(var(--navbar-z-index) + 10);\n  top: var(--navbar-height);\n  right: calc(var(--feedback-form-width) * -1);\n  bottom: 0;\n  padding: 2rem;\n  background: var(--feedback-form-background-color);\n  width: var(--feedback-form-width);\n  transition: var(--transition);\n  transition-property: color, background-color, right, display;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n\n.feedback-container .feedback-title {\n  font-size: 1.8rem;\n  margin-bottom: 2rem;\n}\n\n.feedback-container textarea {\n  height: 15rem;\n}\n\n.feedback-container .feedback-actions {\n  display: flex;\n  justify-content: flex-end;\n}\n\n.feedback-container .feedback-actions button {\n  margin-left: 1rem;\n}\n\n:host.active .feedback-container {\n  right: 0;\n}\n\n:host.active .feedback-background {\n  position: fixed;\n  top: var(--navbar-height);\n  bottom: 0;\n  left: 0;\n  right: var(--feedback-form-width);\n  z-index: 999999;\n  content: \"\";\n  background-color: var(--semi-transparent-color);\n  transition: var(--transition);\n  transition-property: color, background-color;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9mZWVkYmFjay9DOlxcZGV2XFxwcm9qZWN0c1xcYWhlbnRldGktYmxvZ1xcc3JjXFxtYWluXFxmcm9udGVuZC9zcmNcXGFwcFxcbW9kdWxlc1xcZmVlZGJhY2tcXGZlZWRiYWNrLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9tb2R1bGVzL2ZlZWRiYWNrL2ZlZWRiYWNrLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsNEJBQUE7QUNDRjs7QURFQTtFQUNFLGVBQUE7RUFDQSxZQUFBO0VBQ0EsV0FBQTtBQ0NGOztBRENFO0VBQ0UsaUJBQUE7RUFDQSxlQUFBO0VBQ0EsNkJBQUE7RUFDQSwwQkFBQTtBQ0NKOztBRENJO0VBQ0UsMkJBQUE7QUNDTjs7QURJQTtFQUNFLGVBQUE7RUFDQSx5Q0FBQTtFQUNBLHlCQUFBO0VBQ0EsNENBQUE7RUFDQSxTQUFBO0VBQ0EsYUFBQTtFQUNBLGlEQUFBO0VBQ0EsaUNBQUE7RUFDQSw2QkFBQTtFQUNBLDREQUFBO0VBQ0EsYUFBQTtFQUNBLHNCQUFBO0VBQ0EsOEJBQUE7QUNERjs7QURHRTtFQUNFLGlCQUFBO0VBQ0EsbUJBQUE7QUNESjs7QURJRTtFQUNFLGFBQUE7QUNGSjs7QURLRTtFQUNFLGFBQUE7RUFDQSx5QkFBQTtBQ0hKOztBREtJO0VBQ0UsaUJBQUE7QUNITjs7QURTRTtFQUNFLFFBQUE7QUNOSjs7QURTRTtFQUNFLGVBQUE7RUFDQSx5QkFBQTtFQUNBLFNBQUE7RUFDQSxPQUFBO0VBQ0EsaUNBQUE7RUFDQSxlQUFBO0VBQ0EsV0FBQTtFQUNBLCtDQUFBO0VBQ0EsNkJBQUE7RUFDQSw0Q0FBQTtBQ1BKIiwiZmlsZSI6InNyYy9hcHAvbW9kdWxlcy9mZWVkYmFjay9mZWVkYmFjay5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0IHtcclxuICAtLWZlZWRiYWNrLWZvcm0td2lkdGg6IDMwcmVtO1xyXG59XHJcblxyXG4uaWNvbi1jb250YWluZXIge1xyXG4gIHBvc2l0aW9uOiBmaXhlZDtcclxuICBib3R0b206IDJyZW07XHJcbiAgcmlnaHQ6IDJyZW07XHJcblxyXG4gICYgLmljb25pZnkge1xyXG4gICAgZm9udC1zaXplOiAyLjhyZW07XHJcbiAgICBjdXJzb3I6IHBvaW50ZXI7XHJcbiAgICB0cmFuc2l0aW9uOiB2YXIoLS10cmFuc2l0aW9uKTtcclxuICAgIHRyYW5zaXRpb24tcHJvcGVydHk6IGNvbG9yO1xyXG5cclxuICAgICY6aG92ZXIge1xyXG4gICAgICBjb2xvcjogdmFyKC0tcHJpbWFyeS1jb2xvcik7XHJcbiAgICB9XHJcbiAgfVxyXG59XHJcblxyXG4uZmVlZGJhY2stY29udGFpbmVyIHtcclxuICBwb3NpdGlvbjogZml4ZWQ7XHJcbiAgei1pbmRleDogY2FsYyh2YXIoLS1uYXZiYXItei1pbmRleCkgKyAxMCk7XHJcbiAgdG9wOiB2YXIoLS1uYXZiYXItaGVpZ2h0KTtcclxuICByaWdodDogY2FsYyh2YXIoLS1mZWVkYmFjay1mb3JtLXdpZHRoKSAqIC0xKTtcclxuICBib3R0b206IDA7XHJcbiAgcGFkZGluZzogMnJlbTtcclxuICBiYWNrZ3JvdW5kOiB2YXIoLS1mZWVkYmFjay1mb3JtLWJhY2tncm91bmQtY29sb3IpO1xyXG4gIHdpZHRoOiB2YXIoLS1mZWVkYmFjay1mb3JtLXdpZHRoKTtcclxuICB0cmFuc2l0aW9uOiB2YXIoLS10cmFuc2l0aW9uKTtcclxuICB0cmFuc2l0aW9uLXByb3BlcnR5OiBjb2xvciwgYmFja2dyb3VuZC1jb2xvciwgcmlnaHQsIGRpc3BsYXk7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcclxuXHJcbiAgJiAuZmVlZGJhY2stdGl0bGUge1xyXG4gICAgZm9udC1zaXplOiAxLjhyZW07XHJcbiAgICBtYXJnaW4tYm90dG9tOiAycmVtO1xyXG4gIH1cclxuXHJcbiAgJiB0ZXh0YXJlYSB7XHJcbiAgICBoZWlnaHQ6IDE1cmVtO1xyXG4gIH1cclxuXHJcbiAgJiAuZmVlZGJhY2stYWN0aW9ucyB7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAganVzdGlmeS1jb250ZW50OiBmbGV4LWVuZDtcclxuXHJcbiAgICAmIGJ1dHRvbiB7XHJcbiAgICAgIG1hcmdpbi1sZWZ0OiAxcmVtO1xyXG4gICAgfVxyXG4gIH1cclxufVxyXG5cclxuOmhvc3QuYWN0aXZlIHtcclxuICAmIC5mZWVkYmFjay1jb250YWluZXIge1xyXG4gICAgcmlnaHQ6IDA7XHJcbiAgfVxyXG5cclxuICAmIC5mZWVkYmFjay1iYWNrZ3JvdW5kIHtcclxuICAgIHBvc2l0aW9uOiBmaXhlZDtcclxuICAgIHRvcDogdmFyKC0tbmF2YmFyLWhlaWdodCk7XHJcbiAgICBib3R0b206IDA7XHJcbiAgICBsZWZ0OiAwO1xyXG4gICAgcmlnaHQ6IHZhcigtLWZlZWRiYWNrLWZvcm0td2lkdGgpO1xyXG4gICAgei1pbmRleDogOTk5OTk5O1xyXG4gICAgY29udGVudDogXCJcIjtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXNlbWktdHJhbnNwYXJlbnQtY29sb3IpO1xyXG4gICAgdHJhbnNpdGlvbjogdmFyKC0tdHJhbnNpdGlvbik7XHJcbiAgICB0cmFuc2l0aW9uLXByb3BlcnR5OiBjb2xvciwgYmFja2dyb3VuZC1jb2xvcjtcclxuICB9XHJcbn1cclxuIiwiOmhvc3Qge1xuICAtLWZlZWRiYWNrLWZvcm0td2lkdGg6IDMwcmVtO1xufVxuXG4uaWNvbi1jb250YWluZXIge1xuICBwb3NpdGlvbjogZml4ZWQ7XG4gIGJvdHRvbTogMnJlbTtcbiAgcmlnaHQ6IDJyZW07XG59XG4uaWNvbi1jb250YWluZXIgLmljb25pZnkge1xuICBmb250LXNpemU6IDIuOHJlbTtcbiAgY3Vyc29yOiBwb2ludGVyO1xuICB0cmFuc2l0aW9uOiB2YXIoLS10cmFuc2l0aW9uKTtcbiAgdHJhbnNpdGlvbi1wcm9wZXJ0eTogY29sb3I7XG59XG4uaWNvbi1jb250YWluZXIgLmljb25pZnk6aG92ZXIge1xuICBjb2xvcjogdmFyKC0tcHJpbWFyeS1jb2xvcik7XG59XG5cbi5mZWVkYmFjay1jb250YWluZXIge1xuICBwb3NpdGlvbjogZml4ZWQ7XG4gIHotaW5kZXg6IGNhbGModmFyKC0tbmF2YmFyLXotaW5kZXgpICsgMTApO1xuICB0b3A6IHZhcigtLW5hdmJhci1oZWlnaHQpO1xuICByaWdodDogY2FsYyh2YXIoLS1mZWVkYmFjay1mb3JtLXdpZHRoKSAqIC0xKTtcbiAgYm90dG9tOiAwO1xuICBwYWRkaW5nOiAycmVtO1xuICBiYWNrZ3JvdW5kOiB2YXIoLS1mZWVkYmFjay1mb3JtLWJhY2tncm91bmQtY29sb3IpO1xuICB3aWR0aDogdmFyKC0tZmVlZGJhY2stZm9ybS13aWR0aCk7XG4gIHRyYW5zaXRpb246IHZhcigtLXRyYW5zaXRpb24pO1xuICB0cmFuc2l0aW9uLXByb3BlcnR5OiBjb2xvciwgYmFja2dyb3VuZC1jb2xvciwgcmlnaHQsIGRpc3BsYXk7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2Vlbjtcbn1cbi5mZWVkYmFjay1jb250YWluZXIgLmZlZWRiYWNrLXRpdGxlIHtcbiAgZm9udC1zaXplOiAxLjhyZW07XG4gIG1hcmdpbi1ib3R0b206IDJyZW07XG59XG4uZmVlZGJhY2stY29udGFpbmVyIHRleHRhcmVhIHtcbiAgaGVpZ2h0OiAxNXJlbTtcbn1cbi5mZWVkYmFjay1jb250YWluZXIgLmZlZWRiYWNrLWFjdGlvbnMge1xuICBkaXNwbGF5OiBmbGV4O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtZW5kO1xufVxuLmZlZWRiYWNrLWNvbnRhaW5lciAuZmVlZGJhY2stYWN0aW9ucyBidXR0b24ge1xuICBtYXJnaW4tbGVmdDogMXJlbTtcbn1cblxuOmhvc3QuYWN0aXZlIC5mZWVkYmFjay1jb250YWluZXIge1xuICByaWdodDogMDtcbn1cbjpob3N0LmFjdGl2ZSAuZmVlZGJhY2stYmFja2dyb3VuZCB7XG4gIHBvc2l0aW9uOiBmaXhlZDtcbiAgdG9wOiB2YXIoLS1uYXZiYXItaGVpZ2h0KTtcbiAgYm90dG9tOiAwO1xuICBsZWZ0OiAwO1xuICByaWdodDogdmFyKC0tZmVlZGJhY2stZm9ybS13aWR0aCk7XG4gIHotaW5kZXg6IDk5OTk5OTtcbiAgY29udGVudDogXCJcIjtcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tc2VtaS10cmFuc3BhcmVudC1jb2xvcik7XG4gIHRyYW5zaXRpb246IHZhcigtLXRyYW5zaXRpb24pO1xuICB0cmFuc2l0aW9uLXByb3BlcnR5OiBjb2xvciwgYmFja2dyb3VuZC1jb2xvcjtcbn0iXX0= */";
+    /***/
+  },
+
+  /***/
+  "./src/app/modules/feedback/feedback.component.ts":
+  /*!********************************************************!*\
+    !*** ./src/app/modules/feedback/feedback.component.ts ***!
+    \********************************************************/
+
+  /*! exports provided: FeedbackComponent */
+
+  /***/
+  function srcAppModulesFeedbackFeedbackComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "FeedbackComponent", function () {
+      return FeedbackComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _user_components_user_aware_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ../user/components/user-aware.component */
+    "./src/app/modules/user/components/user-aware.component.ts");
+    /* harmony import */
+
+
+    var _user_services_user_observable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ../user/services/user.observable */
+    "./src/app/modules/user/services/user.observable.ts");
+    /* harmony import */
+
+
+    var _feedback_converter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! ./feedback.converter */
+    "./src/app/modules/feedback/feedback.converter.ts");
+    /* harmony import */
+
+
+    var _feedback_http_services__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! ./feedback.http.services */
+    "./src/app/modules/feedback/feedback.http.services.ts");
+    /* harmony import */
+
+
+    var _feedback_internal_model__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! ./feedback.internal.model */
+    "./src/app/modules/feedback/feedback.internal.model.ts");
+    /* harmony import */
+
+
+    var _feedback_validator__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! ./feedback.validator */
+    "./src/app/modules/feedback/feedback.validator.ts");
+    /* harmony import */
+
+
+    var _alert_alert_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    /*! ../alert/alert.service */
+    "./src/app/modules/alert/alert.service.ts");
+
+    var FeedbackComponent = /*#__PURE__*/function (_user_components_user) {
+      _inherits(FeedbackComponent, _user_components_user);
+
+      var _super2 = _createSuper(FeedbackComponent);
+
+      function FeedbackComponent(userObservable, feedbackValidator, feedbackConverter, feedbackHttpServices, alertService) {
+        var _this4;
+
+        _classCallCheck(this, FeedbackComponent);
+
+        _this4 = _super2.call(this, userObservable);
+        _this4.feedbackValidator = feedbackValidator;
+        _this4.feedbackConverter = feedbackConverter;
+        _this4.feedbackHttpServices = feedbackHttpServices;
+        _this4.alertService = alertService;
+        _this4.active = false;
+        _this4.feedback = new _feedback_internal_model__WEBPACK_IMPORTED_MODULE_6__["Feedback"]();
+        return _this4;
+      }
+
+      _createClass(FeedbackComponent, [{
+        key: "ngAfterViewInit",
+        value: function ngAfterViewInit() {
+          var _this5 = this;
+
+          document.addEventListener("click", function (event) {
+            if (event.target.closest(".feedback-container")) return;
+            _this5.active = false;
+          });
+        }
+      }, {
+        key: "handleFeedbackIconClick",
+        value: function handleFeedbackIconClick(event) {
+          event.stopPropagation();
+          this.active = true;
+        }
+      }, {
+        key: "cancel",
+        value: function cancel() {
+          this.active = false;
+        } // prettier-ignore
+
+      }, {
+        key: "submit",
+        value: function submit() {
+          var _this6 = this;
+
+          if (this.feedbackValidator.validateFeedback(this.feedback)) {
+            var request = this.feedbackConverter.toCreateFeedbackApiRequest(this.feedback);
+            this.feedbackHttpServices.createFeedback(request).then(function () {
+              return _this6.handleCreateFeedbackSuccessEvent();
+            })["catch"](function (error) {
+              return _this6.handleCreateFeedbackErrorEvent();
+            });
+          }
+        }
+      }, {
+        key: "handleCreateFeedbackErrorEvent",
+        value: function handleCreateFeedbackErrorEvent() {
+          this.alertService.error("Error while sending your feedback :(");
+        }
+      }, {
+        key: "handleCreateFeedbackSuccessEvent",
+        value: function handleCreateFeedbackSuccessEvent() {
+          this.active = false;
+          this.feedback.value = "";
+          this.alertService.info("Thank your for your feedback :)");
+        }
+      }]);
+
+      return FeedbackComponent;
+    }(_user_components_user_aware_component__WEBPACK_IMPORTED_MODULE_2__["UserAwareComponent"]);
+
+    FeedbackComponent.ctorParameters = function () {
+      return [{
+        type: _user_services_user_observable__WEBPACK_IMPORTED_MODULE_3__["UserObservable"]
+      }, {
+        type: _feedback_validator__WEBPACK_IMPORTED_MODULE_7__["FeedbackValidator"]
+      }, {
+        type: _feedback_converter__WEBPACK_IMPORTED_MODULE_4__["FeedbackConverter"]
+      }, {
+        type: _feedback_http_services__WEBPACK_IMPORTED_MODULE_5__["FeedbackHttpServices"]
+      }, {
+        type: _alert_alert_service__WEBPACK_IMPORTED_MODULE_8__["AlertService"]
+      }];
+    };
+
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["HostBinding"])("class.active")], FeedbackComponent.prototype, "active", void 0);
+    FeedbackComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: "app-feedback",
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./feedback.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/feedback/feedback.component.html"))["default"],
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./feedback.component.scss */
+      "./src/app/modules/feedback/feedback.component.scss"))["default"]]
+    })], FeedbackComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/modules/feedback/feedback.converter.ts":
+  /*!********************************************************!*\
+    !*** ./src/app/modules/feedback/feedback.converter.ts ***!
+    \********************************************************/
+
+  /*! exports provided: FeedbackConverter */
+
+  /***/
+  function srcAppModulesFeedbackFeedbackConverterTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "FeedbackConverter", function () {
+      return FeedbackConverter;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    var FeedbackConverter = /*#__PURE__*/function () {
+      function FeedbackConverter() {
+        _classCallCheck(this, FeedbackConverter);
+      }
+
+      _createClass(FeedbackConverter, [{
+        key: "toCreateFeedbackApiRequest",
+        value: function toCreateFeedbackApiRequest(feedback) {
+          return {
+            url: "/secure-api/feedbacks",
+            body: {
+              value: feedback.value
+            }
+          };
+        }
+      }]);
+
+      return FeedbackConverter;
+    }();
+
+    FeedbackConverter = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()], FeedbackConverter);
+    /***/
+  },
+
+  /***/
+  "./src/app/modules/feedback/feedback.http.services.ts":
+  /*!************************************************************!*\
+    !*** ./src/app/modules/feedback/feedback.http.services.ts ***!
+    \************************************************************/
+
+  /*! exports provided: FeedbackHttpServices */
+
+  /***/
+  function srcAppModulesFeedbackFeedbackHttpServicesTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "FeedbackHttpServices", function () {
+      return FeedbackHttpServices;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/common/http */
+    "./node_modules/@angular/common/fesm2015/http.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    var FeedbackHttpServices = /*#__PURE__*/function () {
+      function FeedbackHttpServices(http) {
+        _classCallCheck(this, FeedbackHttpServices);
+
+        this.http = http;
+      } // prettier-ignore
+
+
+      _createClass(FeedbackHttpServices, [{
+        key: "createFeedback",
+        value: function createFeedback(request) {
+          return this.http.post(request.url, request.body).toPromise();
+        }
+      }]);
+
+      return FeedbackHttpServices;
+    }();
+
+    FeedbackHttpServices.ctorParameters = function () {
+      return [{
+        type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]
+      }];
+    };
+
+    FeedbackHttpServices = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])()], FeedbackHttpServices);
+    /***/
+  },
+
+  /***/
+  "./src/app/modules/feedback/feedback.internal.model.ts":
+  /*!*************************************************************!*\
+    !*** ./src/app/modules/feedback/feedback.internal.model.ts ***!
+    \*************************************************************/
+
+  /*! exports provided: Feedback */
+
+  /***/
+  function srcAppModulesFeedbackFeedbackInternalModelTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "Feedback", function () {
+      return Feedback;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+
+    var Feedback = function Feedback() {
+      _classCallCheck(this, Feedback);
+
+      this.value = "";
+    };
+    /***/
+
+  },
+
+  /***/
+  "./src/app/modules/feedback/feedback.module.ts":
+  /*!*****************************************************!*\
+    !*** ./src/app/modules/feedback/feedback.module.ts ***!
+    \*****************************************************/
+
+  /*! exports provided: FeedbackModule */
+
+  /***/
+  function srcAppModulesFeedbackFeedbackModuleTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "FeedbackModule", function () {
+      return FeedbackModule;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/common */
+    "./node_modules/@angular/common/fesm2015/common.js");
+    /* harmony import */
+
+
+    var _feedback_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ./feedback.component */
+    "./src/app/modules/feedback/feedback.component.ts");
+    /* harmony import */
+
+
+    var _shared_shared_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! ../shared/shared.module */
+    "./src/app/modules/shared/shared.module.ts");
+
+    var FeedbackModule = function FeedbackModule() {
+      _classCallCheck(this, FeedbackModule);
+    };
+
+    FeedbackModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+      imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _shared_shared_module__WEBPACK_IMPORTED_MODULE_4__["SharedModule"]],
+      exports: [_feedback_component__WEBPACK_IMPORTED_MODULE_3__["FeedbackComponent"]],
+      declarations: [_feedback_component__WEBPACK_IMPORTED_MODULE_3__["FeedbackComponent"]],
+      providers: []
+    })], FeedbackModule);
+    /***/
+  },
+
+  /***/
+  "./src/app/modules/feedback/feedback.validator.ts":
+  /*!********************************************************!*\
+    !*** ./src/app/modules/feedback/feedback.validator.ts ***!
+    \********************************************************/
+
+  /*! exports provided: FeedbackValidator */
+
+  /***/
+  function srcAppModulesFeedbackFeedbackValidatorTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "FeedbackValidator", function () {
+      return FeedbackValidator;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _shared_services_string_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! ../shared/services/string.utils */
+    "./src/app/modules/shared/services/string.utils.ts");
+    /* harmony import */
+
+
+    var _alert_alert_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ../alert/alert.service */
+    "./src/app/modules/alert/alert.service.ts");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    var FeedbackValidator = /*#__PURE__*/function () {
+      function FeedbackValidator(alertService) {
+        _classCallCheck(this, FeedbackValidator);
+
+        this.alertService = alertService;
+      }
+
+      _createClass(FeedbackValidator, [{
+        key: "validateFeedback",
+        value: function validateFeedback(feedback) {
+          var errors = [];
+
+          if (_shared_services_string_utils__WEBPACK_IMPORTED_MODULE_1__["StringUtils"].isBlank(feedback.value)) {
+            errors.push("Feedback title is mandatory");
+          }
+
+          if (errors.length > 0) this.alertService.error(errors.join("\n"));
+          return errors.length === 0;
+        }
+      }]);
+
+      return FeedbackValidator;
+    }();
+
+    FeedbackValidator.ctorParameters = function () {
+      return [{
+        type: _alert_alert_service__WEBPACK_IMPORTED_MODULE_2__["AlertService"]
+      }];
+    };
+
+    FeedbackValidator = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Injectable"])()], FeedbackValidator);
+    /***/
+  },
+
+  /***/
   "./src/app/modules/loader/loader.component.scss":
   /*!******************************************************!*\
     !*** ./src/app/modules/loader/loader.component.scss ***!
@@ -2802,14 +3345,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(LoaderInterceptor, [{
         key: "intercept",
         value: function intercept(req, next) {
-          var _this4 = this;
+          var _this7 = this;
 
           if (HTTP_REQUEST_WITHOUT_LOADER.includes(req.url)) {
             return next.handle(req);
           } else {
             this.loaderService.show();
             return next.handle(req).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["finalize"])(function () {
-              return _this4.loaderService.hide();
+              return _this7.loaderService.hide();
             }));
           }
         }
@@ -3022,28 +3565,28 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var NavbarComponent = /*#__PURE__*/function (_src_app_modules_user) {
       _inherits(NavbarComponent, _src_app_modules_user);
 
-      var _super2 = _createSuper(NavbarComponent);
+      var _super3 = _createSuper(NavbarComponent);
 
       function NavbarComponent(themeService, userObservable) {
-        var _this5;
+        var _this8;
 
         _classCallCheck(this, NavbarComponent);
 
-        _this5 = _super2.call(this, userObservable);
-        _this5.themeService = themeService;
-        _this5.shadow = false;
-        return _this5;
+        _this8 = _super3.call(this, userObservable);
+        _this8.themeService = themeService;
+        _this8.shadow = false;
+        return _this8;
       }
 
       _createClass(NavbarComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this6 = this;
+          var _this9 = this;
 
           _get(_getPrototypeOf(NavbarComponent.prototype), "ngOnInit", this).call(this);
 
           window.addEventListener("scroll", function () {
-            return _this6.handleWindowScrollEvent();
+            return _this9.handleWindowScrollEvent();
           });
         }
       }, {
@@ -3252,16 +3795,16 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var NavbarUserLinkComponent = /*#__PURE__*/function (_src_app_modules_user2) {
       _inherits(NavbarUserLinkComponent, _src_app_modules_user2);
 
-      var _super3 = _createSuper(NavbarUserLinkComponent);
+      var _super4 = _createSuper(NavbarUserLinkComponent);
 
       function NavbarUserLinkComponent(themeService, userObservable) {
-        var _this7;
+        var _this10;
 
         _classCallCheck(this, NavbarUserLinkComponent);
 
-        _this7 = _super3.call(this, userObservable);
-        _this7.themeService = themeService;
-        return _this7;
+        _this10 = _super4.call(this, userObservable);
+        _this10.themeService = themeService;
+        return _this10;
       }
 
       _createClass(NavbarUserLinkComponent, [{
@@ -3470,37 +4013,37 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var AddPostCommentComponent = /*#__PURE__*/function (_src_app_modules_user3) {
       _inherits(AddPostCommentComponent, _src_app_modules_user3);
 
-      var _super4 = _createSuper(AddPostCommentComponent);
+      var _super5 = _createSuper(AddPostCommentComponent);
 
       function AddPostCommentComponent(route, userObservable, commentHttpServices, alertService) {
-        var _this8;
+        var _this11;
 
         _classCallCheck(this, AddPostCommentComponent);
 
-        _this8 = _super4.call(this, userObservable);
-        _this8.commentHttpServices = commentHttpServices;
-        _this8.alertService = alertService;
-        _this8.newPostComment = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
-        _this8.postId = route.snapshot.params["id"];
-        return _this8;
+        _this11 = _super5.call(this, userObservable);
+        _this11.commentHttpServices = commentHttpServices;
+        _this11.alertService = alertService;
+        _this11.newPostComment = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        _this11.postId = route.snapshot.params["id"];
+        return _this11;
       }
 
       _createClass(AddPostCommentComponent, [{
         key: "onSubmit",
         value: function onSubmit(form) {
-          var _this9 = this;
+          var _this12 = this;
 
           this.commentTextarea.nativeElement.value = "";
           var comment = this.toComment(form.value);
           this.newPostComment.emit(comment);
           this.commentHttpServices.createPostComment(form.value).then(function () {
-            return _this9.alertSavingCommentSuccess();
+            return _this12.alertSavingCommentSuccess();
           })["catch"](function (error) {
             console.error(error);
 
-            _this9.alertSavingCommentError();
+            _this12.alertSavingCommentError();
 
-            _this9.newPostComment.emit(new _models_post_comment_internal_models__WEBPACK_IMPORTED_MODULE_7__["EmptyPostComment"]());
+            _this12.newPostComment.emit(new _models_post_comment_internal_models__WEBPACK_IMPORTED_MODULE_7__["EmptyPostComment"]());
           });
         }
       }, {
@@ -3721,22 +4264,22 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var PostCommentsComponent = /*#__PURE__*/function (_src_app_modules_user4) {
       _inherits(PostCommentsComponent, _src_app_modules_user4);
 
-      var _super5 = _createSuper(PostCommentsComponent);
+      var _super6 = _createSuper(PostCommentsComponent);
 
       function PostCommentsComponent(route, userObservable, commentHttpServices, commentConverter, alertService) {
-        var _this10;
+        var _this13;
 
         _classCallCheck(this, PostCommentsComponent);
 
-        _this10 = _super5.call(this, userObservable);
-        _this10.commentHttpServices = commentHttpServices;
-        _this10.commentConverter = commentConverter;
-        _this10.alertService = alertService;
-        _this10.currentCommentsPage = -1;
-        _this10.postComments = new _models_post_comment_internal_models__WEBPACK_IMPORTED_MODULE_7__["PostComments"]();
-        _this10.stillMoreComments = false;
-        _this10.postId = route.snapshot.params["id"];
-        return _this10;
+        _this13 = _super6.call(this, userObservable);
+        _this13.commentHttpServices = commentHttpServices;
+        _this13.commentConverter = commentConverter;
+        _this13.alertService = alertService;
+        _this13.currentCommentsPage = -1;
+        _this13.postComments = new _models_post_comment_internal_models__WEBPACK_IMPORTED_MODULE_7__["PostComments"]();
+        _this13.stillMoreComments = false;
+        _this13.postId = route.snapshot.params["id"];
+        return _this13;
       }
 
       _createClass(PostCommentsComponent, [{
@@ -3763,21 +4306,21 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "loadComments",
         value: function loadComments() {
-          var _this11 = this;
+          var _this14 = this;
 
           var onNgInit = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
           var request = this.commentConverter.toGetPostCommentsApiRequest(this.postId, ++this.currentCommentsPage);
           this.commentHttpServices.getPostComments(request).then(function (comments) {
-            _this11.postComments = _construct(_models_post_comment_internal_models__WEBPACK_IMPORTED_MODULE_7__["PostComments"], _toConsumableArray(_this11.postComments).concat(_toConsumableArray(comments)));
-            _this11.stillMoreComments = comments.length !== 0;
+            _this14.postComments = _construct(_models_post_comment_internal_models__WEBPACK_IMPORTED_MODULE_7__["PostComments"], _toConsumableArray(_this14.postComments).concat(_toConsumableArray(comments)));
+            _this14.stillMoreComments = comments.length !== 0;
 
-            if (!_this11.stillMoreComments && !onNgInit) {
-              _this11.alertService.info("No more comments on this post");
+            if (!_this14.stillMoreComments && !onNgInit) {
+              _this14.alertService.info("No more comments on this post");
             }
           })["catch"](function (error) {
             console.error(error);
 
-            _this11.alertService.error("Error while fetching post comments :(");
+            _this14.alertService.error("Error while fetching post comments :(");
           });
         }
       }]);
@@ -3955,12 +4498,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var PostComments = /*#__PURE__*/function (_Array2) {
       _inherits(PostComments, _Array2);
 
-      var _super6 = _createSuper(PostComments);
+      var _super7 = _createSuper(PostComments);
 
       function PostComments() {
         _classCallCheck(this, PostComments);
 
-        return _super6.apply(this, arguments);
+        return _super7.apply(this, arguments);
       }
 
       return PostComments;
@@ -4120,29 +4663,29 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var PostCommentHttpServices = /*#__PURE__*/function (_alert_common_http_se) {
       _inherits(PostCommentHttpServices, _alert_common_http_se);
 
-      var _super7 = _createSuper(PostCommentHttpServices);
+      var _super8 = _createSuper(PostCommentHttpServices);
 
       function PostCommentHttpServices(alertService, commentConverter, http) {
-        var _this12;
+        var _this15;
 
         _classCallCheck(this, PostCommentHttpServices);
 
-        _this12 = _super7.call(this, alertService);
-        _this12.commentConverter = commentConverter;
-        _this12.http = http;
-        return _this12;
+        _this15 = _super8.call(this, alertService);
+        _this15.commentConverter = commentConverter;
+        _this15.http = http;
+        return _this15;
       }
 
       _createClass(PostCommentHttpServices, [{
         key: "getPostComments",
         value: function getPostComments(request) {
-          var _this13 = this;
+          var _this16 = this;
 
           var url = this.commentConverter.toGetPostCommentsApiRequestUrl(request);
           return this.http.get(url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (postComments) {
             var data = new _models_post_comment_internal_models__WEBPACK_IMPORTED_MODULE_6__["PostComments"]();
             postComments.forEach(function (post) {
-              return data.push(_this13.commentConverter.toPostComment(post));
+              return data.push(_this16.commentConverter.toPostComment(post));
             });
             return data;
           })).toPromise();
@@ -4255,10 +4798,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(ConsultPostPage, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this14 = this;
+          var _this17 = this;
 
           this.postHttpServices.getPostById(this.postId).then(function (post) {
-            _this14.post = post;
+            _this17.post = post;
           });
         }
       }]);
@@ -4395,15 +4938,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(CreatePostPage, [{
         key: "onSubmit",
         value: function onSubmit(post) {
-          var _this15 = this;
+          var _this18 = this;
 
           try {
             this.postValidator.validateCreatePost(post);
             var request = this.postConverter.toCreatePostApiRequest(post);
             this.postHttpServices.createPost(request).then(function (post) {
-              return _this15.handleCreatePostSuccessEvent(post);
+              return _this18.handleCreatePostSuccessEvent(post);
             })["catch"](function (error) {
-              return _this15.handleCreatePostErrorEvent(error);
+              return _this18.handleCreatePostErrorEvent(error);
             });
           } catch (error) {
             this.alertService.error(error.message);
@@ -4565,42 +5108,42 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var ManagePostsPage = /*#__PURE__*/function (_src_app_modules_shar) {
       _inherits(ManagePostsPage, _src_app_modules_shar);
 
-      var _super8 = _createSuper(ManagePostsPage);
+      var _super9 = _createSuper(ManagePostsPage);
 
       function ManagePostsPage(postHttpServices, postConverter, alertService, postsState, dialog) {
-        var _this16;
+        var _this19;
 
         _classCallCheck(this, ManagePostsPage);
 
-        _this16 = _super8.call(this);
-        _this16.postHttpServices = postHttpServices;
-        _this16.postConverter = postConverter;
-        _this16.alertService = alertService;
-        _this16.postsState = postsState;
-        _this16.dialog = dialog;
-        _this16.currentPage = new _post_shared_models_post_internal_models__WEBPACK_IMPORTED_MODULE_3__["PostsPage"]();
-        _this16.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"]([]);
-        _this16.columns = ["title", "category", "createdAt", "actions"];
-        return _this16;
+        _this19 = _super9.call(this);
+        _this19.postHttpServices = postHttpServices;
+        _this19.postConverter = postConverter;
+        _this19.alertService = alertService;
+        _this19.postsState = postsState;
+        _this19.dialog = dialog;
+        _this19.currentPage = new _post_shared_models_post_internal_models__WEBPACK_IMPORTED_MODULE_3__["PostsPage"]();
+        _this19.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"]([]);
+        _this19.columns = ["title", "category", "createdAt", "actions"];
+        return _this19;
       } // prettier-ignore
 
 
       _createClass(ManagePostsPage, [{
         key: "fetchPage",
         value: function fetchPage(filter, page) {
-          var _this17 = this;
+          var _this20 = this;
 
           var request = this.postConverter.toGetUserPostsApiRequest(filter, page);
           this.postHttpServices.getUserPosts(request).then(function (posts) {
-            return _this17.handleGetUserPostsSuccessEvent(posts);
+            return _this20.handleGetUserPostsSuccessEvent(posts);
           })["catch"](function (error) {
-            return _this17.handleGetUserPostsErrorEvent(error);
+            return _this20.handleGetUserPostsErrorEvent(error);
           });
         }
       }, {
         key: "deletePost",
         value: function deletePost(postId) {
-          var _this18 = this;
+          var _this21 = this;
 
           var dialogRef = this.dialog.open(src_app_modules_shared_components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_9__["ConfirmationDialogComponent"], {
             data: "Do you confirm the deletion of this post ?",
@@ -4608,12 +5151,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           });
           dialogRef.afterClosed().subscribe(function (result) {
             if (result) {
-              var request = _this18.postConverter.toDeletePostApiRequest(postId);
+              var request = _this21.postConverter.toDeletePostApiRequest(postId);
 
-              _this18.postHttpServices.deletePost(request).then(function () {
-                return _this18.handleDeletePostSuccessEvent(postId);
+              _this21.postHttpServices.deletePost(request).then(function () {
+                return _this21.handleDeletePostSuccessEvent(postId);
               })["catch"](function (error) {
-                return _this18.handleDeletePostErrorEvent(error);
+                return _this21.handleDeletePostErrorEvent(error);
               });
             }
           });
@@ -4751,11 +5294,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(PostDashboardPage, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this19 = this;
+          var _this22 = this;
 
           this.postsState.resetFilters();
           this.postsState.noMorePosts$.subscribe(function (value) {
-            return _this19.noMorePosts = value;
+            return _this22.noMorePosts = value;
           });
         }
       }, {
@@ -5036,24 +5579,24 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(UpdatePostPage, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this20 = this;
+          var _this23 = this;
 
           this.postHttpServices.getPostById(this.postId).then(function (post) {
-            _this20.post = post;
+            _this23.post = post;
           });
         }
       }, {
         key: "onSubmit",
         value: function onSubmit(post) {
-          var _this21 = this;
+          var _this24 = this;
 
           try {
             this.postValidator.validateUpdatePost(post);
             var request = this.postConverter.toUpdatePostApiRequest(post);
             this.postHttpServices.updatePost(request).then(function (post) {
-              return _this21.handleUpdatePostSuccessEvent(post);
+              return _this24.handleUpdatePostSuccessEvent(post);
             })["catch"](function (error) {
-              return _this21.handleUpdatePostErrorEvent(error);
+              return _this24.handleUpdatePostErrorEvent(error);
             });
           } catch (error) {
             this.alertService.error(error.message);
@@ -5687,11 +6230,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "onInputKeyup",
         value: function onInputKeyup(event) {
-          var _this22 = this;
+          var _this25 = this;
 
           clearTimeout(this.timer);
           this.timer = window.setTimeout(function () {
-            return _this22.inputChange.emit(event.target.value);
+            return _this25.inputChange.emit(event.target.value);
           }, this.inputChangeDelay);
         }
       }, {
@@ -5872,10 +6415,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(TagComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this23 = this;
+          var _this26 = this;
 
           this.state.selectedTag$.subscribe(function (selectedTag) {
-            _this23.selected = _this23.tag == selectedTag;
+            _this26.selected = _this26.tag == selectedTag;
           });
         }
       }, {
@@ -6009,12 +6552,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var Post = /*#__PURE__*/function (_PostSummary) {
       _inherits(Post, _PostSummary);
 
-      var _super9 = _createSuper(Post);
+      var _super10 = _createSuper(Post);
 
       function Post() {
         _classCallCheck(this, Post);
 
-        return _super9.apply(this, arguments);
+        return _super10.apply(this, arguments);
       }
 
       return Post;
@@ -6063,12 +6606,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var PostsByCategory = /*#__PURE__*/function (_Map) {
       _inherits(PostsByCategory, _Map);
 
-      var _super10 = _createSuper(PostsByCategory);
+      var _super11 = _createSuper(PostsByCategory);
 
       function PostsByCategory() {
         _classCallCheck(this, PostsByCategory);
 
-        return _super10.apply(this, arguments);
+        return _super11.apply(this, arguments);
       }
 
       return PostsByCategory;
@@ -6077,12 +6620,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var PostsSummaries = /*#__PURE__*/function (_Array3) {
       _inherits(PostsSummaries, _Array3);
 
-      var _super11 = _createSuper(PostsSummaries);
+      var _super12 = _createSuper(PostsSummaries);
 
       function PostsSummaries() {
         _classCallCheck(this, PostsSummaries);
 
-        return _super11.apply(this, arguments);
+        return _super12.apply(this, arguments);
       }
 
       return PostsSummaries;
@@ -6091,12 +6634,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var PostsPage = /*#__PURE__*/function (_src_app_modules_shar2) {
       _inherits(PostsPage, _src_app_modules_shar2);
 
-      var _super12 = _createSuper(PostsPage);
+      var _super13 = _createSuper(PostsPage);
 
       function PostsPage() {
         _classCallCheck(this, PostsPage);
 
-        return _super12.apply(this, arguments);
+        return _super13.apply(this, arguments);
       }
 
       return PostsPage;
@@ -6105,12 +6648,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var PostsGroups = /*#__PURE__*/function (_Array4) {
       _inherits(PostsGroups, _Array4);
 
-      var _super13 = _createSuper(PostsGroups);
+      var _super14 = _createSuper(PostsGroups);
 
       function PostsGroups() {
         _classCallCheck(this, PostsGroups);
 
-        return _super13.apply(this, arguments);
+        return _super14.apply(this, arguments);
       }
 
       return PostsGroups;
@@ -6119,12 +6662,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var PostGroupByStrategies = /*#__PURE__*/function (_Array5) {
       _inherits(PostGroupByStrategies, _Array5);
 
-      var _super14 = _createSuper(PostGroupByStrategies);
+      var _super15 = _createSuper(PostGroupByStrategies);
 
       function PostGroupByStrategies() {
         _classCallCheck(this, PostGroupByStrategies);
 
-        return _super14.apply(this, arguments);
+        return _super15.apply(this, arguments);
       }
 
       return PostGroupByStrategies;
@@ -6339,11 +6882,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "toPostGroupByStrategies",
         value: function toPostGroupByStrategies(strategies) {
-          var _this24 = this;
+          var _this27 = this;
 
           var res = new _models_post_internal_models__WEBPACK_IMPORTED_MODULE_2__["PostGroupByStrategies"]();
           strategies.forEach(function (strategy) {
-            return res.push(_this24.toPostGroupByStrategy(strategy));
+            return res.push(_this27.toPostGroupByStrategy(strategy));
           });
           return res;
         } // prettier-ignore
@@ -6359,7 +6902,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "toPostsSummaries",
         value: function toPostsSummaries(posts) {
-          var _this25 = this;
+          var _this28 = this;
 
           var res = new _models_post_internal_models__WEBPACK_IMPORTED_MODULE_2__["PostsGroups"]();
           posts.forEach(function (postsGroupApiResponse) {
@@ -6367,7 +6910,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             postsGroup.name = postsGroupApiResponse.groupName;
             postsGroup.posts = [];
             postsGroupApiResponse.posts.forEach(function (post) {
-              return postsGroup.posts.push(_this25.toPostSummary(post));
+              return postsGroup.posts.push(_this28.toPostSummary(post));
             });
             res.push(postsGroup);
           });
@@ -6377,11 +6920,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "toPostsGroups",
         value: function toPostsGroups(postsGroups) {
-          var _this26 = this;
+          var _this29 = this;
 
           var res = new _models_post_internal_models__WEBPACK_IMPORTED_MODULE_2__["PostsGroups"]();
           postsGroups.forEach(function (postsGroup) {
-            return res.push(_this26.toPostsGroup(postsGroup));
+            return res.push(_this29.toPostsGroup(postsGroup));
           });
           return res;
         } // prettier-ignore
@@ -6389,19 +6932,19 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "toPostsGroup",
         value: function toPostsGroup(postsGroupApiResponse) {
-          var _this27 = this;
+          var _this30 = this;
 
           var res = new _models_post_internal_models__WEBPACK_IMPORTED_MODULE_2__["PostsGroup"]();
           res.name = postsGroupApiResponse.name;
           postsGroupApiResponse.posts.forEach(function (post) {
-            return res.posts.push(_this27.toPostSummary(post));
+            return res.posts.push(_this30.toPostSummary(post));
           });
           return res;
         }
       }, {
         key: "toPostsSummariesPage",
         value: function toPostsSummariesPage(posts) {
-          var _this28 = this;
+          var _this31 = this;
 
           var res = new _models_post_internal_models__WEBPACK_IMPORTED_MODULE_2__["PostsPage"]();
           res.totalItems = posts.totalItems;
@@ -6410,7 +6953,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           res.page = posts.page;
           var items = new Array();
           posts.items.forEach(function (post) {
-            return items.push(_this28.toPostSummary(post));
+            return items.push(_this31.toPostSummary(post));
           });
           res.items = items;
           return res;
@@ -6563,76 +7106,76 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var PostHttpServices = /*#__PURE__*/function (_alert_common_http_se2) {
       _inherits(PostHttpServices, _alert_common_http_se2);
 
-      var _super15 = _createSuper(PostHttpServices);
+      var _super16 = _createSuper(PostHttpServices);
 
       function PostHttpServices(postConverter, http, alertService) {
-        var _this29;
+        var _this32;
 
         _classCallCheck(this, PostHttpServices);
 
-        _this29 = _super15.call(this, alertService);
-        _this29.postConverter = postConverter;
-        _this29.http = http;
-        return _this29;
+        _this32 = _super16.call(this, alertService);
+        _this32.postConverter = postConverter;
+        _this32.http = http;
+        return _this32;
       } // prettier-ignore
 
 
       _createClass(PostHttpServices, [{
         key: "getPostGroupByStrategies",
         value: function getPostGroupByStrategies(request) {
-          var _this30 = this;
+          var _this33 = this;
 
           return this.http.get(request.url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (strategies) {
-            return _this30.postConverter.toPostGroupByStrategies(strategies);
+            return _this33.postConverter.toPostGroupByStrategies(strategies);
           })).toPromise();
         } // prettier-ignore
 
       }, {
         key: "getPostsGroups",
         value: function getPostsGroups(request) {
-          var _this31 = this;
+          var _this34 = this;
 
           return this.http.get(request.url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (postsGroups) {
-            return _this31.postConverter.toPostsGroups(postsGroups);
+            return _this34.postConverter.toPostsGroups(postsGroups);
           })).toPromise();
         }
       }, {
         key: "getUserPosts",
         value: function getUserPosts(request) {
-          var _this32 = this;
+          var _this35 = this;
 
           // prettier-ignore
           return this.http.get(request.url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (posts) {
-            return _this32.postConverter.toPostsSummariesPage(posts);
+            return _this35.postConverter.toPostsSummariesPage(posts);
           })).toPromise(); // prettier-ignore
         }
       }, {
         key: "getPostById",
         value: function getPostById(postId) {
-          var _this33 = this;
+          var _this36 = this;
 
           return this.http.get("/api/posts/".concat(postId)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (post) {
-            return _this33.postConverter.toPost(post);
+            return _this36.postConverter.toPost(post);
           })).pipe(this.catchGetPostByIdError()).toPromise();
         }
       }, {
         key: "createPost",
         value: function createPost(request) {
-          var _this34 = this;
+          var _this37 = this;
 
           // prettier-ignore
           return this.http.post(request.url, request.body).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (post) {
-            return _this34.postConverter.toPostSummary(post);
+            return _this37.postConverter.toPostSummary(post);
           })).toPromise(); // prettier-ignore
         }
       }, {
         key: "updatePost",
         value: function updatePost(request) {
-          var _this35 = this;
+          var _this38 = this;
 
           // prettier-ignore
           return this.http.put(request.url, request.body).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (post) {
-            return _this35.postConverter.toPostSummary(post);
+            return _this38.postConverter.toPostSummary(post);
           })).toPromise(); // prettier-ignore
         }
       }, {
@@ -6913,13 +7456,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(PostsState, [{
         key: "init",
         value: function init() {
-          var _this36 = this;
+          var _this39 = this;
 
           var request = this.postConverter.toGetPostGroupByStrategiesApiRequest();
           this.postHttpServices.getPostGroupByStrategies(request).then(function (strategies) {
-            return _this36.handleGetPostGroupByStrategiesSuccessEvent(strategies);
+            return _this39.handleGetPostGroupByStrategiesSuccessEvent(strategies);
           })["catch"](function (error) {
-            return _this36.handleGetPostGroupByStrategiesErrorEvent(error);
+            return _this39.handleGetPostGroupByStrategiesErrorEvent(error);
           });
         }
       }, {
@@ -6945,7 +7488,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "loadMorePosts",
         value: function loadMorePosts() {
-          var _this37 = this;
+          var _this40 = this;
 
           if (this.noMorePosts.getValue() || this.loadPostsInProgress) return;
 
@@ -6953,9 +7496,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             this.loadPostsInProgress = true;
             var getPostsGroupsApiRequest = this.calculateGetPostsGroupsApiRequest();
             this.postHttpServices.getPostsGroups(getPostsGroupsApiRequest).then(function (postsGroups) {
-              return _this37.handleGetPostsGroupsSuccessEvent(postsGroups);
+              return _this40.handleGetPostsGroupsSuccessEvent(postsGroups);
             })["catch"](function (error) {
-              return _this37.handleGetPostsGroupsErrorEvent(error);
+              return _this40.handleGetPostsGroupsErrorEvent(error);
             });
           } catch (e) {
             if (e instanceof src_app_modules_shared_models_no_posts_groups_to_load_error__WEBPACK_IMPORTED_MODULE_10__["NoPostsGroupsToLoadError"]) {
@@ -7040,12 +7583,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "calculateDisplayedPostsGroups",
         value: function calculateDisplayedPostsGroups() {
-          var _this38 = this;
+          var _this41 = this;
 
           var displayedPostsGroups = new _models_post_internal_models__WEBPACK_IMPORTED_MODULE_3__["PostsGroups"]();
           this.loadedPostsGroups.getValue().forEach(function (group) {
             var posts = group.posts.filter(function (post) {
-              return _this38.keepPost(post);
+              return _this41.keepPost(post);
             });
 
             if (posts.length > 0) {
@@ -7123,14 +7666,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "calculateSelectedGroupByStrategy",
         value: function calculateSelectedGroupByStrategy() {
-          var _this39 = this;
+          var _this42 = this;
 
           var groupByStrategy = this.postGroupByStrategies.getValue().find(function (s) {
             return s.name == GROUP_BY_POST_CATEGORY;
           });
           if (groupByStrategy) return groupByStrategy;
           groupByStrategy = this.postGroupByStrategies.getValue().find(function (s) {
-            return _this39.supportedGroupByStrategiesName.includes(s.name);
+            return _this42.supportedGroupByStrategiesName.includes(s.name);
           });
           if (groupByStrategy) return groupByStrategy;
           throw new Error("No groupBy strategy is supported by the current Angular frontend app");
@@ -9005,13 +9548,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(SelectDropdownComponent, [{
         key: "show",
         value: function show() {
-          var _this40 = this;
+          var _this43 = this;
 
           this.overlayRef = this.overlay.create(this.getOverlayConfig());
           this.overlayRef.attach(this.portal);
           this.syncWidth();
           this.overlayRef.backdropClick().subscribe(function () {
-            return _this40.hide();
+            return _this43.hide();
           });
           this.showing = true;
         }
@@ -9271,13 +9814,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "ngAfterViewInit",
         value: function ngAfterViewInit() {
-          var _this41 = this;
+          var _this44 = this;
 
           setTimeout(function () {
-            _this41.selectedOption = _this41.options.toArray().find(function (option) {
-              return option.value === _this41.selected;
+            _this44.selectedOption = _this44.options.toArray().find(function (option) {
+              return option.value === _this44.selected;
             });
-            _this41.selectedLabel = _this41.selectedOption ? _this41.selectedOption.label : "";
+            _this44.selectedLabel = _this44.selectedOption ? _this44.selectedOption.label : "";
           });
         }
       }, {
@@ -10318,12 +10861,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var NoPostsGroupsToLoadError = /*#__PURE__*/function (_Error) {
       _inherits(NoPostsGroupsToLoadError, _Error);
 
-      var _super16 = _createSuper(NoPostsGroupsToLoadError);
+      var _super17 = _createSuper(NoPostsGroupsToLoadError);
 
       function NoPostsGroupsToLoadError() {
         _classCallCheck(this, NoPostsGroupsToLoadError);
 
-        return _super16.apply(this, arguments);
+        return _super17.apply(this, arguments);
       }
 
       return NoPostsGroupsToLoadError;
@@ -10408,18 +10951,18 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var ValidationError = /*#__PURE__*/function (_Error2) {
       _inherits(ValidationError, _Error2);
 
-      var _super17 = _createSuper(ValidationError);
+      var _super18 = _createSuper(ValidationError);
 
       function ValidationError(message) {
-        var _this42;
+        var _this45;
 
         _classCallCheck(this, ValidationError);
 
-        _this42 = _super17.call(this, message); // Set the prototype explicitly.
+        _this45 = _super18.call(this, message); // Set the prototype explicitly.
         // reference: https://stackoverflow.com/questions/41102060/typescript-extending-error-class
 
-        Object.setPrototypeOf(_assertThisInitialized(_this42), ValidationError.prototype);
-        return _this42;
+        Object.setPrototypeOf(_assertThisInitialized(_this45), ValidationError.prototype);
+        return _this45;
       }
 
       return ValidationError;
@@ -11526,11 +12069,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(UserAwareComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this43 = this;
+          var _this46 = this;
 
           this.user = this.userObservable.currentUser();
           this.userSubscription = this.userObservable.onUser().subscribe(function (user) {
-            return _this43.user = user;
+            return _this46.user = user;
           });
         }
       }, {
@@ -11687,16 +12230,16 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var AnonymousUser = /*#__PURE__*/function (_CurrentUser) {
       _inherits(AnonymousUser, _CurrentUser);
 
-      var _super18 = _createSuper(AnonymousUser);
+      var _super19 = _createSuper(AnonymousUser);
 
       function AnonymousUser() {
-        var _this44;
+        var _this47;
 
         _classCallCheck(this, AnonymousUser);
 
-        _this44 = _super18.call(this);
-        _this44.username = "Anonymous";
-        return _this44;
+        _this47 = _super19.call(this);
+        _this47.username = "Anonymous";
+        return _this47;
       }
 
       return AnonymousUser;
@@ -11705,12 +12248,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var UsersPage = /*#__PURE__*/function (_shared_models_page_m) {
       _inherits(UsersPage, _shared_models_page_m);
 
-      var _super19 = _createSuper(UsersPage);
+      var _super20 = _createSuper(UsersPage);
 
       function UsersPage() {
         _classCallCheck(this, UsersPage);
 
-        return _super19.apply(this, arguments);
+        return _super20.apply(this, arguments);
       }
 
       return UsersPage;
@@ -11810,34 +12353,34 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var ManageUsersPage = /*#__PURE__*/function (_src_app_modules_shar3) {
       _inherits(ManageUsersPage, _src_app_modules_shar3);
 
-      var _super20 = _createSuper(ManageUsersPage);
+      var _super21 = _createSuper(ManageUsersPage);
 
       function ManageUsersPage(alertService, userHttpService, userConverter) {
-        var _this45;
+        var _this48;
 
         _classCallCheck(this, ManageUsersPage);
 
-        _this45 = _super20.call(this);
-        _this45.alertService = alertService;
-        _this45.userHttpService = userHttpService;
-        _this45.userConverter = userConverter;
-        _this45.currentPage = new _models_user_internal_models__WEBPACK_IMPORTED_MODULE_3__["UsersPage"]();
-        _this45.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"]([]);
-        _this45.columns = ["username", "joinAt", "actions"];
-        return _this45;
+        _this48 = _super21.call(this);
+        _this48.alertService = alertService;
+        _this48.userHttpService = userHttpService;
+        _this48.userConverter = userConverter;
+        _this48.currentPage = new _models_user_internal_models__WEBPACK_IMPORTED_MODULE_3__["UsersPage"]();
+        _this48.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"]([]);
+        _this48.columns = ["username", "joinAt", "actions"];
+        return _this48;
       } // prettier-ignore
 
 
       _createClass(ManageUsersPage, [{
         key: "fetchPage",
         value: function fetchPage(filter, page) {
-          var _this46 = this;
+          var _this49 = this;
 
           var request = this.userConverter.toGetUsersPageApiRequest(filter, page);
           this.userHttpService.getUsersPage(request).then(function (usersPage) {
-            return _this46.handleGetUsersPageSuccessEvent(usersPage);
+            return _this49.handleGetUsersPageSuccessEvent(usersPage);
           })["catch"](function (error) {
-            return _this46.handleGetUsersPageErrorEvent(error);
+            return _this49.handleGetUsersPageErrorEvent(error);
           });
         }
       }, {
@@ -11948,26 +12491,26 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(AdminGuard, [{
         key: "canActivate",
         value: function canActivate(route, state) {
-          var _this47 = this;
+          var _this50 = this;
 
           return this.userHttpService.getCurrentUser().then(function (user) {
             if (user.isAdmin) return true;
 
-            _this47.alertService.error("Only Admin user can access this page", {
+            _this50.alertService.error("Only Admin user can access this page", {
               keepAfterRouteChange: true
             });
 
-            _this47.router.navigate(["/"]);
+            _this50.router.navigate(["/"]);
 
             return false;
           })["catch"](function (error) {
             console.error("user not yet authenticated. error: " + error);
 
-            _this47.alertService.error("Please login to access this page", {
+            _this50.alertService.error("Please login to access this page", {
               keepAfterRouteChange: true
             });
 
-            _this47.router.navigate(["/"]);
+            _this50.router.navigate(["/"]);
 
             return false;
           });
@@ -12055,18 +12598,18 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(LoggedInGuard, [{
         key: "canActivate",
         value: function canActivate(route, state) {
-          var _this48 = this;
+          var _this51 = this;
 
           return this.userHttpService.getCurrentUser().then(function () {
             return true;
           })["catch"](function (error) {
             console.error("user not yet authenticated. error: " + error);
 
-            _this48.alertService.error("Please login to access this page", {
+            _this51.alertService.error("Please login to access this page", {
               keepAfterRouteChange: true
             });
 
-            _this48.router.navigate(["/"]);
+            _this51.router.navigate(["/"]);
 
             return false;
           });
@@ -12175,7 +12718,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "toUsersPage",
         value: function toUsersPage(usersPage) {
-          var _this49 = this;
+          var _this52 = this;
 
           var res = new _models_user_internal_models__WEBPACK_IMPORTED_MODULE_2__["UsersPage"]();
           res.totalItems = usersPage.totalItems;
@@ -12183,7 +12726,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           res.lastPage = usersPage.lastPage;
           res.page = usersPage.page;
           usersPage.items.forEach(function (user) {
-            return res.items.push(_this49.toUser(user));
+            return res.items.push(_this52.toUser(user));
           });
           return res;
         }
@@ -12270,10 +12813,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "getUsersPage",
         value: function getUsersPage(request) {
-          var _this50 = this;
+          var _this53 = this;
 
           return this.http.get(request.url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (users) {
-            return _this50.userConverter.toUsersPage(users);
+            return _this53.userConverter.toUsersPage(users);
           })).toPromise();
         }
       }]);
@@ -12417,7 +12960,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     var UserObservable = /*#__PURE__*/function () {
       function UserObservable(router, userHttpService) {
-        var _this51 = this;
+        var _this54 = this;
 
         _classCallCheck(this, UserObservable);
 
@@ -12427,7 +12970,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.checkUser();
         this.router.events.subscribe(function (event) {
           if (event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_5__["NavigationEnd"]) {
-            _this51.checkUser();
+            _this54.checkUser();
           }
         });
       }
@@ -12435,10 +12978,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(UserObservable, [{
         key: "checkUser",
         value: function checkUser() {
-          var _this52 = this;
+          var _this55 = this;
 
           this.userHttpService.getCurrentUser().then(function (user) {
-            return _this52.newUser(user);
+            return _this55.newUser(user);
           })["catch"](function (error) {
             return console.log("user not yet authenticated");
           });

@@ -52,7 +52,20 @@ module.exports = [[module.i, "/**\n * simplemde v1.11.2\n * Copyright Next Step 
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div *ngFor=\"let alert of alerts\" class=\"{{ cssClasses(alert) }}\">\r\n  <img class=\"alert-icon\" [src]=\"alert.icon\" />\r\n  <div class=\"message-container\">\r\n    <span class=\"message\" [innerHTML]=\"alert.message\"></span>\r\n    <span (click)=\"removeAlert(alert)\">\r\n      <span class=\"close-icon iconify\" data-icon=\"ic:round-close\"></span>\r\n    </span>\r\n  </div>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div *ngFor=\"let alert of alerts\" class=\"{{ cssClasses(alert) }}\">\r\n  <img class=\"alert-icon\" [src]=\"alert.icon\" />\r\n  <div class=\"message-container\">\r\n    <span class=\"message\" [innerHTML]=\"alert.message\"></span>\r\n    <span (click)=\"removeAlert(alert, $event)\">\r\n      <span class=\"close-icon iconify\" data-icon=\"ic:round-close\"></span>\r\n    </span>\r\n  </div>\r\n</div>\r\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/feedback/feedback.component.html":
+/*!************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/modules/feedback/feedback.component.html ***!
+  \************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div *ngIf=\"user.isAuthenticated\">\r\n  <div class=\"icon-container\">\r\n    <span\r\n      (click)=\"handleFeedbackIconClick($event)\"\r\n      class=\"tooltip-left\"\r\n      data-tooltip=\"Give us your feedback :)\"\r\n    >\r\n      <span class=\"iconify\" data-icon=\"topcoat:feedback\"></span>\r\n    </span>\r\n  </div>\r\n  <div class=\"feedback-container\">\r\n    <div class=\"feedback-input\">\r\n      <h2 class=\"feedback-title\">Feedback</h2>\r\n      <textarea\r\n        name=\"feedback\"\r\n        [(ngModel)]=\"feedback.value\"\r\n        placeholder=\"Give us your feedback to improve...\"\r\n      ></textarea>\r\n    </div>\r\n\r\n    <div class=\"feedback-actions\">\r\n      <button (click)=\"cancel()\">Cancel</button>\r\n      <button (click)=\"submit()\">Submit</button>\r\n    </div>\r\n  </div>\r\n  <div class=\"feedback-background\"></div>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -195,7 +208,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<app-posts-welcome-message></app-posts-welcome-message>\r\n<app-search-posts\r\n  [selectedTag]=\"postsState.selectedTag$ | async\"\r\n  [tags]=\"postsState.allTags$ | async\"\r\n  (inputChange)=\"handleSearchTextChange($event)\"\r\n></app-search-posts>\r\n\r\n<app-posts-group\r\n  *ngFor=\"let postsGroup of (postsState.displayedPostsGroups$ | async)\"\r\n  [postsGroup]=\"postsGroup\"\r\n></app-posts-group>\r\n\r\n<app-load-more-button\r\n  *ngIf=\"!noMorePosts\"\r\n  text=\"Load more posts\"\r\n  (click)=\"loadMorePosts()\"\r\n></app-load-more-button>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<app-posts-welcome-message></app-posts-welcome-message>\r\n<app-search-posts\r\n  [selectedTag]=\"postsState.selectedTag$ | async\"\r\n  [tags]=\"postsState.allTags$ | async\"\r\n  (inputChange)=\"handleSearchTextChange($event)\"\r\n></app-search-posts>\r\n\r\n<app-posts-group\r\n  *ngFor=\"let postsGroup of (postsState.displayedPostsGroups$ | async)\"\r\n  [postsGroup]=\"postsGroup\"\r\n></app-posts-group>\r\n\r\n<app-load-more-button\r\n  appSlideIn\r\n  *ngIf=\"!noMorePosts\"\r\n  text=\"Load more posts\"\r\n  (click)=\"loadMorePosts()\"\r\n></app-load-more-button>\r\n");
 
 /***/ }),
 
@@ -1215,6 +1228,7 @@ AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     <app-navbar></app-navbar>
     <app-alert></app-alert>
     <app-loader></app-loader>
+    <app-feedback></app-feedback>
     <main>
       <router-outlet></router-outlet>
     </main>
@@ -1264,6 +1278,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_loader_loader_interceptor__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./modules/loader/loader.interceptor */ "./src/app/modules/loader/loader.interceptor.ts");
 /* harmony import */ var _modules_loader_loader_service__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./modules/loader/loader.service */ "./src/app/modules/loader/loader.service.ts");
 /* harmony import */ var _modules_user_services_admin_guard__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./modules/user/services/admin.guard */ "./src/app/modules/user/services/admin.guard.ts");
+/* harmony import */ var _modules_feedback_feedback_module__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./modules/feedback/feedback.module */ "./src/app/modules/feedback/feedback.module.ts");
+/* harmony import */ var _modules_feedback_feedback_converter__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./modules/feedback/feedback.converter */ "./src/app/modules/feedback/feedback.converter.ts");
+/* harmony import */ var _modules_feedback_feedback_validator__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./modules/feedback/feedback.validator */ "./src/app/modules/feedback/feedback.validator.ts");
+/* harmony import */ var _modules_feedback_feedback_http_services__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./modules/feedback/feedback.http.services */ "./src/app/modules/feedback/feedback.http.services.ts");
+/* harmony import */ var _modules_alert_alert_service__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./modules/alert/alert.service */ "./src/app/modules/alert/alert.service.ts");
+
+
+
+
+
 
 
 
@@ -1314,10 +1338,12 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _modules_alert_alert_module__WEBPACK_IMPORTED_MODULE_5__["AlertModule"],
             _modules_navbar_navbar_module__WEBPACK_IMPORTED_MODULE_6__["NavbarModule"],
             _modules_post_post_pages_post_pages_module__WEBPACK_IMPORTED_MODULE_7__["PostPageModule"],
+            _modules_feedback_feedback_module__WEBPACK_IMPORTED_MODULE_27__["FeedbackModule"],
             _angular_router__WEBPACK_IMPORTED_MODULE_13__["RouterModule"].forRoot(routes),
         ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]],
         providers: [
+            _modules_alert_alert_service__WEBPACK_IMPORTED_MODULE_31__["AlertService"],
             _modules_post_post_shared_services_post_http_services__WEBPACK_IMPORTED_MODULE_16__["PostHttpServices"],
             _modules_post_post_shared_services_post_converter__WEBPACK_IMPORTED_MODULE_17__["PostConverter"],
             _modules_post_post_comments_converter_post_comment_converter__WEBPACK_IMPORTED_MODULE_18__["PostCommentConverter"],
@@ -1332,6 +1358,9 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _modules_shared_services_window_service__WEBPACK_IMPORTED_MODULE_21__["WindowService"],
             _modules_loader_loader_service__WEBPACK_IMPORTED_MODULE_25__["LoaderService"],
             _modules_user_services_admin_guard__WEBPACK_IMPORTED_MODULE_26__["AdminGuard"],
+            _modules_feedback_feedback_converter__WEBPACK_IMPORTED_MODULE_28__["FeedbackConverter"],
+            _modules_feedback_feedback_validator__WEBPACK_IMPORTED_MODULE_29__["FeedbackValidator"],
+            _modules_feedback_feedback_http_services__WEBPACK_IMPORTED_MODULE_30__["FeedbackHttpServices"],
             { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_23__["HTTP_INTERCEPTORS"], useClass: _modules_loader_loader_interceptor__WEBPACK_IMPORTED_MODULE_24__["LoaderInterceptor"], multi: true },
         ],
     })
@@ -1406,7 +1435,9 @@ let AlertComponent = class AlertComponent {
         this.alertSubscription.unsubscribe();
         this.routeSubscription.unsubscribe();
     }
-    removeAlert(alert) {
+    removeAlert(alert, event) {
+        if (event)
+            event.stopPropagation();
         this.alerts.find((x) => x === alert).fadeout = true;
         setTimeout(() => {
             this.alerts = this.alerts.filter((x) => x !== alert);
@@ -1585,6 +1616,280 @@ class CommonHttpServices {
         };
     }
 }
+
+
+/***/ }),
+
+/***/ "./src/app/modules/feedback/feedback.component.scss":
+/*!**********************************************************!*\
+  !*** ./src/app/modules/feedback/feedback.component.scss ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (":host {\n  --feedback-form-width: 30rem;\n}\n\n.icon-container {\n  position: fixed;\n  bottom: 2rem;\n  right: 2rem;\n}\n\n.icon-container .iconify {\n  font-size: 2.8rem;\n  cursor: pointer;\n  transition: var(--transition);\n  transition-property: color;\n}\n\n.icon-container .iconify:hover {\n  color: var(--primary-color);\n}\n\n.feedback-container {\n  position: fixed;\n  z-index: calc(var(--navbar-z-index) + 10);\n  top: var(--navbar-height);\n  right: calc(var(--feedback-form-width) * -1);\n  bottom: 0;\n  padding: 2rem;\n  background: var(--feedback-form-background-color);\n  width: var(--feedback-form-width);\n  transition: var(--transition);\n  transition-property: color, background-color, right, display;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n\n.feedback-container .feedback-title {\n  font-size: 1.8rem;\n  margin-bottom: 2rem;\n}\n\n.feedback-container textarea {\n  height: 15rem;\n}\n\n.feedback-container .feedback-actions {\n  display: flex;\n  justify-content: flex-end;\n}\n\n.feedback-container .feedback-actions button {\n  margin-left: 1rem;\n}\n\n:host.active .feedback-container {\n  right: 0;\n}\n\n:host.active .feedback-background {\n  position: fixed;\n  top: var(--navbar-height);\n  bottom: 0;\n  left: 0;\n  right: var(--feedback-form-width);\n  z-index: 999999;\n  content: \"\";\n  background-color: var(--semi-transparent-color);\n  transition: var(--transition);\n  transition-property: color, background-color;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9mZWVkYmFjay9DOlxcZGV2XFxwcm9qZWN0c1xcYWhlbnRldGktYmxvZ1xcc3JjXFxtYWluXFxmcm9udGVuZC9zcmNcXGFwcFxcbW9kdWxlc1xcZmVlZGJhY2tcXGZlZWRiYWNrLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9tb2R1bGVzL2ZlZWRiYWNrL2ZlZWRiYWNrLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsNEJBQUE7QUNDRjs7QURFQTtFQUNFLGVBQUE7RUFDQSxZQUFBO0VBQ0EsV0FBQTtBQ0NGOztBRENFO0VBQ0UsaUJBQUE7RUFDQSxlQUFBO0VBQ0EsNkJBQUE7RUFDQSwwQkFBQTtBQ0NKOztBRENJO0VBQ0UsMkJBQUE7QUNDTjs7QURJQTtFQUNFLGVBQUE7RUFDQSx5Q0FBQTtFQUNBLHlCQUFBO0VBQ0EsNENBQUE7RUFDQSxTQUFBO0VBQ0EsYUFBQTtFQUNBLGlEQUFBO0VBQ0EsaUNBQUE7RUFDQSw2QkFBQTtFQUNBLDREQUFBO0VBQ0EsYUFBQTtFQUNBLHNCQUFBO0VBQ0EsOEJBQUE7QUNERjs7QURHRTtFQUNFLGlCQUFBO0VBQ0EsbUJBQUE7QUNESjs7QURJRTtFQUNFLGFBQUE7QUNGSjs7QURLRTtFQUNFLGFBQUE7RUFDQSx5QkFBQTtBQ0hKOztBREtJO0VBQ0UsaUJBQUE7QUNITjs7QURTRTtFQUNFLFFBQUE7QUNOSjs7QURTRTtFQUNFLGVBQUE7RUFDQSx5QkFBQTtFQUNBLFNBQUE7RUFDQSxPQUFBO0VBQ0EsaUNBQUE7RUFDQSxlQUFBO0VBQ0EsV0FBQTtFQUNBLCtDQUFBO0VBQ0EsNkJBQUE7RUFDQSw0Q0FBQTtBQ1BKIiwiZmlsZSI6InNyYy9hcHAvbW9kdWxlcy9mZWVkYmFjay9mZWVkYmFjay5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0IHtcclxuICAtLWZlZWRiYWNrLWZvcm0td2lkdGg6IDMwcmVtO1xyXG59XHJcblxyXG4uaWNvbi1jb250YWluZXIge1xyXG4gIHBvc2l0aW9uOiBmaXhlZDtcclxuICBib3R0b206IDJyZW07XHJcbiAgcmlnaHQ6IDJyZW07XHJcblxyXG4gICYgLmljb25pZnkge1xyXG4gICAgZm9udC1zaXplOiAyLjhyZW07XHJcbiAgICBjdXJzb3I6IHBvaW50ZXI7XHJcbiAgICB0cmFuc2l0aW9uOiB2YXIoLS10cmFuc2l0aW9uKTtcclxuICAgIHRyYW5zaXRpb24tcHJvcGVydHk6IGNvbG9yO1xyXG5cclxuICAgICY6aG92ZXIge1xyXG4gICAgICBjb2xvcjogdmFyKC0tcHJpbWFyeS1jb2xvcik7XHJcbiAgICB9XHJcbiAgfVxyXG59XHJcblxyXG4uZmVlZGJhY2stY29udGFpbmVyIHtcclxuICBwb3NpdGlvbjogZml4ZWQ7XHJcbiAgei1pbmRleDogY2FsYyh2YXIoLS1uYXZiYXItei1pbmRleCkgKyAxMCk7XHJcbiAgdG9wOiB2YXIoLS1uYXZiYXItaGVpZ2h0KTtcclxuICByaWdodDogY2FsYyh2YXIoLS1mZWVkYmFjay1mb3JtLXdpZHRoKSAqIC0xKTtcclxuICBib3R0b206IDA7XHJcbiAgcGFkZGluZzogMnJlbTtcclxuICBiYWNrZ3JvdW5kOiB2YXIoLS1mZWVkYmFjay1mb3JtLWJhY2tncm91bmQtY29sb3IpO1xyXG4gIHdpZHRoOiB2YXIoLS1mZWVkYmFjay1mb3JtLXdpZHRoKTtcclxuICB0cmFuc2l0aW9uOiB2YXIoLS10cmFuc2l0aW9uKTtcclxuICB0cmFuc2l0aW9uLXByb3BlcnR5OiBjb2xvciwgYmFja2dyb3VuZC1jb2xvciwgcmlnaHQsIGRpc3BsYXk7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcclxuXHJcbiAgJiAuZmVlZGJhY2stdGl0bGUge1xyXG4gICAgZm9udC1zaXplOiAxLjhyZW07XHJcbiAgICBtYXJnaW4tYm90dG9tOiAycmVtO1xyXG4gIH1cclxuXHJcbiAgJiB0ZXh0YXJlYSB7XHJcbiAgICBoZWlnaHQ6IDE1cmVtO1xyXG4gIH1cclxuXHJcbiAgJiAuZmVlZGJhY2stYWN0aW9ucyB7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAganVzdGlmeS1jb250ZW50OiBmbGV4LWVuZDtcclxuXHJcbiAgICAmIGJ1dHRvbiB7XHJcbiAgICAgIG1hcmdpbi1sZWZ0OiAxcmVtO1xyXG4gICAgfVxyXG4gIH1cclxufVxyXG5cclxuOmhvc3QuYWN0aXZlIHtcclxuICAmIC5mZWVkYmFjay1jb250YWluZXIge1xyXG4gICAgcmlnaHQ6IDA7XHJcbiAgfVxyXG5cclxuICAmIC5mZWVkYmFjay1iYWNrZ3JvdW5kIHtcclxuICAgIHBvc2l0aW9uOiBmaXhlZDtcclxuICAgIHRvcDogdmFyKC0tbmF2YmFyLWhlaWdodCk7XHJcbiAgICBib3R0b206IDA7XHJcbiAgICBsZWZ0OiAwO1xyXG4gICAgcmlnaHQ6IHZhcigtLWZlZWRiYWNrLWZvcm0td2lkdGgpO1xyXG4gICAgei1pbmRleDogOTk5OTk5O1xyXG4gICAgY29udGVudDogXCJcIjtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXNlbWktdHJhbnNwYXJlbnQtY29sb3IpO1xyXG4gICAgdHJhbnNpdGlvbjogdmFyKC0tdHJhbnNpdGlvbik7XHJcbiAgICB0cmFuc2l0aW9uLXByb3BlcnR5OiBjb2xvciwgYmFja2dyb3VuZC1jb2xvcjtcclxuICB9XHJcbn1cclxuIiwiOmhvc3Qge1xuICAtLWZlZWRiYWNrLWZvcm0td2lkdGg6IDMwcmVtO1xufVxuXG4uaWNvbi1jb250YWluZXIge1xuICBwb3NpdGlvbjogZml4ZWQ7XG4gIGJvdHRvbTogMnJlbTtcbiAgcmlnaHQ6IDJyZW07XG59XG4uaWNvbi1jb250YWluZXIgLmljb25pZnkge1xuICBmb250LXNpemU6IDIuOHJlbTtcbiAgY3Vyc29yOiBwb2ludGVyO1xuICB0cmFuc2l0aW9uOiB2YXIoLS10cmFuc2l0aW9uKTtcbiAgdHJhbnNpdGlvbi1wcm9wZXJ0eTogY29sb3I7XG59XG4uaWNvbi1jb250YWluZXIgLmljb25pZnk6aG92ZXIge1xuICBjb2xvcjogdmFyKC0tcHJpbWFyeS1jb2xvcik7XG59XG5cbi5mZWVkYmFjay1jb250YWluZXIge1xuICBwb3NpdGlvbjogZml4ZWQ7XG4gIHotaW5kZXg6IGNhbGModmFyKC0tbmF2YmFyLXotaW5kZXgpICsgMTApO1xuICB0b3A6IHZhcigtLW5hdmJhci1oZWlnaHQpO1xuICByaWdodDogY2FsYyh2YXIoLS1mZWVkYmFjay1mb3JtLXdpZHRoKSAqIC0xKTtcbiAgYm90dG9tOiAwO1xuICBwYWRkaW5nOiAycmVtO1xuICBiYWNrZ3JvdW5kOiB2YXIoLS1mZWVkYmFjay1mb3JtLWJhY2tncm91bmQtY29sb3IpO1xuICB3aWR0aDogdmFyKC0tZmVlZGJhY2stZm9ybS13aWR0aCk7XG4gIHRyYW5zaXRpb246IHZhcigtLXRyYW5zaXRpb24pO1xuICB0cmFuc2l0aW9uLXByb3BlcnR5OiBjb2xvciwgYmFja2dyb3VuZC1jb2xvciwgcmlnaHQsIGRpc3BsYXk7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2Vlbjtcbn1cbi5mZWVkYmFjay1jb250YWluZXIgLmZlZWRiYWNrLXRpdGxlIHtcbiAgZm9udC1zaXplOiAxLjhyZW07XG4gIG1hcmdpbi1ib3R0b206IDJyZW07XG59XG4uZmVlZGJhY2stY29udGFpbmVyIHRleHRhcmVhIHtcbiAgaGVpZ2h0OiAxNXJlbTtcbn1cbi5mZWVkYmFjay1jb250YWluZXIgLmZlZWRiYWNrLWFjdGlvbnMge1xuICBkaXNwbGF5OiBmbGV4O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtZW5kO1xufVxuLmZlZWRiYWNrLWNvbnRhaW5lciAuZmVlZGJhY2stYWN0aW9ucyBidXR0b24ge1xuICBtYXJnaW4tbGVmdDogMXJlbTtcbn1cblxuOmhvc3QuYWN0aXZlIC5mZWVkYmFjay1jb250YWluZXIge1xuICByaWdodDogMDtcbn1cbjpob3N0LmFjdGl2ZSAuZmVlZGJhY2stYmFja2dyb3VuZCB7XG4gIHBvc2l0aW9uOiBmaXhlZDtcbiAgdG9wOiB2YXIoLS1uYXZiYXItaGVpZ2h0KTtcbiAgYm90dG9tOiAwO1xuICBsZWZ0OiAwO1xuICByaWdodDogdmFyKC0tZmVlZGJhY2stZm9ybS13aWR0aCk7XG4gIHotaW5kZXg6IDk5OTk5OTtcbiAgY29udGVudDogXCJcIjtcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tc2VtaS10cmFuc3BhcmVudC1jb2xvcik7XG4gIHRyYW5zaXRpb246IHZhcigtLXRyYW5zaXRpb24pO1xuICB0cmFuc2l0aW9uLXByb3BlcnR5OiBjb2xvciwgYmFja2dyb3VuZC1jb2xvcjtcbn0iXX0= */");
+
+/***/ }),
+
+/***/ "./src/app/modules/feedback/feedback.component.ts":
+/*!********************************************************!*\
+  !*** ./src/app/modules/feedback/feedback.component.ts ***!
+  \********************************************************/
+/*! exports provided: FeedbackComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FeedbackComponent", function() { return FeedbackComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _user_components_user_aware_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../user/components/user-aware.component */ "./src/app/modules/user/components/user-aware.component.ts");
+/* harmony import */ var _user_services_user_observable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../user/services/user.observable */ "./src/app/modules/user/services/user.observable.ts");
+/* harmony import */ var _feedback_converter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./feedback.converter */ "./src/app/modules/feedback/feedback.converter.ts");
+/* harmony import */ var _feedback_http_services__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./feedback.http.services */ "./src/app/modules/feedback/feedback.http.services.ts");
+/* harmony import */ var _feedback_internal_model__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./feedback.internal.model */ "./src/app/modules/feedback/feedback.internal.model.ts");
+/* harmony import */ var _feedback_validator__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./feedback.validator */ "./src/app/modules/feedback/feedback.validator.ts");
+/* harmony import */ var _alert_alert_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../alert/alert.service */ "./src/app/modules/alert/alert.service.ts");
+
+
+
+
+
+
+
+
+
+let FeedbackComponent = class FeedbackComponent extends _user_components_user_aware_component__WEBPACK_IMPORTED_MODULE_2__["UserAwareComponent"] {
+    constructor(userObservable, feedbackValidator, feedbackConverter, feedbackHttpServices, alertService) {
+        super(userObservable);
+        this.feedbackValidator = feedbackValidator;
+        this.feedbackConverter = feedbackConverter;
+        this.feedbackHttpServices = feedbackHttpServices;
+        this.alertService = alertService;
+        this.active = false;
+        this.feedback = new _feedback_internal_model__WEBPACK_IMPORTED_MODULE_6__["Feedback"]();
+    }
+    ngAfterViewInit() {
+        document.addEventListener("click", (event) => {
+            if (event.target.closest(".feedback-container"))
+                return;
+            this.active = false;
+        });
+    }
+    handleFeedbackIconClick(event) {
+        event.stopPropagation();
+        this.active = true;
+    }
+    cancel() {
+        this.active = false;
+    }
+    // prettier-ignore
+    submit() {
+        if (this.feedbackValidator.validateFeedback(this.feedback)) {
+            const request = this.feedbackConverter.toCreateFeedbackApiRequest(this.feedback);
+            this.feedbackHttpServices.createFeedback(request)
+                .then(() => this.handleCreateFeedbackSuccessEvent())
+                .catch(error => this.handleCreateFeedbackErrorEvent());
+        }
+    }
+    handleCreateFeedbackErrorEvent() {
+        this.alertService.error("Error while sending your feedback :(");
+    }
+    handleCreateFeedbackSuccessEvent() {
+        this.active = false;
+        this.feedback.value = "";
+        this.alertService.info("Thank your for your feedback :)");
+    }
+};
+FeedbackComponent.ctorParameters = () => [
+    { type: _user_services_user_observable__WEBPACK_IMPORTED_MODULE_3__["UserObservable"] },
+    { type: _feedback_validator__WEBPACK_IMPORTED_MODULE_7__["FeedbackValidator"] },
+    { type: _feedback_converter__WEBPACK_IMPORTED_MODULE_4__["FeedbackConverter"] },
+    { type: _feedback_http_services__WEBPACK_IMPORTED_MODULE_5__["FeedbackHttpServices"] },
+    { type: _alert_alert_service__WEBPACK_IMPORTED_MODULE_8__["AlertService"] }
+];
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["HostBinding"])("class.active")
+], FeedbackComponent.prototype, "active", void 0);
+FeedbackComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: "app-feedback",
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./feedback.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/feedback/feedback.component.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./feedback.component.scss */ "./src/app/modules/feedback/feedback.component.scss")).default]
+    })
+], FeedbackComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/modules/feedback/feedback.converter.ts":
+/*!********************************************************!*\
+  !*** ./src/app/modules/feedback/feedback.converter.ts ***!
+  \********************************************************/
+/*! exports provided: FeedbackConverter */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FeedbackConverter", function() { return FeedbackConverter; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+
+
+let FeedbackConverter = class FeedbackConverter {
+    toCreateFeedbackApiRequest(feedback) {
+        return {
+            url: "/secure-api/feedbacks",
+            body: {
+                value: feedback.value,
+            },
+        };
+    }
+};
+FeedbackConverter = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()
+], FeedbackConverter);
+
+
+
+/***/ }),
+
+/***/ "./src/app/modules/feedback/feedback.http.services.ts":
+/*!************************************************************!*\
+  !*** ./src/app/modules/feedback/feedback.http.services.ts ***!
+  \************************************************************/
+/*! exports provided: FeedbackHttpServices */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FeedbackHttpServices", function() { return FeedbackHttpServices; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+
+
+
+let FeedbackHttpServices = class FeedbackHttpServices {
+    constructor(http) {
+        this.http = http;
+    }
+    // prettier-ignore
+    createFeedback(request) {
+        return this.http
+            .post(request.url, request.body)
+            .toPromise();
+    }
+};
+FeedbackHttpServices.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] }
+];
+FeedbackHttpServices = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])()
+], FeedbackHttpServices);
+
+
+
+/***/ }),
+
+/***/ "./src/app/modules/feedback/feedback.internal.model.ts":
+/*!*************************************************************!*\
+  !*** ./src/app/modules/feedback/feedback.internal.model.ts ***!
+  \*************************************************************/
+/*! exports provided: Feedback */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Feedback", function() { return Feedback; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+
+class Feedback {
+    constructor() {
+        this.value = "";
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/app/modules/feedback/feedback.module.ts":
+/*!*****************************************************!*\
+  !*** ./src/app/modules/feedback/feedback.module.ts ***!
+  \*****************************************************/
+/*! exports provided: FeedbackModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FeedbackModule", function() { return FeedbackModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
+/* harmony import */ var _feedback_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./feedback.component */ "./src/app/modules/feedback/feedback.component.ts");
+/* harmony import */ var _shared_shared_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../shared/shared.module */ "./src/app/modules/shared/shared.module.ts");
+
+
+
+
+
+let FeedbackModule = class FeedbackModule {
+};
+FeedbackModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _shared_shared_module__WEBPACK_IMPORTED_MODULE_4__["SharedModule"]],
+        exports: [_feedback_component__WEBPACK_IMPORTED_MODULE_3__["FeedbackComponent"]],
+        declarations: [_feedback_component__WEBPACK_IMPORTED_MODULE_3__["FeedbackComponent"]],
+        providers: [],
+    })
+], FeedbackModule);
+
+
+
+/***/ }),
+
+/***/ "./src/app/modules/feedback/feedback.validator.ts":
+/*!********************************************************!*\
+  !*** ./src/app/modules/feedback/feedback.validator.ts ***!
+  \********************************************************/
+/*! exports provided: FeedbackValidator */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FeedbackValidator", function() { return FeedbackValidator; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _shared_services_string_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../shared/services/string.utils */ "./src/app/modules/shared/services/string.utils.ts");
+/* harmony import */ var _alert_alert_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../alert/alert.service */ "./src/app/modules/alert/alert.service.ts");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+
+
+
+
+let FeedbackValidator = class FeedbackValidator {
+    constructor(alertService) {
+        this.alertService = alertService;
+    }
+    validateFeedback(feedback) {
+        const errors = [];
+        if (_shared_services_string_utils__WEBPACK_IMPORTED_MODULE_1__["StringUtils"].isBlank(feedback.value)) {
+            errors.push("Feedback title is mandatory");
+        }
+        if (errors.length > 0)
+            this.alertService.error(errors.join("\n"));
+        return errors.length === 0;
+    }
+};
+FeedbackValidator.ctorParameters = () => [
+    { type: _alert_alert_service__WEBPACK_IMPORTED_MODULE_2__["AlertService"] }
+];
+FeedbackValidator = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Injectable"])()
+], FeedbackValidator);
+
 
 
 /***/ }),
