@@ -1,3 +1,10 @@
+:host {
+  display: block;
+  @media screen and (max-width: 480px) {
+    padding: 0 3rem;
+  }
+}
+
 app-posts-welcome-message {
   display: block;
   margin-top: 8rem;

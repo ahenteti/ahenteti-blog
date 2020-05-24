@@ -19,14 +19,14 @@
   --comment-user-avatar-margin-right: 1.5rem;
   @media screen and (max-width: 480px) {
     --font-size: 45%;
-    --main-page-width: 90%;
+    --main-page-width: 100%;
   }
 
-  @media screen and (min-width: 480px) and (max-width: 720px) {
+  @media screen and (min-width: 481px) and (max-width: 720px) {
     --font-size: 52%;
-    --main-page-width: 85%;
+    --main-page-width: 90%;
   }
-  @media screen and (min-width: 720px) {
+  @media screen and (min-width: 721px) {
     --font-size: 62.5%;
     --main-page-width: 80%;
   }

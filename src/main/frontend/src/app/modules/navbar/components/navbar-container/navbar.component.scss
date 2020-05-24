@@ -1,10 +1,16 @@
 :host {
+  --navbar-padding: 0;
+  @media screen and (max-width: 480px) {
+    --navbar-padding: 0 3rem;
+  }
+
   position: fixed;
   top: 0;
   z-index: var(--navbar-z-index);
   width: 100%;
   background-color: var(--body-background-color);
   transition: box-shadow 0.2s ease-in;
+  padding: var(--navbar-padding);
 }
 
 :host.shadow {
