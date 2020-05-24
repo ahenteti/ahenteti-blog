@@ -25,6 +25,7 @@ import { LoaderInterceptor } from "./modules/loader/loader.interceptor";
 import { LoaderService } from "./modules/loader/loader.service";
 import { AdminGuard } from "./modules/user/services/admin.guard";
 import { ManageUsersPage } from "./modules/user/pages/manage-users/manage-users.page";
+import { FeedbackModule } from "./modules/feedback/feedback.module";
 
 const routes: Routes = [
   {
@@ -47,6 +48,7 @@ const routes: Routes = [
     AlertModule,
     NavbarModule,
     PostPageModule,
+    FeedbackModule,
     RouterModule.forRoot(routes),
   ],
   bootstrap: [AppComponent],

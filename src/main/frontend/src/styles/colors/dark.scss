@@ -2,6 +2,7 @@ body.dark {
   --primary-color: #078eed;
   --danger-color: #ff5e52;
   --disabled-color: #444444;
+  --semi-transparent-color: #00000080;
   --color-0: #888888;
   --color-1: #d1d2d3;
   --color-2: #eeeeee;
@@ -134,4 +135,6 @@ body.dark {
 
   --filter-background-color: var(--background-color-2);
   --filter-icon-background-color-on-active-state: var(--background-color-4);
+
+  --feedback-form-background-color: var(--background-color-1);
 }

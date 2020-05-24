@@ -8,6 +8,7 @@ import * as AOS from "aos";
     <app-navbar></app-navbar>
     <app-alert></app-alert>
     <app-loader></app-loader>
+    <app-feedback></app-feedback>
     <main>
       <router-outlet></router-outlet>
     </main>

@@ -2,6 +2,7 @@ body.light {
   --primary-color: #078eed;
   --danger-color: #ff5e52;
   --disabled-color: #d3d3d3;
+  --semi-transparent-color: #0000001f;
   --color-0: #888888;
   --color-1: #555555;
   --color-2: #333333;
@@ -121,4 +122,6 @@ body.light {
 
   --filter-background-color: var(--background-color-2);
   --filter-icon-background-color-on-active-state: var(--background-color-4);
+
+  --feedback-form-background-color: var(--background-color-1);
 }
