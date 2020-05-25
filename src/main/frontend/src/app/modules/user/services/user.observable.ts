@@ -29,7 +29,12 @@ export class UserObservable {
     this.userHttpService
       .getCurrentUser()
       .then((user) => this.newUser(user))
-      .catch((error) => console.log("user not yet authenticated"));
+      .catch(() => this.handleGetCurrentUserErrorEvent());
+  }
+
+  private handleGetCurrentUserErrorEvent() {
+    console.log("user not yet authenticated");
+    this.newUser(new AnonymousUser());
   }
 
   currentUser(): CurrentUser {
