@@ -332,7 +332,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<app-manage-resources-page-layout\r\n  pageTitle=\"My Posts\"\r\n  [previousButtonCssClasses]=\"previousButtonCssClasses\"\r\n  [nextButtonCssClasses]=\"nextButtonCssClasses\"\r\n  (previousButtonClick)=\"handlePreviousButtonClickEvent()\"\r\n  (nextButtonClick)=\"handleNextButtonClickEvent()\"\r\n>\r\n  <ng-container class=\"top-table-actions\">\r\n    <app-new-button\r\n      routerLink=\"/posts/new\"\r\n      class=\"tooltip-bottom\"\r\n      data-tooltip=\"create new post\"\r\n    ></app-new-button>\r\n  </ng-container>\r\n\r\n  <ng-container class=\"table\">\r\n    <table mat-table matSort [dataSource]=\"dataSource\">\r\n      <ng-container matColumnDef=\"title\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Title</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.title}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"category\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Category</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.category}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"createdAt\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Created At</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.createdAt | date}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"actions\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef></th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <div class=\"row-actions\">\r\n            <app-consult-button-link\r\n              [routerLink]=\"['/posts', element.id, 'consult']\"\r\n            ></app-consult-button-link>\r\n            <app-edit-button-link\r\n              [routerLink]=\"['/posts', element.id, 'edit']\"\r\n            ></app-edit-button-link>\r\n            <app-delete-button\r\n              (click)=\"deletePost(element.id)\"\r\n            ></app-delete-button>\r\n          </div>\r\n        </td>\r\n      </ng-container>\r\n\r\n      <tr mat-header-row *matHeaderRowDef=\"columns\"></tr>\r\n      <tr mat-row class=\"row\" *matRowDef=\"let row; columns: columns;\"></tr>\r\n    </table>\r\n  </ng-container>\r\n</app-manage-resources-page-layout>\r\n";
+    __webpack_exports__["default"] = "<app-manage-resources-page-layout\r\n  pageTitle=\"My Posts\"\r\n  [previousButtonCssClasses]=\"previousButtonCssClasses\"\r\n  [nextButtonCssClasses]=\"nextButtonCssClasses\"\r\n  (previousButtonClick)=\"handlePreviousButtonClickEvent()\"\r\n  (nextButtonClick)=\"handleNextButtonClickEvent()\"\r\n  (filter)=\"onFilter($event)\"\r\n>\r\n  <ng-container class=\"top-table-actions\">\r\n    <app-page-title-new-button\r\n      routerLink=\"/posts/new\"\r\n      class=\"tooltip-bottom\"\r\n      data-tooltip=\"create new post\"\r\n    ></app-page-title-new-button>\r\n  </ng-container>\r\n\r\n  <ng-container class=\"table\">\r\n    <table mat-table matSort [dataSource]=\"dataSource\">\r\n      <ng-container matColumnDef=\"title\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Title</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.title}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"category\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Category</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.category}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"createdAt\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Created At</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.createdAt | date}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"actions\">\r\n        <th mat-header-cell *matHeaderCellDef></th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <div class=\"row-actions\">\r\n            <app-consult-button-link\r\n              [routerLink]=\"['/posts', element.id, 'consult']\"\r\n            ></app-consult-button-link>\r\n            <app-edit-button-link\r\n              [routerLink]=\"['/posts', element.id, 'edit']\"\r\n            ></app-edit-button-link>\r\n            <app-delete-button\r\n              (click)=\"deletePost(element.id)\"\r\n            ></app-delete-button>\r\n          </div>\r\n        </td>\r\n      </ng-container>\r\n\r\n      <tr mat-header-row *matHeaderRowDef=\"columns\"></tr>\r\n      <tr mat-row class=\"row\" *matRowDef=\"let row; columns: columns;\"></tr>\r\n    </table>\r\n  </ng-container>\r\n</app-manage-resources-page-layout>\r\n";
     /***/
   },
 
@@ -392,7 +392,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<app-post-layout>\r\n  <div class=\"page-header\">\r\n    <app-page-title [value]=\"pageTitle\"></app-page-title>\r\n    <div class=\"page-header-actions\">\r\n      <app-consult-button\r\n        (click)=\"togglePreviewMode()\"\r\n        *ngIf=\"!previewMode\"\r\n        data-tooltip=\"preview post\"\r\n        class=\"tooltip-bottom\"\r\n      ></app-consult-button>\r\n      <app-edit-button\r\n        (click)=\"togglePreviewMode()\"\r\n        *ngIf=\"previewMode\"\r\n        data-tooltip=\"continue post creation\"\r\n        class=\"tooltip-bottom\"\r\n      ></app-edit-button>\r\n    </div>\r\n  </div>\r\n\r\n  <ng-container *ngIf=\"previewMode\">\r\n    <app-post-title [post]=\"post\"></app-post-title>\r\n    <app-markdown [text]=\"post.bodyMarkdown\"></app-markdown>\r\n  </ng-container>\r\n  <ng-container *ngIf=\"!previewMode\">\r\n    <form (submit)=\"onSubmit($event)\">\r\n      <mat-form-field appearance=\"fill\">\r\n        <mat-label>Title</mat-label>\r\n        <input name=\"title\" matInput [(ngModel)]=\"post.title\" />\r\n      </mat-form-field>\r\n\r\n      <mat-form-field appearance=\"fill\">\r\n        <mat-label>Category</mat-label>\r\n        <input name=\"category\" matInput [(ngModel)]=\"post.category\" />\r\n      </mat-form-field>\r\n\r\n      <mat-form-field>\r\n        <mat-chip-list #tagsRef>\r\n          <mat-chip\r\n            *ngFor=\"let tag of post.tags\"\r\n            removable=\"true\"\r\n            (removed)=\"removeTag(tag)\"\r\n          >\r\n            {{ tag }}\r\n            <mat-icon matChipRemove *ngIf=\"true\">cancel</mat-icon>\r\n          </mat-chip>\r\n          <input\r\n            placeholder=\"Tags\"\r\n            [matChipInputFor]=\"tagsRef\"\r\n            [matChipInputAddOnBlur]=\"true\"\r\n            [matChipInputSeparatorKeyCodes]=\"separators\"\r\n            (matChipInputTokenEnd)=\"addTag($event)\"\r\n          />\r\n        </mat-chip-list>\r\n      </mat-form-field>\r\n\r\n      <simplemde\r\n        name=\"body\"\r\n        [(ngModel)]=\"post.bodyMarkdown\"\r\n        [options]=\"simpleMdeOptions\"\r\n      ></simplemde>\r\n\r\n      <div class=\"page-footer-actions\">\r\n        <button type=\"reset\">Reset</button>\r\n        <button type=\"submit\">{{ submitButtonLabel }}</button>\r\n      </div>\r\n    </form>\r\n  </ng-container>\r\n</app-post-layout>\r\n";
+    __webpack_exports__["default"] = "<app-post-layout>\r\n  <div class=\"page-header\">\r\n    <app-page-title [value]=\"pageTitle\"></app-page-title>\r\n    <div class=\"page-header-actions\">\r\n      <app-page-title-consult-button\r\n        (click)=\"togglePreviewMode()\"\r\n        *ngIf=\"!previewMode\"\r\n        tooltip=\"preview post\"\r\n      ></app-page-title-consult-button>\r\n      <app-page-title-edit-button\r\n        tooltip=\"continue post creation / update\"\r\n        (click)=\"togglePreviewMode()\"\r\n        *ngIf=\"previewMode\"\r\n      ></app-page-title-edit-button>\r\n    </div>\r\n  </div>\r\n\r\n  <ng-container *ngIf=\"previewMode\">\r\n    <app-post-title [post]=\"post\"></app-post-title>\r\n    <app-markdown [text]=\"post.bodyMarkdown\"></app-markdown>\r\n  </ng-container>\r\n  <ng-container *ngIf=\"!previewMode\">\r\n    <form (submit)=\"onSubmit($event)\">\r\n      <mat-form-field appearance=\"fill\">\r\n        <mat-label>Title</mat-label>\r\n        <input name=\"title\" matInput [(ngModel)]=\"post.title\" />\r\n      </mat-form-field>\r\n\r\n      <mat-form-field appearance=\"fill\">\r\n        <mat-label>Category</mat-label>\r\n        <input name=\"category\" matInput [(ngModel)]=\"post.category\" />\r\n      </mat-form-field>\r\n\r\n      <mat-form-field>\r\n        <mat-chip-list #tagsRef>\r\n          <mat-chip\r\n            *ngFor=\"let tag of post.tags\"\r\n            removable=\"true\"\r\n            (removed)=\"removeTag(tag)\"\r\n          >\r\n            {{ tag }}\r\n            <mat-icon matChipRemove *ngIf=\"true\">cancel</mat-icon>\r\n          </mat-chip>\r\n          <input\r\n            placeholder=\"Tags\"\r\n            [matChipInputFor]=\"tagsRef\"\r\n            [matChipInputAddOnBlur]=\"true\"\r\n            [matChipInputSeparatorKeyCodes]=\"separators\"\r\n            (matChipInputTokenEnd)=\"addTag($event)\"\r\n          />\r\n        </mat-chip-list>\r\n      </mat-form-field>\r\n\r\n      <simplemde\r\n        name=\"body\"\r\n        [(ngModel)]=\"post.bodyMarkdown\"\r\n        [options]=\"simpleMdeOptions\"\r\n      ></simplemde>\r\n\r\n      <div class=\"page-footer-actions\">\r\n        <button type=\"reset\">Reset</button>\r\n        <button type=\"submit\">{{ submitButtonLabel }}</button>\r\n      </div>\r\n    </form>\r\n  </ng-container>\r\n</app-post-layout>\r\n";
     /***/
   },
 
@@ -677,26 +677,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
   },
 
   /***/
-  "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/buttons/new-button/new-button.component.html":
-  /*!******************************************************************************************************************************!*\
-    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/buttons/new-button/new-button.component.html ***!
-    \******************************************************************************************************************************/
-
-  /*! exports provided: default */
-
-  /***/
-  function node_modulesRawLoaderDistCjsJsSrcAppModulesSharedComponentsButtonsNewButtonNewButtonComponentHtml(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony default export */
-
-
-    __webpack_exports__["default"] = "<a [routerLink]=\"routerLink\">\r\n  <span class=\"iconify\" data-icon=\"ic:round-add\"></span>\r\n</a>\r\n";
-    /***/
-  },
-
-  /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/buttons/next-button/next-button.component.html":
   /*!********************************************************************************************************************************!*\
     !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/buttons/next-button/next-button.component.html ***!
@@ -757,26 +737,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
   },
 
   /***/
-  "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/filter/filter.component.html":
-  /*!**************************************************************************************************************!*\
-    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/filter/filter.component.html ***!
-    \**************************************************************************************************************/
-
-  /*! exports provided: default */
-
-  /***/
-  function node_modulesRawLoaderDistCjsJsSrcAppModulesSharedComponentsFilterFilterComponentHtml(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony default export */
-
-
-    __webpack_exports__["default"] = "<input\r\n  #input\r\n  type=\"text\"\r\n  name=\"\"\r\n  class=\"search-input\"\r\n  (blur)=\"onBlur()\"\r\n  (focus)=\"onFocus()\"\r\n  placeholder=\"Search...\"\r\n  [(ngModel)]=\"filter\"\r\n/>\r\n<a class=\"search-button\" (click)=\"onSubmit()\">\r\n  <span class=\"iconify\" data-icon=\"gridicons:search\"></span>\r\n</a>\r\n";
-    /***/
-  },
-
-  /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/icons/dropdown-icon/dropdown-icon.component.html":
   /*!**********************************************************************************************************************************!*\
     !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/icons/dropdown-icon/dropdown-icon.component.html ***!
@@ -833,6 +793,46 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
     __webpack_exports__["default"] = "<a [routerLink]=\"['/']\" class=\"container\">\r\n  <div class=\"logo\">\r\n    <div class=\"backslash\"></div>\r\n    <div class=\"slash\"></div>\r\n    <div class=\"underscore\"></div>\r\n  </div>\r\n  <span class=\"logo-text\">ahenteti blog</span>\r\n</a>\r\n";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/page-title-buttons/page-title-button/page-title-button.component.html":
+  /*!*******************************************************************************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/page-title-buttons/page-title-button/page-title-button.component.html ***!
+    \*******************************************************************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppModulesSharedComponentsPageTitleButtonsPageTitleButtonPageTitleButtonComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<div class=\"button\">\r\n  <span class=\"iconify\" [attr.data-icon]=\"icon\"></span>\r\n</div>\r\n";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/page-title-buttons/page-title-filter-button/page-title-filter-button.component.html":
+  /*!*********************************************************************************************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/page-title-buttons/page-title-filter-button/page-title-filter-button.component.html ***!
+    \*********************************************************************************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppModulesSharedComponentsPageTitleButtonsPageTitleFilterButtonPageTitleFilterButtonComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<input\r\n  #input\r\n  type=\"text\"\r\n  name=\"\"\r\n  class=\"search-input\"\r\n  (blur)=\"onBlur()\"\r\n  (focus)=\"onFocus()\"\r\n  placeholder=\"Search...\"\r\n  [(ngModel)]=\"filter\"\r\n  (keyup.enter)=\"onSubmit()\"\r\n/>\r\n<a class=\"search-button\" (click)=\"onSubmit()\">\r\n  <span class=\"iconify\" data-icon=\"gridicons:search\"></span>\r\n</a>\r\n";
     /***/
   },
 
@@ -952,7 +952,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"header\">\r\n  <app-page-title [value]=\"pageTitle\"></app-page-title>\r\n  <ng-content select=\".top-table-actions\"></ng-content>\r\n</div>\r\n\r\n<ng-content select=\".table\"></ng-content>\r\n\r\n<div class=\"bottom-table-actions\">\r\n  <app-previous-button\r\n    class=\"{{ previousButtonCssClasses }}\"\r\n    (click)=\"handlePreviousButtonClickEvent()\"\r\n  ></app-previous-button>\r\n  <app-next-button\r\n    class=\"{{ nextButtonCssClasses }}\"\r\n    (click)=\"handleNextButtonClickEvent()\"\r\n  ></app-next-button>\r\n</div>\r\n";
+    __webpack_exports__["default"] = "<div class=\"header\">\r\n  <app-page-title [value]=\"pageTitle\"></app-page-title>\r\n  <div class=\"top-table-actions-container\">\r\n    <app-page-title-filter-button\r\n      (onFilter)=\"onFilter($event)\"\r\n    ></app-page-title-filter-button>\r\n    <ng-content select=\".top-table-actions\"></ng-content>\r\n  </div>\r\n</div>\r\n\r\n<ng-content select=\".table\"></ng-content>\r\n\r\n<div class=\"bottom-table-actions\">\r\n  <app-previous-button\r\n    class=\"{{ previousButtonCssClasses }}\"\r\n    (click)=\"handlePreviousButtonClickEvent()\"\r\n  ></app-previous-button>\r\n  <app-next-button\r\n    class=\"{{ nextButtonCssClasses }}\"\r\n    (click)=\"handleNextButtonClickEvent()\"\r\n  ></app-next-button>\r\n</div>\r\n";
     /***/
   },
 
@@ -972,7 +972,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<app-manage-resources-page-layout\r\n  pageTitle=\"Users\"\r\n  [previousButtonCssClasses]=\"previousButtonCssClasses\"\r\n  [nextButtonCssClasses]=\"nextButtonCssClasses\"\r\n  (previousButtonClick)=\"handlePreviousButtonClickEvent()\"\r\n  (nextButtonClick)=\"handleNextButtonClickEvent()\"\r\n>\r\n  <ng-container class=\"top-table-actions\">\r\n    <app-filter (onFilter)=\"onFilter($event)\"></app-filter>\r\n  </ng-container>\r\n\r\n  <ng-container class=\"table\">\r\n    <table mat-table matSort [dataSource]=\"dataSource\">\r\n      <ng-container matColumnDef=\"username\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Username</th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <app-user [user]=\"element\"></app-user>\r\n        </td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"joinAt\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Join At</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.joinAt | date}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"actions\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef></th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <div class=\"row-actions\">\r\n            <app-delete-button></app-delete-button>\r\n          </div>\r\n        </td>\r\n      </ng-container>\r\n\r\n      <tr mat-header-row *matHeaderRowDef=\"columns\"></tr>\r\n      <tr mat-row *matRowDef=\"let row; columns: columns;\"></tr>\r\n    </table>\r\n  </ng-container>\r\n</app-manage-resources-page-layout>\r\n";
+    __webpack_exports__["default"] = "<app-manage-resources-page-layout\r\n  pageTitle=\"Users\"\r\n  [previousButtonCssClasses]=\"previousButtonCssClasses\"\r\n  [nextButtonCssClasses]=\"nextButtonCssClasses\"\r\n  (previousButtonClick)=\"handlePreviousButtonClickEvent()\"\r\n  (nextButtonClick)=\"handleNextButtonClickEvent()\"\r\n  (filter)=\"onFilter($event)\"\r\n>\r\n  <ng-container class=\"table\">\r\n    <table mat-table matSort [dataSource]=\"dataSource\">\r\n      <ng-container matColumnDef=\"username\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Username</th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <app-user [user]=\"element\"></app-user>\r\n        </td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"provider\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Provider</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.provider}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"joinAt\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Join At</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.joinAt | date}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"actions\">\r\n        <th mat-header-cell *matHeaderCellDef></th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <div class=\"row-actions\">\r\n            <app-delete-button\r\n              (click)=\"deleteUser(element)\"\r\n            ></app-delete-button>\r\n          </div>\r\n        </td>\r\n      </ng-container>\r\n\r\n      <tr mat-header-row *matHeaderRowDef=\"columns\"></tr>\r\n      <tr mat-row *matRowDef=\"let row; columns: columns;\"></tr>\r\n    </table>\r\n  </ng-container>\r\n</app-manage-resources-page-layout>\r\n";
     /***/
   },
 
@@ -8182,75 +8182,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
   },
 
   /***/
-  "./src/app/modules/shared/components/buttons/new-button/new-button.component.scss":
-  /*!****************************************************************************************!*\
-    !*** ./src/app/modules/shared/components/buttons/new-button/new-button.component.scss ***!
-    \****************************************************************************************/
-
-  /*! exports provided: default */
-
-  /***/
-  function srcAppModulesSharedComponentsButtonsNewButtonNewButtonComponentScss(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony default export */
-
-
-    __webpack_exports__["default"] = ":host {\n  border-radius: 100%;\n  border: 0.2rem solid var(--primary-color);\n  background-color: inherit;\n  transition: var(--transition);\n  transition-property: background-color;\n  cursor: pointer;\n}\n:host a {\n  color: var(--primary-color);\n  transition: var(--transition);\n  transition-property: color;\n}\n:host:hover {\n  background-color: var(--primary-color);\n}\n:host:hover a {\n  color: #fff;\n}\n.iconify {\n  font-size: 3.5rem;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9zaGFyZWQvY29tcG9uZW50cy9idXR0b25zL25ldy1idXR0b24vQzpcXGRldlxccHJvamVjdHNcXGFoZW50ZXRpLWJsb2dcXHNyY1xcbWFpblxcZnJvbnRlbmQvc3JjXFxhcHBcXG1vZHVsZXNcXHNoYXJlZFxcY29tcG9uZW50c1xcYnV0dG9uc1xcbmV3LWJ1dHRvblxcbmV3LWJ1dHRvbi5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvbW9kdWxlcy9zaGFyZWQvY29tcG9uZW50cy9idXR0b25zL25ldy1idXR0b24vbmV3LWJ1dHRvbi5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLG1CQUFBO0VBQ0EseUNBQUE7RUFDQSx5QkFBQTtFQUNBLDZCQUFBO0VBQ0EscUNBQUE7RUFDQSxlQUFBO0FDQ0Y7QURDRTtFQUNFLDJCQUFBO0VBQ0EsNkJBQUE7RUFDQSwwQkFBQTtBQ0NKO0FER0E7RUFDRSxzQ0FBQTtBQ0FGO0FEQ0U7RUFDRSxXQUFBO0FDQ0o7QURHQTtFQUNFLGlCQUFBO0FDQUYiLCJmaWxlIjoic3JjL2FwcC9tb2R1bGVzL3NoYXJlZC9jb21wb25lbnRzL2J1dHRvbnMvbmV3LWJ1dHRvbi9uZXctYnV0dG9uLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3Qge1xyXG4gIGJvcmRlci1yYWRpdXM6IDEwMCU7XHJcbiAgYm9yZGVyOiAwLjJyZW0gc29saWQgdmFyKC0tcHJpbWFyeS1jb2xvcik7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogaW5oZXJpdDtcclxuICB0cmFuc2l0aW9uOiB2YXIoLS10cmFuc2l0aW9uKTtcclxuICB0cmFuc2l0aW9uLXByb3BlcnR5OiBiYWNrZ3JvdW5kLWNvbG9yO1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxuXHJcbiAgJiBhIHtcclxuICAgIGNvbG9yOiB2YXIoLS1wcmltYXJ5LWNvbG9yKTtcclxuICAgIHRyYW5zaXRpb246IHZhcigtLXRyYW5zaXRpb24pO1xyXG4gICAgdHJhbnNpdGlvbi1wcm9wZXJ0eTogY29sb3I7XHJcbiAgfVxyXG59XHJcblxyXG46aG9zdDpob3ZlciB7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tcHJpbWFyeS1jb2xvcik7XHJcbiAgJiBhIHtcclxuICAgIGNvbG9yOiAjZmZmO1xyXG4gIH1cclxufVxyXG5cclxuLmljb25pZnkge1xyXG4gIGZvbnQtc2l6ZTogMy41cmVtO1xyXG59XHJcbiIsIjpob3N0IHtcbiAgYm9yZGVyLXJhZGl1czogMTAwJTtcbiAgYm9yZGVyOiAwLjJyZW0gc29saWQgdmFyKC0tcHJpbWFyeS1jb2xvcik7XG4gIGJhY2tncm91bmQtY29sb3I6IGluaGVyaXQ7XG4gIHRyYW5zaXRpb246IHZhcigtLXRyYW5zaXRpb24pO1xuICB0cmFuc2l0aW9uLXByb3BlcnR5OiBiYWNrZ3JvdW5kLWNvbG9yO1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG46aG9zdCBhIHtcbiAgY29sb3I6IHZhcigtLXByaW1hcnktY29sb3IpO1xuICB0cmFuc2l0aW9uOiB2YXIoLS10cmFuc2l0aW9uKTtcbiAgdHJhbnNpdGlvbi1wcm9wZXJ0eTogY29sb3I7XG59XG5cbjpob3N0OmhvdmVyIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tcHJpbWFyeS1jb2xvcik7XG59XG46aG9zdDpob3ZlciBhIHtcbiAgY29sb3I6ICNmZmY7XG59XG5cbi5pY29uaWZ5IHtcbiAgZm9udC1zaXplOiAzLjVyZW07XG59Il19 */";
-    /***/
-  },
-
-  /***/
-  "./src/app/modules/shared/components/buttons/new-button/new-button.component.ts":
-  /*!**************************************************************************************!*\
-    !*** ./src/app/modules/shared/components/buttons/new-button/new-button.component.ts ***!
-    \**************************************************************************************/
-
-  /*! exports provided: NewButtonComponent */
-
-  /***/
-  function srcAppModulesSharedComponentsButtonsNewButtonNewButtonComponentTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "NewButtonComponent", function () {
-      return NewButtonComponent;
-    });
-    /* harmony import */
-
-
-    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! tslib */
-    "./node_modules/tslib/tslib.es6.js");
-    /* harmony import */
-
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/fesm2015/core.js");
-
-    var NewButtonComponent = function NewButtonComponent() {
-      _classCallCheck(this, NewButtonComponent);
-    };
-
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()], NewButtonComponent.prototype, "routerLink", void 0);
-    NewButtonComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-      selector: "app-new-button",
-      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
-      /*! raw-loader!./new-button.component.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/buttons/new-button/new-button.component.html"))["default"],
-      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
-      /*! ./new-button.component.scss */
-      "./src/app/modules/shared/components/buttons/new-button/new-button.component.scss"))["default"]]
-    })], NewButtonComponent);
-    /***/
-  },
-
-  /***/
   "./src/app/modules/shared/components/buttons/next-button/next-button.component.ts":
   /*!****************************************************************************************!*\
     !*** ./src/app/modules/shared/components/buttons/next-button/next-button.component.ts ***!
@@ -8443,129 +8374,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       /*! ./confirmation-dialog.component.scss */
       "./src/app/modules/shared/components/confirmation-dialog/confirmation-dialog.component.scss"))["default"]]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material_dialog__WEBPACK_IMPORTED_MODULE_2__["MAT_DIALOG_DATA"]))], ConfirmationDialogComponent);
-    /***/
-  },
-
-  /***/
-  "./src/app/modules/shared/components/filter/filter.component.scss":
-  /*!************************************************************************!*\
-    !*** ./src/app/modules/shared/components/filter/filter.component.scss ***!
-    \************************************************************************/
-
-  /*! exports provided: default */
-
-  /***/
-  function srcAppModulesSharedComponentsFilterFilterComponentScss(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony default export */
-
-
-    __webpack_exports__["default"] = ":host {\n  display: flex;\n  align-items: center;\n  border-radius: 100rem;\n  padding: 0.5rem;\n  background-color: var(--filter-background-color);\n}\n\n.search-button {\n  flex-grow: 0;\n  flex-shrink: 0;\n  height: 3rem;\n  width: 3rem;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.search-button .iconify {\n  font-size: 3rem;\n  padding: 0.5rem;\n  border-radius: 100rem;\n  color: var(--primary-color);\n  background-color: var(--filter-background-color);\n}\n\n.search-input {\n  border: none;\n  outline: none;\n  width: 0;\n  padding: 0;\n  transition: var(--transition);\n  transition-property: color, background-color, width;\n}\n\n:host.active .search-button .iconify {\n  background-color: var(--filter-icon-background-color-on-active-state);\n}\n\n:host.active .search-input {\n  width: 20rem;\n  padding-left: 0.5rem;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9zaGFyZWQvY29tcG9uZW50cy9maWx0ZXIvQzpcXGRldlxccHJvamVjdHNcXGFoZW50ZXRpLWJsb2dcXHNyY1xcbWFpblxcZnJvbnRlbmQvc3JjXFxhcHBcXG1vZHVsZXNcXHNoYXJlZFxcY29tcG9uZW50c1xcZmlsdGVyXFxmaWx0ZXIuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL21vZHVsZXMvc2hhcmVkL2NvbXBvbmVudHMvZmlsdGVyL2ZpbHRlci5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGFBQUE7RUFDQSxtQkFBQTtFQUNBLHFCQUFBO0VBQ0EsZUFBQTtFQUNBLGdEQUFBO0FDQ0Y7O0FERUE7RUFDRSxZQUFBO0VBQ0EsY0FBQTtFQUNBLFlBQUE7RUFDQSxXQUFBO0VBQ0EsYUFBQTtFQUNBLG1CQUFBO0VBQ0EsdUJBQUE7QUNDRjs7QURFQTtFQUNFLGVBQUE7RUFDQSxlQUFBO0VBQ0EscUJBQUE7RUFDQSwyQkFBQTtFQUNBLGdEQUFBO0FDQ0Y7O0FERUE7RUFDRSxZQUFBO0VBQ0EsYUFBQTtFQUNBLFFBQUE7RUFDQSxVQUFBO0VBQ0EsNkJBQUE7RUFDQSxtREFBQTtBQ0NGOztBREdFO0VBQ0UscUVBQUE7QUNBSjs7QURHRTtFQUNFLFlBQUE7RUFDQSxvQkFBQTtBQ0RKIiwiZmlsZSI6InNyYy9hcHAvbW9kdWxlcy9zaGFyZWQvY29tcG9uZW50cy9maWx0ZXIvZmlsdGVyLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3Qge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBib3JkZXItcmFkaXVzOiAxMDByZW07XHJcbiAgcGFkZGluZzogMC41cmVtO1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWZpbHRlci1iYWNrZ3JvdW5kLWNvbG9yKTtcclxufVxyXG5cclxuLnNlYXJjaC1idXR0b24ge1xyXG4gIGZsZXgtZ3JvdzogMDtcclxuICBmbGV4LXNocmluazogMDtcclxuICBoZWlnaHQ6IDNyZW07XHJcbiAgd2lkdGg6IDNyZW07XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG59XHJcblxyXG4uc2VhcmNoLWJ1dHRvbiAuaWNvbmlmeSB7XHJcbiAgZm9udC1zaXplOiAzcmVtO1xyXG4gIHBhZGRpbmc6IDAuNXJlbTtcclxuICBib3JkZXItcmFkaXVzOiAxMDByZW07XHJcbiAgY29sb3I6IHZhcigtLXByaW1hcnktY29sb3IpO1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWZpbHRlci1iYWNrZ3JvdW5kLWNvbG9yKTtcclxufVxyXG5cclxuLnNlYXJjaC1pbnB1dCB7XHJcbiAgYm9yZGVyOiBub25lO1xyXG4gIG91dGxpbmU6IG5vbmU7XHJcbiAgd2lkdGg6IDA7XHJcbiAgcGFkZGluZzogMDtcclxuICB0cmFuc2l0aW9uOiB2YXIoLS10cmFuc2l0aW9uKTtcclxuICB0cmFuc2l0aW9uLXByb3BlcnR5OiBjb2xvciwgYmFja2dyb3VuZC1jb2xvciwgd2lkdGg7XHJcbn1cclxuXHJcbjpob3N0LmFjdGl2ZSB7XHJcbiAgJiAuc2VhcmNoLWJ1dHRvbiAuaWNvbmlmeSB7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1maWx0ZXItaWNvbi1iYWNrZ3JvdW5kLWNvbG9yLW9uLWFjdGl2ZS1zdGF0ZSk7XHJcbiAgfVxyXG5cclxuICAmIC5zZWFyY2gtaW5wdXQge1xyXG4gICAgd2lkdGg6IDIwcmVtO1xyXG4gICAgcGFkZGluZy1sZWZ0OiAwLjVyZW07XHJcbiAgfVxyXG59XHJcbiIsIjpob3N0IHtcbiAgZGlzcGxheTogZmxleDtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgYm9yZGVyLXJhZGl1czogMTAwcmVtO1xuICBwYWRkaW5nOiAwLjVyZW07XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWZpbHRlci1iYWNrZ3JvdW5kLWNvbG9yKTtcbn1cblxuLnNlYXJjaC1idXR0b24ge1xuICBmbGV4LWdyb3c6IDA7XG4gIGZsZXgtc2hyaW5rOiAwO1xuICBoZWlnaHQ6IDNyZW07XG4gIHdpZHRoOiAzcmVtO1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbn1cblxuLnNlYXJjaC1idXR0b24gLmljb25pZnkge1xuICBmb250LXNpemU6IDNyZW07XG4gIHBhZGRpbmc6IDAuNXJlbTtcbiAgYm9yZGVyLXJhZGl1czogMTAwcmVtO1xuICBjb2xvcjogdmFyKC0tcHJpbWFyeS1jb2xvcik7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWZpbHRlci1iYWNrZ3JvdW5kLWNvbG9yKTtcbn1cblxuLnNlYXJjaC1pbnB1dCB7XG4gIGJvcmRlcjogbm9uZTtcbiAgb3V0bGluZTogbm9uZTtcbiAgd2lkdGg6IDA7XG4gIHBhZGRpbmc6IDA7XG4gIHRyYW5zaXRpb246IHZhcigtLXRyYW5zaXRpb24pO1xuICB0cmFuc2l0aW9uLXByb3BlcnR5OiBjb2xvciwgYmFja2dyb3VuZC1jb2xvciwgd2lkdGg7XG59XG5cbjpob3N0LmFjdGl2ZSAuc2VhcmNoLWJ1dHRvbiAuaWNvbmlmeSB7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWZpbHRlci1pY29uLWJhY2tncm91bmQtY29sb3Itb24tYWN0aXZlLXN0YXRlKTtcbn1cbjpob3N0LmFjdGl2ZSAuc2VhcmNoLWlucHV0IHtcbiAgd2lkdGg6IDIwcmVtO1xuICBwYWRkaW5nLWxlZnQ6IDAuNXJlbTtcbn0iXX0= */";
-    /***/
-  },
-
-  /***/
-  "./src/app/modules/shared/components/filter/filter.component.ts":
-  /*!**********************************************************************!*\
-    !*** ./src/app/modules/shared/components/filter/filter.component.ts ***!
-    \**********************************************************************/
-
-  /*! exports provided: FilterComponent */
-
-  /***/
-  function srcAppModulesSharedComponentsFilterFilterComponentTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "FilterComponent", function () {
-      return FilterComponent;
-    });
-    /* harmony import */
-
-
-    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! tslib */
-    "./node_modules/tslib/tslib.es6.js");
-    /* harmony import */
-
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/fesm2015/core.js");
-
-    var FilterComponent = /*#__PURE__*/function () {
-      function FilterComponent() {
-        _classCallCheck(this, FilterComponent);
-
-        this.hover = false;
-        this.focus = false;
-        this.filter = "";
-        this.onFilter = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
-        this.active = false;
-      }
-
-      _createClass(FilterComponent, [{
-        key: "onSubmit",
-        value: function onSubmit() {
-          if (!this.filter) return;
-          this.onFilter.emit(this.filter);
-          this.input.nativeElement.focus();
-        }
-      }, {
-        key: "onMouseHover",
-        value: function onMouseHover() {
-          this.hover = true;
-          this.updateActiveStatus();
-        }
-      }, {
-        key: "onMouseOut",
-        value: function onMouseOut() {
-          this.hover = false;
-          this.updateActiveStatus();
-        }
-      }, {
-        key: "onBlur",
-        value: function onBlur() {
-          this.focus = false;
-          this.updateActiveStatus();
-        }
-      }, {
-        key: "onFocus",
-        value: function onFocus() {
-          this.focus = true;
-          this.updateActiveStatus();
-        }
-      }, {
-        key: "updateActiveStatus",
-        value: function updateActiveStatus() {
-          this.active = this.hover || this.focus;
-        }
-      }]);
-
-      return FilterComponent;
-    }();
-
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()], FilterComponent.prototype, "onFilter", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])("input", {
-      "static": true
-    })], FilterComponent.prototype, "input", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["HostBinding"])("class.active")], FilterComponent.prototype, "active", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["HostListener"])("mouseover")], FilterComponent.prototype, "onMouseHover", null);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["HostListener"])("mouseout")], FilterComponent.prototype, "onMouseOut", null);
-    FilterComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-      selector: "app-filter",
-      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
-      /*! raw-loader!./filter.component.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/filter/filter.component.html"))["default"],
-      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
-      /*! ./filter.component.scss */
-      "./src/app/modules/shared/components/filter/filter.component.scss"))["default"]]
-    })], FilterComponent);
     /***/
   },
 
@@ -9385,6 +9193,326 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
     __webpack_exports__["default"] = ".app-markdown ::ng-deep .text-with-icon {\n  padding: 2rem;\n  margin-bottom: 1.5rem;\n  border-radius: 0.3rem;\n  font-size: 1.6rem;\n  line-height: 2.5rem;\n  display: flex;\n  flex-wrap: nowrap;\n  align-items: flex-start;\n  transition: var(--transition);\n  transition-property: color, background-color;\n}\n.app-markdown ::ng-deep .text-with-icon img {\n  width: 4.5rem;\n  flex-grow: 0;\n  flex-shrink: 0;\n  padding-right: 1.6rem;\n}\n.app-markdown ::ng-deep .text-with-icon p:first-of-type {\n  margin: 0;\n}\n.app-markdown ::ng-deep .text-with-icon.quote {\n  font-style: italic;\n  background-color: var(--quote-background-color);\n  color: var(--quote-text-color);\n}\n.app-markdown ::ng-deep .text-with-icon.quote .author {\n  float: right;\n  margin: 0.5rem 0 0;\n  color: var(--primary-color);\n  font-size: 1.35rem;\n  font-weight: bold;\n}\n.app-markdown ::ng-deep .text-with-icon.info {\n  background-color: var(--info-background-color);\n  color: var(--info-text-color);\n}\n.app-markdown ::ng-deep .text-with-icon.warn {\n  background-color: var(--warn-background-color);\n  color: var(--warn-text-color);\n}\n.app-markdown ::ng-deep .text-with-icon.error {\n  background-color: var(--error-background-color);\n  color: var(--error-text-color);\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9zaGFyZWQvY29tcG9uZW50cy9tYXJrZG93bi9DOlxcZGV2XFxwcm9qZWN0c1xcYWhlbnRldGktYmxvZ1xcc3JjXFxtYWluXFxmcm9udGVuZC9zcmNcXGFwcFxcbW9kdWxlc1xcc2hhcmVkXFxjb21wb25lbnRzXFxtYXJrZG93blxcdGV4dC13aXRoLWljb24uY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL21vZHVsZXMvc2hhcmVkL2NvbXBvbmVudHMvbWFya2Rvd24vdGV4dC13aXRoLWljb24uY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0U7RUFDRSxhQUFBO0VBQ0EscUJBQUE7RUFDQSxxQkFBQTtFQUNBLGlCQUFBO0VBQ0EsbUJBQUE7RUFDQSxhQUFBO0VBQ0EsaUJBQUE7RUFDQSx1QkFBQTtFQUNBLDZCQUFBO0VBQ0EsNENBQUE7QUNBSjtBREVJO0VBQ0UsYUFBQTtFQUNBLFlBQUE7RUFDQSxjQUFBO0VBQ0EscUJBQUE7QUNBTjtBREdJO0VBQ0UsU0FBQTtBQ0ROO0FESUk7RUFDRSxrQkFBQTtFQUNBLCtDQUFBO0VBQ0EsOEJBQUE7QUNGTjtBRElNO0VBQ0UsWUFBQTtFQUNBLGtCQUFBO0VBQ0EsMkJBQUE7RUFDQSxrQkFBQTtFQUNBLGlCQUFBO0FDRlI7QURNSTtFQUNFLDhDQUFBO0VBQ0EsNkJBQUE7QUNKTjtBRE9JO0VBQ0UsOENBQUE7RUFDQSw2QkFBQTtBQ0xOO0FEUUk7RUFDRSwrQ0FBQTtFQUNBLDhCQUFBO0FDTk4iLCJmaWxlIjoic3JjL2FwcC9tb2R1bGVzL3NoYXJlZC9jb21wb25lbnRzL21hcmtkb3duL3RleHQtd2l0aC1pY29uLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmFwcC1tYXJrZG93biA6Om5nLWRlZXAge1xyXG4gICYgLnRleHQtd2l0aC1pY29uIHtcclxuICAgIHBhZGRpbmc6IDJyZW07XHJcbiAgICBtYXJnaW4tYm90dG9tOiAxLjVyZW07XHJcbiAgICBib3JkZXItcmFkaXVzOiAwLjNyZW07XHJcbiAgICBmb250LXNpemU6IDEuNnJlbTtcclxuICAgIGxpbmUtaGVpZ2h0OiAyLjVyZW07XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgZmxleC13cmFwOiBub3dyYXA7XHJcbiAgICBhbGlnbi1pdGVtczogZmxleC1zdGFydDtcclxuICAgIHRyYW5zaXRpb246IHZhcigtLXRyYW5zaXRpb24pO1xyXG4gICAgdHJhbnNpdGlvbi1wcm9wZXJ0eTogY29sb3IsIGJhY2tncm91bmQtY29sb3I7XHJcblxyXG4gICAgJiBpbWcge1xyXG4gICAgICB3aWR0aDogNC41cmVtO1xyXG4gICAgICBmbGV4LWdyb3c6IDA7XHJcbiAgICAgIGZsZXgtc2hyaW5rOiAwO1xyXG4gICAgICBwYWRkaW5nLXJpZ2h0OiAxLjZyZW07XHJcbiAgICB9XHJcblxyXG4gICAgJiBwOmZpcnN0LW9mLXR5cGUge1xyXG4gICAgICBtYXJnaW46IDA7XHJcbiAgICB9XHJcblxyXG4gICAgJi5xdW90ZSB7XHJcbiAgICAgIGZvbnQtc3R5bGU6IGl0YWxpYztcclxuICAgICAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tcXVvdGUtYmFja2dyb3VuZC1jb2xvcik7XHJcbiAgICAgIGNvbG9yOiB2YXIoLS1xdW90ZS10ZXh0LWNvbG9yKTtcclxuXHJcbiAgICAgICYgLmF1dGhvciB7XHJcbiAgICAgICAgZmxvYXQ6IHJpZ2h0O1xyXG4gICAgICAgIG1hcmdpbjogMC41cmVtIDAgMDtcclxuICAgICAgICBjb2xvcjogdmFyKC0tcHJpbWFyeS1jb2xvcik7XHJcbiAgICAgICAgZm9udC1zaXplOiAxLjM1cmVtO1xyXG4gICAgICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xyXG4gICAgICB9XHJcbiAgICB9XHJcblxyXG4gICAgJi5pbmZvIHtcclxuICAgICAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0taW5mby1iYWNrZ3JvdW5kLWNvbG9yKTtcclxuICAgICAgY29sb3I6IHZhcigtLWluZm8tdGV4dC1jb2xvcik7XHJcbiAgICB9XHJcblxyXG4gICAgJi53YXJuIHtcclxuICAgICAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0td2Fybi1iYWNrZ3JvdW5kLWNvbG9yKTtcclxuICAgICAgY29sb3I6IHZhcigtLXdhcm4tdGV4dC1jb2xvcik7XHJcbiAgICB9XHJcblxyXG4gICAgJi5lcnJvciB7XHJcbiAgICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWVycm9yLWJhY2tncm91bmQtY29sb3IpO1xyXG4gICAgICBjb2xvcjogdmFyKC0tZXJyb3ItdGV4dC1jb2xvcik7XHJcbiAgICB9XHJcbiAgfVxyXG59XHJcbiIsIi5hcHAtbWFya2Rvd24gOjpuZy1kZWVwIC50ZXh0LXdpdGgtaWNvbiB7XG4gIHBhZGRpbmc6IDJyZW07XG4gIG1hcmdpbi1ib3R0b206IDEuNXJlbTtcbiAgYm9yZGVyLXJhZGl1czogMC4zcmVtO1xuICBmb250LXNpemU6IDEuNnJlbTtcbiAgbGluZS1oZWlnaHQ6IDIuNXJlbTtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC13cmFwOiBub3dyYXA7XG4gIGFsaWduLWl0ZW1zOiBmbGV4LXN0YXJ0O1xuICB0cmFuc2l0aW9uOiB2YXIoLS10cmFuc2l0aW9uKTtcbiAgdHJhbnNpdGlvbi1wcm9wZXJ0eTogY29sb3IsIGJhY2tncm91bmQtY29sb3I7XG59XG4uYXBwLW1hcmtkb3duIDo6bmctZGVlcCAudGV4dC13aXRoLWljb24gaW1nIHtcbiAgd2lkdGg6IDQuNXJlbTtcbiAgZmxleC1ncm93OiAwO1xuICBmbGV4LXNocmluazogMDtcbiAgcGFkZGluZy1yaWdodDogMS42cmVtO1xufVxuLmFwcC1tYXJrZG93biA6Om5nLWRlZXAgLnRleHQtd2l0aC1pY29uIHA6Zmlyc3Qtb2YtdHlwZSB7XG4gIG1hcmdpbjogMDtcbn1cbi5hcHAtbWFya2Rvd24gOjpuZy1kZWVwIC50ZXh0LXdpdGgtaWNvbi5xdW90ZSB7XG4gIGZvbnQtc3R5bGU6IGl0YWxpYztcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tcXVvdGUtYmFja2dyb3VuZC1jb2xvcik7XG4gIGNvbG9yOiB2YXIoLS1xdW90ZS10ZXh0LWNvbG9yKTtcbn1cbi5hcHAtbWFya2Rvd24gOjpuZy1kZWVwIC50ZXh0LXdpdGgtaWNvbi5xdW90ZSAuYXV0aG9yIHtcbiAgZmxvYXQ6IHJpZ2h0O1xuICBtYXJnaW46IDAuNXJlbSAwIDA7XG4gIGNvbG9yOiB2YXIoLS1wcmltYXJ5LWNvbG9yKTtcbiAgZm9udC1zaXplOiAxLjM1cmVtO1xuICBmb250LXdlaWdodDogYm9sZDtcbn1cbi5hcHAtbWFya2Rvd24gOjpuZy1kZWVwIC50ZXh0LXdpdGgtaWNvbi5pbmZvIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0taW5mby1iYWNrZ3JvdW5kLWNvbG9yKTtcbiAgY29sb3I6IHZhcigtLWluZm8tdGV4dC1jb2xvcik7XG59XG4uYXBwLW1hcmtkb3duIDo6bmctZGVlcCAudGV4dC13aXRoLWljb24ud2FybiB7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXdhcm4tYmFja2dyb3VuZC1jb2xvcik7XG4gIGNvbG9yOiB2YXIoLS13YXJuLXRleHQtY29sb3IpO1xufVxuLmFwcC1tYXJrZG93biA6Om5nLWRlZXAgLnRleHQtd2l0aC1pY29uLmVycm9yIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tZXJyb3ItYmFja2dyb3VuZC1jb2xvcik7XG4gIGNvbG9yOiB2YXIoLS1lcnJvci10ZXh0LWNvbG9yKTtcbn0iXX0= */";
+    /***/
+  },
+
+  /***/
+  "./src/app/modules/shared/components/page-title-buttons/page-title-button/page-title-button.component.scss":
+  /*!*****************************************************************************************************************!*\
+    !*** ./src/app/modules/shared/components/page-title-buttons/page-title-button/page-title-button.component.scss ***!
+    \*****************************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppModulesSharedComponentsPageTitleButtonsPageTitleButtonPageTitleButtonComponentScss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = ".button {\n  border-radius: 100rem;\n  padding: 0.5rem;\n  height: var(--page-title-button-size);\n  width: var(--page-title-button-size);\n  background-color: var(--page-title-button-background-color);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.iconify {\n  font-size: var(--page-title-button-icon-font-size);\n  border-radius: 100rem;\n  color: var(--primary-color);\n  background-color: var(--page-title-button-background-color);\n  transition: var(--transition);\n  transition-property: color, background-color;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9zaGFyZWQvY29tcG9uZW50cy9wYWdlLXRpdGxlLWJ1dHRvbnMvcGFnZS10aXRsZS1idXR0b24vQzpcXGRldlxccHJvamVjdHNcXGFoZW50ZXRpLWJsb2dcXHNyY1xcbWFpblxcZnJvbnRlbmQvc3JjXFxhcHBcXG1vZHVsZXNcXHNoYXJlZFxcY29tcG9uZW50c1xccGFnZS10aXRsZS1idXR0b25zXFxwYWdlLXRpdGxlLWJ1dHRvblxccGFnZS10aXRsZS1idXR0b24uY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL21vZHVsZXMvc2hhcmVkL2NvbXBvbmVudHMvcGFnZS10aXRsZS1idXR0b25zL3BhZ2UtdGl0bGUtYnV0dG9uL3BhZ2UtdGl0bGUtYnV0dG9uLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UscUJBQUE7RUFDQSxlQUFBO0VBQ0EscUNBQUE7RUFDQSxvQ0FBQTtFQUNBLDJEQUFBO0VBQ0EsYUFBQTtFQUNBLG1CQUFBO0VBQ0EsdUJBQUE7QUNDRjs7QURFQTtFQUNFLGtEQUFBO0VBQ0EscUJBQUE7RUFDQSwyQkFBQTtFQUNBLDJEQUFBO0VBQ0EsNkJBQUE7RUFDQSw0Q0FBQTtBQ0NGIiwiZmlsZSI6InNyYy9hcHAvbW9kdWxlcy9zaGFyZWQvY29tcG9uZW50cy9wYWdlLXRpdGxlLWJ1dHRvbnMvcGFnZS10aXRsZS1idXR0b24vcGFnZS10aXRsZS1idXR0b24uY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuYnV0dG9uIHtcclxuICBib3JkZXItcmFkaXVzOiAxMDByZW07XHJcbiAgcGFkZGluZzogMC41cmVtO1xyXG4gIGhlaWdodDogdmFyKC0tcGFnZS10aXRsZS1idXR0b24tc2l6ZSk7XHJcbiAgd2lkdGg6IHZhcigtLXBhZ2UtdGl0bGUtYnV0dG9uLXNpemUpO1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXBhZ2UtdGl0bGUtYnV0dG9uLWJhY2tncm91bmQtY29sb3IpO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxufVxyXG5cclxuLmljb25pZnkge1xyXG4gIGZvbnQtc2l6ZTogdmFyKC0tcGFnZS10aXRsZS1idXR0b24taWNvbi1mb250LXNpemUpO1xyXG4gIGJvcmRlci1yYWRpdXM6IDEwMHJlbTtcclxuICBjb2xvcjogdmFyKC0tcHJpbWFyeS1jb2xvcik7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tcGFnZS10aXRsZS1idXR0b24tYmFja2dyb3VuZC1jb2xvcik7XHJcbiAgdHJhbnNpdGlvbjogdmFyKC0tdHJhbnNpdGlvbik7XHJcbiAgdHJhbnNpdGlvbi1wcm9wZXJ0eTogY29sb3IsIGJhY2tncm91bmQtY29sb3I7XHJcbn1cclxuIiwiLmJ1dHRvbiB7XG4gIGJvcmRlci1yYWRpdXM6IDEwMHJlbTtcbiAgcGFkZGluZzogMC41cmVtO1xuICBoZWlnaHQ6IHZhcigtLXBhZ2UtdGl0bGUtYnV0dG9uLXNpemUpO1xuICB3aWR0aDogdmFyKC0tcGFnZS10aXRsZS1idXR0b24tc2l6ZSk7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXBhZ2UtdGl0bGUtYnV0dG9uLWJhY2tncm91bmQtY29sb3IpO1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbn1cblxuLmljb25pZnkge1xuICBmb250LXNpemU6IHZhcigtLXBhZ2UtdGl0bGUtYnV0dG9uLWljb24tZm9udC1zaXplKTtcbiAgYm9yZGVyLXJhZGl1czogMTAwcmVtO1xuICBjb2xvcjogdmFyKC0tcHJpbWFyeS1jb2xvcik7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXBhZ2UtdGl0bGUtYnV0dG9uLWJhY2tncm91bmQtY29sb3IpO1xuICB0cmFuc2l0aW9uOiB2YXIoLS10cmFuc2l0aW9uKTtcbiAgdHJhbnNpdGlvbi1wcm9wZXJ0eTogY29sb3IsIGJhY2tncm91bmQtY29sb3I7XG59Il19 */";
+    /***/
+  },
+
+  /***/
+  "./src/app/modules/shared/components/page-title-buttons/page-title-button/page-title-button.component.ts":
+  /*!***************************************************************************************************************!*\
+    !*** ./src/app/modules/shared/components/page-title-buttons/page-title-button/page-title-button.component.ts ***!
+    \***************************************************************************************************************/
+
+  /*! exports provided: PageTitleButtonComponent */
+
+  /***/
+  function srcAppModulesSharedComponentsPageTitleButtonsPageTitleButtonPageTitleButtonComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "PageTitleButtonComponent", function () {
+      return PageTitleButtonComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    var PageTitleButtonComponent = function PageTitleButtonComponent() {
+      _classCallCheck(this, PageTitleButtonComponent);
+    };
+
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()], PageTitleButtonComponent.prototype, "icon", void 0);
+    PageTitleButtonComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: "app-page-title-button",
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./page-title-button.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/page-title-buttons/page-title-button/page-title-button.component.html"))["default"],
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./page-title-button.component.scss */
+      "./src/app/modules/shared/components/page-title-buttons/page-title-button/page-title-button.component.scss"))["default"]]
+    })], PageTitleButtonComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/modules/shared/components/page-title-buttons/page-title-consult-button/page-title-consult-button.component.ts":
+  /*!*******************************************************************************************************************************!*\
+    !*** ./src/app/modules/shared/components/page-title-buttons/page-title-consult-button/page-title-consult-button.component.ts ***!
+    \*******************************************************************************************************************************/
+
+  /*! exports provided: PageTitleConsultButtonComponent */
+
+  /***/
+  function srcAppModulesSharedComponentsPageTitleButtonsPageTitleConsultButtonPageTitleConsultButtonComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "PageTitleConsultButtonComponent", function () {
+      return PageTitleConsultButtonComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    var PageTitleConsultButtonComponent = function PageTitleConsultButtonComponent() {
+      _classCallCheck(this, PageTitleConsultButtonComponent);
+    };
+
+    PageTitleConsultButtonComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: "app-page-title-consult-button",
+      template: '<app-page-title-button icon="ls:view"></app-page-title-button>'
+    })], PageTitleConsultButtonComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/modules/shared/components/page-title-buttons/page-title-edit-button/page-title-edit-button.component.ts":
+  /*!*************************************************************************************************************************!*\
+    !*** ./src/app/modules/shared/components/page-title-buttons/page-title-edit-button/page-title-edit-button.component.ts ***!
+    \*************************************************************************************************************************/
+
+  /*! exports provided: PageTitleEditButtonComponent */
+
+  /***/
+  function srcAppModulesSharedComponentsPageTitleButtonsPageTitleEditButtonPageTitleEditButtonComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "PageTitleEditButtonComponent", function () {
+      return PageTitleEditButtonComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    var PageTitleEditButtonComponent = function PageTitleEditButtonComponent() {
+      _classCallCheck(this, PageTitleEditButtonComponent);
+    };
+
+    PageTitleEditButtonComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: "app-page-title-edit-button",
+      template: '<app-page-title-button icon="eva:edit-fill"></app-page-title-button>'
+    })], PageTitleEditButtonComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/modules/shared/components/page-title-buttons/page-title-filter-button/page-title-filter-button.component.scss":
+  /*!*******************************************************************************************************************************!*\
+    !*** ./src/app/modules/shared/components/page-title-buttons/page-title-filter-button/page-title-filter-button.component.scss ***!
+    \*******************************************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppModulesSharedComponentsPageTitleButtonsPageTitleFilterButtonPageTitleFilterButtonComponentScss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = ":host {\n  display: flex;\n  align-items: center;\n  border-radius: 100rem;\n  padding: 0.5rem;\n  background-color: var(--page-title-button-background-color);\n}\n\n.search-button {\n  flex-grow: 0;\n  flex-shrink: 0;\n  height: calc(var(--button-size) - 1rem);\n  width: calc(var(--button-size) - 1rem);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.search-button .iconify {\n  font-size: var(--page-title-button-icon-font-size);\n  padding: 0.5rem;\n  border-radius: 100rem;\n  color: var(--primary-color);\n  background-color: var(--page-title-button-background-color);\n  transition: var(--transition);\n  transition-property: color, background-color;\n}\n\n.search-input {\n  border: none;\n  outline: none;\n  width: 0;\n  padding: 0;\n  transition: var(--transition);\n  transition-property: color, background-color, width;\n}\n\n:host.active .search-button .iconify {\n  background-color: var(--filter-icon-background-color-on-active-state);\n  color: var(--primary-color);\n}\n\n:host.active .search-input {\n  width: 20rem;\n  padding-left: 0.5rem;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9zaGFyZWQvY29tcG9uZW50cy9wYWdlLXRpdGxlLWJ1dHRvbnMvcGFnZS10aXRsZS1maWx0ZXItYnV0dG9uL0M6XFxkZXZcXHByb2plY3RzXFxhaGVudGV0aS1ibG9nXFxzcmNcXG1haW5cXGZyb250ZW5kL3NyY1xcYXBwXFxtb2R1bGVzXFxzaGFyZWRcXGNvbXBvbmVudHNcXHBhZ2UtdGl0bGUtYnV0dG9uc1xccGFnZS10aXRsZS1maWx0ZXItYnV0dG9uXFxwYWdlLXRpdGxlLWZpbHRlci1idXR0b24uY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL21vZHVsZXMvc2hhcmVkL2NvbXBvbmVudHMvcGFnZS10aXRsZS1idXR0b25zL3BhZ2UtdGl0bGUtZmlsdGVyLWJ1dHRvbi9wYWdlLXRpdGxlLWZpbHRlci1idXR0b24uY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxhQUFBO0VBQ0EsbUJBQUE7RUFDQSxxQkFBQTtFQUNBLGVBQUE7RUFDQSwyREFBQTtBQ0NGOztBREVBO0VBQ0UsWUFBQTtFQUNBLGNBQUE7RUFDQSx1Q0FBQTtFQUNBLHNDQUFBO0VBQ0EsYUFBQTtFQUNBLG1CQUFBO0VBQ0EsdUJBQUE7QUNDRjs7QURFQTtFQUNFLGtEQUFBO0VBQ0EsZUFBQTtFQUNBLHFCQUFBO0VBQ0EsMkJBQUE7RUFDQSwyREFBQTtFQUNBLDZCQUFBO0VBQ0EsNENBQUE7QUNDRjs7QURFQTtFQUNFLFlBQUE7RUFDQSxhQUFBO0VBQ0EsUUFBQTtFQUNBLFVBQUE7RUFDQSw2QkFBQTtFQUNBLG1EQUFBO0FDQ0Y7O0FER0U7RUFDRSxxRUFBQTtFQUNBLDJCQUFBO0FDQUo7O0FER0U7RUFDRSxZQUFBO0VBQ0Esb0JBQUE7QUNESiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvc2hhcmVkL2NvbXBvbmVudHMvcGFnZS10aXRsZS1idXR0b25zL3BhZ2UtdGl0bGUtZmlsdGVyLWJ1dHRvbi9wYWdlLXRpdGxlLWZpbHRlci1idXR0b24uY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGJvcmRlci1yYWRpdXM6IDEwMHJlbTtcclxuICBwYWRkaW5nOiAwLjVyZW07XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tcGFnZS10aXRsZS1idXR0b24tYmFja2dyb3VuZC1jb2xvcik7XHJcbn1cclxuXHJcbi5zZWFyY2gtYnV0dG9uIHtcclxuICBmbGV4LWdyb3c6IDA7XHJcbiAgZmxleC1zaHJpbms6IDA7XHJcbiAgaGVpZ2h0OiBjYWxjKHZhcigtLWJ1dHRvbi1zaXplKSAtIDFyZW0pO1xyXG4gIHdpZHRoOiBjYWxjKHZhcigtLWJ1dHRvbi1zaXplKSAtIDFyZW0pO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxufVxyXG5cclxuLnNlYXJjaC1idXR0b24gLmljb25pZnkge1xyXG4gIGZvbnQtc2l6ZTogdmFyKC0tcGFnZS10aXRsZS1idXR0b24taWNvbi1mb250LXNpemUpO1xyXG4gIHBhZGRpbmc6IDAuNXJlbTtcclxuICBib3JkZXItcmFkaXVzOiAxMDByZW07XHJcbiAgY29sb3I6IHZhcigtLXByaW1hcnktY29sb3IpO1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXBhZ2UtdGl0bGUtYnV0dG9uLWJhY2tncm91bmQtY29sb3IpO1xyXG4gIHRyYW5zaXRpb246IHZhcigtLXRyYW5zaXRpb24pO1xyXG4gIHRyYW5zaXRpb24tcHJvcGVydHk6IGNvbG9yLCBiYWNrZ3JvdW5kLWNvbG9yO1xyXG59XHJcblxyXG4uc2VhcmNoLWlucHV0IHtcclxuICBib3JkZXI6IG5vbmU7XHJcbiAgb3V0bGluZTogbm9uZTtcclxuICB3aWR0aDogMDtcclxuICBwYWRkaW5nOiAwO1xyXG4gIHRyYW5zaXRpb246IHZhcigtLXRyYW5zaXRpb24pO1xyXG4gIHRyYW5zaXRpb24tcHJvcGVydHk6IGNvbG9yLCBiYWNrZ3JvdW5kLWNvbG9yLCB3aWR0aDtcclxufVxyXG5cclxuOmhvc3QuYWN0aXZlIHtcclxuICAmIC5zZWFyY2gtYnV0dG9uIC5pY29uaWZ5IHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWZpbHRlci1pY29uLWJhY2tncm91bmQtY29sb3Itb24tYWN0aXZlLXN0YXRlKTtcclxuICAgIGNvbG9yOiB2YXIoLS1wcmltYXJ5LWNvbG9yKTtcclxuICB9XHJcblxyXG4gICYgLnNlYXJjaC1pbnB1dCB7XHJcbiAgICB3aWR0aDogMjByZW07XHJcbiAgICBwYWRkaW5nLWxlZnQ6IDAuNXJlbTtcclxuICB9XHJcbn1cclxuIiwiOmhvc3Qge1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBib3JkZXItcmFkaXVzOiAxMDByZW07XG4gIHBhZGRpbmc6IDAuNXJlbTtcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tcGFnZS10aXRsZS1idXR0b24tYmFja2dyb3VuZC1jb2xvcik7XG59XG5cbi5zZWFyY2gtYnV0dG9uIHtcbiAgZmxleC1ncm93OiAwO1xuICBmbGV4LXNocmluazogMDtcbiAgaGVpZ2h0OiBjYWxjKHZhcigtLWJ1dHRvbi1zaXplKSAtIDFyZW0pO1xuICB3aWR0aDogY2FsYyh2YXIoLS1idXR0b24tc2l6ZSkgLSAxcmVtKTtcbiAgZGlzcGxheTogZmxleDtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG59XG5cbi5zZWFyY2gtYnV0dG9uIC5pY29uaWZ5IHtcbiAgZm9udC1zaXplOiB2YXIoLS1wYWdlLXRpdGxlLWJ1dHRvbi1pY29uLWZvbnQtc2l6ZSk7XG4gIHBhZGRpbmc6IDAuNXJlbTtcbiAgYm9yZGVyLXJhZGl1czogMTAwcmVtO1xuICBjb2xvcjogdmFyKC0tcHJpbWFyeS1jb2xvcik7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXBhZ2UtdGl0bGUtYnV0dG9uLWJhY2tncm91bmQtY29sb3IpO1xuICB0cmFuc2l0aW9uOiB2YXIoLS10cmFuc2l0aW9uKTtcbiAgdHJhbnNpdGlvbi1wcm9wZXJ0eTogY29sb3IsIGJhY2tncm91bmQtY29sb3I7XG59XG5cbi5zZWFyY2gtaW5wdXQge1xuICBib3JkZXI6IG5vbmU7XG4gIG91dGxpbmU6IG5vbmU7XG4gIHdpZHRoOiAwO1xuICBwYWRkaW5nOiAwO1xuICB0cmFuc2l0aW9uOiB2YXIoLS10cmFuc2l0aW9uKTtcbiAgdHJhbnNpdGlvbi1wcm9wZXJ0eTogY29sb3IsIGJhY2tncm91bmQtY29sb3IsIHdpZHRoO1xufVxuXG46aG9zdC5hY3RpdmUgLnNlYXJjaC1idXR0b24gLmljb25pZnkge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1maWx0ZXItaWNvbi1iYWNrZ3JvdW5kLWNvbG9yLW9uLWFjdGl2ZS1zdGF0ZSk7XG4gIGNvbG9yOiB2YXIoLS1wcmltYXJ5LWNvbG9yKTtcbn1cbjpob3N0LmFjdGl2ZSAuc2VhcmNoLWlucHV0IHtcbiAgd2lkdGg6IDIwcmVtO1xuICBwYWRkaW5nLWxlZnQ6IDAuNXJlbTtcbn0iXX0= */";
+    /***/
+  },
+
+  /***/
+  "./src/app/modules/shared/components/page-title-buttons/page-title-filter-button/page-title-filter-button.component.ts":
+  /*!*****************************************************************************************************************************!*\
+    !*** ./src/app/modules/shared/components/page-title-buttons/page-title-filter-button/page-title-filter-button.component.ts ***!
+    \*****************************************************************************************************************************/
+
+  /*! exports provided: PageTitleFilterButtonComponent */
+
+  /***/
+  function srcAppModulesSharedComponentsPageTitleButtonsPageTitleFilterButtonPageTitleFilterButtonComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "PageTitleFilterButtonComponent", function () {
+      return PageTitleFilterButtonComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    var PageTitleFilterButtonComponent = /*#__PURE__*/function () {
+      function PageTitleFilterButtonComponent() {
+        _classCallCheck(this, PageTitleFilterButtonComponent);
+
+        this.hover = false;
+        this.focus = false;
+        this.filter = "";
+        this.onFilter = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.active = false;
+      }
+
+      _createClass(PageTitleFilterButtonComponent, [{
+        key: "onSubmit",
+        value: function onSubmit() {
+          this.onFilter.emit(this.filter);
+          this.input.nativeElement.focus();
+        }
+      }, {
+        key: "onMouseHover",
+        value: function onMouseHover() {
+          this.hover = true;
+          this.updateActiveStatus();
+        }
+      }, {
+        key: "onMouseOut",
+        value: function onMouseOut() {
+          this.hover = false;
+          this.updateActiveStatus();
+        }
+      }, {
+        key: "onBlur",
+        value: function onBlur() {
+          this.focus = false;
+          this.updateActiveStatus();
+        }
+      }, {
+        key: "onFocus",
+        value: function onFocus() {
+          this.focus = true;
+          this.updateActiveStatus();
+        }
+      }, {
+        key: "updateActiveStatus",
+        value: function updateActiveStatus() {
+          this.active = this.hover || this.focus;
+        }
+      }]);
+
+      return PageTitleFilterButtonComponent;
+    }();
+
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()], PageTitleFilterButtonComponent.prototype, "onFilter", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])("input", {
+      "static": true
+    })], PageTitleFilterButtonComponent.prototype, "input", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["HostBinding"])("class.active")], PageTitleFilterButtonComponent.prototype, "active", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["HostListener"])("mouseover")], PageTitleFilterButtonComponent.prototype, "onMouseHover", null);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["HostListener"])("mouseout")], PageTitleFilterButtonComponent.prototype, "onMouseOut", null);
+    PageTitleFilterButtonComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: "app-page-title-filter-button",
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./page-title-filter-button.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/page-title-buttons/page-title-filter-button/page-title-filter-button.component.html"))["default"],
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./page-title-filter-button.component.scss */
+      "./src/app/modules/shared/components/page-title-buttons/page-title-filter-button/page-title-filter-button.component.scss"))["default"]]
+    })], PageTitleFilterButtonComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/modules/shared/components/page-title-buttons/page-title-new-button/page-title-new-button.component.ts":
+  /*!***********************************************************************************************************************!*\
+    !*** ./src/app/modules/shared/components/page-title-buttons/page-title-new-button/page-title-new-button.component.ts ***!
+    \***********************************************************************************************************************/
+
+  /*! exports provided: PageTitleNewButtonComponent */
+
+  /***/
+  function srcAppModulesSharedComponentsPageTitleButtonsPageTitleNewButtonPageTitleNewButtonComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "PageTitleNewButtonComponent", function () {
+      return PageTitleNewButtonComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    var PageTitleNewButtonComponent = function PageTitleNewButtonComponent() {
+      _classCallCheck(this, PageTitleNewButtonComponent);
+    };
+
+    PageTitleNewButtonComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: "app-page-title-new-button",
+      template: '<app-page-title-button icon="ic:round-add"></app-page-title-button>'
+    })], PageTitleNewButtonComponent);
     /***/
   },
 
@@ -10702,6 +10830,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           });
         }
       }, {
+        key: "ngOnDestroy",
+        value: function ngOnDestroy() {
+          this.hide();
+        }
+      }, {
         key: "show",
         value: function show() {
           // Create tooltip portal
@@ -10756,7 +10889,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = ".header {\n  --post-title-margin-bottom: 2rem;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n\n.bottom-table-actions {\n  --button-size: 3rem;\n  margin-top: 1.5rem;\n  display: flex;\n  align-items: center;\n  justify-content: flex-end;\n}\n\n.bottom-table-actions > * {\n  margin-left: 1rem;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9zaGFyZWQvbGF5b3V0cy9DOlxcZGV2XFxwcm9qZWN0c1xcYWhlbnRldGktYmxvZ1xcc3JjXFxtYWluXFxmcm9udGVuZC9zcmNcXGFwcFxcbW9kdWxlc1xcc2hhcmVkXFxsYXlvdXRzXFxtYW5hZ2UtcmVzb3VyY2VzLXBhZ2UubGF5b3V0LnNjc3MiLCJzcmMvYXBwL21vZHVsZXMvc2hhcmVkL2xheW91dHMvbWFuYWdlLXJlc291cmNlcy1wYWdlLmxheW91dC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsZ0NBQUE7RUFDQSxhQUFBO0VBQ0EsbUJBQUE7RUFDQSw4QkFBQTtBQ0NGOztBREVBO0VBQ0UsbUJBQUE7RUFDQSxrQkFBQTtFQUNBLGFBQUE7RUFDQSxtQkFBQTtFQUNBLHlCQUFBO0FDQ0Y7O0FEQ0U7RUFDRSxpQkFBQTtBQ0NKIiwiZmlsZSI6InNyYy9hcHAvbW9kdWxlcy9zaGFyZWQvbGF5b3V0cy9tYW5hZ2UtcmVzb3VyY2VzLXBhZ2UubGF5b3V0LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuaGVhZGVyIHtcclxuICAtLXBvc3QtdGl0bGUtbWFyZ2luLWJvdHRvbTogMnJlbTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xyXG59XHJcblxyXG4uYm90dG9tLXRhYmxlLWFjdGlvbnMge1xyXG4gIC0tYnV0dG9uLXNpemU6IDNyZW07XHJcbiAgbWFyZ2luLXRvcDogMS41cmVtO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtZW5kO1xyXG5cclxuICAmID4gKiB7XHJcbiAgICBtYXJnaW4tbGVmdDogMXJlbTtcclxuICB9XHJcbn1cclxuIiwiLmhlYWRlciB7XG4gIC0tcG9zdC10aXRsZS1tYXJnaW4tYm90dG9tOiAycmVtO1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XG59XG5cbi5ib3R0b20tdGFibGUtYWN0aW9ucyB7XG4gIC0tYnV0dG9uLXNpemU6IDNyZW07XG4gIG1hcmdpbi10b3A6IDEuNXJlbTtcbiAgZGlzcGxheTogZmxleDtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAganVzdGlmeS1jb250ZW50OiBmbGV4LWVuZDtcbn1cbi5ib3R0b20tdGFibGUtYWN0aW9ucyA+ICoge1xuICBtYXJnaW4tbGVmdDogMXJlbTtcbn0iXX0= */";
+    __webpack_exports__["default"] = ".header {\n  --post-title-margin-bottom: 2rem;\n  --button-color: var(--primary-color);\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n\n.top-table-actions-container {\n  display: flex;\n  align-items: center;\n}\n\n:host ::ng-deep .top-table-actions-container > * {\n  margin-left: 1rem;\n}\n\n.bottom-table-actions {\n  --button-size: 3rem;\n  margin-top: 1.5rem;\n  display: flex;\n  align-items: center;\n  justify-content: flex-end;\n}\n\n.bottom-table-actions > * {\n  margin-left: 1rem;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9zaGFyZWQvbGF5b3V0cy9DOlxcZGV2XFxwcm9qZWN0c1xcYWhlbnRldGktYmxvZ1xcc3JjXFxtYWluXFxmcm9udGVuZC9zcmNcXGFwcFxcbW9kdWxlc1xcc2hhcmVkXFxsYXlvdXRzXFxtYW5hZ2UtcmVzb3VyY2VzLXBhZ2UubGF5b3V0LnNjc3MiLCJzcmMvYXBwL21vZHVsZXMvc2hhcmVkL2xheW91dHMvbWFuYWdlLXJlc291cmNlcy1wYWdlLmxheW91dC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsZ0NBQUE7RUFDQSxvQ0FBQTtFQUNBLGFBQUE7RUFDQSxtQkFBQTtFQUNBLDhCQUFBO0FDQ0Y7O0FERUE7RUFDRSxhQUFBO0VBQ0EsbUJBQUE7QUNDRjs7QURFQTtFQUNFLGlCQUFBO0FDQ0Y7O0FERUE7RUFDRSxtQkFBQTtFQUNBLGtCQUFBO0VBQ0EsYUFBQTtFQUNBLG1CQUFBO0VBQ0EseUJBQUE7QUNDRjs7QURDRTtFQUNFLGlCQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9tb2R1bGVzL3NoYXJlZC9sYXlvdXRzL21hbmFnZS1yZXNvdXJjZXMtcGFnZS5sYXlvdXQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5oZWFkZXIge1xyXG4gIC0tcG9zdC10aXRsZS1tYXJnaW4tYm90dG9tOiAycmVtO1xyXG4gIC0tYnV0dG9uLWNvbG9yOiB2YXIoLS1wcmltYXJ5LWNvbG9yKTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xyXG59XHJcblxyXG4udG9wLXRhYmxlLWFjdGlvbnMtY29udGFpbmVyIHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbn1cclxuXHJcbjpob3N0IDo6bmctZGVlcCAudG9wLXRhYmxlLWFjdGlvbnMtY29udGFpbmVyID4gKiB7XHJcbiAgbWFyZ2luLWxlZnQ6IDFyZW07XHJcbn1cclxuXHJcbi5ib3R0b20tdGFibGUtYWN0aW9ucyB7XHJcbiAgLS1idXR0b24tc2l6ZTogM3JlbTtcclxuICBtYXJnaW4tdG9wOiAxLjVyZW07XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDogZmxleC1lbmQ7XHJcblxyXG4gICYgPiAqIHtcclxuICAgIG1hcmdpbi1sZWZ0OiAxcmVtO1xyXG4gIH1cclxufVxyXG4iLCIuaGVhZGVyIHtcbiAgLS1wb3N0LXRpdGxlLW1hcmdpbi1ib3R0b206IDJyZW07XG4gIC0tYnV0dG9uLWNvbG9yOiB2YXIoLS1wcmltYXJ5LWNvbG9yKTtcbiAgZGlzcGxheTogZmxleDtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xufVxuXG4udG9wLXRhYmxlLWFjdGlvbnMtY29udGFpbmVyIHtcbiAgZGlzcGxheTogZmxleDtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbn1cblxuOmhvc3QgOjpuZy1kZWVwIC50b3AtdGFibGUtYWN0aW9ucy1jb250YWluZXIgPiAqIHtcbiAgbWFyZ2luLWxlZnQ6IDFyZW07XG59XG5cbi5ib3R0b20tdGFibGUtYWN0aW9ucyB7XG4gIC0tYnV0dG9uLXNpemU6IDNyZW07XG4gIG1hcmdpbi10b3A6IDEuNXJlbTtcbiAgZGlzcGxheTogZmxleDtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAganVzdGlmeS1jb250ZW50OiBmbGV4LWVuZDtcbn1cbi5ib3R0b20tdGFibGUtYWN0aW9ucyA+ICoge1xuICBtYXJnaW4tbGVmdDogMXJlbTtcbn0iXX0= */";
     /***/
   },
 
@@ -10798,6 +10931,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
         this.previousButtonClick = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         this.nextButtonClick = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.filter = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
       }
 
       _createClass(ManageResourcesPageLayout, [{
@@ -10810,6 +10944,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function handleNextButtonClickEvent() {
           this.nextButtonClick.next();
         }
+      }, {
+        key: "onFilter",
+        value: function onFilter(filter) {
+          this.filter.emit(filter);
+        }
       }]);
 
       return ManageResourcesPageLayout;
@@ -10820,6 +10959,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()], ManageResourcesPageLayout.prototype, "nextButtonCssClasses", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()], ManageResourcesPageLayout.prototype, "previousButtonClick", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()], ManageResourcesPageLayout.prototype, "nextButtonClick", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()], ManageResourcesPageLayout.prototype, "filter", void 0);
     ManageResourcesPageLayout = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: "app-manage-resources-page-layout",
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
@@ -11021,6 +11161,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(AbstractManageResourcesPage, [{
         key: "ngOnInit",
         value: function ngOnInit() {
+          this.fetchPage(this.filter, 0);
+        }
+      }, {
+        key: "onFilter",
+        value: function onFilter(filter) {
+          this.filter = filter;
           this.fetchPage(this.filter, 0);
         }
       }, {
@@ -11823,145 +11969,163 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony import */
 
 
-    var _components_buttons_new_button_new_button_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(
-    /*! ./components/buttons/new-button/new-button.component */
-    "./src/app/modules/shared/components/buttons/new-button/new-button.component.ts");
-    /* harmony import */
-
-
-    var _angular_material_form_field__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(
+    var _angular_material_form_field__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(
     /*! @angular/material/form-field */
     "./node_modules/@angular/material/esm2015/form-field.js");
     /* harmony import */
 
 
-    var _angular_material_input__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(
+    var _angular_material_input__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(
     /*! @angular/material/input */
     "./node_modules/@angular/material/esm2015/input.js");
     /* harmony import */
 
 
-    var _components_text_page_title_page_title_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(
+    var _components_text_page_title_page_title_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(
     /*! ./components/text/page-title/page-title.component */
     "./src/app/modules/shared/components/text/page-title/page-title.component.ts");
     /* harmony import */
 
 
-    var _angular_material_chips__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(
+    var _angular_material_chips__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(
     /*! @angular/material/chips */
     "./node_modules/@angular/material/esm2015/chips.js");
     /* harmony import */
 
 
-    var _angular_material_icon__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(
+    var _angular_material_icon__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(
     /*! @angular/material/icon */
     "./node_modules/@angular/material/esm2015/icon.js");
     /* harmony import */
 
 
-    var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(
+    var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(
     /*! @angular/material/tabs */
     "./node_modules/@angular/material/esm2015/tabs.js");
     /* harmony import */
 
 
-    var _components_buttons_edit_button_edit_button_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(
+    var _components_buttons_edit_button_edit_button_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(
     /*! ./components/buttons/edit-button/edit-button.component */
     "./src/app/modules/shared/components/buttons/edit-button/edit-button.component.ts");
     /* harmony import */
 
 
-    var _components_buttons_consult_button_consult_button_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(
+    var _components_buttons_consult_button_consult_button_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(
     /*! ./components/buttons/consult-button/consult-button.component */
     "./src/app/modules/shared/components/buttons/consult-button/consult-button.component.ts");
     /* harmony import */
 
 
-    var ng2_simplemde__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(
+    var ng2_simplemde__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(
     /*! ng2-simplemde */
     "./node_modules/ng2-simplemde/lib/index.js");
     /* harmony import */
 
 
-    var _components_buttons_edit_button_edit_button_link_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(
+    var _components_buttons_edit_button_edit_button_link_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(
     /*! ./components/buttons/edit-button/edit-button-link.component */
     "./src/app/modules/shared/components/buttons/edit-button/edit-button-link.component.ts");
     /* harmony import */
 
 
-    var _components_buttons_consult_button_consult_button_link_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(
+    var _components_buttons_consult_button_consult_button_link_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(
     /*! ./components/buttons/consult-button/consult-button-link.component */
     "./src/app/modules/shared/components/buttons/consult-button/consult-button-link.component.ts");
     /* harmony import */
 
 
-    var _components_buttons_delete_button_delete_button_component__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(
+    var _components_buttons_delete_button_delete_button_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(
     /*! ./components/buttons/delete-button/delete-button.component */
     "./src/app/modules/shared/components/buttons/delete-button/delete-button.component.ts");
     /* harmony import */
 
 
-    var _directives_input_disable_autocomplete_directive__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(
+    var _directives_input_disable_autocomplete_directive__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(
     /*! ./directives/input-disable-autocomplete.directive */
     "./src/app/modules/shared/directives/input-disable-autocomplete.directive.ts");
     /* harmony import */
 
 
-    var _components_buttons_previous_button_previous_button_component__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(
+    var _components_buttons_previous_button_previous_button_component__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(
     /*! ./components/buttons/previous-button/previous-button.component */
     "./src/app/modules/shared/components/buttons/previous-button/previous-button.component.ts");
     /* harmony import */
 
 
-    var _components_buttons_next_button_next_button_component__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(
+    var _components_buttons_next_button_next_button_component__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(
     /*! ./components/buttons/next-button/next-button.component */
     "./src/app/modules/shared/components/buttons/next-button/next-button.component.ts");
     /* harmony import */
 
 
-    var _components_buttons_load_more_button_load_more_button_component__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(
+    var _components_buttons_load_more_button_load_more_button_component__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(
     /*! ./components/buttons/load-more-button/load-more-button.component */
     "./src/app/modules/shared/components/buttons/load-more-button/load-more-button.component.ts");
     /* harmony import */
 
 
-    var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(
+    var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(
     /*! @angular/material/dialog */
     "./node_modules/@angular/material/esm2015/dialog.js");
     /* harmony import */
 
 
-    var _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__(
+    var _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(
     /*! ./components/confirmation-dialog/confirmation-dialog.component */
     "./src/app/modules/shared/components/confirmation-dialog/confirmation-dialog.component.ts");
     /* harmony import */
 
 
-    var _components_icons_dropdown_icon_dropdown_icon_component__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__(
+    var _components_icons_dropdown_icon_dropdown_icon_component__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__(
     /*! ./components/icons/dropdown-icon/dropdown-icon.component */
     "./src/app/modules/shared/components/icons/dropdown-icon/dropdown-icon.component.ts");
     /* harmony import */
 
 
-    var _layouts_manage_resources_page_layout__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__(
+    var _layouts_manage_resources_page_layout__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__(
     /*! ./layouts/manage-resources-page.layout */
     "./src/app/modules/shared/layouts/manage-resources-page.layout.ts");
     /* harmony import */
 
 
-    var _components_filter_filter_component__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(
-    /*! ./components/filter/filter.component */
-    "./src/app/modules/shared/components/filter/filter.component.ts");
+    var _components_page_title_buttons_page_title_button_page_title_button_component__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__(
+    /*! ./components/page-title-buttons/page-title-button/page-title-button.component */
+    "./src/app/modules/shared/components/page-title-buttons/page-title-button/page-title-button.component.ts");
+    /* harmony import */
+
+
+    var _components_page_title_buttons_page_title_filter_button_page_title_filter_button_component__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(
+    /*! ./components/page-title-buttons/page-title-filter-button/page-title-filter-button.component */
+    "./src/app/modules/shared/components/page-title-buttons/page-title-filter-button/page-title-filter-button.component.ts");
+    /* harmony import */
+
+
+    var _components_page_title_buttons_page_title_new_button_page_title_new_button_component__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(
+    /*! ./components/page-title-buttons/page-title-new-button/page-title-new-button.component */
+    "./src/app/modules/shared/components/page-title-buttons/page-title-new-button/page-title-new-button.component.ts");
+    /* harmony import */
+
+
+    var _components_page_title_buttons_page_title_consult_button_page_title_consult_button_component__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(
+    /*! ./components/page-title-buttons/page-title-consult-button/page-title-consult-button.component */
+    "./src/app/modules/shared/components/page-title-buttons/page-title-consult-button/page-title-consult-button.component.ts");
+    /* harmony import */
+
+
+    var _components_page_title_buttons_page_title_edit_button_page_title_edit_button_component__WEBPACK_IMPORTED_MODULE_56__ = __webpack_require__(
+    /*! ./components/page-title-buttons/page-title-edit-button/page-title-edit-button.component */
+    "./src/app/modules/shared/components/page-title-buttons/page-title-edit-button/page-title-edit-button.component.ts");
 
     var SharedModule = function SharedModule() {
       _classCallCheck(this, SharedModule);
     };
 
     SharedModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-      entryComponents: [_directives_tooltip_tooltip_component__WEBPACK_IMPORTED_MODULE_9__["TooltipComponent"], _components_text_text_with_icon_quote_component__WEBPACK_IMPORTED_MODULE_16__["QuoteComponent"], _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_50__["ConfirmationDialogComponent"]],
-      imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_router__WEBPACK_IMPORTED_MODULE_14__["RouterModule"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["OverlayModule"], _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_12__["PortalModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_28__["HttpClientModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_27__["FormsModule"], ng2_simplemde__WEBPACK_IMPORTED_MODULE_41__["SimplemdeModule"].forRoot(), _angular_material_select__WEBPACK_IMPORTED_MODULE_13__["MatSelectModule"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_23__["MatMenuModule"], _angular_material_table__WEBPACK_IMPORTED_MODULE_29__["MatTableModule"], _angular_material_sort__WEBPACK_IMPORTED_MODULE_30__["MatSortModule"], _angular_material_form_field__WEBPACK_IMPORTED_MODULE_33__["MatFormFieldModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_34__["MatInputModule"], _angular_material_chips__WEBPACK_IMPORTED_MODULE_36__["MatChipsModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_37__["MatIconModule"], _angular_material_tabs__WEBPACK_IMPORTED_MODULE_38__["MatTabsModule"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_49__["MatDialogModule"]],
-      declarations: [_components_text_section_title_section_title_component__WEBPACK_IMPORTED_MODULE_3__["SectionTitleComponent"], _components_logo_logo_link_component__WEBPACK_IMPORTED_MODULE_4__["LogoLinkComponent"], _components_select_select_component__WEBPACK_IMPORTED_MODULE_5__["SelectComponent"], _components_select_select_option_select_option_component__WEBPACK_IMPORTED_MODULE_6__["SelectOptionComponent"], _components_select_select_dropdown_select_dropdown_component__WEBPACK_IMPORTED_MODULE_7__["SelectDropdownComponent"], _directives_slidein_slidein_directive__WEBPACK_IMPORTED_MODULE_8__["SlideInDirective"], _directives_tooltip_tooltip_component__WEBPACK_IMPORTED_MODULE_9__["TooltipComponent"], _directives_tooltip_tooltip_directive__WEBPACK_IMPORTED_MODULE_10__["TooltipDirective"], _components_text_text_with_icon_text_with_icon_component__WEBPACK_IMPORTED_MODULE_15__["TextWithIconComponent"], _components_text_text_with_icon_quote_component__WEBPACK_IMPORTED_MODULE_16__["QuoteComponent"], _components_text_text_with_icon_error_component__WEBPACK_IMPORTED_MODULE_17__["ErrorComponent"], _components_text_text_with_icon_warn_component__WEBPACK_IMPORTED_MODULE_18__["WarnComponent"], _components_text_text_with_icon_info_component__WEBPACK_IMPORTED_MODULE_19__["InfoComponent"], _components_markdown_markdown_component__WEBPACK_IMPORTED_MODULE_20__["MarkdownComponent"], _pipes_first_letter_pipe__WEBPACK_IMPORTED_MODULE_21__["FirstLetterPipe"], time_ago_pipe__WEBPACK_IMPORTED_MODULE_22__["TimeAgoPipe"], _directives_textarea_auto_grow_directive__WEBPACK_IMPORTED_MODULE_24__["TextareaAutoGrowDirective"], _directives_textarea_disable_spellcheck_directive__WEBPACK_IMPORTED_MODULE_25__["TextareaDisableSpellCheckDirective"], _components_login_with_github_login_with_github_component__WEBPACK_IMPORTED_MODULE_26__["LoginWithGithubComponent"], _components_router_link_router_link_component__WEBPACK_IMPORTED_MODULE_31__["RouterLinkComponent"], _components_buttons_new_button_new_button_component__WEBPACK_IMPORTED_MODULE_32__["NewButtonComponent"], _components_text_page_title_page_title_component__WEBPACK_IMPORTED_MODULE_35__["PageTitleComponent"], _components_buttons_edit_button_edit_button_component__WEBPACK_IMPORTED_MODULE_39__["EditButtonComponent"], _components_buttons_consult_button_consult_button_component__WEBPACK_IMPORTED_MODULE_40__["ConsultButtonComponent"], _components_buttons_edit_button_edit_button_link_component__WEBPACK_IMPORTED_MODULE_42__["EditButtonLinkComponent"], _components_buttons_consult_button_consult_button_link_component__WEBPACK_IMPORTED_MODULE_43__["ConsultButtonLinkComponent"], _components_buttons_delete_button_delete_button_component__WEBPACK_IMPORTED_MODULE_44__["DeleteButtonComponent"], _directives_input_disable_autocomplete_directive__WEBPACK_IMPORTED_MODULE_45__["InputDisableAutoCompleteDirective"], _components_buttons_previous_button_previous_button_component__WEBPACK_IMPORTED_MODULE_46__["PreviousButtonComponent"], _components_buttons_next_button_next_button_component__WEBPACK_IMPORTED_MODULE_47__["NextButtonComponent"], _components_buttons_load_more_button_load_more_button_component__WEBPACK_IMPORTED_MODULE_48__["LoadMoreButtonComponent"], _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_50__["ConfirmationDialogComponent"], _components_icons_dropdown_icon_dropdown_icon_component__WEBPACK_IMPORTED_MODULE_51__["DropdownIconComponent"], _layouts_manage_resources_page_layout__WEBPACK_IMPORTED_MODULE_52__["ManageResourcesPageLayout"], _components_filter_filter_component__WEBPACK_IMPORTED_MODULE_53__["FilterComponent"]],
-      exports: [_angular_router__WEBPACK_IMPORTED_MODULE_14__["RouterModule"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["OverlayModule"], _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_12__["PortalModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_28__["HttpClientModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_27__["FormsModule"], ng2_simplemde__WEBPACK_IMPORTED_MODULE_41__["SimplemdeModule"], _angular_material_select__WEBPACK_IMPORTED_MODULE_13__["MatSelectModule"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_23__["MatMenuModule"], _angular_material_table__WEBPACK_IMPORTED_MODULE_29__["MatTableModule"], _angular_material_sort__WEBPACK_IMPORTED_MODULE_30__["MatSortModule"], _angular_material_form_field__WEBPACK_IMPORTED_MODULE_33__["MatFormFieldModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_34__["MatInputModule"], _angular_material_chips__WEBPACK_IMPORTED_MODULE_36__["MatChipsModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_37__["MatIconModule"], _angular_material_tabs__WEBPACK_IMPORTED_MODULE_38__["MatTabsModule"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_49__["MatDialogModule"], _components_text_section_title_section_title_component__WEBPACK_IMPORTED_MODULE_3__["SectionTitleComponent"], _components_logo_logo_link_component__WEBPACK_IMPORTED_MODULE_4__["LogoLinkComponent"], _components_select_select_component__WEBPACK_IMPORTED_MODULE_5__["SelectComponent"], _components_select_select_option_select_option_component__WEBPACK_IMPORTED_MODULE_6__["SelectOptionComponent"], _directives_slidein_slidein_directive__WEBPACK_IMPORTED_MODULE_8__["SlideInDirective"], _directives_tooltip_tooltip_directive__WEBPACK_IMPORTED_MODULE_10__["TooltipDirective"], _components_text_text_with_icon_quote_component__WEBPACK_IMPORTED_MODULE_16__["QuoteComponent"], _components_text_text_with_icon_error_component__WEBPACK_IMPORTED_MODULE_17__["ErrorComponent"], _components_text_text_with_icon_warn_component__WEBPACK_IMPORTED_MODULE_18__["WarnComponent"], _components_text_text_with_icon_info_component__WEBPACK_IMPORTED_MODULE_19__["InfoComponent"], _components_markdown_markdown_component__WEBPACK_IMPORTED_MODULE_20__["MarkdownComponent"], _pipes_first_letter_pipe__WEBPACK_IMPORTED_MODULE_21__["FirstLetterPipe"], time_ago_pipe__WEBPACK_IMPORTED_MODULE_22__["TimeAgoPipe"], _directives_textarea_auto_grow_directive__WEBPACK_IMPORTED_MODULE_24__["TextareaAutoGrowDirective"], _directives_textarea_disable_spellcheck_directive__WEBPACK_IMPORTED_MODULE_25__["TextareaDisableSpellCheckDirective"], _components_login_with_github_login_with_github_component__WEBPACK_IMPORTED_MODULE_26__["LoginWithGithubComponent"], _components_router_link_router_link_component__WEBPACK_IMPORTED_MODULE_31__["RouterLinkComponent"], _components_buttons_new_button_new_button_component__WEBPACK_IMPORTED_MODULE_32__["NewButtonComponent"], _components_text_page_title_page_title_component__WEBPACK_IMPORTED_MODULE_35__["PageTitleComponent"], _components_buttons_edit_button_edit_button_component__WEBPACK_IMPORTED_MODULE_39__["EditButtonComponent"], _components_buttons_consult_button_consult_button_component__WEBPACK_IMPORTED_MODULE_40__["ConsultButtonComponent"], _components_buttons_edit_button_edit_button_link_component__WEBPACK_IMPORTED_MODULE_42__["EditButtonLinkComponent"], _components_buttons_consult_button_consult_button_link_component__WEBPACK_IMPORTED_MODULE_43__["ConsultButtonLinkComponent"], _components_buttons_delete_button_delete_button_component__WEBPACK_IMPORTED_MODULE_44__["DeleteButtonComponent"], _directives_input_disable_autocomplete_directive__WEBPACK_IMPORTED_MODULE_45__["InputDisableAutoCompleteDirective"], _components_buttons_previous_button_previous_button_component__WEBPACK_IMPORTED_MODULE_46__["PreviousButtonComponent"], _components_buttons_next_button_next_button_component__WEBPACK_IMPORTED_MODULE_47__["NextButtonComponent"], _components_buttons_load_more_button_load_more_button_component__WEBPACK_IMPORTED_MODULE_48__["LoadMoreButtonComponent"], _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_50__["ConfirmationDialogComponent"], _components_icons_dropdown_icon_dropdown_icon_component__WEBPACK_IMPORTED_MODULE_51__["DropdownIconComponent"], _layouts_manage_resources_page_layout__WEBPACK_IMPORTED_MODULE_52__["ManageResourcesPageLayout"], _components_filter_filter_component__WEBPACK_IMPORTED_MODULE_53__["FilterComponent"]]
+      entryComponents: [_directives_tooltip_tooltip_component__WEBPACK_IMPORTED_MODULE_9__["TooltipComponent"], _components_text_text_with_icon_quote_component__WEBPACK_IMPORTED_MODULE_16__["QuoteComponent"], _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_49__["ConfirmationDialogComponent"]],
+      imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_router__WEBPACK_IMPORTED_MODULE_14__["RouterModule"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["OverlayModule"], _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_12__["PortalModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_28__["HttpClientModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_27__["FormsModule"], ng2_simplemde__WEBPACK_IMPORTED_MODULE_40__["SimplemdeModule"].forRoot(), _angular_material_select__WEBPACK_IMPORTED_MODULE_13__["MatSelectModule"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_23__["MatMenuModule"], _angular_material_table__WEBPACK_IMPORTED_MODULE_29__["MatTableModule"], _angular_material_sort__WEBPACK_IMPORTED_MODULE_30__["MatSortModule"], _angular_material_form_field__WEBPACK_IMPORTED_MODULE_32__["MatFormFieldModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_33__["MatInputModule"], _angular_material_chips__WEBPACK_IMPORTED_MODULE_35__["MatChipsModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_36__["MatIconModule"], _angular_material_tabs__WEBPACK_IMPORTED_MODULE_37__["MatTabsModule"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_48__["MatDialogModule"]],
+      declarations: [_components_text_section_title_section_title_component__WEBPACK_IMPORTED_MODULE_3__["SectionTitleComponent"], _components_logo_logo_link_component__WEBPACK_IMPORTED_MODULE_4__["LogoLinkComponent"], _components_select_select_component__WEBPACK_IMPORTED_MODULE_5__["SelectComponent"], _components_select_select_option_select_option_component__WEBPACK_IMPORTED_MODULE_6__["SelectOptionComponent"], _components_select_select_dropdown_select_dropdown_component__WEBPACK_IMPORTED_MODULE_7__["SelectDropdownComponent"], _directives_slidein_slidein_directive__WEBPACK_IMPORTED_MODULE_8__["SlideInDirective"], _directives_tooltip_tooltip_component__WEBPACK_IMPORTED_MODULE_9__["TooltipComponent"], _directives_tooltip_tooltip_directive__WEBPACK_IMPORTED_MODULE_10__["TooltipDirective"], _components_text_text_with_icon_text_with_icon_component__WEBPACK_IMPORTED_MODULE_15__["TextWithIconComponent"], _components_text_text_with_icon_quote_component__WEBPACK_IMPORTED_MODULE_16__["QuoteComponent"], _components_text_text_with_icon_error_component__WEBPACK_IMPORTED_MODULE_17__["ErrorComponent"], _components_text_text_with_icon_warn_component__WEBPACK_IMPORTED_MODULE_18__["WarnComponent"], _components_text_text_with_icon_info_component__WEBPACK_IMPORTED_MODULE_19__["InfoComponent"], _components_markdown_markdown_component__WEBPACK_IMPORTED_MODULE_20__["MarkdownComponent"], _pipes_first_letter_pipe__WEBPACK_IMPORTED_MODULE_21__["FirstLetterPipe"], time_ago_pipe__WEBPACK_IMPORTED_MODULE_22__["TimeAgoPipe"], _directives_textarea_auto_grow_directive__WEBPACK_IMPORTED_MODULE_24__["TextareaAutoGrowDirective"], _directives_textarea_disable_spellcheck_directive__WEBPACK_IMPORTED_MODULE_25__["TextareaDisableSpellCheckDirective"], _components_login_with_github_login_with_github_component__WEBPACK_IMPORTED_MODULE_26__["LoginWithGithubComponent"], _components_router_link_router_link_component__WEBPACK_IMPORTED_MODULE_31__["RouterLinkComponent"], _components_page_title_buttons_page_title_new_button_page_title_new_button_component__WEBPACK_IMPORTED_MODULE_54__["PageTitleNewButtonComponent"], _components_text_page_title_page_title_component__WEBPACK_IMPORTED_MODULE_34__["PageTitleComponent"], _components_buttons_edit_button_edit_button_component__WEBPACK_IMPORTED_MODULE_38__["EditButtonComponent"], _components_buttons_consult_button_consult_button_component__WEBPACK_IMPORTED_MODULE_39__["ConsultButtonComponent"], _components_buttons_edit_button_edit_button_link_component__WEBPACK_IMPORTED_MODULE_41__["EditButtonLinkComponent"], _components_buttons_consult_button_consult_button_link_component__WEBPACK_IMPORTED_MODULE_42__["ConsultButtonLinkComponent"], _components_buttons_delete_button_delete_button_component__WEBPACK_IMPORTED_MODULE_43__["DeleteButtonComponent"], _directives_input_disable_autocomplete_directive__WEBPACK_IMPORTED_MODULE_44__["InputDisableAutoCompleteDirective"], _components_buttons_previous_button_previous_button_component__WEBPACK_IMPORTED_MODULE_45__["PreviousButtonComponent"], _components_buttons_next_button_next_button_component__WEBPACK_IMPORTED_MODULE_46__["NextButtonComponent"], _components_buttons_load_more_button_load_more_button_component__WEBPACK_IMPORTED_MODULE_47__["LoadMoreButtonComponent"], _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_49__["ConfirmationDialogComponent"], _components_icons_dropdown_icon_dropdown_icon_component__WEBPACK_IMPORTED_MODULE_50__["DropdownIconComponent"], _layouts_manage_resources_page_layout__WEBPACK_IMPORTED_MODULE_51__["ManageResourcesPageLayout"], _components_page_title_buttons_page_title_filter_button_page_title_filter_button_component__WEBPACK_IMPORTED_MODULE_53__["PageTitleFilterButtonComponent"], _components_page_title_buttons_page_title_button_page_title_button_component__WEBPACK_IMPORTED_MODULE_52__["PageTitleButtonComponent"], _components_page_title_buttons_page_title_consult_button_page_title_consult_button_component__WEBPACK_IMPORTED_MODULE_55__["PageTitleConsultButtonComponent"], _components_page_title_buttons_page_title_edit_button_page_title_edit_button_component__WEBPACK_IMPORTED_MODULE_56__["PageTitleEditButtonComponent"]],
+      exports: [_angular_router__WEBPACK_IMPORTED_MODULE_14__["RouterModule"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["OverlayModule"], _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_12__["PortalModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_28__["HttpClientModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_27__["FormsModule"], ng2_simplemde__WEBPACK_IMPORTED_MODULE_40__["SimplemdeModule"], _angular_material_select__WEBPACK_IMPORTED_MODULE_13__["MatSelectModule"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_23__["MatMenuModule"], _angular_material_table__WEBPACK_IMPORTED_MODULE_29__["MatTableModule"], _angular_material_sort__WEBPACK_IMPORTED_MODULE_30__["MatSortModule"], _angular_material_form_field__WEBPACK_IMPORTED_MODULE_32__["MatFormFieldModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_33__["MatInputModule"], _angular_material_chips__WEBPACK_IMPORTED_MODULE_35__["MatChipsModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_36__["MatIconModule"], _angular_material_tabs__WEBPACK_IMPORTED_MODULE_37__["MatTabsModule"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_48__["MatDialogModule"], _components_text_section_title_section_title_component__WEBPACK_IMPORTED_MODULE_3__["SectionTitleComponent"], _components_logo_logo_link_component__WEBPACK_IMPORTED_MODULE_4__["LogoLinkComponent"], _components_select_select_component__WEBPACK_IMPORTED_MODULE_5__["SelectComponent"], _components_select_select_option_select_option_component__WEBPACK_IMPORTED_MODULE_6__["SelectOptionComponent"], _directives_slidein_slidein_directive__WEBPACK_IMPORTED_MODULE_8__["SlideInDirective"], _directives_tooltip_tooltip_directive__WEBPACK_IMPORTED_MODULE_10__["TooltipDirective"], _components_text_text_with_icon_quote_component__WEBPACK_IMPORTED_MODULE_16__["QuoteComponent"], _components_text_text_with_icon_error_component__WEBPACK_IMPORTED_MODULE_17__["ErrorComponent"], _components_text_text_with_icon_warn_component__WEBPACK_IMPORTED_MODULE_18__["WarnComponent"], _components_text_text_with_icon_info_component__WEBPACK_IMPORTED_MODULE_19__["InfoComponent"], _components_markdown_markdown_component__WEBPACK_IMPORTED_MODULE_20__["MarkdownComponent"], _pipes_first_letter_pipe__WEBPACK_IMPORTED_MODULE_21__["FirstLetterPipe"], time_ago_pipe__WEBPACK_IMPORTED_MODULE_22__["TimeAgoPipe"], _directives_textarea_auto_grow_directive__WEBPACK_IMPORTED_MODULE_24__["TextareaAutoGrowDirective"], _directives_textarea_disable_spellcheck_directive__WEBPACK_IMPORTED_MODULE_25__["TextareaDisableSpellCheckDirective"], _components_login_with_github_login_with_github_component__WEBPACK_IMPORTED_MODULE_26__["LoginWithGithubComponent"], _components_router_link_router_link_component__WEBPACK_IMPORTED_MODULE_31__["RouterLinkComponent"], _components_page_title_buttons_page_title_new_button_page_title_new_button_component__WEBPACK_IMPORTED_MODULE_54__["PageTitleNewButtonComponent"], _components_text_page_title_page_title_component__WEBPACK_IMPORTED_MODULE_34__["PageTitleComponent"], _components_buttons_edit_button_edit_button_component__WEBPACK_IMPORTED_MODULE_38__["EditButtonComponent"], _components_buttons_consult_button_consult_button_component__WEBPACK_IMPORTED_MODULE_39__["ConsultButtonComponent"], _components_buttons_edit_button_edit_button_link_component__WEBPACK_IMPORTED_MODULE_41__["EditButtonLinkComponent"], _components_buttons_consult_button_consult_button_link_component__WEBPACK_IMPORTED_MODULE_42__["ConsultButtonLinkComponent"], _components_buttons_delete_button_delete_button_component__WEBPACK_IMPORTED_MODULE_43__["DeleteButtonComponent"], _directives_input_disable_autocomplete_directive__WEBPACK_IMPORTED_MODULE_44__["InputDisableAutoCompleteDirective"], _components_buttons_previous_button_previous_button_component__WEBPACK_IMPORTED_MODULE_45__["PreviousButtonComponent"], _components_buttons_next_button_next_button_component__WEBPACK_IMPORTED_MODULE_46__["NextButtonComponent"], _components_buttons_load_more_button_load_more_button_component__WEBPACK_IMPORTED_MODULE_47__["LoadMoreButtonComponent"], _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_49__["ConfirmationDialogComponent"], _components_icons_dropdown_icon_dropdown_icon_component__WEBPACK_IMPORTED_MODULE_50__["DropdownIconComponent"], _layouts_manage_resources_page_layout__WEBPACK_IMPORTED_MODULE_51__["ManageResourcesPageLayout"], _components_page_title_buttons_page_title_filter_button_page_title_filter_button_component__WEBPACK_IMPORTED_MODULE_53__["PageTitleFilterButtonComponent"], _components_page_title_buttons_page_title_consult_button_page_title_consult_button_component__WEBPACK_IMPORTED_MODULE_55__["PageTitleConsultButtonComponent"], _components_page_title_buttons_page_title_edit_button_page_title_edit_button_component__WEBPACK_IMPORTED_MODULE_56__["PageTitleEditButtonComponent"]]
     })], SharedModule);
     /***/
   },
@@ -12366,7 +12530,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _this48.userConverter = userConverter;
         _this48.currentPage = new _models_user_internal_models__WEBPACK_IMPORTED_MODULE_3__["UsersPage"]();
         _this48.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"]([]);
-        _this48.columns = ["username", "joinAt", "actions"];
+        _this48.columns = ["username", "provider", "joinAt", "actions"];
         return _this48;
       } // prettier-ignore
 
@@ -12384,10 +12548,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           });
         }
       }, {
-        key: "onFilter",
-        value: function onFilter(filter) {
-          this.filter = filter;
-          this.fetchPage(this.filter, 0);
+        key: "deleteUser",
+        value: function deleteUser(user) {
+          console.log(user);
+          this.alertService.error("Delete functionality not yet implemented");
         }
       }, {
         key: "handleGetUsersPageErrorEvent",
@@ -12702,6 +12866,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           return {
             username: user.username,
             avatarUrl: user.avatarUrl,
+            provider: user.provider,
             joinAt: new Date(user.joinAtIso8601)
           };
         }
@@ -12709,7 +12874,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         key: "toGetUsersPageApiRequest",
         value: function toGetUsersPageApiRequest(filter, page) {
           var size = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 5;
-          var sortBy = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "username";
+          var sortBy = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "USERNAME";
           var sortDirection = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : "asc";
           return {
             url: "/secure-api/users?filter=".concat(filter, "&page=").concat(page, "&size=").concat(size, "&sortBy=").concat(sortBy, "&sortDirection=").concat(sortDirection)
