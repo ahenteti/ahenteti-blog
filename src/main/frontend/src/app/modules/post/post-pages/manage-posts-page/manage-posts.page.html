@@ -7,10 +7,13 @@
   (filter)="onFilter($event)"
 >
   <ng-container class="top-table-actions">
+    <app-page-title-download-button tooltip="download posts">
+    </app-page-title-download-button>
+    <app-page-title-upload-button tooltip="upload posts">
+    </app-page-title-upload-button>
     <app-page-title-new-button
       routerLink="/posts/new"
-      class="tooltip-bottom"
-      data-tooltip="create new post"
+      tooltip="create new post"
     ></app-page-title-new-button>
   </ng-container>
 

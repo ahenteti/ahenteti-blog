@@ -54,6 +54,8 @@ import { PageTitleFilterButtonComponent } from "./components/page-title-buttons/
 import { PageTitleNewButtonComponent } from "./components/page-title-buttons/page-title-new-button/page-title-new-button.component";
 import { PageTitleConsultButtonComponent } from "./components/page-title-buttons/page-title-consult-button/page-title-consult-button.component";
 import { PageTitleEditButtonComponent } from "./components/page-title-buttons/page-title-edit-button/page-title-edit-button.component";
+import { PageTitleDownloadButtonComponent } from "./components/page-title-buttons/page-title-download-button/page-title-download-button.component";
+import { PageTitleUploadButtonComponent } from "./components/page-title-buttons/page-title-upload-button/page-title-upload-button.component";
 
 @NgModule({
   entryComponents: [
@@ -119,6 +121,8 @@ import { PageTitleEditButtonComponent } from "./components/page-title-buttons/pa
     PageTitleButtonComponent,
     PageTitleConsultButtonComponent,
     PageTitleEditButtonComponent,
+    PageTitleDownloadButtonComponent,
+    PageTitleUploadButtonComponent,
   ],
   exports: [
     RouterModule,
@@ -172,6 +176,8 @@ import { PageTitleEditButtonComponent } from "./components/page-title-buttons/pa
     PageTitleFilterButtonComponent,
     PageTitleConsultButtonComponent,
     PageTitleEditButtonComponent,
+    PageTitleDownloadButtonComponent,
+    PageTitleUploadButtonComponent,
   ],
 })
 export class SharedModule {}
