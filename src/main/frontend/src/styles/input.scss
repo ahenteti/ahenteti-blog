@@ -9,6 +9,7 @@ input {
   transition: var(--transition);
   transition-property: color background-color border-color;
   border-radius: 0.2rem;
+  overflow: hidden;
 
   &:hover,
   &:focus {

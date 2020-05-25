@@ -43,7 +43,9 @@
 }
 
 .mat-row {
-  position: relative;
+  & .mat-column-actions {
+    position: relative;
+  }
   & .row-actions {
     --button-size: 3.5rem;
     display: none;
