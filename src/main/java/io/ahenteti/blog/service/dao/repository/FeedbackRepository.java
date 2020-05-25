@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FeedbackRepository extends JpaRepository<FeedbackEntity, Long> {
 
-    @Query(value = "SELECT f.* FROM T_FEEDBACKS f WHERE u.VALUE LIKE :sqlFilter OR (u.CREATED_AT\\:\\:text) LIKE :sqlFilter", nativeQuery = true)
+    @Query(value = "SELECT f.* FROM T_FEEDBACKS f WHERE f.VALUE LIKE :sqlFilter OR (f.CREATED_AT\\:\\:text) LIKE :sqlFilter", nativeQuery = true)
     Page<FeedbackEntity> find(String sqlFilter, Pageable pageable);
 
 }

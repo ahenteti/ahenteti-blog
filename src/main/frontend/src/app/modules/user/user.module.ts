@@ -17,7 +17,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
-  exports: [UserAvatarComponent],
+  exports: [UserAvatarComponent, UserComponent],
   declarations: [UserAvatarComponent, UserComponent, ManageUsersPage],
 })
 export class UserModule {}

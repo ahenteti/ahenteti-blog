@@ -8,6 +8,6 @@ import java.time.Instant;
 @Data
 public class FeedbackApiResponse {
     private String value;
-    private Instant createdAt;
+    private String createdAtIso8601;
     private AuthorApiResponse author;
 }

@@ -18,6 +18,9 @@
   <a *ngIf="user.isAdmin" mat-menu-item [routerLink]="['/users']"
     >Manage users</a
   >
+  <a *ngIf="user.isAdmin" mat-menu-item [routerLink]="['/feedbacks']"
+    >Manage feedbacks</a
+  >
   <hr />
   <a mat-menu-item href="/logout">Logout</a>
 </mat-menu>

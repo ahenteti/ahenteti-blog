@@ -10,7 +10,6 @@ import io.ahenteti.blog.model.api.feedback.response.FeedbacksPageApiResponse;
 import io.ahenteti.blog.model.core.feedback.Feedback;
 import io.ahenteti.blog.model.core.feedback.FeedbacksPage;
 import io.ahenteti.blog.model.core.feedback.ReadyToCreateFeedback;
-import io.ahenteti.blog.model.core.post.PostsPage;
 import io.ahenteti.blog.model.core.user.oauth2.IOAuth2User;
 import io.ahenteti.blog.model.entity.FeedbackEntity;
 import io.ahenteti.blog.service.dao.repository.UserRepository;
@@ -19,7 +18,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 @Service
@@ -60,7 +58,7 @@ public class FeedbackConverter {
     public FeedbackApiResponse toFeedbackApiResponse(Feedback feedback) {
         FeedbackApiResponse res = new FeedbackApiResponse();
         res.setValue(feedback.getValue());
-        res.setCreatedAt(feedback.getCreatedAt());
+        res.setCreatedAtIso8601(feedback.getCreatedAt().toString());
         res.setAuthor(userConverter.toAuthorApiResponse(feedback.getAuthor()));
         return res;
     }

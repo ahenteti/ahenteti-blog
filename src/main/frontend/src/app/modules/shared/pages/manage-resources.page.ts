@@ -45,4 +45,11 @@ export abstract class AbstractManageResourcesPage<T> implements OnInit {
     }
     this.nextButtonCssClasses = classes.join(" ");
   }
+
+  handleFetchPageSuccessEvent(page: Page<T>) {
+    this.currentPage = page;
+    this.dataSource = new MatTableDataSource(page.items);
+    this.dataSource.sort = this.sort;
+    this.recalculatePreviousNextButtonCssClasses();
+  }
 }

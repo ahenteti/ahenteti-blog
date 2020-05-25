@@ -52,13 +52,13 @@ export class UserConverter {
     };
   }
 
-  toUsersPage(usersPage: UsersPageApiResponse): UsersPage {
+  toUsersPage(page: UsersPageApiResponse): UsersPage {
     const res = new UsersPage();
-    res.totalItems = usersPage.totalItems;
-    res.firstPage = usersPage.page == 0;
-    res.lastPage = usersPage.lastPage;
-    res.page = usersPage.page;
-    usersPage.items.forEach((user) => res.items.push(this.toUser(user)));
+    res.totalItems = page.totalItems;
+    res.firstPage = page.page == 0;
+    res.lastPage = page.lastPage;
+    res.page = page.page;
+    page.items.forEach((user) => res.items.push(this.toUser(user)));
     return res;
   }
 }
