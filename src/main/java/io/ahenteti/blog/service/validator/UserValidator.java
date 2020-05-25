@@ -29,6 +29,13 @@ public class UserValidator {
         return new ValidGetUsersPageApiRequest(request);
     }
 
+    public void validateAdminUser(IOAuth2User user) {
+        if (!user.isAdmin()) {
+            throw new AuthenticationException("user is not admin");
+        }
+        validateUser(user);
+    }
+
     public void validateUser(IOAuth2User user) {
         if (user == null) {
             throw new AuthenticationException("user not authenticated");
@@ -48,13 +55,6 @@ public class UserValidator {
         validateUserPostsSize(request);
         validateUserPostsSortBy(request);
         return new ValidGetUserPostsApiRequest(request);
-    }
-
-    private void validateAdminUser(IOAuth2User user) {
-        if (!user.isAdmin()) {
-            throw new AuthenticationException("user is not admin");
-        }
-        validateUser(user);
     }
 
     private void validateUserPostsSortBy(GetUserPostsPageApiRequest request) {

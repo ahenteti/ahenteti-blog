@@ -1,4 +1,4 @@
-package io.ahenteti.blog.model.api.post;
+package io.ahenteti.blog.model.api;
 
 import io.ahenteti.blog.model.api.PageApiRequest;
 import io.ahenteti.blog.model.core.ESortDirection;

@@ -13,7 +13,7 @@ import java.time.Instant;
 
 @Data
 @Entity
-@Table(name = "T_FEEDBACK")
+@Table(name = "T_FEEDBACKS")
 public class FeedbackEntity {
 
     @Id

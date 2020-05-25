@@ -1,6 +1,6 @@
 package io.ahenteti.blog.service.converter;
 
-import io.ahenteti.blog.model.api.post.ValidPageApiRequest;
+import io.ahenteti.blog.model.api.ValidPageApiRequest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
