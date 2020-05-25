@@ -1,6 +1,6 @@
-import { Feedback } from "./feedback.internal.model";
-import { StringUtils } from "../shared/services/string.utils";
-import { AlertService } from "../alert/alert.service";
+import { Feedback } from "../models/feedback.internal.model";
+import { StringUtils } from "../../shared/services/string.utils";
+import { AlertService } from "../../alert/alert.service";
 import { Injectable } from "@angular/core";
 
 @Injectable()

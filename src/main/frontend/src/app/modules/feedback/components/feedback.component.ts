@@ -1,11 +1,11 @@
 import { Component, HostBinding, AfterViewInit } from "@angular/core";
-import { UserAwareComponent } from "../user/components/user-aware.component";
-import { UserObservable } from "../user/services/user.observable";
-import { FeedbackConverter } from "./feedback.converter";
-import { FeedbackHttpServices } from "./feedback.http.services";
-import { Feedback } from "./feedback.internal.model";
-import { FeedbackValidator } from "./feedback.validator";
-import { AlertService } from "../alert/alert.service";
+import { UserAwareComponent } from "../../user/components/user-aware.component";
+import { UserObservable } from "../../user/services/user.observable";
+import { FeedbackConverter } from "../services/feedback.converter";
+import { FeedbackHttpServices } from "../services/feedback.http.services";
+import { Feedback } from "../models/feedback.internal.model";
+import { FeedbackValidator } from "../services/feedback.validator";
+import { AlertService } from "../../alert/alert.service";
 
 @Component({
   selector: "app-feedback",

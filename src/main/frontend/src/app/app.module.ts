@@ -24,11 +24,10 @@ import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { LoaderInterceptor } from "./modules/loader/loader.interceptor";
 import { LoaderService } from "./modules/loader/loader.service";
 import { AdminGuard } from "./modules/user/services/admin.guard";
-import { ManageUsersPage } from "./modules/user/pages/manage-users/manage-users.page";
 import { FeedbackModule } from "./modules/feedback/feedback.module";
-import { FeedbackConverter } from "./modules/feedback/feedback.converter";
-import { FeedbackValidator } from "./modules/feedback/feedback.validator";
-import { FeedbackHttpServices } from "./modules/feedback/feedback.http.services";
+import { FeedbackConverter } from "./modules/feedback/services/feedback.converter";
+import { FeedbackValidator } from "./modules/feedback/services/feedback.validator";
+import { FeedbackHttpServices } from "./modules/feedback/services/feedback.http.services";
 import { AlertService } from "./modules/alert/alert.service";
 
 const routes: Routes = [

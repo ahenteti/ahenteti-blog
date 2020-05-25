@@ -1,4 +1,4 @@
-import { Feedback } from "./feedback.internal.model";
+import { Feedback } from "../models/feedback.internal.model";
 import { Injectable } from "@angular/core";
 
 @Injectable()

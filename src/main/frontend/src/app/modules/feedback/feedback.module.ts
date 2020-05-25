@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { FeedbackComponent } from "./feedback.component";
+import { FeedbackComponent } from "./components/feedback.component";
 import { SharedModule } from "../shared/shared.module";
 
 @NgModule({

@@ -1,4 +1,4 @@
-import { CreateFeedbackApiRequest } from "./feedback.external.model";
+import { CreateFeedbackApiRequest } from "../models/feedback.external.model";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
