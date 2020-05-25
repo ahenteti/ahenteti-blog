@@ -57,6 +57,14 @@ export class ManagePostsPage extends AbstractManageResourcesPage<PostSummary>
     });
   }
 
+  downloadAllUserPosts() {
+    const request = this.postConverter.toGetAllUserPostsApiRequest();
+    this.postHttpServices
+      .getUserPostsBlob(request)
+      .then((posts) => this.handleGetAllUserPostsSuccessEvent(posts))
+      .catch((error) => this.handleGetAllUserPostsErrorEvent(error));
+  }
+
   private handleDeletePostErrorEvent(error) {
     console.error(error);
     this.alertService.error("Error while deleting your post :(");
@@ -82,5 +90,21 @@ export class ManagePostsPage extends AbstractManageResourcesPage<PostSummary>
     this.dataSource = new MatTableDataSource(postsPage.items);
     this.dataSource.sort = this.sort;
     this.recalculatePreviousNextButtonCssClasses();
+  }
+
+  private handleGetAllUserPostsSuccessEvent(blob: Blob) {
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    document.body.appendChild(a);
+    a.style.display = "none";
+    a.href = url;
+    a.download = "posts.json";
+    a.click();
+    window.URL.revokeObjectURL(url);
+  }
+
+  private handleGetAllUserPostsErrorEvent(error: any): any {
+    console.error(error);
+    this.alertService.error("Error while fetching your posts :(");
   }
 }

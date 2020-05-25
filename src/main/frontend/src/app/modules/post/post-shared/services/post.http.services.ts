@@ -59,7 +59,12 @@ export class PostHttpServices extends CommonHttpServices {
       .get<UserPostsPageApiResponse>(request.url)
       .pipe(map((posts) => this.postConverter.toPostsSummariesPage(posts)))
       .toPromise();
+  }
+
+  getUserPostsBlob(request: GetUserPostsApiRequest): Promise<Blob> {
     // prettier-ignore
+    return fetch(request.url)
+    .then(response => response.blob())
   }
 
   getPostById(postId: number): Promise<Post> {

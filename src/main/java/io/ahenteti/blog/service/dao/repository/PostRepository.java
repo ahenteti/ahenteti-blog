@@ -12,6 +12,7 @@ import java.util.List;
 @Repository
 public interface PostRepository extends JpaRepository<PostEntity, Long> {
     List<PostEntity> findByCategoryIn(List<String> categories);
+
     List<PostEntity> findByAuthorUsernameIn(List<String> authors);
 
     @Query(value = "SELECT DISTINCT p.CATEGORY FROM T_POSTS p", nativeQuery = true)
@@ -27,4 +28,6 @@ public interface PostRepository extends JpaRepository<PostEntity, Long> {
                    "      AND (p.TITLE LIKE :sqlFilter OR p.CATEGORY LIKE :sqlFilter OR p.TAGS LIKE :sqlFilter OR p.CREATED_AT\\:\\:text LIKE :sqlFilter)", nativeQuery = true)
     Page<PostEntity> findByAuthorId(Long authorId, String sqlFilter, Pageable pageable);
     // @formatter:on
+
+    List<PostEntity> findByAuthorId(Long authorId);
 }

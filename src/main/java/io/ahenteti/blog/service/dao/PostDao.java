@@ -7,10 +7,12 @@ import io.ahenteti.blog.model.core.IGroupByStrategy;
 import io.ahenteti.blog.model.core.post.GroupByPostAuthorStrategy;
 import io.ahenteti.blog.model.core.post.GroupByPostCategoryStrategy;
 import io.ahenteti.blog.model.core.post.Post;
+import io.ahenteti.blog.model.core.post.PostSummary;
 import io.ahenteti.blog.model.core.post.PostsGroups;
 import io.ahenteti.blog.model.core.post.PostsPage;
 import io.ahenteti.blog.model.core.post.ReadyToCreatePost;
 import io.ahenteti.blog.model.core.post.ReadyToUpdatePost;
+import io.ahenteti.blog.model.core.user.oauth2.IOAuth2User;
 import io.ahenteti.blog.model.entity.PostEntity;
 import io.ahenteti.blog.service.converter.PageConverter;
 import io.ahenteti.blog.service.converter.PostConverter;
@@ -27,6 +29,7 @@ import java.util.Optional;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 @Service
 public class PostDao {
@@ -94,5 +97,10 @@ public class PostDao {
         res.add(new GroupByPostCategoryStrategy(new TreeSet<>(postRepository.getPostCategories())));
         res.add(new GroupByPostAuthorStrategy(new TreeSet<>(postRepository.getPostAuthors())));
         return res;
+    }
+
+    public List<Post> getAllUserPosts(IOAuth2User user) {
+        List<PostEntity> userPosts = postRepository.findByAuthorId(user.getPrimaryKey());
+        return userPosts.stream().map(postConverter::toPost).collect(Collectors.toList());
     }
 }

@@ -1,12 +1,14 @@
 package io.ahenteti.blog.controller;
 
 import io.ahenteti.blog.model.api.post.request.GetUserPostsPageApiRequest;
-import io.ahenteti.blog.model.api.post.response.UserPostsPageApiResponse;
 import io.ahenteti.blog.model.api.post.request.valid.ValidGetUserPostsApiRequest;
+import io.ahenteti.blog.model.api.post.response.UserPostApiResponse;
+import io.ahenteti.blog.model.api.post.response.UserPostsPageApiResponse;
 import io.ahenteti.blog.model.api.user.CurrentUserApiResponse;
 import io.ahenteti.blog.model.api.user.GetUsersPageApiRequest;
 import io.ahenteti.blog.model.api.user.UsersPageApiResponse;
 import io.ahenteti.blog.model.api.user.ValidGetUsersPageApiRequest;
+import io.ahenteti.blog.model.core.post.Post;
 import io.ahenteti.blog.model.core.post.PostsPage;
 import io.ahenteti.blog.model.core.user.UsersPage;
 import io.ahenteti.blog.model.core.user.oauth2.IOAuth2User;
@@ -20,6 +22,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -62,8 +66,8 @@ public class UserController {
     // @formatter:on
 
     // @formatter:off
-    @GetMapping("/secure-api/user/posts-summaries")
-    public UserPostsPageApiResponse getUserPosts(
+    @GetMapping("/secure-api/user/posts-summaries-page")
+    public UserPostsPageApiResponse getUserPostsPage(
             @ModelAttribute IOAuth2User user, 
             @RequestParam String filter,
             @RequestParam Integer page, 
@@ -74,6 +78,15 @@ public class UserController {
         ValidGetUserPostsApiRequest validRequest = userValidator.validateGetUserPostsApiRequest(request);
         PostsPage postsPage = postDao.getUserPosts(validRequest);
         return postConverter.toUserPostsPageApiResponse(postsPage);
+    }
+    // @formatter:on
+
+    // @formatter:off
+    @GetMapping("/secure-api/user/posts-summaries")
+    public List<UserPostApiResponse> getAllUserPosts(@ModelAttribute IOAuth2User user) {
+        userValidator.validateUser(user);
+        List<Post> userPosts = postDao.getAllUserPosts(user);
+        return postConverter.toUserPostApiResponseList(userPosts);
     }
     // @formatter:on
 

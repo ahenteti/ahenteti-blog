@@ -125,7 +125,13 @@ export class PostConverter {
     size = 5
   ): GetUserPostsApiRequest {
     return {
-      url: `/secure-api/user/posts-summaries?filter=${filter}&page=${page}&size=${size}`,
+      url: `/secure-api/user/posts-summaries-page?filter=${filter}&page=${page}&size=${size}`,
+    };
+  }
+
+  toGetAllUserPostsApiRequest(): GetUserPostsApiRequest {
+    return {
+      url: `/secure-api/user/posts-summaries`,
     };
   }
 
