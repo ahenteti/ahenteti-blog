@@ -65,6 +65,10 @@ export class ManagePostsPage extends AbstractManageResourcesPage<PostSummary>
       .catch((error) => this.handleGetAllUserPostsErrorEvent(error));
   }
 
+  onFileUpload(file: File) {
+    console.log(file);
+  }
+
   private handleDeletePostErrorEvent(error) {
     console.error(error);
     this.alertService.error("Error while deleting your post :(");

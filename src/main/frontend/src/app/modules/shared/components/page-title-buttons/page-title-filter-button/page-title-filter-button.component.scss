@@ -20,10 +20,14 @@
   font-size: var(--page-title-button-icon-font-size);
   padding: 0.5rem;
   border-radius: 100rem;
-  color: var(--primary-color);
+  color: var(--page-title-button-color);
   background-color: var(--page-title-button-background-color);
   transition: var(--transition);
   transition-property: color, background-color;
+
+  &:hover {
+    color: var(--primary-color);
+  }
 }
 
 .search-input {

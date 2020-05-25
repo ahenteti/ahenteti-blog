@@ -12,7 +12,10 @@
       (click)="downloadAllUserPosts()"
     >
     </app-page-title-download-button>
-    <app-page-title-upload-button tooltip="upload posts">
+    <app-page-title-upload-button
+      (fileUpload)="onFileUpload($event)"
+      tooltip="upload posts"
+    >
     </app-page-title-upload-button>
     <app-page-title-new-button
       routerLink="/posts/new"
