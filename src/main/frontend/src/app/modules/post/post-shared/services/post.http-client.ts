@@ -23,12 +23,12 @@ import {
 } from "../models/post.internal.models";
 import { PostConverter } from "./post.converter";
 import { HttpClient } from "@angular/common/http";
-import { CommonHttpServices } from "../../../alert/common.http.services";
+import { CommonHttpClient } from "../../../alert/common.http-client";
 import { AlertService } from "../../../alert/alert.service";
 import { OperatorFunction } from "rxjs";
 
 @Injectable()
-export class PostHttpServices extends CommonHttpServices {
+export class PostHttpClient extends CommonHttpClient {
   constructor(
     private postConverter: PostConverter,
     private http: HttpClient,

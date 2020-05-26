@@ -7,18 +7,18 @@ import {
 } from "@angular/router";
 import { UserObservable } from "./user.observable";
 import { AlertService } from "../../alert/alert.service";
-import { UserHttpServices } from "./user.http.services";
+import { UserHttpClient } from "./user.http-client";
 
 @Injectable({ providedIn: "root" })
 export class LoggedInGuard implements CanActivate {
   constructor(
-    private userHttpService: UserHttpServices,
+    private userHttpClient: UserHttpClient,
     private alertService: AlertService,
     private router: Router
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    return this.userHttpService
+    return this.userHttpClient
       .getCurrentUser()
       .then(() => true)
       .catch((error) => {

@@ -1,7 +1,7 @@
 import { Observable, of } from "rxjs";
 import { AlertService } from "./alert.service";
 
-export class CommonHttpServices {
+export class CommonHttpClient {
   constructor(private alertService: AlertService) {}
 
   protected handleError<T>(message, result?: T) {

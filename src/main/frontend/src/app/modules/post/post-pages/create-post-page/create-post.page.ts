@@ -6,7 +6,7 @@ import {
 } from "../../post-shared/models/post.internal.models";
 import { PostValidator } from "../../post-shared/services/post.validator";
 import { PostConverter } from "../../post-shared/services/post.converter";
-import { PostHttpServices } from "../../post-shared/services/post.http.services";
+import { PostHttpClient } from "../../post-shared/services/post.http-client";
 import { PostsState } from "../../post-shared/state/posts.state";
 import { AlertService } from "src/app/modules/alert/alert.service";
 import { Router } from "@angular/router";
@@ -21,7 +21,7 @@ export class CreatePostPage {
   constructor(
     private postValidator: PostValidator,
     private postConverter: PostConverter,
-    private postHttpServices: PostHttpServices,
+    private postHttpClient: PostHttpClient,
     private postsState: PostsState,
     private alertService: AlertService,
     private router: Router
@@ -31,7 +31,7 @@ export class CreatePostPage {
     try {
       this.postValidator.validateCreatePost(post);
       const request = this.postConverter.toCreatePostApiRequest(post);
-      this.postHttpServices
+      this.postHttpClient
         .createPost(request)
         .then((post) => this.handleCreatePostSuccessEvent(post))
         .catch((error) => this.handleCreatePostErrorEvent(error));

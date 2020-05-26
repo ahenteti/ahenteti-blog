@@ -8,7 +8,7 @@ import {
 } from "@angular/common/http";
 import { LoaderService } from "./loader.service";
 import { finalize } from "rxjs/operators";
-import { GET_CURRENT_IDENTITY_URL } from "../user/services/user.http.services";
+import { GET_CURRENT_IDENTITY_URL } from "../user/services/user.http-client";
 
 const HTTP_REQUEST_WITHOUT_LOADER = [GET_CURRENT_IDENTITY_URL];
 

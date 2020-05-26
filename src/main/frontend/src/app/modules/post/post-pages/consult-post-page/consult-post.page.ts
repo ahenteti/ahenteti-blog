@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { OfflinePost } from "../../post-shared/models/post.internal.models";
-import { PostHttpServices } from "../../post-shared/services/post.http.services";
+import { PostHttpClient } from "../../post-shared/services/post.http-client";
 
 @Component({
   templateUrl: "./consult-post.page.html",
@@ -11,15 +11,12 @@ export class ConsultPostPage implements OnInit {
   postId: number;
   post = new OfflinePost();
 
-  constructor(
-    route: ActivatedRoute,
-    private postHttpServices: PostHttpServices
-  ) {
+  constructor(route: ActivatedRoute, private postHttpClient: PostHttpClient) {
     this.postId = route.snapshot.params["id"];
   }
 
   ngOnInit(): void {
-    this.postHttpServices.getPostById(this.postId).then((post) => {
+    this.postHttpClient.getPostById(this.postId).then((post) => {
       this.post = post;
     });
   }

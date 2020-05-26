@@ -1,11 +1,7 @@
 import { Injectable } from "@angular/core";
-import {
-  Author,
-  AnonymousUser,
-  CurrentUser,
-} from "../models/user.internal.models";
+import { AnonymousUser, CurrentUser } from "../models/user.internal.models";
 import { BehaviorSubject, Observable } from "rxjs";
-import { UserHttpServices } from "./user.http.services";
+import { UserHttpClient } from "./user.http-client";
 import { Router, NavigationEnd } from "@angular/router";
 
 // code inspiration: https://www.youtube.com/watch?v=I317BhehZKM
@@ -13,10 +9,7 @@ import { Router, NavigationEnd } from "@angular/router";
 export class UserObservable {
   private subject = new BehaviorSubject<CurrentUser>(new AnonymousUser());
 
-  constructor(
-    private router: Router,
-    private userHttpService: UserHttpServices
-  ) {
+  constructor(private router: Router, private userHttpClient: UserHttpClient) {
     this.checkUser();
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -26,7 +19,7 @@ export class UserObservable {
   }
 
   private checkUser() {
-    this.userHttpService
+    this.userHttpClient
       .getCurrentUser()
       .then((user) => this.newUser(user))
       .catch(() => this.handleGetCurrentUserErrorEvent());

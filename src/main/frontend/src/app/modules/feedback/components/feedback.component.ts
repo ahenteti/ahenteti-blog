@@ -2,7 +2,7 @@ import { Component, HostBinding, AfterViewInit } from "@angular/core";
 import { UserAwareComponent } from "../../user/components/user-aware.component";
 import { UserObservable } from "../../user/services/user.observable";
 import { FeedbackConverter } from "../services/feedback.converter";
-import { FeedbackHttpServices } from "../services/feedback.http.services";
+import { FeedbackHttpClient } from "../services/feedback.http-client";
 import { Feedback } from "../models/feedback.internal.model";
 import { FeedbackValidator } from "../services/feedback.validator";
 import { AlertService } from "../../alert/alert.service";
@@ -22,7 +22,7 @@ export class FeedbackComponent extends UserAwareComponent
     userObservable: UserObservable,
     private feedbackValidator: FeedbackValidator,
     private feedbackConverter: FeedbackConverter,
-    private feedbackHttpServices: FeedbackHttpServices,
+    private feedbackHttpClient: FeedbackHttpClient,
     private alertService: AlertService
   ) {
     super(userObservable);
@@ -48,7 +48,7 @@ export class FeedbackComponent extends UserAwareComponent
   submit() {
     if (this.feedbackValidator.validateFeedback(this.feedback)) {
       const request = this.feedbackConverter.toCreateFeedbackApiRequest(this.feedback);
-      this.feedbackHttpServices.createFeedback(request)
+      this.feedbackHttpClient.createFeedback(request)
         .then(() => this.handleCreateFeedbackSuccessEvent())
         .catch(error => this.handleCreateFeedbackErrorEvent());
     }

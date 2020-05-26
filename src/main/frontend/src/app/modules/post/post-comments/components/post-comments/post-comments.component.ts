@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { AlertService } from "src/app/modules/alert/alert.service";
 import { UserAwareComponent } from "src/app/modules/user/components/user-aware.component";
 import { UserObservable } from "src/app/modules/user/services/user.observable";
-import { PostCommentHttpServices } from "../../services/post-comment.http.service";
+import { PostCommentHttpClient } from "../../services/post-comment.http-client";
 import { ActivatedRoute } from "@angular/router";
 import {
   PostComments,
@@ -26,7 +26,7 @@ export class PostCommentsComponent extends UserAwareComponent
   constructor(
     route: ActivatedRoute,
     userObservable: UserObservable,
-    private commentHttpServices: PostCommentHttpServices,
+    private commentHttpClient: PostCommentHttpClient,
     private commentConverter: PostCommentConverter,
     private alertService: AlertService
   ) {
@@ -56,7 +56,7 @@ export class PostCommentsComponent extends UserAwareComponent
       this.postId,
       ++this.currentCommentsPage
     );
-    this.commentHttpServices
+    this.commentHttpClient
       .getPostComments(request)
       .then((comments) => {
         this.postComments = new PostComments(...this.postComments, ...comments);

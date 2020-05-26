@@ -13,7 +13,7 @@ import { CurrentUser, UsersPage } from "../models/user.internal.models";
 export const GET_CURRENT_IDENTITY_URL = "/api/currentIdentity";
 
 @Injectable()
-export class UserHttpServices {
+export class UserHttpClient {
   constructor(private http: HttpClient, private userConverter: UserConverter) {}
 
   getCurrentUser(): Promise<CurrentUser> {

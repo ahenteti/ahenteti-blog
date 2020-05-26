@@ -10,7 +10,7 @@ import { FeedbackConverter } from "./feedback.converter";
 import { map } from "rxjs/operators";
 
 @Injectable()
-export class FeedbackHttpServices {
+export class FeedbackHttpClient {
   constructor(
     private http: HttpClient,
     private feedbackConverter: FeedbackConverter

@@ -11,7 +11,7 @@ import {
 } from "../models/post.internal.models";
 import { BehaviorSubject } from "rxjs";
 import { PostConverter } from "../services/post.converter";
-import { PostHttpServices } from "../services/post.http.services";
+import { PostHttpClient } from "../services/post.http-client";
 import { AlertService } from "src/app/modules/alert/alert.service";
 import { GetPostsGroupsApiRequest } from "../models/post.external.models";
 import { SetUtils } from "src/app/modules/shared/services/set.utils";
@@ -59,7 +59,7 @@ export class PostsState {
 
   constructor(
     private postConverter: PostConverter,
-    private postHttpServices: PostHttpServices,
+    private postHttpClient: PostHttpClient,
     private alertService: AlertService,
     private windowService: WindowService
   ) {
@@ -69,7 +69,7 @@ export class PostsState {
   // prettier-ignore
   init() {
     const request = this.postConverter.toGetPostGroupByStrategiesApiRequest();
-    this.postHttpServices
+    this.postHttpClient
       .getPostGroupByStrategies(request)
       .then((strategies) => this.handleGetPostGroupByStrategiesSuccessEvent(strategies))
       .catch((error) => this.handleGetPostGroupByStrategiesErrorEvent(error));
@@ -97,7 +97,7 @@ export class PostsState {
     try {
       this.loadPostsInProgress = true;
       const getPostsGroupsApiRequest = this.calculateGetPostsGroupsApiRequest();
-      this.postHttpServices
+      this.postHttpClient
         .getPostsGroups(getPostsGroupsApiRequest)
         .then((postsGroups) => this.handleGetPostsGroupsSuccessEvent(postsGroups))
         .catch((error) => this.handleGetPostsGroupsErrorEvent(error));

@@ -5,7 +5,7 @@ import {
   Post,
   PostSummary,
 } from "../../post-shared/models/post.internal.models";
-import { PostHttpServices } from "../../post-shared/services/post.http.services";
+import { PostHttpClient } from "../../post-shared/services/post.http-client";
 import { PostValidator } from "../../post-shared/services/post.validator";
 import { PostConverter } from "../../post-shared/services/post.converter";
 import { PostsState } from "../../post-shared/state/posts.state";
@@ -22,7 +22,7 @@ export class UpdatePostPage implements OnInit {
   constructor(
     private postValidator: PostValidator,
     private postConverter: PostConverter,
-    private postHttpServices: PostHttpServices,
+    private postHttpClient: PostHttpClient,
     private postsState: PostsState,
     private alertService: AlertService,
     private router: Router,
@@ -32,7 +32,7 @@ export class UpdatePostPage implements OnInit {
   }
 
   ngOnInit(): void {
-    this.postHttpServices.getPostById(this.postId).then((post) => {
+    this.postHttpClient.getPostById(this.postId).then((post) => {
       this.post = post;
     });
   }
@@ -41,7 +41,7 @@ export class UpdatePostPage implements OnInit {
     try {
       this.postValidator.validateUpdatePost(post);
       const request = this.postConverter.toUpdatePostApiRequest(post);
-      this.postHttpServices
+      this.postHttpClient
         .updatePost(request)
         .then((post) => this.handleUpdatePostSuccessEvent(post))
         .catch((error) => this.handleUpdatePostErrorEvent(error));

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { PostHttpServices } from "../../post-shared/services/post.http.services";
+import { PostHttpClient } from "../../post-shared/services/post.http-client";
 import {
   PostsPage,
   PostSummary,
@@ -20,7 +20,7 @@ import { AbstractManageResourcesPage } from "src/app/modules/shared/pages/manage
 export class ManagePostsPage extends AbstractManageResourcesPage<PostSummary>
   implements OnInit {
   constructor(
-    private postHttpServices: PostHttpServices,
+    private postHttpClient: PostHttpClient,
     private postConverter: PostConverter,
     private alertService: AlertService,
     private postsState: PostsState,
@@ -35,7 +35,7 @@ export class ManagePostsPage extends AbstractManageResourcesPage<PostSummary>
   // prettier-ignore
   fetchPage(filter: string, page: number) {
     const request = this.postConverter.toGetUserPostsApiRequest(filter, page);
-    this.postHttpServices
+    this.postHttpClient
       .getUserPosts(request)
       .then((posts) => this.handleGetUserPostsSuccessEvent(posts))
       .catch((error) => this.handleGetUserPostsErrorEvent(error));
@@ -49,7 +49,7 @@ export class ManagePostsPage extends AbstractManageResourcesPage<PostSummary>
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         const request = this.postConverter.toDeletePostApiRequest(postId);
-        this.postHttpServices
+        this.postHttpClient
           .deletePost(request)
           .then(() => this.handleDeletePostSuccessEvent(postId))
           .catch((error) => this.handleDeletePostErrorEvent(error));
@@ -59,7 +59,7 @@ export class ManagePostsPage extends AbstractManageResourcesPage<PostSummary>
 
   downloadAllUserPosts() {
     const request = this.postConverter.toGetAllUserPostsApiRequest();
-    this.postHttpServices
+    this.postHttpClient
       .getUserPostsBlob(request)
       .then((posts) => this.handleGetAllUserPostsSuccessEvent(posts))
       .catch((error) => this.handleGetAllUserPostsErrorEvent(error));

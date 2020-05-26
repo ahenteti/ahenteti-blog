@@ -10,7 +10,7 @@ import { NgForm } from "@angular/forms";
 import { UserAwareComponent } from "src/app/modules/user/components/user-aware.component";
 import { ICreatePostCommentApiRequest } from "../../models/post-comment.external.models";
 import { UserObservable } from "src/app/modules/user/services/user.observable";
-import { PostCommentHttpServices } from "../../services/post-comment.http.service";
+import { PostCommentHttpClient } from "../../services/post-comment.http-client";
 import { AlertService } from "src/app/modules/alert/alert.service";
 import {
   IPostComment,
@@ -30,7 +30,7 @@ export class AddPostCommentComponent extends UserAwareComponent {
   constructor(
     route: ActivatedRoute,
     userObservable: UserObservable,
-    private commentHttpServices: PostCommentHttpServices,
+    private commentHttpClient: PostCommentHttpClient,
     private alertService: AlertService
   ) {
     super(userObservable);
@@ -41,7 +41,7 @@ export class AddPostCommentComponent extends UserAwareComponent {
     this.commentTextarea.nativeElement.value = "";
     const comment = this.toComment(form.value);
     this.newPostComment.emit(comment);
-    this.commentHttpServices
+    this.commentHttpClient
       .createPostComment(form.value)
       .then(() => this.alertSavingCommentSuccess())
       .catch((error) => {

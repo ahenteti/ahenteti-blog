@@ -6,17 +6,17 @@ import { AlertModule } from "./modules/alert/alert.module";
 import { NavbarModule } from "./modules/navbar/navbar.module";
 import { PostPageModule } from "./modules/post/post-pages/post-pages.module";
 import { ThemeLocalStorageServices } from "./modules/shared/services/theme.localstorage.services";
-import { UserHttpServices } from "./modules/user/services/user.http.services";
+import { UserHttpClient } from "./modules/user/services/user.http-client";
 import { UserLoginServices } from "./modules/user/services/user.login.services";
 import { UserObservable } from "./modules/user/services/user.observable";
 import { UserConverter } from "./modules/user/services/user.converter";
 import { Routes, RouterModule } from "@angular/router";
 import { SharedModule } from "./modules/shared/shared.module";
 import { LoggedInGuard } from "./modules/user/services/logged-in.guard";
-import { PostHttpServices } from "./modules/post/post-shared/services/post.http.services";
+import { PostHttpClient } from "./modules/post/post-shared/services/post.http-client";
 import { PostConverter } from "./modules/post/post-shared/services/post.converter";
 import { PostCommentConverter } from "./modules/post/post-comments/converter/post-comment.converter";
-import { PostCommentHttpServices } from "./modules/post/post-comments/services/post-comment.http.service";
+import { PostCommentHttpClient } from "./modules/post/post-comments/services/post-comment.http-client";
 import { PostValidator } from "./modules/post/post-shared/services/post.validator";
 import { WindowService } from "./modules/shared/services/window.service";
 import { LoaderModule } from "./modules/loader/loader.module";
@@ -27,7 +27,7 @@ import { AdminGuard } from "./modules/user/services/admin.guard";
 import { FeedbackModule } from "./modules/feedback/feedback.module";
 import { FeedbackConverter } from "./modules/feedback/services/feedback.converter";
 import { FeedbackValidator } from "./modules/feedback/services/feedback.validator";
-import { FeedbackHttpServices } from "./modules/feedback/services/feedback.http.services";
+import { FeedbackHttpClient } from "./modules/feedback/services/feedback.http-client";
 import { AlertService } from "./modules/alert/alert.service";
 
 const routes: Routes = [
@@ -57,12 +57,12 @@ const routes: Routes = [
   bootstrap: [AppComponent],
   providers: [
     AlertService,
-    PostHttpServices,
+    PostHttpClient,
     PostConverter,
     PostCommentConverter,
-    PostCommentHttpServices,
+    PostCommentHttpClient,
     ThemeLocalStorageServices,
-    UserHttpServices,
+    UserHttpClient,
     UserLoginServices,
     UserObservable,
     UserConverter,
@@ -73,7 +73,7 @@ const routes: Routes = [
     AdminGuard,
     FeedbackConverter,
     FeedbackValidator,
-    FeedbackHttpServices,
+    FeedbackHttpClient,
     { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
   ],
 })

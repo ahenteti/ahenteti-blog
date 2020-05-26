@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { MatTableDataSource } from "@angular/material/table";
 import { UsersPage, User } from "../../models/user.internal.models";
 import { AlertService } from "src/app/modules/alert/alert.service";
-import { UserHttpServices } from "../../services/user.http.services";
+import { UserHttpClient } from "../../services/user.http-client";
 import { UserConverter } from "../../services/user.converter";
 import { AbstractManageResourcesPage } from "src/app/modules/shared/pages/manage-resources.page";
 
@@ -14,7 +14,7 @@ export class ManageUsersPage extends AbstractManageResourcesPage<User>
   implements OnInit {
   constructor(
     private alertService: AlertService,
-    private userHttpService: UserHttpServices,
+    private userHttpClient: UserHttpClient,
     private userConverter: UserConverter
   ) {
     super();
@@ -26,7 +26,7 @@ export class ManageUsersPage extends AbstractManageResourcesPage<User>
   // prettier-ignore
   fetchPage(filter: string, page: number) {
     const request  = this.userConverter.toGetUsersPageApiRequest(filter, page);
-    this.userHttpService.getUsersPage(request)
+    this.userHttpClient.getUsersPage(request)
       .then(usersPage => this.handleGetUsersPageSuccessEvent(usersPage))
       .catch(error => this.handleGetUsersPageErrorEvent(error));
   }

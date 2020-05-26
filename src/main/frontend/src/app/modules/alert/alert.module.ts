@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 
 import { AlertComponent } from "./alert.component";
 import { CommonModule } from "@angular/common";
-import { CommonHttpServices } from "./common.http.services";
+import { CommonHttpClient } from "./common.http-client";
 
 @NgModule({
   imports: [CommonModule],
