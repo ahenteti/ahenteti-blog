@@ -2,7 +2,6 @@ package io.ahenteti.blog.service.converter.internal.post;
 
 import io.ahenteti.blog.model.api.post.response.UserPostApiResponse;
 import io.ahenteti.blog.model.core.post.Post;
-import io.ahenteti.blog.model.core.post.PostSummary;
 import org.springframework.stereotype.Service;
 
 @Service

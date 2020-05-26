@@ -1,13 +1,16 @@
 package io.ahenteti.blog.model.api.feedback.request.valid;
 
-import io.ahenteti.blog.model.api.feedback.request.CreateFeedbackApiRequest;
+import io.ahenteti.blog.model.core.user.oauth2.IOAuth2User;
 import lombok.Data;
 
 @Data
-public class ValidCreateFeedbackApiRequest extends CreateFeedbackApiRequest {
+public class ValidCreateFeedbackApiRequest {
+    private IOAuth2User author;
+    private ValidCreateFeedbackApiRequestBody body;
 
-    public ValidCreateFeedbackApiRequest(CreateFeedbackApiRequest request) {
-        this.author = request.getAuthor();
-        this.value = request.getValue();
+    public ValidCreateFeedbackApiRequest(IOAuth2User author, ValidCreateFeedbackApiRequestBody body) {
+        this.author = author;
+        this.body = body;
     }
+
 }

@@ -6,8 +6,9 @@ import io.ahenteti.blog.model.api.feedback.request.GetFeedbacksApiRequest;
 import io.ahenteti.blog.model.api.feedback.request.valid.ValidCreateFeedbackApiRequest;
 import io.ahenteti.blog.model.api.feedback.request.valid.ValidGetFeedbacksApiRequest;
 import io.ahenteti.blog.model.api.feedback.response.FeedbacksPageApiResponse;
+import io.ahenteti.blog.model.core.feedback.FeedbackToCreate;
 import io.ahenteti.blog.model.core.feedback.FeedbacksPage;
-import io.ahenteti.blog.model.core.feedback.ReadyToCreateFeedback;
+import io.ahenteti.blog.model.core.feedback.ValidFeedbackToCreate;
 import io.ahenteti.blog.model.core.user.oauth2.IOAuth2User;
 import io.ahenteti.blog.service.converter.FeedbackConverter;
 import io.ahenteti.blog.service.dao.FeedbackDao;
@@ -39,28 +40,29 @@ public class FeedbackController {
 
     // @formatter:off
     @GetMapping("/secure-api/feedbacks")
-    public FeedbacksPageApiResponse getFeedbacks(
+    public FeedbacksPageApiResponse getPage(
             @ModelAttribute IOAuth2User user,
             @RequestParam String filter,
             @RequestParam Integer page,
             @RequestParam Integer size,
             @RequestParam(required = false, defaultValue = "CREATED_AT") String sortBy,
             @RequestParam(required = false, defaultValue = "asc") String sortDirection) {
-        GetFeedbacksApiRequest request = feedbackConverter.toGetFeedbacksApiRequest(user, filter, page, size, sortBy, sortDirection);
-        ValidGetFeedbacksApiRequest validRequest = feedbackValidator.validateGetFeedbacksApiRequest(request);
-        FeedbacksPage feedbacksPage = feedbackDao.getFeedbacks(validRequest);
-        return feedbackConverter.toFeedbacksPageApiResponse(feedbacksPage);
+        GetFeedbacksApiRequest request = feedbackConverter.toApiRequest(user, filter, page, size, sortBy, sortDirection);
+        ValidGetFeedbacksApiRequest validRequest = feedbackValidator.validate(request);
+        FeedbacksPage feedbacksPage = feedbackDao.getPage(validRequest);
+        return feedbackConverter.toApiResponse(feedbacksPage);
     }
     // @formatter:on
 
     @Transactional
     @PostMapping("/secure-api/feedbacks")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createFeedback(@ModelAttribute IOAuth2User user, @RequestBody CreateFeedbackApiRequestBody requestBody) {
-        CreateFeedbackApiRequest request = feedbackConverter.toCreateFeedbackApiRequest(user, requestBody);
-        ValidCreateFeedbackApiRequest validRequest = feedbackValidator.validateCreateFeedbackApiRequest(request);
-        ReadyToCreateFeedback feedback = feedbackConverter.toFeedback(validRequest);
-        feedbackDao.createFeedback(feedback);
+    public void create(@ModelAttribute IOAuth2User user, @RequestBody CreateFeedbackApiRequestBody requestBody) {
+        CreateFeedbackApiRequest request = feedbackConverter.toApiRequest(user, requestBody);
+        ValidCreateFeedbackApiRequest validRequest = feedbackValidator.validate(request);
+        FeedbackToCreate model = feedbackConverter.toModel(validRequest);
+        ValidFeedbackToCreate validModel = feedbackValidator.validate(model);
+        feedbackDao.create(validModel);
     }
 
 }

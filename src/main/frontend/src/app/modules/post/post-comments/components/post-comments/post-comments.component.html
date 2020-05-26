@@ -1,14 +1,14 @@
 <app-section-title value="Comments"></app-section-title>
 <app-add-post-comment
-  (newPostComment)="onNewPostComment($event)"
+        (newPostComment)="onNewPostComment($event)"
 ></app-add-post-comment>
 <app-post-comment
-  *ngFor="let comment of postComments"
-  [comment]="comment"
+        *ngFor="let comment of postComments"
+        [comment]="comment"
 ></app-post-comment>
 <app-load-more-button
-  *ngIf="stillMoreComments"
-  class="more-comments-button"
-  text="Load more comments"
-  (click)="loadMorePostComments()"
+        *ngIf="stillMoreComments"
+        class="more-comments-button"
+        text="Load more comments"
+        (click)="loadMorePostComments()"
 ></app-load-more-button>

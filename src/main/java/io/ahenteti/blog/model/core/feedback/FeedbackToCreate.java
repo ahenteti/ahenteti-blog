@@ -6,8 +6,8 @@ import lombok.Data;
 import java.time.Instant;
 
 @Data
-public class ReadyToCreateFeedback {
+public class FeedbackToCreate {
     private String value;
     private Instant createdAt;
-    protected User author;
+    private User author;
 }

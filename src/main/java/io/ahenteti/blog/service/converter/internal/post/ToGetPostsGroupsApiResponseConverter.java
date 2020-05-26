@@ -1,7 +1,7 @@
 package io.ahenteti.blog.service.converter.internal.post;
 
-import io.ahenteti.blog.model.api.post.response.PostsGroupsApiResponse;
 import io.ahenteti.blog.model.api.post.response.PostsGroupApiResponse;
+import io.ahenteti.blog.model.api.post.response.PostsGroupsApiResponse;
 import io.ahenteti.blog.model.core.post.PostsGroup;
 import io.ahenteti.blog.model.core.post.PostsGroups;
 import org.springframework.beans.factory.annotation.Autowired;

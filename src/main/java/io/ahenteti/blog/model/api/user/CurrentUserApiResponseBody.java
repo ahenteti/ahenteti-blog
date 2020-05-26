@@ -1,7 +1,6 @@
 package io.ahenteti.blog.model.api.user;
 
 import lombok.Data;
-import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.List;

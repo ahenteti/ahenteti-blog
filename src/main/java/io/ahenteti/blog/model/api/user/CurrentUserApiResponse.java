@@ -8,5 +8,5 @@ public abstract class CurrentUserApiResponse extends ResponseEntity<CurrentUserA
     public CurrentUserApiResponse(CurrentUserApiResponseBody body, HttpStatus status) {
         super(body, status);
     }
-    
+
 }

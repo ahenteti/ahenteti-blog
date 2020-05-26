@@ -1,14 +1,14 @@
 <input
-  #input
-  type="text"
-  name=""
-  class="search-input"
-  (blur)="onBlur()"
-  (focus)="onFocus()"
-  placeholder="Search..."
-  [(ngModel)]="filter"
-  (keyup.enter)="onSubmit()"
+        #input
+        type="text"
+        name=""
+        class="search-input"
+        (blur)="onBlur()"
+        (focus)="onFocus()"
+        placeholder="Search..."
+        [(ngModel)]="filter"
+        (keyup.enter)="onSubmit()"
 />
 <a class="search-button" (click)="onSubmit()">
-  <span class="iconify" data-icon="gridicons:search"></span>
+    <span class="iconify" data-icon="gridicons:search"></span>
 </a>

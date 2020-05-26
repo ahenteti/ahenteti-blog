@@ -1,26 +1,26 @@
 <span class="welcome">Welcome {{ user.username }}</span>
 <div
-  class="user-avatar"
-  [matMenuTriggerFor]="menu"
-  #dropdownTrigger="matMenuTrigger"
+        class="user-avatar"
+        [matMenuTriggerFor]="menu"
+        #dropdownTrigger="matMenuTrigger"
 >
-  <app-user-avatar [user]="user"></app-user-avatar>
-  <app-dropdown-icon class="dropdown-icon"></app-dropdown-icon>
+    <app-user-avatar [user]="user"></app-user-avatar>
+    <app-dropdown-icon class="dropdown-icon"></app-dropdown-icon>
 </div>
 
 <mat-menu #menu="matMenu" xPosition="before">
   <span mat-menu-item (click)="handleChangeThemeColorClickEvent($event)"
-    >Toggle theme</span
+  >Toggle theme</span
   >
-  <a mat-menu-item [routerLink]="['/posts']">Manage your posts</a>
-  <a mat-menu-item [routerLink]="['/posts/new']">Create new post</a>
-  <hr />
-  <a *ngIf="user.isAdmin" mat-menu-item [routerLink]="['/users']"
+    <a mat-menu-item [routerLink]="['/posts']">Manage your posts</a>
+    <a mat-menu-item [routerLink]="['/posts/new']">Create new post</a>
+    <hr/>
+    <a *ngIf="user.isAdmin" mat-menu-item [routerLink]="['/users']"
     >Manage users</a
-  >
-  <a *ngIf="user.isAdmin" mat-menu-item [routerLink]="['/feedbacks']"
+    >
+    <a *ngIf="user.isAdmin" mat-menu-item [routerLink]="['/feedbacks']"
     >Manage feedbacks</a
-  >
-  <hr />
-  <a mat-menu-item href="/logout">Logout</a>
+    >
+    <hr/>
+    <a mat-menu-item href="/logout">Logout</a>
 </mat-menu>

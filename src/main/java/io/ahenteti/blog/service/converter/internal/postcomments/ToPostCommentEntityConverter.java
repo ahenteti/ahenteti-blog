@@ -2,8 +2,8 @@ package io.ahenteti.blog.service.converter.internal.postcomments;
 
 import io.ahenteti.blog.model.core.postcomments.ReadyToCreatePostComment;
 import io.ahenteti.blog.model.entity.PostCommentEntity;
-import io.ahenteti.blog.service.dao.repository.PostRepository;
-import io.ahenteti.blog.service.dao.repository.UserRepository;
+import io.ahenteti.blog.service.repository.PostRepository;
+import io.ahenteti.blog.service.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

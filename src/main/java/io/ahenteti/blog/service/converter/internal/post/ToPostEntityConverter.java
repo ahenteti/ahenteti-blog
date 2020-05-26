@@ -4,7 +4,7 @@ import io.ahenteti.blog.model.core.post.ReadyToCreatePost;
 import io.ahenteti.blog.model.core.post.ReadyToUpdatePost;
 import io.ahenteti.blog.model.entity.PostBodyEntity;
 import io.ahenteti.blog.model.entity.PostEntity;
-import io.ahenteti.blog.service.dao.repository.UserRepository;
+import io.ahenteti.blog.service.repository.UserRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

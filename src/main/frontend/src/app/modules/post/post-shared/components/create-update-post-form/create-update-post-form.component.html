@@ -1,66 +1,66 @@
 <app-post-layout>
-  <div class="page-header">
-    <app-page-title [value]="pageTitle"></app-page-title>
-    <div class="page-header-actions">
-      <app-page-title-consult-button
-        (click)="togglePreviewMode()"
-        *ngIf="!previewMode"
-        tooltip="preview post"
-      ></app-page-title-consult-button>
-      <app-page-title-edit-button
-        tooltip="continue post creation / update"
-        (click)="togglePreviewMode()"
-        *ngIf="previewMode"
-      ></app-page-title-edit-button>
+    <div class="page-header">
+        <app-page-title [value]="pageTitle"></app-page-title>
+        <div class="page-header-actions">
+            <app-page-title-consult-button
+                    (click)="togglePreviewMode()"
+                    *ngIf="!previewMode"
+                    tooltip="preview post"
+            ></app-page-title-consult-button>
+            <app-page-title-edit-button
+                    tooltip="continue post creation / update"
+                    (click)="togglePreviewMode()"
+                    *ngIf="previewMode"
+            ></app-page-title-edit-button>
+        </div>
     </div>
-  </div>
 
-  <ng-container *ngIf="previewMode">
-    <app-post-title [post]="post"></app-post-title>
-    <app-markdown [text]="post.bodyMarkdown"></app-markdown>
-  </ng-container>
-  <ng-container *ngIf="!previewMode">
-    <form (submit)="onSubmit($event)">
-      <mat-form-field appearance="fill">
-        <mat-label>Title</mat-label>
-        <input name="title" matInput [(ngModel)]="post.title" />
-      </mat-form-field>
+    <ng-container *ngIf="previewMode">
+        <app-post-title [post]="post"></app-post-title>
+        <app-markdown [text]="post.bodyMarkdown"></app-markdown>
+    </ng-container>
+    <ng-container *ngIf="!previewMode">
+        <form (submit)="onSubmit($event)">
+            <mat-form-field appearance="fill">
+                <mat-label>Title</mat-label>
+                <input name="title" matInput [(ngModel)]="post.title"/>
+            </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Category</mat-label>
-        <input name="category" matInput [(ngModel)]="post.category" />
-      </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Category</mat-label>
+                <input name="category" matInput [(ngModel)]="post.category"/>
+            </mat-form-field>
 
-      <mat-form-field>
-        <mat-chip-list #tagsRef>
-          <mat-chip
-            *ngFor="let tag of post.tags"
-            removable="true"
-            (removed)="removeTag(tag)"
-          >
-            {{ tag }}
-            <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
-          </mat-chip>
-          <input
-            placeholder="Tags"
-            [matChipInputFor]="tagsRef"
-            [matChipInputAddOnBlur]="true"
-            [matChipInputSeparatorKeyCodes]="separators"
-            (matChipInputTokenEnd)="addTag($event)"
-          />
-        </mat-chip-list>
-      </mat-form-field>
+            <mat-form-field>
+                <mat-chip-list #tagsRef>
+                    <mat-chip
+                            *ngFor="let tag of post.tags"
+                            removable="true"
+                            (removed)="removeTag(tag)"
+                    >
+                        {{ tag }}
+                        <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
+                    </mat-chip>
+                    <input
+                            placeholder="Tags"
+                            [matChipInputFor]="tagsRef"
+                            [matChipInputAddOnBlur]="true"
+                            [matChipInputSeparatorKeyCodes]="separators"
+                            (matChipInputTokenEnd)="addTag($event)"
+                    />
+                </mat-chip-list>
+            </mat-form-field>
 
-      <simplemde
-        name="body"
-        [(ngModel)]="post.bodyMarkdown"
-        [options]="simpleMdeOptions"
-      ></simplemde>
+            <simplemde
+                    name="body"
+                    [(ngModel)]="post.bodyMarkdown"
+                    [options]="simpleMdeOptions"
+            ></simplemde>
 
-      <div class="page-footer-actions">
-        <button type="reset">Reset</button>
-        <button type="submit">{{ submitButtonLabel }}</button>
-      </div>
-    </form>
-  </ng-container>
+            <div class="page-footer-actions">
+                <button type="reset">Reset</button>
+                <button type="submit">{{ submitButtonLabel }}</button>
+            </div>
+        </form>
+    </ng-container>
 </app-post-layout>

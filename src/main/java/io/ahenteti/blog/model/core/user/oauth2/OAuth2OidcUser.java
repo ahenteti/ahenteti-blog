@@ -19,13 +19,13 @@ public class OAuth2OidcUser extends DefaultOidcUser implements IOAuth2User {
     }
 
     @Override
-    public void setPrimaryKey(Long id) {
+    public void setDbId(Long id) {
         this.primaryKey = id;
     }
 
 
     @Override
-    public Long getPrimaryKey() {
+    public Long getDbId() {
         return primaryKey;
     }
 

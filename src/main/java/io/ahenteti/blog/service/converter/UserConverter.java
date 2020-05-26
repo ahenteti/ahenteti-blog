@@ -1,6 +1,6 @@
 package io.ahenteti.blog.service.converter;
 
-import io.ahenteti.blog.exception.InvalidApplicationStateException;
+import io.ahenteti.blog.exception.InvalidObjectStateException;
 import io.ahenteti.blog.model.api.user.AnonymousUserApiResponse;
 import io.ahenteti.blog.model.api.user.AuthenticatedUserApiResponse;
 import io.ahenteti.blog.model.api.user.AuthorApiResponse;
@@ -16,7 +16,7 @@ import io.ahenteti.blog.model.core.user.UsersPage;
 import io.ahenteti.blog.model.core.user.oauth2.IOAuth2User;
 import io.ahenteti.blog.model.entity.RoleEntity;
 import io.ahenteti.blog.model.entity.UserEntity;
-import io.ahenteti.blog.service.dao.repository.RoleRepository;
+import io.ahenteti.blog.service.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -32,7 +32,7 @@ public class UserConverter {
     @Autowired
     private RoleRepository roleRepository;
 
-    public User toUser(UserEntity entity) {
+    public User toCoreModel(UserEntity entity) {
         User res = new User();
         res.setId(entity.getId());
         res.setUsername(entity.getUsername());
@@ -43,9 +43,9 @@ public class UserConverter {
         return res;
     }
 
-    public User toUser(IOAuth2User user) {
+    public User toCoreModel(IOAuth2User user) {
         User res = new User();
-        res.setId(user.getPrimaryKey());
+        res.setId(user.getDbId());
         res.setUsername(user.getUsername());
         res.setAvatarUrl(user.getAvatarUrl());
         res.setProvider(user.getProvider());
@@ -53,7 +53,7 @@ public class UserConverter {
         return res;
     }
 
-    public UserEntity toUserEntity(IOAuth2User user) {
+    public UserEntity toEntity(IOAuth2User user) {
         UserEntity res = new UserEntity();
         res.setId(null);
         res.setUsername(user.getUsername());
@@ -92,8 +92,8 @@ public class UserConverter {
         return res;
     }
 
-    private Supplier<InvalidApplicationStateException> throwInvalidApplicationStateException() {
-        return () -> new InvalidApplicationStateException("USER role not found in database");
+    private Supplier<InvalidObjectStateException> throwInvalidApplicationStateException() {
+        return () -> new InvalidObjectStateException("USER role not found in database");
     }
 
     public GetUsersPageApiRequest toGetUsersPageApiRequest(IOAuth2User user, Integer page, Integer size, String sortBy, String sortDirection, String filter) {
@@ -123,7 +123,8 @@ public class UserConverter {
         res.setSize(request.getSize());
         res.setSortBy(request.getSortByValue());
         res.setTotalItems(users.getTotalElements());
-        res.setItems(users.getContent().stream().map(this::toUser).collect(Collectors.toCollection(ArrayList::new)));
+        res.setItems(users.getContent().stream().map(this::toCoreModel)
+                .collect(Collectors.toCollection(ArrayList::new)));
         return res;
     }
 }

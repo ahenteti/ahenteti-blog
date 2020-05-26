@@ -1,7 +1,6 @@
 package io.ahenteti.blog.service.validator;
 
-import io.ahenteti.blog.exception.InvalidRequestAttributeException;
-import io.ahenteti.blog.exception.MissingMandatoryRequestAttributeException;
+import io.ahenteti.blog.exception.InvalidRequirementException;
 import io.ahenteti.blog.model.api.post.request.CreatePostApiRequest;
 import io.ahenteti.blog.model.api.post.request.DeletePostApiRequest;
 import io.ahenteti.blog.model.api.post.request.GetPostsGroupsApiRequest;
@@ -12,7 +11,7 @@ import io.ahenteti.blog.model.api.post.request.valid.ValidGetPostsGroupsApiReque
 import io.ahenteti.blog.model.api.post.request.valid.ValidUpdatePostApiRequest;
 import io.ahenteti.blog.model.core.post.EPostsGroupByStrategyName;
 import io.ahenteti.blog.model.entity.PostEntity;
-import io.ahenteti.blog.service.dao.repository.PostRepository;
+import io.ahenteti.blog.service.repository.PostRepository;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,7 +67,7 @@ public class PostValidator {
 
     private void validatePostsGroupBy(GetPostsGroupsApiRequest request) {
         if (StringUtils.isBlank(request.getGroupBy())) {
-            throw new MissingMandatoryRequestAttributeException("post groupBy is mandatory");
+            throw new InvalidRequirementException("post groupBy is mandatory");
         }
         if (EPostsGroupByStrategyName.getByValue(request.getGroupBy()) == null) {
             StringBuilder sb = new StringBuilder();
@@ -76,57 +75,57 @@ public class PostValidator {
             sb.append(request.getGroupBy());
             sb.append(". Accepted values: ");
             sb.append(StringUtils.join(EPostsGroupByStrategyName.getAcceptedValues(), ", "));
-            throw new InvalidRequestAttributeException(sb.toString());
+            throw new InvalidRequirementException(sb.toString());
         }
     }
 
     private void validatePostsGroups(GetPostsGroupsApiRequest request) {
         if (request.getGroups() == null || request.getGroups().isEmpty()) {
-            throw new MissingMandatoryRequestAttributeException("post groups is mandatory");
+            throw new InvalidRequirementException("post groups is mandatory");
         }
     }
 
     private PostEntity validateId(Long id) {
         if (id == null) {
-            throw new MissingMandatoryRequestAttributeException("post id is mandatory");
+            throw new InvalidRequirementException("post id is mandatory");
         }
         Optional<PostEntity> postOptional = postRepository.findById(id);
         if (!postOptional.isPresent()) {
-            throw new InvalidRequestAttributeException("post with id: " + id + " does not exist");
+            throw new InvalidRequirementException("post with id: " + id + " does not exist");
         }
         return postOptional.get();
     }
 
     private void validateTitle(String title) {
         if (StringUtils.isBlank(title)) {
-            throw new MissingMandatoryRequestAttributeException("post title is mandatory");
+            throw new InvalidRequirementException("post title is mandatory");
         }
     }
 
     private void validateCategory(String category) {
         if (StringUtils.isBlank(category)) {
-            throw new MissingMandatoryRequestAttributeException("post category is mandatory");
+            throw new InvalidRequirementException("post category is mandatory");
         }
     }
 
     private void validateTags(List<String> tags) {
         if (CollectionUtils.isEmpty(tags)) {
-            throw new MissingMandatoryRequestAttributeException("post tags is mandatory");
+            throw new InvalidRequirementException("post tags is mandatory");
         }
     }
 
     private void validateBody(String body) {
         if (StringUtils.isBlank(body)) {
-            throw new MissingMandatoryRequestAttributeException("post body is mandatory");
+            throw new InvalidRequirementException("post body is mandatory");
         }
     }
 
     private void validateCreatedAt(Instant createdAt) {
         if (createdAt == null) {
-            throw new MissingMandatoryRequestAttributeException("post createdAt is mandatory");
+            throw new InvalidRequirementException("post createdAt is mandatory");
         }
         if (createdAt.isAfter(Instant.now())) {
-            throw new InvalidRequestAttributeException("post createdAt is invalid: is after now!");
+            throw new InvalidRequirementException("post createdAt is invalid: is after now!");
         }
     }
 

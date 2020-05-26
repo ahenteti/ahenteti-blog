@@ -5,7 +5,7 @@ import io.ahenteti.blog.model.core.postcomments.PostComments;
 import io.ahenteti.blog.model.core.postcomments.ReadyToCreatePostComment;
 import io.ahenteti.blog.model.entity.PostCommentEntity;
 import io.ahenteti.blog.service.converter.PostCommentConverter;
-import io.ahenteti.blog.service.dao.repository.PostCommentRepository;
+import io.ahenteti.blog.service.repository.PostCommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;

@@ -7,7 +7,7 @@ import io.ahenteti.blog.model.core.user.oauth2.IOAuth2User;
 import io.ahenteti.blog.model.entity.UserEntity;
 import io.ahenteti.blog.service.converter.PageConverter;
 import io.ahenteti.blog.service.converter.UserConverter;
-import io.ahenteti.blog.service.dao.repository.UserRepository;
+import io.ahenteti.blog.service.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -36,10 +36,10 @@ public class UserDao {
         if (userEntityOptional.isPresent()) {
             entity = userEntityOptional.get();
         } else {
-            UserEntity userEntity = userConverter.toUserEntity(user);
+            UserEntity userEntity = userConverter.toEntity(user);
             entity = userRepository.save(userEntity);
         }
-        return userConverter.toUser(entity);
+        return userConverter.toCoreModel(entity);
         // @formatter:on
     }
 

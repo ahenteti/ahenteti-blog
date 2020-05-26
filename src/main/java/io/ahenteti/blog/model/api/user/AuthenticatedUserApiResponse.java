@@ -8,5 +8,5 @@ public class AuthenticatedUserApiResponse extends CurrentUserApiResponse {
     public AuthenticatedUserApiResponse(CurrentUserApiResponseBody body) {
         super(body, HttpStatus.OK);
     }
-    
+
 }

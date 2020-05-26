@@ -7,22 +7,22 @@ import java.util.List;
 
 public interface IOAuth2User extends OAuth2User {
 
-    void setPrimaryKey(Long id);
+    void setDbId(Long id);
 
-    Long getPrimaryKey();
+    Long getDbId();
 
     String getUsername();
 
     String getAvatarUrl();
-    
+
     String getProvider();
-    
+
     void setRoles(List<EUserRole> roles);
-    
+
     List<EUserRole> getRoles();
-    
+
     default boolean isAdmin() {
         return getRoles().stream().anyMatch(EUserRole.ADMIN::equals);
     }
-    
+
 }

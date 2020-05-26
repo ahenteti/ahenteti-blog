@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 public class CreateFeedbackApiRequest {
-    protected IOAuth2User author;
-    protected String value;
+    private IOAuth2User author;
+    private CreateFeedbackApiRequestBody body;
 }

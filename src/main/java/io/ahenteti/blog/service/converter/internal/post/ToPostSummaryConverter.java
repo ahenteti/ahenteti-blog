@@ -26,7 +26,7 @@ public class ToPostSummaryConverter {
         res.setTags(commonPostConverter.toTagsArrayList(entity));
         res.setCreatedAt(entity.getCreatedAt());
         res.setLastUpdatedAt(commonPostConverter.getLastUpdatedAt(entity));
-        res.setAuthor(userConverter.toUser(entity.getAuthor()));
+        res.setAuthor(userConverter.toCoreModel(entity.getAuthor()));
         return res;
     }
 

@@ -58,7 +58,7 @@ public class UserController {
             @RequestParam(required = false, defaultValue = "USERNAME") String sortBy,
             @RequestParam(required = false, defaultValue = "asc") String sortDirection) {
         GetUsersPageApiRequest request = userConverter.toGetUsersPageApiRequest(user, page, size, sortBy, sortDirection, filter);
-        ValidGetUsersPageApiRequest validRequest = userValidator.validateGetUsersPageApiRequest(request);
+        ValidGetUsersPageApiRequest validRequest = userValidator.validate(request);
         UsersPage usersPage = userDao.getUsers(validRequest);
         return userConverter.toUsersPageApiResponse(usersPage);
     }
@@ -74,7 +74,7 @@ public class UserController {
             @RequestParam(required = false, defaultValue = "CREATED_AT") String sortBy, 
             @RequestParam(required = false, defaultValue = "desc") String sortDirection) {
         GetUserPostsPageApiRequest request = postConverter.toGetUserPostsPageApiRequest(user, page, size, sortBy, sortDirection, filter);
-        ValidGetUserPostsApiRequest validRequest = userValidator.validateGetUserPostsApiRequest(request);
+        ValidGetUserPostsApiRequest validRequest = userValidator.validate(request);
         PostsPage postsPage = postDao.getUserPosts(validRequest);
         return postConverter.toUserPostsPageApiResponse(postsPage);
     }

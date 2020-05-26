@@ -21,20 +21,19 @@ public class UserValidator {
         this.pageApiRequestValidator = pageApiRequestValidator;
     }
 
-    public ValidGetUsersPageApiRequest validateGetUsersPageApiRequest(GetUsersPageApiRequest request) {
+    public ValidGetUsersPageApiRequest validate(GetUsersPageApiRequest request) {
         validateAdminUser(request.getUser());
         pageApiRequestValidator.validatePageApiRequest(request);
         return new ValidGetUsersPageApiRequest(request);
     }
 
-    public ValidGetUserPostsApiRequest validateGetUserPostsApiRequest(GetUserPostsPageApiRequest request) {
+    public ValidGetUserPostsApiRequest validate(GetUserPostsPageApiRequest request) {
         validateAuthenticatedUser(request.getUser());
         pageApiRequestValidator.validatePageApiRequest(request);
         return new ValidGetUserPostsApiRequest(request);
     }
 
     public void validateAdminUser(IOAuth2User user) {
-        validateAuthenticatedUser(user);
         if (!user.isAdmin()) {
             throw new AuthorizationException("user is not admin");
         }
@@ -44,7 +43,7 @@ public class UserValidator {
         if (user == null) {
             throw new AuthenticationException("user not authenticated");
         }
-        if (user.getPrimaryKey() == null) {
+        if (user.getDbId() == null) {
             // must be set in the io.ahenteti.blog.security.OAuth2GithubAuthenticationSuccessHandler handler 
             throw new AuthenticationException("authenticated user must have user id");
         }

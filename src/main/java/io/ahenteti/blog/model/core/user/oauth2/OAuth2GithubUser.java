@@ -44,12 +44,12 @@ public class OAuth2GithubUser implements IOAuth2User {
     }
 
     @Override
-    public Long getPrimaryKey() {
+    public Long getDbId() {
         return this.primaryKey;
     }
 
     @Override
-    public void setPrimaryKey(Long id) {
+    public void setDbId(Long id) {
         this.primaryKey = id;
     }
 

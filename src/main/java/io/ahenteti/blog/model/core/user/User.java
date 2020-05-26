@@ -14,4 +14,8 @@ public class User {
     private String provider;
     private Instant joinAt;
     private List<EUserRole> roles = new ArrayList<>();
+
+    public boolean isAdmin() {
+        return getRoles().stream().anyMatch(EUserRole.ADMIN::equals);
+    }
 }

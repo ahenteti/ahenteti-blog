@@ -11,5 +11,6 @@ public abstract class PageApiRequest {
     private String sortBy;
     private String sortDirection;
     private String filter;
+
     public abstract List<String> getSortByAcceptedValues();
 }

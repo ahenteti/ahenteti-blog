@@ -7,7 +7,6 @@ import io.ahenteti.blog.model.core.IGroupByStrategy;
 import io.ahenteti.blog.model.core.post.GroupByPostAuthorStrategy;
 import io.ahenteti.blog.model.core.post.GroupByPostCategoryStrategy;
 import io.ahenteti.blog.model.core.post.Post;
-import io.ahenteti.blog.model.core.post.PostSummary;
 import io.ahenteti.blog.model.core.post.PostsGroups;
 import io.ahenteti.blog.model.core.post.PostsPage;
 import io.ahenteti.blog.model.core.post.ReadyToCreatePost;
@@ -16,11 +15,10 @@ import io.ahenteti.blog.model.core.user.oauth2.IOAuth2User;
 import io.ahenteti.blog.model.entity.PostEntity;
 import io.ahenteti.blog.service.converter.PageConverter;
 import io.ahenteti.blog.service.converter.PostConverter;
-import io.ahenteti.blog.service.dao.repository.PostRepository;
+import io.ahenteti.blog.service.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -73,7 +71,7 @@ public class PostDao {
     public PostsPage getUserPosts(ValidGetUserPostsApiRequest request) {
         // @formatter:off
         PageRequest pageRequest = pageConverter.toPageRequest(request);
-        Page<PostEntity> posts = postRepository.findByAuthorId(request.getUser().getPrimaryKey(), request.getSqlFilter(), pageRequest);
+        Page<PostEntity> posts = postRepository.findByAuthorId(request.getUser().getDbId(), request.getSqlFilter(), pageRequest);
         return postConverter.toPostsPage(posts, request);
         // @formatter:on
     }
@@ -100,7 +98,7 @@ public class PostDao {
     }
 
     public List<Post> getAllUserPosts(IOAuth2User user) {
-        List<PostEntity> userPosts = postRepository.findByAuthorId(user.getPrimaryKey());
+        List<PostEntity> userPosts = postRepository.findByAuthorId(user.getDbId());
         return userPosts.stream().map(postConverter::toPost).collect(Collectors.toList());
     }
 }

@@ -19,15 +19,15 @@ public class FeedbackEntity {
     @Id
     @GeneratedValue
     @Column(name = "ID")
-    private Long id;
+    protected Long id;
 
     @Column(name = "CREATED_AT", nullable = false)
-    private Instant createdAt;
+    protected Instant createdAt;
 
     @Column(name = "VALUE", columnDefinition = "text", nullable = false)
-    private String value;
-    
+    protected String value;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private UserEntity author;
-    
+    protected UserEntity author;
+
 }

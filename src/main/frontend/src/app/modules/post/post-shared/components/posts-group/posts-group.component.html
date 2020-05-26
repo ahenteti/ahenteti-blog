@@ -1,9 +1,9 @@
 <div appSlideIn>
-  <app-section-title [value]="postsGroup.name"></app-section-title>
+    <app-section-title [value]="postsGroup.name"></app-section-title>
 </div>
 <div class="posts">
-  <app-post-summary
-    *ngFor="let post of postsGroup.posts"
-    [post]="post"
-  ></app-post-summary>
+    <app-post-summary
+            *ngFor="let post of postsGroup.posts"
+            [post]="post"
+    ></app-post-summary>
 </div>

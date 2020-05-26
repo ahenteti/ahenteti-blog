@@ -1,15 +1,15 @@
 <div class="container">
-  <div
-    class="selected-option"
-    #selectedOption
-    (click)="onSelectedOptionClick()"
-  >
-    <span class="selected">{{ selectedLabel }}</span>
-    <span class="ion ion-ios-arrow-down"></span>
-  </div>
-  <app-select-dropdown [reference]="selectedOption">
-    <div class="options">
-      <ng-content select="app-select-option"></ng-content>
+    <div
+            class="selected-option"
+            #selectedOption
+            (click)="onSelectedOptionClick()"
+    >
+        <span class="selected">{{ selectedLabel }}</span>
+        <span class="ion ion-ios-arrow-down"></span>
     </div>
-  </app-select-dropdown>
+    <app-select-dropdown [reference]="selectedOption">
+        <div class="options">
+            <ng-content select="app-select-option"></ng-content>
+        </div>
+    </app-select-dropdown>
 </div>

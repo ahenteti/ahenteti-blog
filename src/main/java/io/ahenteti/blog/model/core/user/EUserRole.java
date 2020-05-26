@@ -1,6 +1,6 @@
 package io.ahenteti.blog.model.core.user;
 
-import io.ahenteti.blog.exception.InvalidApplicationStateException;
+import io.ahenteti.blog.exception.InvalidObjectStateException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,7 +30,7 @@ public enum EUserRole {
     public static EUserRole from(String value) {
         EUserRole res = map.get(value);
         if (res == null) {
-            throw new InvalidApplicationStateException("unknown role name: " + value);
+            throw new InvalidObjectStateException("unknown role name: " + value);
         }
         return res;
     }

@@ -1,6 +1,5 @@
 package io.ahenteti.blog.model.api;
 
-import io.ahenteti.blog.model.api.PageApiRequest;
 import io.ahenteti.blog.model.core.ESortDirection;
 import io.ahenteti.blog.model.core.ISortBy;
 import lombok.Data;
@@ -43,5 +42,5 @@ public class ValidPageApiRequest<T extends ISortBy> {
     public String getSqlFilter() {
         return "%" + this.filter + "%";
     }
-    
+
 }

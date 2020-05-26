@@ -1,4 +1,4 @@
-package io.ahenteti.blog.service.dao.repository;
+package io.ahenteti.blog.service.repository;
 
 import io.ahenteti.blog.model.entity.PostEntity;
 import org.springframework.data.domain.Page;

@@ -1,6 +1,6 @@
 package io.ahenteti.blog.service.validator;
 
-import io.ahenteti.blog.exception.MissingMandatoryRequestAttributeException;
+import io.ahenteti.blog.exception.InvalidRequirementException;
 import io.ahenteti.blog.model.api.postcomments.CreatePostCommentApiRequest;
 import io.ahenteti.blog.model.api.postcomments.GetPostCommentsApiRequest;
 import io.ahenteti.blog.model.api.postcomments.ValidCreatePostCommentApiRequest;
@@ -40,25 +40,25 @@ public class PostCommentValidator {
 
     private void validateCommentValue(CreatePostCommentApiRequest request) {
         if (StringUtils.isBlank(request.getValue())) {
-            throw new MissingMandatoryRequestAttributeException("comment value is mandatory");
+            throw new InvalidRequirementException("comment value is mandatory");
         }
     }
 
     private void validateCommentPostId(Long postId) {
         if (postId == null) {
-            throw new MissingMandatoryRequestAttributeException("postId path param is mandatory");
+            throw new InvalidRequirementException("postId path param is mandatory");
         }
     }
 
     private void validateCommentSize(GetPostCommentsApiRequest request) {
         if (request.getSize() == null) {
-            throw new MissingMandatoryRequestAttributeException("size query param is mandatory");
+            throw new InvalidRequirementException("size query param is mandatory");
         }
     }
 
     private void validateCommentPage(GetPostCommentsApiRequest request) {
         if (request.getPage() == null) {
-            throw new MissingMandatoryRequestAttributeException("page query param is mandatory");
+            throw new InvalidRequirementException("page query param is mandatory");
         }
     }
 }

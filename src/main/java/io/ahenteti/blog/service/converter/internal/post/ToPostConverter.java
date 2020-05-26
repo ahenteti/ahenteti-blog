@@ -6,7 +6,6 @@ import io.ahenteti.blog.model.core.post.Post;
 import io.ahenteti.blog.model.core.post.ReadyToCreatePost;
 import io.ahenteti.blog.model.core.post.ReadyToUpdatePost;
 import io.ahenteti.blog.model.core.user.User;
-import io.ahenteti.blog.model.core.user.oauth2.IOAuth2User;
 import io.ahenteti.blog.model.entity.PostEntity;
 import io.ahenteti.blog.service.converter.UserConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +28,7 @@ public class ToPostConverter {
 
     public Post toPost(PostEntity entity) {
         Post res = new Post();
-        User author = userConverter.toUser(entity.getAuthor());
+        User author = userConverter.toCoreModel(entity.getAuthor());
         res.setId(entity.getId());
         res.setTitle(entity.getTitle());
         res.setCategory(entity.getCategory());
@@ -48,7 +47,7 @@ public class ToPostConverter {
         res.setCategory(request.getCategory());
         res.setTags(request.getTags());
         res.setBody(request.getBodyMarkdownBase64());
-        res.setAuthor(userConverter.toUser(request.getAuthor()));
+        res.setAuthor(userConverter.toCoreModel(request.getAuthor()));
         res.setCreatedAt(request.getCreatedAtIso8601());
         res.setLastUpdatedAt(Optional.of(Instant.now()));
         res.setEntity(request.getPostEntity());
@@ -62,7 +61,7 @@ public class ToPostConverter {
         res.setCategory(request.getCategory());
         res.setTags(request.getTags());
         res.setBody(request.getBodyMarkdownBase64());
-        res.setAuthor(userConverter.toUser(request.getAuthor()));
+        res.setAuthor(userConverter.toCoreModel(request.getAuthor()));
         res.setCreatedAt(Instant.now());
         res.setLastUpdatedAt(Optional.empty());
         return res;
