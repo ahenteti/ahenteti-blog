@@ -1,13 +1,12 @@
 package io.ahenteti.blog.model.api.user;
 
-import lombok.Data;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
-import java.util.ArrayList;
-import java.util.List;
+public abstract class CurrentUserApiResponse extends ResponseEntity<CurrentUserApiResponseBody> {
 
-@Data
-public class CurrentUserApiResponse {
-    private String username;
-    private String avatarUrl;
-    private List<String> roles = new ArrayList<>();
+    public CurrentUserApiResponse(CurrentUserApiResponseBody body, HttpStatus status) {
+        super(body, status);
+    }
+    
 }

@@ -45,7 +45,6 @@ public class UserController {
 
     @GetMapping("/api/currentIdentity")
     public CurrentUserApiResponse getCurrentUser(@ModelAttribute IOAuth2User user) {
-        userValidator.validateUser(user);
         return userConverter.toCurrentUserApiResponse(user);
     }
 

@@ -1,8 +1,11 @@
 package io.ahenteti.blog.service.converter;
 
 import io.ahenteti.blog.exception.InvalidApplicationStateException;
+import io.ahenteti.blog.model.api.user.AnonymousUserApiResponse;
+import io.ahenteti.blog.model.api.user.AuthenticatedUserApiResponse;
 import io.ahenteti.blog.model.api.user.AuthorApiResponse;
 import io.ahenteti.blog.model.api.user.CurrentUserApiResponse;
+import io.ahenteti.blog.model.api.user.CurrentUserApiResponseBody;
 import io.ahenteti.blog.model.api.user.GetUsersPageApiRequest;
 import io.ahenteti.blog.model.api.user.UserApiResponse;
 import io.ahenteti.blog.model.api.user.UsersPageApiResponse;
@@ -63,11 +66,14 @@ public class UserConverter {
     }
 
     public CurrentUserApiResponse toCurrentUserApiResponse(IOAuth2User user) {
-        CurrentUserApiResponse res = new CurrentUserApiResponse();
-        res.setUsername(user.getUsername());
-        res.setAvatarUrl(user.getAvatarUrl());
-        user.getRoles().forEach(role -> res.getRoles().add(role.getValue()));
-        return res;
+        if (user == null) {
+            return new AnonymousUserApiResponse();
+        }
+        CurrentUserApiResponseBody body = new CurrentUserApiResponseBody();
+        body.setUsername(user.getUsername());
+        body.setAvatarUrl(user.getAvatarUrl());
+        user.getRoles().forEach(role -> body.getRoles().add(role.getValue()));
+        return new AuthenticatedUserApiResponse(body);
     }
 
     public AuthorApiResponse toAuthorApiResponse(User user) {
