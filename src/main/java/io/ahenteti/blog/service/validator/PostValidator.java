@@ -35,7 +35,7 @@ public class PostValidator {
     }
 
     public ValidCreatePostApiRequest validateCreatePostApiRequest(CreatePostApiRequest request) {
-        userValidator.validateUser(request.getAuthor());
+        userValidator.validateAuthenticatedUser(request.getAuthor());
         validateTitle(request.getTitle());
         validateCategory(request.getCategory());
         validateTags(request.getTags());
@@ -44,7 +44,7 @@ public class PostValidator {
     }
 
     public ValidUpdatePostApiRequest validateUpdatePostApiRequest(UpdatePostApiRequest request) {
-        userValidator.validateUser(request.getAuthor());
+        userValidator.validateAuthenticatedUser(request.getAuthor());
         PostEntity postEntity = validateId(request.getId());
         validateTitle(request.getTitle());
         validateCategory(request.getCategory());
@@ -55,7 +55,7 @@ public class PostValidator {
     }
 
     public ValidDeletePostApiRequest validateDeletePostApiRequest(DeletePostApiRequest request) {
-        userValidator.validateUser(request.getUser());
+        userValidator.validateAuthenticatedUser(request.getUser());
         validateId(request.getPostId());
         return new ValidDeletePostApiRequest(request);
     }

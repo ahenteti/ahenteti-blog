@@ -32,7 +32,7 @@ public class PostCommentValidator {
     }
 
     public ValidCreatePostCommentApiRequest validateCreateCommentApiRequest(CreatePostCommentApiRequest request) {
-        userValidator.validateUser(request.getAuthor());
+        userValidator.validateAuthenticatedUser(request.getAuthor());
         validateCommentPostId(request.getPostId());
         validateCommentValue(request);
         return new ValidCreatePostCommentApiRequest(request);

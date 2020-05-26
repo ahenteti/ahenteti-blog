@@ -22,7 +22,7 @@ public class FeedbackValidator {
     }
 
     public ValidCreateFeedbackApiRequest validateCreateFeedbackApiRequest(CreateFeedbackApiRequest request) {
-        this.userValidator.validateUser(request.getAuthor());
+        this.userValidator.validateAuthenticatedUser(request.getAuthor());
         validateValue(request.getValue());
         return new ValidCreateFeedbackApiRequest(request);
     }

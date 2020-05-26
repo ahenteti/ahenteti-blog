@@ -83,7 +83,7 @@ public class UserController {
     // @formatter:off
     @GetMapping("/secure-api/user/posts-summaries")
     public List<UserPostApiResponse> getAllUserPosts(@ModelAttribute IOAuth2User user) {
-        userValidator.validateUser(user);
+        userValidator.validateAuthenticatedUser(user);
         List<Post> userPosts = postDao.getAllUserPosts(user);
         return postConverter.toUserPostApiResponseList(userPosts);
     }
