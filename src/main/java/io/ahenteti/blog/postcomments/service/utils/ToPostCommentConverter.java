@@ -2,7 +2,7 @@ package io.ahenteti.blog.postcomments.service.utils;
 
 import io.ahenteti.blog.postcomments.model.api.ValidCreatePostCommentApiRequest;
 import io.ahenteti.blog.postcomments.model.core.PostComment;
-import io.ahenteti.blog.postcomments.model.core.ReadyToCreatePostComment;
+import io.ahenteti.blog.postcomments.model.core.PostCommentToCreate;
 import io.ahenteti.blog.postcomments.model.entity.PostCommentEntity;
 import io.ahenteti.blog.user.service.UserConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +20,8 @@ public class ToPostCommentConverter {
         this.userConverter = userConverter;
     }
 
-    public ReadyToCreatePostComment toPostComment(ValidCreatePostCommentApiRequest request) {
-        ReadyToCreatePostComment res = new ReadyToCreatePostComment();
-        res.setId(null);
+    public PostCommentToCreate toPostComment(ValidCreatePostCommentApiRequest request) {
+        PostCommentToCreate res = new PostCommentToCreate();
         res.setAuthor(userConverter.toCoreModel(request.getAuthor()));
         res.setValue(request.getValue());
         res.setCreatedAt(Instant.now());

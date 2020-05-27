@@ -1,6 +1,6 @@
 package io.ahenteti.blog.feedback.service;
 
-import io.ahenteti.blog.shared.config.FeedbackConfig;
+import io.ahenteti.blog.feedback.FeedbackConfig;
 import io.ahenteti.blog.shared.exception.InvalidObjectStateException;
 import io.ahenteti.blog.shared.exception.InvalidRequirementException;
 import io.ahenteti.blog.shared.exception.ResourceNotFoundException;

@@ -8,7 +8,8 @@ import io.ahenteti.blog.postcomments.model.api.PostCommentsApiResponse;
 import io.ahenteti.blog.postcomments.model.api.ValidCreatePostCommentApiRequest;
 import io.ahenteti.blog.postcomments.model.core.PostComment;
 import io.ahenteti.blog.postcomments.model.core.PostComments;
-import io.ahenteti.blog.postcomments.model.core.ReadyToCreatePostComment;
+import io.ahenteti.blog.postcomments.model.core.PostCommentToCreate;
+import io.ahenteti.blog.postcomments.model.core.ValidPostCommentToCreate;
 import io.ahenteti.blog.postcomments.model.entity.PostCommentEntity;
 import io.ahenteti.blog.postcomments.service.utils.ToCreatePostCommentApiRequestConverter;
 import io.ahenteti.blog.postcomments.service.utils.ToPostCommentApiResponseConverter;
@@ -42,7 +43,7 @@ public class PostCommentConverter {
         this.toPostCommentsApiResponseConverter = toPostCommentsApiResponseConverter;
     }
 
-    public CreatePostCommentApiRequest toCreatePostCommentApiRequest(IOAuth2User author, Long postId, CreatePostCommentApiRequestBody body) {
+    public CreatePostCommentApiRequest toApiRequest(IOAuth2User author, Long postId, CreatePostCommentApiRequestBody body) {
         return this.toCreatePostCommentApiRequestConverter.toCreatePostCommentApiRequest(author, postId, body);
     }
 
@@ -65,7 +66,7 @@ public class PostCommentConverter {
         return toPostCommentApiResponseConverter.toPostCommentApiResponse(comment);
     }
 
-    public ReadyToCreatePostComment toPostComment(ValidCreatePostCommentApiRequest request) {
+    public PostCommentToCreate toCoreModel(ValidCreatePostCommentApiRequest request) {
         return this.toPostCommentConverter.toPostComment(request);
     }
 
@@ -73,7 +74,7 @@ public class PostCommentConverter {
         return toPostCommentsConverter.toPostComments(entities);
     }
 
-    public PostCommentEntity toCommentEntity(ReadyToCreatePostComment comment) {
-        return toPostCommentEntityConverter.toCommentEntity(comment);
+    public PostCommentEntity toEntity(ValidPostCommentToCreate comment) {
+        return toPostCommentEntityConverter.toEntity(comment);
     }
 }

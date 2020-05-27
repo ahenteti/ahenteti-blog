@@ -2,12 +2,11 @@ package io.ahenteti.blog.postcomments.service;
 
 import io.ahenteti.blog.postcomments.model.api.ValidGetPostCommentsPageApiRequest;
 import io.ahenteti.blog.postcomments.model.core.PostComments;
-import io.ahenteti.blog.postcomments.model.core.ReadyToCreatePostComment;
+import io.ahenteti.blog.postcomments.model.core.ValidPostCommentToCreate;
 import io.ahenteti.blog.postcomments.model.entity.PostCommentEntity;
 import io.ahenteti.blog.shared.service.PageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,8 +25,8 @@ public class PostCommentDao {
         this.pageConverter = pageConverter;
     }
 
-    public PostCommentEntity createComment(ReadyToCreatePostComment comment) {
-        PostCommentEntity entity = commentConverter.toCommentEntity(comment);
+    public PostCommentEntity create(ValidPostCommentToCreate comment) {
+        PostCommentEntity entity = commentConverter.toEntity(comment);
         return commentRepository.save(entity);
     }
 
