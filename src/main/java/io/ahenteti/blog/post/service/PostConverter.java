@@ -1,5 +1,6 @@
 package io.ahenteti.blog.post.service;
 
+import io.ahenteti.blog.post.model.api.request.GetPostApiRequest;
 import io.ahenteti.blog.shared.model.api.ValidPageApiRequest;
 import io.ahenteti.blog.post.model.api.request.CreatePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.CreatePostApiRequestBody;
@@ -169,5 +170,11 @@ public class PostConverter {
     public List<UserPostApiResponse> toApiResponse(List<Post> userPosts) {
         return userPosts.stream().map(toUserPostApiResponseConverter::toUserPostApiResponse)
                 .collect(Collectors.toList());
+    }
+
+    public GetPostApiRequest toApiRequest(Long postId) {
+        GetPostApiRequest res = new GetPostApiRequest();
+        res.setPostId(postId);
+        return res;
     }
 }

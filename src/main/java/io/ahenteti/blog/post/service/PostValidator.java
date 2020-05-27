@@ -1,16 +1,19 @@
 package io.ahenteti.blog.post.service;
 
-import io.ahenteti.blog.shared.exception.InvalidRequirementException;
 import io.ahenteti.blog.post.model.api.request.CreatePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.DeletePostApiRequest;
+import io.ahenteti.blog.post.model.api.request.GetPostApiRequest;
 import io.ahenteti.blog.post.model.api.request.GetPostsGroupsApiRequest;
 import io.ahenteti.blog.post.model.api.request.UpdatePostApiRequest;
+import io.ahenteti.blog.post.model.api.request.ValidGetPostApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidCreatePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidDeletePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidGetPostsGroupsApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidUpdatePostApiRequest;
 import io.ahenteti.blog.post.model.core.EPostsGroupByStrategyName;
+import io.ahenteti.blog.post.model.core.Post;
 import io.ahenteti.blog.post.model.entity.PostEntity;
+import io.ahenteti.blog.shared.exception.InvalidRequirementException;
 import io.ahenteti.blog.user.service.UserValidator;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -21,16 +24,20 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
+import static io.ahenteti.blog.shared.exception.ResourceNotFoundException.throwPostNotFoundException;
+
 @Service
 public class PostValidator {
 
     private UserValidator userValidator;
     private PostRepository postRepository;
+    private PostDao postDao;
 
     @Autowired
-    public PostValidator(UserValidator userValidator, PostRepository postRepository) {
+    public PostValidator(UserValidator userValidator, PostRepository postRepository, PostDao postDao) {
         this.userValidator = userValidator;
         this.postRepository = postRepository;
+        this.postDao = postDao;
     }
 
     public ValidCreatePostApiRequest validateCreatePostApiRequest(CreatePostApiRequest request) {
@@ -129,4 +136,9 @@ public class PostValidator {
         }
     }
 
+    public ValidGetPostApiRequest validate(GetPostApiRequest request) {
+        Long postId = request.getPostId();
+        Post post = postDao.getPostById(postId).orElseThrow(throwPostNotFoundException(postId));
+        return new ValidGetPostApiRequest(post);
+    }
 }

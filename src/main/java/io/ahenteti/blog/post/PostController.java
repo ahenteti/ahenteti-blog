@@ -3,9 +3,11 @@ package io.ahenteti.blog.post;
 import io.ahenteti.blog.post.model.api.request.CreatePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.CreatePostApiRequestBody;
 import io.ahenteti.blog.post.model.api.request.DeletePostApiRequest;
+import io.ahenteti.blog.post.model.api.request.GetPostApiRequest;
 import io.ahenteti.blog.post.model.api.request.GetPostsGroupsApiRequest;
 import io.ahenteti.blog.post.model.api.request.UpdatePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.UpdatePostApiRequestBody;
+import io.ahenteti.blog.post.model.api.request.ValidGetPostApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidCreatePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidDeletePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidGetPostsGroupsApiRequest;
@@ -14,7 +16,6 @@ import io.ahenteti.blog.post.model.api.response.PostApiResponse;
 import io.ahenteti.blog.post.model.api.response.PostGroupByStrategiesApiResponse;
 import io.ahenteti.blog.post.model.api.response.PostSummaryApiResponse;
 import io.ahenteti.blog.post.model.api.response.PostsGroupsApiResponse;
-import io.ahenteti.blog.post.model.core.Post;
 import io.ahenteti.blog.post.model.core.PostsGroups;
 import io.ahenteti.blog.post.model.core.ReadyToCreatePost;
 import io.ahenteti.blog.post.model.core.ReadyToUpdatePost;
@@ -40,8 +41,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import static io.ahenteti.blog.shared.exception.ResourceNotFoundException.throwPostNotFoundException;
-
 @RestController
 public class PostController {
 
@@ -63,9 +62,7 @@ public class PostController {
     }
 
     @GetMapping("/api/posts-groups")
-    public PostsGroupsApiResponse getPostsGroups(
-            @RequestParam(required = false, defaultValue = "category") String groupBy, 
-            @RequestParam List<String> groups) {
+    public PostsGroupsApiResponse getPostsGroups(@RequestParam(required = false, defaultValue = "category") String groupBy, @RequestParam List<String> groups) {
         GetPostsGroupsApiRequest request = postConverter.toApiRequest(groups, groupBy);
         ValidGetPostsGroupsApiRequest validRequest = postValidator.validate(request);
         PostsGroups postsGroups = postDao.getPostsGroups(validRequest);
@@ -74,8 +71,9 @@ public class PostController {
 
     @GetMapping("/api/posts/{id}")
     public PostApiResponse getPostById(@PathVariable Long id) {
-        Post post = postDao.getPostById(id).orElseThrow(throwPostNotFoundException(id));
-        return postConverter.toPostApiResponse(post);
+        GetPostApiRequest request = postConverter.toApiRequest(id);
+        ValidGetPostApiRequest validRequest = postValidator.validate(request);
+        return postConverter.toPostApiResponse(validRequest.getPost());
     }
 
     @Transactional
