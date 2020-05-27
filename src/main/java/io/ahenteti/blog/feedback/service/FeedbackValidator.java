@@ -46,7 +46,7 @@ public class FeedbackValidator {
 
     public ValidGetFeedbacksApiRequest validate(GetFeedbacksApiRequest request) {
         userValidator.validateAdminUser(request.getUser());
-        pageApiRequestValidator.validatePageApiRequest(request);
+        pageApiRequestValidator.validate(request);
         return new ValidGetFeedbacksApiRequest(request);
     }
 

@@ -2,14 +2,16 @@ package io.ahenteti.blog.shared.service;
 
 import io.ahenteti.blog.shared.exception.InvalidRequirementException;
 import io.ahenteti.blog.shared.model.api.PageApiRequest;
+import io.ahenteti.blog.shared.model.api.ValidPageApiRequest;
 import io.ahenteti.blog.shared.model.core.ESortDirection;
+import io.ahenteti.blog.shared.model.core.ISortBy;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PageApiRequestValidator {
 
-    public void validatePageApiRequest(PageApiRequest request) {
+    public void validate(PageApiRequest request) {
         validatePage(request);
         validateSize(request);
         validateSortBy(request);

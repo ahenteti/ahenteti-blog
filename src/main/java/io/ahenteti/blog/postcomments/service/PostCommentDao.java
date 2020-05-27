@@ -1,9 +1,10 @@
 package io.ahenteti.blog.postcomments.service;
 
-import io.ahenteti.blog.postcomments.model.api.GetPostCommentsApiRequest;
+import io.ahenteti.blog.postcomments.model.api.ValidGetPostCommentsPageApiRequest;
 import io.ahenteti.blog.postcomments.model.core.PostComments;
 import io.ahenteti.blog.postcomments.model.core.ReadyToCreatePostComment;
 import io.ahenteti.blog.postcomments.model.entity.PostCommentEntity;
+import io.ahenteti.blog.shared.service.PageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -16,11 +17,13 @@ public class PostCommentDao {
 
     private PostCommentRepository commentRepository;
     private PostCommentConverter commentConverter;
+    private PageConverter pageConverter;
 
     @Autowired
-    public PostCommentDao(PostCommentRepository commentRepository, PostCommentConverter commentConverter) {
+    public PostCommentDao(PostCommentRepository commentRepository, PostCommentConverter commentConverter, PageConverter pageConverter) {
         this.commentRepository = commentRepository;
         this.commentConverter = commentConverter;
+        this.pageConverter = pageConverter;
     }
 
     public PostCommentEntity createComment(ReadyToCreatePostComment comment) {
@@ -28,10 +31,10 @@ public class PostCommentDao {
         return commentRepository.save(entity);
     }
 
-    public PostComments getPostComments(GetPostCommentsApiRequest request) {
+    public PostComments getPostComments(ValidGetPostCommentsPageApiRequest request) {
         // @formatter:off
-        PageRequest commentsPage = PageRequest.of(request.getPage(), request.getSize(), Sort.by("createdAt").descending());
-        List<PostCommentEntity> comments = commentRepository.findByPostId(request.getPostId(), commentsPage).getContent();
+        PageRequest pageRequest = pageConverter.toPageRequest(request);
+        List<PostCommentEntity> comments = commentRepository.findByPostId(request.getPostId(), pageRequest).getContent();
         return commentConverter.toPostComments(comments);
         // @formatter:on
     }

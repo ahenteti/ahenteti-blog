@@ -24,13 +24,13 @@ public class UserValidator {
 
     public ValidGetUsersPageApiRequest validate(GetUsersPageApiRequest request) {
         validateAdminUser(request.getUser());
-        pageApiRequestValidator.validatePageApiRequest(request);
+        pageApiRequestValidator.validate(request);
         return new ValidGetUsersPageApiRequest(request);
     }
 
     public ValidGetUserPostsApiRequest validate(GetUserPostsPageApiRequest request) {
         validateAuthenticatedUser(request.getUser());
-        pageApiRequestValidator.validatePageApiRequest(request);
+        pageApiRequestValidator.validate(request);
         return new ValidGetUserPostsApiRequest(request);
     }
 
