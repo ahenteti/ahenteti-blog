@@ -57,10 +57,10 @@ public class UserController {
             @RequestParam Integer size, 
             @RequestParam(required = false, defaultValue = "USERNAME") String sortBy,
             @RequestParam(required = false, defaultValue = "asc") String sortDirection) {
-        GetUsersPageApiRequest request = userConverter.toGetUsersPageApiRequest(user, page, size, sortBy, sortDirection, filter);
+        GetUsersPageApiRequest request = userConverter.toApiRequest(user, page, size, sortBy, sortDirection, filter);
         ValidGetUsersPageApiRequest validRequest = userValidator.validate(request);
         UsersPage usersPage = userDao.getUsers(validRequest);
-        return userConverter.toUsersPageApiResponse(usersPage);
+        return userConverter.toApiResponse(usersPage);
     }
     // @formatter:on
 
@@ -73,10 +73,10 @@ public class UserController {
             @RequestParam Integer size, 
             @RequestParam(required = false, defaultValue = "CREATED_AT") String sortBy, 
             @RequestParam(required = false, defaultValue = "desc") String sortDirection) {
-        GetUserPostsPageApiRequest request = postConverter.toGetUserPostsPageApiRequest(user, page, size, sortBy, sortDirection, filter);
+        GetUserPostsPageApiRequest request = postConverter.toApiRequest(user, page, size, sortBy, sortDirection, filter);
         ValidGetUserPostsApiRequest validRequest = userValidator.validate(request);
         PostsPage postsPage = postDao.getUserPosts(validRequest);
-        return postConverter.toUserPostsPageApiResponse(postsPage);
+        return postConverter.toApiResponse(postsPage);
     }
     // @formatter:on
 
@@ -85,7 +85,7 @@ public class UserController {
     public List<UserPostApiResponse> getAllUserPosts(@ModelAttribute IOAuth2User user) {
         userValidator.validateAuthenticatedUser(user);
         List<Post> userPosts = postDao.getAllUserPosts(user);
-        return postConverter.toUserPostApiResponseList(userPosts);
+        return postConverter.toApiResponse(userPosts);
     }
     // @formatter:on
 

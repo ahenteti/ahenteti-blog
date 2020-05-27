@@ -95,7 +95,7 @@ public class UserConverter {
         return () -> new InvalidObjectStateException("USER role not found in database");
     }
 
-    public GetUsersPageApiRequest toGetUsersPageApiRequest(IOAuth2User user, Integer page, Integer size, String sortBy, String sortDirection, String filter) {
+    public GetUsersPageApiRequest toApiRequest(IOAuth2User user, Integer page, Integer size, String sortBy, String sortDirection, String filter) {
         GetUsersPageApiRequest res = new GetUsersPageApiRequest();
         res.setUser(user);
         res.setPage(page);
@@ -107,7 +107,7 @@ public class UserConverter {
 
     }
 
-    public UsersPageApiResponse toUsersPageApiResponse(UsersPage usersPage) {
+    public UsersPageApiResponse toApiResponse(UsersPage usersPage) {
         UsersPageApiResponse res = new UsersPageApiResponse();
         res.setPage(usersPage.getPage());
         res.setSize(usersPage.getSize());

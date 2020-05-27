@@ -109,7 +109,7 @@ public class PostConverter {
         return toGetPostsGroupsApiResponseConverter.toGetPostsGroupsApiResponse(posts);
     }
 
-    public UserPostsPageApiResponse toUserPostsPageApiResponse(PostsPage postsPage) {
+    public UserPostsPageApiResponse toApiResponse(PostsPage postsPage) {
         return toUserPostsApiResponseConverter.toUserPostsPageApiResponse(postsPage);
     }
 
@@ -125,7 +125,7 @@ public class PostConverter {
         return toPostApiResponseConverter.toPostApiResponse(post);
     }
 
-    public GetUserPostsPageApiRequest toGetUserPostsPageApiRequest(IOAuth2User user, Integer page, Integer size, String sortBy, String sortDirection, String filter) {
+    public GetUserPostsPageApiRequest toApiRequest(IOAuth2User user, Integer page, Integer size, String sortBy, String sortDirection, String filter) {
         return toGetUserPostsPageApiRequestConverter
                 .toGetUserPostsPageApiRequest(user, page, size, sortBy, sortDirection, filter);
     }
@@ -166,7 +166,7 @@ public class PostConverter {
         return toPostGroupByStrategiesApiResponseConverter.toPostGroupByStrategiesApiResponse(strategies);
     }
 
-    public List<UserPostApiResponse> toUserPostApiResponseList(List<Post> userPosts) {
+    public List<UserPostApiResponse> toApiResponse(List<Post> userPosts) {
         return userPosts.stream().map(toUserPostApiResponseConverter::toUserPostApiResponse)
                 .collect(Collectors.toList());
     }
