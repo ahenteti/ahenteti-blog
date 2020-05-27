@@ -105,7 +105,7 @@ public class PostConverter {
         return toPostConverter.toPost(request);
     }
 
-    public PostsGroupsApiResponse toGetPostsGroupsApiResponse(PostsGroups posts) {
+    public PostsGroupsApiResponse toApiResponse(PostsGroups posts) {
         return toGetPostsGroupsApiResponseConverter.toGetPostsGroupsApiResponse(posts);
     }
 
@@ -154,7 +154,7 @@ public class PostConverter {
         return toDeletePostApiRequestConverter.toDeletePostApiRequest(user, postId);
     }
 
-    public GetPostsGroupsApiRequest toGetPostsGroupsApiRequest(List<String> groups, String groupBy) {
+    public GetPostsGroupsApiRequest toApiRequest(List<String> groups, String groupBy) {
         return toGetPostsGroupsApiRequestConverter.toGetPostsGroupsApiRequest(groups, groupBy);
     }
 

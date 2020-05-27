@@ -59,7 +59,7 @@ public class PostValidator {
         return new ValidDeletePostApiRequest(request);
     }
 
-    public ValidGetPostsGroupsApiRequest validateGetPostsGroupsApiRequest(GetPostsGroupsApiRequest request) {
+    public ValidGetPostsGroupsApiRequest validate(GetPostsGroupsApiRequest request) {
         validatePostsGroups(request);
         validatePostsGroupBy(request);
         return new ValidGetPostsGroupsApiRequest(request);
