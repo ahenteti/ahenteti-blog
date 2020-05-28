@@ -18,7 +18,7 @@ public class ValidUpdatePostApiRequest {
 
     public ValidUpdatePostApiRequest(UpdatePostApiRequest request) {
         this.postId = request.getPostId();
-        this.author = request.getAuthor();
+        this.author = request.getUser();
         this.title = request.getBody().getTitle();
         this.category = request.getBody().getCategory();
         this.tags = request.getBody().getTags();

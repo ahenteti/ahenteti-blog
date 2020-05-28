@@ -6,6 +6,6 @@ import lombok.Data;
 @Data
 public class UpdatePostApiRequest {
     private Long postId;
-    private IOAuth2User author;
+    private IOAuth2User user;
     private UpdatePostApiRequestBody body;
 }

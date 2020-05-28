@@ -55,6 +55,7 @@ public class PostValidator {
     public ValidDeletePostApiRequest validate(DeletePostApiRequest request) {
         userValidator.validateAuthenticatedUser(request.getUser());
         validateNotNull("DeletePostApiRequest.postId", request.getPostId());
+        validatePostsCanOnlyDeletedByAdminsOrTheirOwnAuthors(request);
         return new ValidDeletePostApiRequest(request);
     }
 
@@ -77,11 +78,30 @@ public class PostValidator {
     }
 
     public ValidUpdatePostApiRequest validate(UpdatePostApiRequest request) {
-        userValidator.validateAuthenticatedUser(request.getAuthor());
+        userValidator.validateAuthenticatedUser(request.getUser());
         validateNotNull("UpdatePostApiRequest.body", request.getBody());
         validateNotNull("UpdatePostApiRequest.postId", request.getPostId());
+        validatePostsCanOnlyUpdatedByAdminsOrTheirOwnAuthors(request);
         return new ValidUpdatePostApiRequest(request);
     }
+
+    // @formatter:off
+    private void validatePostsCanOnlyDeletedByAdminsOrTheirOwnAuthors(DeletePostApiRequest request) {
+        if (request.getUser().isAdmin()) return;
+        postRepository.findByIdAndAuthorId(request.getPostId(), request.getUser().getDbId()).orElseThrow(
+                () -> new InvalidRequirementException("Posts can only updated by Admins or their own authors")
+        );
+    }
+    // @formatter:on
+    
+    // @formatter:off
+    private void validatePostsCanOnlyUpdatedByAdminsOrTheirOwnAuthors(UpdatePostApiRequest request) {
+        if (request.getUser().isAdmin()) return;
+        postRepository.findByIdAndAuthorId(request.getPostId(), request.getUser().getDbId()).orElseThrow(
+                () -> new InvalidRequirementException("Posts can only updated by Admins or their own authors")
+        );
+    }
+    // @formatter:on
 
     public ValidPostToCreate validate(PostToCreate post) {
         validateTitle(post.getTitle());
@@ -91,7 +111,7 @@ public class PostValidator {
         UserEntity author = userValidator.validate(post.getAuthor());
         return new ValidPostToCreate(post, author);
     }
-    
+
     public ValidPostToUpdate validate(PostToUpdate post) {
         PostEntity postEntity = validateId(post);
         validateTitle(post.getTitle());
@@ -154,4 +174,5 @@ public class PostValidator {
     private Supplier<ResourceNotFoundException> throwPostNotFoundException(Long id) {
         return () -> new ResourceNotFoundException("Post not found with id: " + id);
     }
+
 }

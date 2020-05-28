@@ -64,7 +64,7 @@ public class PostCommentController {
             @RequestBody CreatePostCommentApiRequestBody requestBody) {
         CreatePostCommentApiRequest request = commentConverter.toApiRequest(user, postId, requestBody);
         ValidCreatePostCommentApiRequest validRequest = commentValidator.validate(request);
-        PostCommentToCreate model = commentConverter.toCoreModel(validRequest);
+        PostCommentToCreate model = commentConverter.toPostCommentToCreate(validRequest);
         ValidPostCommentToCreate validModel = commentValidator.validate(model);
         commentDao.create(validModel);
     }

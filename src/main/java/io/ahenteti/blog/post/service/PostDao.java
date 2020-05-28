@@ -3,18 +3,17 @@ package io.ahenteti.blog.post.service;
 import io.ahenteti.blog.post.model.api.request.valid.ValidDeletePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidGetPostsGroupsApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidGetUserPostsApiRequest;
-import io.ahenteti.blog.post.model.core.ValidPostToCreate;
-import io.ahenteti.blog.post.model.core.ValidPostToUpdate;
-import io.ahenteti.blog.shared.model.core.IGroupByStrategy;
 import io.ahenteti.blog.post.model.core.GroupByPostAuthorStrategy;
 import io.ahenteti.blog.post.model.core.GroupByPostCategoryStrategy;
 import io.ahenteti.blog.post.model.core.Post;
 import io.ahenteti.blog.post.model.core.PostsGroups;
 import io.ahenteti.blog.post.model.core.PostsPage;
-import io.ahenteti.blog.post.model.core.PostToUpdate;
-import io.ahenteti.blog.user.model.oauth2.IOAuth2User;
+import io.ahenteti.blog.post.model.core.ValidPostToCreate;
+import io.ahenteti.blog.post.model.core.ValidPostToUpdate;
 import io.ahenteti.blog.post.model.entity.PostEntity;
+import io.ahenteti.blog.shared.model.core.IGroupByStrategy;
 import io.ahenteti.blog.shared.service.PageConverter;
+import io.ahenteti.blog.user.model.oauth2.IOAuth2User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -75,14 +74,16 @@ public class PostDao {
         // @formatter:on
     }
 
-    public PostEntity create(ValidPostToCreate post) {
+    public Post create(ValidPostToCreate post) {
         PostEntity entity = postConverter.toEntity(post);
-        return postRepository.save(entity);
+        PostEntity newEntity = postRepository.save(entity);
+        return postConverter.toPost(newEntity);
     }
 
-    public PostEntity update(ValidPostToUpdate post) {
+    public Post update(ValidPostToUpdate post) {
         PostEntity entity = postConverter.toEntity(post);
-        return postRepository.save(entity);
+        PostEntity newEntity = postRepository.save(entity);
+        return postConverter.toPost(newEntity);
     }
 
     public void delete(ValidDeletePostApiRequest request) {

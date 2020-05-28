@@ -8,12 +8,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface PostRepository extends JpaRepository<PostEntity, Long> {
     List<PostEntity> findByCategoryIn(List<String> categories);
 
     List<PostEntity> findByAuthorUsernameIn(List<String> authors);
+
+    Optional<PostEntity> findByIdAndAuthorId(Long id, Long authorId);
 
     @Query(value = "SELECT DISTINCT p.CATEGORY FROM T_POSTS p", nativeQuery = true)
     List<String> getPostCategories();

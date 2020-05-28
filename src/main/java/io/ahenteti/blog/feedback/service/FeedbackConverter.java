@@ -44,7 +44,7 @@ public class FeedbackConverter {
         FeedbackToCreate res = new FeedbackToCreate();
         res.setValue(request.getBody().getValue());
         res.setCreatedAt(Instant.now());
-        res.setAuthor(this.userConverter.toCoreModel(request.getAuthor()));
+        res.setAuthor(this.userConverter.toUser(request.getAuthor()));
         return res;
     }
 
@@ -71,7 +71,7 @@ public class FeedbackConverter {
         Feedback res = new Feedback();
         res.setValue(entity.getValue());
         res.setCreatedAt(entity.getCreatedAt());
-        res.setAuthor(userConverter.toCoreModel(entity.getAuthor()));
+        res.setAuthor(userConverter.toUser(entity.getAuthor()));
         return res;
     }
 

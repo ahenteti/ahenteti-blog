@@ -31,7 +31,7 @@ public class UserConverter {
     @Autowired
     private RoleRepository roleRepository;
 
-    public User toCoreModel(UserEntity entity) {
+    public User toUser(UserEntity entity) {
         User res = new User();
         res.setId(entity.getId());
         res.setUsername(entity.getUsername());
@@ -42,7 +42,7 @@ public class UserConverter {
         return res;
     }
 
-    public User toCoreModel(IOAuth2User user) {
+    public User toUser(IOAuth2User user) {
         User res = new User();
         res.setId(user.getDbId());
         res.setUsername(user.getUsername());
@@ -122,7 +122,7 @@ public class UserConverter {
         res.setSize(request.getSize());
         res.setSortBy(request.getSortByValue());
         res.setTotalItems(users.getTotalElements());
-        res.setItems(users.getContent().stream().map(this::toCoreModel)
+        res.setItems(users.getContent().stream().map(this::toUser)
                 .collect(Collectors.toCollection(ArrayList::new)));
         return res;
     }

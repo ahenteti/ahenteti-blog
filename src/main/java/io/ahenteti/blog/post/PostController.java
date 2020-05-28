@@ -16,12 +16,12 @@ import io.ahenteti.blog.post.model.api.response.PostApiResponse;
 import io.ahenteti.blog.post.model.api.response.PostGroupByStrategiesApiResponse;
 import io.ahenteti.blog.post.model.api.response.PostSummaryApiResponse;
 import io.ahenteti.blog.post.model.api.response.PostsGroupsApiResponse;
+import io.ahenteti.blog.post.model.core.Post;
 import io.ahenteti.blog.post.model.core.PostToCreate;
-import io.ahenteti.blog.post.model.core.PostsGroups;
 import io.ahenteti.blog.post.model.core.PostToUpdate;
+import io.ahenteti.blog.post.model.core.PostsGroups;
 import io.ahenteti.blog.post.model.core.ValidPostToCreate;
 import io.ahenteti.blog.post.model.core.ValidPostToUpdate;
-import io.ahenteti.blog.post.model.entity.PostEntity;
 import io.ahenteti.blog.post.service.PostConverter;
 import io.ahenteti.blog.post.service.PostDao;
 import io.ahenteti.blog.post.service.PostValidator;
@@ -84,10 +84,10 @@ public class PostController {
     public PostSummaryApiResponse create(@ModelAttribute IOAuth2User user, @RequestBody CreatePostApiRequestBody requestBody) {
         CreatePostApiRequest request = postConverter.toApiRequest(user, requestBody);
         ValidCreatePostApiRequest validRequest = postValidator.validate(request);
-        PostToCreate post = postConverter.toPost(validRequest);
+        PostToCreate post = postConverter.toPostToCreate(validRequest);
         ValidPostToCreate validPost = postValidator.validate(post);
-        PostEntity entity = postDao.create(validPost);
-        return postConverter.toApiResponse(entity);
+        Post newlyCreatedPost = postDao.create(validPost);
+        return postConverter.toApiResponse(newlyCreatedPost);
     }
 
     @Transactional
@@ -95,16 +95,17 @@ public class PostController {
     public PostSummaryApiResponse update(@ModelAttribute IOAuth2User user, @PathVariable Long id, @RequestBody UpdatePostApiRequestBody requestBody) {
         UpdatePostApiRequest request = postConverter.toApiRequest(user, id, requestBody);
         ValidUpdatePostApiRequest validRequest = postValidator.validate(request);
-        PostToUpdate post = postConverter.toPost(validRequest);
+        PostToUpdate post = postConverter.toPostToUpdate(validRequest);
         ValidPostToUpdate validPost = postValidator.validate(post);
-        PostEntity entity = postDao.update(validPost);
-        return postConverter.toApiResponse(entity);
+        Post newlyUpdatedPost = postDao.update(validPost);
+        return postConverter.toApiResponse(newlyUpdatedPost);
     }
 
     @Transactional
     @DeleteMapping("/secure-api/posts/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletePost(@ModelAttribute IOAuth2User user, @PathVariable Long id) {
-        DeletePostApiRequest request = postConverter.toDeletePostApiRequest(user, id);
+        DeletePostApiRequest request = postConverter.toApiRequest(user, id);
         ValidDeletePostApiRequest validRequest = postValidator.validate(request);
         postDao.delete(validRequest);
     }

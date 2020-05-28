@@ -1,26 +1,14 @@
-package io.ahenteti.blog.post.service.utils;
+package io.ahenteti.blog.post.service.helper;
 
-import io.ahenteti.blog.post.model.core.PostToUpdate;
 import io.ahenteti.blog.post.model.core.ValidPostToCreate;
 import io.ahenteti.blog.post.model.core.ValidPostToUpdate;
 import io.ahenteti.blog.post.model.entity.PostBodyEntity;
 import io.ahenteti.blog.post.model.entity.PostEntity;
-import io.ahenteti.blog.user.service.UserRepository;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
-public class ToPostEntityConverter {
-
-    private final UserRepository userRepository;
-
-    @Autowired
-    public ToPostEntityConverter(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+public class PostEntityConverter {
 
     public PostEntity toEntity(ValidPostToCreate post) {
         PostEntity res = new PostEntity();
@@ -50,5 +38,4 @@ public class ToPostEntityConverter {
         res.setBody(bodyEntity);
         return res;
     }
-
 }

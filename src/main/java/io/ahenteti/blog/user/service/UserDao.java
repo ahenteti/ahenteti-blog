@@ -37,7 +37,7 @@ public class UserDao {
             UserEntity userEntity = userConverter.toEntity(user);
             entity = userRepository.save(userEntity);
         }
-        return userConverter.toCoreModel(entity);
+        return userConverter.toUser(entity);
         // @formatter:on
     }
 
