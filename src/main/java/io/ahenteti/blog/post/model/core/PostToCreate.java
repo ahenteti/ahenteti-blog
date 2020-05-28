@@ -1,0 +1,18 @@
+package io.ahenteti.blog.post.model.core;
+
+import io.ahenteti.blog.user.model.core.User;
+import lombok.Data;
+
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Collection;
+
+@Data
+public class PostToCreate {
+    private String title;
+    private String category;
+    private Collection<String> tags = new ArrayList<>();
+    private Instant createdAt;
+    private User author;
+    private String body;
+}

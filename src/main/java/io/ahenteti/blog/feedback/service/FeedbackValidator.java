@@ -1,9 +1,6 @@
 package io.ahenteti.blog.feedback.service;
 
 import io.ahenteti.blog.feedback.FeedbackConfig;
-import io.ahenteti.blog.shared.exception.InvalidObjectStateException;
-import io.ahenteti.blog.shared.exception.InvalidRequirementException;
-import io.ahenteti.blog.shared.exception.ResourceNotFoundException;
 import io.ahenteti.blog.feedback.model.api.request.CreateFeedbackApiRequest;
 import io.ahenteti.blog.feedback.model.api.request.CreateFeedbackApiRequestBody;
 import io.ahenteti.blog.feedback.model.api.request.GetFeedbacksApiRequest;
@@ -12,28 +9,27 @@ import io.ahenteti.blog.feedback.model.api.request.valid.ValidCreateFeedbackApiR
 import io.ahenteti.blog.feedback.model.api.request.valid.ValidGetFeedbacksApiRequest;
 import io.ahenteti.blog.feedback.model.core.FeedbackToCreate;
 import io.ahenteti.blog.feedback.model.core.ValidFeedbackToCreate;
-import io.ahenteti.blog.user.model.entity.UserEntity;
-import io.ahenteti.blog.user.service.UserRepository;
 import io.ahenteti.blog.shared.service.PageApiRequestValidator;
+import io.ahenteti.blog.user.model.entity.UserEntity;
 import io.ahenteti.blog.user.service.UserValidator;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
+import static io.ahenteti.blog.shared.utils.InstantValidatorUtils.validateInThePast;
+import static io.ahenteti.blog.shared.utils.ObjectValidatorUtils.validateNotNull;
+import static io.ahenteti.blog.shared.utils.StringValidatorUtils.validateMaxLength;
+import static io.ahenteti.blog.shared.utils.StringValidatorUtils.validateNotBlank;
 
 @Service
 public class FeedbackValidator {
 
     private UserValidator userValidator;
-    private UserRepository userRepository;
     private PageApiRequestValidator pageApiRequestValidator;
     private FeedbackConfig feedbackConfig;
 
     @Autowired
-    public FeedbackValidator(UserValidator userValidator, UserRepository userRepository, PageApiRequestValidator pageApiRequestValidator, FeedbackConfig feedbackConfig) {
+    public FeedbackValidator(UserValidator userValidator, PageApiRequestValidator pageApiRequestValidator, FeedbackConfig feedbackConfig) {
         this.userValidator = userValidator;
-        this.userRepository = userRepository;
         this.pageApiRequestValidator = pageApiRequestValidator;
         this.feedbackConfig = feedbackConfig;
     }
@@ -52,34 +48,32 @@ public class FeedbackValidator {
 
     public ValidFeedbackToCreate validate(FeedbackToCreate feedback) {
         // @formatter:off
-        if (feedback.getAuthor() == null || feedback.getAuthor().getId() == null) {
-            throw new InvalidObjectStateException("Feedback.author is mandatory");
-        }
-        Long authorId = feedback.getAuthor().getId();
-        UserEntity author = userRepository.findById(authorId).orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + authorId));
-        if (StringUtils.isBlank(feedback.getValue())) {
-            throw new InvalidRequirementException("Feedback.value is mandatory");
-        }
-        if (StringUtils.length(feedback.getValue()) > feedbackConfig.getMaxValueLength()) {
-            throw new InvalidRequirementException("Current feedback value length is greater than the authorized maxValueLength. Current Feedback value length: " + feedback.getValue().length() + ", maxValueLength: " + feedbackConfig.getMaxValueLength());
-        }
-        if (feedback.getCreatedAt() == null) {
-            throw new InvalidRequirementException("Feedback.createdAt is mandatory");
-        }
-        if (feedback.getCreatedAt().isAfter(Instant.now())) {
-            throw new InvalidRequirementException("Feedback.createdAt must be in the past");
-        }
+        UserEntity author = validateAuthor(feedback);
+        validateValue(feedback);
+        validateCreatedAt(feedback);
         return new ValidFeedbackToCreate(feedback, author);
         // @formatter:on
     }
 
+    private void validateCreatedAt(FeedbackToCreate feedback) {
+        validateNotNull("Feedback.createdAt", feedback.getCreatedAt());
+        validateInThePast("Feedback.createdAt", feedback.getCreatedAt());
+    }
+
+    private void validateValue(FeedbackToCreate feedback) {
+        validateNotBlank("Feedback.value", feedback.getValue());
+        validateMaxLength("Feedback.value", feedback.getValue(), feedbackConfig.getMaxValueLength());
+    }
+
+    private UserEntity validateAuthor(FeedbackToCreate feedback) {
+        validateNotNull("Feedback.author", feedback.getAuthor());
+        validateNotNull("Feedback.Author.id", feedback.getAuthor().getId());
+        return userValidator.validate(feedback.getAuthor());
+    }
+
     private ValidCreateFeedbackApiRequestBody validate(CreateFeedbackApiRequestBody requestBody) {
-        if (requestBody == null) {
-            throw new InvalidRequirementException("CreateFeedbackApiRequest.body is mandatory");
-        }
-        if (StringUtils.isBlank(requestBody.getValue())) {
-            throw new InvalidRequirementException("CreateFeedbackApiRequestBody.value is mandatory");
-        }
+        validateNotNull("CreateFeedbackApiRequest.body", requestBody);
+        validateNotBlank("CreateFeedbackApiRequest.Body.value", requestBody.getValue());
         return new ValidCreateFeedbackApiRequestBody(requestBody);
     }
 }

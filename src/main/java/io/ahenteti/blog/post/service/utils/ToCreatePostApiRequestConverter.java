@@ -8,12 +8,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class ToCreatePostApiRequestConverter {
 
-    public CreatePostApiRequest toCreatePostApiRequestBody(IOAuth2User user, CreatePostApiRequestBody requestBody) {
+    public CreatePostApiRequest toApiRequest(IOAuth2User user, CreatePostApiRequestBody requestBody) {
         CreatePostApiRequest res = new CreatePostApiRequest();
-        res.setTitle(requestBody.getTitle());
-        res.setCategory(requestBody.getCategory());
-        res.setTags(requestBody.getTags());
-        res.setBodyMarkdownBase64(requestBody.getBodyMarkdownBase64());
+        res.setBody(requestBody);
         res.setAuthor(user);
         return res;
     }

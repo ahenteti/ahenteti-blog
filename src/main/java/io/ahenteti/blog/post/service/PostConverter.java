@@ -1,6 +1,8 @@
 package io.ahenteti.blog.post.service;
 
 import io.ahenteti.blog.post.model.api.request.GetPostApiRequest;
+import io.ahenteti.blog.post.model.core.ValidPostToCreate;
+import io.ahenteti.blog.post.model.core.ValidPostToUpdate;
 import io.ahenteti.blog.shared.model.api.ValidPageApiRequest;
 import io.ahenteti.blog.post.model.api.request.CreatePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.CreatePostApiRequestBody;
@@ -22,8 +24,8 @@ import io.ahenteti.blog.post.model.core.Post;
 import io.ahenteti.blog.post.model.core.PostSummary;
 import io.ahenteti.blog.post.model.core.PostsGroups;
 import io.ahenteti.blog.post.model.core.PostsPage;
-import io.ahenteti.blog.post.model.core.ReadyToCreatePost;
-import io.ahenteti.blog.post.model.core.ReadyToUpdatePost;
+import io.ahenteti.blog.post.model.core.PostToCreate;
+import io.ahenteti.blog.post.model.core.PostToUpdate;
 import io.ahenteti.blog.user.model.oauth2.IOAuth2User;
 import io.ahenteti.blog.post.model.entity.PostEntity;
 import io.ahenteti.blog.post.service.utils.ToCreatePostApiRequestConverter;
@@ -98,11 +100,11 @@ public class PostConverter {
         return toPostConverter.toPost(entity);
     }
 
-    public ReadyToCreatePost toPost(ValidCreatePostApiRequest request) {
+    public PostToCreate toPost(ValidCreatePostApiRequest request) {
         return toPostConverter.toPost(request);
     }
 
-    public ReadyToUpdatePost toPost(ValidUpdatePostApiRequest request) {
+    public PostToUpdate toPost(ValidUpdatePostApiRequest request) {
         return toPostConverter.toPost(request);
     }
 
@@ -114,12 +116,12 @@ public class PostConverter {
         return toUserPostsApiResponseConverter.toUserPostsPageApiResponse(postsPage);
     }
 
-    public PostSummaryApiResponse toPostSummaryApiResponse(PostSummary post) {
+    public PostSummaryApiResponse toApiResponse(PostSummary post) {
         return toPostSummaryApiResponseConverter.toPostSummaryApiResponse(post);
     }
 
-    public PostSummaryApiResponse toPostSummaryApiResponse(PostEntity post) {
-        return toPostSummaryApiResponse(toPostSummary(post));
+    public PostSummaryApiResponse toApiResponse(PostEntity post) {
+        return toApiResponse(toPostSummary(post));
     }
 
     public PostApiResponse toPostApiResponse(Post post) {
@@ -135,20 +137,20 @@ public class PostConverter {
         return toPostsPageConverter.toPostsPage(posts, request);
     }
 
-    public CreatePostApiRequest toCreatePostApiRequestBody(IOAuth2User user, CreatePostApiRequestBody requestBody) {
-        return toCreatePostApiRequestConverter.toCreatePostApiRequestBody(user, requestBody);
+    public CreatePostApiRequest toApiRequest(IOAuth2User user, CreatePostApiRequestBody requestBody) {
+        return toCreatePostApiRequestConverter.toApiRequest(user, requestBody);
     }
 
-    public UpdatePostApiRequest toUpdatePostApiRequest(IOAuth2User user, Long id, UpdatePostApiRequestBody requestBody) {
-        return toUpdatePostApiRequestConverter.toUpdatePostApiRequest(user, id, requestBody);
+    public UpdatePostApiRequest toApiRequest(IOAuth2User user, Long id, UpdatePostApiRequestBody requestBody) {
+        return toUpdatePostApiRequestConverter.toApiRequest(user, id, requestBody);
     }
 
-    public PostEntity toPostEntity(ReadyToUpdatePost post) {
-        return toPostEntityConverter.toPostEntity(post);
+    public PostEntity toEntity(ValidPostToUpdate post) {
+        return toPostEntityConverter.toEntity(post);
     }
 
-    public PostEntity toPostEntity(ReadyToCreatePost post) {
-        return toPostEntityConverter.toPostEntity(post);
+    public PostEntity toEntity(ValidPostToCreate post) {
+        return toPostEntityConverter.toEntity(post);
     }
 
     public DeletePostApiRequest toDeletePostApiRequest(IOAuth2User user, Long postId) {

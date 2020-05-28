@@ -50,7 +50,6 @@ export class UpdatePostApiRequestBody {
   category: string;
   tags: Array<string>;
   bodyMarkdownBase64: string;
-  createdAtIso8601: string;
 }
 
 export class DeletePostApiRequest {

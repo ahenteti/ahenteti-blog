@@ -3,14 +3,15 @@ package io.ahenteti.blog.post.service;
 import io.ahenteti.blog.post.model.api.request.valid.ValidDeletePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidGetPostsGroupsApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidGetUserPostsApiRequest;
+import io.ahenteti.blog.post.model.core.ValidPostToCreate;
+import io.ahenteti.blog.post.model.core.ValidPostToUpdate;
 import io.ahenteti.blog.shared.model.core.IGroupByStrategy;
 import io.ahenteti.blog.post.model.core.GroupByPostAuthorStrategy;
 import io.ahenteti.blog.post.model.core.GroupByPostCategoryStrategy;
 import io.ahenteti.blog.post.model.core.Post;
 import io.ahenteti.blog.post.model.core.PostsGroups;
 import io.ahenteti.blog.post.model.core.PostsPage;
-import io.ahenteti.blog.post.model.core.ReadyToCreatePost;
-import io.ahenteti.blog.post.model.core.ReadyToUpdatePost;
+import io.ahenteti.blog.post.model.core.PostToUpdate;
 import io.ahenteti.blog.user.model.oauth2.IOAuth2User;
 import io.ahenteti.blog.post.model.entity.PostEntity;
 import io.ahenteti.blog.shared.service.PageConverter;
@@ -74,17 +75,17 @@ public class PostDao {
         // @formatter:on
     }
 
-    public PostEntity createPost(ReadyToCreatePost post) {
-        PostEntity entity = postConverter.toPostEntity(post);
+    public PostEntity create(ValidPostToCreate post) {
+        PostEntity entity = postConverter.toEntity(post);
         return postRepository.save(entity);
     }
 
-    public PostEntity updatePost(ReadyToUpdatePost post) {
-        PostEntity entity = postConverter.toPostEntity(post);
+    public PostEntity update(ValidPostToUpdate post) {
+        PostEntity entity = postConverter.toEntity(post);
         return postRepository.save(entity);
     }
 
-    public void deletePost(ValidDeletePostApiRequest request) {
+    public void delete(ValidDeletePostApiRequest request) {
         postRepository.deleteById(request.getPostId());
     }
 

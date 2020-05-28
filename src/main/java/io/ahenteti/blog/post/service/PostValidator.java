@@ -1,5 +1,6 @@
 package io.ahenteti.blog.post.service;
 
+import io.ahenteti.blog.post.PostConfig;
 import io.ahenteti.blog.post.model.api.request.CreatePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.DeletePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.GetPostApiRequest;
@@ -12,19 +13,28 @@ import io.ahenteti.blog.post.model.api.request.valid.ValidGetPostsGroupsApiReque
 import io.ahenteti.blog.post.model.api.request.valid.ValidUpdatePostApiRequest;
 import io.ahenteti.blog.post.model.core.EPostsGroupByStrategyName;
 import io.ahenteti.blog.post.model.core.Post;
+import io.ahenteti.blog.post.model.core.PostToCreate;
+import io.ahenteti.blog.post.model.core.PostToUpdate;
+import io.ahenteti.blog.post.model.core.ValidPostToCreate;
+import io.ahenteti.blog.post.model.core.ValidPostToUpdate;
 import io.ahenteti.blog.post.model.entity.PostEntity;
 import io.ahenteti.blog.shared.exception.InvalidRequirementException;
+import io.ahenteti.blog.shared.exception.ResourceNotFoundException;
+import io.ahenteti.blog.shared.utils.CollectionValidatorUtils;
+import io.ahenteti.blog.user.model.entity.UserEntity;
 import io.ahenteti.blog.user.service.UserValidator;
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
-import java.util.List;
-import java.util.Optional;
+import java.util.Collection;
+import java.util.function.Supplier;
 
-import static io.ahenteti.blog.shared.exception.ResourceNotFoundException.throwPostNotFoundException;
+import static io.ahenteti.blog.shared.utils.CollectionValidatorUtils.validateNotEmpty;
+import static io.ahenteti.blog.shared.utils.InstantValidatorUtils.validateInThePast;
+import static io.ahenteti.blog.shared.utils.ObjectValidatorUtils.validateNotNull;
+import static io.ahenteti.blog.shared.utils.StringValidatorUtils.validateMaxLength;
+import static io.ahenteti.blog.shared.utils.StringValidatorUtils.validateNotBlank;
 
 @Service
 public class PostValidator {
@@ -32,37 +42,19 @@ public class PostValidator {
     private UserValidator userValidator;
     private PostRepository postRepository;
     private PostDao postDao;
+    private PostConfig postConfig;
 
     @Autowired
-    public PostValidator(UserValidator userValidator, PostRepository postRepository, PostDao postDao) {
+    public PostValidator(UserValidator userValidator, PostRepository postRepository, PostDao postDao, PostConfig postConfig) {
         this.userValidator = userValidator;
         this.postRepository = postRepository;
         this.postDao = postDao;
+        this.postConfig = postConfig;
     }
 
-    public ValidCreatePostApiRequest validateCreatePostApiRequest(CreatePostApiRequest request) {
-        userValidator.validateAuthenticatedUser(request.getAuthor());
-        validateTitle(request.getTitle());
-        validateCategory(request.getCategory());
-        validateTags(request.getTags());
-        validateBody(request.getBodyMarkdownBase64());
-        return new ValidCreatePostApiRequest(request);
-    }
-
-    public ValidUpdatePostApiRequest validateUpdatePostApiRequest(UpdatePostApiRequest request) {
-        userValidator.validateAuthenticatedUser(request.getAuthor());
-        PostEntity postEntity = validateId(request.getId());
-        validateTitle(request.getTitle());
-        validateCategory(request.getCategory());
-        validateTags(request.getTags());
-        validateBody(request.getBodyMarkdownBase64());
-        validateCreatedAt(request.getCreatedAtIso8601());
-        return new ValidUpdatePostApiRequest(request, postEntity);
-    }
-
-    public ValidDeletePostApiRequest validateDeletePostApiRequest(DeletePostApiRequest request) {
+    public ValidDeletePostApiRequest validate(DeletePostApiRequest request) {
         userValidator.validateAuthenticatedUser(request.getUser());
-        validateId(request.getPostId());
+        validateNotNull("DeletePostApiRequest.postId", request.getPostId());
         return new ValidDeletePostApiRequest(request);
     }
 
@@ -72,10 +64,53 @@ public class PostValidator {
         return new ValidGetPostsGroupsApiRequest(request);
     }
 
+    public ValidGetPostApiRequest validate(GetPostApiRequest request) {
+        Long postId = request.getPostId();
+        Post post = postDao.getPostById(postId).orElseThrow(throwPostNotFoundException(postId));
+        return new ValidGetPostApiRequest(post);
+    }
+
+    public ValidCreatePostApiRequest validate(CreatePostApiRequest request) {
+        userValidator.validateAuthenticatedUser(request.getAuthor());
+        validateNotNull("CreatePostApiRequest.body", request.getBody());
+        return new ValidCreatePostApiRequest(request);
+    }
+
+    public ValidUpdatePostApiRequest validate(UpdatePostApiRequest request) {
+        userValidator.validateAuthenticatedUser(request.getAuthor());
+        validateNotNull("UpdatePostApiRequest.body", request.getBody());
+        validateNotNull("UpdatePostApiRequest.postId", request.getPostId());
+        return new ValidUpdatePostApiRequest(request);
+    }
+
+    public ValidPostToCreate validate(PostToCreate post) {
+        validateTitle(post.getTitle());
+        validateCategory(post.getCategory());
+        validateTags(post.getTags());
+        validateBody(post.getBody());
+        UserEntity author = userValidator.validate(post.getAuthor());
+        return new ValidPostToCreate(post, author);
+    }
+    
+    public ValidPostToUpdate validate(PostToUpdate post) {
+        PostEntity postEntity = validateId(post);
+        validateTitle(post.getTitle());
+        validateCategory(post.getCategory());
+        validateTags(post.getTags());
+        validateBody(post.getBody());
+        validateLastUpdatedAt(post);
+        UserEntity author = userValidator.validate(post.getAuthor());
+        return new ValidPostToUpdate(post, postEntity, author);
+    }
+
+    private PostEntity validateId(PostToUpdate post) {
+        Long postId = post.getId();
+        validateNotNull("Post.id", postId);
+        return postRepository.findById(postId).orElseThrow(throwPostNotFoundException(postId));
+    }
+
     private void validatePostsGroupBy(GetPostsGroupsApiRequest request) {
-        if (StringUtils.isBlank(request.getGroupBy())) {
-            throw new InvalidRequirementException("post groupBy is mandatory");
-        }
+        validateNotBlank("Post.groupBy", request.getGroupBy());
         if (EPostsGroupByStrategyName.getByValue(request.getGroupBy()) == null) {
             StringBuilder sb = new StringBuilder();
             sb.append("Unknown groupBy query param value: ");
@@ -92,53 +127,31 @@ public class PostValidator {
         }
     }
 
-    private PostEntity validateId(Long id) {
-        if (id == null) {
-            throw new InvalidRequirementException("post id is mandatory");
-        }
-        Optional<PostEntity> postOptional = postRepository.findById(id);
-        if (!postOptional.isPresent()) {
-            throw new InvalidRequirementException("post with id: " + id + " does not exist");
-        }
-        return postOptional.get();
-    }
-
     private void validateTitle(String title) {
-        if (StringUtils.isBlank(title)) {
-            throw new InvalidRequirementException("post title is mandatory");
-        }
+        validateNotBlank("Post.title", title);
+        validateMaxLength("Post.title", title, postConfig.getMaxTitleLength());
     }
 
     private void validateCategory(String category) {
-        if (StringUtils.isBlank(category)) {
-            throw new InvalidRequirementException("post category is mandatory");
-        }
+        validateNotBlank("Post.category", category);
+        validateMaxLength("Post.category", category, postConfig.getMaxCategoryLength());
     }
 
-    private void validateTags(List<String> tags) {
-        if (CollectionUtils.isEmpty(tags)) {
-            throw new InvalidRequirementException("post tags is mandatory");
-        }
+    private void validateTags(Collection<String> tags) {
+        validateNotEmpty("Post.tags", tags);
+        CollectionValidatorUtils.validateMaxLength("Post.tags", tags, postConfig.getMaxTagsNumber());
     }
 
     private void validateBody(String body) {
-        if (StringUtils.isBlank(body)) {
-            throw new InvalidRequirementException("post body is mandatory");
-        }
+        validateNotBlank("Post.body", body);
     }
 
-    private void validateCreatedAt(Instant createdAt) {
-        if (createdAt == null) {
-            throw new InvalidRequirementException("post createdAt is mandatory");
-        }
-        if (createdAt.isAfter(Instant.now())) {
-            throw new InvalidRequirementException("post createdAt is invalid: is after now!");
-        }
+    private void validateLastUpdatedAt(PostToUpdate post) {
+        validateNotNull("Post.lastUpdatedAt", post.getLastUpdatedAt());
+        validateInThePast("Post.lastUpdatedAt", post.getLastUpdatedAt());
     }
 
-    public ValidGetPostApiRequest validate(GetPostApiRequest request) {
-        Long postId = request.getPostId();
-        Post post = postDao.getPostById(postId).orElseThrow(throwPostNotFoundException(postId));
-        return new ValidGetPostApiRequest(post);
+    private Supplier<ResourceNotFoundException> throwPostNotFoundException(Long id) {
+        return () -> new ResourceNotFoundException("Post not found with id: " + id);
     }
 }

@@ -155,7 +155,6 @@ export class PostConverter {
         category: post.category,
         tags: post.tags,
         bodyMarkdownBase64: btoa(post.bodyMarkdown),
-        createdAtIso8601: post.createdAt.toISOString(),
       },
     };
   }
