@@ -4,6 +4,7 @@ import io.ahenteti.blog.post.model.api.request.BulkCreateAndUpdatePostOperations
 import io.ahenteti.blog.post.model.api.request.CreatePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.CreatePostApiRequestBody;
 import io.ahenteti.blog.post.model.api.request.DeletePostApiRequest;
+import io.ahenteti.blog.post.model.api.request.DeleteUserPostsApiRequest;
 import io.ahenteti.blog.post.model.api.request.GetPostApiRequest;
 import io.ahenteti.blog.post.model.api.request.GetPostsGroupsApiRequest;
 import io.ahenteti.blog.post.model.api.request.GetUserPostsPageApiRequest;
@@ -12,6 +13,7 @@ import io.ahenteti.blog.post.model.api.request.UpdatePostApiRequestBody;
 import io.ahenteti.blog.post.model.api.request.valid.ValidBulkCreateAndUpdatePostOperationsApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidCreatePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidDeletePostApiRequest;
+import io.ahenteti.blog.post.model.api.request.valid.ValidDeleteUserPostsApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidGetPostApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidGetPostsGroupsApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidGetUserPostsApiRequest;
@@ -159,6 +161,15 @@ public class PostController {
     public void deletePost(@ModelAttribute IOAuth2User user, @PathVariable Long id) {
         DeletePostApiRequest request = postConverter.toApiRequest(user, id);
         ValidDeletePostApiRequest validRequest = postValidator.validate(request);
+        postDao.delete(validRequest);
+    }
+
+    @Transactional
+    @DeleteMapping("/secure-api/user/posts/all")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteAllUserPosts(@ModelAttribute IOAuth2User user) {
+        DeleteUserPostsApiRequest request = postConverter.toApiRequest(user);
+        ValidDeleteUserPostsApiRequest validRequest = postValidator.validate(request);
         postDao.delete(validRequest);
     }
 

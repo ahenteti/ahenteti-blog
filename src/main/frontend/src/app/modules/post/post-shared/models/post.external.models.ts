@@ -56,6 +56,10 @@ export class DeletePostApiRequest {
   url: string;
 }
 
+export class DeleteUserPostsApiRequest {
+  url: string;
+}
+
 export class GetPostGroupByStrategiesApiRequest {
   url: string;
 }

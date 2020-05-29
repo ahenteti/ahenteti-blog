@@ -5,6 +5,7 @@ import io.ahenteti.blog.post.PostConfig;
 import io.ahenteti.blog.post.model.api.request.BulkCreateAndUpdatePostOperationsApiRequest;
 import io.ahenteti.blog.post.model.api.request.CreatePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.DeletePostApiRequest;
+import io.ahenteti.blog.post.model.api.request.DeleteUserPostsApiRequest;
 import io.ahenteti.blog.post.model.api.request.GetPostApiRequest;
 import io.ahenteti.blog.post.model.api.request.GetPostsGroupsApiRequest;
 import io.ahenteti.blog.post.model.api.request.GetUserPostsPageApiRequest;
@@ -13,6 +14,7 @@ import io.ahenteti.blog.post.model.api.request.UserPostsToCreateOrUpdateApiReque
 import io.ahenteti.blog.post.model.api.request.valid.ValidBulkCreateAndUpdatePostOperationsApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidCreatePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidDeletePostApiRequest;
+import io.ahenteti.blog.post.model.api.request.valid.ValidDeleteUserPostsApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidGetPostApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidGetPostsGroupsApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidGetUserPostsApiRequest;
@@ -133,6 +135,11 @@ public class PostValidator {
         userValidator.validateAuthenticatedUser(request.getUser());
         pageApiRequestValidator.validate(request);
         return new ValidGetUserPostsApiRequest(request);
+    }
+
+    public ValidDeleteUserPostsApiRequest validate(DeleteUserPostsApiRequest request) {
+        userValidator.validateAuthenticatedUser(request.getUser());
+        return new ValidDeleteUserPostsApiRequest(request);
     }
 
     private PostEntity validateId(PostToUpdate post) {

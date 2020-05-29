@@ -7,6 +7,11 @@
   (filter)="onFilter($event)"
 >
   <ng-container class="top-table-actions">
+    <app-page-title-delete-button
+      tooltip="delete all your posts"
+      (click)="deleteAllUserPosts()"
+    >
+    </app-page-title-delete-button>
     <app-page-title-download-button
       tooltip="download all your posts"
       (click)="downloadAllUserPosts()"

@@ -12,6 +12,7 @@ import {
   GetPostsGroupsApiRequest,
   PostsGroupApiResponse,
   UploadPostsApiRequest,
+  DeleteUserPostsApiRequest,
 } from "../models/post.external.models";
 import { Injectable } from "@angular/core";
 import {
@@ -159,6 +160,12 @@ export class PostConverter {
   toDeletePostApiRequest(postId: number): DeletePostApiRequest {
     return {
       url: `/secure-api/posts/${postId}`,
+    };
+  }
+
+  toDeleteUserPostsApiRequest(): DeleteUserPostsApiRequest {
+    return {
+      url: `/secure-api/user/posts/all`,
     };
   }
 

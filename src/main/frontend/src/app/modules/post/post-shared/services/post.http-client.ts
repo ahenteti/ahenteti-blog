@@ -13,6 +13,7 @@ import {
   GetPostsGroupsApiRequest,
   PostsGroupApiResponse,
   UploadPostsApiRequest,
+  DeleteUserPostsApiRequest,
 } from "../models/post.external.models";
 import {
   Post,
@@ -104,6 +105,14 @@ export class PostHttpClient extends CommonHttpClient {
   }
 
   deletePost(request: DeletePostApiRequest): Promise<void> {
+    // prettier-ignore
+    return this.http
+      .delete<void>(request.url)
+      .toPromise();
+    // prettier-ignore
+  }
+
+  deleteUserPosts(request: DeleteUserPostsApiRequest): Promise<void> {
     // prettier-ignore
     return this.http
       .delete<void>(request.url)

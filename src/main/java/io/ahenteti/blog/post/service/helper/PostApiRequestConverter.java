@@ -4,6 +4,7 @@ import io.ahenteti.blog.post.model.api.request.BulkCreateAndUpdatePostOperations
 import io.ahenteti.blog.post.model.api.request.CreatePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.CreatePostApiRequestBody;
 import io.ahenteti.blog.post.model.api.request.DeletePostApiRequest;
+import io.ahenteti.blog.post.model.api.request.DeleteUserPostsApiRequest;
 import io.ahenteti.blog.post.model.api.request.GetPostApiRequest;
 import io.ahenteti.blog.post.model.api.request.GetPostsGroupsApiRequest;
 import io.ahenteti.blog.post.model.api.request.GetUserPostsPageApiRequest;
@@ -68,6 +69,12 @@ public class PostApiRequestConverter {
         BulkCreateAndUpdatePostOperationsApiRequest res = new BulkCreateAndUpdatePostOperationsApiRequest();
         res.setUser(user);
         res.setFile(file);
+        return res;
+    }
+
+    public DeleteUserPostsApiRequest toApiRequest(IOAuth2User user) {
+        DeleteUserPostsApiRequest res = new DeleteUserPostsApiRequest();
+        res.setUser(user);
         return res;
     }
 }

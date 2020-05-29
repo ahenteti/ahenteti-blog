@@ -16,6 +16,8 @@ public interface PostRepository extends JpaRepository<PostEntity, Long> {
 
     List<PostEntity> findByAuthorUsernameIn(List<String> authors);
 
+    void deleteByAuthorId(Long authorId);
+
     Optional<PostEntity> findByIdAndAuthorId(Long id, Long authorId);
 
     Optional<PostEntity> findByTitleAndAuthorId(String title, Long authorId);

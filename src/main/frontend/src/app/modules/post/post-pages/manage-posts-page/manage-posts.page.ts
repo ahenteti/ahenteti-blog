@@ -64,6 +64,22 @@ export class ManagePostsPage extends AbstractManageResourcesPage<PostSummary>
     });
   }
 
+  deleteAllUserPosts() {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: "Do you confirm the deletion of all your posts ?",
+      width: "340px",
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        const request = this.postConverter.toDeleteUserPostsApiRequest();
+        this.postHttpClient
+          .deleteUserPosts(request)
+          .then(() => this.handleDeleteUserPostsSuccessEvent())
+          .catch((error) => this.handleDeleteUserPostsErrorEvent(error));
+      }
+    });
+  }
+
   downloadAllUserPosts() {
     const request = this.postConverter.toGetAllUserPostsApiRequest();
     this.postHttpClient
@@ -125,5 +141,15 @@ export class ManagePostsPage extends AbstractManageResourcesPage<PostSummary>
   private handleGetAllUserPostsErrorEvent(error: any): any {
     console.error(error);
     this.alertService.error("Error while fetching your posts :(");
+  }
+
+  // prettier-ignore
+  private handleDeleteUserPostsErrorEvent(error: any): any {
+    this.postHttpClient.handleError(error, "Error while deleting user posts :(");
+  }
+
+  private handleDeleteUserPostsSuccessEvent(): any {
+    this.currentPage = new PostsPage();
+    this.dataSource = new MatTableDataSource([]);
   }
 }

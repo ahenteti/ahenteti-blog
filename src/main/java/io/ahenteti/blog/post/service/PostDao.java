@@ -1,6 +1,7 @@
 package io.ahenteti.blog.post.service;
 
 import io.ahenteti.blog.post.model.api.request.valid.ValidDeletePostApiRequest;
+import io.ahenteti.blog.post.model.api.request.valid.ValidDeleteUserPostsApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidGetPostsGroupsApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidGetUserPostsApiRequest;
 import io.ahenteti.blog.post.model.core.GroupByPostAuthorStrategy;
@@ -91,6 +92,10 @@ public class PostDao {
         postRepository.deleteById(request.getPostId());
     }
 
+    public void delete(ValidDeleteUserPostsApiRequest request) {
+        postRepository.deleteByAuthorId(request.getUser().getDbId());
+    }
+    
     public List<IGroupByStrategy> getPostGroupByStrategies() {
         List<IGroupByStrategy> res = new ArrayList<>();
         res.add(new GroupByPostCategoryStrategy(new TreeSet<>(postRepository.getPostCategories())));
@@ -111,4 +116,5 @@ public class PostDao {
             update(postToUpdate);
         }
     }
+
 }
