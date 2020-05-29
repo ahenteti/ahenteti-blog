@@ -1,32 +1,40 @@
 package io.ahenteti.blog.post.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.ahenteti.blog.post.PostConfig;
+import io.ahenteti.blog.post.model.api.request.BulkCreateAndUpdatePostOperationsApiRequest;
 import io.ahenteti.blog.post.model.api.request.CreatePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.DeletePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.GetPostApiRequest;
 import io.ahenteti.blog.post.model.api.request.GetPostsGroupsApiRequest;
 import io.ahenteti.blog.post.model.api.request.UpdatePostApiRequest;
-import io.ahenteti.blog.post.model.api.request.ValidGetPostApiRequest;
+import io.ahenteti.blog.post.model.api.request.UserPostsToCreateOrUpdateApiRequest;
+import io.ahenteti.blog.post.model.api.request.valid.ValidBulkCreateAndUpdatePostOperationsApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidCreatePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidDeletePostApiRequest;
+import io.ahenteti.blog.post.model.api.request.valid.ValidGetPostApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidGetPostsGroupsApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidUpdatePostApiRequest;
+import io.ahenteti.blog.post.model.core.BulkCreateAndUpdatePostOperations;
 import io.ahenteti.blog.post.model.core.EPostsGroupByStrategyName;
 import io.ahenteti.blog.post.model.core.Post;
 import io.ahenteti.blog.post.model.core.PostToCreate;
 import io.ahenteti.blog.post.model.core.PostToUpdate;
+import io.ahenteti.blog.post.model.core.ValidBulkCreateAndUpdatePostOperations;
 import io.ahenteti.blog.post.model.core.ValidPostToCreate;
 import io.ahenteti.blog.post.model.core.ValidPostToUpdate;
 import io.ahenteti.blog.post.model.entity.PostEntity;
 import io.ahenteti.blog.shared.exception.InvalidRequirementException;
 import io.ahenteti.blog.shared.exception.ResourceNotFoundException;
 import io.ahenteti.blog.shared.utils.CollectionValidatorUtils;
+import io.ahenteti.blog.user.model.core.User;
 import io.ahenteti.blog.user.model.entity.UserEntity;
 import io.ahenteti.blog.user.service.UserValidator;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.function.Supplier;
 
@@ -43,13 +51,15 @@ public class PostValidator {
     private PostRepository postRepository;
     private PostDao postDao;
     private PostConfig postConfig;
+    private ObjectMapper objectMapper;
 
     @Autowired
-    public PostValidator(UserValidator userValidator, PostRepository postRepository, PostDao postDao, PostConfig postConfig) {
+    public PostValidator(UserValidator userValidator, PostRepository postRepository, PostDao postDao, PostConfig postConfig, ObjectMapper objectMapper) {
         this.userValidator = userValidator;
         this.postRepository = postRepository;
         this.postDao = postDao;
         this.postConfig = postConfig;
+        this.objectMapper = objectMapper;
     }
 
     public ValidDeletePostApiRequest validate(DeletePostApiRequest request) {
@@ -81,27 +91,17 @@ public class PostValidator {
         userValidator.validateAuthenticatedUser(request.getUser());
         validateNotNull("UpdatePostApiRequest.body", request.getBody());
         validateNotNull("UpdatePostApiRequest.postId", request.getPostId());
-        validatePostsCanOnlyUpdatedByAdminsOrTheirOwnAuthors(request);
         return new ValidUpdatePostApiRequest(request);
     }
 
-    // @formatter:off
-    private void validatePostsCanOnlyDeletedByAdminsOrTheirOwnAuthors(DeletePostApiRequest request) {
-        if (request.getUser().isAdmin()) return;
-        postRepository.findByIdAndAuthorId(request.getPostId(), request.getUser().getDbId()).orElseThrow(
-                () -> new InvalidRequirementException("Posts can only updated by Admins or their own authors")
-        );
+    public ValidBulkCreateAndUpdatePostOperationsApiRequest validate(BulkCreateAndUpdatePostOperationsApiRequest request) {
+        userValidator.validateAuthenticatedUser(request.getUser());
+        UserPostsToCreateOrUpdateApiRequest posts = validateFile(request);
+        ValidBulkCreateAndUpdatePostOperationsApiRequest res = new ValidBulkCreateAndUpdatePostOperationsApiRequest();
+        res.setPosts(posts);
+        res.setUser(request.getUser());
+        return res;
     }
-    // @formatter:on
-    
-    // @formatter:off
-    private void validatePostsCanOnlyUpdatedByAdminsOrTheirOwnAuthors(UpdatePostApiRequest request) {
-        if (request.getUser().isAdmin()) return;
-        postRepository.findByIdAndAuthorId(request.getPostId(), request.getUser().getDbId()).orElseThrow(
-                () -> new InvalidRequirementException("Posts can only updated by Admins or their own authors")
-        );
-    }
-    // @formatter:on
 
     public ValidPostToCreate validate(PostToCreate post) {
         validateTitle(post.getTitle());
@@ -120,6 +120,7 @@ public class PostValidator {
         validateBody(post.getBody());
         validateLastUpdatedAt(post);
         UserEntity author = userValidator.validate(post.getAuthor());
+        validatePostsCanOnlyUpdatedByAdminsOrTheirOwnAuthors(post.getAuthor(), post.getId());
         return new ValidPostToUpdate(post, postEntity, author);
     }
 
@@ -140,6 +141,21 @@ public class PostValidator {
             throw new InvalidRequirementException(sb.toString());
         }
     }
+
+    // @formatter:off
+    public ValidBulkCreateAndUpdatePostOperations validate(BulkCreateAndUpdatePostOperations bulkOperations) {
+        ValidBulkCreateAndUpdatePostOperations res = new ValidBulkCreateAndUpdatePostOperations();
+        for (PostToCreate postToCreate : bulkOperations.getPostsToCreate()) {
+            res.getPostsToCreate().add(validate(postToCreate));
+        }
+        CollectionValidatorUtils.validateMaxLength("BulkCreateAndUpdatePostOperations.postsToCreate", res.getPostsToCreate(), postConfig.getBulkOperation().getMaxCreate());
+        for (PostToUpdate postToUpdate : bulkOperations.getPostsToUpdate()) {
+            res.getPostsToUpdate().add(validate(postToUpdate));
+        }
+        CollectionValidatorUtils.validateMaxLength("BulkCreateAndUpdatePostOperations.postsToUpdate", res.getPostsToUpdate(), postConfig.getBulkOperation().getMaxUpdate());
+        return res;
+    }
+    // @formatter:on
 
     private void validatePostsGroups(GetPostsGroupsApiRequest request) {
         if (request.getGroups() == null || request.getGroups().isEmpty()) {
@@ -174,5 +190,31 @@ public class PostValidator {
     private Supplier<ResourceNotFoundException> throwPostNotFoundException(Long id) {
         return () -> new ResourceNotFoundException("Post not found with id: " + id);
     }
+
+    private UserPostsToCreateOrUpdateApiRequest validateFile(BulkCreateAndUpdatePostOperationsApiRequest request) {
+        try {
+            return objectMapper.readValue(request.getFile().getBytes(), UserPostsToCreateOrUpdateApiRequest.class);
+        } catch (IOException e) {
+            throw new InvalidRequirementException("Enable to read uploaded file", e);
+        }
+    }
+
+    // @formatter:off
+    private void validatePostsCanOnlyDeletedByAdminsOrTheirOwnAuthors(DeletePostApiRequest request) {
+        if (request.getUser().isAdmin()) return;
+        postRepository.findByIdAndAuthorId(request.getPostId(), request.getUser().getDbId()).orElseThrow(
+                () -> new InvalidRequirementException("Posts can only updated by Admins or their own authors")
+        );
+    }
+    // @formatter:on
+
+    // @formatter:off
+    private void validatePostsCanOnlyUpdatedByAdminsOrTheirOwnAuthors(User user, Long postId) {
+        if (user.isAdmin()) return;
+        postRepository.findByIdAndAuthorId(postId, user.getId()).orElseThrow(
+                () -> new InvalidRequirementException("Posts can only updated by Admins or their own authors")
+        );
+    }
+    // @formatter:on
 
 }

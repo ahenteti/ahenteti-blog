@@ -1,5 +1,6 @@
 package io.ahenteti.blog.post.service;
 
+import io.ahenteti.blog.post.model.api.request.BulkCreateAndUpdatePostOperationsApiRequest;
 import io.ahenteti.blog.post.model.api.request.CreatePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.CreatePostApiRequestBody;
 import io.ahenteti.blog.post.model.api.request.DeletePostApiRequest;
@@ -8,14 +9,16 @@ import io.ahenteti.blog.post.model.api.request.GetPostsGroupsApiRequest;
 import io.ahenteti.blog.post.model.api.request.GetUserPostsPageApiRequest;
 import io.ahenteti.blog.post.model.api.request.UpdatePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.UpdatePostApiRequestBody;
+import io.ahenteti.blog.post.model.api.request.valid.ValidBulkCreateAndUpdatePostOperationsApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidCreatePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidUpdatePostApiRequest;
 import io.ahenteti.blog.post.model.api.response.PostApiResponse;
 import io.ahenteti.blog.post.model.api.response.PostGroupByStrategiesApiResponse;
 import io.ahenteti.blog.post.model.api.response.PostSummaryApiResponse;
 import io.ahenteti.blog.post.model.api.response.PostsGroupsApiResponse;
-import io.ahenteti.blog.post.model.api.response.UserPostApiResponse;
+import io.ahenteti.blog.post.model.api.response.UserPostsApiResponse;
 import io.ahenteti.blog.post.model.api.response.UserPostsPageApiResponse;
+import io.ahenteti.blog.post.model.core.BulkCreateAndUpdatePostOperations;
 import io.ahenteti.blog.post.model.core.Post;
 import io.ahenteti.blog.post.model.core.PostSummary;
 import io.ahenteti.blog.post.model.core.PostToCreate;
@@ -35,6 +38,7 @@ import io.ahenteti.blog.user.model.oauth2.IOAuth2User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.SortedMap;
@@ -93,6 +97,10 @@ public class PostConverter {
         return postCoreModelConverter.toPostsGroups(map);
     }
 
+    public BulkCreateAndUpdatePostOperations toBulkOperations(ValidBulkCreateAndUpdatePostOperationsApiRequest validRequest) {
+        return postCoreModelConverter.toBulkOperations(validRequest);
+    }
+
     //////////////////////////////////////////////////////
     // API response
     //////////////////////////////////////////////////////
@@ -116,7 +124,7 @@ public class PostConverter {
         return postApiResponseConverter.toPostGroupByStrategiesApiResponse(strategies);
     }
 
-    public List<UserPostApiResponse> toApiResponse(List<Post> userPosts) {
+    public UserPostsApiResponse toApiResponse(List<Post> userPosts) {
         return postApiResponseConverter.toApiResponse(userPosts);
     }
 
@@ -146,4 +154,9 @@ public class PostConverter {
     public GetPostApiRequest toApiRequest(Long postId) {
         return postApiRequestConverter.toApiRequest(postId);
     }
+
+    public BulkCreateAndUpdatePostOperationsApiRequest toApiRequest(IOAuth2User user, MultipartFile file) {
+        return postApiRequestConverter.toApiRequest(user, file);
+    }
+
 }

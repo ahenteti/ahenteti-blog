@@ -8,6 +8,7 @@ import io.ahenteti.blog.post.model.core.GroupByPostCategoryStrategy;
 import io.ahenteti.blog.post.model.core.Post;
 import io.ahenteti.blog.post.model.core.PostsGroups;
 import io.ahenteti.blog.post.model.core.PostsPage;
+import io.ahenteti.blog.post.model.core.ValidBulkCreateAndUpdatePostOperations;
 import io.ahenteti.blog.post.model.core.ValidPostToCreate;
 import io.ahenteti.blog.post.model.core.ValidPostToUpdate;
 import io.ahenteti.blog.post.model.entity.PostEntity;
@@ -100,5 +101,14 @@ public class PostDao {
     public List<Post> getAllUserPosts(IOAuth2User user) {
         List<PostEntity> userPosts = postRepository.findByAuthorId(user.getDbId());
         return userPosts.stream().map(postConverter::toPost).collect(Collectors.toList());
+    }
+
+    public void createOrUpdate(ValidBulkCreateAndUpdatePostOperations bulkOperations) {
+        for (ValidPostToCreate postToCreate : bulkOperations.getPostsToCreate()) {
+            create(postToCreate);
+        }
+        for (ValidPostToUpdate postToUpdate : bulkOperations.getPostsToUpdate()) {
+            update(postToUpdate);
+        }
     }
 }

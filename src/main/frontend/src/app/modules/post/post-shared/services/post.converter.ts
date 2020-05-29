@@ -11,6 +11,7 @@ import {
   GetPostGroupByStrategiesApiRequest,
   GetPostsGroupsApiRequest,
   PostsGroupApiResponse,
+  UploadPostsApiRequest,
 } from "../models/post.external.models";
 import { Injectable } from "@angular/core";
 import {
@@ -35,11 +36,9 @@ export class PostConverter {
       category: post.category,
       tags: post.tags,
       createdAt: new Date(post.createdAtIso8601),
-      lastUpdatedAt: new Date(
-        post.lastUpdatedAtIso8601
-          ? post.lastUpdatedAtIso8601
-          : post.createdAtIso8601
-      ),
+      lastUpdatedAt: post.lastUpdatedAtIso8601
+        ? new Date(post.lastUpdatedAtIso8601)
+        : null,
       author: this.userConverter.toAuthor(post.author),
       searchKey: this.calculateSearchKey(post.title, post.tags),
     };
@@ -52,11 +51,9 @@ export class PostConverter {
       category: post.category,
       tags: post.tags,
       createdAt: new Date(post.createdAtIso8601),
-      lastUpdatedAt: new Date(
-        post.lastUpdatedAtIso8601
-          ? post.lastUpdatedAtIso8601
-          : post.createdAtIso8601
-      ),
+      lastUpdatedAt: post.lastUpdatedAtIso8601
+        ? new Date(post.lastUpdatedAtIso8601)
+        : null,
       searchKey: this.calculateSearchKey(post.title, post.tags),
       author: this.userConverter.toAuthor(post.author),
       bodyMarkdown: atob(post.bodyMarkdownBase64),
@@ -175,6 +172,13 @@ export class PostConverter {
   toGetPostsGroupsApiRequest(groupBy: string, groups: Array<string>): GetPostsGroupsApiRequest {
     return {
       url: `/api/posts-groups?groupBy=${groupBy}&groups=${groups.join(',')}`,
+    };
+  }
+
+  toUploadPostsApiRequest(file: File): UploadPostsApiRequest {
+    return {
+      url: "/secure-api/posts/bulk_create_and_update_operations.json",
+      file: file,
     };
   }
 

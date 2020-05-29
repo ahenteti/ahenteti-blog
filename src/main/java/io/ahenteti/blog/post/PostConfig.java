@@ -13,5 +13,13 @@ public class PostConfig {
     private Integer maxCategoryLength = 50;
     private Integer maxTagLength = 25;
     private Integer maxTagsNumber = 5;
+    private PostBulkOperationsConfig bulkOperation = new PostBulkOperationsConfig();
+
+    @Data
+    @ConfigurationProperties(prefix = "bulk.operations")
+    public static class PostBulkOperationsConfig {
+        private Integer maxCreate = 20;
+        private Integer maxUpdate = 20;
+    }
 
 }

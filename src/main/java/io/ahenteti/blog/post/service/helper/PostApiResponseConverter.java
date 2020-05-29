@@ -7,6 +7,7 @@ import io.ahenteti.blog.post.model.api.response.PostSummaryApiResponse;
 import io.ahenteti.blog.post.model.api.response.PostsGroupApiResponse;
 import io.ahenteti.blog.post.model.api.response.PostsGroupsApiResponse;
 import io.ahenteti.blog.post.model.api.response.UserPostApiResponse;
+import io.ahenteti.blog.post.model.api.response.UserPostsApiResponse;
 import io.ahenteti.blog.post.model.api.response.UserPostsPageApiResponse;
 import io.ahenteti.blog.post.model.core.Post;
 import io.ahenteti.blog.post.model.core.PostSummary;
@@ -94,8 +95,9 @@ public class PostApiResponseConverter {
         return res;
     }
 
-    public List<UserPostApiResponse> toApiResponse(List<Post> userPosts) {
-        return userPosts.stream().map(this::toUserPostApiResponse).collect(Collectors.toList());
+    public UserPostsApiResponse toApiResponse(List<Post> userPosts) {
+        return userPosts.stream().map(this::toUserPostApiResponse)
+                .collect(Collectors.toCollection(UserPostsApiResponse::new));
     }
 
     private UserPostApiResponse toUserPostApiResponse(Post post) {
@@ -104,8 +106,6 @@ public class PostApiResponseConverter {
         res.setTitle(post.getTitle());
         res.setCategory(post.getCategory());
         res.setTags(post.getTags());
-        res.setCreatedAtIso8601(post.getCreatedAt().toString());
-        post.getLastUpdatedAt().ifPresent(date -> res.setLastUpdatedAtIso8601(date.toString()));
         res.setBodyMarkdownBase64(post.getBody());
         return res;
     }

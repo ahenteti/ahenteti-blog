@@ -28,7 +28,7 @@ public interface PostRepository extends JpaRepository<PostEntity, Long> {
     @Query(value = "SELECT p.* " +
                    "FROM T_POSTS p " +
                    "WHERE p.AUTHOR_ID = :authorId " +
-                   "      AND (p.TITLE LIKE :sqlFilter OR p.CATEGORY LIKE :sqlFilter OR p.TAGS LIKE :sqlFilter OR p.CREATED_AT\\:\\:text LIKE :sqlFilter)", nativeQuery = true)
+                   "      AND (CAST(p.ID AS VARCHAR) LIKE :sqlFilter OR p.TITLE LIKE :sqlFilter OR p.CATEGORY LIKE :sqlFilter OR p.TAGS LIKE :sqlFilter OR p.CREATED_AT\\:\\:text LIKE :sqlFilter)", nativeQuery = true)
     Page<PostEntity> findByAuthorId(Long authorId, String sqlFilter, Pageable pageable);
     // @formatter:on
 

@@ -73,3 +73,8 @@ export class PostsGroupApiResponse {
   name: string;
   posts: Array<PostSummaryApiResponse>;
 }
+
+export class UploadPostsApiRequest {
+  url: string;
+  file: File;
+}

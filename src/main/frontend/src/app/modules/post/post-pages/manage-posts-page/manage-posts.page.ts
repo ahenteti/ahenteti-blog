@@ -29,7 +29,14 @@ export class ManagePostsPage extends AbstractManageResourcesPage<PostSummary>
     super();
     this.currentPage = new PostsPage();
     this.dataSource = new MatTableDataSource([]);
-    this.columns = ["title", "category", "createdAt", "actions"];
+    this.columns = [
+      "id",
+      "title",
+      "category",
+      "createdAt",
+      "lastUpdatedAt",
+      "actions",
+    ];
   }
 
   // prettier-ignore
@@ -65,8 +72,16 @@ export class ManagePostsPage extends AbstractManageResourcesPage<PostSummary>
       .catch((error) => this.handleGetAllUserPostsErrorEvent(error));
   }
 
+  // prettier-ignore
   onFileUpload(file: File) {
-    console.log(file);
+    const request = this.postConverter.toUploadPostsApiRequest(file);
+    this.postHttpClient.uploadPosts(request)
+    .catch((error) => this.handleUploadPostsApiRequestErrorEvent(error));
+  }
+
+  // prettier-ignore
+  private handleUploadPostsApiRequestErrorEvent(error) {
+    this.postHttpClient.handleError(error, "Error while uploading your posts :(")
   }
 
   private handleDeletePostErrorEvent(error) {

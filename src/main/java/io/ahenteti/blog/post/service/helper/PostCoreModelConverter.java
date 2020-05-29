@@ -1,7 +1,10 @@
 package io.ahenteti.blog.post.service.helper;
 
+import io.ahenteti.blog.post.model.api.request.UserPostToCreateOrUpdateApiRequest;
+import io.ahenteti.blog.post.model.api.request.valid.ValidBulkCreateAndUpdatePostOperationsApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidCreatePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidUpdatePostApiRequest;
+import io.ahenteti.blog.post.model.core.BulkCreateAndUpdatePostOperations;
 import io.ahenteti.blog.post.model.core.Post;
 import io.ahenteti.blog.post.model.core.PostSummary;
 import io.ahenteti.blog.post.model.core.PostToCreate;
@@ -12,6 +15,7 @@ import io.ahenteti.blog.post.model.core.PostsPage;
 import io.ahenteti.blog.post.model.entity.PostEntity;
 import io.ahenteti.blog.shared.model.api.ValidPageApiRequest;
 import io.ahenteti.blog.user.model.core.User;
+import io.ahenteti.blog.user.model.oauth2.IOAuth2User;
 import io.ahenteti.blog.user.service.UserConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -116,4 +120,38 @@ public class PostCoreModelConverter {
         return Arrays.asList(entity.getTags().split(PostEntity.TAGS_SEPARATOR_REGEX));
     }
 
+    public BulkCreateAndUpdatePostOperations toBulkOperations(ValidBulkCreateAndUpdatePostOperationsApiRequest request) {
+        BulkCreateAndUpdatePostOperations res = new BulkCreateAndUpdatePostOperations();
+        for (UserPostToCreateOrUpdateApiRequest post : request.getPosts()) {
+            if (post.getId() == null) {
+                res.getPostsToCreate().add(toPostToCreate(post, request.getUser()));
+            } else {
+                res.getPostsToUpdate().add(toPostToUpdate(post, request.getUser()));
+            }
+        }
+        return res;
+    }
+
+    private PostToUpdate toPostToUpdate(UserPostToCreateOrUpdateApiRequest post, IOAuth2User user) {
+        PostToUpdate res = new PostToUpdate();
+        res.setId(post.getId());
+        res.setTitle(post.getTitle());
+        res.setCategory(post.getCategory());
+        res.setTags(post.getTags());
+        res.setBody(post.getBodyMarkdownBase64());
+        res.setAuthor(userConverter.toUser(user));
+        res.setLastUpdatedAt(Instant.now());
+        return res;
+    }
+
+    private PostToCreate toPostToCreate(UserPostToCreateOrUpdateApiRequest post, IOAuth2User user) {
+        PostToCreate res = new PostToCreate();
+        res.setTitle(post.getTitle());
+        res.setCategory(post.getCategory());
+        res.setTags(post.getTags());
+        res.setBody(post.getBodyMarkdownBase64());
+        res.setAuthor(userConverter.toUser(user));
+        res.setCreatedAt(Instant.now());
+        return res;
+    }
 }

@@ -3,6 +3,7 @@ package io.ahenteti.blog.user;
 import io.ahenteti.blog.post.model.api.request.GetUserPostsPageApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidGetUserPostsApiRequest;
 import io.ahenteti.blog.post.model.api.response.UserPostApiResponse;
+import io.ahenteti.blog.post.model.api.response.UserPostsApiResponse;
 import io.ahenteti.blog.post.model.api.response.UserPostsPageApiResponse;
 import io.ahenteti.blog.user.model.api.CurrentUserApiResponse;
 import io.ahenteti.blog.user.model.api.GetUsersPageApiRequest;
@@ -82,7 +83,7 @@ public class UserController {
 
     // @formatter:off
     @GetMapping("/secure-api/user/posts-summaries")
-    public List<UserPostApiResponse> getAllUserPosts(@ModelAttribute IOAuth2User user) {
+    public UserPostsApiResponse getAllUserPosts(@ModelAttribute IOAuth2User user) {
         userValidator.validateAuthenticatedUser(user);
         List<Post> userPosts = postDao.getAllUserPosts(user);
         return postConverter.toApiResponse(userPosts);

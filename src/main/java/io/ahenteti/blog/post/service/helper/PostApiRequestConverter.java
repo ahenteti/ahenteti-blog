@@ -1,5 +1,6 @@
 package io.ahenteti.blog.post.service.helper;
 
+import io.ahenteti.blog.post.model.api.request.BulkCreateAndUpdatePostOperationsApiRequest;
 import io.ahenteti.blog.post.model.api.request.CreatePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.CreatePostApiRequestBody;
 import io.ahenteti.blog.post.model.api.request.DeletePostApiRequest;
@@ -10,6 +11,7 @@ import io.ahenteti.blog.post.model.api.request.UpdatePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.UpdatePostApiRequestBody;
 import io.ahenteti.blog.user.model.oauth2.IOAuth2User;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -59,6 +61,13 @@ public class PostApiRequestConverter {
     public GetPostApiRequest toApiRequest(Long postId) {
         GetPostApiRequest res = new GetPostApiRequest();
         res.setPostId(postId);
+        return res;
+    }
+
+    public BulkCreateAndUpdatePostOperationsApiRequest toApiRequest(IOAuth2User user, MultipartFile file) {
+        BulkCreateAndUpdatePostOperationsApiRequest res = new BulkCreateAndUpdatePostOperationsApiRequest();
+        res.setUser(user);
+        res.setFile(file);
         return res;
     }
 }

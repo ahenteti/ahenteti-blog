@@ -4,11 +4,13 @@ import { AlertService } from "./alert.service";
 export class CommonHttpClient {
   constructor(private alertService: AlertService) {}
 
-  protected handleError<T>(message, result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      this.alertService.error(message);
-      return of(result);
-    };
+  // prettier-ignore
+  public handleError(error, defaultErrorMessage = "Error while executing your request :(") {
+    console.error(error);
+    if (error.status >= 400 || error.status <= 500) {
+      this.alertService.error(error.error.error.message);
+    } else {
+      this.alertService.error(defaultErrorMessage);
+    }
   }
 }

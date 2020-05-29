@@ -12,6 +12,7 @@ import {
   GetPostGroupByStrategiesApiRequest,
   GetPostsGroupsApiRequest,
   PostsGroupApiResponse,
+  UploadPostsApiRequest,
 } from "../models/post.external.models";
 import {
   Post,
@@ -71,7 +72,6 @@ export class PostHttpClient extends CommonHttpClient {
     return this.http
       .get<PostApiResponse>(`/api/posts/${postId}`)
       .pipe(map((post) => this.postConverter.toPost(post)))
-      .pipe(this.catchGetPostByIdError())
       .toPromise();
   }
 
@@ -93,20 +93,21 @@ export class PostHttpClient extends CommonHttpClient {
     // prettier-ignore
   }
 
+  uploadPosts(request: UploadPostsApiRequest): Promise<any> {
+    // prettier-ignore
+    const formData: FormData = new FormData();
+    formData.append("file", request.file, request.file.name);
+    return this.http
+      .post<any>(request.url, formData)
+      .toPromise();
+    // prettier-ignore
+  }
+
   deletePost(request: DeletePostApiRequest): Promise<void> {
     // prettier-ignore
     return this.http
       .delete<void>(request.url)
       .toPromise();
     // prettier-ignore
-  }
-
-  private catchGetPostByIdError(): OperatorFunction<Post, Post> {
-    return catchError(
-      this.handleError(
-        `Error while fetching post content :(`,
-        new OfflinePost()
-      )
-    );
   }
 }
