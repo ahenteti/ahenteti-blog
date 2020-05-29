@@ -7,6 +7,7 @@ import io.ahenteti.blog.post.model.api.request.CreatePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.DeletePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.GetPostApiRequest;
 import io.ahenteti.blog.post.model.api.request.GetPostsGroupsApiRequest;
+import io.ahenteti.blog.post.model.api.request.GetUserPostsPageApiRequest;
 import io.ahenteti.blog.post.model.api.request.UpdatePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.UserPostsToCreateOrUpdateApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidBulkCreateAndUpdatePostOperationsApiRequest;
@@ -14,6 +15,7 @@ import io.ahenteti.blog.post.model.api.request.valid.ValidCreatePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidDeletePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidGetPostApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidGetPostsGroupsApiRequest;
+import io.ahenteti.blog.post.model.api.request.valid.ValidGetUserPostsApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidUpdatePostApiRequest;
 import io.ahenteti.blog.post.model.core.BulkCreateAndUpdatePostOperations;
 import io.ahenteti.blog.post.model.core.EPostsGroupByStrategyName;
@@ -26,6 +28,7 @@ import io.ahenteti.blog.post.model.core.ValidPostToUpdate;
 import io.ahenteti.blog.post.model.entity.PostEntity;
 import io.ahenteti.blog.shared.exception.InvalidRequirementException;
 import io.ahenteti.blog.shared.exception.ResourceNotFoundException;
+import io.ahenteti.blog.shared.service.PageApiRequestValidator;
 import io.ahenteti.blog.shared.utils.CollectionValidatorUtils;
 import io.ahenteti.blog.user.model.core.User;
 import io.ahenteti.blog.user.model.entity.UserEntity;
@@ -52,14 +55,16 @@ public class PostValidator {
     private PostDao postDao;
     private PostConfig postConfig;
     private ObjectMapper objectMapper;
+    private PageApiRequestValidator pageApiRequestValidator;
 
     @Autowired
-    public PostValidator(UserValidator userValidator, PostRepository postRepository, PostDao postDao, PostConfig postConfig, ObjectMapper objectMapper) {
+    public PostValidator(UserValidator userValidator, PostRepository postRepository, PostDao postDao, PostConfig postConfig, ObjectMapper objectMapper, PageApiRequestValidator pageApiRequestValidator) {
         this.userValidator = userValidator;
         this.postRepository = postRepository;
         this.postDao = postDao;
         this.postConfig = postConfig;
         this.objectMapper = objectMapper;
+        this.pageApiRequestValidator = pageApiRequestValidator;
     }
 
     public ValidDeletePostApiRequest validate(DeletePostApiRequest request) {
@@ -122,6 +127,12 @@ public class PostValidator {
         UserEntity author = userValidator.validate(post.getAuthor());
         validatePostsCanOnlyUpdatedByAdminsOrTheirOwnAuthors(post.getAuthor(), post.getId());
         return new ValidPostToUpdate(post, postEntity, author);
+    }
+
+    public ValidGetUserPostsApiRequest validate(GetUserPostsPageApiRequest request) {
+        userValidator.validateAuthenticatedUser(request.getUser());
+        pageApiRequestValidator.validate(request);
+        return new ValidGetUserPostsApiRequest(request);
     }
 
     private PostEntity validateId(PostToUpdate post) {

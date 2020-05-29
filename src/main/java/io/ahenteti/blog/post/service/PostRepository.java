@@ -18,6 +18,8 @@ public interface PostRepository extends JpaRepository<PostEntity, Long> {
 
     Optional<PostEntity> findByIdAndAuthorId(Long id, Long authorId);
 
+    Optional<PostEntity> findByTitleAndAuthorId(String title, Long authorId);
+
     @Query(value = "SELECT DISTINCT p.CATEGORY FROM T_POSTS p", nativeQuery = true)
     List<String> getPostCategories();
 

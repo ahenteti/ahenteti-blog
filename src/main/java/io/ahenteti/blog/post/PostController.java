@@ -1,29 +1,33 @@
 package io.ahenteti.blog.post;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.ahenteti.blog.post.model.api.request.BulkCreateAndUpdatePostOperationsApiRequest;
 import io.ahenteti.blog.post.model.api.request.CreatePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.CreatePostApiRequestBody;
 import io.ahenteti.blog.post.model.api.request.DeletePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.GetPostApiRequest;
 import io.ahenteti.blog.post.model.api.request.GetPostsGroupsApiRequest;
+import io.ahenteti.blog.post.model.api.request.GetUserPostsPageApiRequest;
 import io.ahenteti.blog.post.model.api.request.UpdatePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.UpdatePostApiRequestBody;
 import io.ahenteti.blog.post.model.api.request.valid.ValidBulkCreateAndUpdatePostOperationsApiRequest;
-import io.ahenteti.blog.post.model.api.request.valid.ValidGetPostApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidCreatePostApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidDeletePostApiRequest;
+import io.ahenteti.blog.post.model.api.request.valid.ValidGetPostApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidGetPostsGroupsApiRequest;
+import io.ahenteti.blog.post.model.api.request.valid.ValidGetUserPostsApiRequest;
 import io.ahenteti.blog.post.model.api.request.valid.ValidUpdatePostApiRequest;
 import io.ahenteti.blog.post.model.api.response.PostApiResponse;
 import io.ahenteti.blog.post.model.api.response.PostGroupByStrategiesApiResponse;
 import io.ahenteti.blog.post.model.api.response.PostSummaryApiResponse;
 import io.ahenteti.blog.post.model.api.response.PostsGroupsApiResponse;
+import io.ahenteti.blog.post.model.api.response.UserPostsApiResponse;
+import io.ahenteti.blog.post.model.api.response.UserPostsPageApiResponse;
 import io.ahenteti.blog.post.model.core.BulkCreateAndUpdatePostOperations;
 import io.ahenteti.blog.post.model.core.Post;
 import io.ahenteti.blog.post.model.core.PostToCreate;
 import io.ahenteti.blog.post.model.core.PostToUpdate;
 import io.ahenteti.blog.post.model.core.PostsGroups;
+import io.ahenteti.blog.post.model.core.PostsPage;
 import io.ahenteti.blog.post.model.core.ValidBulkCreateAndUpdatePostOperations;
 import io.ahenteti.blog.post.model.core.ValidPostToCreate;
 import io.ahenteti.blog.post.model.core.ValidPostToUpdate;
@@ -32,6 +36,7 @@ import io.ahenteti.blog.post.service.PostDao;
 import io.ahenteti.blog.post.service.PostValidator;
 import io.ahenteti.blog.shared.model.core.IGroupByStrategy;
 import io.ahenteti.blog.user.model.oauth2.IOAuth2User;
+import io.ahenteti.blog.user.service.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
@@ -55,14 +60,14 @@ public class PostController {
     private PostDao postDao;
     private PostConverter postConverter;
     private PostValidator postValidator;
-    private ObjectMapper objectMapper;
+    private UserValidator userValidator;
 
     @Autowired
-    public PostController(PostDao postDao, PostConverter postConverter, PostValidator postValidator, ObjectMapper objectMapper) {
+    public PostController(PostDao postDao, PostConverter postConverter, PostValidator postValidator, UserValidator userValidator) {
         this.postDao = postDao;
         this.postConverter = postConverter;
         this.postValidator = postValidator;
-        this.objectMapper = objectMapper;
+        this.userValidator = userValidator;
     }
 
     @GetMapping("/api/post-group-by-strategies")
@@ -119,6 +124,31 @@ public class PostController {
         BulkCreateAndUpdatePostOperations bulkOperations = postConverter.toBulkOperations(validRequest);
         ValidBulkCreateAndUpdatePostOperations validBulkOperations = postValidator.validate(bulkOperations);
         postDao.createOrUpdate(validBulkOperations);
+    }
+    // @formatter:on
+
+    // @formatter:off
+    @GetMapping("/secure-api/user/posts-summaries-page")
+    public UserPostsPageApiResponse getUserPostsPage(
+            @ModelAttribute IOAuth2User user, 
+            @RequestParam String filter,
+            @RequestParam Integer page, 
+            @RequestParam Integer size, 
+            @RequestParam(required = false, defaultValue = "CREATED_AT") String sortBy, 
+            @RequestParam(required = false, defaultValue = "desc") String sortDirection) {
+        GetUserPostsPageApiRequest request = postConverter.toApiRequest(user, page, size, sortBy, sortDirection, filter);
+        ValidGetUserPostsApiRequest validRequest = postValidator.validate(request);
+        PostsPage postsPage = postDao.getUserPosts(validRequest);
+        return postConverter.toApiResponse(postsPage);
+    }
+    // @formatter:on
+
+    // @formatter:off
+    @GetMapping("/secure-api/user/posts-summaries")
+    public UserPostsApiResponse getAllUserPosts(@ModelAttribute IOAuth2User user) {
+        userValidator.validateAuthenticatedUser(user);
+        List<Post> userPosts = postDao.getAllUserPosts(user);
+        return postConverter.toApiResponse(userPosts);
     }
     // @formatter:on
 

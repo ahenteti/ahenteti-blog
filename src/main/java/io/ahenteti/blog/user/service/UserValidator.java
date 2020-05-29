@@ -1,7 +1,5 @@
 package io.ahenteti.blog.user.service;
 
-import io.ahenteti.blog.post.model.api.request.GetUserPostsPageApiRequest;
-import io.ahenteti.blog.post.model.api.request.valid.ValidGetUserPostsApiRequest;
 import io.ahenteti.blog.shared.exception.AuthenticationException;
 import io.ahenteti.blog.shared.exception.AuthorizationException;
 import io.ahenteti.blog.shared.exception.ResourceNotFoundException;
@@ -33,12 +31,6 @@ public class UserValidator {
         validateAdminUser(request.getUser());
         pageApiRequestValidator.validate(request);
         return new ValidGetUsersPageApiRequest(request);
-    }
-
-    public ValidGetUserPostsApiRequest validate(GetUserPostsPageApiRequest request) {
-        validateAuthenticatedUser(request.getUser());
-        pageApiRequestValidator.validate(request);
-        return new ValidGetUserPostsApiRequest(request);
     }
 
     public void validateAdminUser(IOAuth2User user) {

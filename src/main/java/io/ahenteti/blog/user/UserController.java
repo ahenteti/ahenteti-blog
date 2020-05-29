@@ -65,29 +65,4 @@ public class UserController {
     }
     // @formatter:on
 
-    // @formatter:off
-    @GetMapping("/secure-api/user/posts-summaries-page")
-    public UserPostsPageApiResponse getUserPostsPage(
-            @ModelAttribute IOAuth2User user, 
-            @RequestParam String filter,
-            @RequestParam Integer page, 
-            @RequestParam Integer size, 
-            @RequestParam(required = false, defaultValue = "CREATED_AT") String sortBy, 
-            @RequestParam(required = false, defaultValue = "desc") String sortDirection) {
-        GetUserPostsPageApiRequest request = postConverter.toApiRequest(user, page, size, sortBy, sortDirection, filter);
-        ValidGetUserPostsApiRequest validRequest = userValidator.validate(request);
-        PostsPage postsPage = postDao.getUserPosts(validRequest);
-        return postConverter.toApiResponse(postsPage);
-    }
-    // @formatter:on
-
-    // @formatter:off
-    @GetMapping("/secure-api/user/posts-summaries")
-    public UserPostsApiResponse getAllUserPosts(@ModelAttribute IOAuth2User user) {
-        userValidator.validateAuthenticatedUser(user);
-        List<Post> userPosts = postDao.getAllUserPosts(user);
-        return postConverter.toApiResponse(userPosts);
-    }
-    // @formatter:on
-
 }
