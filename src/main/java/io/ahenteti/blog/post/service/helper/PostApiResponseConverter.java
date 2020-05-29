@@ -102,7 +102,6 @@ public class PostApiResponseConverter {
 
     private UserPostApiResponse toUserPostApiResponse(Post post) {
         UserPostApiResponse res = new UserPostApiResponse();
-        res.setId(post.getId());
         res.setTitle(post.getTitle());
         res.setCategory(post.getCategory());
         res.setTags(post.getTags());

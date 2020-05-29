@@ -115,6 +115,7 @@ public class PostController {
     }
 
     // @formatter:off
+    @Transactional
     @PostMapping("/secure-api/posts/bulk_create_and_update_operations.json")
     public void bulkCreateAndUpdateOperations(
             @ModelAttribute IOAuth2User user,

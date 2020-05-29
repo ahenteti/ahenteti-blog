@@ -13,6 +13,7 @@ import io.ahenteti.blog.post.model.core.PostsGroup;
 import io.ahenteti.blog.post.model.core.PostsGroups;
 import io.ahenteti.blog.post.model.core.PostsPage;
 import io.ahenteti.blog.post.model.entity.PostEntity;
+import io.ahenteti.blog.post.service.PostRepository;
 import io.ahenteti.blog.shared.model.api.ValidPageApiRequest;
 import io.ahenteti.blog.user.model.core.User;
 import io.ahenteti.blog.user.model.oauth2.IOAuth2User;
@@ -35,10 +36,12 @@ import java.util.stream.Collectors;
 public class PostCoreModelConverter {
 
     private UserConverter userConverter;
+    private PostRepository postRepository;
 
     @Autowired
-    public PostCoreModelConverter(UserConverter userConverter) {
+    public PostCoreModelConverter(UserConverter userConverter, PostRepository postRepository) {
         this.userConverter = userConverter;
+        this.postRepository = postRepository;
     }
 
     public PostSummary toPostSummary(PostEntity entity) {
@@ -120,21 +123,24 @@ public class PostCoreModelConverter {
         return Arrays.asList(entity.getTags().split(PostEntity.TAGS_SEPARATOR_REGEX));
     }
 
+    // @formatter:off
     public BulkCreateAndUpdatePostOperations toBulkOperations(ValidBulkCreateAndUpdatePostOperationsApiRequest request) {
         BulkCreateAndUpdatePostOperations res = new BulkCreateAndUpdatePostOperations();
         for (UserPostToCreateOrUpdateApiRequest post : request.getPosts()) {
-            if (post.getId() == null) {
-                res.getPostsToCreate().add(toPostToCreate(post, request.getUser()));
+            Optional<PostEntity> postEntity = postRepository.findByTitleAndAuthorId(post.getTitle(), request.getUser().getDbId());
+            if (postEntity.isPresent()) {
+                res.getPostsToUpdate().add(toPostToUpdate(postEntity.get().getId(), post, request.getUser()));
             } else {
-                res.getPostsToUpdate().add(toPostToUpdate(post, request.getUser()));
+                res.getPostsToCreate().add(toPostToCreate(post, request.getUser()));
             }
         }
         return res;
     }
+    // @formatter:on
 
-    private PostToUpdate toPostToUpdate(UserPostToCreateOrUpdateApiRequest post, IOAuth2User user) {
+    private PostToUpdate toPostToUpdate(Long postId, UserPostToCreateOrUpdateApiRequest post, IOAuth2User user) {
         PostToUpdate res = new PostToUpdate();
-        res.setId(post.getId());
+        res.setId(postId);
         res.setTitle(post.getTitle());
         res.setCategory(post.getCategory());
         res.setTags(post.getTags());
