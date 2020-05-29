@@ -352,7 +352,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<app-manage-resources-page-layout\r\n  pageTitle=\"My Posts\"\r\n  [previousButtonCssClasses]=\"previousButtonCssClasses\"\r\n  [nextButtonCssClasses]=\"nextButtonCssClasses\"\r\n  (previousButtonClick)=\"handlePreviousButtonClickEvent()\"\r\n  (nextButtonClick)=\"handleNextButtonClickEvent()\"\r\n  (filter)=\"onFilter($event)\"\r\n>\r\n  <ng-container class=\"top-table-actions\">\r\n    <app-page-title-download-button\r\n      tooltip=\"download all your posts\"\r\n      (click)=\"downloadAllUserPosts()\"\r\n    >\r\n    </app-page-title-download-button>\r\n    <app-page-title-upload-button\r\n      (fileUpload)=\"onFileUpload($event)\"\r\n      tooltip=\"upload posts\"\r\n    >\r\n    </app-page-title-upload-button>\r\n    <app-page-title-new-button\r\n      routerLink=\"/posts/new\"\r\n      tooltip=\"create new post\"\r\n    ></app-page-title-new-button>\r\n  </ng-container>\r\n\r\n  <ng-container class=\"table\">\r\n    <table mat-table matSort [dataSource]=\"dataSource\">\r\n      <ng-container matColumnDef=\"id\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>#</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.id}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"title\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Title</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.title}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"category\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Category</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.category}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"createdAt\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Created At</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.createdAt | date}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"lastUpdatedAt\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>\r\n          Last Updated At\r\n        </th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <ng-container *ngIf=\"element.lastUpdatedAt\"\r\n            >{{element.lastUpdatedAt | date}}</ng-container\r\n          >\r\n        </td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"actions\">\r\n        <th mat-header-cell *matHeaderCellDef></th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <div class=\"row-actions\">\r\n            <app-consult-button-link\r\n              [routerLink]=\"['/posts', element.id, 'consult']\"\r\n            ></app-consult-button-link>\r\n            <app-edit-button-link\r\n              [routerLink]=\"['/posts', element.id, 'edit']\"\r\n            ></app-edit-button-link>\r\n            <app-delete-button\r\n              (click)=\"deletePost(element.id)\"\r\n            ></app-delete-button>\r\n          </div>\r\n        </td>\r\n      </ng-container>\r\n\r\n      <tr mat-header-row *matHeaderRowDef=\"columns\"></tr>\r\n      <tr mat-row class=\"row\" *matRowDef=\"let row; columns: columns;\"></tr>\r\n    </table>\r\n  </ng-container>\r\n</app-manage-resources-page-layout>\r\n";
+    __webpack_exports__["default"] = "<app-manage-resources-page-layout\r\n  pageTitle=\"My Posts\"\r\n  [previousButtonCssClasses]=\"previousButtonCssClasses\"\r\n  [nextButtonCssClasses]=\"nextButtonCssClasses\"\r\n  (previousButtonClick)=\"handlePreviousButtonClickEvent()\"\r\n  (nextButtonClick)=\"handleNextButtonClickEvent()\"\r\n  (filter)=\"onFilter($event)\"\r\n>\r\n  <ng-container class=\"top-table-actions\">\r\n    <app-page-title-delete-button\r\n      tooltip=\"delete all your posts\"\r\n      (click)=\"deleteAllUserPosts()\"\r\n    >\r\n    </app-page-title-delete-button>\r\n    <app-page-title-download-button\r\n      tooltip=\"download all your posts\"\r\n      (click)=\"downloadAllUserPosts()\"\r\n    >\r\n    </app-page-title-download-button>\r\n    <app-page-title-upload-button\r\n      (fileUpload)=\"onFileUpload($event)\"\r\n      tooltip=\"upload posts\"\r\n    >\r\n    </app-page-title-upload-button>\r\n    <app-page-title-new-button\r\n      routerLink=\"/posts/new\"\r\n      tooltip=\"create new post\"\r\n    ></app-page-title-new-button>\r\n  </ng-container>\r\n\r\n  <ng-container class=\"table\">\r\n    <table mat-table matSort [dataSource]=\"dataSource\">\r\n      <ng-container matColumnDef=\"id\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>#</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.id}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"title\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Title</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.title}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"category\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Category</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.category}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"createdAt\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Created At</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.createdAt | date}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"lastUpdatedAt\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>\r\n          Last Updated At\r\n        </th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <ng-container *ngIf=\"element.lastUpdatedAt\"\r\n            >{{element.lastUpdatedAt | date}}</ng-container\r\n          >\r\n        </td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"actions\">\r\n        <th mat-header-cell *matHeaderCellDef></th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <div class=\"row-actions\">\r\n            <app-consult-button-link\r\n              [routerLink]=\"['/posts', element.id, 'consult']\"\r\n            ></app-consult-button-link>\r\n            <app-edit-button-link\r\n              [routerLink]=\"['/posts', element.id, 'edit']\"\r\n            ></app-edit-button-link>\r\n            <app-delete-button\r\n              (click)=\"deletePost(element.id)\"\r\n            ></app-delete-button>\r\n          </div>\r\n        </td>\r\n      </ng-container>\r\n\r\n      <tr mat-header-row *matHeaderRowDef=\"columns\"></tr>\r\n      <tr mat-row class=\"row\" *matRowDef=\"let row; columns: columns;\"></tr>\r\n    </table>\r\n  </ng-container>\r\n</app-manage-resources-page-layout>\r\n";
     /***/
   },
 
@@ -5464,26 +5464,47 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           });
         }
       }, {
+        key: "deleteAllUserPosts",
+        value: function deleteAllUserPosts() {
+          var _this25 = this;
+
+          var dialogRef = this.dialog.open(src_app_modules_shared_components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_9__["ConfirmationDialogComponent"], {
+            data: "Do you confirm the deletion of all your posts ?",
+            width: "340px"
+          });
+          dialogRef.afterClosed().subscribe(function (result) {
+            if (result) {
+              var request = _this25.postConverter.toDeleteUserPostsApiRequest();
+
+              _this25.postHttpClient.deleteUserPosts(request).then(function () {
+                return _this25.handleDeleteUserPostsSuccessEvent();
+              })["catch"](function (error) {
+                return _this25.handleDeleteUserPostsErrorEvent(error);
+              });
+            }
+          });
+        }
+      }, {
         key: "downloadAllUserPosts",
         value: function downloadAllUserPosts() {
-          var _this25 = this;
+          var _this26 = this;
 
           var request = this.postConverter.toGetAllUserPostsApiRequest();
           this.postHttpClient.getUserPostsBlob(request).then(function (posts) {
-            return _this25.handleGetAllUserPostsSuccessEvent(posts);
+            return _this26.handleGetAllUserPostsSuccessEvent(posts);
           })["catch"](function (error) {
-            return _this25.handleGetAllUserPostsErrorEvent(error);
+            return _this26.handleGetAllUserPostsErrorEvent(error);
           });
         } // prettier-ignore
 
       }, {
         key: "onFileUpload",
         value: function onFileUpload(file) {
-          var _this26 = this;
+          var _this27 = this;
 
           var request = this.postConverter.toUploadPostsApiRequest(file);
           this.postHttpClient.uploadPosts(request)["catch"](function (error) {
-            return _this26.handleUploadPostsApiRequestErrorEvent(error);
+            return _this27.handleUploadPostsApiRequestErrorEvent(error);
           });
         } // prettier-ignore
 
@@ -5543,6 +5564,18 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function handleGetAllUserPostsErrorEvent(error) {
           console.error(error);
           this.alertService.error("Error while fetching your posts :(");
+        } // prettier-ignore
+
+      }, {
+        key: "handleDeleteUserPostsErrorEvent",
+        value: function handleDeleteUserPostsErrorEvent(error) {
+          this.postHttpClient.handleError(error, "Error while deleting user posts :(");
+        }
+      }, {
+        key: "handleDeleteUserPostsSuccessEvent",
+        value: function handleDeleteUserPostsSuccessEvent() {
+          this.currentPage = new _post_shared_models_post_internal_models__WEBPACK_IMPORTED_MODULE_3__["PostsPage"]();
+          this.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"]([]);
         }
       }]);
 
@@ -5643,11 +5676,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(PostDashboardPage, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this27 = this;
+          var _this28 = this;
 
           this.postsState.resetFilters();
           this.postsState.noMorePosts$.subscribe(function (value) {
-            return _this27.noMorePosts = value;
+            return _this28.noMorePosts = value;
           });
         }
       }, {
@@ -5928,24 +5961,24 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(UpdatePostPage, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this28 = this;
+          var _this29 = this;
 
           this.postHttpClient.getPostById(this.postId).then(function (post) {
-            _this28.post = post;
+            _this29.post = post;
           });
         }
       }, {
         key: "onSubmit",
         value: function onSubmit(post) {
-          var _this29 = this;
+          var _this30 = this;
 
           try {
             this.postValidator.validateUpdatePost(post);
             var request = this.postConverter.toUpdatePostApiRequest(post);
             this.postHttpClient.updatePost(request).then(function (post) {
-              return _this29.handleUpdatePostSuccessEvent(post);
+              return _this30.handleUpdatePostSuccessEvent(post);
             })["catch"](function (error) {
-              return _this29.handleUpdatePostErrorEvent(error);
+              return _this30.handleUpdatePostErrorEvent(error);
             });
           } catch (error) {
             this.alertService.error(error.message);
@@ -6579,11 +6612,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "onInputKeyup",
         value: function onInputKeyup(event) {
-          var _this30 = this;
+          var _this31 = this;
 
           clearTimeout(this.timer);
           this.timer = window.setTimeout(function () {
-            return _this30.inputChange.emit(event.target.value);
+            return _this31.inputChange.emit(event.target.value);
           }, this.inputChangeDelay);
         }
       }, {
@@ -6764,10 +6797,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(TagComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this31 = this;
+          var _this32 = this;
 
           this.state.selectedTag$.subscribe(function (selectedTag) {
-            _this31.selected = _this31.tag == selectedTag;
+            _this32.selected = _this32.tag == selectedTag;
           });
         }
       }, {
@@ -7231,11 +7264,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "toPostGroupByStrategies",
         value: function toPostGroupByStrategies(strategies) {
-          var _this32 = this;
+          var _this33 = this;
 
           var res = new _models_post_internal_models__WEBPACK_IMPORTED_MODULE_2__["PostGroupByStrategies"]();
           strategies.forEach(function (strategy) {
-            return res.push(_this32.toPostGroupByStrategy(strategy));
+            return res.push(_this33.toPostGroupByStrategy(strategy));
           });
           return res;
         } // prettier-ignore
@@ -7251,7 +7284,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "toPostsSummaries",
         value: function toPostsSummaries(posts) {
-          var _this33 = this;
+          var _this34 = this;
 
           var res = new _models_post_internal_models__WEBPACK_IMPORTED_MODULE_2__["PostsGroups"]();
           posts.forEach(function (postsGroupApiResponse) {
@@ -7259,7 +7292,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             postsGroup.name = postsGroupApiResponse.groupName;
             postsGroup.posts = [];
             postsGroupApiResponse.posts.forEach(function (post) {
-              return postsGroup.posts.push(_this33.toPostSummary(post));
+              return postsGroup.posts.push(_this34.toPostSummary(post));
             });
             res.push(postsGroup);
           });
@@ -7269,11 +7302,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "toPostsGroups",
         value: function toPostsGroups(postsGroups) {
-          var _this34 = this;
+          var _this35 = this;
 
           var res = new _models_post_internal_models__WEBPACK_IMPORTED_MODULE_2__["PostsGroups"]();
           postsGroups.forEach(function (postsGroup) {
-            return res.push(_this34.toPostsGroup(postsGroup));
+            return res.push(_this35.toPostsGroup(postsGroup));
           });
           return res;
         } // prettier-ignore
@@ -7281,19 +7314,19 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "toPostsGroup",
         value: function toPostsGroup(postsGroupApiResponse) {
-          var _this35 = this;
+          var _this36 = this;
 
           var res = new _models_post_internal_models__WEBPACK_IMPORTED_MODULE_2__["PostsGroup"]();
           res.name = postsGroupApiResponse.name;
           postsGroupApiResponse.posts.forEach(function (post) {
-            return res.posts.push(_this35.toPostSummary(post));
+            return res.posts.push(_this36.toPostSummary(post));
           });
           return res;
         }
       }, {
         key: "toPostsSummariesPage",
         value: function toPostsSummariesPage(posts) {
-          var _this36 = this;
+          var _this37 = this;
 
           var res = new _models_post_internal_models__WEBPACK_IMPORTED_MODULE_2__["PostsPage"]();
           res.totalItems = posts.totalItems;
@@ -7302,7 +7335,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           res.page = posts.page;
           var items = new Array();
           posts.items.forEach(function (post) {
-            return items.push(_this36.toPostSummary(post));
+            return items.push(_this37.toPostSummary(post));
           });
           res.items = items;
           return res;
@@ -7353,6 +7386,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function toDeletePostApiRequest(postId) {
           return {
             url: "/secure-api/posts/".concat(postId)
+          };
+        }
+      }, {
+        key: "toDeleteUserPostsApiRequest",
+        value: function toDeleteUserPostsApiRequest() {
+          return {
+            url: "/secure-api/user/posts/all"
           };
         }
       }, {
@@ -7466,44 +7506,44 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       var _super18 = _createSuper(PostHttpClient);
 
       function PostHttpClient(postConverter, http, alertService) {
-        var _this37;
+        var _this38;
 
         _classCallCheck(this, PostHttpClient);
 
-        _this37 = _super18.call(this, alertService);
-        _this37.postConverter = postConverter;
-        _this37.http = http;
-        return _this37;
+        _this38 = _super18.call(this, alertService);
+        _this38.postConverter = postConverter;
+        _this38.http = http;
+        return _this38;
       } // prettier-ignore
 
 
       _createClass(PostHttpClient, [{
         key: "getPostGroupByStrategies",
         value: function getPostGroupByStrategies(request) {
-          var _this38 = this;
+          var _this39 = this;
 
           return this.http.get(request.url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (strategies) {
-            return _this38.postConverter.toPostGroupByStrategies(strategies);
+            return _this39.postConverter.toPostGroupByStrategies(strategies);
           })).toPromise();
         } // prettier-ignore
 
       }, {
         key: "getPostsGroups",
         value: function getPostsGroups(request) {
-          var _this39 = this;
+          var _this40 = this;
 
           return this.http.get(request.url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (postsGroups) {
-            return _this39.postConverter.toPostsGroups(postsGroups);
+            return _this40.postConverter.toPostsGroups(postsGroups);
           })).toPromise();
         }
       }, {
         key: "getUserPosts",
         value: function getUserPosts(request) {
-          var _this40 = this;
+          var _this41 = this;
 
           // prettier-ignore
           return this.http.get(request.url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (posts) {
-            return _this40.postConverter.toPostsSummariesPage(posts);
+            return _this41.postConverter.toPostsSummariesPage(posts);
           })).toPromise();
         }
       }, {
@@ -7517,30 +7557,30 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "getPostById",
         value: function getPostById(postId) {
-          var _this41 = this;
+          var _this42 = this;
 
           return this.http.get("/api/posts/".concat(postId)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (post) {
-            return _this41.postConverter.toPost(post);
+            return _this42.postConverter.toPost(post);
           })).toPromise();
         }
       }, {
         key: "createPost",
         value: function createPost(request) {
-          var _this42 = this;
+          var _this43 = this;
 
           // prettier-ignore
           return this.http.post(request.url, request.body).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (post) {
-            return _this42.postConverter.toPostSummary(post);
+            return _this43.postConverter.toPostSummary(post);
           })).toPromise(); // prettier-ignore
         }
       }, {
         key: "updatePost",
         value: function updatePost(request) {
-          var _this43 = this;
+          var _this44 = this;
 
           // prettier-ignore
           return this.http.put(request.url, request.body).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (post) {
-            return _this43.postConverter.toPostSummary(post);
+            return _this44.postConverter.toPostSummary(post);
           })).toPromise(); // prettier-ignore
         }
       }, {
@@ -7554,6 +7594,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "deletePost",
         value: function deletePost(request) {
+          // prettier-ignore
+          return this.http["delete"](request.url).toPromise(); // prettier-ignore
+        }
+      }, {
+        key: "deleteUserPosts",
+        value: function deleteUserPosts(request) {
           // prettier-ignore
           return this.http["delete"](request.url).toPromise(); // prettier-ignore
         }
@@ -7824,13 +7870,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(PostsState, [{
         key: "init",
         value: function init() {
-          var _this44 = this;
+          var _this45 = this;
 
           var request = this.postConverter.toGetPostGroupByStrategiesApiRequest();
           this.postHttpClient.getPostGroupByStrategies(request).then(function (strategies) {
-            return _this44.handleGetPostGroupByStrategiesSuccessEvent(strategies);
+            return _this45.handleGetPostGroupByStrategiesSuccessEvent(strategies);
           })["catch"](function (error) {
-            return _this44.handleGetPostGroupByStrategiesErrorEvent(error);
+            return _this45.handleGetPostGroupByStrategiesErrorEvent(error);
           });
         }
       }, {
@@ -7856,7 +7902,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "loadMorePosts",
         value: function loadMorePosts() {
-          var _this45 = this;
+          var _this46 = this;
 
           if (this.noMorePosts.getValue() || this.loadPostsInProgress) return;
 
@@ -7864,9 +7910,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             this.loadPostsInProgress = true;
             var getPostsGroupsApiRequest = this.calculateGetPostsGroupsApiRequest();
             this.postHttpClient.getPostsGroups(getPostsGroupsApiRequest).then(function (postsGroups) {
-              return _this45.handleGetPostsGroupsSuccessEvent(postsGroups);
+              return _this46.handleGetPostsGroupsSuccessEvent(postsGroups);
             })["catch"](function (error) {
-              return _this45.handleGetPostsGroupsErrorEvent(error);
+              return _this46.handleGetPostsGroupsErrorEvent(error);
             });
           } catch (e) {
             if (e instanceof src_app_modules_shared_models_no_posts_groups_to_load_error__WEBPACK_IMPORTED_MODULE_10__["NoPostsGroupsToLoadError"]) {
@@ -7951,12 +7997,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "calculateDisplayedPostsGroups",
         value: function calculateDisplayedPostsGroups() {
-          var _this46 = this;
+          var _this47 = this;
 
           var displayedPostsGroups = new _models_post_internal_models__WEBPACK_IMPORTED_MODULE_3__["PostsGroups"]();
           this.loadedPostsGroups.getValue().forEach(function (group) {
             var posts = group.posts.filter(function (post) {
-              return _this46.keepPost(post);
+              return _this47.keepPost(post);
             });
 
             if (posts.length > 0) {
@@ -8034,14 +8080,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "calculateSelectedGroupByStrategy",
         value: function calculateSelectedGroupByStrategy() {
-          var _this47 = this;
+          var _this48 = this;
 
           var groupByStrategy = this.postGroupByStrategies.getValue().find(function (s) {
             return s.name == GROUP_BY_POST_CATEGORY;
           });
           if (groupByStrategy) return groupByStrategy;
           groupByStrategy = this.postGroupByStrategies.getValue().find(function (s) {
-            return _this47.supportedGroupByStrategiesName.includes(s.name);
+            return _this48.supportedGroupByStrategiesName.includes(s.name);
           });
           if (groupByStrategy) return groupByStrategy;
           throw new Error("No groupBy strategy is supported by the current Angular frontend app");
@@ -9677,6 +9723,49 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
   },
 
   /***/
+  "./src/app/modules/shared/components/page-title-buttons/page-title-delete-button/page-title-delete-button.component.ts":
+  /*!*****************************************************************************************************************************!*\
+    !*** ./src/app/modules/shared/components/page-title-buttons/page-title-delete-button/page-title-delete-button.component.ts ***!
+    \*****************************************************************************************************************************/
+
+  /*! exports provided: PageTitleDeleteButtonComponent */
+
+  /***/
+  function srcAppModulesSharedComponentsPageTitleButtonsPageTitleDeleteButtonPageTitleDeleteButtonComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "PageTitleDeleteButtonComponent", function () {
+      return PageTitleDeleteButtonComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    var PageTitleDeleteButtonComponent = function PageTitleDeleteButtonComponent() {
+      _classCallCheck(this, PageTitleDeleteButtonComponent);
+    };
+
+    PageTitleDeleteButtonComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: "app-page-title-delete-button",
+      template: '<app-page-title-button icon="iwwa:delete"></app-page-title-button>'
+    })], PageTitleDeleteButtonComponent);
+    /***/
+  },
+
+  /***/
   "./src/app/modules/shared/components/page-title-buttons/page-title-download-button/page-title-download-button.component.ts":
   /*!*********************************************************************************************************************************!*\
     !*** ./src/app/modules/shared/components/page-title-buttons/page-title-download-button/page-title-download-button.component.ts ***!
@@ -10145,13 +10234,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(SelectDropdownComponent, [{
         key: "show",
         value: function show() {
-          var _this48 = this;
+          var _this49 = this;
 
           this.overlayRef = this.overlay.create(this.getOverlayConfig());
           this.overlayRef.attach(this.portal);
           this.syncWidth();
           this.overlayRef.backdropClick().subscribe(function () {
-            return _this48.hide();
+            return _this49.hide();
           });
           this.showing = true;
         }
@@ -10411,13 +10500,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "ngAfterViewInit",
         value: function ngAfterViewInit() {
-          var _this49 = this;
+          var _this50 = this;
 
           setTimeout(function () {
-            _this49.selectedOption = _this49.options.toArray().find(function (option) {
-              return option.value === _this49.selected;
+            _this50.selectedOption = _this50.options.toArray().find(function (option) {
+              return option.value === _this50.selected;
             });
-            _this49.selectedLabel = _this49.selectedOption ? _this49.selectedOption.label : "";
+            _this50.selectedLabel = _this50.selectedOption ? _this50.selectedOption.label : "";
           });
         }
       }, {
@@ -11563,15 +11652,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       var _super20 = _createSuper(ValidationError);
 
       function ValidationError(message) {
-        var _this50;
+        var _this51;
 
         _classCallCheck(this, ValidationError);
 
-        _this50 = _super20.call(this, message); // Set the prototype explicitly.
+        _this51 = _super20.call(this, message); // Set the prototype explicitly.
         // reference: https://stackoverflow.com/questions/41102060/typescript-extending-error-class
 
-        Object.setPrototypeOf(_assertThisInitialized(_this50), ValidationError.prototype);
-        return _this50;
+        Object.setPrototypeOf(_assertThisInitialized(_this51), ValidationError.prototype);
+        return _this51;
       }
 
       return ValidationError;
@@ -12611,6 +12700,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var _components_page_title_buttons_page_title_upload_button_page_title_upload_button_component__WEBPACK_IMPORTED_MODULE_58__ = __webpack_require__(
     /*! ./components/page-title-buttons/page-title-upload-button/page-title-upload-button.component */
     "./src/app/modules/shared/components/page-title-buttons/page-title-upload-button/page-title-upload-button.component.ts");
+    /* harmony import */
+
+
+    var _components_page_title_buttons_page_title_delete_button_page_title_delete_button_component__WEBPACK_IMPORTED_MODULE_59__ = __webpack_require__(
+    /*! ./components/page-title-buttons/page-title-delete-button/page-title-delete-button.component */
+    "./src/app/modules/shared/components/page-title-buttons/page-title-delete-button/page-title-delete-button.component.ts");
 
     var SharedModule = function SharedModule() {
       _classCallCheck(this, SharedModule);
@@ -12619,8 +12714,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     SharedModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       entryComponents: [_directives_tooltip_tooltip_component__WEBPACK_IMPORTED_MODULE_9__["TooltipComponent"], _components_text_text_with_icon_quote_component__WEBPACK_IMPORTED_MODULE_16__["QuoteComponent"], _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_49__["ConfirmationDialogComponent"]],
       imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_router__WEBPACK_IMPORTED_MODULE_14__["RouterModule"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["OverlayModule"], _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_12__["PortalModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_28__["HttpClientModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_27__["FormsModule"], ng2_simplemde__WEBPACK_IMPORTED_MODULE_40__["SimplemdeModule"].forRoot(), _angular_material_select__WEBPACK_IMPORTED_MODULE_13__["MatSelectModule"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_23__["MatMenuModule"], _angular_material_table__WEBPACK_IMPORTED_MODULE_29__["MatTableModule"], _angular_material_sort__WEBPACK_IMPORTED_MODULE_30__["MatSortModule"], _angular_material_form_field__WEBPACK_IMPORTED_MODULE_32__["MatFormFieldModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_33__["MatInputModule"], _angular_material_chips__WEBPACK_IMPORTED_MODULE_35__["MatChipsModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_36__["MatIconModule"], _angular_material_tabs__WEBPACK_IMPORTED_MODULE_37__["MatTabsModule"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_48__["MatDialogModule"]],
-      declarations: [_components_text_section_title_section_title_component__WEBPACK_IMPORTED_MODULE_3__["SectionTitleComponent"], _components_logo_logo_link_component__WEBPACK_IMPORTED_MODULE_4__["LogoLinkComponent"], _components_select_select_component__WEBPACK_IMPORTED_MODULE_5__["SelectComponent"], _components_select_select_option_select_option_component__WEBPACK_IMPORTED_MODULE_6__["SelectOptionComponent"], _components_select_select_dropdown_select_dropdown_component__WEBPACK_IMPORTED_MODULE_7__["SelectDropdownComponent"], _directives_slidein_slidein_directive__WEBPACK_IMPORTED_MODULE_8__["SlideInDirective"], _directives_tooltip_tooltip_component__WEBPACK_IMPORTED_MODULE_9__["TooltipComponent"], _directives_tooltip_tooltip_directive__WEBPACK_IMPORTED_MODULE_10__["TooltipDirective"], _components_text_text_with_icon_text_with_icon_component__WEBPACK_IMPORTED_MODULE_15__["TextWithIconComponent"], _components_text_text_with_icon_quote_component__WEBPACK_IMPORTED_MODULE_16__["QuoteComponent"], _components_text_text_with_icon_error_component__WEBPACK_IMPORTED_MODULE_17__["ErrorComponent"], _components_text_text_with_icon_warn_component__WEBPACK_IMPORTED_MODULE_18__["WarnComponent"], _components_text_text_with_icon_info_component__WEBPACK_IMPORTED_MODULE_19__["InfoComponent"], _components_markdown_markdown_component__WEBPACK_IMPORTED_MODULE_20__["MarkdownComponent"], _pipes_first_letter_pipe__WEBPACK_IMPORTED_MODULE_21__["FirstLetterPipe"], time_ago_pipe__WEBPACK_IMPORTED_MODULE_22__["TimeAgoPipe"], _directives_textarea_auto_grow_directive__WEBPACK_IMPORTED_MODULE_24__["TextareaAutoGrowDirective"], _directives_textarea_disable_spellcheck_directive__WEBPACK_IMPORTED_MODULE_25__["TextareaDisableSpellCheckDirective"], _components_login_with_github_login_with_github_component__WEBPACK_IMPORTED_MODULE_26__["LoginWithGithubComponent"], _components_router_link_router_link_component__WEBPACK_IMPORTED_MODULE_31__["RouterLinkComponent"], _components_page_title_buttons_page_title_new_button_page_title_new_button_component__WEBPACK_IMPORTED_MODULE_54__["PageTitleNewButtonComponent"], _components_text_page_title_page_title_component__WEBPACK_IMPORTED_MODULE_34__["PageTitleComponent"], _components_buttons_edit_button_edit_button_component__WEBPACK_IMPORTED_MODULE_38__["EditButtonComponent"], _components_buttons_consult_button_consult_button_component__WEBPACK_IMPORTED_MODULE_39__["ConsultButtonComponent"], _components_buttons_edit_button_edit_button_link_component__WEBPACK_IMPORTED_MODULE_41__["EditButtonLinkComponent"], _components_buttons_consult_button_consult_button_link_component__WEBPACK_IMPORTED_MODULE_42__["ConsultButtonLinkComponent"], _components_buttons_delete_button_delete_button_component__WEBPACK_IMPORTED_MODULE_43__["DeleteButtonComponent"], _directives_input_disable_autocomplete_directive__WEBPACK_IMPORTED_MODULE_44__["InputDisableAutoCompleteDirective"], _components_buttons_previous_button_previous_button_component__WEBPACK_IMPORTED_MODULE_45__["PreviousButtonComponent"], _components_buttons_next_button_next_button_component__WEBPACK_IMPORTED_MODULE_46__["NextButtonComponent"], _components_buttons_load_more_button_load_more_button_component__WEBPACK_IMPORTED_MODULE_47__["LoadMoreButtonComponent"], _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_49__["ConfirmationDialogComponent"], _components_icons_dropdown_icon_dropdown_icon_component__WEBPACK_IMPORTED_MODULE_50__["DropdownIconComponent"], _layouts_manage_resources_page_layout__WEBPACK_IMPORTED_MODULE_51__["ManageResourcesPageLayout"], _components_page_title_buttons_page_title_filter_button_page_title_filter_button_component__WEBPACK_IMPORTED_MODULE_53__["PageTitleFilterButtonComponent"], _components_page_title_buttons_page_title_button_page_title_button_component__WEBPACK_IMPORTED_MODULE_52__["PageTitleButtonComponent"], _components_page_title_buttons_page_title_consult_button_page_title_consult_button_component__WEBPACK_IMPORTED_MODULE_55__["PageTitleConsultButtonComponent"], _components_page_title_buttons_page_title_edit_button_page_title_edit_button_component__WEBPACK_IMPORTED_MODULE_56__["PageTitleEditButtonComponent"], _components_page_title_buttons_page_title_download_button_page_title_download_button_component__WEBPACK_IMPORTED_MODULE_57__["PageTitleDownloadButtonComponent"], _components_page_title_buttons_page_title_upload_button_page_title_upload_button_component__WEBPACK_IMPORTED_MODULE_58__["PageTitleUploadButtonComponent"]],
-      exports: [_angular_router__WEBPACK_IMPORTED_MODULE_14__["RouterModule"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["OverlayModule"], _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_12__["PortalModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_28__["HttpClientModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_27__["FormsModule"], ng2_simplemde__WEBPACK_IMPORTED_MODULE_40__["SimplemdeModule"], _angular_material_select__WEBPACK_IMPORTED_MODULE_13__["MatSelectModule"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_23__["MatMenuModule"], _angular_material_table__WEBPACK_IMPORTED_MODULE_29__["MatTableModule"], _angular_material_sort__WEBPACK_IMPORTED_MODULE_30__["MatSortModule"], _angular_material_form_field__WEBPACK_IMPORTED_MODULE_32__["MatFormFieldModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_33__["MatInputModule"], _angular_material_chips__WEBPACK_IMPORTED_MODULE_35__["MatChipsModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_36__["MatIconModule"], _angular_material_tabs__WEBPACK_IMPORTED_MODULE_37__["MatTabsModule"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_48__["MatDialogModule"], _components_text_section_title_section_title_component__WEBPACK_IMPORTED_MODULE_3__["SectionTitleComponent"], _components_logo_logo_link_component__WEBPACK_IMPORTED_MODULE_4__["LogoLinkComponent"], _components_select_select_component__WEBPACK_IMPORTED_MODULE_5__["SelectComponent"], _components_select_select_option_select_option_component__WEBPACK_IMPORTED_MODULE_6__["SelectOptionComponent"], _directives_slidein_slidein_directive__WEBPACK_IMPORTED_MODULE_8__["SlideInDirective"], _directives_tooltip_tooltip_directive__WEBPACK_IMPORTED_MODULE_10__["TooltipDirective"], _components_text_text_with_icon_quote_component__WEBPACK_IMPORTED_MODULE_16__["QuoteComponent"], _components_text_text_with_icon_error_component__WEBPACK_IMPORTED_MODULE_17__["ErrorComponent"], _components_text_text_with_icon_warn_component__WEBPACK_IMPORTED_MODULE_18__["WarnComponent"], _components_text_text_with_icon_info_component__WEBPACK_IMPORTED_MODULE_19__["InfoComponent"], _components_markdown_markdown_component__WEBPACK_IMPORTED_MODULE_20__["MarkdownComponent"], _pipes_first_letter_pipe__WEBPACK_IMPORTED_MODULE_21__["FirstLetterPipe"], time_ago_pipe__WEBPACK_IMPORTED_MODULE_22__["TimeAgoPipe"], _directives_textarea_auto_grow_directive__WEBPACK_IMPORTED_MODULE_24__["TextareaAutoGrowDirective"], _directives_textarea_disable_spellcheck_directive__WEBPACK_IMPORTED_MODULE_25__["TextareaDisableSpellCheckDirective"], _components_login_with_github_login_with_github_component__WEBPACK_IMPORTED_MODULE_26__["LoginWithGithubComponent"], _components_router_link_router_link_component__WEBPACK_IMPORTED_MODULE_31__["RouterLinkComponent"], _components_page_title_buttons_page_title_new_button_page_title_new_button_component__WEBPACK_IMPORTED_MODULE_54__["PageTitleNewButtonComponent"], _components_text_page_title_page_title_component__WEBPACK_IMPORTED_MODULE_34__["PageTitleComponent"], _components_buttons_edit_button_edit_button_component__WEBPACK_IMPORTED_MODULE_38__["EditButtonComponent"], _components_buttons_consult_button_consult_button_component__WEBPACK_IMPORTED_MODULE_39__["ConsultButtonComponent"], _components_buttons_edit_button_edit_button_link_component__WEBPACK_IMPORTED_MODULE_41__["EditButtonLinkComponent"], _components_buttons_consult_button_consult_button_link_component__WEBPACK_IMPORTED_MODULE_42__["ConsultButtonLinkComponent"], _components_buttons_delete_button_delete_button_component__WEBPACK_IMPORTED_MODULE_43__["DeleteButtonComponent"], _directives_input_disable_autocomplete_directive__WEBPACK_IMPORTED_MODULE_44__["InputDisableAutoCompleteDirective"], _components_buttons_previous_button_previous_button_component__WEBPACK_IMPORTED_MODULE_45__["PreviousButtonComponent"], _components_buttons_next_button_next_button_component__WEBPACK_IMPORTED_MODULE_46__["NextButtonComponent"], _components_buttons_load_more_button_load_more_button_component__WEBPACK_IMPORTED_MODULE_47__["LoadMoreButtonComponent"], _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_49__["ConfirmationDialogComponent"], _components_icons_dropdown_icon_dropdown_icon_component__WEBPACK_IMPORTED_MODULE_50__["DropdownIconComponent"], _layouts_manage_resources_page_layout__WEBPACK_IMPORTED_MODULE_51__["ManageResourcesPageLayout"], _components_page_title_buttons_page_title_filter_button_page_title_filter_button_component__WEBPACK_IMPORTED_MODULE_53__["PageTitleFilterButtonComponent"], _components_page_title_buttons_page_title_consult_button_page_title_consult_button_component__WEBPACK_IMPORTED_MODULE_55__["PageTitleConsultButtonComponent"], _components_page_title_buttons_page_title_edit_button_page_title_edit_button_component__WEBPACK_IMPORTED_MODULE_56__["PageTitleEditButtonComponent"], _components_page_title_buttons_page_title_download_button_page_title_download_button_component__WEBPACK_IMPORTED_MODULE_57__["PageTitleDownloadButtonComponent"], _components_page_title_buttons_page_title_upload_button_page_title_upload_button_component__WEBPACK_IMPORTED_MODULE_58__["PageTitleUploadButtonComponent"]]
+      declarations: [_components_text_section_title_section_title_component__WEBPACK_IMPORTED_MODULE_3__["SectionTitleComponent"], _components_logo_logo_link_component__WEBPACK_IMPORTED_MODULE_4__["LogoLinkComponent"], _components_select_select_component__WEBPACK_IMPORTED_MODULE_5__["SelectComponent"], _components_select_select_option_select_option_component__WEBPACK_IMPORTED_MODULE_6__["SelectOptionComponent"], _components_select_select_dropdown_select_dropdown_component__WEBPACK_IMPORTED_MODULE_7__["SelectDropdownComponent"], _directives_slidein_slidein_directive__WEBPACK_IMPORTED_MODULE_8__["SlideInDirective"], _directives_tooltip_tooltip_component__WEBPACK_IMPORTED_MODULE_9__["TooltipComponent"], _directives_tooltip_tooltip_directive__WEBPACK_IMPORTED_MODULE_10__["TooltipDirective"], _components_text_text_with_icon_text_with_icon_component__WEBPACK_IMPORTED_MODULE_15__["TextWithIconComponent"], _components_text_text_with_icon_quote_component__WEBPACK_IMPORTED_MODULE_16__["QuoteComponent"], _components_text_text_with_icon_error_component__WEBPACK_IMPORTED_MODULE_17__["ErrorComponent"], _components_text_text_with_icon_warn_component__WEBPACK_IMPORTED_MODULE_18__["WarnComponent"], _components_text_text_with_icon_info_component__WEBPACK_IMPORTED_MODULE_19__["InfoComponent"], _components_markdown_markdown_component__WEBPACK_IMPORTED_MODULE_20__["MarkdownComponent"], _pipes_first_letter_pipe__WEBPACK_IMPORTED_MODULE_21__["FirstLetterPipe"], time_ago_pipe__WEBPACK_IMPORTED_MODULE_22__["TimeAgoPipe"], _directives_textarea_auto_grow_directive__WEBPACK_IMPORTED_MODULE_24__["TextareaAutoGrowDirective"], _directives_textarea_disable_spellcheck_directive__WEBPACK_IMPORTED_MODULE_25__["TextareaDisableSpellCheckDirective"], _components_login_with_github_login_with_github_component__WEBPACK_IMPORTED_MODULE_26__["LoginWithGithubComponent"], _components_router_link_router_link_component__WEBPACK_IMPORTED_MODULE_31__["RouterLinkComponent"], _components_page_title_buttons_page_title_new_button_page_title_new_button_component__WEBPACK_IMPORTED_MODULE_54__["PageTitleNewButtonComponent"], _components_text_page_title_page_title_component__WEBPACK_IMPORTED_MODULE_34__["PageTitleComponent"], _components_buttons_edit_button_edit_button_component__WEBPACK_IMPORTED_MODULE_38__["EditButtonComponent"], _components_buttons_consult_button_consult_button_component__WEBPACK_IMPORTED_MODULE_39__["ConsultButtonComponent"], _components_buttons_edit_button_edit_button_link_component__WEBPACK_IMPORTED_MODULE_41__["EditButtonLinkComponent"], _components_buttons_consult_button_consult_button_link_component__WEBPACK_IMPORTED_MODULE_42__["ConsultButtonLinkComponent"], _components_buttons_delete_button_delete_button_component__WEBPACK_IMPORTED_MODULE_43__["DeleteButtonComponent"], _directives_input_disable_autocomplete_directive__WEBPACK_IMPORTED_MODULE_44__["InputDisableAutoCompleteDirective"], _components_buttons_previous_button_previous_button_component__WEBPACK_IMPORTED_MODULE_45__["PreviousButtonComponent"], _components_buttons_next_button_next_button_component__WEBPACK_IMPORTED_MODULE_46__["NextButtonComponent"], _components_buttons_load_more_button_load_more_button_component__WEBPACK_IMPORTED_MODULE_47__["LoadMoreButtonComponent"], _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_49__["ConfirmationDialogComponent"], _components_icons_dropdown_icon_dropdown_icon_component__WEBPACK_IMPORTED_MODULE_50__["DropdownIconComponent"], _layouts_manage_resources_page_layout__WEBPACK_IMPORTED_MODULE_51__["ManageResourcesPageLayout"], _components_page_title_buttons_page_title_filter_button_page_title_filter_button_component__WEBPACK_IMPORTED_MODULE_53__["PageTitleFilterButtonComponent"], _components_page_title_buttons_page_title_button_page_title_button_component__WEBPACK_IMPORTED_MODULE_52__["PageTitleButtonComponent"], _components_page_title_buttons_page_title_consult_button_page_title_consult_button_component__WEBPACK_IMPORTED_MODULE_55__["PageTitleConsultButtonComponent"], _components_page_title_buttons_page_title_edit_button_page_title_edit_button_component__WEBPACK_IMPORTED_MODULE_56__["PageTitleEditButtonComponent"], _components_page_title_buttons_page_title_download_button_page_title_download_button_component__WEBPACK_IMPORTED_MODULE_57__["PageTitleDownloadButtonComponent"], _components_page_title_buttons_page_title_upload_button_page_title_upload_button_component__WEBPACK_IMPORTED_MODULE_58__["PageTitleUploadButtonComponent"], _components_page_title_buttons_page_title_delete_button_page_title_delete_button_component__WEBPACK_IMPORTED_MODULE_59__["PageTitleDeleteButtonComponent"]],
+      exports: [_angular_router__WEBPACK_IMPORTED_MODULE_14__["RouterModule"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["OverlayModule"], _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_12__["PortalModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_28__["HttpClientModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_27__["FormsModule"], ng2_simplemde__WEBPACK_IMPORTED_MODULE_40__["SimplemdeModule"], _angular_material_select__WEBPACK_IMPORTED_MODULE_13__["MatSelectModule"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_23__["MatMenuModule"], _angular_material_table__WEBPACK_IMPORTED_MODULE_29__["MatTableModule"], _angular_material_sort__WEBPACK_IMPORTED_MODULE_30__["MatSortModule"], _angular_material_form_field__WEBPACK_IMPORTED_MODULE_32__["MatFormFieldModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_33__["MatInputModule"], _angular_material_chips__WEBPACK_IMPORTED_MODULE_35__["MatChipsModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_36__["MatIconModule"], _angular_material_tabs__WEBPACK_IMPORTED_MODULE_37__["MatTabsModule"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_48__["MatDialogModule"], _components_text_section_title_section_title_component__WEBPACK_IMPORTED_MODULE_3__["SectionTitleComponent"], _components_logo_logo_link_component__WEBPACK_IMPORTED_MODULE_4__["LogoLinkComponent"], _components_select_select_component__WEBPACK_IMPORTED_MODULE_5__["SelectComponent"], _components_select_select_option_select_option_component__WEBPACK_IMPORTED_MODULE_6__["SelectOptionComponent"], _directives_slidein_slidein_directive__WEBPACK_IMPORTED_MODULE_8__["SlideInDirective"], _directives_tooltip_tooltip_directive__WEBPACK_IMPORTED_MODULE_10__["TooltipDirective"], _components_text_text_with_icon_quote_component__WEBPACK_IMPORTED_MODULE_16__["QuoteComponent"], _components_text_text_with_icon_error_component__WEBPACK_IMPORTED_MODULE_17__["ErrorComponent"], _components_text_text_with_icon_warn_component__WEBPACK_IMPORTED_MODULE_18__["WarnComponent"], _components_text_text_with_icon_info_component__WEBPACK_IMPORTED_MODULE_19__["InfoComponent"], _components_markdown_markdown_component__WEBPACK_IMPORTED_MODULE_20__["MarkdownComponent"], _pipes_first_letter_pipe__WEBPACK_IMPORTED_MODULE_21__["FirstLetterPipe"], time_ago_pipe__WEBPACK_IMPORTED_MODULE_22__["TimeAgoPipe"], _directives_textarea_auto_grow_directive__WEBPACK_IMPORTED_MODULE_24__["TextareaAutoGrowDirective"], _directives_textarea_disable_spellcheck_directive__WEBPACK_IMPORTED_MODULE_25__["TextareaDisableSpellCheckDirective"], _components_login_with_github_login_with_github_component__WEBPACK_IMPORTED_MODULE_26__["LoginWithGithubComponent"], _components_router_link_router_link_component__WEBPACK_IMPORTED_MODULE_31__["RouterLinkComponent"], _components_page_title_buttons_page_title_new_button_page_title_new_button_component__WEBPACK_IMPORTED_MODULE_54__["PageTitleNewButtonComponent"], _components_text_page_title_page_title_component__WEBPACK_IMPORTED_MODULE_34__["PageTitleComponent"], _components_buttons_edit_button_edit_button_component__WEBPACK_IMPORTED_MODULE_38__["EditButtonComponent"], _components_buttons_consult_button_consult_button_component__WEBPACK_IMPORTED_MODULE_39__["ConsultButtonComponent"], _components_buttons_edit_button_edit_button_link_component__WEBPACK_IMPORTED_MODULE_41__["EditButtonLinkComponent"], _components_buttons_consult_button_consult_button_link_component__WEBPACK_IMPORTED_MODULE_42__["ConsultButtonLinkComponent"], _components_buttons_delete_button_delete_button_component__WEBPACK_IMPORTED_MODULE_43__["DeleteButtonComponent"], _directives_input_disable_autocomplete_directive__WEBPACK_IMPORTED_MODULE_44__["InputDisableAutoCompleteDirective"], _components_buttons_previous_button_previous_button_component__WEBPACK_IMPORTED_MODULE_45__["PreviousButtonComponent"], _components_buttons_next_button_next_button_component__WEBPACK_IMPORTED_MODULE_46__["NextButtonComponent"], _components_buttons_load_more_button_load_more_button_component__WEBPACK_IMPORTED_MODULE_47__["LoadMoreButtonComponent"], _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_49__["ConfirmationDialogComponent"], _components_icons_dropdown_icon_dropdown_icon_component__WEBPACK_IMPORTED_MODULE_50__["DropdownIconComponent"], _layouts_manage_resources_page_layout__WEBPACK_IMPORTED_MODULE_51__["ManageResourcesPageLayout"], _components_page_title_buttons_page_title_filter_button_page_title_filter_button_component__WEBPACK_IMPORTED_MODULE_53__["PageTitleFilterButtonComponent"], _components_page_title_buttons_page_title_consult_button_page_title_consult_button_component__WEBPACK_IMPORTED_MODULE_55__["PageTitleConsultButtonComponent"], _components_page_title_buttons_page_title_edit_button_page_title_edit_button_component__WEBPACK_IMPORTED_MODULE_56__["PageTitleEditButtonComponent"], _components_page_title_buttons_page_title_download_button_page_title_download_button_component__WEBPACK_IMPORTED_MODULE_57__["PageTitleDownloadButtonComponent"], _components_page_title_buttons_page_title_upload_button_page_title_upload_button_component__WEBPACK_IMPORTED_MODULE_58__["PageTitleUploadButtonComponent"], _components_page_title_buttons_page_title_delete_button_page_title_delete_button_component__WEBPACK_IMPORTED_MODULE_59__["PageTitleDeleteButtonComponent"]]
     })], SharedModule);
     /***/
   },
@@ -12728,11 +12823,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(UserAwareComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this51 = this;
+          var _this52 = this;
 
           this.user = this.userObservable.currentUser();
           this.userSubscription = this.userObservable.onUser().subscribe(function (user) {
-            return _this51.user = user;
+            return _this52.user = user;
           });
         }
       }, {
@@ -12892,13 +12987,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       var _super21 = _createSuper(AnonymousUser);
 
       function AnonymousUser() {
-        var _this52;
+        var _this53;
 
         _classCallCheck(this, AnonymousUser);
 
-        _this52 = _super21.call(this);
-        _this52.username = "Anonymous";
-        return _this52;
+        _this53 = _super21.call(this);
+        _this53.username = "Anonymous";
+        return _this53;
       }
 
       return AnonymousUser;
@@ -13015,31 +13110,31 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       var _super23 = _createSuper(ManageUsersPage);
 
       function ManageUsersPage(alertService, userHttpClient, userConverter) {
-        var _this53;
+        var _this54;
 
         _classCallCheck(this, ManageUsersPage);
 
-        _this53 = _super23.call(this);
-        _this53.alertService = alertService;
-        _this53.userHttpClient = userHttpClient;
-        _this53.userConverter = userConverter;
-        _this53.currentPage = new _models_user_internal_models__WEBPACK_IMPORTED_MODULE_3__["UsersPage"]();
-        _this53.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"]([]);
-        _this53.columns = ["username", "provider", "joinAt", "actions"];
-        return _this53;
+        _this54 = _super23.call(this);
+        _this54.alertService = alertService;
+        _this54.userHttpClient = userHttpClient;
+        _this54.userConverter = userConverter;
+        _this54.currentPage = new _models_user_internal_models__WEBPACK_IMPORTED_MODULE_3__["UsersPage"]();
+        _this54.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"]([]);
+        _this54.columns = ["username", "provider", "joinAt", "actions"];
+        return _this54;
       } // prettier-ignore
 
 
       _createClass(ManageUsersPage, [{
         key: "fetchPage",
         value: function fetchPage(filter, page) {
-          var _this54 = this;
+          var _this55 = this;
 
           var request = this.userConverter.toGetUsersPageApiRequest(filter, page);
           this.userHttpClient.getUsersPage(request).then(function (usersPage) {
-            return _this54.handleGetUsersPageSuccessEvent(usersPage);
+            return _this55.handleGetUsersPageSuccessEvent(usersPage);
           })["catch"](function (error) {
-            return _this54.handleGetUsersPageErrorEvent(error);
+            return _this55.handleGetUsersPageErrorEvent(error);
           });
         }
       }, {
@@ -13150,26 +13245,26 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(AdminGuard, [{
         key: "canActivate",
         value: function canActivate(route, state) {
-          var _this55 = this;
+          var _this56 = this;
 
           return this.userHttpClient.getCurrentUser().then(function (user) {
             if (user.isAdmin) return true;
 
-            _this55.alertService.error("Only Admin user can access this page", {
+            _this56.alertService.error("Only Admin user can access this page", {
               keepAfterRouteChange: true
             });
 
-            _this55.router.navigate(["/"]);
+            _this56.router.navigate(["/"]);
 
             return false;
           })["catch"](function (error) {
             console.error("user not yet authenticated. error: " + error);
 
-            _this55.alertService.error("Please login to access this page", {
+            _this56.alertService.error("Please login to access this page", {
               keepAfterRouteChange: true
             });
 
-            _this55.router.navigate(["/"]);
+            _this56.router.navigate(["/"]);
 
             return false;
           });
@@ -13257,18 +13352,18 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(LoggedInGuard, [{
         key: "canActivate",
         value: function canActivate(route, state) {
-          var _this56 = this;
+          var _this57 = this;
 
           return this.userHttpClient.getCurrentUser().then(function () {
             return true;
           })["catch"](function (error) {
             console.error("user not yet authenticated. error: " + error);
 
-            _this56.alertService.error("Please login to access this page", {
+            _this57.alertService.error("Please login to access this page", {
               keepAfterRouteChange: true
             });
 
-            _this56.router.navigate(["/"]);
+            _this57.router.navigate(["/"]);
 
             return false;
           });
@@ -13378,7 +13473,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "toUsersPage",
         value: function toUsersPage(page) {
-          var _this57 = this;
+          var _this58 = this;
 
           var res = new _models_user_internal_models__WEBPACK_IMPORTED_MODULE_2__["UsersPage"]();
           res.totalItems = page.totalItems;
@@ -13386,7 +13481,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           res.lastPage = page.lastPage;
           res.page = page.page;
           page.items.forEach(function (user) {
-            return res.items.push(_this57.toUser(user));
+            return res.items.push(_this58.toUser(user));
           });
           return res;
         }
@@ -13473,10 +13568,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "getUsersPage",
         value: function getUsersPage(request) {
-          var _this58 = this;
+          var _this59 = this;
 
           return this.http.get(request.url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (users) {
-            return _this58.userConverter.toUsersPage(users);
+            return _this59.userConverter.toUsersPage(users);
           })).toPromise();
         }
       }]);
@@ -13620,7 +13715,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     var UserObservable = /*#__PURE__*/function () {
       function UserObservable(router, userHttpClient) {
-        var _this59 = this;
+        var _this60 = this;
 
         _classCallCheck(this, UserObservable);
 
@@ -13630,7 +13725,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.checkUser();
         this.router.events.subscribe(function (event) {
           if (event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_5__["NavigationEnd"]) {
-            _this59.checkUser();
+            _this60.checkUser();
           }
         });
       }
@@ -13638,12 +13733,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(UserObservable, [{
         key: "checkUser",
         value: function checkUser() {
-          var _this60 = this;
+          var _this61 = this;
 
           this.userHttpClient.getCurrentUser().then(function (user) {
-            return _this60.newUser(user);
+            return _this61.newUser(user);
           })["catch"](function () {
-            return _this60.handleGetCurrentUserErrorEvent();
+            return _this61.handleGetCurrentUserErrorEvent();
           });
         }
       }, {

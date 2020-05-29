@@ -208,7 +208,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<app-manage-resources-page-layout\r\n  pageTitle=\"My Posts\"\r\n  [previousButtonCssClasses]=\"previousButtonCssClasses\"\r\n  [nextButtonCssClasses]=\"nextButtonCssClasses\"\r\n  (previousButtonClick)=\"handlePreviousButtonClickEvent()\"\r\n  (nextButtonClick)=\"handleNextButtonClickEvent()\"\r\n  (filter)=\"onFilter($event)\"\r\n>\r\n  <ng-container class=\"top-table-actions\">\r\n    <app-page-title-download-button\r\n      tooltip=\"download all your posts\"\r\n      (click)=\"downloadAllUserPosts()\"\r\n    >\r\n    </app-page-title-download-button>\r\n    <app-page-title-upload-button\r\n      (fileUpload)=\"onFileUpload($event)\"\r\n      tooltip=\"upload posts\"\r\n    >\r\n    </app-page-title-upload-button>\r\n    <app-page-title-new-button\r\n      routerLink=\"/posts/new\"\r\n      tooltip=\"create new post\"\r\n    ></app-page-title-new-button>\r\n  </ng-container>\r\n\r\n  <ng-container class=\"table\">\r\n    <table mat-table matSort [dataSource]=\"dataSource\">\r\n      <ng-container matColumnDef=\"id\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>#</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.id}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"title\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Title</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.title}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"category\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Category</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.category}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"createdAt\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Created At</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.createdAt | date}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"lastUpdatedAt\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>\r\n          Last Updated At\r\n        </th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <ng-container *ngIf=\"element.lastUpdatedAt\"\r\n            >{{element.lastUpdatedAt | date}}</ng-container\r\n          >\r\n        </td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"actions\">\r\n        <th mat-header-cell *matHeaderCellDef></th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <div class=\"row-actions\">\r\n            <app-consult-button-link\r\n              [routerLink]=\"['/posts', element.id, 'consult']\"\r\n            ></app-consult-button-link>\r\n            <app-edit-button-link\r\n              [routerLink]=\"['/posts', element.id, 'edit']\"\r\n            ></app-edit-button-link>\r\n            <app-delete-button\r\n              (click)=\"deletePost(element.id)\"\r\n            ></app-delete-button>\r\n          </div>\r\n        </td>\r\n      </ng-container>\r\n\r\n      <tr mat-header-row *matHeaderRowDef=\"columns\"></tr>\r\n      <tr mat-row class=\"row\" *matRowDef=\"let row; columns: columns;\"></tr>\r\n    </table>\r\n  </ng-container>\r\n</app-manage-resources-page-layout>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<app-manage-resources-page-layout\r\n  pageTitle=\"My Posts\"\r\n  [previousButtonCssClasses]=\"previousButtonCssClasses\"\r\n  [nextButtonCssClasses]=\"nextButtonCssClasses\"\r\n  (previousButtonClick)=\"handlePreviousButtonClickEvent()\"\r\n  (nextButtonClick)=\"handleNextButtonClickEvent()\"\r\n  (filter)=\"onFilter($event)\"\r\n>\r\n  <ng-container class=\"top-table-actions\">\r\n    <app-page-title-delete-button\r\n      tooltip=\"delete all your posts\"\r\n      (click)=\"deleteAllUserPosts()\"\r\n    >\r\n    </app-page-title-delete-button>\r\n    <app-page-title-download-button\r\n      tooltip=\"download all your posts\"\r\n      (click)=\"downloadAllUserPosts()\"\r\n    >\r\n    </app-page-title-download-button>\r\n    <app-page-title-upload-button\r\n      (fileUpload)=\"onFileUpload($event)\"\r\n      tooltip=\"upload posts\"\r\n    >\r\n    </app-page-title-upload-button>\r\n    <app-page-title-new-button\r\n      routerLink=\"/posts/new\"\r\n      tooltip=\"create new post\"\r\n    ></app-page-title-new-button>\r\n  </ng-container>\r\n\r\n  <ng-container class=\"table\">\r\n    <table mat-table matSort [dataSource]=\"dataSource\">\r\n      <ng-container matColumnDef=\"id\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>#</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.id}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"title\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Title</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.title}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"category\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Category</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.category}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"createdAt\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Created At</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.createdAt | date}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"lastUpdatedAt\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>\r\n          Last Updated At\r\n        </th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <ng-container *ngIf=\"element.lastUpdatedAt\"\r\n            >{{element.lastUpdatedAt | date}}</ng-container\r\n          >\r\n        </td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"actions\">\r\n        <th mat-header-cell *matHeaderCellDef></th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <div class=\"row-actions\">\r\n            <app-consult-button-link\r\n              [routerLink]=\"['/posts', element.id, 'consult']\"\r\n            ></app-consult-button-link>\r\n            <app-edit-button-link\r\n              [routerLink]=\"['/posts', element.id, 'edit']\"\r\n            ></app-edit-button-link>\r\n            <app-delete-button\r\n              (click)=\"deletePost(element.id)\"\r\n            ></app-delete-button>\r\n          </div>\r\n        </td>\r\n      </ng-container>\r\n\r\n      <tr mat-header-row *matHeaderRowDef=\"columns\"></tr>\r\n      <tr mat-row class=\"row\" *matRowDef=\"let row; columns: columns;\"></tr>\r\n    </table>\r\n  </ng-container>\r\n</app-manage-resources-page-layout>\r\n");
 
 /***/ }),
 
@@ -3138,6 +3138,21 @@ let ManagePostsPage = class ManagePostsPage extends src_app_modules_shared_pages
             }
         });
     }
+    deleteAllUserPosts() {
+        const dialogRef = this.dialog.open(src_app_modules_shared_components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_9__["ConfirmationDialogComponent"], {
+            data: "Do you confirm the deletion of all your posts ?",
+            width: "340px",
+        });
+        dialogRef.afterClosed().subscribe((result) => {
+            if (result) {
+                const request = this.postConverter.toDeleteUserPostsApiRequest();
+                this.postHttpClient
+                    .deleteUserPosts(request)
+                    .then(() => this.handleDeleteUserPostsSuccessEvent())
+                    .catch((error) => this.handleDeleteUserPostsErrorEvent(error));
+            }
+        });
+    }
     downloadAllUserPosts() {
         const request = this.postConverter.toGetAllUserPostsApiRequest();
         this.postHttpClient
@@ -3189,6 +3204,14 @@ let ManagePostsPage = class ManagePostsPage extends src_app_modules_shared_pages
     handleGetAllUserPostsErrorEvent(error) {
         console.error(error);
         this.alertService.error("Error while fetching your posts :(");
+    }
+    // prettier-ignore
+    handleDeleteUserPostsErrorEvent(error) {
+        this.postHttpClient.handleError(error, "Error while deleting user posts :(");
+    }
+    handleDeleteUserPostsSuccessEvent() {
+        this.currentPage = new _post_shared_models_post_internal_models__WEBPACK_IMPORTED_MODULE_3__["PostsPage"]();
+        this.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"]([]);
     }
 };
 ManagePostsPage.ctorParameters = () => [
@@ -4253,6 +4276,11 @@ let PostConverter = class PostConverter {
             url: `/secure-api/posts/${postId}`,
         };
     }
+    toDeleteUserPostsApiRequest() {
+        return {
+            url: `/secure-api/user/posts/all`,
+        };
+    }
     toGetPostGroupByStrategiesApiRequest() {
         return {
             url: "/api/post-group-by-strategies",
@@ -4373,6 +4401,13 @@ let PostHttpClient = class PostHttpClient extends _alert_common_http_client__WEB
         // prettier-ignore
     }
     deletePost(request) {
+        // prettier-ignore
+        return this.http
+            .delete(request.url)
+            .toPromise();
+        // prettier-ignore
+    }
+    deleteUserPosts(request) {
         // prettier-ignore
         return this.http
             .delete(request.url)
@@ -5736,6 +5771,33 @@ PageTitleConsultButtonComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate
         template: '<app-page-title-button icon="ls:view"></app-page-title-button>',
     })
 ], PageTitleConsultButtonComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/modules/shared/components/page-title-buttons/page-title-delete-button/page-title-delete-button.component.ts":
+/*!*****************************************************************************************************************************!*\
+  !*** ./src/app/modules/shared/components/page-title-buttons/page-title-delete-button/page-title-delete-button.component.ts ***!
+  \*****************************************************************************************************************************/
+/*! exports provided: PageTitleDeleteButtonComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PageTitleDeleteButtonComponent", function() { return PageTitleDeleteButtonComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+
+
+let PageTitleDeleteButtonComponent = class PageTitleDeleteButtonComponent {
+};
+PageTitleDeleteButtonComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: "app-page-title-delete-button",
+        template: '<app-page-title-button icon="iwwa:delete"></app-page-title-button>',
+    })
+], PageTitleDeleteButtonComponent);
 
 
 
@@ -7429,6 +7491,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_page_title_buttons_page_title_edit_button_page_title_edit_button_component__WEBPACK_IMPORTED_MODULE_56__ = __webpack_require__(/*! ./components/page-title-buttons/page-title-edit-button/page-title-edit-button.component */ "./src/app/modules/shared/components/page-title-buttons/page-title-edit-button/page-title-edit-button.component.ts");
 /* harmony import */ var _components_page_title_buttons_page_title_download_button_page_title_download_button_component__WEBPACK_IMPORTED_MODULE_57__ = __webpack_require__(/*! ./components/page-title-buttons/page-title-download-button/page-title-download-button.component */ "./src/app/modules/shared/components/page-title-buttons/page-title-download-button/page-title-download-button.component.ts");
 /* harmony import */ var _components_page_title_buttons_page_title_upload_button_page_title_upload_button_component__WEBPACK_IMPORTED_MODULE_58__ = __webpack_require__(/*! ./components/page-title-buttons/page-title-upload-button/page-title-upload-button.component */ "./src/app/modules/shared/components/page-title-buttons/page-title-upload-button/page-title-upload-button.component.ts");
+/* harmony import */ var _components_page_title_buttons_page_title_delete_button_page_title_delete_button_component__WEBPACK_IMPORTED_MODULE_59__ = __webpack_require__(/*! ./components/page-title-buttons/page-title-delete-button/page-title-delete-button.component */ "./src/app/modules/shared/components/page-title-buttons/page-title-delete-button/page-title-delete-button.component.ts");
+
 
 
 
@@ -7557,6 +7621,7 @@ SharedModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _components_page_title_buttons_page_title_edit_button_page_title_edit_button_component__WEBPACK_IMPORTED_MODULE_56__["PageTitleEditButtonComponent"],
             _components_page_title_buttons_page_title_download_button_page_title_download_button_component__WEBPACK_IMPORTED_MODULE_57__["PageTitleDownloadButtonComponent"],
             _components_page_title_buttons_page_title_upload_button_page_title_upload_button_component__WEBPACK_IMPORTED_MODULE_58__["PageTitleUploadButtonComponent"],
+            _components_page_title_buttons_page_title_delete_button_page_title_delete_button_component__WEBPACK_IMPORTED_MODULE_59__["PageTitleDeleteButtonComponent"],
         ],
         exports: [
             _angular_router__WEBPACK_IMPORTED_MODULE_14__["RouterModule"],
@@ -7611,6 +7676,7 @@ SharedModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _components_page_title_buttons_page_title_edit_button_page_title_edit_button_component__WEBPACK_IMPORTED_MODULE_56__["PageTitleEditButtonComponent"],
             _components_page_title_buttons_page_title_download_button_page_title_download_button_component__WEBPACK_IMPORTED_MODULE_57__["PageTitleDownloadButtonComponent"],
             _components_page_title_buttons_page_title_upload_button_page_title_upload_button_component__WEBPACK_IMPORTED_MODULE_58__["PageTitleUploadButtonComponent"],
+            _components_page_title_buttons_page_title_delete_button_page_title_delete_button_component__WEBPACK_IMPORTED_MODULE_59__["PageTitleDeleteButtonComponent"],
         ],
     })
 ], SharedModule);
