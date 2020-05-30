@@ -5,6 +5,7 @@ import {
   UserApiResponse,
   GetUsersPageApiRequest,
   UsersPageApiResponse,
+  DeleteUserApiRequest,
 } from "../models/user.external.models";
 import {
   Author,
@@ -32,7 +33,9 @@ export class UserConverter {
   }
 
   toUser(user: UserApiResponse): User {
+    console.log(user);
     return {
+      id: user.id,
       username: user.username,
       avatarUrl: user.avatarUrl,
       provider: user.provider,
@@ -60,5 +63,11 @@ export class UserConverter {
     res.page = page.page;
     page.items.forEach((user) => res.items.push(this.toUser(user)));
     return res;
+  }
+
+  toDeleteUserApiRequest(id: number): DeleteUserApiRequest {
+    return {
+      url: `/secure-api/users/${id}`,
+    };
   }
 }

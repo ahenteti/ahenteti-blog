@@ -13,6 +13,7 @@ export class CurrentUser {
 }
 
 export class User {
+  id: number;
   username: string;
   avatarUrl: string;
   provider: string;

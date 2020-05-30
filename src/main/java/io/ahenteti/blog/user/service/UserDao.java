@@ -1,5 +1,6 @@
 package io.ahenteti.blog.user.service;
 
+import io.ahenteti.blog.user.model.api.ValidDeleteUserApiRequest;
 import io.ahenteti.blog.user.model.api.ValidGetUsersPageApiRequest;
 import io.ahenteti.blog.user.model.core.User;
 import io.ahenteti.blog.user.model.core.UsersPage;
@@ -46,4 +47,11 @@ public class UserDao {
         Page<UserEntity> users = userRepository.find(request.getSqlFilter(), pageRequest);
         return userConverter.toUsersPage(users, request);
     }
+
+    // @formatter:off
+    public void delete(ValidDeleteUserApiRequest validRequest) {
+        userRepository.deleteUserRoles(validRequest.getUserId()); // many-to-many association, so we deleted manually. inspiration: https://thorben-janssen.com/avoid-cascadetype-delete-many-assocations/
+        userRepository.deleteById(validRequest.getUserId());
+    }
+    // @formatter:on
 }

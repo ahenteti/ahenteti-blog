@@ -12,6 +12,7 @@ export class AuthorApiResponse {
 }
 
 export class UserApiResponse {
+  id: number;
   username: string;
   avatarUrl: string;
   provider: string;
@@ -19,6 +20,10 @@ export class UserApiResponse {
 }
 
 export class GetUsersPageApiRequest {
+  url: string;
+}
+
+export class DeleteUserApiRequest {
   url: string;
 }
 

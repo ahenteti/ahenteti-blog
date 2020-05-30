@@ -17,7 +17,10 @@ import javax.persistence.OneToMany;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity(name = "T_USERS")
@@ -47,7 +50,7 @@ public class UserEntity {
         inverseJoinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")}
     )
     // @formatter:on
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<RoleEntity> roles = new ArrayList<>();
 
     @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)

@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class UserApiResponse {
+    private Long id;
     private String username;
     private String avatarUrl;
     private String provider;

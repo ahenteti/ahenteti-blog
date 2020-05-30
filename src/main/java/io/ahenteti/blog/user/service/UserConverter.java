@@ -6,6 +6,7 @@ import io.ahenteti.blog.user.model.api.AuthenticatedUserApiResponse;
 import io.ahenteti.blog.user.model.api.AuthorApiResponse;
 import io.ahenteti.blog.user.model.api.CurrentUserApiResponse;
 import io.ahenteti.blog.user.model.api.CurrentUserApiResponseBody;
+import io.ahenteti.blog.user.model.api.DeleteUserApiRequest;
 import io.ahenteti.blog.user.model.api.GetUsersPageApiRequest;
 import io.ahenteti.blog.user.model.api.UserApiResponse;
 import io.ahenteti.blog.user.model.api.UsersPageApiResponse;
@@ -84,6 +85,7 @@ public class UserConverter {
 
     public UserApiResponse toUserApiResponse(User user) {
         UserApiResponse res = new UserApiResponse();
+        res.setId(user.getId());
         res.setUsername(user.getUsername());
         res.setAvatarUrl(user.getAvatarUrl());
         res.setProvider(user.getProvider());
@@ -126,4 +128,5 @@ public class UserConverter {
                 .collect(Collectors.toCollection(ArrayList::new)));
         return res;
     }
+
 }

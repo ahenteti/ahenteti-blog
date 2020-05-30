@@ -1,10 +1,9 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { PostHttpClient } from "../../post-shared/services/post.http-client";
 import {
   PostsPage,
   PostSummary,
 } from "../../post-shared/models/post.internal.models";
-import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { AlertService } from "src/app/modules/alert/alert.service";
 import { PostConverter } from "../../post-shared/services/post.converter";
