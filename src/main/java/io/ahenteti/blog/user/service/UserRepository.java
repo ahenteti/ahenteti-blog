@@ -19,8 +19,4 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
     @Query(value = "SELECT u.* FROM T_USERS u WHERE u.USERNAME LIKE :sqlFilter OR u.PROVIDER LIKE :sqlFilter OR (u.JOIN_AT\\:\\:text) LIKE :sqlFilter", nativeQuery = true)
     Page<UserEntity> find(String sqlFilter, Pageable pageable);
     
-    @Modifying
-    @Query(value = "DELETE FROM T_USER_ROLE ur WHERE ur.USER_ID = :userId", nativeQuery = true)
-    void deleteUserRoles(Long userId);
-
 }

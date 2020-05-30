@@ -1,7 +1,7 @@
 package io.ahenteti.blog.user.model.entity;
 
-import io.ahenteti.blog.postcomments.model.entity.PostCommentEntity;
 import io.ahenteti.blog.post.model.entity.PostEntity;
+import io.ahenteti.blog.postcomments.model.entity.PostCommentEntity;
 import lombok.Data;
 
 import javax.persistence.CascadeType;
@@ -17,10 +17,11 @@ import javax.persistence.OneToMany;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
+import static io.ahenteti.blog.user.model.entity.UserRoleEntity.USER_ROLE_TABLE_NAME;
+import static io.ahenteti.blog.user.model.entity.UserRoleKey.ROLE_ID_COLUMN_NAME;
+import static io.ahenteti.blog.user.model.entity.UserRoleKey.USER_ID_COLUMN_NAME;
 
 @Data
 @Entity(name = "T_USERS")
@@ -45,9 +46,9 @@ public class UserEntity {
 
     // @formatter:off
     @JoinTable(
-        name = "T_USER_ROLE", 
-        joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")}, 
-        inverseJoinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")}
+        name = USER_ROLE_TABLE_NAME, 
+        joinColumns = {@JoinColumn(name = USER_ID_COLUMN_NAME, referencedColumnName = "ID")}, 
+        inverseJoinColumns = {@JoinColumn(name = ROLE_ID_COLUMN_NAME, referencedColumnName = "ID")}
     )
     // @formatter:on
     @ManyToMany(fetch = FetchType.EAGER)

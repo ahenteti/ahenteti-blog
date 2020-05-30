@@ -18,12 +18,14 @@ import java.util.Optional;
 public class UserDao {
 
     private UserRepository userRepository;
+    private UserRoleRepository userRoleRepository;
     private UserConverter userConverter;
     private PageConverter pageConverter;
 
     @Autowired
-    public UserDao(UserRepository userRepository, UserConverter userConverter, PageConverter pageConverter) {
+    public UserDao(UserRepository userRepository, UserRoleRepository userRoleRepository, UserConverter userConverter, PageConverter pageConverter) {
         this.userRepository = userRepository;
+        this.userRoleRepository = userRoleRepository;
         this.userConverter = userConverter;
         this.pageConverter = pageConverter;
     }
@@ -50,7 +52,7 @@ public class UserDao {
 
     // @formatter:off
     public void delete(ValidDeleteUserApiRequest validRequest) {
-        userRepository.deleteUserRoles(validRequest.getUserId()); // many-to-many association, so we deleted manually. inspiration: https://thorben-janssen.com/avoid-cascadetype-delete-many-assocations/
+        userRoleRepository.deleteByUserId(validRequest.getUserId()); // many-to-many association, so we deleted manually. inspiration: https://thorben-janssen.com/avoid-cascadetype-delete-many-assocations/
         userRepository.deleteById(validRequest.getUserId());
     }
     // @formatter:on
