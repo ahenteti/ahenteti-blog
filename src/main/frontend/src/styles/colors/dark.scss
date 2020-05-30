@@ -6,12 +6,12 @@ body.dark {
   --color-0: #888888;
   --color-1: #d1d2d3;
   --color-2: #eeeeee;
-  --background-color-0: #1c1f23;
-  --background-color-1: #262a2d;
-  --background-color-2: #32373b;
-  --background-color-3: #394048;
-  --background-color-4: #464e57;
-  --border-color: #394048;
+  --background-color-0: #181a1f;
+  --background-color-1: #21252b;
+  --background-color-2: #282c34;
+  --background-color-3: #2c313a;
+  --background-color-4: #333842;
+  --border-color: #333842;
 
   --body-color: var(--color-1);
   --body-background-color: var(--background-color-0);
@@ -61,7 +61,7 @@ body.dark {
   --post-summary-background-color: var(--background-color-1);
   --post-summary-border-color: var(--background-color-2);
   --post-summary-border-color-on-hover: var(--primary-color);
-  --post-summary-title-color: var(--color-2);
+  --post-summary-title-color: var(--color-1);
   --post-summary-title-color-on-hover: var(--primary-color);
   --post-summary-icons-color: var(--color-0);
   --post-summary-box-shadow: none;

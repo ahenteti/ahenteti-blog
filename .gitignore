@@ -75,3 +75,5 @@ nb-configuration.xml
 ## Python
 ##########################
 **/__pycache__
+
+.factorypath
