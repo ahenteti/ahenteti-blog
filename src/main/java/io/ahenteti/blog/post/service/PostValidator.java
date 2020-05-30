@@ -28,6 +28,7 @@ import io.ahenteti.blog.post.model.core.ValidBulkCreateAndUpdatePostOperations;
 import io.ahenteti.blog.post.model.core.ValidPostToCreate;
 import io.ahenteti.blog.post.model.core.ValidPostToUpdate;
 import io.ahenteti.blog.post.model.entity.PostEntity;
+import io.ahenteti.blog.shared.exception.AuthorizationException;
 import io.ahenteti.blog.shared.exception.InvalidRequirementException;
 import io.ahenteti.blog.shared.exception.ResourceNotFoundException;
 import io.ahenteti.blog.shared.service.PageApiRequestValidator;
@@ -221,7 +222,7 @@ public class PostValidator {
     private void validatePostsCanOnlyDeletedByAdminsOrTheirOwnAuthors(DeletePostApiRequest request) {
         if (request.getUser().isAdmin()) return;
         postRepository.findByIdAndAuthorId(request.getPostId(), request.getUser().getDbId()).orElseThrow(
-                () -> new InvalidRequirementException("Posts can only updated by Admins or their own authors")
+                () -> new AuthorizationException("Posts can only updated by Admins or their own authors")
         );
     }
     // @formatter:on
@@ -230,7 +231,7 @@ public class PostValidator {
     private void validatePostsCanOnlyUpdatedByAdminsOrTheirOwnAuthors(User user, Long postId) {
         if (user.isAdmin()) return;
         postRepository.findByIdAndAuthorId(postId, user.getId()).orElseThrow(
-                () -> new InvalidRequirementException("Posts can only updated by Admins or their own authors")
+                () -> new AuthorizationException("Posts can only updated by Admins or their own authors")
         );
     }
     // @formatter:on
