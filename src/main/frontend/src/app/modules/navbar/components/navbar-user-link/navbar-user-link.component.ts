@@ -1,7 +1,7 @@
 import { Component, ViewChild } from "@angular/core";
 import { MatMenuTrigger } from "@angular/material/menu";
 import { UserAwareComponent } from "src/app/modules/user/components/user-aware.component";
-import { ThemeLocalStorageServices } from "src/app/modules/shared/services/theme.localstorage.services";
+import { ThemeLocalStorage } from "src/app/modules/navbar/services/theme.local-storage";
 import { UserObservable } from "src/app/modules/user/services/user.observable";
 
 @Component({
@@ -14,7 +14,7 @@ export class NavbarUserLinkComponent extends UserAwareComponent {
   dropdownTrigger: MatMenuTrigger;
 
   constructor(
-    private themeService: ThemeLocalStorageServices,
+    private themeService: ThemeLocalStorage,
     userObservable: UserObservable
   ) {
     super(userObservable);

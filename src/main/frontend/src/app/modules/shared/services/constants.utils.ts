@@ -1,9 +1,5 @@
 import { ConnectedPosition } from "@angular/cdk/overlay";
 
-export const LOCAL_STORAGE_WEBSITE_THEME_KEY = "website-theme";
-export const DARK_THEME = "dark";
-export const LIGHT_THEME = "light";
-export const DEFAULT_THEME = DARK_THEME;
 export const OVERLAY_POSITION_TOP: ConnectedPosition = {
   originX: "center",
   originY: "top",

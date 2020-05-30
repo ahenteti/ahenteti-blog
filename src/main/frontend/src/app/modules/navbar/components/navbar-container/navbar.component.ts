@@ -1,7 +1,7 @@
 import { Component, HostBinding } from "@angular/core";
 import { UserObservable } from "src/app/modules/user/services/user.observable";
 import { UserAwareComponent } from "src/app/modules/user/components/user-aware.component";
-import { ThemeLocalStorageServices } from "src/app/modules/shared/services/theme.localstorage.services";
+import { ThemeLocalStorage } from "src/app/modules/navbar/services/theme.local-storage";
 
 @Component({
   selector: "app-navbar",
@@ -13,7 +13,7 @@ export class NavbarComponent extends UserAwareComponent {
   public shadow = false;
 
   constructor(
-    private themeService: ThemeLocalStorageServices,
+    private themeLocalStorage: ThemeLocalStorage,
     userObservable: UserObservable
   ) {
     super(userObservable);
@@ -26,7 +26,7 @@ export class NavbarComponent extends UserAwareComponent {
 
   handleChangeThemeColorClickEvent(event: any) {
     // event.stopPropagation();
-    this.themeService.toggleTheme();
+    this.themeLocalStorage.toggleTheme();
   }
 
   private handleWindowScrollEvent() {

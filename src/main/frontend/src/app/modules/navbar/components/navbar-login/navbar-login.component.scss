@@ -1,9 +1,61 @@
+:host {
+  position: relative;
+}
+
 .login {
   display: flex;
   align-items: center;
   color: var(--navbar-link-color);
   text-decoration: none;
   cursor: pointer;
+}
+
+.login-message {
+  all: initial;
+  cursor: pointer;
+  position: absolute;
+  top: 100%;
+  width: 30rem;
+  right: 0;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  background: var(--primary-color);
+  padding: 2rem;
+  border-radius: 0.3rem;
+  animation: bounce 0.8s ease infinite alternate;
+}
+
+.login-message p {
+  font-size: 1.4rem;
+  line-height: 1.3;
+}
+
+.give-it-a-try {
+  margin-top: 1rem;
+
+  & .iconify {
+    margin-left: 0.8rem;
+  }
+}
+
+.login-message::after {
+  content: "";
+  position: absolute;
+  top: -1rem;
+  right: 5rem;
+  border-top: none;
+  border-right: 1rem solid transparent;
+  border-bottom: 1rem solid var(--primary-color);
+  border-left: 1rem solid transparent;
+}
+
+@keyframes bounce {
+  from {
+    top: 100%;
+  }
+  to {
+    top: calc(100% + 1.5rem);
+  }
 }
 
 a {

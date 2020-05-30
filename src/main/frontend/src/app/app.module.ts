@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AlertModule } from "./modules/alert/alert.module";
 import { NavbarModule } from "./modules/navbar/navbar.module";
 import { PostPageModule } from "./modules/post/post-pages/post-pages.module";
-import { ThemeLocalStorageServices } from "./modules/shared/services/theme.localstorage.services";
+import { ThemeLocalStorage } from "./modules/navbar/services/theme.local-storage";
 import { UserHttpClient } from "./modules/user/services/user.http-client";
 import { UserLoginServices } from "./modules/user/services/user.login.services";
 import { UserObservable } from "./modules/user/services/user.observable";
@@ -29,6 +29,7 @@ import { FeedbackConverter } from "./modules/feedback/services/feedback.converte
 import { FeedbackValidator } from "./modules/feedback/services/feedback.validator";
 import { FeedbackHttpClient } from "./modules/feedback/services/feedback.http-client";
 import { AlertService } from "./modules/alert/alert.service";
+import { LoginLocalStorage } from "./modules/navbar/services/login.local-storage";
 
 const routes: Routes = [
   {
@@ -61,7 +62,8 @@ const routes: Routes = [
     PostConverter,
     PostCommentConverter,
     PostCommentHttpClient,
-    ThemeLocalStorageServices,
+    ThemeLocalStorage,
+    LoginLocalStorage,
     UserHttpClient,
     UserLoginServices,
     UserObservable,
