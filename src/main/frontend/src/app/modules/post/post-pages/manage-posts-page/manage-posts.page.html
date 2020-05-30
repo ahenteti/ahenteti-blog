@@ -55,9 +55,7 @@
           Last Updated At
         </th>
         <td mat-cell *matCellDef="let element">
-          <ng-container *ngIf="element.lastUpdatedAt"
-            >{{element.lastUpdatedAt | date}}</ng-container
-          >
+          {{element.lastUpdatedAt ? (element.lastUpdatedAt | date) : 'N/A'}}
         </td>
       </ng-container>
 

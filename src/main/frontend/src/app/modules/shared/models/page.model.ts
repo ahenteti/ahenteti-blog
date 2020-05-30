@@ -1,8 +1,8 @@
 export class Page<T> {
   page: number;
-  firstPage: boolean;
-  lastPage: boolean;
-  totalItems: number;
+  firstPage = true;
+  lastPage = true;
+  totalItems = 0;
   items: Array<T> = [];
 }
 

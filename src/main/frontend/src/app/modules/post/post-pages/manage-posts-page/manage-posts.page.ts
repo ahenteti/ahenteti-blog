@@ -67,7 +67,7 @@ export class ManagePostsPage extends AbstractManageResourcesPage<PostSummary>
   deleteAllUserPosts() {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: "Do you confirm the deletion of all your posts ?",
-      width: "340px",
+      width: "375px",
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
@@ -92,12 +92,17 @@ export class ManagePostsPage extends AbstractManageResourcesPage<PostSummary>
   onFileUpload(file: File) {
     const request = this.postConverter.toUploadPostsApiRequest(file);
     this.postHttpClient.uploadPosts(request)
-    .catch((error) => this.handleUploadPostsApiRequestErrorEvent(error));
+      .then(() => this.handleUploadPostsApiRequestSuccessEvent())
+      .catch((error) => this.handleUploadPostsApiRequestErrorEvent(error));
   }
 
   // prettier-ignore
   private handleUploadPostsApiRequestErrorEvent(error) {
     this.postHttpClient.handleError(error, "Error while uploading your posts :(")
+  }
+
+  private handleUploadPostsApiRequestSuccessEvent() {
+    this.fetchPage(this.filter, 0);
   }
 
   private handleDeletePostErrorEvent(error) {
@@ -133,7 +138,7 @@ export class ManagePostsPage extends AbstractManageResourcesPage<PostSummary>
     document.body.appendChild(a);
     a.style.display = "none";
     a.href = url;
-    a.download = "posts.json";
+    a.download = this.calculateUserPostsFilenameToDownload();
     a.click();
     window.URL.revokeObjectURL(url);
   }
@@ -151,5 +156,22 @@ export class ManagePostsPage extends AbstractManageResourcesPage<PostSummary>
   private handleDeleteUserPostsSuccessEvent(): any {
     this.currentPage = new PostsPage();
     this.dataSource = new MatTableDataSource([]);
+    this.recalculatePreviousNextButtonCssClasses();
+  }
+
+  private calculateUserPostsFilenameToDownload(): string {
+    // I didn't find e method like this Date.toString(formatter) in javascript, so I have used
+    // this @sebastian.i solution that I have found on this stackoverflow thread: https://stackoverflow.com/questions/3552461/how-to-format-a-javascript-date
+    // Feel free to improve this code if you find a more elegant implementation, and please let me know about :)
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = ("" + (currentDate.getMonth() + 1)).padStart(2, "0");
+    const date = ("" + currentDate.getDate()).padStart(2, "0");
+    const hour = ("" + currentDate.getHours()).padStart(2, "0");
+    const minutes = ("" + currentDate.getMinutes()).padStart(2, "0");
+    const seconds = ("" + currentDate.getSeconds()).padStart(2, "0");
+    const filename =
+      "posts_" + year + month + date + hour + minutes + seconds + ".json";
+    return filename;
   }
 }

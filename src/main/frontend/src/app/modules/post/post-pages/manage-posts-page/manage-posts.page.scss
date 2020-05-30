@@ -11,3 +11,7 @@
     display: none;
   }
 }
+
+app-page-title-delete-button {
+  --page-title-button-color-on-hover: var(--danger-color);
+}

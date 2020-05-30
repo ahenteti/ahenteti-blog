@@ -19,6 +19,6 @@
   transition-property: color, background-color;
 
   &:hover {
-    color: var(--primary-color);
+    color: var(--page-title-button-color-on-hover, var(--primary-color));
   }
 }
