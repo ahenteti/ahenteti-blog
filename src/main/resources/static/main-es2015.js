@@ -117,7 +117,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"login\" [matMenuTriggerFor]=\"menu\" #dropdownTrigger=\"matMenuTrigger\">\r\n    <span>Login</span>\r\n    <app-dropdown-icon class=\"dropdown-icon\"></app-dropdown-icon>\r\n</div>\r\n\r\n<mat-menu #menu=\"matMenu\" xPosition=\"before\">\r\n    <a mat-menu-item href=\"/oauth2/authorization/github\" (click)=\"preLogin()\"\r\n    >Login with <span class=\"login-icon iconify\" data-icon=\"fe:github\"></span\r\n    ></a>\r\n    <a mat-menu-item href=\"/oauth2/authorization/google\" (click)=\"preLogin()\"\r\n    >Login with <span class=\"login-icon iconify\" data-icon=\"fe:google\"></span\r\n    ></a>\r\n</mat-menu>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"login\" [matMenuTriggerFor]=\"menu\" #dropdownTrigger=\"matMenuTrigger\">\r\n  <span>Login</span>\r\n  <app-dropdown-icon class=\"dropdown-icon\"></app-dropdown-icon>\r\n  <div *ngIf=\"!loginFeatureAlreadyHighlighted\" class=\"login-message\">\r\n    <p>\r\n      Logged in users can add feedbacks, comments and much more on our\r\n      website...\r\n    </p>\r\n    <p class=\"give-it-a-try\">\r\n      Give it a try <span class=\"iconify\" data-icon=\"vaadin:smiley-o\"></span>\r\n    </p>\r\n  </div>\r\n</div>\r\n\r\n<mat-menu #menu=\"matMenu\" xPosition=\"before\">\r\n  <a mat-menu-item href=\"/oauth2/authorization/github\" (click)=\"preLogin()\"\r\n    >Login with <span class=\"login-icon iconify\" data-icon=\"fe:github\"></span\r\n  ></a>\r\n  <a mat-menu-item href=\"/oauth2/authorization/google\" (click)=\"preLogin()\"\r\n    >Login with <span class=\"login-icon iconify\" data-icon=\"fe:google\"></span\r\n  ></a>\r\n</mat-menu>\r\n");
 
 /***/ }),
 
@@ -208,7 +208,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<app-manage-resources-page-layout\r\n  pageTitle=\"My Posts\"\r\n  [previousButtonCssClasses]=\"previousButtonCssClasses\"\r\n  [nextButtonCssClasses]=\"nextButtonCssClasses\"\r\n  (previousButtonClick)=\"handlePreviousButtonClickEvent()\"\r\n  (nextButtonClick)=\"handleNextButtonClickEvent()\"\r\n  (filter)=\"onFilter($event)\"\r\n>\r\n  <ng-container class=\"top-table-actions\">\r\n    <app-page-title-delete-button\r\n      tooltip=\"delete all your posts\"\r\n      (click)=\"deleteAllUserPosts()\"\r\n    >\r\n    </app-page-title-delete-button>\r\n    <app-page-title-download-button\r\n      tooltip=\"download all your posts\"\r\n      (click)=\"downloadAllUserPosts()\"\r\n    >\r\n    </app-page-title-download-button>\r\n    <app-page-title-upload-button\r\n      (fileUpload)=\"onFileUpload($event)\"\r\n      tooltip=\"upload posts\"\r\n    >\r\n    </app-page-title-upload-button>\r\n    <app-page-title-new-button\r\n      routerLink=\"/posts/new\"\r\n      tooltip=\"create new post\"\r\n    ></app-page-title-new-button>\r\n  </ng-container>\r\n\r\n  <ng-container class=\"table\">\r\n    <table mat-table matSort [dataSource]=\"dataSource\">\r\n      <ng-container matColumnDef=\"id\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>#</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.id}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"title\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Title</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.title}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"category\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Category</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.category}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"createdAt\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Created At</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.createdAt | date}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"lastUpdatedAt\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>\r\n          Last Updated At\r\n        </th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <ng-container *ngIf=\"element.lastUpdatedAt\"\r\n            >{{element.lastUpdatedAt | date}}</ng-container\r\n          >\r\n        </td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"actions\">\r\n        <th mat-header-cell *matHeaderCellDef></th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <div class=\"row-actions\">\r\n            <app-consult-button-link\r\n              [routerLink]=\"['/posts', element.id, 'consult']\"\r\n            ></app-consult-button-link>\r\n            <app-edit-button-link\r\n              [routerLink]=\"['/posts', element.id, 'edit']\"\r\n            ></app-edit-button-link>\r\n            <app-delete-button\r\n              (click)=\"deletePost(element.id)\"\r\n            ></app-delete-button>\r\n          </div>\r\n        </td>\r\n      </ng-container>\r\n\r\n      <tr mat-header-row *matHeaderRowDef=\"columns\"></tr>\r\n      <tr mat-row class=\"row\" *matRowDef=\"let row; columns: columns;\"></tr>\r\n    </table>\r\n  </ng-container>\r\n</app-manage-resources-page-layout>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<app-manage-resources-page-layout\r\n  pageTitle=\"My Posts\"\r\n  [previousButtonCssClasses]=\"previousButtonCssClasses\"\r\n  [nextButtonCssClasses]=\"nextButtonCssClasses\"\r\n  (previousButtonClick)=\"handlePreviousButtonClickEvent()\"\r\n  (nextButtonClick)=\"handleNextButtonClickEvent()\"\r\n  (filter)=\"onFilter($event)\"\r\n>\r\n  <ng-container class=\"top-table-actions\">\r\n    <app-page-title-delete-button\r\n      tooltip=\"delete all your posts\"\r\n      (click)=\"deleteAllUserPosts()\"\r\n    >\r\n    </app-page-title-delete-button>\r\n    <app-page-title-download-button\r\n      tooltip=\"download all your posts\"\r\n      (click)=\"downloadAllUserPosts()\"\r\n    >\r\n    </app-page-title-download-button>\r\n    <app-page-title-upload-button\r\n      (fileUpload)=\"onFileUpload($event)\"\r\n      tooltip=\"upload posts\"\r\n    >\r\n    </app-page-title-upload-button>\r\n    <app-page-title-new-button\r\n      routerLink=\"/posts/new\"\r\n      tooltip=\"create new post\"\r\n    ></app-page-title-new-button>\r\n  </ng-container>\r\n\r\n  <ng-container class=\"table\">\r\n    <table mat-table matSort [dataSource]=\"dataSource\">\r\n      <ng-container matColumnDef=\"id\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>#</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.id}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"title\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Title</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.title}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"category\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Category</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.category}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"createdAt\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Created At</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.createdAt | date}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"lastUpdatedAt\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>\r\n          Last Updated At\r\n        </th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          {{element.lastUpdatedAt ? (element.lastUpdatedAt | date) : 'N/A'}}\r\n        </td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"actions\">\r\n        <th mat-header-cell *matHeaderCellDef></th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <div class=\"row-actions\">\r\n            <app-consult-button-link\r\n              [routerLink]=\"['/posts', element.id, 'consult']\"\r\n            ></app-consult-button-link>\r\n            <app-edit-button-link\r\n              [routerLink]=\"['/posts', element.id, 'edit']\"\r\n            ></app-edit-button-link>\r\n            <app-delete-button\r\n              (click)=\"deletePost(element.id)\"\r\n            ></app-delete-button>\r\n          </div>\r\n        </td>\r\n      </ng-container>\r\n\r\n      <tr mat-header-row *matHeaderRowDef=\"columns\"></tr>\r\n      <tr mat-row class=\"row\" *matRowDef=\"let row; columns: columns;\"></tr>\r\n    </table>\r\n  </ng-container>\r\n</app-manage-resources-page-layout>\r\n");
 
 /***/ }),
 
@@ -624,7 +624,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<app-manage-resources-page-layout\r\n        pageTitle=\"Users\"\r\n        [previousButtonCssClasses]=\"previousButtonCssClasses\"\r\n        [nextButtonCssClasses]=\"nextButtonCssClasses\"\r\n        (previousButtonClick)=\"handlePreviousButtonClickEvent()\"\r\n        (nextButtonClick)=\"handleNextButtonClickEvent()\"\r\n        (filter)=\"onFilter($event)\"\r\n>\r\n    <ng-container class=\"table\">\r\n        <table mat-table matSort [dataSource]=\"dataSource\">\r\n            <ng-container matColumnDef=\"username\">\r\n                <th mat-header-cell mat-sort-header *matHeaderCellDef>Username</th>\r\n                <td mat-cell *matCellDef=\"let element\">\r\n                    <app-user [user]=\"element\"></app-user>\r\n                </td>\r\n            </ng-container>\r\n\r\n            <ng-container matColumnDef=\"provider\">\r\n                <th mat-header-cell mat-sort-header *matHeaderCellDef>Provider</th>\r\n                <td mat-cell *matCellDef=\"let element\">{{element.provider}}</td>\r\n            </ng-container>\r\n\r\n            <ng-container matColumnDef=\"joinAt\">\r\n                <th mat-header-cell mat-sort-header *matHeaderCellDef>Join At</th>\r\n                <td mat-cell *matCellDef=\"let element\">{{element.joinAt | date}}</td>\r\n            </ng-container>\r\n\r\n            <ng-container matColumnDef=\"actions\">\r\n                <th mat-header-cell *matHeaderCellDef></th>\r\n                <td mat-cell *matCellDef=\"let element\">\r\n                    <div class=\"row-actions\">\r\n                        <app-delete-button\r\n                                (click)=\"deleteUser(element)\"\r\n                        ></app-delete-button>\r\n                    </div>\r\n                </td>\r\n            </ng-container>\r\n\r\n            <tr mat-header-row *matHeaderRowDef=\"columns\"></tr>\r\n            <tr mat-row *matRowDef=\"let row; columns: columns;\"></tr>\r\n        </table>\r\n    </ng-container>\r\n</app-manage-resources-page-layout>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<app-manage-resources-page-layout\r\n  pageTitle=\"Users\"\r\n  [previousButtonCssClasses]=\"previousButtonCssClasses\"\r\n  [nextButtonCssClasses]=\"nextButtonCssClasses\"\r\n  (previousButtonClick)=\"handlePreviousButtonClickEvent()\"\r\n  (nextButtonClick)=\"handleNextButtonClickEvent()\"\r\n  (filter)=\"onFilter($event)\"\r\n>\r\n  <ng-container class=\"table\">\r\n    <table mat-table matSort [dataSource]=\"dataSource\">\r\n      <ng-container matColumnDef=\"id\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>#</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.id}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"username\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Username</th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <app-user [user]=\"element\"></app-user>\r\n        </td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"provider\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Provider</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.provider}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"joinAt\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Join At</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.joinAt | date}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"actions\">\r\n        <th mat-header-cell *matHeaderCellDef></th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <div class=\"row-actions\">\r\n            <app-delete-button\r\n              (click)=\"deleteUser(element)\"\r\n            ></app-delete-button>\r\n          </div>\r\n        </td>\r\n      </ng-container>\r\n\r\n      <tr mat-header-row *matHeaderRowDef=\"columns\"></tr>\r\n      <tr mat-row *matRowDef=\"let row; columns: columns;\"></tr>\r\n    </table>\r\n  </ng-container>\r\n</app-manage-resources-page-layout>\r\n");
 
 /***/ }),
 
@@ -1272,7 +1272,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_alert_alert_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/alert/alert.module */ "./src/app/modules/alert/alert.module.ts");
 /* harmony import */ var _modules_navbar_navbar_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/navbar/navbar.module */ "./src/app/modules/navbar/navbar.module.ts");
 /* harmony import */ var _modules_post_post_pages_post_pages_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/post/post-pages/post-pages.module */ "./src/app/modules/post/post-pages/post-pages.module.ts");
-/* harmony import */ var _modules_shared_services_theme_localstorage_services__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/shared/services/theme.localstorage.services */ "./src/app/modules/shared/services/theme.localstorage.services.ts");
+/* harmony import */ var _modules_navbar_services_theme_local_storage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/navbar/services/theme.local-storage */ "./src/app/modules/navbar/services/theme.local-storage.ts");
 /* harmony import */ var _modules_user_services_user_http_client__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/user/services/user.http-client */ "./src/app/modules/user/services/user.http-client.ts");
 /* harmony import */ var _modules_user_services_user_login_services__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/user/services/user.login.services */ "./src/app/modules/user/services/user.login.services.ts");
 /* harmony import */ var _modules_user_services_user_observable__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./modules/user/services/user.observable */ "./src/app/modules/user/services/user.observable.ts");
@@ -1296,6 +1296,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_feedback_services_feedback_validator__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./modules/feedback/services/feedback.validator */ "./src/app/modules/feedback/services/feedback.validator.ts");
 /* harmony import */ var _modules_feedback_services_feedback_http_client__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./modules/feedback/services/feedback.http-client */ "./src/app/modules/feedback/services/feedback.http-client.ts");
 /* harmony import */ var _modules_alert_alert_service__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./modules/alert/alert.service */ "./src/app/modules/alert/alert.service.ts");
+/* harmony import */ var _modules_navbar_services_login_local_storage__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./modules/navbar/services/login.local-storage */ "./src/app/modules/navbar/services/login.local-storage.ts");
+
 
 
 
@@ -1361,7 +1363,8 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _modules_post_post_shared_services_post_converter__WEBPACK_IMPORTED_MODULE_17__["PostConverter"],
             _modules_post_post_comments_converter_post_comment_converter__WEBPACK_IMPORTED_MODULE_18__["PostCommentConverter"],
             _modules_post_post_comments_services_post_comment_http_client__WEBPACK_IMPORTED_MODULE_19__["PostCommentHttpClient"],
-            _modules_shared_services_theme_localstorage_services__WEBPACK_IMPORTED_MODULE_8__["ThemeLocalStorageServices"],
+            _modules_navbar_services_theme_local_storage__WEBPACK_IMPORTED_MODULE_8__["ThemeLocalStorage"],
+            _modules_navbar_services_login_local_storage__WEBPACK_IMPORTED_MODULE_32__["LoginLocalStorage"],
             _modules_user_services_user_http_client__WEBPACK_IMPORTED_MODULE_9__["UserHttpClient"],
             _modules_user_services_user_login_services__WEBPACK_IMPORTED_MODULE_10__["UserLoginServices"],
             _modules_user_services_user_observable__WEBPACK_IMPORTED_MODULE_11__["UserObservable"],
@@ -2218,7 +2221,9 @@ let LoaderService = class LoaderService {
         this.isLoading.next(true);
     }
     hide() {
-        this.isLoading.next(false);
+        setTimeout(() => {
+            this.isLoading.next(false);
+        }, 300);
     }
 };
 LoaderService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -2256,16 +2261,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var src_app_modules_user_services_user_observable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/modules/user/services/user.observable */ "./src/app/modules/user/services/user.observable.ts");
 /* harmony import */ var src_app_modules_user_components_user_aware_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/modules/user/components/user-aware.component */ "./src/app/modules/user/components/user-aware.component.ts");
-/* harmony import */ var src_app_modules_shared_services_theme_localstorage_services__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/modules/shared/services/theme.localstorage.services */ "./src/app/modules/shared/services/theme.localstorage.services.ts");
+/* harmony import */ var src_app_modules_navbar_services_theme_local_storage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/modules/navbar/services/theme.local-storage */ "./src/app/modules/navbar/services/theme.local-storage.ts");
 
 
 
 
 
 let NavbarComponent = class NavbarComponent extends src_app_modules_user_components_user_aware_component__WEBPACK_IMPORTED_MODULE_3__["UserAwareComponent"] {
-    constructor(themeService, userObservable) {
+    constructor(themeLocalStorage, userObservable) {
         super(userObservable);
-        this.themeService = themeService;
+        this.themeLocalStorage = themeLocalStorage;
         this.shadow = false;
     }
     ngOnInit() {
@@ -2274,14 +2279,14 @@ let NavbarComponent = class NavbarComponent extends src_app_modules_user_compone
     }
     handleChangeThemeColorClickEvent(event) {
         // event.stopPropagation();
-        this.themeService.toggleTheme();
+        this.themeLocalStorage.toggleTheme();
     }
     handleWindowScrollEvent() {
         this.shadow = window.scrollY > 0;
     }
 };
 NavbarComponent.ctorParameters = () => [
-    { type: src_app_modules_shared_services_theme_localstorage_services__WEBPACK_IMPORTED_MODULE_4__["ThemeLocalStorageServices"] },
+    { type: src_app_modules_navbar_services_theme_local_storage__WEBPACK_IMPORTED_MODULE_4__["ThemeLocalStorage"] },
     { type: src_app_modules_user_services_user_observable__WEBPACK_IMPORTED_MODULE_2__["UserObservable"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -2308,7 +2313,7 @@ NavbarComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".login {\n  display: flex;\n  align-items: center;\n  color: var(--navbar-link-color);\n  text-decoration: none;\n  cursor: pointer;\n}\n\na {\n  display: flex;\n  align-items: center;\n}\n\n.login-icon {\n  margin-left: 1rem;\n  font-size: 2.3rem;\n}\n\napp-dropdown-icon {\n  line-height: initial;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9uYXZiYXIvY29tcG9uZW50cy9uYXZiYXItbG9naW4vQzpcXGRldlxccHJvamVjdHNcXGFoZW50ZXRpLWJsb2dcXHNyY1xcbWFpblxcZnJvbnRlbmQvc3JjXFxhcHBcXG1vZHVsZXNcXG5hdmJhclxcY29tcG9uZW50c1xcbmF2YmFyLWxvZ2luXFxuYXZiYXItbG9naW4uY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL21vZHVsZXMvbmF2YmFyL2NvbXBvbmVudHMvbmF2YmFyLWxvZ2luL25hdmJhci1sb2dpbi5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGFBQUE7RUFDQSxtQkFBQTtFQUNBLCtCQUFBO0VBQ0EscUJBQUE7RUFDQSxlQUFBO0FDQ0Y7O0FERUE7RUFDRSxhQUFBO0VBQ0EsbUJBQUE7QUNDRjs7QURFQTtFQUNFLGlCQUFBO0VBQ0EsaUJBQUE7QUNDRjs7QURFQTtFQUNFLG9CQUFBO0FDQ0YiLCJmaWxlIjoic3JjL2FwcC9tb2R1bGVzL25hdmJhci9jb21wb25lbnRzL25hdmJhci1sb2dpbi9uYXZiYXItbG9naW4uY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubG9naW4ge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBjb2xvcjogdmFyKC0tbmF2YmFyLWxpbmstY29sb3IpO1xyXG4gIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcclxuICBjdXJzb3I6IHBvaW50ZXI7XHJcbn1cclxuXHJcbmEge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxufVxyXG5cclxuLmxvZ2luLWljb24ge1xyXG4gIG1hcmdpbi1sZWZ0OiAxcmVtO1xyXG4gIGZvbnQtc2l6ZTogMi4zcmVtO1xyXG59XHJcblxyXG5hcHAtZHJvcGRvd24taWNvbiB7XHJcbiAgbGluZS1oZWlnaHQ6IGluaXRpYWw7XHJcbn1cclxuIiwiLmxvZ2luIHtcbiAgZGlzcGxheTogZmxleDtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgY29sb3I6IHZhcigtLW5hdmJhci1saW5rLWNvbG9yKTtcbiAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbmEge1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xufVxuXG4ubG9naW4taWNvbiB7XG4gIG1hcmdpbi1sZWZ0OiAxcmVtO1xuICBmb250LXNpemU6IDIuM3JlbTtcbn1cblxuYXBwLWRyb3Bkb3duLWljb24ge1xuICBsaW5lLWhlaWdodDogaW5pdGlhbDtcbn0iXX0= */");
+/* harmony default export */ __webpack_exports__["default"] = (":host {\n  position: relative;\n}\n\n.login {\n  display: flex;\n  align-items: center;\n  color: var(--navbar-link-color);\n  text-decoration: none;\n  cursor: pointer;\n}\n\n.login-message {\n  all: initial;\n  cursor: pointer;\n  position: absolute;\n  top: 100%;\n  width: 30rem;\n  right: 0;\n  color: white;\n  font-family: \"Roboto\", sans-serif;\n  background: var(--primary-color);\n  padding: 2rem;\n  border-radius: 0.3rem;\n  -webkit-animation: bounce 0.8s ease infinite alternate;\n          animation: bounce 0.8s ease infinite alternate;\n}\n\n.login-message p {\n  font-size: 1.4rem;\n  line-height: 1.3;\n}\n\n.give-it-a-try {\n  margin-top: 1rem;\n}\n\n.give-it-a-try .iconify {\n  margin-left: 0.8rem;\n}\n\n.login-message::after {\n  content: \"\";\n  position: absolute;\n  top: -1rem;\n  right: 5rem;\n  border-top: none;\n  border-right: 1rem solid transparent;\n  border-bottom: 1rem solid var(--primary-color);\n  border-left: 1rem solid transparent;\n}\n\n@-webkit-keyframes bounce {\n  from {\n    top: 100%;\n  }\n  to {\n    top: calc(100% + 1.5rem);\n  }\n}\n\n@keyframes bounce {\n  from {\n    top: 100%;\n  }\n  to {\n    top: calc(100% + 1.5rem);\n  }\n}\n\na {\n  display: flex;\n  align-items: center;\n}\n\n.login-icon {\n  margin-left: 1rem;\n  font-size: 2.3rem;\n}\n\napp-dropdown-icon {\n  line-height: initial;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9uYXZiYXIvY29tcG9uZW50cy9uYXZiYXItbG9naW4vQzpcXGRldlxccHJvamVjdHNcXGFoZW50ZXRpLWJsb2dcXHNyY1xcbWFpblxcZnJvbnRlbmQvc3JjXFxhcHBcXG1vZHVsZXNcXG5hdmJhclxcY29tcG9uZW50c1xcbmF2YmFyLWxvZ2luXFxuYXZiYXItbG9naW4uY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL21vZHVsZXMvbmF2YmFyL2NvbXBvbmVudHMvbmF2YmFyLWxvZ2luL25hdmJhci1sb2dpbi5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGtCQUFBO0FDQ0Y7O0FERUE7RUFDRSxhQUFBO0VBQ0EsbUJBQUE7RUFDQSwrQkFBQTtFQUNBLHFCQUFBO0VBQ0EsZUFBQTtBQ0NGOztBREVBO0VBQ0UsWUFBQTtFQUNBLGVBQUE7RUFDQSxrQkFBQTtFQUNBLFNBQUE7RUFDQSxZQUFBO0VBQ0EsUUFBQTtFQUNBLFlBQUE7RUFDQSxpQ0FBQTtFQUNBLGdDQUFBO0VBQ0EsYUFBQTtFQUNBLHFCQUFBO0VBQ0Esc0RBQUE7VUFBQSw4Q0FBQTtBQ0NGOztBREVBO0VBQ0UsaUJBQUE7RUFDQSxnQkFBQTtBQ0NGOztBREVBO0VBQ0UsZ0JBQUE7QUNDRjs7QURDRTtFQUNFLG1CQUFBO0FDQ0o7O0FER0E7RUFDRSxXQUFBO0VBQ0Esa0JBQUE7RUFDQSxVQUFBO0VBQ0EsV0FBQTtFQUNBLGdCQUFBO0VBQ0Esb0NBQUE7RUFDQSw4Q0FBQTtFQUNBLG1DQUFBO0FDQUY7O0FER0E7RUFDRTtJQUNFLFNBQUE7RUNBRjtFREVBO0lBQ0Usd0JBQUE7RUNBRjtBQUNGOztBRE5BO0VBQ0U7SUFDRSxTQUFBO0VDQUY7RURFQTtJQUNFLHdCQUFBO0VDQUY7QUFDRjs7QURHQTtFQUNFLGFBQUE7RUFDQSxtQkFBQTtBQ0RGOztBRElBO0VBQ0UsaUJBQUE7RUFDQSxpQkFBQTtBQ0RGOztBRElBO0VBQ0Usb0JBQUE7QUNERiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvbmF2YmFyL2NvbXBvbmVudHMvbmF2YmFyLWxvZ2luL25hdmJhci1sb2dpbi5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0IHtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbn1cclxuXHJcbi5sb2dpbiB7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGNvbG9yOiB2YXIoLS1uYXZiYXItbGluay1jb2xvcik7XHJcbiAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxufVxyXG5cclxuLmxvZ2luLW1lc3NhZ2Uge1xyXG4gIGFsbDogaW5pdGlhbDtcclxuICBjdXJzb3I6IHBvaW50ZXI7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIHRvcDogMTAwJTtcclxuICB3aWR0aDogMzByZW07XHJcbiAgcmlnaHQ6IDA7XHJcbiAgY29sb3I6IHdoaXRlO1xyXG4gIGZvbnQtZmFtaWx5OiBcIlJvYm90b1wiLCBzYW5zLXNlcmlmO1xyXG4gIGJhY2tncm91bmQ6IHZhcigtLXByaW1hcnktY29sb3IpO1xyXG4gIHBhZGRpbmc6IDJyZW07XHJcbiAgYm9yZGVyLXJhZGl1czogMC4zcmVtO1xyXG4gIGFuaW1hdGlvbjogYm91bmNlIDAuOHMgZWFzZSBpbmZpbml0ZSBhbHRlcm5hdGU7XHJcbn1cclxuXHJcbi5sb2dpbi1tZXNzYWdlIHAge1xyXG4gIGZvbnQtc2l6ZTogMS40cmVtO1xyXG4gIGxpbmUtaGVpZ2h0OiAxLjM7XHJcbn1cclxuXHJcbi5naXZlLWl0LWEtdHJ5IHtcclxuICBtYXJnaW4tdG9wOiAxcmVtO1xyXG5cclxuICAmIC5pY29uaWZ5IHtcclxuICAgIG1hcmdpbi1sZWZ0OiAwLjhyZW07XHJcbiAgfVxyXG59XHJcblxyXG4ubG9naW4tbWVzc2FnZTo6YWZ0ZXIge1xyXG4gIGNvbnRlbnQ6IFwiXCI7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIHRvcDogLTFyZW07XHJcbiAgcmlnaHQ6IDVyZW07XHJcbiAgYm9yZGVyLXRvcDogbm9uZTtcclxuICBib3JkZXItcmlnaHQ6IDFyZW0gc29saWQgdHJhbnNwYXJlbnQ7XHJcbiAgYm9yZGVyLWJvdHRvbTogMXJlbSBzb2xpZCB2YXIoLS1wcmltYXJ5LWNvbG9yKTtcclxuICBib3JkZXItbGVmdDogMXJlbSBzb2xpZCB0cmFuc3BhcmVudDtcclxufVxyXG5cclxuQGtleWZyYW1lcyBib3VuY2Uge1xyXG4gIGZyb20ge1xyXG4gICAgdG9wOiAxMDAlO1xyXG4gIH1cclxuICB0byB7XHJcbiAgICB0b3A6IGNhbGMoMTAwJSArIDEuNXJlbSk7XHJcbiAgfVxyXG59XHJcblxyXG5hIHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbn1cclxuXHJcbi5sb2dpbi1pY29uIHtcclxuICBtYXJnaW4tbGVmdDogMXJlbTtcclxuICBmb250LXNpemU6IDIuM3JlbTtcclxufVxyXG5cclxuYXBwLWRyb3Bkb3duLWljb24ge1xyXG4gIGxpbmUtaGVpZ2h0OiBpbml0aWFsO1xyXG59XHJcbiIsIjpob3N0IHtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xufVxuXG4ubG9naW4ge1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBjb2xvcjogdmFyKC0tbmF2YmFyLWxpbmstY29sb3IpO1xuICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn1cblxuLmxvZ2luLW1lc3NhZ2Uge1xuICBhbGw6IGluaXRpYWw7XG4gIGN1cnNvcjogcG9pbnRlcjtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICB0b3A6IDEwMCU7XG4gIHdpZHRoOiAzMHJlbTtcbiAgcmlnaHQ6IDA7XG4gIGNvbG9yOiB3aGl0ZTtcbiAgZm9udC1mYW1pbHk6IFwiUm9ib3RvXCIsIHNhbnMtc2VyaWY7XG4gIGJhY2tncm91bmQ6IHZhcigtLXByaW1hcnktY29sb3IpO1xuICBwYWRkaW5nOiAycmVtO1xuICBib3JkZXItcmFkaXVzOiAwLjNyZW07XG4gIGFuaW1hdGlvbjogYm91bmNlIDAuOHMgZWFzZSBpbmZpbml0ZSBhbHRlcm5hdGU7XG59XG5cbi5sb2dpbi1tZXNzYWdlIHAge1xuICBmb250LXNpemU6IDEuNHJlbTtcbiAgbGluZS1oZWlnaHQ6IDEuMztcbn1cblxuLmdpdmUtaXQtYS10cnkge1xuICBtYXJnaW4tdG9wOiAxcmVtO1xufVxuLmdpdmUtaXQtYS10cnkgLmljb25pZnkge1xuICBtYXJnaW4tbGVmdDogMC44cmVtO1xufVxuXG4ubG9naW4tbWVzc2FnZTo6YWZ0ZXIge1xuICBjb250ZW50OiBcIlwiO1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHRvcDogLTFyZW07XG4gIHJpZ2h0OiA1cmVtO1xuICBib3JkZXItdG9wOiBub25lO1xuICBib3JkZXItcmlnaHQ6IDFyZW0gc29saWQgdHJhbnNwYXJlbnQ7XG4gIGJvcmRlci1ib3R0b206IDFyZW0gc29saWQgdmFyKC0tcHJpbWFyeS1jb2xvcik7XG4gIGJvcmRlci1sZWZ0OiAxcmVtIHNvbGlkIHRyYW5zcGFyZW50O1xufVxuXG5Aa2V5ZnJhbWVzIGJvdW5jZSB7XG4gIGZyb20ge1xuICAgIHRvcDogMTAwJTtcbiAgfVxuICB0byB7XG4gICAgdG9wOiBjYWxjKDEwMCUgKyAxLjVyZW0pO1xuICB9XG59XG5hIHtcbiAgZGlzcGxheTogZmxleDtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbn1cblxuLmxvZ2luLWljb24ge1xuICBtYXJnaW4tbGVmdDogMXJlbTtcbiAgZm9udC1zaXplOiAyLjNyZW07XG59XG5cbmFwcC1kcm9wZG93bi1pY29uIHtcbiAgbGluZS1oZWlnaHQ6IGluaXRpYWw7XG59Il19 */");
 
 /***/ }),
 
@@ -2325,19 +2330,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var src_app_modules_user_services_user_login_services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/modules/user/services/user.login.services */ "./src/app/modules/user/services/user.login.services.ts");
+/* harmony import */ var _services_login_local_storage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/login.local-storage */ "./src/app/modules/navbar/services/login.local-storage.ts");
+
 
 
 
 let NavbarLoginComponent = class NavbarLoginComponent {
-    constructor(userLoginService) {
+    constructor(userLoginService, loginLocalStorage) {
         this.userLoginService = userLoginService;
+        this.loginLocalStorage = loginLocalStorage;
+        this.loginFeatureAlreadyHighlighted = false;
+    }
+    ngOnInit() {
+        this.loginFeatureAlreadyHighlighted = this.loginLocalStorage.isLoginFeatureAlreadyHighlighted();
+        document.addEventListener("click", () => {
+            this.loginFeatureAlreadyHighlighted = true;
+        });
     }
     preLogin() {
         this.userLoginService.preLogin();
     }
 };
 NavbarLoginComponent.ctorParameters = () => [
-    { type: src_app_modules_user_services_user_login_services__WEBPACK_IMPORTED_MODULE_2__["UserLoginServices"] }
+    { type: src_app_modules_user_services_user_login_services__WEBPACK_IMPORTED_MODULE_2__["UserLoginServices"] },
+    { type: _services_login_local_storage__WEBPACK_IMPORTED_MODULE_3__["LoginLocalStorage"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])("dropdownTrigger", { static: false })
@@ -2380,7 +2396,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var src_app_modules_user_components_user_aware_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/modules/user/components/user-aware.component */ "./src/app/modules/user/components/user-aware.component.ts");
-/* harmony import */ var src_app_modules_shared_services_theme_localstorage_services__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/modules/shared/services/theme.localstorage.services */ "./src/app/modules/shared/services/theme.localstorage.services.ts");
+/* harmony import */ var src_app_modules_navbar_services_theme_local_storage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/modules/navbar/services/theme.local-storage */ "./src/app/modules/navbar/services/theme.local-storage.ts");
 /* harmony import */ var src_app_modules_user_services_user_observable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/modules/user/services/user.observable */ "./src/app/modules/user/services/user.observable.ts");
 
 
@@ -2398,7 +2414,7 @@ let NavbarUserLinkComponent = class NavbarUserLinkComponent extends src_app_modu
     }
 };
 NavbarUserLinkComponent.ctorParameters = () => [
-    { type: src_app_modules_shared_services_theme_localstorage_services__WEBPACK_IMPORTED_MODULE_3__["ThemeLocalStorageServices"] },
+    { type: src_app_modules_navbar_services_theme_local_storage__WEBPACK_IMPORTED_MODULE_3__["ThemeLocalStorage"] },
     { type: src_app_modules_user_services_user_observable__WEBPACK_IMPORTED_MODULE_4__["UserObservable"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -2456,6 +2472,76 @@ NavbarModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         providers: [],
     })
 ], NavbarModule);
+
+
+
+/***/ }),
+
+/***/ "./src/app/modules/navbar/services/login.local-storage.ts":
+/*!****************************************************************!*\
+  !*** ./src/app/modules/navbar/services/login.local-storage.ts ***!
+  \****************************************************************/
+/*! exports provided: LoginLocalStorage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginLocalStorage", function() { return LoginLocalStorage; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+
+
+const LOCAL_STORAGE_LOGIN_FEATURE_ALREADY_HIGHLIGHTED_KEY = "login-feature-already-highlighted";
+let LoginLocalStorage = class LoginLocalStorage {
+    // prettier-ignore
+    isLoginFeatureAlreadyHighlighted() {
+        if (localStorage.getItem(LOCAL_STORAGE_LOGIN_FEATURE_ALREADY_HIGHLIGHTED_KEY) === null) {
+            localStorage.setItem(LOCAL_STORAGE_LOGIN_FEATURE_ALREADY_HIGHLIGHTED_KEY, 'true');
+            return false;
+        }
+        return true;
+    }
+};
+LoginLocalStorage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()
+], LoginLocalStorage);
+
+
+
+/***/ }),
+
+/***/ "./src/app/modules/navbar/services/theme.local-storage.ts":
+/*!****************************************************************!*\
+  !*** ./src/app/modules/navbar/services/theme.local-storage.ts ***!
+  \****************************************************************/
+/*! exports provided: ThemeLocalStorage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ThemeLocalStorage", function() { return ThemeLocalStorage; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+
+
+const LOCAL_STORAGE_WEBSITE_THEME_KEY = "website-theme";
+const DARK_THEME = "dark";
+const LIGHT_THEME = "light";
+let ThemeLocalStorage = class ThemeLocalStorage {
+    toggleTheme() {
+        const currentTheme = localStorage.getItem(LOCAL_STORAGE_WEBSITE_THEME_KEY);
+        let newWebsiteTheme = LIGHT_THEME;
+        if (currentTheme == LIGHT_THEME) {
+            newWebsiteTheme = DARK_THEME;
+        }
+        localStorage.setItem(LOCAL_STORAGE_WEBSITE_THEME_KEY, newWebsiteTheme);
+        document.body.classList.remove(LIGHT_THEME, DARK_THEME);
+        document.body.classList.add(newWebsiteTheme);
+    }
+};
+ThemeLocalStorage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()
+], ThemeLocalStorage);
 
 
 
@@ -3060,7 +3146,7 @@ CreatePostPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (":host {\n  display: block;\n}\n@media screen and (max-width: 480px) {\n  :host {\n    padding: 0 3rem;\n  }\n}\n@media screen and (max-width: 720px) {\n  .mat-column-category,\n.mat-column-createdAt {\n    display: none;\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9wb3N0L3Bvc3QtcGFnZXMvbWFuYWdlLXBvc3RzLXBhZ2UvQzpcXGRldlxccHJvamVjdHNcXGFoZW50ZXRpLWJsb2dcXHNyY1xcbWFpblxcZnJvbnRlbmQvc3JjXFxhcHBcXG1vZHVsZXNcXHBvc3RcXHBvc3QtcGFnZXNcXG1hbmFnZS1wb3N0cy1wYWdlXFxtYW5hZ2UtcG9zdHMucGFnZS5zY3NzIiwic3JjL2FwcC9tb2R1bGVzL3Bvc3QvcG9zdC1wYWdlcy9tYW5hZ2UtcG9zdHMtcGFnZS9tYW5hZ2UtcG9zdHMucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsY0FBQTtBQ0NGO0FEQUU7RUFGRjtJQUdJLGVBQUE7RUNHRjtBQUNGO0FEQUE7RUFDRTs7SUFFRSxhQUFBO0VDR0Y7QUFDRiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvcG9zdC9wb3N0LXBhZ2VzL21hbmFnZS1wb3N0cy1wYWdlL21hbmFnZS1wb3N0cy5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XHJcbiAgZGlzcGxheTogYmxvY2s7XHJcbiAgQG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aDogNDgwcHgpIHtcclxuICAgIHBhZGRpbmc6IDAgM3JlbTtcclxuICB9XHJcbn1cclxuXHJcbkBtZWRpYSBzY3JlZW4gYW5kIChtYXgtd2lkdGg6IDcyMHB4KSB7XHJcbiAgLm1hdC1jb2x1bW4tY2F0ZWdvcnksXHJcbiAgLm1hdC1jb2x1bW4tY3JlYXRlZEF0IHtcclxuICAgIGRpc3BsYXk6IG5vbmU7XHJcbiAgfVxyXG59XHJcbiIsIjpob3N0IHtcbiAgZGlzcGxheTogYmxvY2s7XG59XG5AbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiA0ODBweCkge1xuICA6aG9zdCB7XG4gICAgcGFkZGluZzogMCAzcmVtO1xuICB9XG59XG5cbkBtZWRpYSBzY3JlZW4gYW5kIChtYXgtd2lkdGg6IDcyMHB4KSB7XG4gIC5tYXQtY29sdW1uLWNhdGVnb3J5LFxuLm1hdC1jb2x1bW4tY3JlYXRlZEF0IHtcbiAgICBkaXNwbGF5OiBub25lO1xuICB9XG59Il19 */");
+/* harmony default export */ __webpack_exports__["default"] = (":host {\n  display: block;\n}\n@media screen and (max-width: 480px) {\n  :host {\n    padding: 0 3rem;\n  }\n}\n@media screen and (max-width: 720px) {\n  .mat-column-category,\n.mat-column-createdAt {\n    display: none;\n  }\n}\napp-page-title-delete-button {\n  --page-title-button-color-on-hover: var(--danger-color);\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9wb3N0L3Bvc3QtcGFnZXMvbWFuYWdlLXBvc3RzLXBhZ2UvQzpcXGRldlxccHJvamVjdHNcXGFoZW50ZXRpLWJsb2dcXHNyY1xcbWFpblxcZnJvbnRlbmQvc3JjXFxhcHBcXG1vZHVsZXNcXHBvc3RcXHBvc3QtcGFnZXNcXG1hbmFnZS1wb3N0cy1wYWdlXFxtYW5hZ2UtcG9zdHMucGFnZS5zY3NzIiwic3JjL2FwcC9tb2R1bGVzL3Bvc3QvcG9zdC1wYWdlcy9tYW5hZ2UtcG9zdHMtcGFnZS9tYW5hZ2UtcG9zdHMucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsY0FBQTtBQ0NGO0FEQUU7RUFGRjtJQUdJLGVBQUE7RUNHRjtBQUNGO0FEQUE7RUFDRTs7SUFFRSxhQUFBO0VDR0Y7QUFDRjtBREFBO0VBQ0UsdURBQUE7QUNFRiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvcG9zdC9wb3N0LXBhZ2VzL21hbmFnZS1wb3N0cy1wYWdlL21hbmFnZS1wb3N0cy5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XHJcbiAgZGlzcGxheTogYmxvY2s7XHJcbiAgQG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aDogNDgwcHgpIHtcclxuICAgIHBhZGRpbmc6IDAgM3JlbTtcclxuICB9XHJcbn1cclxuXHJcbkBtZWRpYSBzY3JlZW4gYW5kIChtYXgtd2lkdGg6IDcyMHB4KSB7XHJcbiAgLm1hdC1jb2x1bW4tY2F0ZWdvcnksXHJcbiAgLm1hdC1jb2x1bW4tY3JlYXRlZEF0IHtcclxuICAgIGRpc3BsYXk6IG5vbmU7XHJcbiAgfVxyXG59XHJcblxyXG5hcHAtcGFnZS10aXRsZS1kZWxldGUtYnV0dG9uIHtcclxuICAtLXBhZ2UtdGl0bGUtYnV0dG9uLWNvbG9yLW9uLWhvdmVyOiB2YXIoLS1kYW5nZXItY29sb3IpO1xyXG59XHJcbiIsIjpob3N0IHtcbiAgZGlzcGxheTogYmxvY2s7XG59XG5AbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiA0ODBweCkge1xuICA6aG9zdCB7XG4gICAgcGFkZGluZzogMCAzcmVtO1xuICB9XG59XG5cbkBtZWRpYSBzY3JlZW4gYW5kIChtYXgtd2lkdGg6IDcyMHB4KSB7XG4gIC5tYXQtY29sdW1uLWNhdGVnb3J5LFxuLm1hdC1jb2x1bW4tY3JlYXRlZEF0IHtcbiAgICBkaXNwbGF5OiBub25lO1xuICB9XG59XG5hcHAtcGFnZS10aXRsZS1kZWxldGUtYnV0dG9uIHtcbiAgLS1wYWdlLXRpdGxlLWJ1dHRvbi1jb2xvci1vbi1ob3ZlcjogdmFyKC0tZGFuZ2VyLWNvbG9yKTtcbn0iXX0= */");
 
 /***/ }),
 
@@ -3141,7 +3227,7 @@ let ManagePostsPage = class ManagePostsPage extends src_app_modules_shared_pages
     deleteAllUserPosts() {
         const dialogRef = this.dialog.open(src_app_modules_shared_components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_9__["ConfirmationDialogComponent"], {
             data: "Do you confirm the deletion of all your posts ?",
-            width: "340px",
+            width: "375px",
         });
         dialogRef.afterClosed().subscribe((result) => {
             if (result) {
@@ -3164,11 +3250,15 @@ let ManagePostsPage = class ManagePostsPage extends src_app_modules_shared_pages
     onFileUpload(file) {
         const request = this.postConverter.toUploadPostsApiRequest(file);
         this.postHttpClient.uploadPosts(request)
+            .then(() => this.handleUploadPostsApiRequestSuccessEvent())
             .catch((error) => this.handleUploadPostsApiRequestErrorEvent(error));
     }
     // prettier-ignore
     handleUploadPostsApiRequestErrorEvent(error) {
         this.postHttpClient.handleError(error, "Error while uploading your posts :(");
+    }
+    handleUploadPostsApiRequestSuccessEvent() {
+        this.fetchPage(this.filter, 0);
     }
     handleDeletePostErrorEvent(error) {
         console.error(error);
@@ -3197,7 +3287,7 @@ let ManagePostsPage = class ManagePostsPage extends src_app_modules_shared_pages
         document.body.appendChild(a);
         a.style.display = "none";
         a.href = url;
-        a.download = "posts.json";
+        a.download = this.calculateUserPostsFilenameToDownload();
         a.click();
         window.URL.revokeObjectURL(url);
     }
@@ -3212,6 +3302,21 @@ let ManagePostsPage = class ManagePostsPage extends src_app_modules_shared_pages
     handleDeleteUserPostsSuccessEvent() {
         this.currentPage = new _post_shared_models_post_internal_models__WEBPACK_IMPORTED_MODULE_3__["PostsPage"]();
         this.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"]([]);
+        this.recalculatePreviousNextButtonCssClasses();
+    }
+    calculateUserPostsFilenameToDownload() {
+        // I didn't find e method like this Date.toString(formatter) in javascript, so I have used
+        // this @sebastian.i solution that I have found on this stackoverflow thread: https://stackoverflow.com/questions/3552461/how-to-format-a-javascript-date
+        // Feel free to improve this code if you find a more elegant implementation, and please let me know about :)
+        const currentDate = new Date();
+        const year = currentDate.getFullYear();
+        const month = ("" + (currentDate.getMonth() + 1)).padStart(2, "0");
+        const date = ("" + currentDate.getDate()).padStart(2, "0");
+        const hour = ("" + currentDate.getHours()).padStart(2, "0");
+        const minutes = ("" + currentDate.getMinutes()).padStart(2, "0");
+        const seconds = ("" + currentDate.getSeconds()).padStart(2, "0");
+        const filename = "posts_" + year + month + date + hour + minutes + seconds + ".json";
+        return filename;
     }
 };
 ManagePostsPage.ctorParameters = () => [
@@ -5714,7 +5819,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".button {\n  border-radius: 100rem;\n  padding: 0.5rem;\n  height: var(--page-title-button-size);\n  width: var(--page-title-button-size);\n  background-color: var(--page-title-button-background-color);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  cursor: pointer;\n}\n\n.iconify {\n  font-size: var(--page-title-button-icon-font-size);\n  border-radius: 100rem;\n  color: var(--page-title-button-color);\n  background-color: var(--page-title-button-background-color);\n  transition: var(--transition);\n  transition-property: color, background-color;\n}\n\n.iconify:hover {\n  color: var(--primary-color);\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9zaGFyZWQvY29tcG9uZW50cy9wYWdlLXRpdGxlLWJ1dHRvbnMvcGFnZS10aXRsZS1idXR0b24vQzpcXGRldlxccHJvamVjdHNcXGFoZW50ZXRpLWJsb2dcXHNyY1xcbWFpblxcZnJvbnRlbmQvc3JjXFxhcHBcXG1vZHVsZXNcXHNoYXJlZFxcY29tcG9uZW50c1xccGFnZS10aXRsZS1idXR0b25zXFxwYWdlLXRpdGxlLWJ1dHRvblxccGFnZS10aXRsZS1idXR0b24uY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL21vZHVsZXMvc2hhcmVkL2NvbXBvbmVudHMvcGFnZS10aXRsZS1idXR0b25zL3BhZ2UtdGl0bGUtYnV0dG9uL3BhZ2UtdGl0bGUtYnV0dG9uLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UscUJBQUE7RUFDQSxlQUFBO0VBQ0EscUNBQUE7RUFDQSxvQ0FBQTtFQUNBLDJEQUFBO0VBQ0EsYUFBQTtFQUNBLG1CQUFBO0VBQ0EsdUJBQUE7RUFDQSxlQUFBO0FDQ0Y7O0FERUE7RUFDRSxrREFBQTtFQUNBLHFCQUFBO0VBQ0EscUNBQUE7RUFDQSwyREFBQTtFQUNBLDZCQUFBO0VBQ0EsNENBQUE7QUNDRjs7QURDRTtFQUNFLDJCQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9tb2R1bGVzL3NoYXJlZC9jb21wb25lbnRzL3BhZ2UtdGl0bGUtYnV0dG9ucy9wYWdlLXRpdGxlLWJ1dHRvbi9wYWdlLXRpdGxlLWJ1dHRvbi5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5idXR0b24ge1xyXG4gIGJvcmRlci1yYWRpdXM6IDEwMHJlbTtcclxuICBwYWRkaW5nOiAwLjVyZW07XHJcbiAgaGVpZ2h0OiB2YXIoLS1wYWdlLXRpdGxlLWJ1dHRvbi1zaXplKTtcclxuICB3aWR0aDogdmFyKC0tcGFnZS10aXRsZS1idXR0b24tc2l6ZSk7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tcGFnZS10aXRsZS1idXR0b24tYmFja2dyb3VuZC1jb2xvcik7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxufVxyXG5cclxuLmljb25pZnkge1xyXG4gIGZvbnQtc2l6ZTogdmFyKC0tcGFnZS10aXRsZS1idXR0b24taWNvbi1mb250LXNpemUpO1xyXG4gIGJvcmRlci1yYWRpdXM6IDEwMHJlbTtcclxuICBjb2xvcjogdmFyKC0tcGFnZS10aXRsZS1idXR0b24tY29sb3IpO1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXBhZ2UtdGl0bGUtYnV0dG9uLWJhY2tncm91bmQtY29sb3IpO1xyXG4gIHRyYW5zaXRpb246IHZhcigtLXRyYW5zaXRpb24pO1xyXG4gIHRyYW5zaXRpb24tcHJvcGVydHk6IGNvbG9yLCBiYWNrZ3JvdW5kLWNvbG9yO1xyXG5cclxuICAmOmhvdmVyIHtcclxuICAgIGNvbG9yOiB2YXIoLS1wcmltYXJ5LWNvbG9yKTtcclxuICB9XHJcbn1cclxuIiwiLmJ1dHRvbiB7XG4gIGJvcmRlci1yYWRpdXM6IDEwMHJlbTtcbiAgcGFkZGluZzogMC41cmVtO1xuICBoZWlnaHQ6IHZhcigtLXBhZ2UtdGl0bGUtYnV0dG9uLXNpemUpO1xuICB3aWR0aDogdmFyKC0tcGFnZS10aXRsZS1idXR0b24tc2l6ZSk7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXBhZ2UtdGl0bGUtYnV0dG9uLWJhY2tncm91bmQtY29sb3IpO1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4uaWNvbmlmeSB7XG4gIGZvbnQtc2l6ZTogdmFyKC0tcGFnZS10aXRsZS1idXR0b24taWNvbi1mb250LXNpemUpO1xuICBib3JkZXItcmFkaXVzOiAxMDByZW07XG4gIGNvbG9yOiB2YXIoLS1wYWdlLXRpdGxlLWJ1dHRvbi1jb2xvcik7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXBhZ2UtdGl0bGUtYnV0dG9uLWJhY2tncm91bmQtY29sb3IpO1xuICB0cmFuc2l0aW9uOiB2YXIoLS10cmFuc2l0aW9uKTtcbiAgdHJhbnNpdGlvbi1wcm9wZXJ0eTogY29sb3IsIGJhY2tncm91bmQtY29sb3I7XG59XG4uaWNvbmlmeTpob3ZlciB7XG4gIGNvbG9yOiB2YXIoLS1wcmltYXJ5LWNvbG9yKTtcbn0iXX0= */");
+/* harmony default export */ __webpack_exports__["default"] = (".button {\n  border-radius: 100rem;\n  padding: 0.5rem;\n  height: var(--page-title-button-size);\n  width: var(--page-title-button-size);\n  background-color: var(--page-title-button-background-color);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  cursor: pointer;\n}\n\n.iconify {\n  font-size: var(--page-title-button-icon-font-size);\n  border-radius: 100rem;\n  color: var(--page-title-button-color);\n  background-color: var(--page-title-button-background-color);\n  transition: var(--transition);\n  transition-property: color, background-color;\n}\n\n.iconify:hover {\n  color: var(--page-title-button-color-on-hover, var(--primary-color));\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9zaGFyZWQvY29tcG9uZW50cy9wYWdlLXRpdGxlLWJ1dHRvbnMvcGFnZS10aXRsZS1idXR0b24vQzpcXGRldlxccHJvamVjdHNcXGFoZW50ZXRpLWJsb2dcXHNyY1xcbWFpblxcZnJvbnRlbmQvc3JjXFxhcHBcXG1vZHVsZXNcXHNoYXJlZFxcY29tcG9uZW50c1xccGFnZS10aXRsZS1idXR0b25zXFxwYWdlLXRpdGxlLWJ1dHRvblxccGFnZS10aXRsZS1idXR0b24uY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL21vZHVsZXMvc2hhcmVkL2NvbXBvbmVudHMvcGFnZS10aXRsZS1idXR0b25zL3BhZ2UtdGl0bGUtYnV0dG9uL3BhZ2UtdGl0bGUtYnV0dG9uLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UscUJBQUE7RUFDQSxlQUFBO0VBQ0EscUNBQUE7RUFDQSxvQ0FBQTtFQUNBLDJEQUFBO0VBQ0EsYUFBQTtFQUNBLG1CQUFBO0VBQ0EsdUJBQUE7RUFDQSxlQUFBO0FDQ0Y7O0FERUE7RUFDRSxrREFBQTtFQUNBLHFCQUFBO0VBQ0EscUNBQUE7RUFDQSwyREFBQTtFQUNBLDZCQUFBO0VBQ0EsNENBQUE7QUNDRjs7QURDRTtFQUNFLG9FQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9tb2R1bGVzL3NoYXJlZC9jb21wb25lbnRzL3BhZ2UtdGl0bGUtYnV0dG9ucy9wYWdlLXRpdGxlLWJ1dHRvbi9wYWdlLXRpdGxlLWJ1dHRvbi5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5idXR0b24ge1xyXG4gIGJvcmRlci1yYWRpdXM6IDEwMHJlbTtcclxuICBwYWRkaW5nOiAwLjVyZW07XHJcbiAgaGVpZ2h0OiB2YXIoLS1wYWdlLXRpdGxlLWJ1dHRvbi1zaXplKTtcclxuICB3aWR0aDogdmFyKC0tcGFnZS10aXRsZS1idXR0b24tc2l6ZSk7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tcGFnZS10aXRsZS1idXR0b24tYmFja2dyb3VuZC1jb2xvcik7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxufVxyXG5cclxuLmljb25pZnkge1xyXG4gIGZvbnQtc2l6ZTogdmFyKC0tcGFnZS10aXRsZS1idXR0b24taWNvbi1mb250LXNpemUpO1xyXG4gIGJvcmRlci1yYWRpdXM6IDEwMHJlbTtcclxuICBjb2xvcjogdmFyKC0tcGFnZS10aXRsZS1idXR0b24tY29sb3IpO1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXBhZ2UtdGl0bGUtYnV0dG9uLWJhY2tncm91bmQtY29sb3IpO1xyXG4gIHRyYW5zaXRpb246IHZhcigtLXRyYW5zaXRpb24pO1xyXG4gIHRyYW5zaXRpb24tcHJvcGVydHk6IGNvbG9yLCBiYWNrZ3JvdW5kLWNvbG9yO1xyXG5cclxuICAmOmhvdmVyIHtcclxuICAgIGNvbG9yOiB2YXIoLS1wYWdlLXRpdGxlLWJ1dHRvbi1jb2xvci1vbi1ob3ZlciwgdmFyKC0tcHJpbWFyeS1jb2xvcikpO1xyXG4gIH1cclxufVxyXG4iLCIuYnV0dG9uIHtcbiAgYm9yZGVyLXJhZGl1czogMTAwcmVtO1xuICBwYWRkaW5nOiAwLjVyZW07XG4gIGhlaWdodDogdmFyKC0tcGFnZS10aXRsZS1idXR0b24tc2l6ZSk7XG4gIHdpZHRoOiB2YXIoLS1wYWdlLXRpdGxlLWJ1dHRvbi1zaXplKTtcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tcGFnZS10aXRsZS1idXR0b24tYmFja2dyb3VuZC1jb2xvcik7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbi5pY29uaWZ5IHtcbiAgZm9udC1zaXplOiB2YXIoLS1wYWdlLXRpdGxlLWJ1dHRvbi1pY29uLWZvbnQtc2l6ZSk7XG4gIGJvcmRlci1yYWRpdXM6IDEwMHJlbTtcbiAgY29sb3I6IHZhcigtLXBhZ2UtdGl0bGUtYnV0dG9uLWNvbG9yKTtcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tcGFnZS10aXRsZS1idXR0b24tYmFja2dyb3VuZC1jb2xvcik7XG4gIHRyYW5zaXRpb246IHZhcigtLXRyYW5zaXRpb24pO1xuICB0cmFuc2l0aW9uLXByb3BlcnR5OiBjb2xvciwgYmFja2dyb3VuZC1jb2xvcjtcbn1cbi5pY29uaWZ5OmhvdmVyIHtcbiAgY29sb3I6IHZhcigtLXBhZ2UtdGl0bGUtYnV0dG9uLWNvbG9yLW9uLWhvdmVyLCB2YXIoLS1wcmltYXJ5LWNvbG9yKSk7XG59Il19 */");
 
 /***/ }),
 
@@ -6993,6 +7098,9 @@ __webpack_require__.r(__webpack_exports__);
 
 class Page {
     constructor() {
+        this.firstPage = true;
+        this.lastPage = true;
+        this.totalItems = 0;
         this.items = [];
     }
 }
@@ -7129,15 +7237,11 @@ FirstLetterPipe = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*!************************************************************!*\
   !*** ./src/app/modules/shared/services/constants.utils.ts ***!
   \************************************************************/
-/*! exports provided: LOCAL_STORAGE_WEBSITE_THEME_KEY, DARK_THEME, LIGHT_THEME, DEFAULT_THEME, OVERLAY_POSITION_TOP, OVERLAY_POSITION_BOTTOM, PAGE_CONTENT_READY_EVENT, ALL_TAGS, URL_BEFORE_LOGIN_COOKIE_NAME, NAVBAR_HEIGHT */
+/*! exports provided: OVERLAY_POSITION_TOP, OVERLAY_POSITION_BOTTOM, PAGE_CONTENT_READY_EVENT, ALL_TAGS, URL_BEFORE_LOGIN_COOKIE_NAME, NAVBAR_HEIGHT */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOCAL_STORAGE_WEBSITE_THEME_KEY", function() { return LOCAL_STORAGE_WEBSITE_THEME_KEY; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DARK_THEME", function() { return DARK_THEME; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LIGHT_THEME", function() { return LIGHT_THEME; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DEFAULT_THEME", function() { return DEFAULT_THEME; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OVERLAY_POSITION_TOP", function() { return OVERLAY_POSITION_TOP; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OVERLAY_POSITION_BOTTOM", function() { return OVERLAY_POSITION_BOTTOM; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PAGE_CONTENT_READY_EVENT", function() { return PAGE_CONTENT_READY_EVENT; });
@@ -7146,10 +7250,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NAVBAR_HEIGHT", function() { return NAVBAR_HEIGHT; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 
-const LOCAL_STORAGE_WEBSITE_THEME_KEY = "website-theme";
-const DARK_THEME = "dark";
-const LIGHT_THEME = "light";
-const DEFAULT_THEME = DARK_THEME;
 const OVERLAY_POSITION_TOP = {
     originX: "center",
     originY: "top",
@@ -7353,42 +7453,6 @@ class StringUtils {
         return !str || /^\s*$/.test(str);
     }
 }
-
-
-/***/ }),
-
-/***/ "./src/app/modules/shared/services/theme.localstorage.services.ts":
-/*!************************************************************************!*\
-  !*** ./src/app/modules/shared/services/theme.localstorage.services.ts ***!
-  \************************************************************************/
-/*! exports provided: ThemeLocalStorageServices */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ThemeLocalStorageServices", function() { return ThemeLocalStorageServices; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _constants_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants.utils */ "./src/app/modules/shared/services/constants.utils.ts");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-
-
-
-let ThemeLocalStorageServices = class ThemeLocalStorageServices {
-    toggleTheme() {
-        const currentTheme = localStorage.getItem(_constants_utils__WEBPACK_IMPORTED_MODULE_1__["LOCAL_STORAGE_WEBSITE_THEME_KEY"]);
-        let newWebsiteTheme = _constants_utils__WEBPACK_IMPORTED_MODULE_1__["LIGHT_THEME"];
-        if (currentTheme == _constants_utils__WEBPACK_IMPORTED_MODULE_1__["LIGHT_THEME"]) {
-            newWebsiteTheme = _constants_utils__WEBPACK_IMPORTED_MODULE_1__["DARK_THEME"];
-        }
-        localStorage.setItem(_constants_utils__WEBPACK_IMPORTED_MODULE_1__["LOCAL_STORAGE_WEBSITE_THEME_KEY"], newWebsiteTheme);
-        document.body.classList.remove(_constants_utils__WEBPACK_IMPORTED_MODULE_1__["LIGHT_THEME"], _constants_utils__WEBPACK_IMPORTED_MODULE_1__["DARK_THEME"]);
-        document.body.classList.add(newWebsiteTheme);
-    }
-};
-ThemeLocalStorageServices = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])()
-], ThemeLocalStorageServices);
-
 
 
 /***/ }),
@@ -7881,6 +7945,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_user_http_client__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/user.http-client */ "./src/app/modules/user/services/user.http-client.ts");
 /* harmony import */ var _services_user_converter__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../services/user.converter */ "./src/app/modules/user/services/user.converter.ts");
 /* harmony import */ var src_app_modules_shared_pages_manage_resources_page__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/modules/shared/pages/manage-resources.page */ "./src/app/modules/shared/pages/manage-resources.page.ts");
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm2015/dialog.js");
+/* harmony import */ var src_app_modules_shared_components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/modules/shared/components/confirmation-dialog/confirmation-dialog.component */ "./src/app/modules/shared/components/confirmation-dialog/confirmation-dialog.component.ts");
+
+
 
 
 
@@ -7890,14 +7958,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let ManageUsersPage = class ManageUsersPage extends src_app_modules_shared_pages_manage_resources_page__WEBPACK_IMPORTED_MODULE_7__["AbstractManageResourcesPage"] {
-    constructor(alertService, userHttpClient, userConverter) {
+    constructor(alertService, userHttpClient, userConverter, dialog) {
         super();
         this.alertService = alertService;
         this.userHttpClient = userHttpClient;
         this.userConverter = userConverter;
+        this.dialog = dialog;
         this.currentPage = new _models_user_internal_models__WEBPACK_IMPORTED_MODULE_3__["UsersPage"]();
         this.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"]([]);
-        this.columns = ["username", "provider", "joinAt", "actions"];
+        this.columns = ["id", "username", "provider", "joinAt", "actions"];
     }
     // prettier-ignore
     fetchPage(filter, page) {
@@ -7906,13 +7975,26 @@ let ManageUsersPage = class ManageUsersPage extends src_app_modules_shared_pages
             .then(usersPage => this.handleGetUsersPageSuccessEvent(usersPage))
             .catch(error => this.handleGetUsersPageErrorEvent(error));
     }
+    // prettier-ignore
     deleteUser(user) {
-        console.log(user);
-        this.alertService.error("Delete functionality not yet implemented");
+        const dialogRef = this.dialog.open(src_app_modules_shared_components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_9__["ConfirmationDialogComponent"], {
+            data: "Do you confirm the deletion of this user ?",
+            width: "340px",
+        });
+        dialogRef.afterClosed().subscribe((result) => {
+            if (result) {
+                const request = this.userConverter.toDeleteUserApiRequest(user.id);
+                this.userHttpClient.deleteUser(request)
+                    .then(() => this.handleDeleteUserSuccessEvent(user))
+                    .catch(error => this.handleDeleteUserErrorEvent(error));
+            }
+        });
     }
     handleGetUsersPageErrorEvent(error) {
-        console.error(error);
-        this.alertService.error("Error while fetching users :(");
+        this.userHttpClient.handleError(error, "Error while fetching users :(");
+    }
+    handleDeleteUserErrorEvent(error) {
+        this.userHttpClient.handleError(error, "Error while deleting user :(");
     }
     handleGetUsersPageSuccessEvent(usersPage) {
         this.currentPage = usersPage;
@@ -7920,11 +8002,18 @@ let ManageUsersPage = class ManageUsersPage extends src_app_modules_shared_pages
         this.dataSource.sort = this.sort;
         this.recalculatePreviousNextButtonCssClasses();
     }
+    // prettier-ignore
+    handleDeleteUserSuccessEvent(user) {
+        this.alertService.info(`The user ${user.username} has been deleted with success`);
+        this.dataSource.data = this.dataSource.data.filter((u) => u.id !== user.id);
+        this.dataSource._updateChangeSubscription(); // <-- Refresh the data source, reference: https://stackoverflow.com/questions/54744770/how-to-delete-particular-row-from-angular-material-table-which-doesnt-have-filte
+    }
 };
 ManageUsersPage.ctorParameters = () => [
     { type: src_app_modules_alert_alert_service__WEBPACK_IMPORTED_MODULE_4__["AlertService"] },
     { type: _services_user_http_client__WEBPACK_IMPORTED_MODULE_5__["UserHttpClient"] },
-    { type: _services_user_converter__WEBPACK_IMPORTED_MODULE_6__["UserConverter"] }
+    { type: _services_user_converter__WEBPACK_IMPORTED_MODULE_6__["UserConverter"] },
+    { type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_8__["MatDialog"] }
 ];
 ManageUsersPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -8083,7 +8172,9 @@ let UserConverter = class UserConverter {
         };
     }
     toUser(user) {
+        console.log(user);
         return {
+            id: user.id,
             username: user.username,
             avatarUrl: user.avatarUrl,
             provider: user.provider,
@@ -8103,6 +8194,11 @@ let UserConverter = class UserConverter {
         res.page = page.page;
         page.items.forEach((user) => res.items.push(this.toUser(user)));
         return res;
+    }
+    toDeleteUserApiRequest(id) {
+        return {
+            url: `/secure-api/users/${id}`,
+        };
     }
 };
 UserConverter = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -8129,14 +8225,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
 /* harmony import */ var _user_converter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./user.converter */ "./src/app/modules/user/services/user.converter.ts");
+/* harmony import */ var _alert_common_http_client__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../alert/common.http-client */ "./src/app/modules/alert/common.http-client.ts");
+/* harmony import */ var _alert_alert_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../alert/alert.service */ "./src/app/modules/alert/alert.service.ts");
+
+
 
 
 
 
 
 const GET_CURRENT_IDENTITY_URL = "/api/currentIdentity";
-let UserHttpClient = class UserHttpClient {
-    constructor(http, userConverter) {
+let UserHttpClient = class UserHttpClient extends _alert_common_http_client__WEBPACK_IMPORTED_MODULE_5__["CommonHttpClient"] {
+    constructor(http, userConverter, alertService) {
+        super(alertService);
         this.http = http;
         this.userConverter = userConverter;
     }
@@ -8152,10 +8253,17 @@ let UserHttpClient = class UserHttpClient {
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((users) => this.userConverter.toUsersPage(users)))
             .toPromise();
     }
+    // prettier-ignore
+    deleteUser(request) {
+        return this.http
+            .delete(request.url)
+            .toPromise();
+    }
 };
 UserHttpClient.ctorParameters = () => [
     { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },
-    { type: _user_converter__WEBPACK_IMPORTED_MODULE_4__["UserConverter"] }
+    { type: _user_converter__WEBPACK_IMPORTED_MODULE_4__["UserConverter"] },
+    { type: _alert_alert_service__WEBPACK_IMPORTED_MODULE_6__["AlertService"] }
 ];
 UserHttpClient = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()

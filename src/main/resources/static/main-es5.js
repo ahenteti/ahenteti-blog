@@ -212,7 +212,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"login\" [matMenuTriggerFor]=\"menu\" #dropdownTrigger=\"matMenuTrigger\">\r\n    <span>Login</span>\r\n    <app-dropdown-icon class=\"dropdown-icon\"></app-dropdown-icon>\r\n</div>\r\n\r\n<mat-menu #menu=\"matMenu\" xPosition=\"before\">\r\n    <a mat-menu-item href=\"/oauth2/authorization/github\" (click)=\"preLogin()\"\r\n    >Login with <span class=\"login-icon iconify\" data-icon=\"fe:github\"></span\r\n    ></a>\r\n    <a mat-menu-item href=\"/oauth2/authorization/google\" (click)=\"preLogin()\"\r\n    >Login with <span class=\"login-icon iconify\" data-icon=\"fe:google\"></span\r\n    ></a>\r\n</mat-menu>\r\n";
+    __webpack_exports__["default"] = "<div class=\"login\" [matMenuTriggerFor]=\"menu\" #dropdownTrigger=\"matMenuTrigger\">\r\n  <span>Login</span>\r\n  <app-dropdown-icon class=\"dropdown-icon\"></app-dropdown-icon>\r\n  <div *ngIf=\"!loginFeatureAlreadyHighlighted\" class=\"login-message\">\r\n    <p>\r\n      Logged in users can add feedbacks, comments and much more on our\r\n      website...\r\n    </p>\r\n    <p class=\"give-it-a-try\">\r\n      Give it a try <span class=\"iconify\" data-icon=\"vaadin:smiley-o\"></span>\r\n    </p>\r\n  </div>\r\n</div>\r\n\r\n<mat-menu #menu=\"matMenu\" xPosition=\"before\">\r\n  <a mat-menu-item href=\"/oauth2/authorization/github\" (click)=\"preLogin()\"\r\n    >Login with <span class=\"login-icon iconify\" data-icon=\"fe:github\"></span\r\n  ></a>\r\n  <a mat-menu-item href=\"/oauth2/authorization/google\" (click)=\"preLogin()\"\r\n    >Login with <span class=\"login-icon iconify\" data-icon=\"fe:google\"></span\r\n  ></a>\r\n</mat-menu>\r\n";
     /***/
   },
 
@@ -352,7 +352,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<app-manage-resources-page-layout\r\n  pageTitle=\"My Posts\"\r\n  [previousButtonCssClasses]=\"previousButtonCssClasses\"\r\n  [nextButtonCssClasses]=\"nextButtonCssClasses\"\r\n  (previousButtonClick)=\"handlePreviousButtonClickEvent()\"\r\n  (nextButtonClick)=\"handleNextButtonClickEvent()\"\r\n  (filter)=\"onFilter($event)\"\r\n>\r\n  <ng-container class=\"top-table-actions\">\r\n    <app-page-title-delete-button\r\n      tooltip=\"delete all your posts\"\r\n      (click)=\"deleteAllUserPosts()\"\r\n    >\r\n    </app-page-title-delete-button>\r\n    <app-page-title-download-button\r\n      tooltip=\"download all your posts\"\r\n      (click)=\"downloadAllUserPosts()\"\r\n    >\r\n    </app-page-title-download-button>\r\n    <app-page-title-upload-button\r\n      (fileUpload)=\"onFileUpload($event)\"\r\n      tooltip=\"upload posts\"\r\n    >\r\n    </app-page-title-upload-button>\r\n    <app-page-title-new-button\r\n      routerLink=\"/posts/new\"\r\n      tooltip=\"create new post\"\r\n    ></app-page-title-new-button>\r\n  </ng-container>\r\n\r\n  <ng-container class=\"table\">\r\n    <table mat-table matSort [dataSource]=\"dataSource\">\r\n      <ng-container matColumnDef=\"id\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>#</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.id}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"title\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Title</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.title}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"category\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Category</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.category}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"createdAt\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Created At</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.createdAt | date}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"lastUpdatedAt\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>\r\n          Last Updated At\r\n        </th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <ng-container *ngIf=\"element.lastUpdatedAt\"\r\n            >{{element.lastUpdatedAt | date}}</ng-container\r\n          >\r\n        </td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"actions\">\r\n        <th mat-header-cell *matHeaderCellDef></th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <div class=\"row-actions\">\r\n            <app-consult-button-link\r\n              [routerLink]=\"['/posts', element.id, 'consult']\"\r\n            ></app-consult-button-link>\r\n            <app-edit-button-link\r\n              [routerLink]=\"['/posts', element.id, 'edit']\"\r\n            ></app-edit-button-link>\r\n            <app-delete-button\r\n              (click)=\"deletePost(element.id)\"\r\n            ></app-delete-button>\r\n          </div>\r\n        </td>\r\n      </ng-container>\r\n\r\n      <tr mat-header-row *matHeaderRowDef=\"columns\"></tr>\r\n      <tr mat-row class=\"row\" *matRowDef=\"let row; columns: columns;\"></tr>\r\n    </table>\r\n  </ng-container>\r\n</app-manage-resources-page-layout>\r\n";
+    __webpack_exports__["default"] = "<app-manage-resources-page-layout\r\n  pageTitle=\"My Posts\"\r\n  [previousButtonCssClasses]=\"previousButtonCssClasses\"\r\n  [nextButtonCssClasses]=\"nextButtonCssClasses\"\r\n  (previousButtonClick)=\"handlePreviousButtonClickEvent()\"\r\n  (nextButtonClick)=\"handleNextButtonClickEvent()\"\r\n  (filter)=\"onFilter($event)\"\r\n>\r\n  <ng-container class=\"top-table-actions\">\r\n    <app-page-title-delete-button\r\n      tooltip=\"delete all your posts\"\r\n      (click)=\"deleteAllUserPosts()\"\r\n    >\r\n    </app-page-title-delete-button>\r\n    <app-page-title-download-button\r\n      tooltip=\"download all your posts\"\r\n      (click)=\"downloadAllUserPosts()\"\r\n    >\r\n    </app-page-title-download-button>\r\n    <app-page-title-upload-button\r\n      (fileUpload)=\"onFileUpload($event)\"\r\n      tooltip=\"upload posts\"\r\n    >\r\n    </app-page-title-upload-button>\r\n    <app-page-title-new-button\r\n      routerLink=\"/posts/new\"\r\n      tooltip=\"create new post\"\r\n    ></app-page-title-new-button>\r\n  </ng-container>\r\n\r\n  <ng-container class=\"table\">\r\n    <table mat-table matSort [dataSource]=\"dataSource\">\r\n      <ng-container matColumnDef=\"id\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>#</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.id}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"title\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Title</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.title}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"category\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Category</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.category}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"createdAt\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Created At</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.createdAt | date}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"lastUpdatedAt\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>\r\n          Last Updated At\r\n        </th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          {{element.lastUpdatedAt ? (element.lastUpdatedAt | date) : 'N/A'}}\r\n        </td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"actions\">\r\n        <th mat-header-cell *matHeaderCellDef></th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <div class=\"row-actions\">\r\n            <app-consult-button-link\r\n              [routerLink]=\"['/posts', element.id, 'consult']\"\r\n            ></app-consult-button-link>\r\n            <app-edit-button-link\r\n              [routerLink]=\"['/posts', element.id, 'edit']\"\r\n            ></app-edit-button-link>\r\n            <app-delete-button\r\n              (click)=\"deletePost(element.id)\"\r\n            ></app-delete-button>\r\n          </div>\r\n        </td>\r\n      </ng-container>\r\n\r\n      <tr mat-header-row *matHeaderRowDef=\"columns\"></tr>\r\n      <tr mat-row class=\"row\" *matRowDef=\"let row; columns: columns;\"></tr>\r\n    </table>\r\n  </ng-container>\r\n</app-manage-resources-page-layout>\r\n";
     /***/
   },
 
@@ -992,7 +992,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<app-manage-resources-page-layout\r\n        pageTitle=\"Users\"\r\n        [previousButtonCssClasses]=\"previousButtonCssClasses\"\r\n        [nextButtonCssClasses]=\"nextButtonCssClasses\"\r\n        (previousButtonClick)=\"handlePreviousButtonClickEvent()\"\r\n        (nextButtonClick)=\"handleNextButtonClickEvent()\"\r\n        (filter)=\"onFilter($event)\"\r\n>\r\n    <ng-container class=\"table\">\r\n        <table mat-table matSort [dataSource]=\"dataSource\">\r\n            <ng-container matColumnDef=\"username\">\r\n                <th mat-header-cell mat-sort-header *matHeaderCellDef>Username</th>\r\n                <td mat-cell *matCellDef=\"let element\">\r\n                    <app-user [user]=\"element\"></app-user>\r\n                </td>\r\n            </ng-container>\r\n\r\n            <ng-container matColumnDef=\"provider\">\r\n                <th mat-header-cell mat-sort-header *matHeaderCellDef>Provider</th>\r\n                <td mat-cell *matCellDef=\"let element\">{{element.provider}}</td>\r\n            </ng-container>\r\n\r\n            <ng-container matColumnDef=\"joinAt\">\r\n                <th mat-header-cell mat-sort-header *matHeaderCellDef>Join At</th>\r\n                <td mat-cell *matCellDef=\"let element\">{{element.joinAt | date}}</td>\r\n            </ng-container>\r\n\r\n            <ng-container matColumnDef=\"actions\">\r\n                <th mat-header-cell *matHeaderCellDef></th>\r\n                <td mat-cell *matCellDef=\"let element\">\r\n                    <div class=\"row-actions\">\r\n                        <app-delete-button\r\n                                (click)=\"deleteUser(element)\"\r\n                        ></app-delete-button>\r\n                    </div>\r\n                </td>\r\n            </ng-container>\r\n\r\n            <tr mat-header-row *matHeaderRowDef=\"columns\"></tr>\r\n            <tr mat-row *matRowDef=\"let row; columns: columns;\"></tr>\r\n        </table>\r\n    </ng-container>\r\n</app-manage-resources-page-layout>\r\n";
+    __webpack_exports__["default"] = "<app-manage-resources-page-layout\r\n  pageTitle=\"Users\"\r\n  [previousButtonCssClasses]=\"previousButtonCssClasses\"\r\n  [nextButtonCssClasses]=\"nextButtonCssClasses\"\r\n  (previousButtonClick)=\"handlePreviousButtonClickEvent()\"\r\n  (nextButtonClick)=\"handleNextButtonClickEvent()\"\r\n  (filter)=\"onFilter($event)\"\r\n>\r\n  <ng-container class=\"table\">\r\n    <table mat-table matSort [dataSource]=\"dataSource\">\r\n      <ng-container matColumnDef=\"id\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>#</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.id}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"username\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Username</th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <app-user [user]=\"element\"></app-user>\r\n        </td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"provider\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Provider</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.provider}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"joinAt\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Join At</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.joinAt | date}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"actions\">\r\n        <th mat-header-cell *matHeaderCellDef></th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <div class=\"row-actions\">\r\n            <app-delete-button\r\n              (click)=\"deleteUser(element)\"\r\n            ></app-delete-button>\r\n          </div>\r\n        </td>\r\n      </ng-container>\r\n\r\n      <tr mat-header-row *matHeaderRowDef=\"columns\"></tr>\r\n      <tr mat-row *matRowDef=\"let row; columns: columns;\"></tr>\r\n    </table>\r\n  </ng-container>\r\n</app-manage-resources-page-layout>\r\n";
     /***/
   },
 
@@ -2080,9 +2080,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony import */
 
 
-    var _modules_shared_services_theme_localstorage_services__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
-    /*! ./modules/shared/services/theme.localstorage.services */
-    "./src/app/modules/shared/services/theme.localstorage.services.ts");
+    var _modules_navbar_services_theme_local_storage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    /*! ./modules/navbar/services/theme.local-storage */
+    "./src/app/modules/navbar/services/theme.local-storage.ts");
     /* harmony import */
 
 
@@ -2221,6 +2221,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var _modules_alert_alert_service__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(
     /*! ./modules/alert/alert.service */
     "./src/app/modules/alert/alert.service.ts");
+    /* harmony import */
+
+
+    var _modules_navbar_services_login_local_storage__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(
+    /*! ./modules/navbar/services/login.local-storage */
+    "./src/app/modules/navbar/services/login.local-storage.ts");
 
     var routes = [{
       path: "",
@@ -2238,7 +2244,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       declarations: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]],
       imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_4__["BrowserAnimationsModule"], _modules_shared_shared_module__WEBPACK_IMPORTED_MODULE_14__["SharedModule"], _modules_loader_loader_module__WEBPACK_IMPORTED_MODULE_22__["LoaderModule"], _modules_alert_alert_module__WEBPACK_IMPORTED_MODULE_5__["AlertModule"], _modules_navbar_navbar_module__WEBPACK_IMPORTED_MODULE_6__["NavbarModule"], _modules_post_post_pages_post_pages_module__WEBPACK_IMPORTED_MODULE_7__["PostPageModule"], _modules_feedback_feedback_module__WEBPACK_IMPORTED_MODULE_27__["FeedbackModule"], _angular_router__WEBPACK_IMPORTED_MODULE_13__["RouterModule"].forRoot(routes)],
       bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]],
-      providers: [_modules_alert_alert_service__WEBPACK_IMPORTED_MODULE_31__["AlertService"], _modules_post_post_shared_services_post_http_client__WEBPACK_IMPORTED_MODULE_16__["PostHttpClient"], _modules_post_post_shared_services_post_converter__WEBPACK_IMPORTED_MODULE_17__["PostConverter"], _modules_post_post_comments_converter_post_comment_converter__WEBPACK_IMPORTED_MODULE_18__["PostCommentConverter"], _modules_post_post_comments_services_post_comment_http_client__WEBPACK_IMPORTED_MODULE_19__["PostCommentHttpClient"], _modules_shared_services_theme_localstorage_services__WEBPACK_IMPORTED_MODULE_8__["ThemeLocalStorageServices"], _modules_user_services_user_http_client__WEBPACK_IMPORTED_MODULE_9__["UserHttpClient"], _modules_user_services_user_login_services__WEBPACK_IMPORTED_MODULE_10__["UserLoginServices"], _modules_user_services_user_observable__WEBPACK_IMPORTED_MODULE_11__["UserObservable"], _modules_user_services_user_converter__WEBPACK_IMPORTED_MODULE_12__["UserConverter"], _modules_user_services_logged_in_guard__WEBPACK_IMPORTED_MODULE_15__["LoggedInGuard"], _modules_post_post_shared_services_post_validator__WEBPACK_IMPORTED_MODULE_20__["PostValidator"], _modules_shared_services_window_service__WEBPACK_IMPORTED_MODULE_21__["WindowService"], _modules_loader_loader_service__WEBPACK_IMPORTED_MODULE_25__["LoaderService"], _modules_user_services_admin_guard__WEBPACK_IMPORTED_MODULE_26__["AdminGuard"], _modules_feedback_services_feedback_converter__WEBPACK_IMPORTED_MODULE_28__["FeedbackConverter"], _modules_feedback_services_feedback_validator__WEBPACK_IMPORTED_MODULE_29__["FeedbackValidator"], _modules_feedback_services_feedback_http_client__WEBPACK_IMPORTED_MODULE_30__["FeedbackHttpClient"], {
+      providers: [_modules_alert_alert_service__WEBPACK_IMPORTED_MODULE_31__["AlertService"], _modules_post_post_shared_services_post_http_client__WEBPACK_IMPORTED_MODULE_16__["PostHttpClient"], _modules_post_post_shared_services_post_converter__WEBPACK_IMPORTED_MODULE_17__["PostConverter"], _modules_post_post_comments_converter_post_comment_converter__WEBPACK_IMPORTED_MODULE_18__["PostCommentConverter"], _modules_post_post_comments_services_post_comment_http_client__WEBPACK_IMPORTED_MODULE_19__["PostCommentHttpClient"], _modules_navbar_services_theme_local_storage__WEBPACK_IMPORTED_MODULE_8__["ThemeLocalStorage"], _modules_navbar_services_login_local_storage__WEBPACK_IMPORTED_MODULE_32__["LoginLocalStorage"], _modules_user_services_user_http_client__WEBPACK_IMPORTED_MODULE_9__["UserHttpClient"], _modules_user_services_user_login_services__WEBPACK_IMPORTED_MODULE_10__["UserLoginServices"], _modules_user_services_user_observable__WEBPACK_IMPORTED_MODULE_11__["UserObservable"], _modules_user_services_user_converter__WEBPACK_IMPORTED_MODULE_12__["UserConverter"], _modules_user_services_logged_in_guard__WEBPACK_IMPORTED_MODULE_15__["LoggedInGuard"], _modules_post_post_shared_services_post_validator__WEBPACK_IMPORTED_MODULE_20__["PostValidator"], _modules_shared_services_window_service__WEBPACK_IMPORTED_MODULE_21__["WindowService"], _modules_loader_loader_service__WEBPACK_IMPORTED_MODULE_25__["LoaderService"], _modules_user_services_admin_guard__WEBPACK_IMPORTED_MODULE_26__["AdminGuard"], _modules_feedback_services_feedback_converter__WEBPACK_IMPORTED_MODULE_28__["FeedbackConverter"], _modules_feedback_services_feedback_validator__WEBPACK_IMPORTED_MODULE_29__["FeedbackValidator"], _modules_feedback_services_feedback_http_client__WEBPACK_IMPORTED_MODULE_30__["FeedbackHttpClient"], {
         provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_23__["HTTP_INTERCEPTORS"],
         useClass: _modules_loader_loader_interceptor__WEBPACK_IMPORTED_MODULE_24__["LoaderInterceptor"],
         multi: true
@@ -3783,7 +3789,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "hide",
         value: function hide() {
-          this.isLoading.next(false);
+          var _this11 = this;
+
+          setTimeout(function () {
+            _this11.isLoading.next(false);
+          }, 300);
         }
       }]);
 
@@ -3860,42 +3870,42 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony import */
 
 
-    var src_app_modules_shared_services_theme_localstorage_services__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-    /*! src/app/modules/shared/services/theme.localstorage.services */
-    "./src/app/modules/shared/services/theme.localstorage.services.ts");
+    var src_app_modules_navbar_services_theme_local_storage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! src/app/modules/navbar/services/theme.local-storage */
+    "./src/app/modules/navbar/services/theme.local-storage.ts");
 
     var NavbarComponent = /*#__PURE__*/function (_src_app_modules_user) {
       _inherits(NavbarComponent, _src_app_modules_user);
 
       var _super5 = _createSuper(NavbarComponent);
 
-      function NavbarComponent(themeService, userObservable) {
-        var _this11;
+      function NavbarComponent(themeLocalStorage, userObservable) {
+        var _this12;
 
         _classCallCheck(this, NavbarComponent);
 
-        _this11 = _super5.call(this, userObservable);
-        _this11.themeService = themeService;
-        _this11.shadow = false;
-        return _this11;
+        _this12 = _super5.call(this, userObservable);
+        _this12.themeLocalStorage = themeLocalStorage;
+        _this12.shadow = false;
+        return _this12;
       }
 
       _createClass(NavbarComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this12 = this;
+          var _this13 = this;
 
           _get(_getPrototypeOf(NavbarComponent.prototype), "ngOnInit", this).call(this);
 
           window.addEventListener("scroll", function () {
-            return _this12.handleWindowScrollEvent();
+            return _this13.handleWindowScrollEvent();
           });
         }
       }, {
         key: "handleChangeThemeColorClickEvent",
         value: function handleChangeThemeColorClickEvent(event) {
           // event.stopPropagation();
-          this.themeService.toggleTheme();
+          this.themeLocalStorage.toggleTheme();
         }
       }, {
         key: "handleWindowScrollEvent",
@@ -3909,7 +3919,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     NavbarComponent.ctorParameters = function () {
       return [{
-        type: src_app_modules_shared_services_theme_localstorage_services__WEBPACK_IMPORTED_MODULE_4__["ThemeLocalStorageServices"]
+        type: src_app_modules_navbar_services_theme_local_storage__WEBPACK_IMPORTED_MODULE_4__["ThemeLocalStorage"]
       }, {
         type: src_app_modules_user_services_user_observable__WEBPACK_IMPORTED_MODULE_2__["UserObservable"]
       }];
@@ -3944,7 +3954,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = ".login {\n  display: flex;\n  align-items: center;\n  color: var(--navbar-link-color);\n  text-decoration: none;\n  cursor: pointer;\n}\n\na {\n  display: flex;\n  align-items: center;\n}\n\n.login-icon {\n  margin-left: 1rem;\n  font-size: 2.3rem;\n}\n\napp-dropdown-icon {\n  line-height: initial;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9uYXZiYXIvY29tcG9uZW50cy9uYXZiYXItbG9naW4vQzpcXGRldlxccHJvamVjdHNcXGFoZW50ZXRpLWJsb2dcXHNyY1xcbWFpblxcZnJvbnRlbmQvc3JjXFxhcHBcXG1vZHVsZXNcXG5hdmJhclxcY29tcG9uZW50c1xcbmF2YmFyLWxvZ2luXFxuYXZiYXItbG9naW4uY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL21vZHVsZXMvbmF2YmFyL2NvbXBvbmVudHMvbmF2YmFyLWxvZ2luL25hdmJhci1sb2dpbi5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGFBQUE7RUFDQSxtQkFBQTtFQUNBLCtCQUFBO0VBQ0EscUJBQUE7RUFDQSxlQUFBO0FDQ0Y7O0FERUE7RUFDRSxhQUFBO0VBQ0EsbUJBQUE7QUNDRjs7QURFQTtFQUNFLGlCQUFBO0VBQ0EsaUJBQUE7QUNDRjs7QURFQTtFQUNFLG9CQUFBO0FDQ0YiLCJmaWxlIjoic3JjL2FwcC9tb2R1bGVzL25hdmJhci9jb21wb25lbnRzL25hdmJhci1sb2dpbi9uYXZiYXItbG9naW4uY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubG9naW4ge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBjb2xvcjogdmFyKC0tbmF2YmFyLWxpbmstY29sb3IpO1xyXG4gIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcclxuICBjdXJzb3I6IHBvaW50ZXI7XHJcbn1cclxuXHJcbmEge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxufVxyXG5cclxuLmxvZ2luLWljb24ge1xyXG4gIG1hcmdpbi1sZWZ0OiAxcmVtO1xyXG4gIGZvbnQtc2l6ZTogMi4zcmVtO1xyXG59XHJcblxyXG5hcHAtZHJvcGRvd24taWNvbiB7XHJcbiAgbGluZS1oZWlnaHQ6IGluaXRpYWw7XHJcbn1cclxuIiwiLmxvZ2luIHtcbiAgZGlzcGxheTogZmxleDtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgY29sb3I6IHZhcigtLW5hdmJhci1saW5rLWNvbG9yKTtcbiAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbmEge1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xufVxuXG4ubG9naW4taWNvbiB7XG4gIG1hcmdpbi1sZWZ0OiAxcmVtO1xuICBmb250LXNpemU6IDIuM3JlbTtcbn1cblxuYXBwLWRyb3Bkb3duLWljb24ge1xuICBsaW5lLWhlaWdodDogaW5pdGlhbDtcbn0iXX0= */";
+    __webpack_exports__["default"] = ":host {\n  position: relative;\n}\n\n.login {\n  display: flex;\n  align-items: center;\n  color: var(--navbar-link-color);\n  text-decoration: none;\n  cursor: pointer;\n}\n\n.login-message {\n  all: initial;\n  cursor: pointer;\n  position: absolute;\n  top: 100%;\n  width: 30rem;\n  right: 0;\n  color: white;\n  font-family: \"Roboto\", sans-serif;\n  background: var(--primary-color);\n  padding: 2rem;\n  border-radius: 0.3rem;\n  -webkit-animation: bounce 0.8s ease infinite alternate;\n          animation: bounce 0.8s ease infinite alternate;\n}\n\n.login-message p {\n  font-size: 1.4rem;\n  line-height: 1.3;\n}\n\n.give-it-a-try {\n  margin-top: 1rem;\n}\n\n.give-it-a-try .iconify {\n  margin-left: 0.8rem;\n}\n\n.login-message::after {\n  content: \"\";\n  position: absolute;\n  top: -1rem;\n  right: 5rem;\n  border-top: none;\n  border-right: 1rem solid transparent;\n  border-bottom: 1rem solid var(--primary-color);\n  border-left: 1rem solid transparent;\n}\n\n@-webkit-keyframes bounce {\n  from {\n    top: 100%;\n  }\n  to {\n    top: calc(100% + 1.5rem);\n  }\n}\n\n@keyframes bounce {\n  from {\n    top: 100%;\n  }\n  to {\n    top: calc(100% + 1.5rem);\n  }\n}\n\na {\n  display: flex;\n  align-items: center;\n}\n\n.login-icon {\n  margin-left: 1rem;\n  font-size: 2.3rem;\n}\n\napp-dropdown-icon {\n  line-height: initial;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9uYXZiYXIvY29tcG9uZW50cy9uYXZiYXItbG9naW4vQzpcXGRldlxccHJvamVjdHNcXGFoZW50ZXRpLWJsb2dcXHNyY1xcbWFpblxcZnJvbnRlbmQvc3JjXFxhcHBcXG1vZHVsZXNcXG5hdmJhclxcY29tcG9uZW50c1xcbmF2YmFyLWxvZ2luXFxuYXZiYXItbG9naW4uY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL21vZHVsZXMvbmF2YmFyL2NvbXBvbmVudHMvbmF2YmFyLWxvZ2luL25hdmJhci1sb2dpbi5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGtCQUFBO0FDQ0Y7O0FERUE7RUFDRSxhQUFBO0VBQ0EsbUJBQUE7RUFDQSwrQkFBQTtFQUNBLHFCQUFBO0VBQ0EsZUFBQTtBQ0NGOztBREVBO0VBQ0UsWUFBQTtFQUNBLGVBQUE7RUFDQSxrQkFBQTtFQUNBLFNBQUE7RUFDQSxZQUFBO0VBQ0EsUUFBQTtFQUNBLFlBQUE7RUFDQSxpQ0FBQTtFQUNBLGdDQUFBO0VBQ0EsYUFBQTtFQUNBLHFCQUFBO0VBQ0Esc0RBQUE7VUFBQSw4Q0FBQTtBQ0NGOztBREVBO0VBQ0UsaUJBQUE7RUFDQSxnQkFBQTtBQ0NGOztBREVBO0VBQ0UsZ0JBQUE7QUNDRjs7QURDRTtFQUNFLG1CQUFBO0FDQ0o7O0FER0E7RUFDRSxXQUFBO0VBQ0Esa0JBQUE7RUFDQSxVQUFBO0VBQ0EsV0FBQTtFQUNBLGdCQUFBO0VBQ0Esb0NBQUE7RUFDQSw4Q0FBQTtFQUNBLG1DQUFBO0FDQUY7O0FER0E7RUFDRTtJQUNFLFNBQUE7RUNBRjtFREVBO0lBQ0Usd0JBQUE7RUNBRjtBQUNGOztBRE5BO0VBQ0U7SUFDRSxTQUFBO0VDQUY7RURFQTtJQUNFLHdCQUFBO0VDQUY7QUFDRjs7QURHQTtFQUNFLGFBQUE7RUFDQSxtQkFBQTtBQ0RGOztBRElBO0VBQ0UsaUJBQUE7RUFDQSxpQkFBQTtBQ0RGOztBRElBO0VBQ0Usb0JBQUE7QUNERiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvbmF2YmFyL2NvbXBvbmVudHMvbmF2YmFyLWxvZ2luL25hdmJhci1sb2dpbi5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0IHtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbn1cclxuXHJcbi5sb2dpbiB7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGNvbG9yOiB2YXIoLS1uYXZiYXItbGluay1jb2xvcik7XHJcbiAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxufVxyXG5cclxuLmxvZ2luLW1lc3NhZ2Uge1xyXG4gIGFsbDogaW5pdGlhbDtcclxuICBjdXJzb3I6IHBvaW50ZXI7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIHRvcDogMTAwJTtcclxuICB3aWR0aDogMzByZW07XHJcbiAgcmlnaHQ6IDA7XHJcbiAgY29sb3I6IHdoaXRlO1xyXG4gIGZvbnQtZmFtaWx5OiBcIlJvYm90b1wiLCBzYW5zLXNlcmlmO1xyXG4gIGJhY2tncm91bmQ6IHZhcigtLXByaW1hcnktY29sb3IpO1xyXG4gIHBhZGRpbmc6IDJyZW07XHJcbiAgYm9yZGVyLXJhZGl1czogMC4zcmVtO1xyXG4gIGFuaW1hdGlvbjogYm91bmNlIDAuOHMgZWFzZSBpbmZpbml0ZSBhbHRlcm5hdGU7XHJcbn1cclxuXHJcbi5sb2dpbi1tZXNzYWdlIHAge1xyXG4gIGZvbnQtc2l6ZTogMS40cmVtO1xyXG4gIGxpbmUtaGVpZ2h0OiAxLjM7XHJcbn1cclxuXHJcbi5naXZlLWl0LWEtdHJ5IHtcclxuICBtYXJnaW4tdG9wOiAxcmVtO1xyXG5cclxuICAmIC5pY29uaWZ5IHtcclxuICAgIG1hcmdpbi1sZWZ0OiAwLjhyZW07XHJcbiAgfVxyXG59XHJcblxyXG4ubG9naW4tbWVzc2FnZTo6YWZ0ZXIge1xyXG4gIGNvbnRlbnQ6IFwiXCI7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIHRvcDogLTFyZW07XHJcbiAgcmlnaHQ6IDVyZW07XHJcbiAgYm9yZGVyLXRvcDogbm9uZTtcclxuICBib3JkZXItcmlnaHQ6IDFyZW0gc29saWQgdHJhbnNwYXJlbnQ7XHJcbiAgYm9yZGVyLWJvdHRvbTogMXJlbSBzb2xpZCB2YXIoLS1wcmltYXJ5LWNvbG9yKTtcclxuICBib3JkZXItbGVmdDogMXJlbSBzb2xpZCB0cmFuc3BhcmVudDtcclxufVxyXG5cclxuQGtleWZyYW1lcyBib3VuY2Uge1xyXG4gIGZyb20ge1xyXG4gICAgdG9wOiAxMDAlO1xyXG4gIH1cclxuICB0byB7XHJcbiAgICB0b3A6IGNhbGMoMTAwJSArIDEuNXJlbSk7XHJcbiAgfVxyXG59XHJcblxyXG5hIHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbn1cclxuXHJcbi5sb2dpbi1pY29uIHtcclxuICBtYXJnaW4tbGVmdDogMXJlbTtcclxuICBmb250LXNpemU6IDIuM3JlbTtcclxufVxyXG5cclxuYXBwLWRyb3Bkb3duLWljb24ge1xyXG4gIGxpbmUtaGVpZ2h0OiBpbml0aWFsO1xyXG59XHJcbiIsIjpob3N0IHtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xufVxuXG4ubG9naW4ge1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBjb2xvcjogdmFyKC0tbmF2YmFyLWxpbmstY29sb3IpO1xuICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn1cblxuLmxvZ2luLW1lc3NhZ2Uge1xuICBhbGw6IGluaXRpYWw7XG4gIGN1cnNvcjogcG9pbnRlcjtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICB0b3A6IDEwMCU7XG4gIHdpZHRoOiAzMHJlbTtcbiAgcmlnaHQ6IDA7XG4gIGNvbG9yOiB3aGl0ZTtcbiAgZm9udC1mYW1pbHk6IFwiUm9ib3RvXCIsIHNhbnMtc2VyaWY7XG4gIGJhY2tncm91bmQ6IHZhcigtLXByaW1hcnktY29sb3IpO1xuICBwYWRkaW5nOiAycmVtO1xuICBib3JkZXItcmFkaXVzOiAwLjNyZW07XG4gIGFuaW1hdGlvbjogYm91bmNlIDAuOHMgZWFzZSBpbmZpbml0ZSBhbHRlcm5hdGU7XG59XG5cbi5sb2dpbi1tZXNzYWdlIHAge1xuICBmb250LXNpemU6IDEuNHJlbTtcbiAgbGluZS1oZWlnaHQ6IDEuMztcbn1cblxuLmdpdmUtaXQtYS10cnkge1xuICBtYXJnaW4tdG9wOiAxcmVtO1xufVxuLmdpdmUtaXQtYS10cnkgLmljb25pZnkge1xuICBtYXJnaW4tbGVmdDogMC44cmVtO1xufVxuXG4ubG9naW4tbWVzc2FnZTo6YWZ0ZXIge1xuICBjb250ZW50OiBcIlwiO1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHRvcDogLTFyZW07XG4gIHJpZ2h0OiA1cmVtO1xuICBib3JkZXItdG9wOiBub25lO1xuICBib3JkZXItcmlnaHQ6IDFyZW0gc29saWQgdHJhbnNwYXJlbnQ7XG4gIGJvcmRlci1ib3R0b206IDFyZW0gc29saWQgdmFyKC0tcHJpbWFyeS1jb2xvcik7XG4gIGJvcmRlci1sZWZ0OiAxcmVtIHNvbGlkIHRyYW5zcGFyZW50O1xufVxuXG5Aa2V5ZnJhbWVzIGJvdW5jZSB7XG4gIGZyb20ge1xuICAgIHRvcDogMTAwJTtcbiAgfVxuICB0byB7XG4gICAgdG9wOiBjYWxjKDEwMCUgKyAxLjVyZW0pO1xuICB9XG59XG5hIHtcbiAgZGlzcGxheTogZmxleDtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbn1cblxuLmxvZ2luLWljb24ge1xuICBtYXJnaW4tbGVmdDogMXJlbTtcbiAgZm9udC1zaXplOiAyLjNyZW07XG59XG5cbmFwcC1kcm9wZG93bi1pY29uIHtcbiAgbGluZS1oZWlnaHQ6IGluaXRpYWw7XG59Il19 */";
     /***/
   },
 
@@ -3985,15 +3995,33 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var src_app_modules_user_services_user_login_services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
     /*! src/app/modules/user/services/user.login.services */
     "./src/app/modules/user/services/user.login.services.ts");
+    /* harmony import */
+
+
+    var _services_login_local_storage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ../../services/login.local-storage */
+    "./src/app/modules/navbar/services/login.local-storage.ts");
 
     var NavbarLoginComponent = /*#__PURE__*/function () {
-      function NavbarLoginComponent(userLoginService) {
+      function NavbarLoginComponent(userLoginService, loginLocalStorage) {
         _classCallCheck(this, NavbarLoginComponent);
 
         this.userLoginService = userLoginService;
+        this.loginLocalStorage = loginLocalStorage;
+        this.loginFeatureAlreadyHighlighted = false;
       }
 
       _createClass(NavbarLoginComponent, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          var _this14 = this;
+
+          this.loginFeatureAlreadyHighlighted = this.loginLocalStorage.isLoginFeatureAlreadyHighlighted();
+          document.addEventListener("click", function () {
+            _this14.loginFeatureAlreadyHighlighted = true;
+          });
+        }
+      }, {
         key: "preLogin",
         value: function preLogin() {
           this.userLoginService.preLogin();
@@ -4006,6 +4034,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     NavbarLoginComponent.ctorParameters = function () {
       return [{
         type: src_app_modules_user_services_user_login_services__WEBPACK_IMPORTED_MODULE_2__["UserLoginServices"]
+      }, {
+        type: _services_login_local_storage__WEBPACK_IMPORTED_MODULE_3__["LoginLocalStorage"]
       }];
     };
 
@@ -4084,9 +4114,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony import */
 
 
-    var src_app_modules_shared_services_theme_localstorage_services__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! src/app/modules/shared/services/theme.localstorage.services */
-    "./src/app/modules/shared/services/theme.localstorage.services.ts");
+    var src_app_modules_navbar_services_theme_local_storage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! src/app/modules/navbar/services/theme.local-storage */
+    "./src/app/modules/navbar/services/theme.local-storage.ts");
     /* harmony import */
 
 
@@ -4100,13 +4130,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       var _super6 = _createSuper(NavbarUserLinkComponent);
 
       function NavbarUserLinkComponent(themeService, userObservable) {
-        var _this13;
+        var _this15;
 
         _classCallCheck(this, NavbarUserLinkComponent);
 
-        _this13 = _super6.call(this, userObservable);
-        _this13.themeService = themeService;
-        return _this13;
+        _this15 = _super6.call(this, userObservable);
+        _this15.themeService = themeService;
+        return _this15;
       }
 
       _createClass(NavbarUserLinkComponent, [{
@@ -4122,7 +4152,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     NavbarUserLinkComponent.ctorParameters = function () {
       return [{
-        type: src_app_modules_shared_services_theme_localstorage_services__WEBPACK_IMPORTED_MODULE_3__["ThemeLocalStorageServices"]
+        type: src_app_modules_navbar_services_theme_local_storage__WEBPACK_IMPORTED_MODULE_3__["ThemeLocalStorage"]
       }, {
         type: src_app_modules_user_services_user_observable__WEBPACK_IMPORTED_MODULE_4__["UserObservable"]
       }];
@@ -4225,6 +4255,129 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
   },
 
   /***/
+  "./src/app/modules/navbar/services/login.local-storage.ts":
+  /*!****************************************************************!*\
+    !*** ./src/app/modules/navbar/services/login.local-storage.ts ***!
+    \****************************************************************/
+
+  /*! exports provided: LoginLocalStorage */
+
+  /***/
+  function srcAppModulesNavbarServicesLoginLocalStorageTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "LoginLocalStorage", function () {
+      return LoginLocalStorage;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    var LOCAL_STORAGE_LOGIN_FEATURE_ALREADY_HIGHLIGHTED_KEY = "login-feature-already-highlighted";
+
+    var LoginLocalStorage = /*#__PURE__*/function () {
+      function LoginLocalStorage() {
+        _classCallCheck(this, LoginLocalStorage);
+      }
+
+      _createClass(LoginLocalStorage, [{
+        key: "isLoginFeatureAlreadyHighlighted",
+        // prettier-ignore
+        value: function isLoginFeatureAlreadyHighlighted() {
+          if (localStorage.getItem(LOCAL_STORAGE_LOGIN_FEATURE_ALREADY_HIGHLIGHTED_KEY) === null) {
+            localStorage.setItem(LOCAL_STORAGE_LOGIN_FEATURE_ALREADY_HIGHLIGHTED_KEY, 'true');
+            return false;
+          }
+
+          return true;
+        }
+      }]);
+
+      return LoginLocalStorage;
+    }();
+
+    LoginLocalStorage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()], LoginLocalStorage);
+    /***/
+  },
+
+  /***/
+  "./src/app/modules/navbar/services/theme.local-storage.ts":
+  /*!****************************************************************!*\
+    !*** ./src/app/modules/navbar/services/theme.local-storage.ts ***!
+    \****************************************************************/
+
+  /*! exports provided: ThemeLocalStorage */
+
+  /***/
+  function srcAppModulesNavbarServicesThemeLocalStorageTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "ThemeLocalStorage", function () {
+      return ThemeLocalStorage;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    var LOCAL_STORAGE_WEBSITE_THEME_KEY = "website-theme";
+    var DARK_THEME = "dark";
+    var LIGHT_THEME = "light";
+
+    var ThemeLocalStorage = /*#__PURE__*/function () {
+      function ThemeLocalStorage() {
+        _classCallCheck(this, ThemeLocalStorage);
+      }
+
+      _createClass(ThemeLocalStorage, [{
+        key: "toggleTheme",
+        value: function toggleTheme() {
+          var currentTheme = localStorage.getItem(LOCAL_STORAGE_WEBSITE_THEME_KEY);
+          var newWebsiteTheme = LIGHT_THEME;
+
+          if (currentTheme == LIGHT_THEME) {
+            newWebsiteTheme = DARK_THEME;
+          }
+
+          localStorage.setItem(LOCAL_STORAGE_WEBSITE_THEME_KEY, newWebsiteTheme);
+          document.body.classList.remove(LIGHT_THEME, DARK_THEME);
+          document.body.classList.add(newWebsiteTheme);
+        }
+      }]);
+
+      return ThemeLocalStorage;
+    }();
+
+    ThemeLocalStorage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()], ThemeLocalStorage);
+    /***/
+  },
+
+  /***/
   "./src/app/modules/post/post-comments/components/add-post-comment/add-post-comment.component.scss":
   /*!********************************************************************************************************!*\
     !*** ./src/app/modules/post/post-comments/components/add-post-comment/add-post-comment.component.scss ***!
@@ -4318,34 +4471,34 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       var _super7 = _createSuper(AddPostCommentComponent);
 
       function AddPostCommentComponent(route, userObservable, commentHttpClient, alertService) {
-        var _this14;
+        var _this16;
 
         _classCallCheck(this, AddPostCommentComponent);
 
-        _this14 = _super7.call(this, userObservable);
-        _this14.commentHttpClient = commentHttpClient;
-        _this14.alertService = alertService;
-        _this14.newPostComment = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
-        _this14.postId = route.snapshot.params["id"];
-        return _this14;
+        _this16 = _super7.call(this, userObservable);
+        _this16.commentHttpClient = commentHttpClient;
+        _this16.alertService = alertService;
+        _this16.newPostComment = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        _this16.postId = route.snapshot.params["id"];
+        return _this16;
       }
 
       _createClass(AddPostCommentComponent, [{
         key: "onSubmit",
         value: function onSubmit(form) {
-          var _this15 = this;
+          var _this17 = this;
 
           this.commentTextarea.nativeElement.value = "";
           var comment = this.toComment(form.value);
           this.newPostComment.emit(comment);
           this.commentHttpClient.createPostComment(form.value).then(function () {
-            return _this15.alertSavingCommentSuccess();
+            return _this17.alertSavingCommentSuccess();
           })["catch"](function (error) {
             console.error(error);
 
-            _this15.alertSavingCommentError();
+            _this17.alertSavingCommentError();
 
-            _this15.newPostComment.emit(new _models_post_comment_internal_models__WEBPACK_IMPORTED_MODULE_7__["EmptyPostComment"]());
+            _this17.newPostComment.emit(new _models_post_comment_internal_models__WEBPACK_IMPORTED_MODULE_7__["EmptyPostComment"]());
           });
         }
       }, {
@@ -4569,19 +4722,19 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       var _super8 = _createSuper(PostCommentsComponent);
 
       function PostCommentsComponent(route, userObservable, commentHttpClient, commentConverter, alertService) {
-        var _this16;
+        var _this18;
 
         _classCallCheck(this, PostCommentsComponent);
 
-        _this16 = _super8.call(this, userObservable);
-        _this16.commentHttpClient = commentHttpClient;
-        _this16.commentConverter = commentConverter;
-        _this16.alertService = alertService;
-        _this16.currentCommentsPage = -1;
-        _this16.postComments = new _models_post_comment_internal_models__WEBPACK_IMPORTED_MODULE_7__["PostComments"]();
-        _this16.stillMoreComments = false;
-        _this16.postId = route.snapshot.params["id"];
-        return _this16;
+        _this18 = _super8.call(this, userObservable);
+        _this18.commentHttpClient = commentHttpClient;
+        _this18.commentConverter = commentConverter;
+        _this18.alertService = alertService;
+        _this18.currentCommentsPage = -1;
+        _this18.postComments = new _models_post_comment_internal_models__WEBPACK_IMPORTED_MODULE_7__["PostComments"]();
+        _this18.stillMoreComments = false;
+        _this18.postId = route.snapshot.params["id"];
+        return _this18;
       }
 
       _createClass(PostCommentsComponent, [{
@@ -4608,21 +4761,21 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "loadComments",
         value: function loadComments() {
-          var _this17 = this;
+          var _this19 = this;
 
           var onNgInit = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
           var request = this.commentConverter.toGetPostCommentsApiRequest(this.postId, ++this.currentCommentsPage);
           this.commentHttpClient.getPostComments(request).then(function (comments) {
-            _this17.postComments = _construct(_models_post_comment_internal_models__WEBPACK_IMPORTED_MODULE_7__["PostComments"], _toConsumableArray(_this17.postComments).concat(_toConsumableArray(comments)));
-            _this17.stillMoreComments = comments.length !== 0;
+            _this19.postComments = _construct(_models_post_comment_internal_models__WEBPACK_IMPORTED_MODULE_7__["PostComments"], _toConsumableArray(_this19.postComments).concat(_toConsumableArray(comments)));
+            _this19.stillMoreComments = comments.length !== 0;
 
-            if (!_this17.stillMoreComments && !onNgInit) {
-              _this17.alertService.info("No more comments on this post");
+            if (!_this19.stillMoreComments && !onNgInit) {
+              _this19.alertService.info("No more comments on this post");
             }
           })["catch"](function (error) {
             console.error(error);
 
-            _this17.alertService.error("Error while fetching post comments :(");
+            _this19.alertService.error("Error while fetching post comments :(");
           });
         }
       }]);
@@ -4968,26 +5121,26 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       var _super10 = _createSuper(PostCommentHttpClient);
 
       function PostCommentHttpClient(alertService, commentConverter, http) {
-        var _this18;
+        var _this20;
 
         _classCallCheck(this, PostCommentHttpClient);
 
-        _this18 = _super10.call(this, alertService);
-        _this18.commentConverter = commentConverter;
-        _this18.http = http;
-        return _this18;
+        _this20 = _super10.call(this, alertService);
+        _this20.commentConverter = commentConverter;
+        _this20.http = http;
+        return _this20;
       }
 
       _createClass(PostCommentHttpClient, [{
         key: "getPostComments",
         value: function getPostComments(request) {
-          var _this19 = this;
+          var _this21 = this;
 
           var url = this.commentConverter.toGetPostCommentsApiRequestUrl(request);
           return this.http.get(url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (postComments) {
             var data = new _models_post_comment_internal_models__WEBPACK_IMPORTED_MODULE_6__["PostComments"]();
             postComments.forEach(function (post) {
-              return data.push(_this19.commentConverter.toPostComment(post));
+              return data.push(_this21.commentConverter.toPostComment(post));
             });
             return data;
           })).toPromise();
@@ -5100,10 +5253,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(ConsultPostPage, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this20 = this;
+          var _this22 = this;
 
           this.postHttpClient.getPostById(this.postId).then(function (post) {
-            _this20.post = post;
+            _this22.post = post;
           });
         }
       }]);
@@ -5240,15 +5393,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(CreatePostPage, [{
         key: "onSubmit",
         value: function onSubmit(post) {
-          var _this21 = this;
+          var _this23 = this;
 
           try {
             this.postValidator.validateCreatePost(post);
             var request = this.postConverter.toCreatePostApiRequest(post);
             this.postHttpClient.createPost(request).then(function (post) {
-              return _this21.handleCreatePostSuccessEvent(post);
+              return _this23.handleCreatePostSuccessEvent(post);
             })["catch"](function (error) {
-              return _this21.handleCreatePostErrorEvent(error);
+              return _this23.handleCreatePostErrorEvent(error);
             });
           } catch (error) {
             this.alertService.error(error.message);
@@ -5317,7 +5470,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = ":host {\n  display: block;\n}\n@media screen and (max-width: 480px) {\n  :host {\n    padding: 0 3rem;\n  }\n}\n@media screen and (max-width: 720px) {\n  .mat-column-category,\n.mat-column-createdAt {\n    display: none;\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9wb3N0L3Bvc3QtcGFnZXMvbWFuYWdlLXBvc3RzLXBhZ2UvQzpcXGRldlxccHJvamVjdHNcXGFoZW50ZXRpLWJsb2dcXHNyY1xcbWFpblxcZnJvbnRlbmQvc3JjXFxhcHBcXG1vZHVsZXNcXHBvc3RcXHBvc3QtcGFnZXNcXG1hbmFnZS1wb3N0cy1wYWdlXFxtYW5hZ2UtcG9zdHMucGFnZS5zY3NzIiwic3JjL2FwcC9tb2R1bGVzL3Bvc3QvcG9zdC1wYWdlcy9tYW5hZ2UtcG9zdHMtcGFnZS9tYW5hZ2UtcG9zdHMucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsY0FBQTtBQ0NGO0FEQUU7RUFGRjtJQUdJLGVBQUE7RUNHRjtBQUNGO0FEQUE7RUFDRTs7SUFFRSxhQUFBO0VDR0Y7QUFDRiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvcG9zdC9wb3N0LXBhZ2VzL21hbmFnZS1wb3N0cy1wYWdlL21hbmFnZS1wb3N0cy5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XHJcbiAgZGlzcGxheTogYmxvY2s7XHJcbiAgQG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aDogNDgwcHgpIHtcclxuICAgIHBhZGRpbmc6IDAgM3JlbTtcclxuICB9XHJcbn1cclxuXHJcbkBtZWRpYSBzY3JlZW4gYW5kIChtYXgtd2lkdGg6IDcyMHB4KSB7XHJcbiAgLm1hdC1jb2x1bW4tY2F0ZWdvcnksXHJcbiAgLm1hdC1jb2x1bW4tY3JlYXRlZEF0IHtcclxuICAgIGRpc3BsYXk6IG5vbmU7XHJcbiAgfVxyXG59XHJcbiIsIjpob3N0IHtcbiAgZGlzcGxheTogYmxvY2s7XG59XG5AbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiA0ODBweCkge1xuICA6aG9zdCB7XG4gICAgcGFkZGluZzogMCAzcmVtO1xuICB9XG59XG5cbkBtZWRpYSBzY3JlZW4gYW5kIChtYXgtd2lkdGg6IDcyMHB4KSB7XG4gIC5tYXQtY29sdW1uLWNhdGVnb3J5LFxuLm1hdC1jb2x1bW4tY3JlYXRlZEF0IHtcbiAgICBkaXNwbGF5OiBub25lO1xuICB9XG59Il19 */";
+    __webpack_exports__["default"] = ":host {\n  display: block;\n}\n@media screen and (max-width: 480px) {\n  :host {\n    padding: 0 3rem;\n  }\n}\n@media screen and (max-width: 720px) {\n  .mat-column-category,\n.mat-column-createdAt {\n    display: none;\n  }\n}\napp-page-title-delete-button {\n  --page-title-button-color-on-hover: var(--danger-color);\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9wb3N0L3Bvc3QtcGFnZXMvbWFuYWdlLXBvc3RzLXBhZ2UvQzpcXGRldlxccHJvamVjdHNcXGFoZW50ZXRpLWJsb2dcXHNyY1xcbWFpblxcZnJvbnRlbmQvc3JjXFxhcHBcXG1vZHVsZXNcXHBvc3RcXHBvc3QtcGFnZXNcXG1hbmFnZS1wb3N0cy1wYWdlXFxtYW5hZ2UtcG9zdHMucGFnZS5zY3NzIiwic3JjL2FwcC9tb2R1bGVzL3Bvc3QvcG9zdC1wYWdlcy9tYW5hZ2UtcG9zdHMtcGFnZS9tYW5hZ2UtcG9zdHMucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsY0FBQTtBQ0NGO0FEQUU7RUFGRjtJQUdJLGVBQUE7RUNHRjtBQUNGO0FEQUE7RUFDRTs7SUFFRSxhQUFBO0VDR0Y7QUFDRjtBREFBO0VBQ0UsdURBQUE7QUNFRiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvcG9zdC9wb3N0LXBhZ2VzL21hbmFnZS1wb3N0cy1wYWdlL21hbmFnZS1wb3N0cy5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XHJcbiAgZGlzcGxheTogYmxvY2s7XHJcbiAgQG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aDogNDgwcHgpIHtcclxuICAgIHBhZGRpbmc6IDAgM3JlbTtcclxuICB9XHJcbn1cclxuXHJcbkBtZWRpYSBzY3JlZW4gYW5kIChtYXgtd2lkdGg6IDcyMHB4KSB7XHJcbiAgLm1hdC1jb2x1bW4tY2F0ZWdvcnksXHJcbiAgLm1hdC1jb2x1bW4tY3JlYXRlZEF0IHtcclxuICAgIGRpc3BsYXk6IG5vbmU7XHJcbiAgfVxyXG59XHJcblxyXG5hcHAtcGFnZS10aXRsZS1kZWxldGUtYnV0dG9uIHtcclxuICAtLXBhZ2UtdGl0bGUtYnV0dG9uLWNvbG9yLW9uLWhvdmVyOiB2YXIoLS1kYW5nZXItY29sb3IpO1xyXG59XHJcbiIsIjpob3N0IHtcbiAgZGlzcGxheTogYmxvY2s7XG59XG5AbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiA0ODBweCkge1xuICA6aG9zdCB7XG4gICAgcGFkZGluZzogMCAzcmVtO1xuICB9XG59XG5cbkBtZWRpYSBzY3JlZW4gYW5kIChtYXgtd2lkdGg6IDcyMHB4KSB7XG4gIC5tYXQtY29sdW1uLWNhdGVnb3J5LFxuLm1hdC1jb2x1bW4tY3JlYXRlZEF0IHtcbiAgICBkaXNwbGF5OiBub25lO1xuICB9XG59XG5hcHAtcGFnZS10aXRsZS1kZWxldGUtYnV0dG9uIHtcbiAgLS1wYWdlLXRpdGxlLWJ1dHRvbi1jb2xvci1vbi1ob3ZlcjogdmFyKC0tZGFuZ2VyLWNvbG9yKTtcbn0iXX0= */";
     /***/
   },
 
@@ -5413,39 +5566,39 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       var _super11 = _createSuper(ManagePostsPage);
 
       function ManagePostsPage(postHttpClient, postConverter, alertService, postsState, dialog) {
-        var _this22;
+        var _this24;
 
         _classCallCheck(this, ManagePostsPage);
 
-        _this22 = _super11.call(this);
-        _this22.postHttpClient = postHttpClient;
-        _this22.postConverter = postConverter;
-        _this22.alertService = alertService;
-        _this22.postsState = postsState;
-        _this22.dialog = dialog;
-        _this22.currentPage = new _post_shared_models_post_internal_models__WEBPACK_IMPORTED_MODULE_3__["PostsPage"]();
-        _this22.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"]([]);
-        _this22.columns = ["id", "title", "category", "createdAt", "lastUpdatedAt", "actions"];
-        return _this22;
+        _this24 = _super11.call(this);
+        _this24.postHttpClient = postHttpClient;
+        _this24.postConverter = postConverter;
+        _this24.alertService = alertService;
+        _this24.postsState = postsState;
+        _this24.dialog = dialog;
+        _this24.currentPage = new _post_shared_models_post_internal_models__WEBPACK_IMPORTED_MODULE_3__["PostsPage"]();
+        _this24.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"]([]);
+        _this24.columns = ["id", "title", "category", "createdAt", "lastUpdatedAt", "actions"];
+        return _this24;
       } // prettier-ignore
 
 
       _createClass(ManagePostsPage, [{
         key: "fetchPage",
         value: function fetchPage(filter, page) {
-          var _this23 = this;
+          var _this25 = this;
 
           var request = this.postConverter.toGetUserPostsApiRequest(filter, page);
           this.postHttpClient.getUserPosts(request).then(function (posts) {
-            return _this23.handleGetUserPostsSuccessEvent(posts);
+            return _this25.handleGetUserPostsSuccessEvent(posts);
           })["catch"](function (error) {
-            return _this23.handleGetUserPostsErrorEvent(error);
+            return _this25.handleGetUserPostsErrorEvent(error);
           });
         }
       }, {
         key: "deletePost",
         value: function deletePost(postId) {
-          var _this24 = this;
+          var _this26 = this;
 
           var dialogRef = this.dialog.open(src_app_modules_shared_components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_9__["ConfirmationDialogComponent"], {
             data: "Do you confirm the deletion of this post ?",
@@ -5453,12 +5606,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           });
           dialogRef.afterClosed().subscribe(function (result) {
             if (result) {
-              var request = _this24.postConverter.toDeletePostApiRequest(postId);
+              var request = _this26.postConverter.toDeletePostApiRequest(postId);
 
-              _this24.postHttpClient.deletePost(request).then(function () {
-                return _this24.handleDeletePostSuccessEvent(postId);
+              _this26.postHttpClient.deletePost(request).then(function () {
+                return _this26.handleDeletePostSuccessEvent(postId);
               })["catch"](function (error) {
-                return _this24.handleDeletePostErrorEvent(error);
+                return _this26.handleDeletePostErrorEvent(error);
               });
             }
           });
@@ -5466,20 +5619,20 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "deleteAllUserPosts",
         value: function deleteAllUserPosts() {
-          var _this25 = this;
+          var _this27 = this;
 
           var dialogRef = this.dialog.open(src_app_modules_shared_components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_9__["ConfirmationDialogComponent"], {
             data: "Do you confirm the deletion of all your posts ?",
-            width: "340px"
+            width: "375px"
           });
           dialogRef.afterClosed().subscribe(function (result) {
             if (result) {
-              var request = _this25.postConverter.toDeleteUserPostsApiRequest();
+              var request = _this27.postConverter.toDeleteUserPostsApiRequest();
 
-              _this25.postHttpClient.deleteUserPosts(request).then(function () {
-                return _this25.handleDeleteUserPostsSuccessEvent();
+              _this27.postHttpClient.deleteUserPosts(request).then(function () {
+                return _this27.handleDeleteUserPostsSuccessEvent();
               })["catch"](function (error) {
-                return _this25.handleDeleteUserPostsErrorEvent(error);
+                return _this27.handleDeleteUserPostsErrorEvent(error);
               });
             }
           });
@@ -5487,24 +5640,26 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "downloadAllUserPosts",
         value: function downloadAllUserPosts() {
-          var _this26 = this;
+          var _this28 = this;
 
           var request = this.postConverter.toGetAllUserPostsApiRequest();
           this.postHttpClient.getUserPostsBlob(request).then(function (posts) {
-            return _this26.handleGetAllUserPostsSuccessEvent(posts);
+            return _this28.handleGetAllUserPostsSuccessEvent(posts);
           })["catch"](function (error) {
-            return _this26.handleGetAllUserPostsErrorEvent(error);
+            return _this28.handleGetAllUserPostsErrorEvent(error);
           });
         } // prettier-ignore
 
       }, {
         key: "onFileUpload",
         value: function onFileUpload(file) {
-          var _this27 = this;
+          var _this29 = this;
 
           var request = this.postConverter.toUploadPostsApiRequest(file);
-          this.postHttpClient.uploadPosts(request)["catch"](function (error) {
-            return _this27.handleUploadPostsApiRequestErrorEvent(error);
+          this.postHttpClient.uploadPosts(request).then(function () {
+            return _this29.handleUploadPostsApiRequestSuccessEvent();
+          })["catch"](function (error) {
+            return _this29.handleUploadPostsApiRequestErrorEvent(error);
           });
         } // prettier-ignore
 
@@ -5512,6 +5667,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         key: "handleUploadPostsApiRequestErrorEvent",
         value: function handleUploadPostsApiRequestErrorEvent(error) {
           this.postHttpClient.handleError(error, "Error while uploading your posts :(");
+        }
+      }, {
+        key: "handleUploadPostsApiRequestSuccessEvent",
+        value: function handleUploadPostsApiRequestSuccessEvent() {
+          this.fetchPage(this.filter, 0);
         }
       }, {
         key: "handleDeletePostErrorEvent",
@@ -5555,7 +5715,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           document.body.appendChild(a);
           a.style.display = "none";
           a.href = url;
-          a.download = "posts.json";
+          a.download = this.calculateUserPostsFilenameToDownload();
           a.click();
           window.URL.revokeObjectURL(url);
         }
@@ -5576,6 +5736,23 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function handleDeleteUserPostsSuccessEvent() {
           this.currentPage = new _post_shared_models_post_internal_models__WEBPACK_IMPORTED_MODULE_3__["PostsPage"]();
           this.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"]([]);
+          this.recalculatePreviousNextButtonCssClasses();
+        }
+      }, {
+        key: "calculateUserPostsFilenameToDownload",
+        value: function calculateUserPostsFilenameToDownload() {
+          // I didn't find e method like this Date.toString(formatter) in javascript, so I have used
+          // this @sebastian.i solution that I have found on this stackoverflow thread: https://stackoverflow.com/questions/3552461/how-to-format-a-javascript-date
+          // Feel free to improve this code if you find a more elegant implementation, and please let me know about :)
+          var currentDate = new Date();
+          var year = currentDate.getFullYear();
+          var month = ("" + (currentDate.getMonth() + 1)).padStart(2, "0");
+          var date = ("" + currentDate.getDate()).padStart(2, "0");
+          var hour = ("" + currentDate.getHours()).padStart(2, "0");
+          var minutes = ("" + currentDate.getMinutes()).padStart(2, "0");
+          var seconds = ("" + currentDate.getSeconds()).padStart(2, "0");
+          var filename = "posts_" + year + month + date + hour + minutes + seconds + ".json";
+          return filename;
         }
       }]);
 
@@ -5676,11 +5853,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(PostDashboardPage, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this28 = this;
+          var _this30 = this;
 
           this.postsState.resetFilters();
           this.postsState.noMorePosts$.subscribe(function (value) {
-            return _this28.noMorePosts = value;
+            return _this30.noMorePosts = value;
           });
         }
       }, {
@@ -5961,24 +6138,24 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(UpdatePostPage, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this29 = this;
+          var _this31 = this;
 
           this.postHttpClient.getPostById(this.postId).then(function (post) {
-            _this29.post = post;
+            _this31.post = post;
           });
         }
       }, {
         key: "onSubmit",
         value: function onSubmit(post) {
-          var _this30 = this;
+          var _this32 = this;
 
           try {
             this.postValidator.validateUpdatePost(post);
             var request = this.postConverter.toUpdatePostApiRequest(post);
             this.postHttpClient.updatePost(request).then(function (post) {
-              return _this30.handleUpdatePostSuccessEvent(post);
+              return _this32.handleUpdatePostSuccessEvent(post);
             })["catch"](function (error) {
-              return _this30.handleUpdatePostErrorEvent(error);
+              return _this32.handleUpdatePostErrorEvent(error);
             });
           } catch (error) {
             this.alertService.error(error.message);
@@ -6612,11 +6789,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "onInputKeyup",
         value: function onInputKeyup(event) {
-          var _this31 = this;
+          var _this33 = this;
 
           clearTimeout(this.timer);
           this.timer = window.setTimeout(function () {
-            return _this31.inputChange.emit(event.target.value);
+            return _this33.inputChange.emit(event.target.value);
           }, this.inputChangeDelay);
         }
       }, {
@@ -6797,10 +6974,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(TagComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this32 = this;
+          var _this34 = this;
 
           this.state.selectedTag$.subscribe(function (selectedTag) {
-            _this32.selected = _this32.tag == selectedTag;
+            _this34.selected = _this34.tag == selectedTag;
           });
         }
       }, {
@@ -7264,11 +7441,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "toPostGroupByStrategies",
         value: function toPostGroupByStrategies(strategies) {
-          var _this33 = this;
+          var _this35 = this;
 
           var res = new _models_post_internal_models__WEBPACK_IMPORTED_MODULE_2__["PostGroupByStrategies"]();
           strategies.forEach(function (strategy) {
-            return res.push(_this33.toPostGroupByStrategy(strategy));
+            return res.push(_this35.toPostGroupByStrategy(strategy));
           });
           return res;
         } // prettier-ignore
@@ -7284,7 +7461,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "toPostsSummaries",
         value: function toPostsSummaries(posts) {
-          var _this34 = this;
+          var _this36 = this;
 
           var res = new _models_post_internal_models__WEBPACK_IMPORTED_MODULE_2__["PostsGroups"]();
           posts.forEach(function (postsGroupApiResponse) {
@@ -7292,7 +7469,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             postsGroup.name = postsGroupApiResponse.groupName;
             postsGroup.posts = [];
             postsGroupApiResponse.posts.forEach(function (post) {
-              return postsGroup.posts.push(_this34.toPostSummary(post));
+              return postsGroup.posts.push(_this36.toPostSummary(post));
             });
             res.push(postsGroup);
           });
@@ -7302,11 +7479,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "toPostsGroups",
         value: function toPostsGroups(postsGroups) {
-          var _this35 = this;
+          var _this37 = this;
 
           var res = new _models_post_internal_models__WEBPACK_IMPORTED_MODULE_2__["PostsGroups"]();
           postsGroups.forEach(function (postsGroup) {
-            return res.push(_this35.toPostsGroup(postsGroup));
+            return res.push(_this37.toPostsGroup(postsGroup));
           });
           return res;
         } // prettier-ignore
@@ -7314,19 +7491,19 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "toPostsGroup",
         value: function toPostsGroup(postsGroupApiResponse) {
-          var _this36 = this;
+          var _this38 = this;
 
           var res = new _models_post_internal_models__WEBPACK_IMPORTED_MODULE_2__["PostsGroup"]();
           res.name = postsGroupApiResponse.name;
           postsGroupApiResponse.posts.forEach(function (post) {
-            return res.posts.push(_this36.toPostSummary(post));
+            return res.posts.push(_this38.toPostSummary(post));
           });
           return res;
         }
       }, {
         key: "toPostsSummariesPage",
         value: function toPostsSummariesPage(posts) {
-          var _this37 = this;
+          var _this39 = this;
 
           var res = new _models_post_internal_models__WEBPACK_IMPORTED_MODULE_2__["PostsPage"]();
           res.totalItems = posts.totalItems;
@@ -7335,7 +7512,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           res.page = posts.page;
           var items = new Array();
           posts.items.forEach(function (post) {
-            return items.push(_this37.toPostSummary(post));
+            return items.push(_this39.toPostSummary(post));
           });
           res.items = items;
           return res;
@@ -7506,44 +7683,44 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       var _super18 = _createSuper(PostHttpClient);
 
       function PostHttpClient(postConverter, http, alertService) {
-        var _this38;
+        var _this40;
 
         _classCallCheck(this, PostHttpClient);
 
-        _this38 = _super18.call(this, alertService);
-        _this38.postConverter = postConverter;
-        _this38.http = http;
-        return _this38;
+        _this40 = _super18.call(this, alertService);
+        _this40.postConverter = postConverter;
+        _this40.http = http;
+        return _this40;
       } // prettier-ignore
 
 
       _createClass(PostHttpClient, [{
         key: "getPostGroupByStrategies",
         value: function getPostGroupByStrategies(request) {
-          var _this39 = this;
+          var _this41 = this;
 
           return this.http.get(request.url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (strategies) {
-            return _this39.postConverter.toPostGroupByStrategies(strategies);
+            return _this41.postConverter.toPostGroupByStrategies(strategies);
           })).toPromise();
         } // prettier-ignore
 
       }, {
         key: "getPostsGroups",
         value: function getPostsGroups(request) {
-          var _this40 = this;
+          var _this42 = this;
 
           return this.http.get(request.url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (postsGroups) {
-            return _this40.postConverter.toPostsGroups(postsGroups);
+            return _this42.postConverter.toPostsGroups(postsGroups);
           })).toPromise();
         }
       }, {
         key: "getUserPosts",
         value: function getUserPosts(request) {
-          var _this41 = this;
+          var _this43 = this;
 
           // prettier-ignore
           return this.http.get(request.url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (posts) {
-            return _this41.postConverter.toPostsSummariesPage(posts);
+            return _this43.postConverter.toPostsSummariesPage(posts);
           })).toPromise();
         }
       }, {
@@ -7557,30 +7734,30 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "getPostById",
         value: function getPostById(postId) {
-          var _this42 = this;
+          var _this44 = this;
 
           return this.http.get("/api/posts/".concat(postId)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (post) {
-            return _this42.postConverter.toPost(post);
+            return _this44.postConverter.toPost(post);
           })).toPromise();
         }
       }, {
         key: "createPost",
         value: function createPost(request) {
-          var _this43 = this;
+          var _this45 = this;
 
           // prettier-ignore
           return this.http.post(request.url, request.body).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (post) {
-            return _this43.postConverter.toPostSummary(post);
+            return _this45.postConverter.toPostSummary(post);
           })).toPromise(); // prettier-ignore
         }
       }, {
         key: "updatePost",
         value: function updatePost(request) {
-          var _this44 = this;
+          var _this46 = this;
 
           // prettier-ignore
           return this.http.put(request.url, request.body).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (post) {
-            return _this44.postConverter.toPostSummary(post);
+            return _this46.postConverter.toPostSummary(post);
           })).toPromise(); // prettier-ignore
         }
       }, {
@@ -7870,13 +8047,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(PostsState, [{
         key: "init",
         value: function init() {
-          var _this45 = this;
+          var _this47 = this;
 
           var request = this.postConverter.toGetPostGroupByStrategiesApiRequest();
           this.postHttpClient.getPostGroupByStrategies(request).then(function (strategies) {
-            return _this45.handleGetPostGroupByStrategiesSuccessEvent(strategies);
+            return _this47.handleGetPostGroupByStrategiesSuccessEvent(strategies);
           })["catch"](function (error) {
-            return _this45.handleGetPostGroupByStrategiesErrorEvent(error);
+            return _this47.handleGetPostGroupByStrategiesErrorEvent(error);
           });
         }
       }, {
@@ -7902,7 +8079,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "loadMorePosts",
         value: function loadMorePosts() {
-          var _this46 = this;
+          var _this48 = this;
 
           if (this.noMorePosts.getValue() || this.loadPostsInProgress) return;
 
@@ -7910,9 +8087,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             this.loadPostsInProgress = true;
             var getPostsGroupsApiRequest = this.calculateGetPostsGroupsApiRequest();
             this.postHttpClient.getPostsGroups(getPostsGroupsApiRequest).then(function (postsGroups) {
-              return _this46.handleGetPostsGroupsSuccessEvent(postsGroups);
+              return _this48.handleGetPostsGroupsSuccessEvent(postsGroups);
             })["catch"](function (error) {
-              return _this46.handleGetPostsGroupsErrorEvent(error);
+              return _this48.handleGetPostsGroupsErrorEvent(error);
             });
           } catch (e) {
             if (e instanceof src_app_modules_shared_models_no_posts_groups_to_load_error__WEBPACK_IMPORTED_MODULE_10__["NoPostsGroupsToLoadError"]) {
@@ -7997,12 +8174,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "calculateDisplayedPostsGroups",
         value: function calculateDisplayedPostsGroups() {
-          var _this47 = this;
+          var _this49 = this;
 
           var displayedPostsGroups = new _models_post_internal_models__WEBPACK_IMPORTED_MODULE_3__["PostsGroups"]();
           this.loadedPostsGroups.getValue().forEach(function (group) {
             var posts = group.posts.filter(function (post) {
-              return _this47.keepPost(post);
+              return _this49.keepPost(post);
             });
 
             if (posts.length > 0) {
@@ -8080,14 +8257,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "calculateSelectedGroupByStrategy",
         value: function calculateSelectedGroupByStrategy() {
-          var _this48 = this;
+          var _this50 = this;
 
           var groupByStrategy = this.postGroupByStrategies.getValue().find(function (s) {
             return s.name == GROUP_BY_POST_CATEGORY;
           });
           if (groupByStrategy) return groupByStrategy;
           groupByStrategy = this.postGroupByStrategies.getValue().find(function (s) {
-            return _this48.supportedGroupByStrategiesName.includes(s.name);
+            return _this50.supportedGroupByStrategiesName.includes(s.name);
           });
           if (groupByStrategy) return groupByStrategy;
           throw new Error("No groupBy strategy is supported by the current Angular frontend app");
@@ -9626,7 +9803,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = ".button {\n  border-radius: 100rem;\n  padding: 0.5rem;\n  height: var(--page-title-button-size);\n  width: var(--page-title-button-size);\n  background-color: var(--page-title-button-background-color);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  cursor: pointer;\n}\n\n.iconify {\n  font-size: var(--page-title-button-icon-font-size);\n  border-radius: 100rem;\n  color: var(--page-title-button-color);\n  background-color: var(--page-title-button-background-color);\n  transition: var(--transition);\n  transition-property: color, background-color;\n}\n\n.iconify:hover {\n  color: var(--primary-color);\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9zaGFyZWQvY29tcG9uZW50cy9wYWdlLXRpdGxlLWJ1dHRvbnMvcGFnZS10aXRsZS1idXR0b24vQzpcXGRldlxccHJvamVjdHNcXGFoZW50ZXRpLWJsb2dcXHNyY1xcbWFpblxcZnJvbnRlbmQvc3JjXFxhcHBcXG1vZHVsZXNcXHNoYXJlZFxcY29tcG9uZW50c1xccGFnZS10aXRsZS1idXR0b25zXFxwYWdlLXRpdGxlLWJ1dHRvblxccGFnZS10aXRsZS1idXR0b24uY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL21vZHVsZXMvc2hhcmVkL2NvbXBvbmVudHMvcGFnZS10aXRsZS1idXR0b25zL3BhZ2UtdGl0bGUtYnV0dG9uL3BhZ2UtdGl0bGUtYnV0dG9uLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UscUJBQUE7RUFDQSxlQUFBO0VBQ0EscUNBQUE7RUFDQSxvQ0FBQTtFQUNBLDJEQUFBO0VBQ0EsYUFBQTtFQUNBLG1CQUFBO0VBQ0EsdUJBQUE7RUFDQSxlQUFBO0FDQ0Y7O0FERUE7RUFDRSxrREFBQTtFQUNBLHFCQUFBO0VBQ0EscUNBQUE7RUFDQSwyREFBQTtFQUNBLDZCQUFBO0VBQ0EsNENBQUE7QUNDRjs7QURDRTtFQUNFLDJCQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9tb2R1bGVzL3NoYXJlZC9jb21wb25lbnRzL3BhZ2UtdGl0bGUtYnV0dG9ucy9wYWdlLXRpdGxlLWJ1dHRvbi9wYWdlLXRpdGxlLWJ1dHRvbi5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5idXR0b24ge1xyXG4gIGJvcmRlci1yYWRpdXM6IDEwMHJlbTtcclxuICBwYWRkaW5nOiAwLjVyZW07XHJcbiAgaGVpZ2h0OiB2YXIoLS1wYWdlLXRpdGxlLWJ1dHRvbi1zaXplKTtcclxuICB3aWR0aDogdmFyKC0tcGFnZS10aXRsZS1idXR0b24tc2l6ZSk7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tcGFnZS10aXRsZS1idXR0b24tYmFja2dyb3VuZC1jb2xvcik7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxufVxyXG5cclxuLmljb25pZnkge1xyXG4gIGZvbnQtc2l6ZTogdmFyKC0tcGFnZS10aXRsZS1idXR0b24taWNvbi1mb250LXNpemUpO1xyXG4gIGJvcmRlci1yYWRpdXM6IDEwMHJlbTtcclxuICBjb2xvcjogdmFyKC0tcGFnZS10aXRsZS1idXR0b24tY29sb3IpO1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXBhZ2UtdGl0bGUtYnV0dG9uLWJhY2tncm91bmQtY29sb3IpO1xyXG4gIHRyYW5zaXRpb246IHZhcigtLXRyYW5zaXRpb24pO1xyXG4gIHRyYW5zaXRpb24tcHJvcGVydHk6IGNvbG9yLCBiYWNrZ3JvdW5kLWNvbG9yO1xyXG5cclxuICAmOmhvdmVyIHtcclxuICAgIGNvbG9yOiB2YXIoLS1wcmltYXJ5LWNvbG9yKTtcclxuICB9XHJcbn1cclxuIiwiLmJ1dHRvbiB7XG4gIGJvcmRlci1yYWRpdXM6IDEwMHJlbTtcbiAgcGFkZGluZzogMC41cmVtO1xuICBoZWlnaHQ6IHZhcigtLXBhZ2UtdGl0bGUtYnV0dG9uLXNpemUpO1xuICB3aWR0aDogdmFyKC0tcGFnZS10aXRsZS1idXR0b24tc2l6ZSk7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXBhZ2UtdGl0bGUtYnV0dG9uLWJhY2tncm91bmQtY29sb3IpO1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4uaWNvbmlmeSB7XG4gIGZvbnQtc2l6ZTogdmFyKC0tcGFnZS10aXRsZS1idXR0b24taWNvbi1mb250LXNpemUpO1xuICBib3JkZXItcmFkaXVzOiAxMDByZW07XG4gIGNvbG9yOiB2YXIoLS1wYWdlLXRpdGxlLWJ1dHRvbi1jb2xvcik7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXBhZ2UtdGl0bGUtYnV0dG9uLWJhY2tncm91bmQtY29sb3IpO1xuICB0cmFuc2l0aW9uOiB2YXIoLS10cmFuc2l0aW9uKTtcbiAgdHJhbnNpdGlvbi1wcm9wZXJ0eTogY29sb3IsIGJhY2tncm91bmQtY29sb3I7XG59XG4uaWNvbmlmeTpob3ZlciB7XG4gIGNvbG9yOiB2YXIoLS1wcmltYXJ5LWNvbG9yKTtcbn0iXX0= */";
+    __webpack_exports__["default"] = ".button {\n  border-radius: 100rem;\n  padding: 0.5rem;\n  height: var(--page-title-button-size);\n  width: var(--page-title-button-size);\n  background-color: var(--page-title-button-background-color);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  cursor: pointer;\n}\n\n.iconify {\n  font-size: var(--page-title-button-icon-font-size);\n  border-radius: 100rem;\n  color: var(--page-title-button-color);\n  background-color: var(--page-title-button-background-color);\n  transition: var(--transition);\n  transition-property: color, background-color;\n}\n\n.iconify:hover {\n  color: var(--page-title-button-color-on-hover, var(--primary-color));\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9zaGFyZWQvY29tcG9uZW50cy9wYWdlLXRpdGxlLWJ1dHRvbnMvcGFnZS10aXRsZS1idXR0b24vQzpcXGRldlxccHJvamVjdHNcXGFoZW50ZXRpLWJsb2dcXHNyY1xcbWFpblxcZnJvbnRlbmQvc3JjXFxhcHBcXG1vZHVsZXNcXHNoYXJlZFxcY29tcG9uZW50c1xccGFnZS10aXRsZS1idXR0b25zXFxwYWdlLXRpdGxlLWJ1dHRvblxccGFnZS10aXRsZS1idXR0b24uY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL21vZHVsZXMvc2hhcmVkL2NvbXBvbmVudHMvcGFnZS10aXRsZS1idXR0b25zL3BhZ2UtdGl0bGUtYnV0dG9uL3BhZ2UtdGl0bGUtYnV0dG9uLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UscUJBQUE7RUFDQSxlQUFBO0VBQ0EscUNBQUE7RUFDQSxvQ0FBQTtFQUNBLDJEQUFBO0VBQ0EsYUFBQTtFQUNBLG1CQUFBO0VBQ0EsdUJBQUE7RUFDQSxlQUFBO0FDQ0Y7O0FERUE7RUFDRSxrREFBQTtFQUNBLHFCQUFBO0VBQ0EscUNBQUE7RUFDQSwyREFBQTtFQUNBLDZCQUFBO0VBQ0EsNENBQUE7QUNDRjs7QURDRTtFQUNFLG9FQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9tb2R1bGVzL3NoYXJlZC9jb21wb25lbnRzL3BhZ2UtdGl0bGUtYnV0dG9ucy9wYWdlLXRpdGxlLWJ1dHRvbi9wYWdlLXRpdGxlLWJ1dHRvbi5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5idXR0b24ge1xyXG4gIGJvcmRlci1yYWRpdXM6IDEwMHJlbTtcclxuICBwYWRkaW5nOiAwLjVyZW07XHJcbiAgaGVpZ2h0OiB2YXIoLS1wYWdlLXRpdGxlLWJ1dHRvbi1zaXplKTtcclxuICB3aWR0aDogdmFyKC0tcGFnZS10aXRsZS1idXR0b24tc2l6ZSk7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tcGFnZS10aXRsZS1idXR0b24tYmFja2dyb3VuZC1jb2xvcik7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxufVxyXG5cclxuLmljb25pZnkge1xyXG4gIGZvbnQtc2l6ZTogdmFyKC0tcGFnZS10aXRsZS1idXR0b24taWNvbi1mb250LXNpemUpO1xyXG4gIGJvcmRlci1yYWRpdXM6IDEwMHJlbTtcclxuICBjb2xvcjogdmFyKC0tcGFnZS10aXRsZS1idXR0b24tY29sb3IpO1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXBhZ2UtdGl0bGUtYnV0dG9uLWJhY2tncm91bmQtY29sb3IpO1xyXG4gIHRyYW5zaXRpb246IHZhcigtLXRyYW5zaXRpb24pO1xyXG4gIHRyYW5zaXRpb24tcHJvcGVydHk6IGNvbG9yLCBiYWNrZ3JvdW5kLWNvbG9yO1xyXG5cclxuICAmOmhvdmVyIHtcclxuICAgIGNvbG9yOiB2YXIoLS1wYWdlLXRpdGxlLWJ1dHRvbi1jb2xvci1vbi1ob3ZlciwgdmFyKC0tcHJpbWFyeS1jb2xvcikpO1xyXG4gIH1cclxufVxyXG4iLCIuYnV0dG9uIHtcbiAgYm9yZGVyLXJhZGl1czogMTAwcmVtO1xuICBwYWRkaW5nOiAwLjVyZW07XG4gIGhlaWdodDogdmFyKC0tcGFnZS10aXRsZS1idXR0b24tc2l6ZSk7XG4gIHdpZHRoOiB2YXIoLS1wYWdlLXRpdGxlLWJ1dHRvbi1zaXplKTtcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tcGFnZS10aXRsZS1idXR0b24tYmFja2dyb3VuZC1jb2xvcik7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbi5pY29uaWZ5IHtcbiAgZm9udC1zaXplOiB2YXIoLS1wYWdlLXRpdGxlLWJ1dHRvbi1pY29uLWZvbnQtc2l6ZSk7XG4gIGJvcmRlci1yYWRpdXM6IDEwMHJlbTtcbiAgY29sb3I6IHZhcigtLXBhZ2UtdGl0bGUtYnV0dG9uLWNvbG9yKTtcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tcGFnZS10aXRsZS1idXR0b24tYmFja2dyb3VuZC1jb2xvcik7XG4gIHRyYW5zaXRpb246IHZhcigtLXRyYW5zaXRpb24pO1xuICB0cmFuc2l0aW9uLXByb3BlcnR5OiBjb2xvciwgYmFja2dyb3VuZC1jb2xvcjtcbn1cbi5pY29uaWZ5OmhvdmVyIHtcbiAgY29sb3I6IHZhcigtLXBhZ2UtdGl0bGUtYnV0dG9uLWNvbG9yLW9uLWhvdmVyLCB2YXIoLS1wcmltYXJ5LWNvbG9yKSk7XG59Il19 */";
     /***/
   },
 
@@ -10234,13 +10411,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(SelectDropdownComponent, [{
         key: "show",
         value: function show() {
-          var _this49 = this;
+          var _this51 = this;
 
           this.overlayRef = this.overlay.create(this.getOverlayConfig());
           this.overlayRef.attach(this.portal);
           this.syncWidth();
           this.overlayRef.backdropClick().subscribe(function () {
-            return _this49.hide();
+            return _this51.hide();
           });
           this.showing = true;
         }
@@ -10500,13 +10677,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "ngAfterViewInit",
         value: function ngAfterViewInit() {
-          var _this50 = this;
+          var _this52 = this;
 
           setTimeout(function () {
-            _this50.selectedOption = _this50.options.toArray().find(function (option) {
-              return option.value === _this50.selected;
+            _this52.selectedOption = _this52.options.toArray().find(function (option) {
+              return option.value === _this52.selected;
             });
-            _this50.selectedLabel = _this50.selectedOption ? _this50.selectedOption.label : "";
+            _this52.selectedLabel = _this52.selectedOption ? _this52.selectedOption.label : "";
           });
         }
       }, {
@@ -11608,6 +11785,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var Page = function Page() {
       _classCallCheck(this, Page);
 
+      this.firstPage = true;
+      this.lastPage = true;
+      this.totalItems = 0;
       this.items = [];
     };
 
@@ -11652,15 +11832,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       var _super20 = _createSuper(ValidationError);
 
       function ValidationError(message) {
-        var _this51;
+        var _this53;
 
         _classCallCheck(this, ValidationError);
 
-        _this51 = _super20.call(this, message); // Set the prototype explicitly.
+        _this53 = _super20.call(this, message); // Set the prototype explicitly.
         // reference: https://stackoverflow.com/questions/41102060/typescript-extending-error-class
 
-        Object.setPrototypeOf(_assertThisInitialized(_this51), ValidationError.prototype);
-        return _this51;
+        Object.setPrototypeOf(_assertThisInitialized(_this53), ValidationError.prototype);
+        return _this53;
       }
 
       return ValidationError;
@@ -11841,37 +12021,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     !*** ./src/app/modules/shared/services/constants.utils.ts ***!
     \************************************************************/
 
-  /*! exports provided: LOCAL_STORAGE_WEBSITE_THEME_KEY, DARK_THEME, LIGHT_THEME, DEFAULT_THEME, OVERLAY_POSITION_TOP, OVERLAY_POSITION_BOTTOM, PAGE_CONTENT_READY_EVENT, ALL_TAGS, URL_BEFORE_LOGIN_COOKIE_NAME, NAVBAR_HEIGHT */
+  /*! exports provided: OVERLAY_POSITION_TOP, OVERLAY_POSITION_BOTTOM, PAGE_CONTENT_READY_EVENT, ALL_TAGS, URL_BEFORE_LOGIN_COOKIE_NAME, NAVBAR_HEIGHT */
 
   /***/
   function srcAppModulesSharedServicesConstantsUtilsTs(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "LOCAL_STORAGE_WEBSITE_THEME_KEY", function () {
-      return LOCAL_STORAGE_WEBSITE_THEME_KEY;
-    });
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "DARK_THEME", function () {
-      return DARK_THEME;
-    });
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "LIGHT_THEME", function () {
-      return LIGHT_THEME;
-    });
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "DEFAULT_THEME", function () {
-      return DEFAULT_THEME;
-    });
     /* harmony export (binding) */
 
 
@@ -11915,10 +12071,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /*! tslib */
     "./node_modules/tslib/tslib.es6.js");
 
-    var LOCAL_STORAGE_WEBSITE_THEME_KEY = "website-theme";
-    var DARK_THEME = "dark";
-    var LIGHT_THEME = "light";
-    var DEFAULT_THEME = DARK_THEME;
     var OVERLAY_POSITION_TOP = {
       originX: "center",
       originY: "top",
@@ -12206,72 +12358,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }();
     /***/
 
-  },
-
-  /***/
-  "./src/app/modules/shared/services/theme.localstorage.services.ts":
-  /*!************************************************************************!*\
-    !*** ./src/app/modules/shared/services/theme.localstorage.services.ts ***!
-    \************************************************************************/
-
-  /*! exports provided: ThemeLocalStorageServices */
-
-  /***/
-  function srcAppModulesSharedServicesThemeLocalstorageServicesTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "ThemeLocalStorageServices", function () {
-      return ThemeLocalStorageServices;
-    });
-    /* harmony import */
-
-
-    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! tslib */
-    "./node_modules/tslib/tslib.es6.js");
-    /* harmony import */
-
-
-    var _constants_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! ./constants.utils */
-    "./src/app/modules/shared/services/constants.utils.ts");
-    /* harmony import */
-
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/fesm2015/core.js");
-
-    var ThemeLocalStorageServices = /*#__PURE__*/function () {
-      function ThemeLocalStorageServices() {
-        _classCallCheck(this, ThemeLocalStorageServices);
-      }
-
-      _createClass(ThemeLocalStorageServices, [{
-        key: "toggleTheme",
-        value: function toggleTheme() {
-          var currentTheme = localStorage.getItem(_constants_utils__WEBPACK_IMPORTED_MODULE_1__["LOCAL_STORAGE_WEBSITE_THEME_KEY"]);
-          var newWebsiteTheme = _constants_utils__WEBPACK_IMPORTED_MODULE_1__["LIGHT_THEME"];
-
-          if (currentTheme == _constants_utils__WEBPACK_IMPORTED_MODULE_1__["LIGHT_THEME"]) {
-            newWebsiteTheme = _constants_utils__WEBPACK_IMPORTED_MODULE_1__["DARK_THEME"];
-          }
-
-          localStorage.setItem(_constants_utils__WEBPACK_IMPORTED_MODULE_1__["LOCAL_STORAGE_WEBSITE_THEME_KEY"], newWebsiteTheme);
-          document.body.classList.remove(_constants_utils__WEBPACK_IMPORTED_MODULE_1__["LIGHT_THEME"], _constants_utils__WEBPACK_IMPORTED_MODULE_1__["DARK_THEME"]);
-          document.body.classList.add(newWebsiteTheme);
-        }
-      }]);
-
-      return ThemeLocalStorageServices;
-    }();
-
-    ThemeLocalStorageServices = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])()], ThemeLocalStorageServices);
-    /***/
   },
 
   /***/
@@ -12823,11 +12909,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(UserAwareComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this52 = this;
+          var _this54 = this;
 
           this.user = this.userObservable.currentUser();
           this.userSubscription = this.userObservable.onUser().subscribe(function (user) {
-            return _this52.user = user;
+            return _this54.user = user;
           });
         }
       }, {
@@ -12987,13 +13073,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       var _super21 = _createSuper(AnonymousUser);
 
       function AnonymousUser() {
-        var _this53;
+        var _this55;
 
         _classCallCheck(this, AnonymousUser);
 
-        _this53 = _super21.call(this);
-        _this53.username = "Anonymous";
-        return _this53;
+        _this55 = _super21.call(this);
+        _this55.username = "Anonymous";
+        return _this55;
       }
 
       return AnonymousUser;
@@ -13103,51 +13189,84 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var src_app_modules_shared_pages_manage_resources_page__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
     /*! src/app/modules/shared/pages/manage-resources.page */
     "./src/app/modules/shared/pages/manage-resources.page.ts");
+    /* harmony import */
+
+
+    var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    /*! @angular/material/dialog */
+    "./node_modules/@angular/material/esm2015/dialog.js");
+    /* harmony import */
+
+
+    var src_app_modules_shared_components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+    /*! src/app/modules/shared/components/confirmation-dialog/confirmation-dialog.component */
+    "./src/app/modules/shared/components/confirmation-dialog/confirmation-dialog.component.ts");
 
     var ManageUsersPage = /*#__PURE__*/function (_src_app_modules_shar3) {
       _inherits(ManageUsersPage, _src_app_modules_shar3);
 
       var _super23 = _createSuper(ManageUsersPage);
 
-      function ManageUsersPage(alertService, userHttpClient, userConverter) {
-        var _this54;
+      function ManageUsersPage(alertService, userHttpClient, userConverter, dialog) {
+        var _this56;
 
         _classCallCheck(this, ManageUsersPage);
 
-        _this54 = _super23.call(this);
-        _this54.alertService = alertService;
-        _this54.userHttpClient = userHttpClient;
-        _this54.userConverter = userConverter;
-        _this54.currentPage = new _models_user_internal_models__WEBPACK_IMPORTED_MODULE_3__["UsersPage"]();
-        _this54.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"]([]);
-        _this54.columns = ["username", "provider", "joinAt", "actions"];
-        return _this54;
+        _this56 = _super23.call(this);
+        _this56.alertService = alertService;
+        _this56.userHttpClient = userHttpClient;
+        _this56.userConverter = userConverter;
+        _this56.dialog = dialog;
+        _this56.currentPage = new _models_user_internal_models__WEBPACK_IMPORTED_MODULE_3__["UsersPage"]();
+        _this56.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"]([]);
+        _this56.columns = ["id", "username", "provider", "joinAt", "actions"];
+        return _this56;
       } // prettier-ignore
 
 
       _createClass(ManageUsersPage, [{
         key: "fetchPage",
         value: function fetchPage(filter, page) {
-          var _this55 = this;
+          var _this57 = this;
 
           var request = this.userConverter.toGetUsersPageApiRequest(filter, page);
           this.userHttpClient.getUsersPage(request).then(function (usersPage) {
-            return _this55.handleGetUsersPageSuccessEvent(usersPage);
+            return _this57.handleGetUsersPageSuccessEvent(usersPage);
           })["catch"](function (error) {
-            return _this55.handleGetUsersPageErrorEvent(error);
+            return _this57.handleGetUsersPageErrorEvent(error);
           });
-        }
+        } // prettier-ignore
+
       }, {
         key: "deleteUser",
         value: function deleteUser(user) {
-          console.log(user);
-          this.alertService.error("Delete functionality not yet implemented");
+          var _this58 = this;
+
+          var dialogRef = this.dialog.open(src_app_modules_shared_components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_9__["ConfirmationDialogComponent"], {
+            data: "Do you confirm the deletion of this user ?",
+            width: "340px"
+          });
+          dialogRef.afterClosed().subscribe(function (result) {
+            if (result) {
+              var request = _this58.userConverter.toDeleteUserApiRequest(user.id);
+
+              _this58.userHttpClient.deleteUser(request).then(function () {
+                return _this58.handleDeleteUserSuccessEvent(user);
+              })["catch"](function (error) {
+                return _this58.handleDeleteUserErrorEvent(error);
+              });
+            }
+          });
         }
       }, {
         key: "handleGetUsersPageErrorEvent",
         value: function handleGetUsersPageErrorEvent(error) {
-          console.error(error);
-          this.alertService.error("Error while fetching users :(");
+          this.userHttpClient.handleError(error, "Error while fetching users :(");
+        }
+      }, {
+        key: "handleDeleteUserErrorEvent",
+        value: function handleDeleteUserErrorEvent(error) {
+          this.userHttpClient.handleError(error, "Error while deleting user :(");
         }
       }, {
         key: "handleGetUsersPageSuccessEvent",
@@ -13156,6 +13275,18 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"](usersPage.items);
           this.dataSource.sort = this.sort;
           this.recalculatePreviousNextButtonCssClasses();
+        } // prettier-ignore
+
+      }, {
+        key: "handleDeleteUserSuccessEvent",
+        value: function handleDeleteUserSuccessEvent(user) {
+          this.alertService.info("The user ".concat(user.username, " has been deleted with success"));
+          this.dataSource.data = this.dataSource.data.filter(function (u) {
+            return u.id !== user.id;
+          });
+
+          this.dataSource._updateChangeSubscription(); // <-- Refresh the data source, reference: https://stackoverflow.com/questions/54744770/how-to-delete-particular-row-from-angular-material-table-which-doesnt-have-filte
+
         }
       }]);
 
@@ -13169,6 +13300,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         type: _services_user_http_client__WEBPACK_IMPORTED_MODULE_5__["UserHttpClient"]
       }, {
         type: _services_user_converter__WEBPACK_IMPORTED_MODULE_6__["UserConverter"]
+      }, {
+        type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_8__["MatDialog"]
       }];
     };
 
@@ -13245,26 +13378,26 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(AdminGuard, [{
         key: "canActivate",
         value: function canActivate(route, state) {
-          var _this56 = this;
+          var _this59 = this;
 
           return this.userHttpClient.getCurrentUser().then(function (user) {
             if (user.isAdmin) return true;
 
-            _this56.alertService.error("Only Admin user can access this page", {
+            _this59.alertService.error("Only Admin user can access this page", {
               keepAfterRouteChange: true
             });
 
-            _this56.router.navigate(["/"]);
+            _this59.router.navigate(["/"]);
 
             return false;
           })["catch"](function (error) {
             console.error("user not yet authenticated. error: " + error);
 
-            _this56.alertService.error("Please login to access this page", {
+            _this59.alertService.error("Please login to access this page", {
               keepAfterRouteChange: true
             });
 
-            _this56.router.navigate(["/"]);
+            _this59.router.navigate(["/"]);
 
             return false;
           });
@@ -13352,18 +13485,18 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(LoggedInGuard, [{
         key: "canActivate",
         value: function canActivate(route, state) {
-          var _this57 = this;
+          var _this60 = this;
 
           return this.userHttpClient.getCurrentUser().then(function () {
             return true;
           })["catch"](function (error) {
             console.error("user not yet authenticated. error: " + error);
 
-            _this57.alertService.error("Please login to access this page", {
+            _this60.alertService.error("Please login to access this page", {
               keepAfterRouteChange: true
             });
 
-            _this57.router.navigate(["/"]);
+            _this60.router.navigate(["/"]);
 
             return false;
           });
@@ -13453,7 +13586,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "toUser",
         value: function toUser(user) {
+          console.log(user);
           return {
+            id: user.id,
             username: user.username,
             avatarUrl: user.avatarUrl,
             provider: user.provider,
@@ -13473,7 +13608,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "toUsersPage",
         value: function toUsersPage(page) {
-          var _this58 = this;
+          var _this61 = this;
 
           var res = new _models_user_internal_models__WEBPACK_IMPORTED_MODULE_2__["UsersPage"]();
           res.totalItems = page.totalItems;
@@ -13481,9 +13616,16 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           res.lastPage = page.lastPage;
           res.page = page.page;
           page.items.forEach(function (user) {
-            return res.items.push(_this58.toUser(user));
+            return res.items.push(_this61.toUser(user));
           });
           return res;
+        }
+      }, {
+        key: "toDeleteUserApiRequest",
+        value: function toDeleteUserApiRequest(id) {
+          return {
+            url: "/secure-api/users/".concat(id)
+          };
         }
       }]);
 
@@ -13549,15 +13691,35 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var _user_converter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! ./user.converter */
     "./src/app/modules/user/services/user.converter.ts");
+    /* harmony import */
+
+
+    var _alert_common_http_client__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! ../../alert/common.http-client */
+    "./src/app/modules/alert/common.http-client.ts");
+    /* harmony import */
+
+
+    var _alert_alert_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! ../../alert/alert.service */
+    "./src/app/modules/alert/alert.service.ts");
 
     var GET_CURRENT_IDENTITY_URL = "/api/currentIdentity";
 
-    var UserHttpClient = /*#__PURE__*/function () {
-      function UserHttpClient(http, userConverter) {
+    var UserHttpClient = /*#__PURE__*/function (_alert_common_http_cl3) {
+      _inherits(UserHttpClient, _alert_common_http_cl3);
+
+      var _super24 = _createSuper(UserHttpClient);
+
+      function UserHttpClient(http, userConverter, alertService) {
+        var _this62;
+
         _classCallCheck(this, UserHttpClient);
 
-        this.http = http;
-        this.userConverter = userConverter;
+        _this62 = _super24.call(this, alertService);
+        _this62.http = http;
+        _this62.userConverter = userConverter;
+        return _this62;
       }
 
       _createClass(UserHttpClient, [{
@@ -13568,22 +13730,30 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "getUsersPage",
         value: function getUsersPage(request) {
-          var _this59 = this;
+          var _this63 = this;
 
           return this.http.get(request.url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (users) {
-            return _this59.userConverter.toUsersPage(users);
+            return _this63.userConverter.toUsersPage(users);
           })).toPromise();
+        } // prettier-ignore
+
+      }, {
+        key: "deleteUser",
+        value: function deleteUser(request) {
+          return this.http["delete"](request.url).toPromise();
         }
       }]);
 
       return UserHttpClient;
-    }();
+    }(_alert_common_http_client__WEBPACK_IMPORTED_MODULE_5__["CommonHttpClient"]);
 
     UserHttpClient.ctorParameters = function () {
       return [{
         type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]
       }, {
         type: _user_converter__WEBPACK_IMPORTED_MODULE_4__["UserConverter"]
+      }, {
+        type: _alert_alert_service__WEBPACK_IMPORTED_MODULE_6__["AlertService"]
       }];
     };
 
@@ -13715,7 +13885,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     var UserObservable = /*#__PURE__*/function () {
       function UserObservable(router, userHttpClient) {
-        var _this60 = this;
+        var _this64 = this;
 
         _classCallCheck(this, UserObservable);
 
@@ -13725,7 +13895,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.checkUser();
         this.router.events.subscribe(function (event) {
           if (event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_5__["NavigationEnd"]) {
-            _this60.checkUser();
+            _this64.checkUser();
           }
         });
       }
@@ -13733,12 +13903,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(UserObservable, [{
         key: "checkUser",
         value: function checkUser() {
-          var _this61 = this;
+          var _this65 = this;
 
           this.userHttpClient.getCurrentUser().then(function (user) {
-            return _this61.newUser(user);
+            return _this65.newUser(user);
           })["catch"](function () {
-            return _this61.handleGetCurrentUserErrorEvent();
+            return _this65.handleGetCurrentUserErrorEvent();
           });
         }
       }, {
