@@ -5672,6 +5672,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         key: "handleUploadPostsApiRequestSuccessEvent",
         value: function handleUploadPostsApiRequestSuccessEvent() {
           this.fetchPage(this.filter, 0);
+          this.postsState.init();
         }
       }, {
         key: "handleDeletePostErrorEvent",
@@ -8016,28 +8017,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.postConverter = postConverter;
         this.postHttpClient = postHttpClient;
         this.alertService = alertService;
-        this.windowService = windowService; // prettier-ignore
-
-        this.allTags = new rxjs__WEBPACK_IMPORTED_MODULE_4__["BehaviorSubject"](new Set([_shared_services_constants_utils__WEBPACK_IMPORTED_MODULE_2__["ALL_TAGS"]]));
-        this.allTags$ = this.allTags.asObservable();
-        this.selectedTag = new rxjs__WEBPACK_IMPORTED_MODULE_4__["BehaviorSubject"](_shared_services_constants_utils__WEBPACK_IMPORTED_MODULE_2__["ALL_TAGS"]);
-        this.selectedTag$ = this.selectedTag.asObservable(); // prettier-ignore
-
-        this.loadedPostsGroups = new rxjs__WEBPACK_IMPORTED_MODULE_4__["BehaviorSubject"](new _models_post_internal_models__WEBPACK_IMPORTED_MODULE_3__["PostsGroups"]());
-        this.loadedPostsGroups$ = this.loadedPostsGroups.asObservable();
-        this.noMorePosts = new rxjs__WEBPACK_IMPORTED_MODULE_4__["BehaviorSubject"](false);
-        this.noMorePosts$ = this.noMorePosts.asObservable();
-        this.loadPostsInProgress = false; // prettier-ignore
-
-        this.displayedPostsGroups = new rxjs__WEBPACK_IMPORTED_MODULE_4__["BehaviorSubject"](new _models_post_internal_models__WEBPACK_IMPORTED_MODULE_3__["PostsGroups"]());
-        this.displayedPostsGroups$ = this.displayedPostsGroups.asObservable(); // prettier-ignore
-
-        this.postGroupByStrategies = new rxjs__WEBPACK_IMPORTED_MODULE_4__["BehaviorSubject"](new _models_post_internal_models__WEBPACK_IMPORTED_MODULE_3__["PostGroupByStrategies"]());
-        this.postGroupByStrategies$ = this.postGroupByStrategies.asObservable();
+        this.windowService = windowService;
+        this.loadPostsInProgress = false;
         this.searchText = "";
         this.supportedGroupByStrategiesName = ["category", "author"];
         this.initialPostsLoad = true;
-        this.postGroupsToLoadNumber = 2; // prettier-ignore
+        this.postGroupsToLoadNumber = 4; // prettier-ignore
 
         this.userPostsPage = new rxjs__WEBPACK_IMPORTED_MODULE_4__["BehaviorSubject"](new _models_post_internal_models__WEBPACK_IMPORTED_MODULE_3__["PostsPage"]());
         this.init();
@@ -8049,6 +8034,18 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function init() {
           var _this47 = this;
 
+          this.allTags = new rxjs__WEBPACK_IMPORTED_MODULE_4__["BehaviorSubject"](new Set([_shared_services_constants_utils__WEBPACK_IMPORTED_MODULE_2__["ALL_TAGS"]]));
+          this.selectedTag = new rxjs__WEBPACK_IMPORTED_MODULE_4__["BehaviorSubject"](_shared_services_constants_utils__WEBPACK_IMPORTED_MODULE_2__["ALL_TAGS"]);
+          this.loadedPostsGroups = new rxjs__WEBPACK_IMPORTED_MODULE_4__["BehaviorSubject"](new _models_post_internal_models__WEBPACK_IMPORTED_MODULE_3__["PostsGroups"]());
+          this.noMorePosts = new rxjs__WEBPACK_IMPORTED_MODULE_4__["BehaviorSubject"](false);
+          this.displayedPostsGroups = new rxjs__WEBPACK_IMPORTED_MODULE_4__["BehaviorSubject"](new _models_post_internal_models__WEBPACK_IMPORTED_MODULE_3__["PostsGroups"]());
+          this.postGroupByStrategies = new rxjs__WEBPACK_IMPORTED_MODULE_4__["BehaviorSubject"](new _models_post_internal_models__WEBPACK_IMPORTED_MODULE_3__["PostGroupByStrategies"]());
+          this.allTags$ = this.allTags.asObservable();
+          this.selectedTag$ = this.selectedTag.asObservable();
+          this.loadedPostsGroups$ = this.loadedPostsGroups.asObservable();
+          this.noMorePosts$ = this.noMorePosts.asObservable();
+          this.displayedPostsGroups$ = this.displayedPostsGroups.asObservable();
+          this.postGroupByStrategies$ = this.postGroupByStrategies.asObservable();
           var request = this.postConverter.toGetPostGroupByStrategiesApiRequest();
           this.postHttpClient.getPostGroupByStrategies(request).then(function (strategies) {
             return _this47.handleGetPostGroupByStrategiesSuccessEvent(strategies);
