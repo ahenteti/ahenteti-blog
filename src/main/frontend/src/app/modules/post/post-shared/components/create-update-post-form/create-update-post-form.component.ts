@@ -8,7 +8,7 @@ import {
 import { Post } from "../../models/post.internal.models";
 import { MatChipInputEvent } from "@angular/material/chips";
 import { COMMA, ENTER } from "@angular/cdk/keycodes";
-import { SIMPLEMDE_OPTIONS } from "src/app/modules/shared/services/simplemde.utils";
+import { SIMPLEMDE_OPTIONS } from "src/app/modules/shared/components/markdown/simplemde.options";
 import { NAVBAR_HEIGHT } from "src/app/modules/shared/services/constants.utils";
 
 @Component({

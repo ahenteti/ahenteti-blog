@@ -14,6 +14,12 @@ export const SIMPLEMDE_OPTIONS = {
     "table",
     "|",
     {
+      name: "references",
+      action: toggleReference,
+      className: "fa fa-lightbulb-o",
+      title: "references",
+    },
+    {
       name: "info",
       action: toggleInfo,
       className: "fa fa-info",
@@ -37,6 +43,10 @@ export const SIMPLEMDE_OPTIONS = {
   ],
 };
 
+function toggleReference(editor) {
+  _toggleLine(editor, "reference");
+}
+
 function toggleInfo(editor) {
   _toggleLine(editor, "info");
 }
@@ -58,11 +68,13 @@ function _toggleLine(editor, name) {
     info: /^(\s*)\[INFO\]\s+/,
     warn: /^(\s*)\[WARN\]\s+/,
     error: /^(\s*)\[ERROR\]\s+/,
+    reference: /^(\s*)## References\s+/,
   };
   var regexReplace = {
     info: "[INFO] ",
     warn: "[WARN] ",
     error: "[ERROR] ",
+    reference: "## References\n* [](http://)\n* [](http://)",
   };
 
   for (var i = startPoint.line; i <= endPoint.line; i++) {
