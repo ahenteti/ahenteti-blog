@@ -102,6 +102,7 @@ export class ManagePostsPage extends AbstractManageResourcesPage<PostSummary>
 
   private handleUploadPostsApiRequestSuccessEvent() {
     this.fetchPage(this.filter, 0);
+    this.postsState.init();
   }
 
   private handleDeletePostErrorEvent(error) {

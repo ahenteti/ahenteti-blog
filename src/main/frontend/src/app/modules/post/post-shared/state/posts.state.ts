@@ -9,7 +9,7 @@ import {
   PostGroupByStrategy,
   PostsPage,
 } from "../models/post.internal.models";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { PostConverter } from "../services/post.converter";
 import { PostHttpClient } from "../services/post.http-client";
 import { AlertService } from "src/app/modules/alert/alert.service";
@@ -26,33 +26,33 @@ const GROUP_BY_POST_AUTHOR = "author";
 })
 export class PostsState {
   // prettier-ignore
-  private allTags = new BehaviorSubject<Set<string>>(new Set<string>([ALL_TAGS]));
-  public allTags$ = this.allTags.asObservable();
+  private allTags: BehaviorSubject<Set<string>>;
+  public allTags$: Observable<Set<string>>;
 
-  private selectedTag = new BehaviorSubject<string>(ALL_TAGS);
-  public selectedTag$ = this.selectedTag.asObservable();
+  private selectedTag: BehaviorSubject<string>;
+  public selectedTag$: Observable<string>;
 
   // prettier-ignore
-  private loadedPostsGroups = new BehaviorSubject<PostsGroups>(new PostsGroups());
-  public loadedPostsGroups$ = this.loadedPostsGroups.asObservable();
-  private noMorePosts = new BehaviorSubject<boolean>(false);
-  public noMorePosts$ = this.noMorePosts.asObservable();
+  private loadedPostsGroups: BehaviorSubject<PostsGroups>;
+  public loadedPostsGroups$: Observable<PostsGroups>;
+  private noMorePosts: BehaviorSubject<boolean>;
+  public noMorePosts$: Observable<boolean>;
   private loadPostsInProgress = false;
 
   // prettier-ignore
-  private displayedPostsGroups = new BehaviorSubject<PostsGroups>(new PostsGroups());
-  public displayedPostsGroups$ = this.displayedPostsGroups.asObservable();
+  private displayedPostsGroups: BehaviorSubject<PostsGroups>;
+  public displayedPostsGroups$: Observable<PostsGroups>;
 
   // prettier-ignore
-  private postGroupByStrategies = new BehaviorSubject<PostGroupByStrategies>(new PostGroupByStrategies());
-  public postGroupByStrategies$ = this.postGroupByStrategies.asObservable();
+  private postGroupByStrategies: BehaviorSubject<PostGroupByStrategies>;
+  public postGroupByStrategies$: Observable<PostGroupByStrategies>;
 
   private searchText: string = "";
   private selectedGroupByStrategy: PostGroupByStrategy;
   private supportedGroupByStrategiesName = ["category", "author"];
 
   private initialPostsLoad = true;
-  private postGroupsToLoadNumber = 2;
+  private postGroupsToLoadNumber = 4;
 
   // prettier-ignore
   private userPostsPage = new BehaviorSubject<PostsPage>(new PostsPage());
@@ -68,6 +68,19 @@ export class PostsState {
 
   // prettier-ignore
   init() {
+    this.allTags = new BehaviorSubject<Set<string>>(new Set<string>([ALL_TAGS]));
+    this.selectedTag = new BehaviorSubject<string>(ALL_TAGS);
+    this.loadedPostsGroups = new BehaviorSubject<PostsGroups>(new PostsGroups());
+    this.noMorePosts = new BehaviorSubject<boolean>(false);
+    this.displayedPostsGroups = new BehaviorSubject<PostsGroups>(new PostsGroups());
+    this.postGroupByStrategies = new BehaviorSubject<PostGroupByStrategies>(new PostGroupByStrategies());
+    this.allTags$ = this.allTags.asObservable();
+    this.selectedTag$ = this.selectedTag.asObservable();
+    this.loadedPostsGroups$ = this.loadedPostsGroups.asObservable();
+    this.noMorePosts$ = this.noMorePosts.asObservable();
+    this.displayedPostsGroups$ = this.displayedPostsGroups.asObservable();
+    this.postGroupByStrategies$ = this.postGroupByStrategies.asObservable();
+
     const request = this.postConverter.toGetPostGroupByStrategiesApiRequest();
     this.postHttpClient
       .getPostGroupByStrategies(request)
