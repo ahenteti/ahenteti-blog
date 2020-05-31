@@ -17,7 +17,6 @@ import { QuoteComponent } from "./components/text/text-with-icon/quote.component
 import { ErrorComponent } from "./components/text/text-with-icon/error.component";
 import { WarnComponent } from "./components/text/text-with-icon/warn.component";
 import { InfoComponent } from "./components/text/text-with-icon/info.component";
-import { MarkdownComponent } from "./components/markdown/markdown.component";
 import { FirstLetterPipe } from "./pipes/first-letter.pipe";
 import { TimeAgoPipe } from "time-ago-pipe";
 import { MatMenuModule } from "@angular/material/menu";
@@ -97,7 +96,6 @@ import { PageTitleDeleteButtonComponent } from "./components/page-title-buttons/
     ErrorComponent,
     WarnComponent,
     InfoComponent,
-    MarkdownComponent,
     FirstLetterPipe,
     TimeAgoPipe,
     TextareaAutoGrowDirective,
@@ -154,7 +152,6 @@ import { PageTitleDeleteButtonComponent } from "./components/page-title-buttons/
     ErrorComponent,
     WarnComponent,
     InfoComponent,
-    MarkdownComponent,
     FirstLetterPipe,
     TimeAgoPipe,
     TextareaAutoGrowDirective,

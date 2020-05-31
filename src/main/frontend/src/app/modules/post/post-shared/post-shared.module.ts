@@ -12,9 +12,16 @@ import { PostsGroupComponent } from "./components/posts-group/posts-group.compon
 import { AlertModule } from "../../alert/alert.module";
 import { PostCommentModule } from "../post-comments/post-comment.module";
 import { CreateUpdatePostFormComponent } from "./components/create-update-post-form/create-update-post-form.component";
+import { MarkdownModule } from "../../markdown/markdown.module";
 
 @NgModule({
-  imports: [CommonModule, SharedModule, AlertModule, PostCommentModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    MarkdownModule,
+    AlertModule,
+    PostCommentModule,
+  ],
   declarations: [
     TagComponent,
     TagListComponent,
@@ -27,6 +34,7 @@ import { CreateUpdatePostFormComponent } from "./components/create-update-post-f
     CreateUpdatePostFormComponent,
   ],
   exports: [
+    MarkdownModule,
     PostLayoutComponent,
     PostTitleComponent,
     PostsWelcomeMessageComponent,
