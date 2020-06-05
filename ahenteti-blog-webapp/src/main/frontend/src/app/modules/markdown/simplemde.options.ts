@@ -9,6 +9,7 @@ export const SIMPLEMDE_OPTIONS = {
     "unordered-list",
     "ordered-list",
     "|",
+    "image",
     "link",
     "code",
     "table",
