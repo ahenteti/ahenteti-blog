@@ -56,6 +56,7 @@ import { UploadRoundedButtonComponent } from "./components/rounded-buttons/uploa
 import { DeleteRoundedButtonComponent } from "./components/rounded-buttons/delete-rounded-button.component";
 import { FilterRoundedButtonComponent } from "./components/rounded-buttons/filter-rounded-button/filter-rounded-button.component";
 import { RoundedButtonComponent } from "./components/rounded-buttons/rounded-button/rounded-button.component";
+import { SendRoundedButtonComponent } from "./components/rounded-buttons/send-rounded-button.component";
 
 @NgModule({
   entryComponents: [
@@ -123,6 +124,7 @@ import { RoundedButtonComponent } from "./components/rounded-buttons/rounded-but
     DownloadRoundedButtonComponent,
     UploadRoundedButtonComponent,
     DeleteRoundedButtonComponent,
+    SendRoundedButtonComponent,
   ],
   exports: [
     RouterModule,
@@ -178,6 +180,7 @@ import { RoundedButtonComponent } from "./components/rounded-buttons/rounded-but
     DownloadRoundedButtonComponent,
     UploadRoundedButtonComponent,
     DeleteRoundedButtonComponent,
+    SendRoundedButtonComponent,
   ],
 })
 export class SharedModule {}

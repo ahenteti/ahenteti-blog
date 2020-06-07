@@ -1,9 +1,9 @@
 .button {
-  border-radius: 100rem;
+  border-radius: var(--rounded-button-border-radius);
   padding: 0.5rem;
-  height: var(--page-title-button-size);
-  width: var(--page-title-button-size);
-  background-color: var(--page-title-button-background-color);
+  height: var(--rounded-button-size);
+  width: var(--rounded-button-size);
+  background-color: var(--rounded-button-background-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,14 +11,14 @@
 }
 
 .iconify {
-  font-size: var(--page-title-button-icon-font-size);
-  border-radius: 100rem;
-  color: var(--page-title-button-color);
-  background-color: var(--page-title-button-background-color);
+  font-size: var(--rounded-button-icon-font-size);
+  border-radius: var(--rounded-button-border-radius);
+  color: var(--rounded-button-color);
+  background-color: var(--rounded-button-background-color);
   transition: var(--transition);
   transition-property: color, background-color;
 
   &:hover {
-    color: var(--page-title-button-color-on-hover, var(--primary-color));
+    color: var(--rounded-button-color-on-hover, var(--primary-color));
   }
 }

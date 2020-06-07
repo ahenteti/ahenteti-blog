@@ -1,25 +1,23 @@
-<form
-        *ngIf="user.isAuthenticated"
-        (ngSubmit)="onSubmit(commentForm)"
-        #commentForm="ngForm"
->
-    <div class="comment-input">
-        <input type="text" hidden name="postId" [ngModel]="postId"/>
-        <app-user-avatar [user]="user"></app-user-avatar>
-        <div class="textarea">
+<form *ngIf="user.isAuthenticated" #commentForm="ngForm">
+  <div class="comment-input">
+    <input type="text" hidden name="postId" [ngModel]="postId" />
+    <app-user-avatar [user]="user"></app-user-avatar>
+    <div class="textarea">
       <textarea
-              #commentTextarea
-              placeholder="Leave a comment..."
-              name="value"
-              rows="2"
-              ngModel
+        #commentTextarea
+        placeholder="Leave a comment..."
+        name="value"
+        rows="2"
+        ngModel
       ></textarea>
-        </div>
     </div>
-    <div class="comment-submit">
-        <button type="submit">Add Comment</button>
-    </div>
+    <app-send-rounded-button
+      (click)="onSubmit(commentForm)"
+      data-tooltip="send your comment"
+      class="tooltip-top send-button"
+    ></app-send-rounded-button>
+  </div>
 </form>
 <div *ngIf="!user.isAuthenticated" class="not-authenticated">
-    <app-login-with-github suffix="to add new comment..."></app-login-with-github>
+  <app-login-with-github suffix="to add new comment..."></app-login-with-github>
 </div>

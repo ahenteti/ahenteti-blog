@@ -3,7 +3,7 @@
   align-items: center;
   border-radius: 100rem;
   padding: 0.5rem;
-  background-color: var(--page-title-button-background-color);
+  background-color: var(--rounded-button-background-color);
 }
 
 .search-button {
@@ -17,11 +17,11 @@
 }
 
 .search-button .iconify {
-  font-size: var(--page-title-button-icon-font-size);
+  font-size: var(--rounded-button-icon-font-size);
   padding: 0.5rem;
   border-radius: 100rem;
-  color: var(--page-title-button-color);
-  background-color: var(--page-title-button-background-color);
+  color: var(--rounded-button-color);
+  background-color: var(--rounded-button-background-color);
   transition: var(--transition);
   transition-property: color, background-color;
 
