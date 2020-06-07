@@ -1,12 +1,10 @@
 import { Component, Output, EventEmitter } from "@angular/core";
 
 @Component({
-  selector: "app-page-title-upload-button",
+  selector: "app-upload-rounded-button",
   template: `
     <label for="file-upload">
-      <app-page-title-button
-        icon="heroicons-solid:upload"
-      ></app-page-title-button>
+      <app-rounded-button icon="heroicons-solid:upload"></app-rounded-button>
     </label>
     <input id="file-upload" (change)="onChange($event)" type="file" />
   `,
@@ -18,7 +16,7 @@ import { Component, Output, EventEmitter } from "@angular/core";
     `,
   ],
 })
-export class PageTitleUploadButtonComponent {
+export class UploadRoundedButtonComponent {
   @Output() fileUpload = new EventEmitter<File>();
 
   onChange(event) {

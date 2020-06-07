@@ -7,25 +7,25 @@
   (filter)="onFilter($event)"
 >
   <ng-container class="top-table-actions">
-    <app-page-title-delete-button
+    <app-delete-rounded-button
       tooltip="delete all your posts"
       (click)="deleteAllUserPosts()"
     >
-    </app-page-title-delete-button>
-    <app-page-title-download-button
+    </app-delete-rounded-button>
+    <app-download-rounded-button
       tooltip="download all your posts"
       (click)="downloadAllUserPosts()"
     >
-    </app-page-title-download-button>
-    <app-page-title-upload-button
+    </app-download-rounded-button>
+    <app-upload-rounded-button
       (fileUpload)="onFileUpload($event)"
       tooltip="upload posts"
     >
-    </app-page-title-upload-button>
-    <app-page-title-new-button
+    </app-upload-rounded-button>
+    <app-new-rounded-button
       routerLink="/posts/new"
       tooltip="create new post"
-    ></app-page-title-new-button>
+    ></app-new-rounded-button>
   </ng-container>
 
   <ng-container class="table">

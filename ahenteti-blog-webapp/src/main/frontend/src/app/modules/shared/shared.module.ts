@@ -48,14 +48,14 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { ConfirmationDialogComponent } from "./components/confirmation-dialog/confirmation-dialog.component";
 import { DropdownIconComponent } from "./components/icons/dropdown-icon/dropdown-icon.component";
 import { ManageResourcesPageLayout } from "./layouts/manage-resources-page.layout";
-import { PageTitleButtonComponent } from "./components/page-title-buttons/page-title-button/page-title-button.component";
-import { PageTitleFilterButtonComponent } from "./components/page-title-buttons/page-title-filter-button/page-title-filter-button.component";
-import { PageTitleNewButtonComponent } from "./components/page-title-buttons/page-title-new-button/page-title-new-button.component";
-import { PageTitleConsultButtonComponent } from "./components/page-title-buttons/page-title-consult-button/page-title-consult-button.component";
-import { PageTitleEditButtonComponent } from "./components/page-title-buttons/page-title-edit-button/page-title-edit-button.component";
-import { PageTitleDownloadButtonComponent } from "./components/page-title-buttons/page-title-download-button/page-title-download-button.component";
-import { PageTitleUploadButtonComponent } from "./components/page-title-buttons/page-title-upload-button/page-title-upload-button.component";
-import { PageTitleDeleteButtonComponent } from "./components/page-title-buttons/page-title-delete-button/page-title-delete-button.component";
+import { NewRoundedButtonComponent } from "./components/rounded-buttons/new-rounded-button.component";
+import { ConsultRoundedButtonComponent } from "./components/rounded-buttons/consult-rounded-button.component";
+import { EditRoundedButtonComponent } from "./components/rounded-buttons/edit-rounded-button.component";
+import { DownloadRoundedButtonComponent } from "./components/rounded-buttons/download-rounded-button.component";
+import { UploadRoundedButtonComponent } from "./components/rounded-buttons/upload-rounded-button.component";
+import { DeleteRoundedButtonComponent } from "./components/rounded-buttons/delete-rounded-button.component";
+import { FilterRoundedButtonComponent } from "./components/rounded-buttons/filter-rounded-button/filter-rounded-button.component";
+import { RoundedButtonComponent } from "./components/rounded-buttons/rounded-button/rounded-button.component";
 
 @NgModule({
   entryComponents: [
@@ -102,7 +102,7 @@ import { PageTitleDeleteButtonComponent } from "./components/page-title-buttons/
     TextareaDisableSpellCheckDirective,
     LoginWithGithubComponent,
     RouterLinkComponent,
-    PageTitleNewButtonComponent,
+    NewRoundedButtonComponent,
     PageTitleComponent,
     EditButtonComponent,
     ConsultButtonComponent,
@@ -116,13 +116,13 @@ import { PageTitleDeleteButtonComponent } from "./components/page-title-buttons/
     ConfirmationDialogComponent,
     DropdownIconComponent,
     ManageResourcesPageLayout,
-    PageTitleFilterButtonComponent,
-    PageTitleButtonComponent,
-    PageTitleConsultButtonComponent,
-    PageTitleEditButtonComponent,
-    PageTitleDownloadButtonComponent,
-    PageTitleUploadButtonComponent,
-    PageTitleDeleteButtonComponent,
+    RoundedButtonComponent,
+    FilterRoundedButtonComponent,
+    ConsultRoundedButtonComponent,
+    EditRoundedButtonComponent,
+    DownloadRoundedButtonComponent,
+    UploadRoundedButtonComponent,
+    DeleteRoundedButtonComponent,
   ],
   exports: [
     RouterModule,
@@ -158,7 +158,7 @@ import { PageTitleDeleteButtonComponent } from "./components/page-title-buttons/
     TextareaDisableSpellCheckDirective,
     LoginWithGithubComponent,
     RouterLinkComponent,
-    PageTitleNewButtonComponent,
+    NewRoundedButtonComponent,
     PageTitleComponent,
     EditButtonComponent,
     ConsultButtonComponent,
@@ -172,12 +172,12 @@ import { PageTitleDeleteButtonComponent } from "./components/page-title-buttons/
     ConfirmationDialogComponent,
     DropdownIconComponent,
     ManageResourcesPageLayout,
-    PageTitleFilterButtonComponent,
-    PageTitleConsultButtonComponent,
-    PageTitleEditButtonComponent,
-    PageTitleDownloadButtonComponent,
-    PageTitleUploadButtonComponent,
-    PageTitleDeleteButtonComponent,
+    FilterRoundedButtonComponent,
+    ConsultRoundedButtonComponent,
+    EditRoundedButtonComponent,
+    DownloadRoundedButtonComponent,
+    UploadRoundedButtonComponent,
+    DeleteRoundedButtonComponent,
   ],
 })
 export class SharedModule {}

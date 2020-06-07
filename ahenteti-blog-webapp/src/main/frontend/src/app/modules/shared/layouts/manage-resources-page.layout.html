@@ -1,22 +1,22 @@
 <div class="header">
-    <app-page-title [value]="pageTitle"></app-page-title>
-    <div class="top-table-actions-container">
-        <app-page-title-filter-button
-                (onFilter)="onFilter($event)"
-        ></app-page-title-filter-button>
-        <ng-content select=".top-table-actions"></ng-content>
-    </div>
+  <app-page-title [value]="pageTitle"></app-page-title>
+  <div class="top-table-actions-container">
+    <app-filter-rounded-button
+      (onFilter)="onFilter($event)"
+    ></app-filter-rounded-button>
+    <ng-content select=".top-table-actions"></ng-content>
+  </div>
 </div>
 
 <ng-content select=".table"></ng-content>
 
 <div class="bottom-table-actions">
-    <app-previous-button
-            class="{{ previousButtonCssClasses }}"
-            (click)="handlePreviousButtonClickEvent()"
-    ></app-previous-button>
-    <app-next-button
-            class="{{ nextButtonCssClasses }}"
-            (click)="handleNextButtonClickEvent()"
-    ></app-next-button>
+  <app-previous-button
+    class="{{ previousButtonCssClasses }}"
+    (click)="handlePreviousButtonClickEvent()"
+  ></app-previous-button>
+  <app-next-button
+    class="{{ nextButtonCssClasses }}"
+    (click)="handleNextButtonClickEvent()"
+  ></app-next-button>
 </div>
