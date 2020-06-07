@@ -1,0 +1,24 @@
+table {
+  overflow: auto;
+  margin-top: 1rem;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table thead {
+  background-color: var(--table-head-background-color);
+}
+
+table th,
+table td {
+  padding: 1rem;
+  vertical-align: top;
+}
+
+table th {
+  text-align: left;
+}
+
+table td {
+  border-bottom: 1px solid var(--border-color);
+}
