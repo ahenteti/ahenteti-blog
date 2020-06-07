@@ -252,7 +252,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<form\r\n        *ngIf=\"user.isAuthenticated\"\r\n        (ngSubmit)=\"onSubmit(commentForm)\"\r\n        #commentForm=\"ngForm\"\r\n>\r\n    <div class=\"comment-input\">\r\n        <input type=\"text\" hidden name=\"postId\" [ngModel]=\"postId\"/>\r\n        <app-user-avatar [user]=\"user\"></app-user-avatar>\r\n        <div class=\"textarea\">\r\n      <textarea\r\n              #commentTextarea\r\n              placeholder=\"Leave a comment...\"\r\n              name=\"value\"\r\n              rows=\"2\"\r\n              ngModel\r\n      ></textarea>\r\n        </div>\r\n    </div>\r\n    <div class=\"comment-submit\">\r\n        <button type=\"submit\">Add Comment</button>\r\n    </div>\r\n</form>\r\n<div *ngIf=\"!user.isAuthenticated\" class=\"not-authenticated\">\r\n    <app-login-with-github suffix=\"to add new comment...\"></app-login-with-github>\r\n</div>\r\n";
+    __webpack_exports__["default"] = "<form *ngIf=\"user.isAuthenticated\" #commentForm=\"ngForm\">\r\n  <div class=\"comment-input\">\r\n    <input type=\"text\" hidden name=\"postId\" [ngModel]=\"postId\" />\r\n    <app-user-avatar [user]=\"user\"></app-user-avatar>\r\n    <div class=\"textarea\">\r\n      <textarea\r\n        #commentTextarea\r\n        placeholder=\"Leave a comment...\"\r\n        name=\"value\"\r\n        rows=\"2\"\r\n        ngModel\r\n      ></textarea>\r\n    </div>\r\n    <app-send-rounded-button\r\n      (click)=\"onSubmit(commentForm)\"\r\n      data-tooltip=\"send your comment\"\r\n      class=\"tooltip-top send-button\"\r\n    ></app-send-rounded-button>\r\n  </div>\r\n</form>\r\n<div *ngIf=\"!user.isAuthenticated\" class=\"not-authenticated\">\r\n  <app-login-with-github suffix=\"to add new comment...\"></app-login-with-github>\r\n</div>\r\n";
     /***/
   },
 
@@ -352,7 +352,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<app-manage-resources-page-layout\r\n  pageTitle=\"My Posts\"\r\n  [previousButtonCssClasses]=\"previousButtonCssClasses\"\r\n  [nextButtonCssClasses]=\"nextButtonCssClasses\"\r\n  (previousButtonClick)=\"handlePreviousButtonClickEvent()\"\r\n  (nextButtonClick)=\"handleNextButtonClickEvent()\"\r\n  (filter)=\"onFilter($event)\"\r\n>\r\n  <ng-container class=\"top-table-actions\">\r\n    <app-page-title-delete-button\r\n      tooltip=\"delete all your posts\"\r\n      (click)=\"deleteAllUserPosts()\"\r\n    >\r\n    </app-page-title-delete-button>\r\n    <app-page-title-download-button\r\n      tooltip=\"download all your posts\"\r\n      (click)=\"downloadAllUserPosts()\"\r\n    >\r\n    </app-page-title-download-button>\r\n    <app-page-title-upload-button\r\n      (fileUpload)=\"onFileUpload($event)\"\r\n      tooltip=\"upload posts\"\r\n    >\r\n    </app-page-title-upload-button>\r\n    <app-page-title-new-button\r\n      routerLink=\"/posts/new\"\r\n      tooltip=\"create new post\"\r\n    ></app-page-title-new-button>\r\n  </ng-container>\r\n\r\n  <ng-container class=\"table\">\r\n    <table mat-table matSort [dataSource]=\"dataSource\">\r\n      <ng-container matColumnDef=\"id\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>#</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.id}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"title\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Title</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.title}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"category\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Category</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.category}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"createdAt\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Created At</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.createdAt | date}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"lastUpdatedAt\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>\r\n          Last Updated At\r\n        </th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          {{element.lastUpdatedAt ? (element.lastUpdatedAt | date) : 'N/A'}}\r\n        </td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"actions\">\r\n        <th mat-header-cell *matHeaderCellDef></th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <div class=\"row-actions\">\r\n            <app-consult-button-link\r\n              [routerLink]=\"['/posts', element.id, 'consult']\"\r\n            ></app-consult-button-link>\r\n            <app-edit-button-link\r\n              [routerLink]=\"['/posts', element.id, 'edit']\"\r\n            ></app-edit-button-link>\r\n            <app-delete-button\r\n              (click)=\"deletePost(element.id)\"\r\n            ></app-delete-button>\r\n          </div>\r\n        </td>\r\n      </ng-container>\r\n\r\n      <tr mat-header-row *matHeaderRowDef=\"columns\"></tr>\r\n      <tr mat-row class=\"row\" *matRowDef=\"let row; columns: columns;\"></tr>\r\n    </table>\r\n  </ng-container>\r\n</app-manage-resources-page-layout>\r\n";
+    __webpack_exports__["default"] = "<app-manage-resources-page-layout\r\n  pageTitle=\"My Posts\"\r\n  [previousButtonCssClasses]=\"previousButtonCssClasses\"\r\n  [nextButtonCssClasses]=\"nextButtonCssClasses\"\r\n  (previousButtonClick)=\"handlePreviousButtonClickEvent()\"\r\n  (nextButtonClick)=\"handleNextButtonClickEvent()\"\r\n  (filter)=\"onFilter($event)\"\r\n>\r\n  <ng-container class=\"top-table-actions\">\r\n    <app-delete-rounded-button\r\n      tooltip=\"delete all your posts\"\r\n      (click)=\"deleteAllUserPosts()\"\r\n    >\r\n    </app-delete-rounded-button>\r\n    <app-download-rounded-button\r\n      tooltip=\"download all your posts\"\r\n      (click)=\"downloadAllUserPosts()\"\r\n    >\r\n    </app-download-rounded-button>\r\n    <app-upload-rounded-button\r\n      (fileUpload)=\"onFileUpload($event)\"\r\n      tooltip=\"upload posts\"\r\n    >\r\n    </app-upload-rounded-button>\r\n    <app-new-rounded-button\r\n      routerLink=\"/posts/new\"\r\n      tooltip=\"create new post\"\r\n    ></app-new-rounded-button>\r\n  </ng-container>\r\n\r\n  <ng-container class=\"table\">\r\n    <table mat-table matSort [dataSource]=\"dataSource\">\r\n      <ng-container matColumnDef=\"id\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>#</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.id}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"title\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Title</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.title}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"category\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Category</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.category}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"createdAt\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Created At</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.createdAt | date}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"lastUpdatedAt\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>\r\n          Last Updated At\r\n        </th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          {{element.lastUpdatedAt ? (element.lastUpdatedAt | date) : 'N/A'}}\r\n        </td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"actions\">\r\n        <th mat-header-cell *matHeaderCellDef></th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <div class=\"row-actions\">\r\n            <app-consult-button-link\r\n              [routerLink]=\"['/posts', element.id, 'consult']\"\r\n            ></app-consult-button-link>\r\n            <app-edit-button-link\r\n              [routerLink]=\"['/posts', element.id, 'edit']\"\r\n            ></app-edit-button-link>\r\n            <app-delete-button\r\n              (click)=\"deletePost(element.id)\"\r\n            ></app-delete-button>\r\n          </div>\r\n        </td>\r\n      </ng-container>\r\n\r\n      <tr mat-header-row *matHeaderRowDef=\"columns\"></tr>\r\n      <tr mat-row class=\"row\" *matRowDef=\"let row; columns: columns;\"></tr>\r\n    </table>\r\n  </ng-container>\r\n</app-manage-resources-page-layout>\r\n";
     /***/
   },
 
@@ -412,7 +412,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<app-post-layout>\r\n    <div class=\"page-header\">\r\n        <app-page-title [value]=\"pageTitle\"></app-page-title>\r\n        <div class=\"page-header-actions\">\r\n            <app-page-title-consult-button\r\n                    (click)=\"togglePreviewMode()\"\r\n                    *ngIf=\"!previewMode\"\r\n                    tooltip=\"preview post\"\r\n            ></app-page-title-consult-button>\r\n            <app-page-title-edit-button\r\n                    tooltip=\"continue post creation / update\"\r\n                    (click)=\"togglePreviewMode()\"\r\n                    *ngIf=\"previewMode\"\r\n            ></app-page-title-edit-button>\r\n        </div>\r\n    </div>\r\n\r\n    <ng-container *ngIf=\"previewMode\">\r\n        <app-post-title [post]=\"post\"></app-post-title>\r\n        <app-markdown [text]=\"post.bodyMarkdown\"></app-markdown>\r\n    </ng-container>\r\n    <ng-container *ngIf=\"!previewMode\">\r\n        <form (submit)=\"onSubmit($event)\">\r\n            <mat-form-field appearance=\"fill\">\r\n                <mat-label>Title</mat-label>\r\n                <input name=\"title\" matInput [(ngModel)]=\"post.title\"/>\r\n            </mat-form-field>\r\n\r\n            <mat-form-field appearance=\"fill\">\r\n                <mat-label>Category</mat-label>\r\n                <input name=\"category\" matInput [(ngModel)]=\"post.category\"/>\r\n            </mat-form-field>\r\n\r\n            <mat-form-field>\r\n                <mat-chip-list #tagsRef>\r\n                    <mat-chip\r\n                            *ngFor=\"let tag of post.tags\"\r\n                            removable=\"true\"\r\n                            (removed)=\"removeTag(tag)\"\r\n                    >\r\n                        {{ tag }}\r\n                        <mat-icon matChipRemove *ngIf=\"true\">cancel</mat-icon>\r\n                    </mat-chip>\r\n                    <input\r\n                            placeholder=\"Tags\"\r\n                            [matChipInputFor]=\"tagsRef\"\r\n                            [matChipInputAddOnBlur]=\"true\"\r\n                            [matChipInputSeparatorKeyCodes]=\"separators\"\r\n                            (matChipInputTokenEnd)=\"addTag($event)\"\r\n                    />\r\n                </mat-chip-list>\r\n            </mat-form-field>\r\n\r\n            <simplemde\r\n                    name=\"body\"\r\n                    [(ngModel)]=\"post.bodyMarkdown\"\r\n                    [options]=\"simpleMdeOptions\"\r\n            ></simplemde>\r\n\r\n            <div class=\"page-footer-actions\">\r\n                <button type=\"reset\">Reset</button>\r\n                <button type=\"submit\">{{ submitButtonLabel }}</button>\r\n            </div>\r\n        </form>\r\n    </ng-container>\r\n</app-post-layout>\r\n";
+    __webpack_exports__["default"] = "<app-post-layout>\r\n  <div class=\"page-header\">\r\n    <app-page-title [value]=\"pageTitle\"></app-page-title>\r\n    <div class=\"page-header-actions\">\r\n      <app-consult-rounded-button\r\n        (click)=\"togglePreviewMode()\"\r\n        *ngIf=\"!previewMode\"\r\n        tooltip=\"preview post\"\r\n      ></app-consult-rounded-button>\r\n      <app-edit-rounded-button\r\n        tooltip=\"continue post creation / update\"\r\n        (click)=\"togglePreviewMode()\"\r\n        *ngIf=\"previewMode\"\r\n      ></app-edit-rounded-button>\r\n    </div>\r\n  </div>\r\n\r\n  <ng-container *ngIf=\"previewMode\">\r\n    <app-post-title [post]=\"post\"></app-post-title>\r\n    <app-markdown [text]=\"post.bodyMarkdown\"></app-markdown>\r\n  </ng-container>\r\n  <ng-container *ngIf=\"!previewMode\">\r\n    <form (submit)=\"onSubmit($event)\">\r\n      <mat-form-field appearance=\"fill\">\r\n        <mat-label>Title</mat-label>\r\n        <input name=\"title\" matInput [(ngModel)]=\"post.title\" />\r\n      </mat-form-field>\r\n\r\n      <mat-form-field appearance=\"fill\">\r\n        <mat-label>Category</mat-label>\r\n        <input name=\"category\" matInput [(ngModel)]=\"post.category\" />\r\n      </mat-form-field>\r\n\r\n      <mat-form-field>\r\n        <mat-chip-list #tagsRef>\r\n          <mat-chip\r\n            *ngFor=\"let tag of post.tags\"\r\n            removable=\"true\"\r\n            (removed)=\"removeTag(tag)\"\r\n          >\r\n            {{ tag }}\r\n            <mat-icon matChipRemove *ngIf=\"true\">cancel</mat-icon>\r\n          </mat-chip>\r\n          <input\r\n            placeholder=\"Tags\"\r\n            [matChipInputFor]=\"tagsRef\"\r\n            [matChipInputAddOnBlur]=\"true\"\r\n            [matChipInputSeparatorKeyCodes]=\"separators\"\r\n            (matChipInputTokenEnd)=\"addTag($event)\"\r\n          />\r\n        </mat-chip-list>\r\n      </mat-form-field>\r\n\r\n      <simplemde\r\n        name=\"body\"\r\n        [(ngModel)]=\"post.bodyMarkdown\"\r\n        [options]=\"simpleMdeOptions\"\r\n      ></simplemde>\r\n\r\n      <div class=\"page-footer-actions\">\r\n        <button type=\"reset\">Reset</button>\r\n        <button type=\"submit\">{{ submitButtonLabel }}</button>\r\n      </div>\r\n    </form>\r\n  </ng-container>\r\n</app-post-layout>\r\n";
     /***/
   },
 
@@ -817,35 +817,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
   },
 
   /***/
-  "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/page-title-buttons/page-title-button/page-title-button.component.html":
-  /*!*******************************************************************************************************************************************************!*\
-    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/page-title-buttons/page-title-button/page-title-button.component.html ***!
-    \*******************************************************************************************************************************************************/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/rounded-buttons/filter-rounded-button/filter-rounded-button.component.html":
+  /*!************************************************************************************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/rounded-buttons/filter-rounded-button/filter-rounded-button.component.html ***!
+    \************************************************************************************************************************************************************/
 
   /*! exports provided: default */
 
   /***/
-  function node_modulesRawLoaderDistCjsJsSrcAppModulesSharedComponentsPageTitleButtonsPageTitleButtonPageTitleButtonComponentHtml(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony default export */
-
-
-    __webpack_exports__["default"] = "<div class=\"button\">\r\n    <span class=\"iconify\" [attr.data-icon]=\"icon\"></span>\r\n</div>\r\n";
-    /***/
-  },
-
-  /***/
-  "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/page-title-buttons/page-title-filter-button/page-title-filter-button.component.html":
-  /*!*********************************************************************************************************************************************************************!*\
-    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/page-title-buttons/page-title-filter-button/page-title-filter-button.component.html ***!
-    \*********************************************************************************************************************************************************************/
-
-  /*! exports provided: default */
-
-  /***/
-  function node_modulesRawLoaderDistCjsJsSrcAppModulesSharedComponentsPageTitleButtonsPageTitleFilterButtonPageTitleFilterButtonComponentHtml(module, __webpack_exports__, __webpack_require__) {
+  function node_modulesRawLoaderDistCjsJsSrcAppModulesSharedComponentsRoundedButtonsFilterRoundedButtonFilterRoundedButtonComponentHtml(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
@@ -853,6 +833,26 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
     __webpack_exports__["default"] = "<input\r\n        #input\r\n        type=\"text\"\r\n        name=\"\"\r\n        class=\"search-input\"\r\n        (blur)=\"onBlur()\"\r\n        (focus)=\"onFocus()\"\r\n        placeholder=\"Search...\"\r\n        [(ngModel)]=\"filter\"\r\n        (keyup.enter)=\"onSubmit()\"\r\n/>\r\n<a class=\"search-button\" (click)=\"onSubmit()\">\r\n    <span class=\"iconify\" data-icon=\"gridicons:search\"></span>\r\n</a>\r\n";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/rounded-buttons/rounded-button/rounded-button.component.html":
+  /*!**********************************************************************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/rounded-buttons/rounded-button/rounded-button.component.html ***!
+    \**********************************************************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppModulesSharedComponentsRoundedButtonsRoundedButtonRoundedButtonComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<div class=\"button\">\r\n    <span class=\"iconify\" [attr.data-icon]=\"icon\"></span>\r\n</div>\r\n";
     /***/
   },
 
@@ -972,7 +972,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"header\">\r\n    <app-page-title [value]=\"pageTitle\"></app-page-title>\r\n    <div class=\"top-table-actions-container\">\r\n        <app-page-title-filter-button\r\n                (onFilter)=\"onFilter($event)\"\r\n        ></app-page-title-filter-button>\r\n        <ng-content select=\".top-table-actions\"></ng-content>\r\n    </div>\r\n</div>\r\n\r\n<ng-content select=\".table\"></ng-content>\r\n\r\n<div class=\"bottom-table-actions\">\r\n    <app-previous-button\r\n            class=\"{{ previousButtonCssClasses }}\"\r\n            (click)=\"handlePreviousButtonClickEvent()\"\r\n    ></app-previous-button>\r\n    <app-next-button\r\n            class=\"{{ nextButtonCssClasses }}\"\r\n            (click)=\"handleNextButtonClickEvent()\"\r\n    ></app-next-button>\r\n</div>\r\n";
+    __webpack_exports__["default"] = "<div class=\"header\">\r\n  <app-page-title [value]=\"pageTitle\"></app-page-title>\r\n  <div class=\"top-table-actions-container\">\r\n    <app-filter-rounded-button\r\n      (onFilter)=\"onFilter($event)\"\r\n    ></app-filter-rounded-button>\r\n    <ng-content select=\".top-table-actions\"></ng-content>\r\n  </div>\r\n</div>\r\n\r\n<ng-content select=\".table\"></ng-content>\r\n\r\n<div class=\"bottom-table-actions\">\r\n  <app-previous-button\r\n    class=\"{{ previousButtonCssClasses }}\"\r\n    (click)=\"handlePreviousButtonClickEvent()\"\r\n  ></app-previous-button>\r\n  <app-next-button\r\n    class=\"{{ nextButtonCssClasses }}\"\r\n    (click)=\"handleNextButtonClickEvent()\"\r\n  ></app-next-button>\r\n</div>\r\n";
     /***/
   },
 
@@ -5154,7 +5154,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "form {\n  margin-bottom: 2rem;\n}\n\n.comment-input {\n  display: flex;\n}\n\n.comment-input app-user-avatar {\n  flex-grow: 0;\n  flex-shrink: 0;\n  margin-right: var(--comment-user-avatar-margin-right);\n}\n\n.comment-input .textarea {\n  width: 100%;\n  position: relative;\n}\n\n.comment-input textarea {\n  position: relative;\n  height: 5.5rem;\n}\n\n.comment-input .textarea::before {\n  content: \"\";\n  position: absolute;\n  top: 1rem;\n  left: -1rem;\n  width: 0;\n  height: 0;\n  border-top: 1rem solid transparent;\n  border-right: 1rem solid var(--comment-background-color);\n  border-bottom: 1rem solid transparent;\n  border-left: none;\n  transition: var(--transition);\n  transition-property: color, background-color border-color;\n}\n\n.comment-submit {\n  display: flex;\n  justify-content: flex-end;\n}\n\n.not-authenticated {\n  display: flex;\n  margin-bottom: 2.5rem;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9wb3N0L3Bvc3QtY29tbWVudHMvY29tcG9uZW50cy9hZGQtcG9zdC1jb21tZW50L0M6XFxkZXZcXHByb2plY3RzXFxhaGVudGV0aS1ibG9nXFxhaGVudGV0aS1ibG9nLXdlYmFwcFxcc3JjXFxtYWluXFxmcm9udGVuZC9zcmNcXGFwcFxcbW9kdWxlc1xccG9zdFxccG9zdC1jb21tZW50c1xcY29tcG9uZW50c1xcYWRkLXBvc3QtY29tbWVudFxcYWRkLXBvc3QtY29tbWVudC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvbW9kdWxlcy9wb3N0L3Bvc3QtY29tbWVudHMvY29tcG9uZW50cy9hZGQtcG9zdC1jb21tZW50L2FkZC1wb3N0LWNvbW1lbnQuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL21vZHVsZXMvcG9zdC9wb3N0LWNvbW1lbnRzL2NvbXBvbmVudHMvYWRkLXBvc3QtY29tbWVudC9DOlxcZGV2XFxwcm9qZWN0c1xcYWhlbnRldGktYmxvZ1xcYWhlbnRldGktYmxvZy13ZWJhcHBcXHNyY1xcbWFpblxcZnJvbnRlbmQvc3JjXFxzdHlsZXNcXG1peGluLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRUE7RUFDRSxtQkFBQTtBQ0RGOztBRElBO0VBQ0UsYUFBQTtBQ0RGOztBREdFO0VFUkEsWUFBQTtFQUNBLGNBQUE7RUFDQSxxREFBQTtBRFFGOztBREVFO0VBQ0UsV0FBQTtFQUNBLGtCQUFBO0FDQUo7O0FER0U7RUFDRSxrQkFBQTtFQUNBLGNBQUE7QUNESjs7QURJRTtFQUNFLFdBQUE7RUFDQSxrQkFBQTtFQUNBLFNBQUE7RUFDQSxXQUFBO0VBQ0EsUUFBQTtFQUNBLFNBQUE7RUFDQSxrQ0FBQTtFQUNBLHdEQUFBO0VBQ0EscUNBQUE7RUFDQSxpQkFBQTtFQUNBLDZCQUFBO0VBQ0EseURBQUE7QUNGSjs7QURNQTtFQUNFLGFBQUE7RUFDQSx5QkFBQTtBQ0hGOztBRE1BO0VBQ0UsYUFBQTtFQUNBLHFCQUFBO0FDSEYiLCJmaWxlIjoic3JjL2FwcC9tb2R1bGVzL3Bvc3QvcG9zdC1jb21tZW50cy9jb21wb25lbnRzL2FkZC1wb3N0LWNvbW1lbnQvYWRkLXBvc3QtY29tbWVudC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIkBpbXBvcnQgXCIuLi8uLi8uLi8uLi8uLi8uLi9zdHlsZXMvbWl4aW5cIjtcclxuXHJcbmZvcm0ge1xyXG4gIG1hcmdpbi1ib3R0b206IDJyZW07XHJcbn1cclxuXHJcbi5jb21tZW50LWlucHV0IHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG5cclxuICAmIGFwcC11c2VyLWF2YXRhciB7XHJcbiAgICBAaW5jbHVkZSBhdmF0YXI7XHJcbiAgfVxyXG5cclxuICAmIC50ZXh0YXJlYSB7XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICB9XHJcblxyXG4gICYgdGV4dGFyZWEge1xyXG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gICAgaGVpZ2h0OiA1LjVyZW07XHJcbiAgfVxyXG5cclxuICAmIC50ZXh0YXJlYTo6YmVmb3JlIHtcclxuICAgIGNvbnRlbnQ6IFwiXCI7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICB0b3A6IDFyZW07XHJcbiAgICBsZWZ0OiAtMXJlbTtcclxuICAgIHdpZHRoOiAwO1xyXG4gICAgaGVpZ2h0OiAwO1xyXG4gICAgYm9yZGVyLXRvcDogMXJlbSBzb2xpZCB0cmFuc3BhcmVudDtcclxuICAgIGJvcmRlci1yaWdodDogMXJlbSBzb2xpZCB2YXIoLS1jb21tZW50LWJhY2tncm91bmQtY29sb3IpO1xyXG4gICAgYm9yZGVyLWJvdHRvbTogMXJlbSBzb2xpZCB0cmFuc3BhcmVudDtcclxuICAgIGJvcmRlci1sZWZ0OiBub25lO1xyXG4gICAgdHJhbnNpdGlvbjogdmFyKC0tdHJhbnNpdGlvbik7XHJcbiAgICB0cmFuc2l0aW9uLXByb3BlcnR5OiBjb2xvciwgYmFja2dyb3VuZC1jb2xvciBib3JkZXItY29sb3I7XHJcbiAgfVxyXG59XHJcblxyXG4uY29tbWVudC1zdWJtaXQge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAganVzdGlmeS1jb250ZW50OiBmbGV4LWVuZDtcclxufVxyXG5cclxuLm5vdC1hdXRoZW50aWNhdGVkIHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIG1hcmdpbi1ib3R0b206IDIuNXJlbTtcclxufVxyXG4iLCJmb3JtIHtcbiAgbWFyZ2luLWJvdHRvbTogMnJlbTtcbn1cblxuLmNvbW1lbnQtaW5wdXQge1xuICBkaXNwbGF5OiBmbGV4O1xufVxuLmNvbW1lbnQtaW5wdXQgYXBwLXVzZXItYXZhdGFyIHtcbiAgZmxleC1ncm93OiAwO1xuICBmbGV4LXNocmluazogMDtcbiAgbWFyZ2luLXJpZ2h0OiB2YXIoLS1jb21tZW50LXVzZXItYXZhdGFyLW1hcmdpbi1yaWdodCk7XG59XG4uY29tbWVudC1pbnB1dCAudGV4dGFyZWEge1xuICB3aWR0aDogMTAwJTtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xufVxuLmNvbW1lbnQtaW5wdXQgdGV4dGFyZWEge1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIGhlaWdodDogNS41cmVtO1xufVxuLmNvbW1lbnQtaW5wdXQgLnRleHRhcmVhOjpiZWZvcmUge1xuICBjb250ZW50OiBcIlwiO1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHRvcDogMXJlbTtcbiAgbGVmdDogLTFyZW07XG4gIHdpZHRoOiAwO1xuICBoZWlnaHQ6IDA7XG4gIGJvcmRlci10b3A6IDFyZW0gc29saWQgdHJhbnNwYXJlbnQ7XG4gIGJvcmRlci1yaWdodDogMXJlbSBzb2xpZCB2YXIoLS1jb21tZW50LWJhY2tncm91bmQtY29sb3IpO1xuICBib3JkZXItYm90dG9tOiAxcmVtIHNvbGlkIHRyYW5zcGFyZW50O1xuICBib3JkZXItbGVmdDogbm9uZTtcbiAgdHJhbnNpdGlvbjogdmFyKC0tdHJhbnNpdGlvbik7XG4gIHRyYW5zaXRpb24tcHJvcGVydHk6IGNvbG9yLCBiYWNrZ3JvdW5kLWNvbG9yIGJvcmRlci1jb2xvcjtcbn1cblxuLmNvbW1lbnQtc3VibWl0IHtcbiAgZGlzcGxheTogZmxleDtcbiAganVzdGlmeS1jb250ZW50OiBmbGV4LWVuZDtcbn1cblxuLm5vdC1hdXRoZW50aWNhdGVkIHtcbiAgZGlzcGxheTogZmxleDtcbiAgbWFyZ2luLWJvdHRvbTogMi41cmVtO1xufSIsIkBtaXhpbiBhdmF0YXIge1xyXG4gIGZsZXgtZ3JvdzogMDtcclxuICBmbGV4LXNocmluazogMDtcclxuICBtYXJnaW4tcmlnaHQ6IHZhcigtLWNvbW1lbnQtdXNlci1hdmF0YXItbWFyZ2luLXJpZ2h0KTtcclxufVxyXG4iXX0= */";
+    __webpack_exports__["default"] = "form {\n  margin-bottom: 2rem;\n}\n\n.comment-input {\n  display: flex;\n}\n\n.comment-input app-user-avatar {\n  flex-grow: 0;\n  flex-shrink: 0;\n  margin-right: var(--comment-user-avatar-margin-right);\n}\n\n.comment-input .textarea {\n  width: 100%;\n  position: relative;\n}\n\n.comment-input textarea {\n  position: relative;\n  height: 5.5rem;\n}\n\n.comment-input .textarea::before {\n  content: \"\";\n  position: absolute;\n  top: 1rem;\n  left: -1rem;\n  width: 0;\n  height: 0;\n  border-top: 1rem solid transparent;\n  border-right: 1rem solid var(--comment-background-color);\n  border-bottom: 1rem solid transparent;\n  border-left: none;\n  transition: var(--transition);\n  transition-property: color, background-color border-color;\n}\n\n.comment-input .send-button {\n  --rounded-button-size: 5.5rem;\n  flex-grow: 0;\n  flex-shrink: 0;\n  padding-left: 1rem;\n}\n\n.comment-submit {\n  display: flex;\n  justify-content: flex-end;\n}\n\n.not-authenticated {\n  display: flex;\n  margin-bottom: 2.5rem;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9wb3N0L3Bvc3QtY29tbWVudHMvY29tcG9uZW50cy9hZGQtcG9zdC1jb21tZW50L0M6XFxkZXZcXHByb2plY3RzXFxhaGVudGV0aS1ibG9nXFxhaGVudGV0aS1ibG9nLXdlYmFwcFxcc3JjXFxtYWluXFxmcm9udGVuZC9zcmNcXGFwcFxcbW9kdWxlc1xccG9zdFxccG9zdC1jb21tZW50c1xcY29tcG9uZW50c1xcYWRkLXBvc3QtY29tbWVudFxcYWRkLXBvc3QtY29tbWVudC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvbW9kdWxlcy9wb3N0L3Bvc3QtY29tbWVudHMvY29tcG9uZW50cy9hZGQtcG9zdC1jb21tZW50L2FkZC1wb3N0LWNvbW1lbnQuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL21vZHVsZXMvcG9zdC9wb3N0LWNvbW1lbnRzL2NvbXBvbmVudHMvYWRkLXBvc3QtY29tbWVudC9DOlxcZGV2XFxwcm9qZWN0c1xcYWhlbnRldGktYmxvZ1xcYWhlbnRldGktYmxvZy13ZWJhcHBcXHNyY1xcbWFpblxcZnJvbnRlbmQvc3JjXFxzdHlsZXNcXG1peGluLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRUE7RUFDRSxtQkFBQTtBQ0RGOztBRElBO0VBQ0UsYUFBQTtBQ0RGOztBREdFO0VFUkEsWUFBQTtFQUNBLGNBQUE7RUFDQSxxREFBQTtBRFFGOztBREVFO0VBQ0UsV0FBQTtFQUNBLGtCQUFBO0FDQUo7O0FER0U7RUFDRSxrQkFBQTtFQUNBLGNBQUE7QUNESjs7QURJRTtFQUNFLFdBQUE7RUFDQSxrQkFBQTtFQUNBLFNBQUE7RUFDQSxXQUFBO0VBQ0EsUUFBQTtFQUNBLFNBQUE7RUFDQSxrQ0FBQTtFQUNBLHdEQUFBO0VBQ0EscUNBQUE7RUFDQSxpQkFBQTtFQUNBLDZCQUFBO0VBQ0EseURBQUE7QUNGSjs7QURLRTtFQUNFLDZCQUFBO0VBQ0EsWUFBQTtFQUNBLGNBQUE7RUFDQSxrQkFBQTtBQ0hKOztBRE9BO0VBQ0UsYUFBQTtFQUNBLHlCQUFBO0FDSkY7O0FET0E7RUFDRSxhQUFBO0VBQ0EscUJBQUE7QUNKRiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvcG9zdC9wb3N0LWNvbW1lbnRzL2NvbXBvbmVudHMvYWRkLXBvc3QtY29tbWVudC9hZGQtcG9zdC1jb21tZW50LmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiQGltcG9ydCBcIi4uLy4uLy4uLy4uLy4uLy4uL3N0eWxlcy9taXhpblwiO1xyXG5cclxuZm9ybSB7XHJcbiAgbWFyZ2luLWJvdHRvbTogMnJlbTtcclxufVxyXG5cclxuLmNvbW1lbnQtaW5wdXQge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcblxyXG4gICYgYXBwLXVzZXItYXZhdGFyIHtcclxuICAgIEBpbmNsdWRlIGF2YXRhcjtcclxuICB9XHJcblxyXG4gICYgLnRleHRhcmVhIHtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIH1cclxuXHJcbiAgJiB0ZXh0YXJlYSB7XHJcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgICBoZWlnaHQ6IDUuNXJlbTtcclxuICB9XHJcblxyXG4gICYgLnRleHRhcmVhOjpiZWZvcmUge1xyXG4gICAgY29udGVudDogXCJcIjtcclxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgIHRvcDogMXJlbTtcclxuICAgIGxlZnQ6IC0xcmVtO1xyXG4gICAgd2lkdGg6IDA7XHJcbiAgICBoZWlnaHQ6IDA7XHJcbiAgICBib3JkZXItdG9wOiAxcmVtIHNvbGlkIHRyYW5zcGFyZW50O1xyXG4gICAgYm9yZGVyLXJpZ2h0OiAxcmVtIHNvbGlkIHZhcigtLWNvbW1lbnQtYmFja2dyb3VuZC1jb2xvcik7XHJcbiAgICBib3JkZXItYm90dG9tOiAxcmVtIHNvbGlkIHRyYW5zcGFyZW50O1xyXG4gICAgYm9yZGVyLWxlZnQ6IG5vbmU7XHJcbiAgICB0cmFuc2l0aW9uOiB2YXIoLS10cmFuc2l0aW9uKTtcclxuICAgIHRyYW5zaXRpb24tcHJvcGVydHk6IGNvbG9yLCBiYWNrZ3JvdW5kLWNvbG9yIGJvcmRlci1jb2xvcjtcclxuICB9XHJcblxyXG4gICYgLnNlbmQtYnV0dG9uIHtcclxuICAgIC0tcm91bmRlZC1idXR0b24tc2l6ZTogNS41cmVtO1xyXG4gICAgZmxleC1ncm93OiAwO1xyXG4gICAgZmxleC1zaHJpbms6IDA7XHJcbiAgICBwYWRkaW5nLWxlZnQ6IDFyZW07XHJcbiAgfVxyXG59XHJcblxyXG4uY29tbWVudC1zdWJtaXQge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAganVzdGlmeS1jb250ZW50OiBmbGV4LWVuZDtcclxufVxyXG5cclxuLm5vdC1hdXRoZW50aWNhdGVkIHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIG1hcmdpbi1ib3R0b206IDIuNXJlbTtcclxufVxyXG4iLCJmb3JtIHtcbiAgbWFyZ2luLWJvdHRvbTogMnJlbTtcbn1cblxuLmNvbW1lbnQtaW5wdXQge1xuICBkaXNwbGF5OiBmbGV4O1xufVxuLmNvbW1lbnQtaW5wdXQgYXBwLXVzZXItYXZhdGFyIHtcbiAgZmxleC1ncm93OiAwO1xuICBmbGV4LXNocmluazogMDtcbiAgbWFyZ2luLXJpZ2h0OiB2YXIoLS1jb21tZW50LXVzZXItYXZhdGFyLW1hcmdpbi1yaWdodCk7XG59XG4uY29tbWVudC1pbnB1dCAudGV4dGFyZWEge1xuICB3aWR0aDogMTAwJTtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xufVxuLmNvbW1lbnQtaW5wdXQgdGV4dGFyZWEge1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIGhlaWdodDogNS41cmVtO1xufVxuLmNvbW1lbnQtaW5wdXQgLnRleHRhcmVhOjpiZWZvcmUge1xuICBjb250ZW50OiBcIlwiO1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHRvcDogMXJlbTtcbiAgbGVmdDogLTFyZW07XG4gIHdpZHRoOiAwO1xuICBoZWlnaHQ6IDA7XG4gIGJvcmRlci10b3A6IDFyZW0gc29saWQgdHJhbnNwYXJlbnQ7XG4gIGJvcmRlci1yaWdodDogMXJlbSBzb2xpZCB2YXIoLS1jb21tZW50LWJhY2tncm91bmQtY29sb3IpO1xuICBib3JkZXItYm90dG9tOiAxcmVtIHNvbGlkIHRyYW5zcGFyZW50O1xuICBib3JkZXItbGVmdDogbm9uZTtcbiAgdHJhbnNpdGlvbjogdmFyKC0tdHJhbnNpdGlvbik7XG4gIHRyYW5zaXRpb24tcHJvcGVydHk6IGNvbG9yLCBiYWNrZ3JvdW5kLWNvbG9yIGJvcmRlci1jb2xvcjtcbn1cbi5jb21tZW50LWlucHV0IC5zZW5kLWJ1dHRvbiB7XG4gIC0tcm91bmRlZC1idXR0b24tc2l6ZTogNS41cmVtO1xuICBmbGV4LWdyb3c6IDA7XG4gIGZsZXgtc2hyaW5rOiAwO1xuICBwYWRkaW5nLWxlZnQ6IDFyZW07XG59XG5cbi5jb21tZW50LXN1Ym1pdCB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGp1c3RpZnktY29udGVudDogZmxleC1lbmQ7XG59XG5cbi5ub3QtYXV0aGVudGljYXRlZCB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIG1hcmdpbi1ib3R0b206IDIuNXJlbTtcbn0iLCJAbWl4aW4gYXZhdGFyIHtcclxuICBmbGV4LWdyb3c6IDA7XHJcbiAgZmxleC1zaHJpbms6IDA7XHJcbiAgbWFyZ2luLXJpZ2h0OiB2YXIoLS1jb21tZW50LXVzZXItYXZhdGFyLW1hcmdpbi1yaWdodCk7XHJcbn1cclxuIl19 */";
     /***/
   },
 
@@ -6231,7 +6231,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = ":host {\n  display: block;\n}\n@media screen and (max-width: 480px) {\n  :host {\n    padding: 0 3rem;\n  }\n}\n@media screen and (max-width: 720px) {\n  .mat-column-category,\n.mat-column-createdAt {\n    display: none;\n  }\n}\napp-page-title-delete-button {\n  --page-title-button-color-on-hover: var(--danger-color);\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9wb3N0L3Bvc3QtcGFnZXMvbWFuYWdlLXBvc3RzLXBhZ2UvQzpcXGRldlxccHJvamVjdHNcXGFoZW50ZXRpLWJsb2dcXGFoZW50ZXRpLWJsb2ctd2ViYXBwXFxzcmNcXG1haW5cXGZyb250ZW5kL3NyY1xcYXBwXFxtb2R1bGVzXFxwb3N0XFxwb3N0LXBhZ2VzXFxtYW5hZ2UtcG9zdHMtcGFnZVxcbWFuYWdlLXBvc3RzLnBhZ2Uuc2NzcyIsInNyYy9hcHAvbW9kdWxlcy9wb3N0L3Bvc3QtcGFnZXMvbWFuYWdlLXBvc3RzLXBhZ2UvbWFuYWdlLXBvc3RzLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGNBQUE7QUNDRjtBREFFO0VBRkY7SUFHSSxlQUFBO0VDR0Y7QUFDRjtBREFBO0VBQ0U7O0lBRUUsYUFBQTtFQ0dGO0FBQ0Y7QURBQTtFQUNFLHVEQUFBO0FDRUYiLCJmaWxlIjoic3JjL2FwcC9tb2R1bGVzL3Bvc3QvcG9zdC1wYWdlcy9tYW5hZ2UtcG9zdHMtcGFnZS9tYW5hZ2UtcG9zdHMucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3Qge1xyXG4gIGRpc3BsYXk6IGJsb2NrO1xyXG4gIEBtZWRpYSBzY3JlZW4gYW5kIChtYXgtd2lkdGg6IDQ4MHB4KSB7XHJcbiAgICBwYWRkaW5nOiAwIDNyZW07XHJcbiAgfVxyXG59XHJcblxyXG5AbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiA3MjBweCkge1xyXG4gIC5tYXQtY29sdW1uLWNhdGVnb3J5LFxyXG4gIC5tYXQtY29sdW1uLWNyZWF0ZWRBdCB7XHJcbiAgICBkaXNwbGF5OiBub25lO1xyXG4gIH1cclxufVxyXG5cclxuYXBwLXBhZ2UtdGl0bGUtZGVsZXRlLWJ1dHRvbiB7XHJcbiAgLS1wYWdlLXRpdGxlLWJ1dHRvbi1jb2xvci1vbi1ob3ZlcjogdmFyKC0tZGFuZ2VyLWNvbG9yKTtcclxufVxyXG4iLCI6aG9zdCB7XG4gIGRpc3BsYXk6IGJsb2NrO1xufVxuQG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aDogNDgwcHgpIHtcbiAgOmhvc3Qge1xuICAgIHBhZGRpbmc6IDAgM3JlbTtcbiAgfVxufVxuXG5AbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiA3MjBweCkge1xuICAubWF0LWNvbHVtbi1jYXRlZ29yeSxcbi5tYXQtY29sdW1uLWNyZWF0ZWRBdCB7XG4gICAgZGlzcGxheTogbm9uZTtcbiAgfVxufVxuYXBwLXBhZ2UtdGl0bGUtZGVsZXRlLWJ1dHRvbiB7XG4gIC0tcGFnZS10aXRsZS1idXR0b24tY29sb3Itb24taG92ZXI6IHZhcigtLWRhbmdlci1jb2xvcik7XG59Il19 */";
+    __webpack_exports__["default"] = ":host {\n  display: block;\n}\n@media screen and (max-width: 480px) {\n  :host {\n    padding: 0 3rem;\n  }\n}\n@media screen and (max-width: 720px) {\n  .mat-column-category,\n.mat-column-createdAt {\n    display: none;\n  }\n}\napp-delete-rounded-button {\n  --rounded-button-color-on-hover: var(--danger-color);\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9wb3N0L3Bvc3QtcGFnZXMvbWFuYWdlLXBvc3RzLXBhZ2UvQzpcXGRldlxccHJvamVjdHNcXGFoZW50ZXRpLWJsb2dcXGFoZW50ZXRpLWJsb2ctd2ViYXBwXFxzcmNcXG1haW5cXGZyb250ZW5kL3NyY1xcYXBwXFxtb2R1bGVzXFxwb3N0XFxwb3N0LXBhZ2VzXFxtYW5hZ2UtcG9zdHMtcGFnZVxcbWFuYWdlLXBvc3RzLnBhZ2Uuc2NzcyIsInNyYy9hcHAvbW9kdWxlcy9wb3N0L3Bvc3QtcGFnZXMvbWFuYWdlLXBvc3RzLXBhZ2UvbWFuYWdlLXBvc3RzLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGNBQUE7QUNDRjtBREFFO0VBRkY7SUFHSSxlQUFBO0VDR0Y7QUFDRjtBREFBO0VBQ0U7O0lBRUUsYUFBQTtFQ0dGO0FBQ0Y7QURBQTtFQUNFLG9EQUFBO0FDRUYiLCJmaWxlIjoic3JjL2FwcC9tb2R1bGVzL3Bvc3QvcG9zdC1wYWdlcy9tYW5hZ2UtcG9zdHMtcGFnZS9tYW5hZ2UtcG9zdHMucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3Qge1xyXG4gIGRpc3BsYXk6IGJsb2NrO1xyXG4gIEBtZWRpYSBzY3JlZW4gYW5kIChtYXgtd2lkdGg6IDQ4MHB4KSB7XHJcbiAgICBwYWRkaW5nOiAwIDNyZW07XHJcbiAgfVxyXG59XHJcblxyXG5AbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiA3MjBweCkge1xyXG4gIC5tYXQtY29sdW1uLWNhdGVnb3J5LFxyXG4gIC5tYXQtY29sdW1uLWNyZWF0ZWRBdCB7XHJcbiAgICBkaXNwbGF5OiBub25lO1xyXG4gIH1cclxufVxyXG5cclxuYXBwLWRlbGV0ZS1yb3VuZGVkLWJ1dHRvbiB7XHJcbiAgLS1yb3VuZGVkLWJ1dHRvbi1jb2xvci1vbi1ob3ZlcjogdmFyKC0tZGFuZ2VyLWNvbG9yKTtcclxufVxyXG4iLCI6aG9zdCB7XG4gIGRpc3BsYXk6IGJsb2NrO1xufVxuQG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aDogNDgwcHgpIHtcbiAgOmhvc3Qge1xuICAgIHBhZGRpbmc6IDAgM3JlbTtcbiAgfVxufVxuXG5AbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiA3MjBweCkge1xuICAubWF0LWNvbHVtbi1jYXRlZ29yeSxcbi5tYXQtY29sdW1uLWNyZWF0ZWRBdCB7XG4gICAgZGlzcGxheTogbm9uZTtcbiAgfVxufVxuYXBwLWRlbGV0ZS1yb3VuZGVkLWJ1dHRvbiB7XG4gIC0tcm91bmRlZC1idXR0b24tY29sb3Itb24taG92ZXI6IHZhcigtLWRhbmdlci1jb2xvcik7XG59Il19 */";
     /***/
   },
 
@@ -9963,43 +9963,215 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
   },
 
   /***/
-  "./src/app/modules/shared/components/page-title-buttons/page-title-button/page-title-button.component.scss":
-  /*!*****************************************************************************************************************!*\
-    !*** ./src/app/modules/shared/components/page-title-buttons/page-title-button/page-title-button.component.scss ***!
-    \*****************************************************************************************************************/
+  "./src/app/modules/shared/components/rounded-buttons/consult-rounded-button.component.ts":
+  /*!***********************************************************************************************!*\
+    !*** ./src/app/modules/shared/components/rounded-buttons/consult-rounded-button.component.ts ***!
+    \***********************************************************************************************/
+
+  /*! exports provided: ConsultRoundedButtonComponent */
+
+  /***/
+  function srcAppModulesSharedComponentsRoundedButtonsConsultRoundedButtonComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "ConsultRoundedButtonComponent", function () {
+      return ConsultRoundedButtonComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    var ConsultRoundedButtonComponent = function ConsultRoundedButtonComponent() {
+      _classCallCheck(this, ConsultRoundedButtonComponent);
+    };
+
+    ConsultRoundedButtonComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: "app-consult-rounded-button",
+      template: '<app-rounded-button icon="ls:view"></app-rounded-button>'
+    })], ConsultRoundedButtonComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/modules/shared/components/rounded-buttons/delete-rounded-button.component.ts":
+  /*!**********************************************************************************************!*\
+    !*** ./src/app/modules/shared/components/rounded-buttons/delete-rounded-button.component.ts ***!
+    \**********************************************************************************************/
+
+  /*! exports provided: DeleteRoundedButtonComponent */
+
+  /***/
+  function srcAppModulesSharedComponentsRoundedButtonsDeleteRoundedButtonComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "DeleteRoundedButtonComponent", function () {
+      return DeleteRoundedButtonComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    var DeleteRoundedButtonComponent = function DeleteRoundedButtonComponent() {
+      _classCallCheck(this, DeleteRoundedButtonComponent);
+    };
+
+    DeleteRoundedButtonComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: "app-delete-rounded-button",
+      template: '<app-rounded-button icon="iwwa:delete"></app-rounded-button>'
+    })], DeleteRoundedButtonComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/modules/shared/components/rounded-buttons/download-rounded-button.component.ts":
+  /*!************************************************************************************************!*\
+    !*** ./src/app/modules/shared/components/rounded-buttons/download-rounded-button.component.ts ***!
+    \************************************************************************************************/
+
+  /*! exports provided: DownloadRoundedButtonComponent */
+
+  /***/
+  function srcAppModulesSharedComponentsRoundedButtonsDownloadRoundedButtonComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "DownloadRoundedButtonComponent", function () {
+      return DownloadRoundedButtonComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    var DownloadRoundedButtonComponent = function DownloadRoundedButtonComponent() {
+      _classCallCheck(this, DownloadRoundedButtonComponent);
+    };
+
+    DownloadRoundedButtonComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: "app-download-rounded-button",
+      template: '<app-rounded-button icon="heroicons-solid:download"></app-rounded-button>'
+    })], DownloadRoundedButtonComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/modules/shared/components/rounded-buttons/edit-rounded-button.component.ts":
+  /*!********************************************************************************************!*\
+    !*** ./src/app/modules/shared/components/rounded-buttons/edit-rounded-button.component.ts ***!
+    \********************************************************************************************/
+
+  /*! exports provided: EditRoundedButtonComponent */
+
+  /***/
+  function srcAppModulesSharedComponentsRoundedButtonsEditRoundedButtonComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "EditRoundedButtonComponent", function () {
+      return EditRoundedButtonComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    var EditRoundedButtonComponent = function EditRoundedButtonComponent() {
+      _classCallCheck(this, EditRoundedButtonComponent);
+    };
+
+    EditRoundedButtonComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: "app-edit-rounded-button",
+      template: '<app-rounded-button icon="eva:edit-fill"></app-rounded-button>'
+    })], EditRoundedButtonComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/modules/shared/components/rounded-buttons/filter-rounded-button/filter-rounded-button.component.scss":
+  /*!**********************************************************************************************************************!*\
+    !*** ./src/app/modules/shared/components/rounded-buttons/filter-rounded-button/filter-rounded-button.component.scss ***!
+    \**********************************************************************************************************************/
 
   /*! exports provided: default */
 
   /***/
-  function srcAppModulesSharedComponentsPageTitleButtonsPageTitleButtonPageTitleButtonComponentScss(module, __webpack_exports__, __webpack_require__) {
+  function srcAppModulesSharedComponentsRoundedButtonsFilterRoundedButtonFilterRoundedButtonComponentScss(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = ".button {\n  border-radius: 100rem;\n  padding: 0.5rem;\n  height: var(--page-title-button-size);\n  width: var(--page-title-button-size);\n  background-color: var(--page-title-button-background-color);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  cursor: pointer;\n}\n\n.iconify {\n  font-size: var(--page-title-button-icon-font-size);\n  border-radius: 100rem;\n  color: var(--page-title-button-color);\n  background-color: var(--page-title-button-background-color);\n  transition: var(--transition);\n  transition-property: color, background-color;\n}\n\n.iconify:hover {\n  color: var(--page-title-button-color-on-hover, var(--primary-color));\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9zaGFyZWQvY29tcG9uZW50cy9wYWdlLXRpdGxlLWJ1dHRvbnMvcGFnZS10aXRsZS1idXR0b24vQzpcXGRldlxccHJvamVjdHNcXGFoZW50ZXRpLWJsb2dcXGFoZW50ZXRpLWJsb2ctd2ViYXBwXFxzcmNcXG1haW5cXGZyb250ZW5kL3NyY1xcYXBwXFxtb2R1bGVzXFxzaGFyZWRcXGNvbXBvbmVudHNcXHBhZ2UtdGl0bGUtYnV0dG9uc1xccGFnZS10aXRsZS1idXR0b25cXHBhZ2UtdGl0bGUtYnV0dG9uLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9tb2R1bGVzL3NoYXJlZC9jb21wb25lbnRzL3BhZ2UtdGl0bGUtYnV0dG9ucy9wYWdlLXRpdGxlLWJ1dHRvbi9wYWdlLXRpdGxlLWJ1dHRvbi5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLHFCQUFBO0VBQ0EsZUFBQTtFQUNBLHFDQUFBO0VBQ0Esb0NBQUE7RUFDQSwyREFBQTtFQUNBLGFBQUE7RUFDQSxtQkFBQTtFQUNBLHVCQUFBO0VBQ0EsZUFBQTtBQ0NGOztBREVBO0VBQ0Usa0RBQUE7RUFDQSxxQkFBQTtFQUNBLHFDQUFBO0VBQ0EsMkRBQUE7RUFDQSw2QkFBQTtFQUNBLDRDQUFBO0FDQ0Y7O0FEQ0U7RUFDRSxvRUFBQTtBQ0NKIiwiZmlsZSI6InNyYy9hcHAvbW9kdWxlcy9zaGFyZWQvY29tcG9uZW50cy9wYWdlLXRpdGxlLWJ1dHRvbnMvcGFnZS10aXRsZS1idXR0b24vcGFnZS10aXRsZS1idXR0b24uY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuYnV0dG9uIHtcclxuICBib3JkZXItcmFkaXVzOiAxMDByZW07XHJcbiAgcGFkZGluZzogMC41cmVtO1xyXG4gIGhlaWdodDogdmFyKC0tcGFnZS10aXRsZS1idXR0b24tc2l6ZSk7XHJcbiAgd2lkdGg6IHZhcigtLXBhZ2UtdGl0bGUtYnV0dG9uLXNpemUpO1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXBhZ2UtdGl0bGUtYnV0dG9uLWJhY2tncm91bmQtY29sb3IpO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICBjdXJzb3I6IHBvaW50ZXI7XHJcbn1cclxuXHJcbi5pY29uaWZ5IHtcclxuICBmb250LXNpemU6IHZhcigtLXBhZ2UtdGl0bGUtYnV0dG9uLWljb24tZm9udC1zaXplKTtcclxuICBib3JkZXItcmFkaXVzOiAxMDByZW07XHJcbiAgY29sb3I6IHZhcigtLXBhZ2UtdGl0bGUtYnV0dG9uLWNvbG9yKTtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1wYWdlLXRpdGxlLWJ1dHRvbi1iYWNrZ3JvdW5kLWNvbG9yKTtcclxuICB0cmFuc2l0aW9uOiB2YXIoLS10cmFuc2l0aW9uKTtcclxuICB0cmFuc2l0aW9uLXByb3BlcnR5OiBjb2xvciwgYmFja2dyb3VuZC1jb2xvcjtcclxuXHJcbiAgJjpob3ZlciB7XHJcbiAgICBjb2xvcjogdmFyKC0tcGFnZS10aXRsZS1idXR0b24tY29sb3Itb24taG92ZXIsIHZhcigtLXByaW1hcnktY29sb3IpKTtcclxuICB9XHJcbn1cclxuIiwiLmJ1dHRvbiB7XG4gIGJvcmRlci1yYWRpdXM6IDEwMHJlbTtcbiAgcGFkZGluZzogMC41cmVtO1xuICBoZWlnaHQ6IHZhcigtLXBhZ2UtdGl0bGUtYnV0dG9uLXNpemUpO1xuICB3aWR0aDogdmFyKC0tcGFnZS10aXRsZS1idXR0b24tc2l6ZSk7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXBhZ2UtdGl0bGUtYnV0dG9uLWJhY2tncm91bmQtY29sb3IpO1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4uaWNvbmlmeSB7XG4gIGZvbnQtc2l6ZTogdmFyKC0tcGFnZS10aXRsZS1idXR0b24taWNvbi1mb250LXNpemUpO1xuICBib3JkZXItcmFkaXVzOiAxMDByZW07XG4gIGNvbG9yOiB2YXIoLS1wYWdlLXRpdGxlLWJ1dHRvbi1jb2xvcik7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXBhZ2UtdGl0bGUtYnV0dG9uLWJhY2tncm91bmQtY29sb3IpO1xuICB0cmFuc2l0aW9uOiB2YXIoLS10cmFuc2l0aW9uKTtcbiAgdHJhbnNpdGlvbi1wcm9wZXJ0eTogY29sb3IsIGJhY2tncm91bmQtY29sb3I7XG59XG4uaWNvbmlmeTpob3ZlciB7XG4gIGNvbG9yOiB2YXIoLS1wYWdlLXRpdGxlLWJ1dHRvbi1jb2xvci1vbi1ob3ZlciwgdmFyKC0tcHJpbWFyeS1jb2xvcikpO1xufSJdfQ== */";
+    __webpack_exports__["default"] = ":host {\n  display: flex;\n  align-items: center;\n  border-radius: 100rem;\n  padding: 0.5rem;\n  background-color: var(--rounded-button-background-color);\n}\n\n.search-button {\n  flex-grow: 0;\n  flex-shrink: 0;\n  height: calc(var(--button-size) - 1rem);\n  width: calc(var(--button-size) - 1rem);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.search-button .iconify {\n  font-size: var(--rounded-button-icon-font-size);\n  padding: 0.5rem;\n  border-radius: 100rem;\n  color: var(--rounded-button-color);\n  background-color: var(--rounded-button-background-color);\n  transition: var(--transition);\n  transition-property: color, background-color;\n}\n\n.search-button .iconify:hover {\n  color: var(--primary-color);\n}\n\n.search-input {\n  border: none;\n  outline: none;\n  width: 0;\n  padding: 0;\n  transition: var(--transition);\n  transition-property: color, background-color, width;\n}\n\n:host.active .search-button .iconify {\n  background-color: var(--filter-icon-background-color-on-active-state);\n  color: var(--primary-color);\n}\n\n:host.active .search-input {\n  width: 20rem;\n  padding-left: 0.5rem;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9zaGFyZWQvY29tcG9uZW50cy9yb3VuZGVkLWJ1dHRvbnMvZmlsdGVyLXJvdW5kZWQtYnV0dG9uL0M6XFxkZXZcXHByb2plY3RzXFxhaGVudGV0aS1ibG9nXFxhaGVudGV0aS1ibG9nLXdlYmFwcFxcc3JjXFxtYWluXFxmcm9udGVuZC9zcmNcXGFwcFxcbW9kdWxlc1xcc2hhcmVkXFxjb21wb25lbnRzXFxyb3VuZGVkLWJ1dHRvbnNcXGZpbHRlci1yb3VuZGVkLWJ1dHRvblxcZmlsdGVyLXJvdW5kZWQtYnV0dG9uLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9tb2R1bGVzL3NoYXJlZC9jb21wb25lbnRzL3JvdW5kZWQtYnV0dG9ucy9maWx0ZXItcm91bmRlZC1idXR0b24vZmlsdGVyLXJvdW5kZWQtYnV0dG9uLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsYUFBQTtFQUNBLG1CQUFBO0VBQ0EscUJBQUE7RUFDQSxlQUFBO0VBQ0Esd0RBQUE7QUNDRjs7QURFQTtFQUNFLFlBQUE7RUFDQSxjQUFBO0VBQ0EsdUNBQUE7RUFDQSxzQ0FBQTtFQUNBLGFBQUE7RUFDQSxtQkFBQTtFQUNBLHVCQUFBO0FDQ0Y7O0FERUE7RUFDRSwrQ0FBQTtFQUNBLGVBQUE7RUFDQSxxQkFBQTtFQUNBLGtDQUFBO0VBQ0Esd0RBQUE7RUFDQSw2QkFBQTtFQUNBLDRDQUFBO0FDQ0Y7O0FEQ0U7RUFDRSwyQkFBQTtBQ0NKOztBREdBO0VBQ0UsWUFBQTtFQUNBLGFBQUE7RUFDQSxRQUFBO0VBQ0EsVUFBQTtFQUNBLDZCQUFBO0VBQ0EsbURBQUE7QUNBRjs7QURJRTtFQUNFLHFFQUFBO0VBQ0EsMkJBQUE7QUNESjs7QURJRTtFQUNFLFlBQUE7RUFDQSxvQkFBQTtBQ0ZKIiwiZmlsZSI6InNyYy9hcHAvbW9kdWxlcy9zaGFyZWQvY29tcG9uZW50cy9yb3VuZGVkLWJ1dHRvbnMvZmlsdGVyLXJvdW5kZWQtYnV0dG9uL2ZpbHRlci1yb3VuZGVkLWJ1dHRvbi5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0IHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgYm9yZGVyLXJhZGl1czogMTAwcmVtO1xyXG4gIHBhZGRpbmc6IDAuNXJlbTtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1yb3VuZGVkLWJ1dHRvbi1iYWNrZ3JvdW5kLWNvbG9yKTtcclxufVxyXG5cclxuLnNlYXJjaC1idXR0b24ge1xyXG4gIGZsZXgtZ3JvdzogMDtcclxuICBmbGV4LXNocmluazogMDtcclxuICBoZWlnaHQ6IGNhbGModmFyKC0tYnV0dG9uLXNpemUpIC0gMXJlbSk7XHJcbiAgd2lkdGg6IGNhbGModmFyKC0tYnV0dG9uLXNpemUpIC0gMXJlbSk7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG59XHJcblxyXG4uc2VhcmNoLWJ1dHRvbiAuaWNvbmlmeSB7XHJcbiAgZm9udC1zaXplOiB2YXIoLS1yb3VuZGVkLWJ1dHRvbi1pY29uLWZvbnQtc2l6ZSk7XHJcbiAgcGFkZGluZzogMC41cmVtO1xyXG4gIGJvcmRlci1yYWRpdXM6IDEwMHJlbTtcclxuICBjb2xvcjogdmFyKC0tcm91bmRlZC1idXR0b24tY29sb3IpO1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXJvdW5kZWQtYnV0dG9uLWJhY2tncm91bmQtY29sb3IpO1xyXG4gIHRyYW5zaXRpb246IHZhcigtLXRyYW5zaXRpb24pO1xyXG4gIHRyYW5zaXRpb24tcHJvcGVydHk6IGNvbG9yLCBiYWNrZ3JvdW5kLWNvbG9yO1xyXG5cclxuICAmOmhvdmVyIHtcclxuICAgIGNvbG9yOiB2YXIoLS1wcmltYXJ5LWNvbG9yKTtcclxuICB9XHJcbn1cclxuXHJcbi5zZWFyY2gtaW5wdXQge1xyXG4gIGJvcmRlcjogbm9uZTtcclxuICBvdXRsaW5lOiBub25lO1xyXG4gIHdpZHRoOiAwO1xyXG4gIHBhZGRpbmc6IDA7XHJcbiAgdHJhbnNpdGlvbjogdmFyKC0tdHJhbnNpdGlvbik7XHJcbiAgdHJhbnNpdGlvbi1wcm9wZXJ0eTogY29sb3IsIGJhY2tncm91bmQtY29sb3IsIHdpZHRoO1xyXG59XHJcblxyXG46aG9zdC5hY3RpdmUge1xyXG4gICYgLnNlYXJjaC1idXR0b24gLmljb25pZnkge1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tZmlsdGVyLWljb24tYmFja2dyb3VuZC1jb2xvci1vbi1hY3RpdmUtc3RhdGUpO1xyXG4gICAgY29sb3I6IHZhcigtLXByaW1hcnktY29sb3IpO1xyXG4gIH1cclxuXHJcbiAgJiAuc2VhcmNoLWlucHV0IHtcclxuICAgIHdpZHRoOiAyMHJlbTtcclxuICAgIHBhZGRpbmctbGVmdDogMC41cmVtO1xyXG4gIH1cclxufVxyXG4iLCI6aG9zdCB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGJvcmRlci1yYWRpdXM6IDEwMHJlbTtcbiAgcGFkZGluZzogMC41cmVtO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1yb3VuZGVkLWJ1dHRvbi1iYWNrZ3JvdW5kLWNvbG9yKTtcbn1cblxuLnNlYXJjaC1idXR0b24ge1xuICBmbGV4LWdyb3c6IDA7XG4gIGZsZXgtc2hyaW5rOiAwO1xuICBoZWlnaHQ6IGNhbGModmFyKC0tYnV0dG9uLXNpemUpIC0gMXJlbSk7XG4gIHdpZHRoOiBjYWxjKHZhcigtLWJ1dHRvbi1zaXplKSAtIDFyZW0pO1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbn1cblxuLnNlYXJjaC1idXR0b24gLmljb25pZnkge1xuICBmb250LXNpemU6IHZhcigtLXJvdW5kZWQtYnV0dG9uLWljb24tZm9udC1zaXplKTtcbiAgcGFkZGluZzogMC41cmVtO1xuICBib3JkZXItcmFkaXVzOiAxMDByZW07XG4gIGNvbG9yOiB2YXIoLS1yb3VuZGVkLWJ1dHRvbi1jb2xvcik7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXJvdW5kZWQtYnV0dG9uLWJhY2tncm91bmQtY29sb3IpO1xuICB0cmFuc2l0aW9uOiB2YXIoLS10cmFuc2l0aW9uKTtcbiAgdHJhbnNpdGlvbi1wcm9wZXJ0eTogY29sb3IsIGJhY2tncm91bmQtY29sb3I7XG59XG4uc2VhcmNoLWJ1dHRvbiAuaWNvbmlmeTpob3ZlciB7XG4gIGNvbG9yOiB2YXIoLS1wcmltYXJ5LWNvbG9yKTtcbn1cblxuLnNlYXJjaC1pbnB1dCB7XG4gIGJvcmRlcjogbm9uZTtcbiAgb3V0bGluZTogbm9uZTtcbiAgd2lkdGg6IDA7XG4gIHBhZGRpbmc6IDA7XG4gIHRyYW5zaXRpb246IHZhcigtLXRyYW5zaXRpb24pO1xuICB0cmFuc2l0aW9uLXByb3BlcnR5OiBjb2xvciwgYmFja2dyb3VuZC1jb2xvciwgd2lkdGg7XG59XG5cbjpob3N0LmFjdGl2ZSAuc2VhcmNoLWJ1dHRvbiAuaWNvbmlmeSB7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWZpbHRlci1pY29uLWJhY2tncm91bmQtY29sb3Itb24tYWN0aXZlLXN0YXRlKTtcbiAgY29sb3I6IHZhcigtLXByaW1hcnktY29sb3IpO1xufVxuOmhvc3QuYWN0aXZlIC5zZWFyY2gtaW5wdXQge1xuICB3aWR0aDogMjByZW07XG4gIHBhZGRpbmctbGVmdDogMC41cmVtO1xufSJdfQ== */";
     /***/
   },
 
   /***/
-  "./src/app/modules/shared/components/page-title-buttons/page-title-button/page-title-button.component.ts":
-  /*!***************************************************************************************************************!*\
-    !*** ./src/app/modules/shared/components/page-title-buttons/page-title-button/page-title-button.component.ts ***!
-    \***************************************************************************************************************/
+  "./src/app/modules/shared/components/rounded-buttons/filter-rounded-button/filter-rounded-button.component.ts":
+  /*!********************************************************************************************************************!*\
+    !*** ./src/app/modules/shared/components/rounded-buttons/filter-rounded-button/filter-rounded-button.component.ts ***!
+    \********************************************************************************************************************/
 
-  /*! exports provided: PageTitleButtonComponent */
+  /*! exports provided: FilterRoundedButtonComponent */
 
   /***/
-  function srcAppModulesSharedComponentsPageTitleButtonsPageTitleButtonPageTitleButtonComponentTs(module, __webpack_exports__, __webpack_require__) {
+  function srcAppModulesSharedComponentsRoundedButtonsFilterRoundedButtonFilterRoundedButtonComponentTs(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
     /* harmony export (binding) */
 
 
-    __webpack_require__.d(__webpack_exports__, "PageTitleButtonComponent", function () {
-      return PageTitleButtonComponent;
+    __webpack_require__.d(__webpack_exports__, "FilterRoundedButtonComponent", function () {
+      return FilterRoundedButtonComponent;
     });
     /* harmony import */
 
@@ -10014,250 +10186,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /*! @angular/core */
     "./node_modules/@angular/core/fesm2015/core.js");
 
-    var PageTitleButtonComponent = function PageTitleButtonComponent() {
-      _classCallCheck(this, PageTitleButtonComponent);
-    };
-
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()], PageTitleButtonComponent.prototype, "icon", void 0);
-    PageTitleButtonComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-      selector: "app-page-title-button",
-      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
-      /*! raw-loader!./page-title-button.component.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/page-title-buttons/page-title-button/page-title-button.component.html"))["default"],
-      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
-      /*! ./page-title-button.component.scss */
-      "./src/app/modules/shared/components/page-title-buttons/page-title-button/page-title-button.component.scss"))["default"]]
-    })], PageTitleButtonComponent);
-    /***/
-  },
-
-  /***/
-  "./src/app/modules/shared/components/page-title-buttons/page-title-consult-button/page-title-consult-button.component.ts":
-  /*!*******************************************************************************************************************************!*\
-    !*** ./src/app/modules/shared/components/page-title-buttons/page-title-consult-button/page-title-consult-button.component.ts ***!
-    \*******************************************************************************************************************************/
-
-  /*! exports provided: PageTitleConsultButtonComponent */
-
-  /***/
-  function srcAppModulesSharedComponentsPageTitleButtonsPageTitleConsultButtonPageTitleConsultButtonComponentTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "PageTitleConsultButtonComponent", function () {
-      return PageTitleConsultButtonComponent;
-    });
-    /* harmony import */
-
-
-    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! tslib */
-    "./node_modules/tslib/tslib.es6.js");
-    /* harmony import */
-
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/fesm2015/core.js");
-
-    var PageTitleConsultButtonComponent = function PageTitleConsultButtonComponent() {
-      _classCallCheck(this, PageTitleConsultButtonComponent);
-    };
-
-    PageTitleConsultButtonComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-      selector: "app-page-title-consult-button",
-      template: '<app-page-title-button icon="ls:view"></app-page-title-button>'
-    })], PageTitleConsultButtonComponent);
-    /***/
-  },
-
-  /***/
-  "./src/app/modules/shared/components/page-title-buttons/page-title-delete-button/page-title-delete-button.component.ts":
-  /*!*****************************************************************************************************************************!*\
-    !*** ./src/app/modules/shared/components/page-title-buttons/page-title-delete-button/page-title-delete-button.component.ts ***!
-    \*****************************************************************************************************************************/
-
-  /*! exports provided: PageTitleDeleteButtonComponent */
-
-  /***/
-  function srcAppModulesSharedComponentsPageTitleButtonsPageTitleDeleteButtonPageTitleDeleteButtonComponentTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "PageTitleDeleteButtonComponent", function () {
-      return PageTitleDeleteButtonComponent;
-    });
-    /* harmony import */
-
-
-    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! tslib */
-    "./node_modules/tslib/tslib.es6.js");
-    /* harmony import */
-
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/fesm2015/core.js");
-
-    var PageTitleDeleteButtonComponent = function PageTitleDeleteButtonComponent() {
-      _classCallCheck(this, PageTitleDeleteButtonComponent);
-    };
-
-    PageTitleDeleteButtonComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-      selector: "app-page-title-delete-button",
-      template: '<app-page-title-button icon="iwwa:delete"></app-page-title-button>'
-    })], PageTitleDeleteButtonComponent);
-    /***/
-  },
-
-  /***/
-  "./src/app/modules/shared/components/page-title-buttons/page-title-download-button/page-title-download-button.component.ts":
-  /*!*********************************************************************************************************************************!*\
-    !*** ./src/app/modules/shared/components/page-title-buttons/page-title-download-button/page-title-download-button.component.ts ***!
-    \*********************************************************************************************************************************/
-
-  /*! exports provided: PageTitleDownloadButtonComponent */
-
-  /***/
-  function srcAppModulesSharedComponentsPageTitleButtonsPageTitleDownloadButtonPageTitleDownloadButtonComponentTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "PageTitleDownloadButtonComponent", function () {
-      return PageTitleDownloadButtonComponent;
-    });
-    /* harmony import */
-
-
-    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! tslib */
-    "./node_modules/tslib/tslib.es6.js");
-    /* harmony import */
-
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/fesm2015/core.js");
-
-    var PageTitleDownloadButtonComponent = function PageTitleDownloadButtonComponent() {
-      _classCallCheck(this, PageTitleDownloadButtonComponent);
-    };
-
-    PageTitleDownloadButtonComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-      selector: "app-page-title-download-button",
-      template: '<app-page-title-button icon="heroicons-solid:download"></app-page-title-button>'
-    })], PageTitleDownloadButtonComponent);
-    /***/
-  },
-
-  /***/
-  "./src/app/modules/shared/components/page-title-buttons/page-title-edit-button/page-title-edit-button.component.ts":
-  /*!*************************************************************************************************************************!*\
-    !*** ./src/app/modules/shared/components/page-title-buttons/page-title-edit-button/page-title-edit-button.component.ts ***!
-    \*************************************************************************************************************************/
-
-  /*! exports provided: PageTitleEditButtonComponent */
-
-  /***/
-  function srcAppModulesSharedComponentsPageTitleButtonsPageTitleEditButtonPageTitleEditButtonComponentTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "PageTitleEditButtonComponent", function () {
-      return PageTitleEditButtonComponent;
-    });
-    /* harmony import */
-
-
-    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! tslib */
-    "./node_modules/tslib/tslib.es6.js");
-    /* harmony import */
-
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/fesm2015/core.js");
-
-    var PageTitleEditButtonComponent = function PageTitleEditButtonComponent() {
-      _classCallCheck(this, PageTitleEditButtonComponent);
-    };
-
-    PageTitleEditButtonComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-      selector: "app-page-title-edit-button",
-      template: '<app-page-title-button icon="eva:edit-fill"></app-page-title-button>'
-    })], PageTitleEditButtonComponent);
-    /***/
-  },
-
-  /***/
-  "./src/app/modules/shared/components/page-title-buttons/page-title-filter-button/page-title-filter-button.component.scss":
-  /*!*******************************************************************************************************************************!*\
-    !*** ./src/app/modules/shared/components/page-title-buttons/page-title-filter-button/page-title-filter-button.component.scss ***!
-    \*******************************************************************************************************************************/
-
-  /*! exports provided: default */
-
-  /***/
-  function srcAppModulesSharedComponentsPageTitleButtonsPageTitleFilterButtonPageTitleFilterButtonComponentScss(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony default export */
-
-
-    __webpack_exports__["default"] = ":host {\n  display: flex;\n  align-items: center;\n  border-radius: 100rem;\n  padding: 0.5rem;\n  background-color: var(--page-title-button-background-color);\n}\n\n.search-button {\n  flex-grow: 0;\n  flex-shrink: 0;\n  height: calc(var(--button-size) - 1rem);\n  width: calc(var(--button-size) - 1rem);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.search-button .iconify {\n  font-size: var(--page-title-button-icon-font-size);\n  padding: 0.5rem;\n  border-radius: 100rem;\n  color: var(--page-title-button-color);\n  background-color: var(--page-title-button-background-color);\n  transition: var(--transition);\n  transition-property: color, background-color;\n}\n\n.search-button .iconify:hover {\n  color: var(--primary-color);\n}\n\n.search-input {\n  border: none;\n  outline: none;\n  width: 0;\n  padding: 0;\n  transition: var(--transition);\n  transition-property: color, background-color, width;\n}\n\n:host.active .search-button .iconify {\n  background-color: var(--filter-icon-background-color-on-active-state);\n  color: var(--primary-color);\n}\n\n:host.active .search-input {\n  width: 20rem;\n  padding-left: 0.5rem;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9zaGFyZWQvY29tcG9uZW50cy9wYWdlLXRpdGxlLWJ1dHRvbnMvcGFnZS10aXRsZS1maWx0ZXItYnV0dG9uL0M6XFxkZXZcXHByb2plY3RzXFxhaGVudGV0aS1ibG9nXFxhaGVudGV0aS1ibG9nLXdlYmFwcFxcc3JjXFxtYWluXFxmcm9udGVuZC9zcmNcXGFwcFxcbW9kdWxlc1xcc2hhcmVkXFxjb21wb25lbnRzXFxwYWdlLXRpdGxlLWJ1dHRvbnNcXHBhZ2UtdGl0bGUtZmlsdGVyLWJ1dHRvblxccGFnZS10aXRsZS1maWx0ZXItYnV0dG9uLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9tb2R1bGVzL3NoYXJlZC9jb21wb25lbnRzL3BhZ2UtdGl0bGUtYnV0dG9ucy9wYWdlLXRpdGxlLWZpbHRlci1idXR0b24vcGFnZS10aXRsZS1maWx0ZXItYnV0dG9uLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsYUFBQTtFQUNBLG1CQUFBO0VBQ0EscUJBQUE7RUFDQSxlQUFBO0VBQ0EsMkRBQUE7QUNDRjs7QURFQTtFQUNFLFlBQUE7RUFDQSxjQUFBO0VBQ0EsdUNBQUE7RUFDQSxzQ0FBQTtFQUNBLGFBQUE7RUFDQSxtQkFBQTtFQUNBLHVCQUFBO0FDQ0Y7O0FERUE7RUFDRSxrREFBQTtFQUNBLGVBQUE7RUFDQSxxQkFBQTtFQUNBLHFDQUFBO0VBQ0EsMkRBQUE7RUFDQSw2QkFBQTtFQUNBLDRDQUFBO0FDQ0Y7O0FEQ0U7RUFDRSwyQkFBQTtBQ0NKOztBREdBO0VBQ0UsWUFBQTtFQUNBLGFBQUE7RUFDQSxRQUFBO0VBQ0EsVUFBQTtFQUNBLDZCQUFBO0VBQ0EsbURBQUE7QUNBRjs7QURJRTtFQUNFLHFFQUFBO0VBQ0EsMkJBQUE7QUNESjs7QURJRTtFQUNFLFlBQUE7RUFDQSxvQkFBQTtBQ0ZKIiwiZmlsZSI6InNyYy9hcHAvbW9kdWxlcy9zaGFyZWQvY29tcG9uZW50cy9wYWdlLXRpdGxlLWJ1dHRvbnMvcGFnZS10aXRsZS1maWx0ZXItYnV0dG9uL3BhZ2UtdGl0bGUtZmlsdGVyLWJ1dHRvbi5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0IHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgYm9yZGVyLXJhZGl1czogMTAwcmVtO1xyXG4gIHBhZGRpbmc6IDAuNXJlbTtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1wYWdlLXRpdGxlLWJ1dHRvbi1iYWNrZ3JvdW5kLWNvbG9yKTtcclxufVxyXG5cclxuLnNlYXJjaC1idXR0b24ge1xyXG4gIGZsZXgtZ3JvdzogMDtcclxuICBmbGV4LXNocmluazogMDtcclxuICBoZWlnaHQ6IGNhbGModmFyKC0tYnV0dG9uLXNpemUpIC0gMXJlbSk7XHJcbiAgd2lkdGg6IGNhbGModmFyKC0tYnV0dG9uLXNpemUpIC0gMXJlbSk7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG59XHJcblxyXG4uc2VhcmNoLWJ1dHRvbiAuaWNvbmlmeSB7XHJcbiAgZm9udC1zaXplOiB2YXIoLS1wYWdlLXRpdGxlLWJ1dHRvbi1pY29uLWZvbnQtc2l6ZSk7XHJcbiAgcGFkZGluZzogMC41cmVtO1xyXG4gIGJvcmRlci1yYWRpdXM6IDEwMHJlbTtcclxuICBjb2xvcjogdmFyKC0tcGFnZS10aXRsZS1idXR0b24tY29sb3IpO1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXBhZ2UtdGl0bGUtYnV0dG9uLWJhY2tncm91bmQtY29sb3IpO1xyXG4gIHRyYW5zaXRpb246IHZhcigtLXRyYW5zaXRpb24pO1xyXG4gIHRyYW5zaXRpb24tcHJvcGVydHk6IGNvbG9yLCBiYWNrZ3JvdW5kLWNvbG9yO1xyXG5cclxuICAmOmhvdmVyIHtcclxuICAgIGNvbG9yOiB2YXIoLS1wcmltYXJ5LWNvbG9yKTtcclxuICB9XHJcbn1cclxuXHJcbi5zZWFyY2gtaW5wdXQge1xyXG4gIGJvcmRlcjogbm9uZTtcclxuICBvdXRsaW5lOiBub25lO1xyXG4gIHdpZHRoOiAwO1xyXG4gIHBhZGRpbmc6IDA7XHJcbiAgdHJhbnNpdGlvbjogdmFyKC0tdHJhbnNpdGlvbik7XHJcbiAgdHJhbnNpdGlvbi1wcm9wZXJ0eTogY29sb3IsIGJhY2tncm91bmQtY29sb3IsIHdpZHRoO1xyXG59XHJcblxyXG46aG9zdC5hY3RpdmUge1xyXG4gICYgLnNlYXJjaC1idXR0b24gLmljb25pZnkge1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tZmlsdGVyLWljb24tYmFja2dyb3VuZC1jb2xvci1vbi1hY3RpdmUtc3RhdGUpO1xyXG4gICAgY29sb3I6IHZhcigtLXByaW1hcnktY29sb3IpO1xyXG4gIH1cclxuXHJcbiAgJiAuc2VhcmNoLWlucHV0IHtcclxuICAgIHdpZHRoOiAyMHJlbTtcclxuICAgIHBhZGRpbmctbGVmdDogMC41cmVtO1xyXG4gIH1cclxufVxyXG4iLCI6aG9zdCB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGJvcmRlci1yYWRpdXM6IDEwMHJlbTtcbiAgcGFkZGluZzogMC41cmVtO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1wYWdlLXRpdGxlLWJ1dHRvbi1iYWNrZ3JvdW5kLWNvbG9yKTtcbn1cblxuLnNlYXJjaC1idXR0b24ge1xuICBmbGV4LWdyb3c6IDA7XG4gIGZsZXgtc2hyaW5rOiAwO1xuICBoZWlnaHQ6IGNhbGModmFyKC0tYnV0dG9uLXNpemUpIC0gMXJlbSk7XG4gIHdpZHRoOiBjYWxjKHZhcigtLWJ1dHRvbi1zaXplKSAtIDFyZW0pO1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbn1cblxuLnNlYXJjaC1idXR0b24gLmljb25pZnkge1xuICBmb250LXNpemU6IHZhcigtLXBhZ2UtdGl0bGUtYnV0dG9uLWljb24tZm9udC1zaXplKTtcbiAgcGFkZGluZzogMC41cmVtO1xuICBib3JkZXItcmFkaXVzOiAxMDByZW07XG4gIGNvbG9yOiB2YXIoLS1wYWdlLXRpdGxlLWJ1dHRvbi1jb2xvcik7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXBhZ2UtdGl0bGUtYnV0dG9uLWJhY2tncm91bmQtY29sb3IpO1xuICB0cmFuc2l0aW9uOiB2YXIoLS10cmFuc2l0aW9uKTtcbiAgdHJhbnNpdGlvbi1wcm9wZXJ0eTogY29sb3IsIGJhY2tncm91bmQtY29sb3I7XG59XG4uc2VhcmNoLWJ1dHRvbiAuaWNvbmlmeTpob3ZlciB7XG4gIGNvbG9yOiB2YXIoLS1wcmltYXJ5LWNvbG9yKTtcbn1cblxuLnNlYXJjaC1pbnB1dCB7XG4gIGJvcmRlcjogbm9uZTtcbiAgb3V0bGluZTogbm9uZTtcbiAgd2lkdGg6IDA7XG4gIHBhZGRpbmc6IDA7XG4gIHRyYW5zaXRpb246IHZhcigtLXRyYW5zaXRpb24pO1xuICB0cmFuc2l0aW9uLXByb3BlcnR5OiBjb2xvciwgYmFja2dyb3VuZC1jb2xvciwgd2lkdGg7XG59XG5cbjpob3N0LmFjdGl2ZSAuc2VhcmNoLWJ1dHRvbiAuaWNvbmlmeSB7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWZpbHRlci1pY29uLWJhY2tncm91bmQtY29sb3Itb24tYWN0aXZlLXN0YXRlKTtcbiAgY29sb3I6IHZhcigtLXByaW1hcnktY29sb3IpO1xufVxuOmhvc3QuYWN0aXZlIC5zZWFyY2gtaW5wdXQge1xuICB3aWR0aDogMjByZW07XG4gIHBhZGRpbmctbGVmdDogMC41cmVtO1xufSJdfQ== */";
-    /***/
-  },
-
-  /***/
-  "./src/app/modules/shared/components/page-title-buttons/page-title-filter-button/page-title-filter-button.component.ts":
-  /*!*****************************************************************************************************************************!*\
-    !*** ./src/app/modules/shared/components/page-title-buttons/page-title-filter-button/page-title-filter-button.component.ts ***!
-    \*****************************************************************************************************************************/
-
-  /*! exports provided: PageTitleFilterButtonComponent */
-
-  /***/
-  function srcAppModulesSharedComponentsPageTitleButtonsPageTitleFilterButtonPageTitleFilterButtonComponentTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "PageTitleFilterButtonComponent", function () {
-      return PageTitleFilterButtonComponent;
-    });
-    /* harmony import */
-
-
-    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! tslib */
-    "./node_modules/tslib/tslib.es6.js");
-    /* harmony import */
-
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/fesm2015/core.js");
-
-    var PageTitleFilterButtonComponent = /*#__PURE__*/function () {
-      function PageTitleFilterButtonComponent() {
-        _classCallCheck(this, PageTitleFilterButtonComponent);
+    var FilterRoundedButtonComponent = /*#__PURE__*/function () {
+      function FilterRoundedButtonComponent() {
+        _classCallCheck(this, FilterRoundedButtonComponent);
 
         this.hover = false;
         this.focus = false;
@@ -10266,7 +10197,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.active = false;
       }
 
-      _createClass(PageTitleFilterButtonComponent, [{
+      _createClass(FilterRoundedButtonComponent, [{
         key: "onSubmit",
         value: function onSubmit() {
           this.onFilter.emit(this.filter);
@@ -10303,46 +10234,46 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         }
       }]);
 
-      return PageTitleFilterButtonComponent;
+      return FilterRoundedButtonComponent;
     }();
 
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()], PageTitleFilterButtonComponent.prototype, "onFilter", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()], FilterRoundedButtonComponent.prototype, "onFilter", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])("input", {
       "static": true
-    })], PageTitleFilterButtonComponent.prototype, "input", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["HostBinding"])("class.active")], PageTitleFilterButtonComponent.prototype, "active", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["HostListener"])("mouseover")], PageTitleFilterButtonComponent.prototype, "onMouseHover", null);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["HostListener"])("mouseout")], PageTitleFilterButtonComponent.prototype, "onMouseOut", null);
-    PageTitleFilterButtonComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-      selector: "app-page-title-filter-button",
+    })], FilterRoundedButtonComponent.prototype, "input", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["HostBinding"])("class.active")], FilterRoundedButtonComponent.prototype, "active", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["HostListener"])("mouseover")], FilterRoundedButtonComponent.prototype, "onMouseHover", null);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["HostListener"])("mouseout")], FilterRoundedButtonComponent.prototype, "onMouseOut", null);
+    FilterRoundedButtonComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: "app-filter-rounded-button",
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
-      /*! raw-loader!./page-title-filter-button.component.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/page-title-buttons/page-title-filter-button/page-title-filter-button.component.html"))["default"],
+      /*! raw-loader!./filter-rounded-button.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/rounded-buttons/filter-rounded-button/filter-rounded-button.component.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
-      /*! ./page-title-filter-button.component.scss */
-      "./src/app/modules/shared/components/page-title-buttons/page-title-filter-button/page-title-filter-button.component.scss"))["default"]]
-    })], PageTitleFilterButtonComponent);
+      /*! ./filter-rounded-button.component.scss */
+      "./src/app/modules/shared/components/rounded-buttons/filter-rounded-button/filter-rounded-button.component.scss"))["default"]]
+    })], FilterRoundedButtonComponent);
     /***/
   },
 
   /***/
-  "./src/app/modules/shared/components/page-title-buttons/page-title-new-button/page-title-new-button.component.ts":
-  /*!***********************************************************************************************************************!*\
-    !*** ./src/app/modules/shared/components/page-title-buttons/page-title-new-button/page-title-new-button.component.ts ***!
-    \***********************************************************************************************************************/
+  "./src/app/modules/shared/components/rounded-buttons/new-rounded-button.component.ts":
+  /*!*******************************************************************************************!*\
+    !*** ./src/app/modules/shared/components/rounded-buttons/new-rounded-button.component.ts ***!
+    \*******************************************************************************************/
 
-  /*! exports provided: PageTitleNewButtonComponent */
+  /*! exports provided: NewRoundedButtonComponent */
 
   /***/
-  function srcAppModulesSharedComponentsPageTitleButtonsPageTitleNewButtonPageTitleNewButtonComponentTs(module, __webpack_exports__, __webpack_require__) {
+  function srcAppModulesSharedComponentsRoundedButtonsNewRoundedButtonComponentTs(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
     /* harmony export (binding) */
 
 
-    __webpack_require__.d(__webpack_exports__, "PageTitleNewButtonComponent", function () {
-      return PageTitleNewButtonComponent;
+    __webpack_require__.d(__webpack_exports__, "NewRoundedButtonComponent", function () {
+      return NewRoundedButtonComponent;
     });
     /* harmony import */
 
@@ -10357,35 +10288,55 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /*! @angular/core */
     "./node_modules/@angular/core/fesm2015/core.js");
 
-    var PageTitleNewButtonComponent = function PageTitleNewButtonComponent() {
-      _classCallCheck(this, PageTitleNewButtonComponent);
+    var NewRoundedButtonComponent = function NewRoundedButtonComponent() {
+      _classCallCheck(this, NewRoundedButtonComponent);
     };
 
-    PageTitleNewButtonComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-      selector: "app-page-title-new-button",
-      template: '<app-page-title-button icon="ic:round-add"></app-page-title-button>'
-    })], PageTitleNewButtonComponent);
+    NewRoundedButtonComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: "app-new-rounded-button",
+      template: '<app-rounded-button icon="ic:round-add"></app-rounded-button>'
+    })], NewRoundedButtonComponent);
     /***/
   },
 
   /***/
-  "./src/app/modules/shared/components/page-title-buttons/page-title-upload-button/page-title-upload-button.component.ts":
-  /*!*****************************************************************************************************************************!*\
-    !*** ./src/app/modules/shared/components/page-title-buttons/page-title-upload-button/page-title-upload-button.component.ts ***!
-    \*****************************************************************************************************************************/
+  "./src/app/modules/shared/components/rounded-buttons/rounded-button/rounded-button.component.scss":
+  /*!********************************************************************************************************!*\
+    !*** ./src/app/modules/shared/components/rounded-buttons/rounded-button/rounded-button.component.scss ***!
+    \********************************************************************************************************/
 
-  /*! exports provided: PageTitleUploadButtonComponent */
+  /*! exports provided: default */
 
   /***/
-  function srcAppModulesSharedComponentsPageTitleButtonsPageTitleUploadButtonPageTitleUploadButtonComponentTs(module, __webpack_exports__, __webpack_require__) {
+  function srcAppModulesSharedComponentsRoundedButtonsRoundedButtonRoundedButtonComponentScss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = ".button {\n  border-radius: var(--rounded-button-border-radius);\n  padding: 0.5rem;\n  height: var(--rounded-button-size);\n  width: var(--rounded-button-size);\n  background-color: var(--rounded-button-background-color);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  cursor: pointer;\n}\n\n.iconify {\n  font-size: var(--rounded-button-icon-font-size);\n  border-radius: var(--rounded-button-border-radius);\n  color: var(--rounded-button-color);\n  background-color: var(--rounded-button-background-color);\n  transition: var(--transition);\n  transition-property: color, background-color;\n}\n\n.iconify:hover {\n  color: var(--rounded-button-color-on-hover, var(--primary-color));\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9zaGFyZWQvY29tcG9uZW50cy9yb3VuZGVkLWJ1dHRvbnMvcm91bmRlZC1idXR0b24vQzpcXGRldlxccHJvamVjdHNcXGFoZW50ZXRpLWJsb2dcXGFoZW50ZXRpLWJsb2ctd2ViYXBwXFxzcmNcXG1haW5cXGZyb250ZW5kL3NyY1xcYXBwXFxtb2R1bGVzXFxzaGFyZWRcXGNvbXBvbmVudHNcXHJvdW5kZWQtYnV0dG9uc1xccm91bmRlZC1idXR0b25cXHJvdW5kZWQtYnV0dG9uLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9tb2R1bGVzL3NoYXJlZC9jb21wb25lbnRzL3JvdW5kZWQtYnV0dG9ucy9yb3VuZGVkLWJ1dHRvbi9yb3VuZGVkLWJ1dHRvbi5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGtEQUFBO0VBQ0EsZUFBQTtFQUNBLGtDQUFBO0VBQ0EsaUNBQUE7RUFDQSx3REFBQTtFQUNBLGFBQUE7RUFDQSxtQkFBQTtFQUNBLHVCQUFBO0VBQ0EsZUFBQTtBQ0NGOztBREVBO0VBQ0UsK0NBQUE7RUFDQSxrREFBQTtFQUNBLGtDQUFBO0VBQ0Esd0RBQUE7RUFDQSw2QkFBQTtFQUNBLDRDQUFBO0FDQ0Y7O0FEQ0U7RUFDRSxpRUFBQTtBQ0NKIiwiZmlsZSI6InNyYy9hcHAvbW9kdWxlcy9zaGFyZWQvY29tcG9uZW50cy9yb3VuZGVkLWJ1dHRvbnMvcm91bmRlZC1idXR0b24vcm91bmRlZC1idXR0b24uY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuYnV0dG9uIHtcclxuICBib3JkZXItcmFkaXVzOiB2YXIoLS1yb3VuZGVkLWJ1dHRvbi1ib3JkZXItcmFkaXVzKTtcclxuICBwYWRkaW5nOiAwLjVyZW07XHJcbiAgaGVpZ2h0OiB2YXIoLS1yb3VuZGVkLWJ1dHRvbi1zaXplKTtcclxuICB3aWR0aDogdmFyKC0tcm91bmRlZC1idXR0b24tc2l6ZSk7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tcm91bmRlZC1idXR0b24tYmFja2dyb3VuZC1jb2xvcik7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxufVxyXG5cclxuLmljb25pZnkge1xyXG4gIGZvbnQtc2l6ZTogdmFyKC0tcm91bmRlZC1idXR0b24taWNvbi1mb250LXNpemUpO1xyXG4gIGJvcmRlci1yYWRpdXM6IHZhcigtLXJvdW5kZWQtYnV0dG9uLWJvcmRlci1yYWRpdXMpO1xyXG4gIGNvbG9yOiB2YXIoLS1yb3VuZGVkLWJ1dHRvbi1jb2xvcik7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tcm91bmRlZC1idXR0b24tYmFja2dyb3VuZC1jb2xvcik7XHJcbiAgdHJhbnNpdGlvbjogdmFyKC0tdHJhbnNpdGlvbik7XHJcbiAgdHJhbnNpdGlvbi1wcm9wZXJ0eTogY29sb3IsIGJhY2tncm91bmQtY29sb3I7XHJcblxyXG4gICY6aG92ZXIge1xyXG4gICAgY29sb3I6IHZhcigtLXJvdW5kZWQtYnV0dG9uLWNvbG9yLW9uLWhvdmVyLCB2YXIoLS1wcmltYXJ5LWNvbG9yKSk7XHJcbiAgfVxyXG59XHJcbiIsIi5idXR0b24ge1xuICBib3JkZXItcmFkaXVzOiB2YXIoLS1yb3VuZGVkLWJ1dHRvbi1ib3JkZXItcmFkaXVzKTtcbiAgcGFkZGluZzogMC41cmVtO1xuICBoZWlnaHQ6IHZhcigtLXJvdW5kZWQtYnV0dG9uLXNpemUpO1xuICB3aWR0aDogdmFyKC0tcm91bmRlZC1idXR0b24tc2l6ZSk7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXJvdW5kZWQtYnV0dG9uLWJhY2tncm91bmQtY29sb3IpO1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4uaWNvbmlmeSB7XG4gIGZvbnQtc2l6ZTogdmFyKC0tcm91bmRlZC1idXR0b24taWNvbi1mb250LXNpemUpO1xuICBib3JkZXItcmFkaXVzOiB2YXIoLS1yb3VuZGVkLWJ1dHRvbi1ib3JkZXItcmFkaXVzKTtcbiAgY29sb3I6IHZhcigtLXJvdW5kZWQtYnV0dG9uLWNvbG9yKTtcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tcm91bmRlZC1idXR0b24tYmFja2dyb3VuZC1jb2xvcik7XG4gIHRyYW5zaXRpb246IHZhcigtLXRyYW5zaXRpb24pO1xuICB0cmFuc2l0aW9uLXByb3BlcnR5OiBjb2xvciwgYmFja2dyb3VuZC1jb2xvcjtcbn1cbi5pY29uaWZ5OmhvdmVyIHtcbiAgY29sb3I6IHZhcigtLXJvdW5kZWQtYnV0dG9uLWNvbG9yLW9uLWhvdmVyLCB2YXIoLS1wcmltYXJ5LWNvbG9yKSk7XG59Il19 */";
+    /***/
+  },
+
+  /***/
+  "./src/app/modules/shared/components/rounded-buttons/rounded-button/rounded-button.component.ts":
+  /*!******************************************************************************************************!*\
+    !*** ./src/app/modules/shared/components/rounded-buttons/rounded-button/rounded-button.component.ts ***!
+    \******************************************************************************************************/
+
+  /*! exports provided: RoundedButtonComponent */
+
+  /***/
+  function srcAppModulesSharedComponentsRoundedButtonsRoundedButtonRoundedButtonComponentTs(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
     /* harmony export (binding) */
 
 
-    __webpack_require__.d(__webpack_exports__, "PageTitleUploadButtonComponent", function () {
-      return PageTitleUploadButtonComponent;
+    __webpack_require__.d(__webpack_exports__, "RoundedButtonComponent", function () {
+      return RoundedButtonComponent;
     });
     /* harmony import */
 
@@ -10400,29 +10351,122 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /*! @angular/core */
     "./node_modules/@angular/core/fesm2015/core.js");
 
-    var PageTitleUploadButtonComponent = /*#__PURE__*/function () {
-      function PageTitleUploadButtonComponent() {
-        _classCallCheck(this, PageTitleUploadButtonComponent);
+    var RoundedButtonComponent = function RoundedButtonComponent() {
+      _classCallCheck(this, RoundedButtonComponent);
+    };
+
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()], RoundedButtonComponent.prototype, "icon", void 0);
+    RoundedButtonComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: "app-rounded-button",
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./rounded-button.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/rounded-buttons/rounded-button/rounded-button.component.html"))["default"],
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./rounded-button.component.scss */
+      "./src/app/modules/shared/components/rounded-buttons/rounded-button/rounded-button.component.scss"))["default"]]
+    })], RoundedButtonComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/modules/shared/components/rounded-buttons/send-rounded-button.component.ts":
+  /*!********************************************************************************************!*\
+    !*** ./src/app/modules/shared/components/rounded-buttons/send-rounded-button.component.ts ***!
+    \********************************************************************************************/
+
+  /*! exports provided: SendRoundedButtonComponent */
+
+  /***/
+  function srcAppModulesSharedComponentsRoundedButtonsSendRoundedButtonComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "SendRoundedButtonComponent", function () {
+      return SendRoundedButtonComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    var SendRoundedButtonComponent = function SendRoundedButtonComponent() {
+      _classCallCheck(this, SendRoundedButtonComponent);
+    };
+
+    SendRoundedButtonComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: "app-send-rounded-button",
+      template: '<app-rounded-button icon="ri:send-plane-fill"></app-rounded-button>',
+      styles: ["\n      :host {\n        --rounded-button-size: 5rem;\n        --rounded-button-border-radius: 0.3rem;\n      }\n    "]
+    })], SendRoundedButtonComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/modules/shared/components/rounded-buttons/upload-rounded-button.component.ts":
+  /*!**********************************************************************************************!*\
+    !*** ./src/app/modules/shared/components/rounded-buttons/upload-rounded-button.component.ts ***!
+    \**********************************************************************************************/
+
+  /*! exports provided: UploadRoundedButtonComponent */
+
+  /***/
+  function srcAppModulesSharedComponentsRoundedButtonsUploadRoundedButtonComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "UploadRoundedButtonComponent", function () {
+      return UploadRoundedButtonComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    var UploadRoundedButtonComponent = /*#__PURE__*/function () {
+      function UploadRoundedButtonComponent() {
+        _classCallCheck(this, UploadRoundedButtonComponent);
 
         this.fileUpload = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
       }
 
-      _createClass(PageTitleUploadButtonComponent, [{
+      _createClass(UploadRoundedButtonComponent, [{
         key: "onChange",
         value: function onChange(event) {
           this.fileUpload.emit(event.target.files[0]);
         }
       }]);
 
-      return PageTitleUploadButtonComponent;
+      return UploadRoundedButtonComponent;
     }();
 
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()], PageTitleUploadButtonComponent.prototype, "fileUpload", void 0);
-    PageTitleUploadButtonComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-      selector: "app-page-title-upload-button",
-      template: "\n    <label for=\"file-upload\">\n      <app-page-title-button\n        icon=\"heroicons-solid:upload\"\n      ></app-page-title-button>\n    </label>\n    <input id=\"file-upload\" (change)=\"onChange($event)\" type=\"file\" />\n  ",
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()], UploadRoundedButtonComponent.prototype, "fileUpload", void 0);
+    UploadRoundedButtonComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: "app-upload-rounded-button",
+      template: "\n    <label for=\"file-upload\">\n      <app-rounded-button icon=\"heroicons-solid:upload\"></app-rounded-button>\n    </label>\n    <input id=\"file-upload\" (change)=\"onChange($event)\" type=\"file\" />\n  ",
       styles: ["\n      input[type=\"file\"] {\n        display: none;\n      }\n    "]
-    })], PageTitleUploadButtonComponent);
+    })], UploadRoundedButtonComponent);
     /***/
   },
 
@@ -12818,51 +12862,57 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony import */
 
 
-    var _components_page_title_buttons_page_title_button_page_title_button_component__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__(
-    /*! ./components/page-title-buttons/page-title-button/page-title-button.component */
-    "./src/app/modules/shared/components/page-title-buttons/page-title-button/page-title-button.component.ts");
+    var _components_rounded_buttons_new_rounded_button_component__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__(
+    /*! ./components/rounded-buttons/new-rounded-button.component */
+    "./src/app/modules/shared/components/rounded-buttons/new-rounded-button.component.ts");
     /* harmony import */
 
 
-    var _components_page_title_buttons_page_title_filter_button_page_title_filter_button_component__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__(
-    /*! ./components/page-title-buttons/page-title-filter-button/page-title-filter-button.component */
-    "./src/app/modules/shared/components/page-title-buttons/page-title-filter-button/page-title-filter-button.component.ts");
+    var _components_rounded_buttons_consult_rounded_button_component__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__(
+    /*! ./components/rounded-buttons/consult-rounded-button.component */
+    "./src/app/modules/shared/components/rounded-buttons/consult-rounded-button.component.ts");
     /* harmony import */
 
 
-    var _components_page_title_buttons_page_title_new_button_page_title_new_button_component__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(
-    /*! ./components/page-title-buttons/page-title-new-button/page-title-new-button.component */
-    "./src/app/modules/shared/components/page-title-buttons/page-title-new-button/page-title-new-button.component.ts");
+    var _components_rounded_buttons_edit_rounded_button_component__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(
+    /*! ./components/rounded-buttons/edit-rounded-button.component */
+    "./src/app/modules/shared/components/rounded-buttons/edit-rounded-button.component.ts");
     /* harmony import */
 
 
-    var _components_page_title_buttons_page_title_consult_button_page_title_consult_button_component__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(
-    /*! ./components/page-title-buttons/page-title-consult-button/page-title-consult-button.component */
-    "./src/app/modules/shared/components/page-title-buttons/page-title-consult-button/page-title-consult-button.component.ts");
+    var _components_rounded_buttons_download_rounded_button_component__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(
+    /*! ./components/rounded-buttons/download-rounded-button.component */
+    "./src/app/modules/shared/components/rounded-buttons/download-rounded-button.component.ts");
     /* harmony import */
 
 
-    var _components_page_title_buttons_page_title_edit_button_page_title_edit_button_component__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(
-    /*! ./components/page-title-buttons/page-title-edit-button/page-title-edit-button.component */
-    "./src/app/modules/shared/components/page-title-buttons/page-title-edit-button/page-title-edit-button.component.ts");
+    var _components_rounded_buttons_upload_rounded_button_component__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(
+    /*! ./components/rounded-buttons/upload-rounded-button.component */
+    "./src/app/modules/shared/components/rounded-buttons/upload-rounded-button.component.ts");
     /* harmony import */
 
 
-    var _components_page_title_buttons_page_title_download_button_page_title_download_button_component__WEBPACK_IMPORTED_MODULE_56__ = __webpack_require__(
-    /*! ./components/page-title-buttons/page-title-download-button/page-title-download-button.component */
-    "./src/app/modules/shared/components/page-title-buttons/page-title-download-button/page-title-download-button.component.ts");
+    var _components_rounded_buttons_delete_rounded_button_component__WEBPACK_IMPORTED_MODULE_56__ = __webpack_require__(
+    /*! ./components/rounded-buttons/delete-rounded-button.component */
+    "./src/app/modules/shared/components/rounded-buttons/delete-rounded-button.component.ts");
     /* harmony import */
 
 
-    var _components_page_title_buttons_page_title_upload_button_page_title_upload_button_component__WEBPACK_IMPORTED_MODULE_57__ = __webpack_require__(
-    /*! ./components/page-title-buttons/page-title-upload-button/page-title-upload-button.component */
-    "./src/app/modules/shared/components/page-title-buttons/page-title-upload-button/page-title-upload-button.component.ts");
+    var _components_rounded_buttons_filter_rounded_button_filter_rounded_button_component__WEBPACK_IMPORTED_MODULE_57__ = __webpack_require__(
+    /*! ./components/rounded-buttons/filter-rounded-button/filter-rounded-button.component */
+    "./src/app/modules/shared/components/rounded-buttons/filter-rounded-button/filter-rounded-button.component.ts");
     /* harmony import */
 
 
-    var _components_page_title_buttons_page_title_delete_button_page_title_delete_button_component__WEBPACK_IMPORTED_MODULE_58__ = __webpack_require__(
-    /*! ./components/page-title-buttons/page-title-delete-button/page-title-delete-button.component */
-    "./src/app/modules/shared/components/page-title-buttons/page-title-delete-button/page-title-delete-button.component.ts");
+    var _components_rounded_buttons_rounded_button_rounded_button_component__WEBPACK_IMPORTED_MODULE_58__ = __webpack_require__(
+    /*! ./components/rounded-buttons/rounded-button/rounded-button.component */
+    "./src/app/modules/shared/components/rounded-buttons/rounded-button/rounded-button.component.ts");
+    /* harmony import */
+
+
+    var _components_rounded_buttons_send_rounded_button_component__WEBPACK_IMPORTED_MODULE_59__ = __webpack_require__(
+    /*! ./components/rounded-buttons/send-rounded-button.component */
+    "./src/app/modules/shared/components/rounded-buttons/send-rounded-button.component.ts");
 
     var SharedModule = function SharedModule() {
       _classCallCheck(this, SharedModule);
@@ -12871,8 +12921,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     SharedModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       entryComponents: [_directives_tooltip_tooltip_component__WEBPACK_IMPORTED_MODULE_9__["TooltipComponent"], _components_text_text_with_icon_quote_component__WEBPACK_IMPORTED_MODULE_16__["QuoteComponent"], _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_48__["ConfirmationDialogComponent"]],
       imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_router__WEBPACK_IMPORTED_MODULE_14__["RouterModule"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["OverlayModule"], _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_12__["PortalModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_27__["HttpClientModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_26__["FormsModule"], ng2_simplemde__WEBPACK_IMPORTED_MODULE_39__["SimplemdeModule"].forRoot(), _angular_material_select__WEBPACK_IMPORTED_MODULE_13__["MatSelectModule"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_22__["MatMenuModule"], _angular_material_table__WEBPACK_IMPORTED_MODULE_28__["MatTableModule"], _angular_material_sort__WEBPACK_IMPORTED_MODULE_29__["MatSortModule"], _angular_material_form_field__WEBPACK_IMPORTED_MODULE_31__["MatFormFieldModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_32__["MatInputModule"], _angular_material_chips__WEBPACK_IMPORTED_MODULE_34__["MatChipsModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_35__["MatIconModule"], _angular_material_tabs__WEBPACK_IMPORTED_MODULE_36__["MatTabsModule"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_47__["MatDialogModule"]],
-      declarations: [_components_text_section_title_section_title_component__WEBPACK_IMPORTED_MODULE_3__["SectionTitleComponent"], _components_logo_logo_link_component__WEBPACK_IMPORTED_MODULE_4__["LogoLinkComponent"], _components_select_select_component__WEBPACK_IMPORTED_MODULE_5__["SelectComponent"], _components_select_select_option_select_option_component__WEBPACK_IMPORTED_MODULE_6__["SelectOptionComponent"], _components_select_select_dropdown_select_dropdown_component__WEBPACK_IMPORTED_MODULE_7__["SelectDropdownComponent"], _directives_slidein_slidein_directive__WEBPACK_IMPORTED_MODULE_8__["SlideInDirective"], _directives_tooltip_tooltip_component__WEBPACK_IMPORTED_MODULE_9__["TooltipComponent"], _directives_tooltip_tooltip_directive__WEBPACK_IMPORTED_MODULE_10__["TooltipDirective"], _components_text_text_with_icon_text_with_icon_component__WEBPACK_IMPORTED_MODULE_15__["TextWithIconComponent"], _components_text_text_with_icon_quote_component__WEBPACK_IMPORTED_MODULE_16__["QuoteComponent"], _components_text_text_with_icon_error_component__WEBPACK_IMPORTED_MODULE_17__["ErrorComponent"], _components_text_text_with_icon_warn_component__WEBPACK_IMPORTED_MODULE_18__["WarnComponent"], _components_text_text_with_icon_info_component__WEBPACK_IMPORTED_MODULE_19__["InfoComponent"], _pipes_first_letter_pipe__WEBPACK_IMPORTED_MODULE_20__["FirstLetterPipe"], time_ago_pipe__WEBPACK_IMPORTED_MODULE_21__["TimeAgoPipe"], _directives_textarea_auto_grow_directive__WEBPACK_IMPORTED_MODULE_23__["TextareaAutoGrowDirective"], _directives_textarea_disable_spellcheck_directive__WEBPACK_IMPORTED_MODULE_24__["TextareaDisableSpellCheckDirective"], _components_login_with_github_login_with_github_component__WEBPACK_IMPORTED_MODULE_25__["LoginWithGithubComponent"], _components_router_link_router_link_component__WEBPACK_IMPORTED_MODULE_30__["RouterLinkComponent"], _components_page_title_buttons_page_title_new_button_page_title_new_button_component__WEBPACK_IMPORTED_MODULE_53__["PageTitleNewButtonComponent"], _components_text_page_title_page_title_component__WEBPACK_IMPORTED_MODULE_33__["PageTitleComponent"], _components_buttons_edit_button_edit_button_component__WEBPACK_IMPORTED_MODULE_37__["EditButtonComponent"], _components_buttons_consult_button_consult_button_component__WEBPACK_IMPORTED_MODULE_38__["ConsultButtonComponent"], _components_buttons_edit_button_edit_button_link_component__WEBPACK_IMPORTED_MODULE_40__["EditButtonLinkComponent"], _components_buttons_consult_button_consult_button_link_component__WEBPACK_IMPORTED_MODULE_41__["ConsultButtonLinkComponent"], _components_buttons_delete_button_delete_button_component__WEBPACK_IMPORTED_MODULE_42__["DeleteButtonComponent"], _directives_input_disable_autocomplete_directive__WEBPACK_IMPORTED_MODULE_43__["InputDisableAutoCompleteDirective"], _components_buttons_previous_button_previous_button_component__WEBPACK_IMPORTED_MODULE_44__["PreviousButtonComponent"], _components_buttons_next_button_next_button_component__WEBPACK_IMPORTED_MODULE_45__["NextButtonComponent"], _components_buttons_load_more_button_load_more_button_component__WEBPACK_IMPORTED_MODULE_46__["LoadMoreButtonComponent"], _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_48__["ConfirmationDialogComponent"], _components_icons_dropdown_icon_dropdown_icon_component__WEBPACK_IMPORTED_MODULE_49__["DropdownIconComponent"], _layouts_manage_resources_page_layout__WEBPACK_IMPORTED_MODULE_50__["ManageResourcesPageLayout"], _components_page_title_buttons_page_title_filter_button_page_title_filter_button_component__WEBPACK_IMPORTED_MODULE_52__["PageTitleFilterButtonComponent"], _components_page_title_buttons_page_title_button_page_title_button_component__WEBPACK_IMPORTED_MODULE_51__["PageTitleButtonComponent"], _components_page_title_buttons_page_title_consult_button_page_title_consult_button_component__WEBPACK_IMPORTED_MODULE_54__["PageTitleConsultButtonComponent"], _components_page_title_buttons_page_title_edit_button_page_title_edit_button_component__WEBPACK_IMPORTED_MODULE_55__["PageTitleEditButtonComponent"], _components_page_title_buttons_page_title_download_button_page_title_download_button_component__WEBPACK_IMPORTED_MODULE_56__["PageTitleDownloadButtonComponent"], _components_page_title_buttons_page_title_upload_button_page_title_upload_button_component__WEBPACK_IMPORTED_MODULE_57__["PageTitleUploadButtonComponent"], _components_page_title_buttons_page_title_delete_button_page_title_delete_button_component__WEBPACK_IMPORTED_MODULE_58__["PageTitleDeleteButtonComponent"]],
-      exports: [_angular_router__WEBPACK_IMPORTED_MODULE_14__["RouterModule"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["OverlayModule"], _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_12__["PortalModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_27__["HttpClientModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_26__["FormsModule"], ng2_simplemde__WEBPACK_IMPORTED_MODULE_39__["SimplemdeModule"], _angular_material_select__WEBPACK_IMPORTED_MODULE_13__["MatSelectModule"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_22__["MatMenuModule"], _angular_material_table__WEBPACK_IMPORTED_MODULE_28__["MatTableModule"], _angular_material_sort__WEBPACK_IMPORTED_MODULE_29__["MatSortModule"], _angular_material_form_field__WEBPACK_IMPORTED_MODULE_31__["MatFormFieldModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_32__["MatInputModule"], _angular_material_chips__WEBPACK_IMPORTED_MODULE_34__["MatChipsModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_35__["MatIconModule"], _angular_material_tabs__WEBPACK_IMPORTED_MODULE_36__["MatTabsModule"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_47__["MatDialogModule"], _components_text_section_title_section_title_component__WEBPACK_IMPORTED_MODULE_3__["SectionTitleComponent"], _components_logo_logo_link_component__WEBPACK_IMPORTED_MODULE_4__["LogoLinkComponent"], _components_select_select_component__WEBPACK_IMPORTED_MODULE_5__["SelectComponent"], _components_select_select_option_select_option_component__WEBPACK_IMPORTED_MODULE_6__["SelectOptionComponent"], _directives_slidein_slidein_directive__WEBPACK_IMPORTED_MODULE_8__["SlideInDirective"], _directives_tooltip_tooltip_directive__WEBPACK_IMPORTED_MODULE_10__["TooltipDirective"], _components_text_text_with_icon_quote_component__WEBPACK_IMPORTED_MODULE_16__["QuoteComponent"], _components_text_text_with_icon_error_component__WEBPACK_IMPORTED_MODULE_17__["ErrorComponent"], _components_text_text_with_icon_warn_component__WEBPACK_IMPORTED_MODULE_18__["WarnComponent"], _components_text_text_with_icon_info_component__WEBPACK_IMPORTED_MODULE_19__["InfoComponent"], _pipes_first_letter_pipe__WEBPACK_IMPORTED_MODULE_20__["FirstLetterPipe"], time_ago_pipe__WEBPACK_IMPORTED_MODULE_21__["TimeAgoPipe"], _directives_textarea_auto_grow_directive__WEBPACK_IMPORTED_MODULE_23__["TextareaAutoGrowDirective"], _directives_textarea_disable_spellcheck_directive__WEBPACK_IMPORTED_MODULE_24__["TextareaDisableSpellCheckDirective"], _components_login_with_github_login_with_github_component__WEBPACK_IMPORTED_MODULE_25__["LoginWithGithubComponent"], _components_router_link_router_link_component__WEBPACK_IMPORTED_MODULE_30__["RouterLinkComponent"], _components_page_title_buttons_page_title_new_button_page_title_new_button_component__WEBPACK_IMPORTED_MODULE_53__["PageTitleNewButtonComponent"], _components_text_page_title_page_title_component__WEBPACK_IMPORTED_MODULE_33__["PageTitleComponent"], _components_buttons_edit_button_edit_button_component__WEBPACK_IMPORTED_MODULE_37__["EditButtonComponent"], _components_buttons_consult_button_consult_button_component__WEBPACK_IMPORTED_MODULE_38__["ConsultButtonComponent"], _components_buttons_edit_button_edit_button_link_component__WEBPACK_IMPORTED_MODULE_40__["EditButtonLinkComponent"], _components_buttons_consult_button_consult_button_link_component__WEBPACK_IMPORTED_MODULE_41__["ConsultButtonLinkComponent"], _components_buttons_delete_button_delete_button_component__WEBPACK_IMPORTED_MODULE_42__["DeleteButtonComponent"], _directives_input_disable_autocomplete_directive__WEBPACK_IMPORTED_MODULE_43__["InputDisableAutoCompleteDirective"], _components_buttons_previous_button_previous_button_component__WEBPACK_IMPORTED_MODULE_44__["PreviousButtonComponent"], _components_buttons_next_button_next_button_component__WEBPACK_IMPORTED_MODULE_45__["NextButtonComponent"], _components_buttons_load_more_button_load_more_button_component__WEBPACK_IMPORTED_MODULE_46__["LoadMoreButtonComponent"], _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_48__["ConfirmationDialogComponent"], _components_icons_dropdown_icon_dropdown_icon_component__WEBPACK_IMPORTED_MODULE_49__["DropdownIconComponent"], _layouts_manage_resources_page_layout__WEBPACK_IMPORTED_MODULE_50__["ManageResourcesPageLayout"], _components_page_title_buttons_page_title_filter_button_page_title_filter_button_component__WEBPACK_IMPORTED_MODULE_52__["PageTitleFilterButtonComponent"], _components_page_title_buttons_page_title_consult_button_page_title_consult_button_component__WEBPACK_IMPORTED_MODULE_54__["PageTitleConsultButtonComponent"], _components_page_title_buttons_page_title_edit_button_page_title_edit_button_component__WEBPACK_IMPORTED_MODULE_55__["PageTitleEditButtonComponent"], _components_page_title_buttons_page_title_download_button_page_title_download_button_component__WEBPACK_IMPORTED_MODULE_56__["PageTitleDownloadButtonComponent"], _components_page_title_buttons_page_title_upload_button_page_title_upload_button_component__WEBPACK_IMPORTED_MODULE_57__["PageTitleUploadButtonComponent"], _components_page_title_buttons_page_title_delete_button_page_title_delete_button_component__WEBPACK_IMPORTED_MODULE_58__["PageTitleDeleteButtonComponent"]]
+      declarations: [_components_text_section_title_section_title_component__WEBPACK_IMPORTED_MODULE_3__["SectionTitleComponent"], _components_logo_logo_link_component__WEBPACK_IMPORTED_MODULE_4__["LogoLinkComponent"], _components_select_select_component__WEBPACK_IMPORTED_MODULE_5__["SelectComponent"], _components_select_select_option_select_option_component__WEBPACK_IMPORTED_MODULE_6__["SelectOptionComponent"], _components_select_select_dropdown_select_dropdown_component__WEBPACK_IMPORTED_MODULE_7__["SelectDropdownComponent"], _directives_slidein_slidein_directive__WEBPACK_IMPORTED_MODULE_8__["SlideInDirective"], _directives_tooltip_tooltip_component__WEBPACK_IMPORTED_MODULE_9__["TooltipComponent"], _directives_tooltip_tooltip_directive__WEBPACK_IMPORTED_MODULE_10__["TooltipDirective"], _components_text_text_with_icon_text_with_icon_component__WEBPACK_IMPORTED_MODULE_15__["TextWithIconComponent"], _components_text_text_with_icon_quote_component__WEBPACK_IMPORTED_MODULE_16__["QuoteComponent"], _components_text_text_with_icon_error_component__WEBPACK_IMPORTED_MODULE_17__["ErrorComponent"], _components_text_text_with_icon_warn_component__WEBPACK_IMPORTED_MODULE_18__["WarnComponent"], _components_text_text_with_icon_info_component__WEBPACK_IMPORTED_MODULE_19__["InfoComponent"], _pipes_first_letter_pipe__WEBPACK_IMPORTED_MODULE_20__["FirstLetterPipe"], time_ago_pipe__WEBPACK_IMPORTED_MODULE_21__["TimeAgoPipe"], _directives_textarea_auto_grow_directive__WEBPACK_IMPORTED_MODULE_23__["TextareaAutoGrowDirective"], _directives_textarea_disable_spellcheck_directive__WEBPACK_IMPORTED_MODULE_24__["TextareaDisableSpellCheckDirective"], _components_login_with_github_login_with_github_component__WEBPACK_IMPORTED_MODULE_25__["LoginWithGithubComponent"], _components_router_link_router_link_component__WEBPACK_IMPORTED_MODULE_30__["RouterLinkComponent"], _components_rounded_buttons_new_rounded_button_component__WEBPACK_IMPORTED_MODULE_51__["NewRoundedButtonComponent"], _components_text_page_title_page_title_component__WEBPACK_IMPORTED_MODULE_33__["PageTitleComponent"], _components_buttons_edit_button_edit_button_component__WEBPACK_IMPORTED_MODULE_37__["EditButtonComponent"], _components_buttons_consult_button_consult_button_component__WEBPACK_IMPORTED_MODULE_38__["ConsultButtonComponent"], _components_buttons_edit_button_edit_button_link_component__WEBPACK_IMPORTED_MODULE_40__["EditButtonLinkComponent"], _components_buttons_consult_button_consult_button_link_component__WEBPACK_IMPORTED_MODULE_41__["ConsultButtonLinkComponent"], _components_buttons_delete_button_delete_button_component__WEBPACK_IMPORTED_MODULE_42__["DeleteButtonComponent"], _directives_input_disable_autocomplete_directive__WEBPACK_IMPORTED_MODULE_43__["InputDisableAutoCompleteDirective"], _components_buttons_previous_button_previous_button_component__WEBPACK_IMPORTED_MODULE_44__["PreviousButtonComponent"], _components_buttons_next_button_next_button_component__WEBPACK_IMPORTED_MODULE_45__["NextButtonComponent"], _components_buttons_load_more_button_load_more_button_component__WEBPACK_IMPORTED_MODULE_46__["LoadMoreButtonComponent"], _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_48__["ConfirmationDialogComponent"], _components_icons_dropdown_icon_dropdown_icon_component__WEBPACK_IMPORTED_MODULE_49__["DropdownIconComponent"], _layouts_manage_resources_page_layout__WEBPACK_IMPORTED_MODULE_50__["ManageResourcesPageLayout"], _components_rounded_buttons_rounded_button_rounded_button_component__WEBPACK_IMPORTED_MODULE_58__["RoundedButtonComponent"], _components_rounded_buttons_filter_rounded_button_filter_rounded_button_component__WEBPACK_IMPORTED_MODULE_57__["FilterRoundedButtonComponent"], _components_rounded_buttons_consult_rounded_button_component__WEBPACK_IMPORTED_MODULE_52__["ConsultRoundedButtonComponent"], _components_rounded_buttons_edit_rounded_button_component__WEBPACK_IMPORTED_MODULE_53__["EditRoundedButtonComponent"], _components_rounded_buttons_download_rounded_button_component__WEBPACK_IMPORTED_MODULE_54__["DownloadRoundedButtonComponent"], _components_rounded_buttons_upload_rounded_button_component__WEBPACK_IMPORTED_MODULE_55__["UploadRoundedButtonComponent"], _components_rounded_buttons_delete_rounded_button_component__WEBPACK_IMPORTED_MODULE_56__["DeleteRoundedButtonComponent"], _components_rounded_buttons_send_rounded_button_component__WEBPACK_IMPORTED_MODULE_59__["SendRoundedButtonComponent"]],
+      exports: [_angular_router__WEBPACK_IMPORTED_MODULE_14__["RouterModule"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["OverlayModule"], _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_12__["PortalModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_27__["HttpClientModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_26__["FormsModule"], ng2_simplemde__WEBPACK_IMPORTED_MODULE_39__["SimplemdeModule"], _angular_material_select__WEBPACK_IMPORTED_MODULE_13__["MatSelectModule"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_22__["MatMenuModule"], _angular_material_table__WEBPACK_IMPORTED_MODULE_28__["MatTableModule"], _angular_material_sort__WEBPACK_IMPORTED_MODULE_29__["MatSortModule"], _angular_material_form_field__WEBPACK_IMPORTED_MODULE_31__["MatFormFieldModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_32__["MatInputModule"], _angular_material_chips__WEBPACK_IMPORTED_MODULE_34__["MatChipsModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_35__["MatIconModule"], _angular_material_tabs__WEBPACK_IMPORTED_MODULE_36__["MatTabsModule"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_47__["MatDialogModule"], _components_text_section_title_section_title_component__WEBPACK_IMPORTED_MODULE_3__["SectionTitleComponent"], _components_logo_logo_link_component__WEBPACK_IMPORTED_MODULE_4__["LogoLinkComponent"], _components_select_select_component__WEBPACK_IMPORTED_MODULE_5__["SelectComponent"], _components_select_select_option_select_option_component__WEBPACK_IMPORTED_MODULE_6__["SelectOptionComponent"], _directives_slidein_slidein_directive__WEBPACK_IMPORTED_MODULE_8__["SlideInDirective"], _directives_tooltip_tooltip_directive__WEBPACK_IMPORTED_MODULE_10__["TooltipDirective"], _components_text_text_with_icon_quote_component__WEBPACK_IMPORTED_MODULE_16__["QuoteComponent"], _components_text_text_with_icon_error_component__WEBPACK_IMPORTED_MODULE_17__["ErrorComponent"], _components_text_text_with_icon_warn_component__WEBPACK_IMPORTED_MODULE_18__["WarnComponent"], _components_text_text_with_icon_info_component__WEBPACK_IMPORTED_MODULE_19__["InfoComponent"], _pipes_first_letter_pipe__WEBPACK_IMPORTED_MODULE_20__["FirstLetterPipe"], time_ago_pipe__WEBPACK_IMPORTED_MODULE_21__["TimeAgoPipe"], _directives_textarea_auto_grow_directive__WEBPACK_IMPORTED_MODULE_23__["TextareaAutoGrowDirective"], _directives_textarea_disable_spellcheck_directive__WEBPACK_IMPORTED_MODULE_24__["TextareaDisableSpellCheckDirective"], _components_login_with_github_login_with_github_component__WEBPACK_IMPORTED_MODULE_25__["LoginWithGithubComponent"], _components_router_link_router_link_component__WEBPACK_IMPORTED_MODULE_30__["RouterLinkComponent"], _components_rounded_buttons_new_rounded_button_component__WEBPACK_IMPORTED_MODULE_51__["NewRoundedButtonComponent"], _components_text_page_title_page_title_component__WEBPACK_IMPORTED_MODULE_33__["PageTitleComponent"], _components_buttons_edit_button_edit_button_component__WEBPACK_IMPORTED_MODULE_37__["EditButtonComponent"], _components_buttons_consult_button_consult_button_component__WEBPACK_IMPORTED_MODULE_38__["ConsultButtonComponent"], _components_buttons_edit_button_edit_button_link_component__WEBPACK_IMPORTED_MODULE_40__["EditButtonLinkComponent"], _components_buttons_consult_button_consult_button_link_component__WEBPACK_IMPORTED_MODULE_41__["ConsultButtonLinkComponent"], _components_buttons_delete_button_delete_button_component__WEBPACK_IMPORTED_MODULE_42__["DeleteButtonComponent"], _directives_input_disable_autocomplete_directive__WEBPACK_IMPORTED_MODULE_43__["InputDisableAutoCompleteDirective"], _components_buttons_previous_button_previous_button_component__WEBPACK_IMPORTED_MODULE_44__["PreviousButtonComponent"], _components_buttons_next_button_next_button_component__WEBPACK_IMPORTED_MODULE_45__["NextButtonComponent"], _components_buttons_load_more_button_load_more_button_component__WEBPACK_IMPORTED_MODULE_46__["LoadMoreButtonComponent"], _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_48__["ConfirmationDialogComponent"], _components_icons_dropdown_icon_dropdown_icon_component__WEBPACK_IMPORTED_MODULE_49__["DropdownIconComponent"], _layouts_manage_resources_page_layout__WEBPACK_IMPORTED_MODULE_50__["ManageResourcesPageLayout"], _components_rounded_buttons_filter_rounded_button_filter_rounded_button_component__WEBPACK_IMPORTED_MODULE_57__["FilterRoundedButtonComponent"], _components_rounded_buttons_consult_rounded_button_component__WEBPACK_IMPORTED_MODULE_52__["ConsultRoundedButtonComponent"], _components_rounded_buttons_edit_rounded_button_component__WEBPACK_IMPORTED_MODULE_53__["EditRoundedButtonComponent"], _components_rounded_buttons_download_rounded_button_component__WEBPACK_IMPORTED_MODULE_54__["DownloadRoundedButtonComponent"], _components_rounded_buttons_upload_rounded_button_component__WEBPACK_IMPORTED_MODULE_55__["UploadRoundedButtonComponent"], _components_rounded_buttons_delete_rounded_button_component__WEBPACK_IMPORTED_MODULE_56__["DeleteRoundedButtonComponent"], _components_rounded_buttons_send_rounded_button_component__WEBPACK_IMPORTED_MODULE_59__["SendRoundedButtonComponent"]]
     })], SharedModule);
     /***/
   },
