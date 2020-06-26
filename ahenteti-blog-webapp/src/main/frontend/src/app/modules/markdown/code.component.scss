@@ -15,7 +15,6 @@
 
   & .single-code-container,
   & .multiple-code-container .code-inside-multiple-code-container {
-    max-height: var(--code-height);
     scrollbar-width: none;
     overflow-y: auto;
   }
