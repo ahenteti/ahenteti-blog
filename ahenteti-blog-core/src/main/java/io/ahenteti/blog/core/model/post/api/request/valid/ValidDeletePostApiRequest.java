@@ -7,10 +7,10 @@ import lombok.Data;
 @Data
 public class ValidDeletePostApiRequest {
     private IOAuth2User user;
-    private Long postId;
+    private String slug;
 
     public ValidDeletePostApiRequest(DeletePostApiRequest request) {
         this.user = request.getUser();
-        this.postId = request.getPostId();
+        this.slug = request.getSlug();
     }
 }

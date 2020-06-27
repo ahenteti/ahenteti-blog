@@ -10,5 +10,5 @@ public class PostCommentToCreate {
     private String value;
     private Instant createdAt;
     private User author;
-    private Long postId;
+    private String slug;
 }

@@ -43,6 +43,7 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.function.Supplier;
 
+import static io.ahenteti.blog.core.exception.AlreadyExistsResourceException.throwAlreadyExistsException;
 import static io.ahenteti.blog.service.utils.CollectionValidatorUtils.validateNotEmpty;
 import static io.ahenteti.blog.service.utils.InstantValidatorUtils.validateInThePast;
 import static io.ahenteti.blog.service.utils.ObjectValidatorUtils.validateNotNull;
@@ -71,7 +72,7 @@ public class PostValidator {
 
     public ValidDeletePostApiRequest validate(DeletePostApiRequest request) {
         userValidator.validateAuthenticatedUser(request.getUser());
-        validateNotNull("DeletePostApiRequest.postId", request.getPostId());
+        validateNotNull("DeletePostApiRequest.postId", request.getSlug());
         validatePostsCanOnlyDeletedByAdminsOrTheirOwnAuthors(request);
         return new ValidDeletePostApiRequest(request);
     }
@@ -83,8 +84,8 @@ public class PostValidator {
     }
 
     public ValidGetPostApiRequest validate(GetPostApiRequest request) {
-        Long postId = request.getPostId();
-        Post post = postDao.getPostById(postId).orElseThrow(throwPostNotFoundException(postId));
+        String slug = request.getSlug();
+        Post post = postDao.getPostBySlug(slug).orElseThrow(throwPostNotFoundException(slug));
         return new ValidGetPostApiRequest(post);
     }
 
@@ -97,7 +98,7 @@ public class PostValidator {
     public ValidUpdatePostApiRequest validate(UpdatePostApiRequest request) {
         userValidator.validateAuthenticatedUser(request.getUser());
         validateNotNull("UpdatePostApiRequest.body", request.getBody());
-        validateNotNull("UpdatePostApiRequest.postId", request.getPostId());
+        validateNotNull("UpdatePostApiRequest.slug", request.getSlug());
         return new ValidUpdatePostApiRequest(request);
     }
 
@@ -111,6 +112,7 @@ public class PostValidator {
     }
 
     public ValidPostToCreate validate(PostToCreate post) {
+        validateSlug(post.getSlug());
         validateTitle(post.getTitle());
         validateCategory(post.getCategory());
         validateTags(post.getTags());
@@ -120,14 +122,14 @@ public class PostValidator {
     }
 
     public ValidPostToUpdate validate(PostToUpdate post) {
-        PostEntity postEntity = validateId(post);
+        PostEntity postEntity = validateSlug(post);
         validateTitle(post.getTitle());
         validateCategory(post.getCategory());
         validateTags(post.getTags());
         validateBody(post.getBody());
         validateLastUpdatedAt(post);
         UserEntity author = userValidator.validate(post.getAuthor());
-        validatePostsCanOnlyUpdatedByAdminsOrTheirOwnAuthors(post.getAuthor(), post.getId());
+        validatePostsCanOnlyUpdatedByAdminsOrTheirOwnAuthors(post.getAuthor(), post.getSlug());
         return new ValidPostToUpdate(post, postEntity, author);
     }
 
@@ -142,10 +144,10 @@ public class PostValidator {
         return new ValidDeleteUserPostsApiRequest(request);
     }
 
-    private PostEntity validateId(PostToUpdate post) {
-        Long postId = post.getId();
-        validateNotNull("Post.id", postId);
-        return postRepository.findById(postId).orElseThrow(throwPostNotFoundException(postId));
+    private PostEntity validateSlug(PostToUpdate post) {
+        String slug = post.getSlug();
+        validateNotNull("Post.slug", slug);
+        return postRepository.findBySlug(slug).orElseThrow(throwPostNotFoundException(slug));
     }
 
     private void validatePostsGroupBy(GetPostsGroupsApiRequest request) {
@@ -181,6 +183,11 @@ public class PostValidator {
         }
     }
 
+    private void validateSlug(String slug) {
+        validateNotBlank("Post.slug", slug);
+        postRepository.findBySlug(slug).ifPresent(throwAlreadyExistsException(slug));
+    }
+
     private void validateTitle(String title) {
         validateNotBlank("Post.title", title);
         validateMaxLength("Post.title", title, postConfig.getMaxTitleLength());
@@ -209,6 +216,10 @@ public class PostValidator {
         return () -> new ResourceNotFoundException("Post not found with id: " + id);
     }
 
+    private Supplier<ResourceNotFoundException> throwPostNotFoundException(String slug) {
+        return () -> new ResourceNotFoundException("Post not found with slug: " + slug);
+    }
+
     private UserPostsToCreateOrUpdateApiRequest validateFile(BulkCreateAndUpdatePostOperationsApiRequest request) {
         try {
             return objectMapper.readValue(request.getFile().getBytes(), UserPostsToCreateOrUpdateApiRequest.class);
@@ -220,16 +231,16 @@ public class PostValidator {
     // @formatter:off
     private void validatePostsCanOnlyDeletedByAdminsOrTheirOwnAuthors(DeletePostApiRequest request) {
         if (request.getUser().isAdmin()) return;
-        postRepository.findByIdAndAuthorId(request.getPostId(), request.getUser().getDbId()).orElseThrow(
+        postRepository.findBySlugAndAuthorId(request.getSlug(), request.getUser().getDbId()).orElseThrow(
                 () -> new AuthorizationException("Posts can only updated by Admins or their own authors")
         );
     }
     // @formatter:on
 
     // @formatter:off
-    private void validatePostsCanOnlyUpdatedByAdminsOrTheirOwnAuthors(User user, Long postId) {
+    private void validatePostsCanOnlyUpdatedByAdminsOrTheirOwnAuthors(User user, String slug) {
         if (user.isAdmin()) return;
-        postRepository.findByIdAndAuthorId(postId, user.getId()).orElseThrow(
+        postRepository.findBySlugAndAuthorId(slug, user.getId()).orElseThrow(
                 () -> new AuthorizationException("Posts can only updated by Admins or their own authors")
         );
     }

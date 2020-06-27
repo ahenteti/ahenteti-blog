@@ -16,7 +16,7 @@ import { AlertService } from "src/app/modules/alert/alert.service";
   styleUrls: ["./update-post.page.scss"],
 })
 export class UpdatePostPage implements OnInit {
-  postId: number;
+  slug: string;
   post = new OfflinePost();
 
   constructor(
@@ -28,11 +28,11 @@ export class UpdatePostPage implements OnInit {
     private router: Router,
     route: ActivatedRoute
   ) {
-    this.postId = route.snapshot.params["id"];
+    this.slug = route.snapshot.params["slug"];
   }
 
   ngOnInit(): void {
-    this.postHttpClient.getPostById(this.postId).then((post) => {
+    this.postHttpClient.getPostBySlug(this.slug).then((post) => {
       this.post = post;
     });
   }

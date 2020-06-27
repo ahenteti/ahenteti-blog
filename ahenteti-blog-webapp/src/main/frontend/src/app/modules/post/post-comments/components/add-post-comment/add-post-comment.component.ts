@@ -23,7 +23,7 @@ import {
   styleUrls: ["./add-post-comment.component.scss"],
 })
 export class AddPostCommentComponent extends UserAwareComponent {
-  postId: number;
+  slug: string;
   @Output() newPostComment = new EventEmitter<IPostComment>();
   @ViewChild("commentTextarea", { static: false }) commentTextarea: ElementRef;
 
@@ -34,7 +34,7 @@ export class AddPostCommentComponent extends UserAwareComponent {
     private alertService: AlertService
   ) {
     super(userObservable);
-    this.postId = route.snapshot.params["id"];
+    this.slug = route.snapshot.params["slug"];
   }
 
   onSubmit(form: NgForm) {

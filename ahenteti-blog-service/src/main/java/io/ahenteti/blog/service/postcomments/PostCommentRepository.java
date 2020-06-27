@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PostCommentRepository extends JpaRepository<PostCommentEntity, Long> {
-    Page<PostCommentEntity> findByPostId(Long postId, Pageable pageable);
+    Page<PostCommentEntity> findByPostSlug(String slug, Pageable pageable);
 }

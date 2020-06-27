@@ -47,6 +47,7 @@ public class PostCoreModelConverter {
     public PostSummary toPostSummary(PostEntity entity) {
         PostSummary res = new PostSummary();
         res.setId(entity.getId());
+        res.setSlug(entity.getSlug());
         res.setTitle(entity.getTitle());
         res.setCategory(entity.getCategory());
         res.setTags(toTagsArrayList(entity));
@@ -60,6 +61,7 @@ public class PostCoreModelConverter {
         Post res = new Post();
         User author = userConverter.toUser(entity.getAuthor());
         res.setId(entity.getId());
+        res.setSlug(entity.getSlug());
         res.setTitle(entity.getTitle());
         res.setCategory(entity.getCategory());
         res.setTags(toTagsArrayList(entity));
@@ -72,7 +74,7 @@ public class PostCoreModelConverter {
 
     public PostToUpdate toPostToUpdate(ValidUpdatePostApiRequest request) {
         PostToUpdate res = new PostToUpdate();
-        res.setId(request.getPostId());
+        res.setSlug(request.getSlug());
         res.setTitle(request.getTitle());
         res.setCategory(request.getCategory());
         res.setTags(request.getTags());
@@ -84,6 +86,7 @@ public class PostCoreModelConverter {
 
     public PostToCreate toPostToCreate(ValidCreatePostApiRequest request) {
         PostToCreate res = new PostToCreate();
+        res.setSlug(toSlug(request.getTitle()));
         res.setTitle(request.getTitle());
         res.setCategory(request.getCategory());
         res.setTags(request.getTags());
@@ -129,7 +132,7 @@ public class PostCoreModelConverter {
         for (UserPostToCreateOrUpdateApiRequest post : request.getPosts()) {
             Optional<PostEntity> postEntity = postRepository.findByTitleAndAuthorId(post.getTitle(), request.getUser().getDbId());
             if (postEntity.isPresent()) {
-                res.getPostsToUpdate().add(toPostToUpdate(postEntity.get().getId(), post, request.getUser()));
+                res.getPostsToUpdate().add(toPostToUpdate(postEntity.get().getSlug(), post, request.getUser()));
             } else {
                 res.getPostsToCreate().add(toPostToCreate(post, request.getUser()));
             }
@@ -138,9 +141,9 @@ public class PostCoreModelConverter {
     }
     // @formatter:on
 
-    private PostToUpdate toPostToUpdate(Long postId, UserPostToCreateOrUpdateApiRequest post, IOAuth2User user) {
+    private PostToUpdate toPostToUpdate(String slug, UserPostToCreateOrUpdateApiRequest post, IOAuth2User user) {
         PostToUpdate res = new PostToUpdate();
-        res.setId(postId);
+        res.setSlug(slug);
         res.setTitle(post.getTitle());
         res.setCategory(post.getCategory());
         res.setTags(post.getTags());
@@ -152,6 +155,7 @@ public class PostCoreModelConverter {
 
     private PostToCreate toPostToCreate(UserPostToCreateOrUpdateApiRequest post, IOAuth2User user) {
         PostToCreate res = new PostToCreate();
+        res.setSlug(toSlug(post.getTitle()));
         res.setTitle(post.getTitle());
         res.setCategory(post.getCategory());
         res.setTags(post.getTags());
@@ -159,5 +163,11 @@ public class PostCoreModelConverter {
         res.setAuthor(userConverter.toUser(user));
         res.setCreatedAt(Instant.now());
         return res;
+    }
+
+    private String toSlug(String title) {
+        String res = title.toLowerCase();
+        res = res.replaceAll("\\s+", "-");
+        return res.replaceAll("[^a-z-]", "");
     }
 }

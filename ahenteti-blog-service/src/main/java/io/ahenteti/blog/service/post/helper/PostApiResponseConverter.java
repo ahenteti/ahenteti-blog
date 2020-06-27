@@ -58,6 +58,7 @@ public class PostApiResponseConverter {
     public PostSummaryApiResponse toApiResponse(PostSummary post) {
         PostSummaryApiResponse res = new PostSummaryApiResponse();
         res.setId(post.getId());
+        res.setSlug(post.getSlug());
         res.setTitle(post.getTitle());
         res.setCategory(post.getCategory());
         res.setTags(post.getTags());
@@ -70,6 +71,7 @@ public class PostApiResponseConverter {
     public PostApiResponse toPostApiResponse(Post post) {
         PostApiResponse res = new PostApiResponse();
         res.setId(post.getId());
+        res.setSlug(post.getSlug());
         res.setTitle(post.getTitle());
         res.setCategory(post.getCategory());
         res.setTags(post.getTags());

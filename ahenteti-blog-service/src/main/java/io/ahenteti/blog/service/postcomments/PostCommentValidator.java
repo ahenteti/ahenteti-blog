@@ -50,7 +50,7 @@ public class PostCommentValidator {
 
     public ValidCreatePostCommentApiRequest validate(CreatePostCommentApiRequest request) {
         userValidator.validateAuthenticatedUser(request.getAuthor());
-        validateCommentPostId(request.getPostId());
+        validateCommentPostSlug(request.getSlug());
         validateCommentValue(request);
         return new ValidCreatePostCommentApiRequest(request);
     }
@@ -74,8 +74,8 @@ public class PostCommentValidator {
         }
         Long authorId = comment.getAuthor().getId();
         UserEntity author = userRepository.findById(authorId).orElseThrow(throwNotFoundPostException(authorId));
-        Long postId = comment.getPostId();
-        PostEntity post = postRepository.findById(postId).orElseThrow(throwPostNotFoundException(postId));
+        String slug = comment.getSlug();
+        PostEntity post = postRepository.findBySlug(slug).orElseThrow(throwPostNotFoundException(slug));
         return new ValidPostCommentToCreate(comment, author, post);
     }
 
@@ -89,9 +89,9 @@ public class PostCommentValidator {
         }
     }
 
-    private void validateCommentPostId(Long postId) {
-        if (postId == null) {
-            throw new InvalidRequirementException("postId path param is mandatory");
+    private void validateCommentPostSlug(String slug) {
+        if (slug == null) {
+            throw new InvalidRequirementException("postSlug path param is mandatory");
         }
     }
 

@@ -18,7 +18,9 @@ public interface PostRepository extends JpaRepository<PostEntity, Long> {
 
     void deleteByAuthorId(Long authorId);
 
-    Optional<PostEntity> findByIdAndAuthorId(Long id, Long authorId);
+    void deleteBySlug(String slug);
+
+    Optional<PostEntity> findBySlugAndAuthorId(String slug, Long authorId);
 
     Optional<PostEntity> findByTitleAndAuthorId(String title, Long authorId);
 
@@ -37,4 +39,6 @@ public interface PostRepository extends JpaRepository<PostEntity, Long> {
     // @formatter:on
 
     List<PostEntity> findByAuthorId(Long authorId);
+    
+    Optional<PostEntity> findBySlug(String slug);
 }

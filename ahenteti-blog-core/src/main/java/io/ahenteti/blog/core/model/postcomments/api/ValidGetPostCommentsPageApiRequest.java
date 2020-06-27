@@ -6,10 +6,10 @@ import lombok.Data;
 
 @Data
 public class ValidGetPostCommentsPageApiRequest extends ValidPageApiRequest<EPostCommentsSortBy> {
-    private Long postId;
+    private String slug;
 
     public ValidGetPostCommentsPageApiRequest(GetPostCommentsPageApiRequest request) {
         super(request, EPostCommentsSortBy.getByValue(request.getSortBy()));
-        this.postId = request.getPostId();
+        this.slug = request.getSlug();
     }
 }

@@ -6,7 +6,7 @@ import lombok.Data;
 public class ValidCreatePostCommentApiRequest extends CreatePostCommentApiRequest {
     public ValidCreatePostCommentApiRequest(CreatePostCommentApiRequest request) {
         this.author = request.getAuthor();
-        this.postId = request.getPostId();
+        this.slug = request.getSlug();
         this.value = request.getValue();
     }
 }

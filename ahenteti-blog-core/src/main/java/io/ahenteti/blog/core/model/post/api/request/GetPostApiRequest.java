@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class GetPostApiRequest {
-    private Long postId;
+    private String slug;
 }

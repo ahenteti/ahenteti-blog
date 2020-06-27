@@ -33,7 +33,7 @@ public class PostCommentDao {
     public PostComments getPostComments(ValidGetPostCommentsPageApiRequest request) {
         // @formatter:off
         PageRequest pageRequest = pageConverter.toPageRequest(request);
-        List<PostCommentEntity> comments = commentRepository.findByPostId(request.getPostId(), pageRequest).getContent();
+        List<PostCommentEntity> comments = commentRepository.findByPostSlug(request.getSlug(), pageRequest).getContent();
         return commentConverter.toPostComments(comments);
         // @formatter:on
     }

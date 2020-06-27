@@ -86,9 +86,9 @@ public class PostController {
         return postConverter.toApiResponse(postsGroups);
     }
 
-    @GetMapping("/api/posts/{id}")
-    public PostApiResponse getPostById(@PathVariable Long id) {
-        GetPostApiRequest request = postConverter.toApiRequest(id);
+    @GetMapping("/api/posts/{slug}")
+    public PostApiResponse getPostBySlug(@PathVariable String slug) {
+        GetPostApiRequest request = postConverter.toApiRequest(slug);
         ValidGetPostApiRequest validRequest = postValidator.validate(request);
         return postConverter.toPostApiResponse(validRequest.getPost());
     }
@@ -106,9 +106,9 @@ public class PostController {
     }
 
     @Transactional
-    @PutMapping("/secure-api/posts/{id}")
-    public PostSummaryApiResponse update(@ModelAttribute IOAuth2User user, @PathVariable Long id, @RequestBody UpdatePostApiRequestBody requestBody) {
-        UpdatePostApiRequest request = postConverter.toApiRequest(user, id, requestBody);
+    @PutMapping("/secure-api/posts/{slug}")
+    public PostSummaryApiResponse update(@ModelAttribute IOAuth2User user, @PathVariable String slug, @RequestBody UpdatePostApiRequestBody requestBody) {
+        UpdatePostApiRequest request = postConverter.toApiRequest(user, slug, requestBody);
         ValidUpdatePostApiRequest validRequest = postValidator.validate(request);
         PostToUpdate post = postConverter.toPostToUpdate(validRequest);
         ValidPostToUpdate validPost = postValidator.validate(post);
@@ -156,10 +156,10 @@ public class PostController {
     // @formatter:on
 
     @Transactional
-    @DeleteMapping("/secure-api/posts/{id}")
+    @DeleteMapping("/secure-api/posts/{slug}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deletePost(@ModelAttribute IOAuth2User user, @PathVariable Long id) {
-        DeletePostApiRequest request = postConverter.toApiRequest(user, id);
+    public void deletePost(@ModelAttribute IOAuth2User user, @PathVariable String slug) {
+        DeletePostApiRequest request = postConverter.toApiRequest(user, slug);
         ValidDeletePostApiRequest validRequest = postValidator.validate(request);
         postDao.delete(validRequest);
     }

@@ -9,6 +9,7 @@ import java.util.Collection;
 
 @Data
 public class PostToCreate {
+    private String slug;
     private String title;
     private String category;
     private Collection<String> tags = new ArrayList<>();

@@ -10,11 +10,12 @@ import java.util.Optional;
 
 @Data
 public class PostSummary {
-    protected Long id;
-    protected String title;
-    protected String category;
-    protected Collection<String> tags = new ArrayList<>();
-    protected Instant createdAt;
-    protected Optional<Instant> lastUpdatedAt = Optional.empty();
-    protected User author;
+    private Long id;
+    private String slug;
+    private String title;
+    private String category;
+    private Collection<String> tags = new ArrayList<>();
+    private Instant createdAt;
+    private Optional<Instant> lastUpdatedAt = Optional.empty();
+    private User author;
 }

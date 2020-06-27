@@ -3,6 +3,7 @@ import { Page } from "src/app/modules/shared/models/page.model";
 
 export class PostSummary {
   id: number;
+  slug: string;
   title: string;
   category: string;
   tags: string[];
@@ -28,6 +29,7 @@ export class PostGroupByStrategy {
 
 export class DefaultPost implements Post {
   id = undefined;
+  slug = "";
   title = "";
   category = "";
   tags = [];
@@ -40,6 +42,7 @@ export class DefaultPost implements Post {
 
 export class OfflinePost implements Post {
   id = undefined;
+  slug = "post-title";
   title = "post title";
   category = "post category";
   tags = ["port-tag"];

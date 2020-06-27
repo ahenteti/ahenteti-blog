@@ -37,18 +37,18 @@ public class PostApiRequestConverter {
         return res;
     }
 
-    public UpdatePostApiRequest toApiRequest(IOAuth2User user, Long id, UpdatePostApiRequestBody requestBody) {
+    public UpdatePostApiRequest toApiRequest(IOAuth2User user, String slug, UpdatePostApiRequestBody requestBody) {
         UpdatePostApiRequest res = new UpdatePostApiRequest();
-        res.setPostId(id);
+        res.setSlug(slug);
         res.setUser(user);
         res.setBody(requestBody);
         return res;
     }
 
-    public DeletePostApiRequest toApiRequest(IOAuth2User user, Long postId) {
+    public DeletePostApiRequest toApiRequest(IOAuth2User user, String slug) {
         DeletePostApiRequest res = new DeletePostApiRequest();
         res.setUser(user);
-        res.setPostId(postId);
+        res.setSlug(slug);
         return res;
     }
 
@@ -59,9 +59,9 @@ public class PostApiRequestConverter {
         return res;
     }
 
-    public GetPostApiRequest toApiRequest(Long postId) {
+    public GetPostApiRequest toApiRequest(String slug) {
         GetPostApiRequest res = new GetPostApiRequest();
-        res.setPostId(postId);
+        res.setSlug(slug);
         return res;
     }
 

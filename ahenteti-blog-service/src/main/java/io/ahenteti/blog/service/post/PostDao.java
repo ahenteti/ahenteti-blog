@@ -68,6 +68,10 @@ public class PostDao {
         return postRepository.findById(id).map(postConverter::toPost);
     }
 
+    public Optional<Post> getPostBySlug(String slug) {
+        return postRepository.findBySlug(slug).map(postConverter::toPost);
+    }
+
     public PostsPage getUserPosts(ValidGetUserPostsApiRequest request) {
         // @formatter:off
         PageRequest pageRequest = pageConverter.toPageRequest(request);
@@ -89,7 +93,7 @@ public class PostDao {
     }
 
     public void delete(ValidDeletePostApiRequest request) {
-        postRepository.deleteById(request.getPostId());
+        postRepository.deleteBySlug(request.getSlug());
     }
 
     public void delete(ValidDeleteUserPostsApiRequest request) {

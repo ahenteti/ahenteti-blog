@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX t_posts_slug_unique_index ON t_posts (slug);

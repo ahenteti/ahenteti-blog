@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 public class ValidUpdatePostApiRequest {
 
-    private Long postId;
+    private String slug;
     private IOAuth2User author;
     protected String title;
     protected String category;
@@ -17,7 +17,7 @@ public class ValidUpdatePostApiRequest {
     protected String body;
 
     public ValidUpdatePostApiRequest(UpdatePostApiRequest request) {
-        this.postId = request.getPostId();
+        this.slug = request.getSlug();
         this.author = request.getUser();
         this.title = request.getBody().getTitle();
         this.category = request.getBody().getCategory();

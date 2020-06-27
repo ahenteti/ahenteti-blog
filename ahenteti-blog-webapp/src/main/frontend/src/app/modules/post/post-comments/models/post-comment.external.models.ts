@@ -7,7 +7,7 @@ export interface IPostCommentApiResponse {
 }
 
 export class GetPostCommentsApiRequest {
-  postId: number;
+  slug: string;
   page: number;
   size: number;
 }
@@ -17,6 +17,6 @@ export interface ICreatePostCommentApiRequestBody {
 }
 
 export interface ICreatePostCommentApiRequest {
-  postId: number;
+  slug: string;
   value: string;
 }

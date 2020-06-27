@@ -8,6 +8,7 @@ export class PostsSummariesGroupApiResponse {
 
 export class PostSummaryApiResponse {
   id: number;
+  slug: string;
   title: string;
   category: string;
   tags: string[];

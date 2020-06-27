@@ -69,9 +69,9 @@ export class PostHttpClient extends CommonHttpClient {
     .then(response => response.blob())
   }
 
-  getPostById(postId: number): Promise<Post> {
+  getPostBySlug(slug: string): Promise<Post> {
     return this.http
-      .get<PostApiResponse>(`/api/posts/${postId}`)
+      .get<PostApiResponse>(`/api/posts/${slug}`)
       .pipe(map((post) => this.postConverter.toPost(post)))
       .toPromise();
   }

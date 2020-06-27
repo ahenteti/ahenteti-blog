@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class UpdatePostApiRequest {
-    private Long postId;
+    private String slug;
     private IOAuth2User user;
     private UpdatePostApiRequestBody body;
 }

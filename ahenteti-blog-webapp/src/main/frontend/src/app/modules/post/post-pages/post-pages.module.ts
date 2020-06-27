@@ -13,9 +13,9 @@ import { UpdatePostPage } from "./update-post-page/update-post.page";
 
 const routes: Routes = [
   { path: "", component: PostDashboardPage },
-  { path: "posts/:id/consult", component: ConsultPostPage },
+  { path: "posts/:slug/consult", component: ConsultPostPage },
   {
-    path: "posts/:id/edit",
+    path: "posts/:slug/edit",
     component: UpdatePostPage,
     canActivate: [LoggedInGuard],
   },

@@ -12,6 +12,7 @@ public class PostEntityConverter {
 
     public PostEntity toEntity(ValidPostToCreate post) {
         PostEntity res = new PostEntity();
+        res.setSlug(post.getSlug());
         res.setTitle(post.getTitle());
         res.setCategory(post.getCategory());
         res.setTags(StringUtils.join(post.getTags(), PostEntity.TAGS_SEPARATOR));
@@ -25,7 +26,8 @@ public class PostEntityConverter {
 
     public PostEntity toEntity(ValidPostToUpdate post) {
         PostEntity res = new PostEntity();
-        res.setId(post.getId());
+        res.setId(post.getEntity().getId());
+        res.setSlug(post.getEntity().getSlug());
         res.setTitle(post.getTitle());
         res.setCategory(post.getCategory());
         res.setTags(StringUtils.join(post.getTags(), PostEntity.TAGS_SEPARATOR));

@@ -29,6 +29,9 @@ public class PostEntity {
     @Column(name = "ID")
     private Long id;
 
+    @Column(name = "SLUG", nullable = false)
+    private String slug;
+    
     @Column(name = "TITLE", nullable = false)
     private String title;
 

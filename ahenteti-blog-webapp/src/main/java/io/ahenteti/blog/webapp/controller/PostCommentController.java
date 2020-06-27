@@ -40,14 +40,14 @@ public class PostCommentController {
     }
 
     // @formatter:off
-    @GetMapping(value = "/api/posts/{postId}/comments")
+    @GetMapping(value = "/api/posts/{slug}/comments")
     public PostCommentsApiResponse getPostComments(
-            @PathVariable("postId") Long postId,
+            @PathVariable("slug") String slug,
             @RequestParam Integer page,
             @RequestParam Integer size,
             @RequestParam(required = false, defaultValue = "createdAt") String sortBy,
             @RequestParam(required = false, defaultValue = "desc") String sortDirection) {
-        GetPostCommentsPageApiRequest request = commentConverter.toApiRequest(postId, page, size, sortBy, sortDirection);
+        GetPostCommentsPageApiRequest request = commentConverter.toApiRequest(slug, page, size, sortBy, sortDirection);
         ValidGetPostCommentsPageApiRequest validRequest = commentValidator.validate(request);
         PostComments postComments = commentDao.getPostComments(validRequest);
         return commentConverter.toApiResponse(postComments);
@@ -56,13 +56,13 @@ public class PostCommentController {
 
     // @formatter:off
     @Transactional
-    @PostMapping("/secure-api/posts/{postId}/comments")
+    @PostMapping("/secure-api/posts/{slug}/comments")
     @ResponseStatus(HttpStatus.CREATED)
     public void createPostComment(
             @ModelAttribute IOAuth2User user, 
-            @PathVariable("postId") Long postId, 
+            @PathVariable("slug") String slug, 
             @RequestBody CreatePostCommentApiRequestBody requestBody) {
-        CreatePostCommentApiRequest request = commentConverter.toApiRequest(user, postId, requestBody);
+        CreatePostCommentApiRequest request = commentConverter.toApiRequest(user, slug, requestBody);
         ValidCreatePostCommentApiRequest validRequest = commentValidator.validate(request);
         PostCommentToCreate model = commentConverter.toPostCommentToCreate(validRequest);
         ValidPostCommentToCreate validModel = commentValidator.validate(model);

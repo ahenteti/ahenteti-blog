@@ -18,7 +18,7 @@ import { PostCommentConverter } from "../../converter/post-comment.converter";
 })
 export class PostCommentsComponent extends UserAwareComponent
   implements OnInit {
-  private postId: number;
+  private slug: string;
   private currentCommentsPage = -1;
   postComments: PostComments = new PostComments();
   stillMoreComments = false;
@@ -31,7 +31,7 @@ export class PostCommentsComponent extends UserAwareComponent
     private alertService: AlertService
   ) {
     super(userObservable);
-    this.postId = route.snapshot.params["id"];
+    this.slug = route.snapshot.params["slug"];
   }
 
   ngOnInit() {
@@ -53,7 +53,7 @@ export class PostCommentsComponent extends UserAwareComponent
 
   private loadComments(onNgInit = false) {
     const request = this.commentConverter.toGetPostCommentsApiRequest(
-      this.postId,
+      this.slug,
       ++this.currentCommentsPage
     );
     this.commentHttpClient

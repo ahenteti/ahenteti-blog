@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { OfflinePost } from "../../post-shared/models/post.internal.models";
 import { PostHttpClient } from "../../post-shared/services/post.http-client";
@@ -8,15 +8,15 @@ import { PostHttpClient } from "../../post-shared/services/post.http-client";
   styleUrls: ["./consult-post.page.scss"],
 })
 export class ConsultPostPage implements OnInit {
-  postId: number;
+  slug: string;
   post = new OfflinePost();
 
   constructor(route: ActivatedRoute, private postHttpClient: PostHttpClient) {
-    this.postId = route.snapshot.params["id"];
+    this.slug = route.snapshot.params["slug"];
   }
 
   ngOnInit(): void {
-    this.postHttpClient.getPostById(this.postId).then((post) => {
+    this.postHttpClient.getPostBySlug(this.slug).then((post) => {
       this.post = post;
     });
   }

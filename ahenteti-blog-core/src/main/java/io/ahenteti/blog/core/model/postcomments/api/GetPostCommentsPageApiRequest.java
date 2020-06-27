@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 @Data
 public class GetPostCommentsPageApiRequest extends PageApiRequest {
-    private Long postId;
+    private String slug;
     
     @Override
     public List<String> getSortByAcceptedValues() {

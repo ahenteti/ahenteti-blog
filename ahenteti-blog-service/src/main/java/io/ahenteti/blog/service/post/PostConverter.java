@@ -140,20 +140,20 @@ public class PostConverter {
         return postApiRequestConverter.toApiRequest(user, requestBody);
     }
 
-    public UpdatePostApiRequest toApiRequest(IOAuth2User user, Long id, UpdatePostApiRequestBody requestBody) {
-        return postApiRequestConverter.toApiRequest(user, id, requestBody);
+    public UpdatePostApiRequest toApiRequest(IOAuth2User user, String slug, UpdatePostApiRequestBody requestBody) {
+        return postApiRequestConverter.toApiRequest(user, slug, requestBody);
     }
 
-    public DeletePostApiRequest toApiRequest(IOAuth2User user, Long postId) {
-        return postApiRequestConverter.toApiRequest(user, postId);
+    public DeletePostApiRequest toApiRequest(IOAuth2User user, String slug) {
+        return postApiRequestConverter.toApiRequest(user, slug);
     }
 
     public GetPostsGroupsApiRequest toApiRequest(List<String> groups, String groupBy) {
         return postApiRequestConverter.toApiRequest(groups, groupBy);
     }
 
-    public GetPostApiRequest toApiRequest(Long postId) {
-        return postApiRequestConverter.toApiRequest(postId);
+    public GetPostApiRequest toApiRequest(String slug) {
+        return postApiRequestConverter.toApiRequest(slug);
     }
 
     public BulkCreateAndUpdatePostOperationsApiRequest toApiRequest(IOAuth2User user, MultipartFile file) {

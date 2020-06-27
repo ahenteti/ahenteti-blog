@@ -10,7 +10,6 @@ import java.util.Collection;
 @Data
 public class ValidPostToUpdate {
 
-    private Long id;
     private String title;
     private String category;
     private Collection<String> tags;
@@ -20,7 +19,6 @@ public class ValidPostToUpdate {
     private PostEntity entity;
 
     public ValidPostToUpdate(PostToUpdate post, PostEntity entity, UserEntity author) {
-        this.id = post.getId();
         this.title = post.getTitle();
         this.category = post.getCategory();
         this.tags = post.getTags();

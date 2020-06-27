@@ -33,6 +33,7 @@ export class PostConverter {
   toPostSummary(post: PostSummaryApiResponse): PostSummary {
     return {
       id: post.id,
+      slug: post.slug,
       title: post.title,
       category: post.category,
       tags: post.tags,
@@ -48,6 +49,7 @@ export class PostConverter {
   toPost(post: PostApiResponse): Post {
     return {
       id: post.id,
+      slug: post.slug,
       title: post.title,
       category: post.category,
       tags: post.tags,
@@ -147,7 +149,7 @@ export class PostConverter {
 
   toUpdatePostApiRequest(post: Post): UpdatePostApiRequest {
     return {
-      url: `/secure-api/posts/${post.id}`,
+      url: `/secure-api/posts/${post.slug}`,
       body: {
         title: post.title,
         category: post.category,

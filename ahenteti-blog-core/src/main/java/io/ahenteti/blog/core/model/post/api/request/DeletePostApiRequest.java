@@ -6,5 +6,5 @@ import lombok.Data;
 @Data
 public class DeletePostApiRequest {
     private IOAuth2User user;
-    private Long postId;
+    private String slug;
 }

@@ -6,6 +6,6 @@ import lombok.Data;
 @Data
 public class CreatePostCommentApiRequest {
     protected IOAuth2User author;
-    protected Long postId;
+    protected String slug;
     protected String value;
 }

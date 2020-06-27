@@ -1,15 +1,15 @@
 <div appSlideIn>
-    <a [routerLink]="['/posts', post.id, 'consult']">
-        <div class="container">
-            <h2 class="title">{{ post.title }}</h2>
-            <div class="tags">
-                <span class="iconify" data-icon="gridicons:tag"></span>
-                <app-tag-list [tags]="post.tags"></app-tag-list>
-            </div>
-            <div class="publish-date">
-                <span class="iconify" data-icon="mdi:calendar-today"></span>
-                {{ post.createdAt | date }}
-            </div>
-        </div>
-    </a>
+  <a [routerLink]="['/posts', post.slug, 'consult']">
+    <div class="container">
+      <h2 class="title">{{ post.title }}</h2>
+      <div class="tags">
+        <span class="iconify" data-icon="gridicons:tag"></span>
+        <app-tag-list [tags]="post.tags"></app-tag-list>
+      </div>
+      <div class="publish-date">
+        <span class="iconify" data-icon="mdi:calendar-today"></span>
+        {{ post.createdAt | date }}
+      </div>
+    </div>
+  </a>
 </div>

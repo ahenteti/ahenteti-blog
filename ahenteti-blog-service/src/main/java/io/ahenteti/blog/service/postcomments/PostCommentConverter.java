@@ -29,17 +29,17 @@ public class PostCommentConverter {
         this.userConverter = userConverter;
     }
 
-    public CreatePostCommentApiRequest toApiRequest(IOAuth2User author, Long postId, CreatePostCommentApiRequestBody body) {
+    public CreatePostCommentApiRequest toApiRequest(IOAuth2User author, String slug, CreatePostCommentApiRequestBody body) {
         CreatePostCommentApiRequest res = new CreatePostCommentApiRequest();
         res.setAuthor(author);
-        res.setPostId(postId);
+        res.setSlug(slug);
         res.setValue(body.getValue());
         return res;
     }
 
-    public GetPostCommentsPageApiRequest toApiRequest(Long postId, Integer page, Integer size, String sortBy, String sortDirection) {
+    public GetPostCommentsPageApiRequest toApiRequest(String slug, Integer page, Integer size, String sortBy, String sortDirection) {
         GetPostCommentsPageApiRequest res = new GetPostCommentsPageApiRequest();
-        res.setPostId(postId);
+        res.setSlug(slug);
         res.setPage(page);
         res.setSize(size);
         res.setSortBy(sortBy);
@@ -67,7 +67,7 @@ public class PostCommentConverter {
         res.setAuthor(userConverter.toUser(request.getAuthor()));
         res.setValue(request.getValue());
         res.setCreatedAt(Instant.now());
-        res.setPostId(request.getPostId());
+        res.setSlug(request.getSlug());
         return res;
     }
 

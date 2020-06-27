@@ -1,6 +1,6 @@
 <form *ngIf="user.isAuthenticated" #commentForm="ngForm">
   <div class="comment-input">
-    <input type="text" hidden name="postId" [ngModel]="postId" />
+    <input type="text" hidden name="slug" [ngModel]="slug" />
     <app-user-avatar [user]="user"></app-user-avatar>
     <div class="textarea">
       <textarea

@@ -21,23 +21,23 @@ export class PostCommentConverter {
   }
 
   toGetPostCommentsApiRequest(
-    postId: number,
+    slug: string,
     page: number,
     size = 5
   ): GetPostCommentsApiRequest {
     return {
-      postId,
+      slug,
       page,
       size,
     };
   }
 
   toGetPostCommentsApiRequestUrl(request: GetPostCommentsApiRequest): string {
-    return `/api/posts/${request.postId}/comments?page=${request.page}&size=${request.size}`;
+    return `/api/posts/${request.slug}/comments?page=${request.page}&size=${request.size}`;
   }
 
   toCreatePostCommentApiUrl(request: ICreatePostCommentApiRequest): string {
-    return `/secure-api/posts/${request.postId}/comments`;
+    return `/secure-api/posts/${request.slug}/comments`;
   }
 
   toCreatePostCommentApiBody(
