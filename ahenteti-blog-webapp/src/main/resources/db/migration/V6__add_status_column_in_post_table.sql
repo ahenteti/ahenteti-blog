@@ -1,0 +1,3 @@
+ALTER TABLE t_posts ADD COLUMN status VARCHAR;
+UPDATE t_posts SET status = 'PUBLISHED';
+ALTER TABLE t_posts ALTER COLUMN status SET NOT NULL;

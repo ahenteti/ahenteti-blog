@@ -7,6 +7,8 @@ import lombok.Data;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -46,6 +48,10 @@ public class PostEntity {
 
     @Column(name = "LAST_UPDATED_AT")
     private Instant lastUpdatedAt;
+
+    @Column(name = "STATUS")
+    @Enumerated(EnumType.STRING)
+    private EPostStatus status;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private UserEntity author;
