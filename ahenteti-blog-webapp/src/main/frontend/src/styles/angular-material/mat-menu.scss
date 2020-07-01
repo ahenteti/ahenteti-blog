@@ -1,5 +1,6 @@
 .mat-menu-panel {
   background: var(--dropdown-background-color);
+  min-height: 0 !important;
 }
 
 .mat-menu-item {

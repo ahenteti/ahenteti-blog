@@ -1,0 +1,12 @@
+<span (click)="mainButtonClickMethod()" class="main-button">{{
+  mainButtonLabel
+}}</span>
+<app-dropdown-icon
+  [matMenuTriggerFor]="menu"
+  #dropdownTrigger="matMenuTrigger"
+  class="dropdown-icon"
+></app-dropdown-icon>
+
+<mat-menu #menu="matMenu" xPosition="before">
+  <ng-content select="app-button-option"></ng-content>
+</mat-menu>

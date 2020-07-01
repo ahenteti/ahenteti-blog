@@ -12,6 +12,7 @@ import io.ahenteti.blog.core.model.post.core.PostsPage;
 import io.ahenteti.blog.core.model.post.core.ValidBulkCreateAndUpdatePostOperations;
 import io.ahenteti.blog.core.model.post.core.ValidPostToCreate;
 import io.ahenteti.blog.core.model.post.core.ValidPostToUpdate;
+import io.ahenteti.blog.core.model.post.entity.EPostStatus;
 import io.ahenteti.blog.core.model.post.entity.PostEntity;
 import io.ahenteti.blog.core.model.shared.core.IGroupByStrategy;
 import io.ahenteti.blog.core.model.user.oauth2.IOAuth2User;
@@ -48,13 +49,13 @@ public class PostDao {
         SortedMap<String, List<PostEntity>> map = new TreeMap<>();
         switch (request.getGroupBy()) {
             case CATEGORY:
-                posts = postRepository.findByCategoryIn(request.getGroups());
+                posts = postRepository.findByStatusAndCategoryIn(EPostStatus.PUBLISHED, request.getGroups());
                 for (PostEntity post : posts) {
                     map.computeIfAbsent(post.getCategory(), x -> new ArrayList<>()).add(post);
                 }
                 return postConverter.toPostsGroups(map);
             case AUTHOR:
-                posts = postRepository.findByAuthorUsernameIn(request.getGroups());
+                posts = postRepository.findByStatusAndAuthorUsernameIn(EPostStatus.PUBLISHED, request.getGroups());
                 for (PostEntity post : posts) {
                     map.computeIfAbsent(post.getAuthor().getUsername(), x -> new ArrayList<>()).add(post);
                 }
@@ -99,7 +100,7 @@ public class PostDao {
     public void delete(ValidDeleteUserPostsApiRequest request) {
         postRepository.deleteByAuthorId(request.getUser().getDbId());
     }
-    
+
     public List<IGroupByStrategy> getPostGroupByStrategies() {
         List<IGroupByStrategy> res = new ArrayList<>();
         res.add(new GroupByPostCategoryStrategy(new TreeSet<>(postRepository.getPostCategories())));

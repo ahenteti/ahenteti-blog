@@ -27,10 +27,19 @@ export class CreatePostPage {
     private router: Router
   ) {}
 
-  onSubmit(post: Post) {
+  submit(post: Post) {
+    this._submit(post);
+  }
+
+  submitAndPublish(post: Post) {
+    this._submit(post, true);
+  }
+
+  _submit(post: Post, publish = false) {
     try {
       this.postValidator.validateCreatePost(post);
-      const request = this.postConverter.toCreatePostApiRequest(post);
+      const request = this.postConverter.toCreatePostApiRequest(post, publish);
+      console.log(request);
       this.postHttpClient
         .createPost(request)
         .then((post) => this.handleCreatePostSuccessEvent(post))

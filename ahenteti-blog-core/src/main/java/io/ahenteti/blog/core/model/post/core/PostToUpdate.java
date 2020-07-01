@@ -1,5 +1,6 @@
 package io.ahenteti.blog.core.model.post.core;
 
+import io.ahenteti.blog.core.model.post.entity.EPostStatus;
 import io.ahenteti.blog.core.model.user.core.User;
 import lombok.Data;
 
@@ -15,5 +16,6 @@ public class PostToUpdate {
     private Collection<String> tags = new ArrayList<>();
     private String body;
     private Instant lastUpdatedAt;
+    private EPostStatus status;
     private User author;
 }

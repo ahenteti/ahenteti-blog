@@ -1,5 +1,6 @@
 package io.ahenteti.blog.service.post;
 
+import io.ahenteti.blog.core.model.post.entity.EPostStatus;
 import io.ahenteti.blog.core.model.post.entity.PostEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,9 +13,9 @@ import java.util.Optional;
 
 @Repository
 public interface PostRepository extends JpaRepository<PostEntity, Long> {
-    List<PostEntity> findByCategoryIn(List<String> categories);
+    List<PostEntity> findByStatusAndCategoryIn(EPostStatus status, List<String> categories);
 
-    List<PostEntity> findByAuthorUsernameIn(List<String> authors);
+    List<PostEntity> findByStatusAndAuthorUsernameIn(EPostStatus status, List<String> authors);
 
     void deleteByAuthorId(Long authorId);
 

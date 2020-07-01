@@ -18,6 +18,7 @@ public class PostEntityConverter {
         res.setTags(StringUtils.join(post.getTags(), PostEntity.TAGS_SEPARATOR));
         res.setAuthor(post.getAuthor());
         res.setCreatedAt(post.getCreatedAt());
+        res.setStatus(post.getStatus());
         PostBodyEntity bodyEntity = new PostBodyEntity();
         bodyEntity.setValue(post.getBody());
         res.setBody(bodyEntity);
@@ -34,6 +35,7 @@ public class PostEntityConverter {
         res.setAuthor(post.getAuthor());
         res.setCreatedAt(post.getEntity().getCreatedAt());
         res.setLastUpdatedAt(post.getLastUpdatedAt());
+        res.setStatus(post.getStatus());
         PostBodyEntity bodyEntity = new PostBodyEntity();
         bodyEntity.setId(post.getEntity().getBody().getId());
         bodyEntity.setValue(post.getBody());

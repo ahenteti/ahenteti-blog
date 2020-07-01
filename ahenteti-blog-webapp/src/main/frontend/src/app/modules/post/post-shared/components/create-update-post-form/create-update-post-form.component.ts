@@ -23,6 +23,7 @@ export class CreateUpdatePostFormComponent implements AfterViewInit {
   @Input() post: Post;
   @Input() submitButtonLabel: string;
   @Output() public formSubmit = new EventEmitter<Post>();
+  @Output() public formSubmitAndPublish = new EventEmitter<Post>();
   public previewMode = false;
   private editor: HTMLElement;
   private editorOffsetTop: number;
@@ -36,8 +37,12 @@ export class CreateUpdatePostFormComponent implements AfterViewInit {
     this.previewMode = !this.previewMode;
   }
 
-  onSubmit() {
+  submit() {
     this.formSubmit.emit(this.post);
+  }
+
+  submitAndPublish() {
+    this.formSubmitAndPublish.emit(this.post);
   }
 
   addTag(event: MatChipInputEvent): void {

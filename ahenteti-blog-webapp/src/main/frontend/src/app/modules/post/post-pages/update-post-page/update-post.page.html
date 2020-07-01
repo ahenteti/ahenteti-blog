@@ -1,6 +1,7 @@
 <app-create-update-post-form
-        pageTitle="Update post"
-        [post]="post"
-        submitButtonLabel="Update"
-        (formSubmit)="onSubmit($event)"
+  pageTitle="Update post"
+  [post]="post"
+  submitButtonLabel="Update"
+  (formSubmit)="submit($event)"
+  (formSubmitAndPublish)="submitAndPublish($event)"
 ></app-create-update-post-form>

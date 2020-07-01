@@ -35,6 +35,7 @@ export class CreatePostApiRequest {
 }
 
 export class CreatePostApiRequestBody {
+  publish: boolean;
   title: string;
   category: string;
   tags: Array<string>;
@@ -47,6 +48,7 @@ export class UpdatePostApiRequest {
 }
 
 export class UpdatePostApiRequestBody {
+  publish: boolean;
   title: string;
   category: string;
   tags: Array<string>;

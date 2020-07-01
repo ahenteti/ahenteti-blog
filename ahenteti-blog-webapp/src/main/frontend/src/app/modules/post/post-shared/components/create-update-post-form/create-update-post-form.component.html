@@ -20,7 +20,7 @@
     <app-markdown [text]="post.bodyMarkdown"></app-markdown>
   </ng-container>
   <ng-container *ngIf="!previewMode">
-    <form (submit)="onSubmit($event)">
+    <form (submit)="submit($event)">
       <mat-form-field appearance="fill">
         <mat-label>Title</mat-label>
         <input name="title" matInput [(ngModel)]="post.title" />
@@ -59,7 +59,15 @@
 
       <div class="page-footer-actions">
         <button type="reset">Reset</button>
-        <button type="submit">{{ submitButtonLabel }}</button>
+        <app-button-with-options
+          mainButtonLabel="{{ submitButtonLabel }}"
+          (mainButtonClick)="submit()"
+        >
+          <app-button-option
+            label="{{ submitButtonLabel }} and Publish"
+            (click)="submitAndPublish()"
+          ></app-button-option>
+        </app-button-with-options>
       </div>
     </form>
   </ng-container>

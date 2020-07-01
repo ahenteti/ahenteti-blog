@@ -12,6 +12,7 @@ import io.ahenteti.blog.core.model.post.core.PostToUpdate;
 import io.ahenteti.blog.core.model.post.core.PostsGroup;
 import io.ahenteti.blog.core.model.post.core.PostsGroups;
 import io.ahenteti.blog.core.model.post.core.PostsPage;
+import io.ahenteti.blog.core.model.post.entity.EPostStatus;
 import io.ahenteti.blog.core.model.post.entity.PostEntity;
 import io.ahenteti.blog.core.model.shared.api.ValidPageApiRequest;
 import io.ahenteti.blog.core.model.user.core.User;
@@ -81,6 +82,7 @@ public class PostCoreModelConverter {
         res.setBody(request.getBody());
         res.setAuthor(userConverter.toUser(request.getAuthor()));
         res.setLastUpdatedAt(Instant.now());
+        res.setStatus(request.getPublish() ? EPostStatus.PUBLISHED : EPostStatus.WIP);
         return res;
     }
 
@@ -91,6 +93,7 @@ public class PostCoreModelConverter {
         res.setCategory(request.getCategory());
         res.setTags(request.getTags());
         res.setBody(request.getBody());
+        res.setStatus(request.getPublish() ? EPostStatus.PUBLISHED : EPostStatus.WIP);
         res.setAuthor(userConverter.toUser(request.getAuthor()));
         res.setCreatedAt(Instant.now());
         return res;
@@ -150,6 +153,7 @@ public class PostCoreModelConverter {
         res.setBody(post.getBodyMarkdownBase64());
         res.setAuthor(userConverter.toUser(user));
         res.setLastUpdatedAt(Instant.now());
+        res.setStatus(EPostStatus.PUBLISHED);
         return res;
     }
 
@@ -162,6 +166,7 @@ public class PostCoreModelConverter {
         res.setBody(post.getBodyMarkdownBase64());
         res.setAuthor(userConverter.toUser(user));
         res.setCreatedAt(Instant.now());
+        res.setStatus(EPostStatus.PUBLISHED);
         return res;
     }
 

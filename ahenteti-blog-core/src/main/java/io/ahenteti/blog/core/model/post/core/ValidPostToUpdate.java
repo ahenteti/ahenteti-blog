@@ -1,5 +1,6 @@
 package io.ahenteti.blog.core.model.post.core;
 
+import io.ahenteti.blog.core.model.post.entity.EPostStatus;
 import io.ahenteti.blog.core.model.post.entity.PostEntity;
 import io.ahenteti.blog.core.model.user.entity.UserEntity;
 import lombok.Data;
@@ -15,6 +16,7 @@ public class ValidPostToUpdate {
     private Collection<String> tags;
     private String body;
     private Instant lastUpdatedAt;
+    private EPostStatus status;
     private UserEntity author;
     private PostEntity entity;
 
@@ -24,6 +26,7 @@ public class ValidPostToUpdate {
         this.tags = post.getTags();
         this.body = post.getBody();
         this.lastUpdatedAt = post.getLastUpdatedAt();
+        this.status = post.getStatus();
         this.author = author;
         this.entity = entity;
     }

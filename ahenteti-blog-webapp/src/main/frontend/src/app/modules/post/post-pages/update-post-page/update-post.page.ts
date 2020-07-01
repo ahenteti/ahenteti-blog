@@ -37,10 +37,18 @@ export class UpdatePostPage implements OnInit {
     });
   }
 
-  onSubmit(post: Post) {
+  submit(post: Post) {
+    this._submit(post);
+  }
+
+  submitAndPublish(post: Post) {
+    this._submit(post, true);
+  }
+
+  _submit(post: Post, publish = false) {
     try {
       this.postValidator.validateUpdatePost(post);
-      const request = this.postConverter.toUpdatePostApiRequest(post);
+      const request = this.postConverter.toUpdatePostApiRequest(post, publish);
       this.postHttpClient
         .updatePost(request)
         .then((post) => this.handleUpdatePostSuccessEvent(post))

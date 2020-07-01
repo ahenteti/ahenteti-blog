@@ -7,6 +7,7 @@ import java.util.List;
 
 @Data
 public class UpdatePostApiRequestBody {
+    protected Boolean publish;
     protected String title;
     protected String category;
     protected List<String> tags = new ArrayList<>();

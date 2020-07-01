@@ -135,10 +135,11 @@ export class PostConverter {
     };
   }
 
-  toCreatePostApiRequest(post: Post): CreatePostApiRequest {
+  toCreatePostApiRequest(post: Post, publish: boolean): CreatePostApiRequest {
     return {
       url: "/secure-api/posts",
       body: {
+        publish: publish,
         title: post.title,
         category: post.category,
         tags: post.tags,
@@ -147,10 +148,11 @@ export class PostConverter {
     };
   }
 
-  toUpdatePostApiRequest(post: Post): UpdatePostApiRequest {
+  toUpdatePostApiRequest(post: Post, publish: boolean): UpdatePostApiRequest {
     return {
       url: `/secure-api/posts/${post.slug}`,
       body: {
+        publish: publish,
         title: post.title,
         category: post.category,
         tags: post.tags,

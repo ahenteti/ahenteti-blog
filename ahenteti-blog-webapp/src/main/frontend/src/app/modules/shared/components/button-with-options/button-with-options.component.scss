@@ -1,0 +1,20 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 0.3rem;
+  overflow: hidden;
+  cursor: pointer;
+  color: var(--white-color);
+  background-color: var(--primary-color);
+  transition: var(--transition);
+  transition-property: background-color;
+  &:hover,
+  &:active {
+    background-color: #2498ed;
+  }
+}
+
+.main-button {
+  padding: 0.6rem 1.1rem;
+  border-right: 1px solid #0573c3;
+}

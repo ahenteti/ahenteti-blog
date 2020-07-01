@@ -15,6 +15,7 @@ public class ValidUpdatePostApiRequest {
     protected String category;
     protected List<String> tags;
     protected String body;
+    protected Boolean publish;
 
     public ValidUpdatePostApiRequest(UpdatePostApiRequest request) {
         this.slug = request.getSlug();
@@ -23,5 +24,6 @@ public class ValidUpdatePostApiRequest {
         this.category = request.getBody().getCategory();
         this.tags = request.getBody().getTags();
         this.body = request.getBody().getBodyMarkdownBase64();
+        this.publish = request.getBody().getPublish();
     }
 }

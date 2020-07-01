@@ -1,5 +1,6 @@
 package io.ahenteti.blog.core.model.post.core;
 
+import io.ahenteti.blog.core.model.post.entity.EPostStatus;
 import io.ahenteti.blog.core.model.user.core.User;
 import lombok.Data;
 
@@ -14,6 +15,7 @@ public class PostToCreate {
     private String category;
     private Collection<String> tags = new ArrayList<>();
     private Instant createdAt;
+    private EPostStatus status;
     private User author;
     private String body;
 }

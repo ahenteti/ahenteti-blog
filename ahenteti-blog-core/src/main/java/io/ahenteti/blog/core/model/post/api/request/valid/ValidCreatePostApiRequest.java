@@ -9,6 +9,7 @@ import java.util.List;
 @Data
 public class ValidCreatePostApiRequest {
     private IOAuth2User author;
+    protected Boolean publish;
     protected String title;
     protected String category;
     protected List<String> tags;
@@ -16,6 +17,7 @@ public class ValidCreatePostApiRequest {
 
     public ValidCreatePostApiRequest(CreatePostApiRequest request) {
         this.author = request.getAuthor();
+        this.publish = request.getBody().getPublish();
         this.title = request.getBody().getTitle();
         this.category = request.getBody().getCategory();
         this.tags = request.getBody().getTags();
