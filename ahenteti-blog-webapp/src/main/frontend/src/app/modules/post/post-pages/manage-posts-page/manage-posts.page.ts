@@ -31,7 +31,7 @@ export class ManagePostsPage extends AbstractManageResourcesPage<PostSummary>
     this.columns = [
       "id",
       "title",
-      "category",
+      "status",
       "createdAt",
       "lastUpdatedAt",
       "actions",

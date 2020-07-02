@@ -15,5 +15,6 @@ public class PostSummaryApiResponse {
     private Collection<String> tags = new ArrayList<>();
     private String createdAtIso8601;
     private String lastUpdatedAtIso8601;
+    private String status;
     private AuthorApiResponse author;
 }

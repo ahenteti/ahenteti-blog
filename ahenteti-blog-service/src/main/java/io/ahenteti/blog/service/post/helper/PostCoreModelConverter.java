@@ -55,6 +55,7 @@ public class PostCoreModelConverter {
         res.setCreatedAt(entity.getCreatedAt());
         res.setLastUpdatedAt(getLastUpdatedAt(entity));
         res.setAuthor(userConverter.toUser(entity.getAuthor()));
+        res.setStatus(entity.getStatus());
         return res;
     }
 
@@ -67,6 +68,7 @@ public class PostCoreModelConverter {
         res.setCategory(entity.getCategory());
         res.setTags(toTagsArrayList(entity));
         res.setCreatedAt(entity.getCreatedAt());
+        res.setStatus(entity.getStatus());
         res.setLastUpdatedAt(getLastUpdatedAt(entity));
         res.setAuthor(author);
         res.setBody(entity.getBody().getValue());

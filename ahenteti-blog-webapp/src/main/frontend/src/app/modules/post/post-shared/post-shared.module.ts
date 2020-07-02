@@ -13,6 +13,7 @@ import { AlertModule } from "../../alert/alert.module";
 import { PostCommentModule } from "../post-comments/post-comment.module";
 import { CreateUpdatePostFormComponent } from "./components/create-update-post-form/create-update-post-form.component";
 import { MarkdownModule } from "../../markdown/markdown.module";
+import { PostStatusComponent } from "./components/post-status/post-status.component";
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { MarkdownModule } from "../../markdown/markdown.module";
     PostLayoutComponent,
     PostTitleComponent,
     CreateUpdatePostFormComponent,
+    PostStatusComponent,
   ],
   exports: [
     MarkdownModule,
@@ -41,6 +43,7 @@ import { MarkdownModule } from "../../markdown/markdown.module";
     SearchPostsComponent,
     PostsGroupComponent,
     CreateUpdatePostFormComponent,
+    PostStatusComponent,
   ],
 })
 export class PostSharedModule {}

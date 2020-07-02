@@ -1,6 +1,11 @@
 import { Author } from "../../../user/models/user.internal.models";
 import { Page } from "src/app/modules/shared/models/page.model";
 
+export enum PostStatus {
+  WIP = "WIP",
+  PUBLISHED = "PUBLISHED",
+}
+
 export class PostSummary {
   id: number;
   slug: string;
@@ -10,6 +15,7 @@ export class PostSummary {
   createdAt: Date;
   lastUpdatedAt: Date;
   searchKey: string;
+  status: PostStatus;
   author: Author;
 }
 
@@ -37,6 +43,7 @@ export class DefaultPost implements Post {
   lastUpdatedAt = new Date();
   searchKey = "";
   author = undefined;
+  status = PostStatus.WIP;
   bodyMarkdown = "";
 }
 
@@ -50,6 +57,7 @@ export class OfflinePost implements Post {
   lastUpdatedAt = new Date();
   searchKey = "";
   author = undefined;
+  status = PostStatus.WIP;
   bodyMarkdown =
     "lorem content: Do amet eu tempor dolor cillum ullamco mollit nulla consectetur anim ut eiusmod aliquip occaecat. Ut sint adipisicing irure ex. Laboris magna excepteur ipsum et proident excepteur ipsum amet. Aliqua cupidatat cupidatat velit velit adipisicing nostrud sit aliqua nisi enim aliqua laboris.";
 }

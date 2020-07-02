@@ -14,6 +14,7 @@ export class PostSummaryApiResponse {
   tags: string[];
   createdAtIso8601: string;
   lastUpdatedAtIso8601?: string;
+  status: string;
   author: AuthorApiResponse;
 }
 

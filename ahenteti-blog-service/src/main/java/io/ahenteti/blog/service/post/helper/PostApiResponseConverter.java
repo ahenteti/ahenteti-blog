@@ -64,6 +64,7 @@ public class PostApiResponseConverter {
         res.setTags(post.getTags());
         res.setCreatedAtIso8601(post.getCreatedAt().toString());
         post.getLastUpdatedAt().ifPresent(date -> res.setLastUpdatedAtIso8601(date.toString()));
+        res.setStatus(post.getStatus().name());
         res.setAuthor(userConverter.toAuthorApiResponse(post.getAuthor()));
         return res;
     }

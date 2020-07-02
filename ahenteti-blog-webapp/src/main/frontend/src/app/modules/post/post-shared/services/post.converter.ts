@@ -23,8 +23,10 @@ import {
   PostsGroup,
   PostGroupByStrategies,
   PostGroupByStrategy,
+  PostStatus,
 } from "../models/post.internal.models";
 import { UserConverter } from "../../../user/services/user.converter";
+import { PostsState } from "../state/posts.state";
 
 @Injectable()
 export class PostConverter {
@@ -42,6 +44,8 @@ export class PostConverter {
         ? new Date(post.lastUpdatedAtIso8601)
         : null,
       author: this.userConverter.toAuthor(post.author),
+      status:
+        post.status == "PUBLISHED" ? PostStatus.PUBLISHED : PostStatus.WIP,
       searchKey: this.calculateSearchKey(post.title, post.tags),
     };
   }
@@ -59,6 +63,8 @@ export class PostConverter {
         : null,
       searchKey: this.calculateSearchKey(post.title, post.tags),
       author: this.userConverter.toAuthor(post.author),
+      status:
+        post.status == "PUBLISHED" ? PostStatus.PUBLISHED : PostStatus.WIP,
       bodyMarkdown: atob(post.bodyMarkdownBase64),
     };
   }
