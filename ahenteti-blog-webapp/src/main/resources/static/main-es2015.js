@@ -195,7 +195,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<app-create-update-post-form\r\n        pageTitle=\"Create new post\"\r\n        [post]=\"post\"\r\n        submitButtonLabel=\"Create\"\r\n        (formSubmit)=\"onSubmit($event)\"\r\n></app-create-update-post-form>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<app-create-update-post-form\r\n  pageTitle=\"Create new post\"\r\n  [post]=\"post\"\r\n  submitButtonLabel=\"Create\"\r\n  (formSubmit)=\"submit($event)\"\r\n  (formSubmitAndPublish)=\"submitAndPublish($event)\"\r\n></app-create-update-post-form>\r\n");
 
 /***/ }),
 
@@ -208,7 +208,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<app-manage-resources-page-layout\r\n  pageTitle=\"My Posts\"\r\n  [previousButtonCssClasses]=\"previousButtonCssClasses\"\r\n  [nextButtonCssClasses]=\"nextButtonCssClasses\"\r\n  (previousButtonClick)=\"handlePreviousButtonClickEvent()\"\r\n  (nextButtonClick)=\"handleNextButtonClickEvent()\"\r\n  (filter)=\"onFilter($event)\"\r\n>\r\n  <ng-container class=\"top-table-actions\">\r\n    <app-delete-rounded-button\r\n      tooltip=\"delete all your posts\"\r\n      (click)=\"deleteAllUserPosts()\"\r\n    >\r\n    </app-delete-rounded-button>\r\n    <app-download-rounded-button\r\n      tooltip=\"download all your posts\"\r\n      (click)=\"downloadAllUserPosts()\"\r\n    >\r\n    </app-download-rounded-button>\r\n    <app-upload-rounded-button\r\n      (fileUpload)=\"onFileUpload($event)\"\r\n      tooltip=\"upload posts\"\r\n    >\r\n    </app-upload-rounded-button>\r\n    <app-new-rounded-button\r\n      routerLink=\"/posts/new\"\r\n      tooltip=\"create new post\"\r\n    ></app-new-rounded-button>\r\n  </ng-container>\r\n\r\n  <ng-container class=\"table\">\r\n    <table mat-table matSort [dataSource]=\"dataSource\">\r\n      <ng-container matColumnDef=\"id\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>#</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.id}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"title\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Title</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.title}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"category\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Category</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.category}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"createdAt\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Created At</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.createdAt | date}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"lastUpdatedAt\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>\r\n          Last Updated At\r\n        </th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          {{element.lastUpdatedAt ? (element.lastUpdatedAt | date) : 'N/A'}}\r\n        </td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"actions\">\r\n        <th mat-header-cell *matHeaderCellDef></th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <div class=\"row-actions\">\r\n            <app-consult-button-link\r\n              [routerLink]=\"['/posts', element.slug, 'consult']\"\r\n            ></app-consult-button-link>\r\n            <app-edit-button-link\r\n              [routerLink]=\"['/posts', element.slug, 'edit']\"\r\n            ></app-edit-button-link>\r\n            <app-delete-button\r\n              (click)=\"deletePost(element.id)\"\r\n            ></app-delete-button>\r\n          </div>\r\n        </td>\r\n      </ng-container>\r\n\r\n      <tr mat-header-row *matHeaderRowDef=\"columns\"></tr>\r\n      <tr mat-row class=\"row\" *matRowDef=\"let row; columns: columns;\"></tr>\r\n    </table>\r\n  </ng-container>\r\n</app-manage-resources-page-layout>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<app-manage-resources-page-layout\r\n  pageTitle=\"My Posts\"\r\n  [previousButtonCssClasses]=\"previousButtonCssClasses\"\r\n  [nextButtonCssClasses]=\"nextButtonCssClasses\"\r\n  (previousButtonClick)=\"handlePreviousButtonClickEvent()\"\r\n  (nextButtonClick)=\"handleNextButtonClickEvent()\"\r\n  (filter)=\"onFilter($event)\"\r\n>\r\n  <ng-container class=\"top-table-actions\">\r\n    <app-delete-rounded-button\r\n      tooltip=\"delete all your posts\"\r\n      (click)=\"deleteAllUserPosts()\"\r\n    >\r\n    </app-delete-rounded-button>\r\n    <app-download-rounded-button\r\n      tooltip=\"download all your posts\"\r\n      (click)=\"downloadAllUserPosts()\"\r\n    >\r\n    </app-download-rounded-button>\r\n    <app-upload-rounded-button\r\n      (fileUpload)=\"onFileUpload($event)\"\r\n      tooltip=\"upload posts\"\r\n    >\r\n    </app-upload-rounded-button>\r\n    <app-new-rounded-button\r\n      routerLink=\"/posts/new\"\r\n      tooltip=\"create new post\"\r\n    ></app-new-rounded-button>\r\n  </ng-container>\r\n\r\n  <ng-container class=\"table\">\r\n    <table mat-table matSort [dataSource]=\"dataSource\">\r\n      <ng-container matColumnDef=\"id\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>#</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.id}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"title\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Title</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.title}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"status\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Status</th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <app-post-status [status]=\"element.status\"></app-post-status>\r\n        </td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"createdAt\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>Created At</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.createdAt | date}}</td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"lastUpdatedAt\">\r\n        <th mat-header-cell mat-sort-header *matHeaderCellDef>\r\n          Last Updated At\r\n        </th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          {{element.lastUpdatedAt ? (element.lastUpdatedAt | date) : 'N/A'}}\r\n        </td>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"actions\">\r\n        <th mat-header-cell *matHeaderCellDef></th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <div class=\"row-actions\">\r\n            <app-consult-button-link\r\n              [routerLink]=\"['/posts', element.slug, 'consult']\"\r\n            ></app-consult-button-link>\r\n            <app-edit-button-link\r\n              [routerLink]=\"['/posts', element.slug, 'edit']\"\r\n            ></app-edit-button-link>\r\n            <app-delete-button\r\n              (click)=\"deletePost(element.id)\"\r\n            ></app-delete-button>\r\n          </div>\r\n        </td>\r\n      </ng-container>\r\n\r\n      <tr mat-header-row *matHeaderRowDef=\"columns\"></tr>\r\n      <tr mat-row class=\"row\" *matRowDef=\"let row; columns: columns;\"></tr>\r\n    </table>\r\n  </ng-container>\r\n</app-manage-resources-page-layout>\r\n");
 
 /***/ }),
 
@@ -221,7 +221,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<app-posts-welcome-message></app-posts-welcome-message>\r\n<app-search-posts\r\n        [selectedTag]=\"postsState.selectedTag$ | async\"\r\n        [tags]=\"postsState.allTags$ | async\"\r\n        (inputChange)=\"handleSearchTextChange($event)\"\r\n></app-search-posts>\r\n\r\n<app-posts-group\r\n        *ngFor=\"let postsGroup of (postsState.displayedPostsGroups$ | async)\"\r\n        [postsGroup]=\"postsGroup\"\r\n></app-posts-group>\r\n\r\n<app-load-more-button\r\n        appSlideIn\r\n        *ngIf=\"!noMorePosts\"\r\n        text=\"Load more posts\"\r\n        (click)=\"loadMorePosts()\"\r\n></app-load-more-button>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<app-posts-welcome-message></app-posts-welcome-message>\r\n<app-search-posts\r\n  [selectedTag]=\"postsState.selectedTag$ | async\"\r\n  [tags]=\"postsState.allTags$ | async\"\r\n  (inputChange)=\"handleSearchTextChange($event)\"\r\n></app-search-posts>\r\n\r\n<app-posts-group\r\n  *ngFor=\"let postsGroup of (postsState.displayedPostsGroups$ | async)\"\r\n  [postsGroup]=\"postsGroup\"\r\n></app-posts-group>\r\n\r\n<app-load-more-button\r\n  appSlideIn\r\n  *ngIf=\"!noMorePosts\"\r\n  text=\"Load more posts\"\r\n  (click)=\"loadMorePosts()\"\r\n></app-load-more-button>\r\n");
 
 /***/ }),
 
@@ -234,7 +234,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<app-create-update-post-form\r\n        pageTitle=\"Update post\"\r\n        [post]=\"post\"\r\n        submitButtonLabel=\"Update\"\r\n        (formSubmit)=\"onSubmit($event)\"\r\n></app-create-update-post-form>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<app-create-update-post-form\r\n  pageTitle=\"Update post\"\r\n  [post]=\"post\"\r\n  submitButtonLabel=\"Update\"\r\n  (formSubmit)=\"submit($event)\"\r\n  (formSubmitAndPublish)=\"submitAndPublish($event)\"\r\n></app-create-update-post-form>\r\n");
 
 /***/ }),
 
@@ -247,7 +247,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<app-post-layout>\r\n  <div class=\"page-header\">\r\n    <app-page-title [value]=\"pageTitle\"></app-page-title>\r\n    <div class=\"page-header-actions\">\r\n      <app-consult-rounded-button\r\n        (click)=\"togglePreviewMode()\"\r\n        *ngIf=\"!previewMode\"\r\n        tooltip=\"preview post\"\r\n      ></app-consult-rounded-button>\r\n      <app-edit-rounded-button\r\n        tooltip=\"continue post creation / update\"\r\n        (click)=\"togglePreviewMode()\"\r\n        *ngIf=\"previewMode\"\r\n      ></app-edit-rounded-button>\r\n    </div>\r\n  </div>\r\n\r\n  <ng-container *ngIf=\"previewMode\">\r\n    <app-post-title [post]=\"post\"></app-post-title>\r\n    <app-markdown [text]=\"post.bodyMarkdown\"></app-markdown>\r\n  </ng-container>\r\n  <ng-container *ngIf=\"!previewMode\">\r\n    <form (submit)=\"onSubmit($event)\">\r\n      <mat-form-field appearance=\"fill\">\r\n        <mat-label>Title</mat-label>\r\n        <input name=\"title\" matInput [(ngModel)]=\"post.title\" />\r\n      </mat-form-field>\r\n\r\n      <mat-form-field appearance=\"fill\">\r\n        <mat-label>Category</mat-label>\r\n        <input name=\"category\" matInput [(ngModel)]=\"post.category\" />\r\n      </mat-form-field>\r\n\r\n      <mat-form-field>\r\n        <mat-chip-list #tagsRef>\r\n          <mat-chip\r\n            *ngFor=\"let tag of post.tags\"\r\n            removable=\"true\"\r\n            (removed)=\"removeTag(tag)\"\r\n          >\r\n            {{ tag }}\r\n            <mat-icon matChipRemove *ngIf=\"true\">cancel</mat-icon>\r\n          </mat-chip>\r\n          <input\r\n            placeholder=\"Tags\"\r\n            [matChipInputFor]=\"tagsRef\"\r\n            [matChipInputAddOnBlur]=\"true\"\r\n            [matChipInputSeparatorKeyCodes]=\"separators\"\r\n            (matChipInputTokenEnd)=\"addTag($event)\"\r\n          />\r\n        </mat-chip-list>\r\n      </mat-form-field>\r\n\r\n      <simplemde\r\n        name=\"body\"\r\n        [(ngModel)]=\"post.bodyMarkdown\"\r\n        [options]=\"simpleMdeOptions\"\r\n      ></simplemde>\r\n\r\n      <div class=\"page-footer-actions\">\r\n        <button type=\"reset\">Reset</button>\r\n        <button type=\"submit\">{{ submitButtonLabel }}</button>\r\n      </div>\r\n    </form>\r\n  </ng-container>\r\n</app-post-layout>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<app-post-layout>\r\n  <div class=\"page-header\">\r\n    <app-page-title [value]=\"pageTitle\"></app-page-title>\r\n    <div class=\"page-header-actions\">\r\n      <app-consult-rounded-button\r\n        (click)=\"togglePreviewMode()\"\r\n        *ngIf=\"!previewMode\"\r\n        tooltip=\"preview post\"\r\n      ></app-consult-rounded-button>\r\n      <app-edit-rounded-button\r\n        tooltip=\"continue post creation / update\"\r\n        (click)=\"togglePreviewMode()\"\r\n        *ngIf=\"previewMode\"\r\n      ></app-edit-rounded-button>\r\n    </div>\r\n  </div>\r\n\r\n  <ng-container *ngIf=\"previewMode\">\r\n    <app-post-title [post]=\"post\"></app-post-title>\r\n    <app-markdown [text]=\"post.bodyMarkdown\"></app-markdown>\r\n  </ng-container>\r\n  <ng-container *ngIf=\"!previewMode\">\r\n    <form (submit)=\"submit($event)\">\r\n      <mat-form-field appearance=\"fill\">\r\n        <mat-label>Title</mat-label>\r\n        <input name=\"title\" matInput [(ngModel)]=\"post.title\" />\r\n      </mat-form-field>\r\n\r\n      <mat-form-field appearance=\"fill\">\r\n        <mat-label>Category</mat-label>\r\n        <input name=\"category\" matInput [(ngModel)]=\"post.category\" />\r\n      </mat-form-field>\r\n\r\n      <mat-form-field>\r\n        <mat-chip-list #tagsRef>\r\n          <mat-chip\r\n            *ngFor=\"let tag of post.tags\"\r\n            removable=\"true\"\r\n            (removed)=\"removeTag(tag)\"\r\n          >\r\n            {{ tag }}\r\n            <mat-icon matChipRemove *ngIf=\"true\">cancel</mat-icon>\r\n          </mat-chip>\r\n          <input\r\n            placeholder=\"Tags\"\r\n            [matChipInputFor]=\"tagsRef\"\r\n            [matChipInputAddOnBlur]=\"true\"\r\n            [matChipInputSeparatorKeyCodes]=\"separators\"\r\n            (matChipInputTokenEnd)=\"addTag($event)\"\r\n          />\r\n        </mat-chip-list>\r\n      </mat-form-field>\r\n\r\n      <simplemde\r\n        name=\"body\"\r\n        [(ngModel)]=\"post.bodyMarkdown\"\r\n        [options]=\"simpleMdeOptions\"\r\n      ></simplemde>\r\n\r\n      <div class=\"page-footer-actions\">\r\n        <button type=\"reset\">Reset</button>\r\n        <app-button-with-options\r\n          mainButtonLabel=\"{{ submitButtonLabel }}\"\r\n          (mainButtonClick)=\"submit()\"\r\n        >\r\n          <app-button-option\r\n            label=\"{{ submitButtonLabel }} and Publish\"\r\n            (click)=\"submitAndPublish()\"\r\n          ></app-button-option>\r\n        </app-button-with-options>\r\n      </div>\r\n    </form>\r\n  </ng-container>\r\n</app-post-layout>\r\n");
 
 /***/ }),
 
@@ -261,6 +261,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("<ng-content></ng-content>\r\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/post/post-shared/components/post-status/post-status.component.html":
+/*!**********************************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/modules/post/post-shared/components/post-status/post-status.component.html ***!
+  \**********************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<span>{{ status | lowercase }}</span>\r\n");
 
 /***/ }),
 
@@ -352,6 +365,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("<span (click)=\"handleClickEvent($event)\">{{ tag }}</span>\r\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/button-with-options/button-with-options.component.html":
+/*!****************************************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/button-with-options/button-with-options.component.html ***!
+  \****************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<span (click)=\"mainButtonClickMethod()\" class=\"main-button\">{{\r\n  mainButtonLabel\r\n}}</span>\r\n<app-dropdown-icon\r\n  [matMenuTriggerFor]=\"menu\"\r\n  #dropdownTrigger=\"matMenuTrigger\"\r\n  class=\"dropdown-icon\"\r\n></app-dropdown-icon>\r\n\r\n<mat-menu #menu=\"matMenu\" xPosition=\"before\">\r\n  <ng-content select=\"app-button-option\"></ng-content>\r\n</mat-menu>\r\n");
 
 /***/ }),
 
@@ -3641,10 +3667,17 @@ let CreatePostPage = class CreatePostPage {
         this.router = router;
         this.post = new _post_shared_models_post_internal_models__WEBPACK_IMPORTED_MODULE_2__["DefaultPost"]();
     }
-    onSubmit(post) {
+    submit(post) {
+        this._submit(post);
+    }
+    submitAndPublish(post) {
+        this._submit(post, true);
+    }
+    _submit(post, publish = false) {
         try {
             this.postValidator.validateCreatePost(post);
-            const request = this.postConverter.toCreatePostApiRequest(post);
+            const request = this.postConverter.toCreatePostApiRequest(post, publish);
+            console.log(request);
             this.postHttpClient
                 .createPost(request)
                 .then((post) => this.handleCreatePostSuccessEvent(post))
@@ -3743,7 +3776,7 @@ let ManagePostsPage = class ManagePostsPage extends src_app_modules_shared_pages
         this.columns = [
             "id",
             "title",
-            "category",
+            "status",
             "createdAt",
             "lastUpdatedAt",
             "actions",
@@ -4086,10 +4119,16 @@ let UpdatePostPage = class UpdatePostPage {
             this.post = post;
         });
     }
-    onSubmit(post) {
+    submit(post) {
+        this._submit(post);
+    }
+    submitAndPublish(post) {
+        this._submit(post, true);
+    }
+    _submit(post, publish = false) {
         try {
             this.postValidator.validateUpdatePost(post);
-            const request = this.postConverter.toUpdatePostApiRequest(post);
+            const request = this.postConverter.toUpdatePostApiRequest(post, publish);
             this.postHttpClient
                 .updatePost(request)
                 .then((post) => this.handleUpdatePostSuccessEvent(post))
@@ -4140,7 +4179,7 @@ UpdatePostPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (":host {\n  --post-title-margin-top: 0rem;\n  --post-title-margin-bottom: 0rem;\n}\n\n.page-header {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  margin-bottom: 3.5rem;\n}\n\n.page-footer-actions {\n  display: flex;\n  justify-content: flex-end;\n}\n\n.page-footer-actions button {\n  margin-left: 1.5rem;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9wb3N0L3Bvc3Qtc2hhcmVkL2NvbXBvbmVudHMvY3JlYXRlLXVwZGF0ZS1wb3N0LWZvcm0vQzpcXGRldlxccHJvamVjdHNcXGFoZW50ZXRpLWJsb2dcXGFoZW50ZXRpLWJsb2ctd2ViYXBwXFxzcmNcXG1haW5cXGZyb250ZW5kL3NyY1xcYXBwXFxtb2R1bGVzXFxwb3N0XFxwb3N0LXNoYXJlZFxcY29tcG9uZW50c1xcY3JlYXRlLXVwZGF0ZS1wb3N0LWZvcm1cXGNyZWF0ZS11cGRhdGUtcG9zdC1mb3JtLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9tb2R1bGVzL3Bvc3QvcG9zdC1zaGFyZWQvY29tcG9uZW50cy9jcmVhdGUtdXBkYXRlLXBvc3QtZm9ybS9jcmVhdGUtdXBkYXRlLXBvc3QtZm9ybS5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLDZCQUFBO0VBQ0EsZ0NBQUE7QUNDRjs7QURFQTtFQUNFLGFBQUE7RUFDQSxtQkFBQTtFQUNBLDhCQUFBO0VBQ0EscUJBQUE7QUNDRjs7QURFQTtFQUNFLGFBQUE7RUFDQSx5QkFBQTtBQ0NGOztBREVBO0VBQ0UsbUJBQUE7QUNDRiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvcG9zdC9wb3N0LXNoYXJlZC9jb21wb25lbnRzL2NyZWF0ZS11cGRhdGUtcG9zdC1mb3JtL2NyZWF0ZS11cGRhdGUtcG9zdC1mb3JtLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3Qge1xyXG4gIC0tcG9zdC10aXRsZS1tYXJnaW4tdG9wOiAwcmVtO1xyXG4gIC0tcG9zdC10aXRsZS1tYXJnaW4tYm90dG9tOiAwcmVtO1xyXG59XHJcblxyXG4ucGFnZS1oZWFkZXIge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XHJcbiAgbWFyZ2luLWJvdHRvbTogMy41cmVtO1xyXG59XHJcblxyXG4ucGFnZS1mb290ZXItYWN0aW9ucyB7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtZW5kO1xyXG59XHJcblxyXG4ucGFnZS1mb290ZXItYWN0aW9ucyBidXR0b24ge1xyXG4gIG1hcmdpbi1sZWZ0OiAxLjVyZW07XHJcbn1cclxuIiwiOmhvc3Qge1xuICAtLXBvc3QtdGl0bGUtbWFyZ2luLXRvcDogMHJlbTtcbiAgLS1wb3N0LXRpdGxlLW1hcmdpbi1ib3R0b206IDByZW07XG59XG5cbi5wYWdlLWhlYWRlciB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcbiAgbWFyZ2luLWJvdHRvbTogMy41cmVtO1xufVxuXG4ucGFnZS1mb290ZXItYWN0aW9ucyB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGp1c3RpZnktY29udGVudDogZmxleC1lbmQ7XG59XG5cbi5wYWdlLWZvb3Rlci1hY3Rpb25zIGJ1dHRvbiB7XG4gIG1hcmdpbi1sZWZ0OiAxLjVyZW07XG59Il19 */");
+/* harmony default export */ __webpack_exports__["default"] = (":host {\n  --post-title-margin-top: 0rem;\n  --post-title-margin-bottom: 0rem;\n}\n\n.page-header {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  margin-bottom: 3.5rem;\n}\n\n.page-footer-actions {\n  display: flex;\n  justify-content: flex-end;\n}\n\n.page-footer-actions app-button-with-options {\n  margin-left: 1.5rem;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9wb3N0L3Bvc3Qtc2hhcmVkL2NvbXBvbmVudHMvY3JlYXRlLXVwZGF0ZS1wb3N0LWZvcm0vQzpcXGRldlxccHJvamVjdHNcXGFoZW50ZXRpLWJsb2dcXGFoZW50ZXRpLWJsb2ctd2ViYXBwXFxzcmNcXG1haW5cXGZyb250ZW5kL3NyY1xcYXBwXFxtb2R1bGVzXFxwb3N0XFxwb3N0LXNoYXJlZFxcY29tcG9uZW50c1xcY3JlYXRlLXVwZGF0ZS1wb3N0LWZvcm1cXGNyZWF0ZS11cGRhdGUtcG9zdC1mb3JtLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9tb2R1bGVzL3Bvc3QvcG9zdC1zaGFyZWQvY29tcG9uZW50cy9jcmVhdGUtdXBkYXRlLXBvc3QtZm9ybS9jcmVhdGUtdXBkYXRlLXBvc3QtZm9ybS5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLDZCQUFBO0VBQ0EsZ0NBQUE7QUNDRjs7QURFQTtFQUNFLGFBQUE7RUFDQSxtQkFBQTtFQUNBLDhCQUFBO0VBQ0EscUJBQUE7QUNDRjs7QURFQTtFQUNFLGFBQUE7RUFDQSx5QkFBQTtBQ0NGOztBREVBO0VBQ0UsbUJBQUE7QUNDRiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvcG9zdC9wb3N0LXNoYXJlZC9jb21wb25lbnRzL2NyZWF0ZS11cGRhdGUtcG9zdC1mb3JtL2NyZWF0ZS11cGRhdGUtcG9zdC1mb3JtLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3Qge1xyXG4gIC0tcG9zdC10aXRsZS1tYXJnaW4tdG9wOiAwcmVtO1xyXG4gIC0tcG9zdC10aXRsZS1tYXJnaW4tYm90dG9tOiAwcmVtO1xyXG59XHJcblxyXG4ucGFnZS1oZWFkZXIge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XHJcbiAgbWFyZ2luLWJvdHRvbTogMy41cmVtO1xyXG59XHJcblxyXG4ucGFnZS1mb290ZXItYWN0aW9ucyB7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtZW5kO1xyXG59XHJcblxyXG4ucGFnZS1mb290ZXItYWN0aW9ucyBhcHAtYnV0dG9uLXdpdGgtb3B0aW9ucyB7XHJcbiAgbWFyZ2luLWxlZnQ6IDEuNXJlbTtcclxufVxyXG4iLCI6aG9zdCB7XG4gIC0tcG9zdC10aXRsZS1tYXJnaW4tdG9wOiAwcmVtO1xuICAtLXBvc3QtdGl0bGUtbWFyZ2luLWJvdHRvbTogMHJlbTtcbn1cblxuLnBhZ2UtaGVhZGVyIHtcbiAgZGlzcGxheTogZmxleDtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xuICBtYXJnaW4tYm90dG9tOiAzLjVyZW07XG59XG5cbi5wYWdlLWZvb3Rlci1hY3Rpb25zIHtcbiAgZGlzcGxheTogZmxleDtcbiAganVzdGlmeS1jb250ZW50OiBmbGV4LWVuZDtcbn1cblxuLnBhZ2UtZm9vdGVyLWFjdGlvbnMgYXBwLWJ1dHRvbi13aXRoLW9wdGlvbnMge1xuICBtYXJnaW4tbGVmdDogMS41cmVtO1xufSJdfQ== */");
 
 /***/ }),
 
@@ -4169,6 +4208,7 @@ let CreateUpdatePostFormComponent = class CreateUpdatePostFormComponent {
         this.simpleMdeOptions = src_app_modules_markdown_simplemde_options__WEBPACK_IMPORTED_MODULE_3__["SIMPLEMDE_OPTIONS"];
         this.separators = [_angular_cdk_keycodes__WEBPACK_IMPORTED_MODULE_2__["ENTER"], _angular_cdk_keycodes__WEBPACK_IMPORTED_MODULE_2__["COMMA"]];
         this.formSubmit = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.formSubmitAndPublish = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         this.previewMode = false;
     }
     ngAfterViewInit() {
@@ -4178,8 +4218,11 @@ let CreateUpdatePostFormComponent = class CreateUpdatePostFormComponent {
     togglePreviewMode() {
         this.previewMode = !this.previewMode;
     }
-    onSubmit() {
+    submit() {
         this.formSubmit.emit(this.post);
+    }
+    submitAndPublish() {
+        this.formSubmitAndPublish.emit(this.post);
     }
     addTag(event) {
         const value = event.value;
@@ -4210,6 +4253,9 @@ tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()
 ], CreateUpdatePostFormComponent.prototype, "formSubmit", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()
+], CreateUpdatePostFormComponent.prototype, "formSubmitAndPublish", void 0);
 CreateUpdatePostFormComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: "app-create-update-post-form",
@@ -4258,6 +4304,61 @@ PostLayoutComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./post-layout.component.scss */ "./src/app/modules/post/post-shared/components/post-layout/post-layout.component.scss")).default]
     })
 ], PostLayoutComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/modules/post/post-shared/components/post-status/post-status.component.scss":
+/*!********************************************************************************************!*\
+  !*** ./src/app/modules/post/post-shared/components/post-status/post-status.component.scss ***!
+  \********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (":host {\n  background-color: var(--green-color);\n  color: var(--white-color);\n  padding: 0.3rem 0.6rem 0.5rem;\n  border-radius: 100rem;\n}\n:host.wip {\n  background-color: var(--yellow-color);\n}\nspan {\n  font-size: 1.25rem;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9wb3N0L3Bvc3Qtc2hhcmVkL2NvbXBvbmVudHMvcG9zdC1zdGF0dXMvQzpcXGRldlxccHJvamVjdHNcXGFoZW50ZXRpLWJsb2dcXGFoZW50ZXRpLWJsb2ctd2ViYXBwXFxzcmNcXG1haW5cXGZyb250ZW5kL3NyY1xcYXBwXFxtb2R1bGVzXFxwb3N0XFxwb3N0LXNoYXJlZFxcY29tcG9uZW50c1xccG9zdC1zdGF0dXNcXHBvc3Qtc3RhdHVzLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9tb2R1bGVzL3Bvc3QvcG9zdC1zaGFyZWQvY29tcG9uZW50cy9wb3N0LXN0YXR1cy9wb3N0LXN0YXR1cy5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLG9DQUFBO0VBQ0EseUJBQUE7RUFDQSw2QkFBQTtFQUNBLHFCQUFBO0FDQ0Y7QURBRTtFQUNFLHFDQUFBO0FDRUo7QURFQTtFQUNFLGtCQUFBO0FDQ0YiLCJmaWxlIjoic3JjL2FwcC9tb2R1bGVzL3Bvc3QvcG9zdC1zaGFyZWQvY29tcG9uZW50cy9wb3N0LXN0YXR1cy9wb3N0LXN0YXR1cy5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0IHtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1ncmVlbi1jb2xvcik7XHJcbiAgY29sb3I6IHZhcigtLXdoaXRlLWNvbG9yKTtcclxuICBwYWRkaW5nOiAwLjNyZW0gMC42cmVtIDAuNXJlbTtcclxuICBib3JkZXItcmFkaXVzOiAxMDByZW07XHJcbiAgJi53aXAge1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0teWVsbG93LWNvbG9yKTtcclxuICB9XHJcbn1cclxuXHJcbnNwYW4ge1xyXG4gIGZvbnQtc2l6ZTogMS4yNXJlbTtcclxufVxyXG4iLCI6aG9zdCB7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWdyZWVuLWNvbG9yKTtcbiAgY29sb3I6IHZhcigtLXdoaXRlLWNvbG9yKTtcbiAgcGFkZGluZzogMC4zcmVtIDAuNnJlbSAwLjVyZW07XG4gIGJvcmRlci1yYWRpdXM6IDEwMHJlbTtcbn1cbjpob3N0LndpcCB7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXllbGxvdy1jb2xvcik7XG59XG5cbnNwYW4ge1xuICBmb250LXNpemU6IDEuMjVyZW07XG59Il19 */");
+
+/***/ }),
+
+/***/ "./src/app/modules/post/post-shared/components/post-status/post-status.component.ts":
+/*!******************************************************************************************!*\
+  !*** ./src/app/modules/post/post-shared/components/post-status/post-status.component.ts ***!
+  \******************************************************************************************/
+/*! exports provided: PostStatusComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PostStatusComponent", function() { return PostStatusComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _models_post_internal_models__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../models/post.internal.models */ "./src/app/modules/post/post-shared/models/post.internal.models.ts");
+
+
+
+let PostStatusComponent = class PostStatusComponent {
+    constructor() {
+        this.wip = false;
+    }
+    ngOnInit() {
+        this.wip = this.status === _models_post_internal_models__WEBPACK_IMPORTED_MODULE_2__["PostStatus"].WIP;
+    }
+};
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
+], PostStatusComponent.prototype, "status", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["HostBinding"])("class.wip")
+], PostStatusComponent.prototype, "wip", void 0);
+PostStatusComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: "app-post-status",
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./post-status.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/post/post-shared/components/post-status/post-status.component.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./post-status.component.scss */ "./src/app/modules/post/post-shared/components/post-status/post-status.component.scss")).default]
+    })
+], PostStatusComponent);
 
 
 
@@ -4649,11 +4750,12 @@ TagComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*!*************************************************************************!*\
   !*** ./src/app/modules/post/post-shared/models/post.internal.models.ts ***!
   \*************************************************************************/
-/*! exports provided: PostSummary, Post, PostsGroup, PostGroupByStrategy, DefaultPost, OfflinePost, PostsByCategory, PostsSummaries, PostsPage, PostsGroups, PostGroupByStrategies */
+/*! exports provided: PostStatus, PostSummary, Post, PostsGroup, PostGroupByStrategy, DefaultPost, OfflinePost, PostsByCategory, PostsSummaries, PostsPage, PostsGroups, PostGroupByStrategies */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PostStatus", function() { return PostStatus; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PostSummary", function() { return PostSummary; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Post", function() { return Post; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PostsGroup", function() { return PostsGroup; });
@@ -4669,6 +4771,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_modules_shared_models_page_model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/app/modules/shared/models/page.model */ "./src/app/modules/shared/models/page.model.ts");
 
 
+var PostStatus;
+(function (PostStatus) {
+    PostStatus["WIP"] = "WIP";
+    PostStatus["PUBLISHED"] = "PUBLISHED";
+})(PostStatus || (PostStatus = {}));
 class PostSummary {
 }
 class Post extends PostSummary {
@@ -4694,6 +4801,7 @@ class DefaultPost {
         this.lastUpdatedAt = new Date();
         this.searchKey = "";
         this.author = undefined;
+        this.status = PostStatus.WIP;
         this.bodyMarkdown = "";
     }
 }
@@ -4708,6 +4816,7 @@ class OfflinePost {
         this.lastUpdatedAt = new Date();
         this.searchKey = "";
         this.author = undefined;
+        this.status = PostStatus.WIP;
         this.bodyMarkdown = "lorem content: Do amet eu tempor dolor cillum ullamco mollit nulla consectetur anim ut eiusmod aliquip occaecat. Ut sint adipisicing irure ex. Laboris magna excepteur ipsum et proident excepteur ipsum amet. Aliqua cupidatat cupidatat velit velit adipisicing nostrud sit aliqua nisi enim aliqua laboris.";
     }
 }
@@ -4751,6 +4860,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _post_comments_post_comment_module__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../post-comments/post-comment.module */ "./src/app/modules/post/post-comments/post-comment.module.ts");
 /* harmony import */ var _components_create_update_post_form_create_update_post_form_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/create-update-post-form/create-update-post-form.component */ "./src/app/modules/post/post-shared/components/create-update-post-form/create-update-post-form.component.ts");
 /* harmony import */ var _markdown_markdown_module__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../markdown/markdown.module */ "./src/app/modules/markdown/markdown.module.ts");
+/* harmony import */ var _components_post_status_post_status_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/post-status/post-status.component */ "./src/app/modules/post/post-shared/components/post-status/post-status.component.ts");
+
 
 
 
@@ -4788,6 +4899,7 @@ PostSharedModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _components_post_layout_post_layout_component__WEBPACK_IMPORTED_MODULE_7__["PostLayoutComponent"],
             _components_post_title_post_title_component__WEBPACK_IMPORTED_MODULE_8__["PostTitleComponent"],
             _components_create_update_post_form_create_update_post_form_component__WEBPACK_IMPORTED_MODULE_14__["CreateUpdatePostFormComponent"],
+            _components_post_status_post_status_component__WEBPACK_IMPORTED_MODULE_16__["PostStatusComponent"],
         ],
         exports: [
             _markdown_markdown_module__WEBPACK_IMPORTED_MODULE_15__["MarkdownModule"],
@@ -4797,6 +4909,7 @@ PostSharedModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _components_search_posts_search_posts_component__WEBPACK_IMPORTED_MODULE_4__["SearchPostsComponent"],
             _components_posts_group_posts_group_component__WEBPACK_IMPORTED_MODULE_11__["PostsGroupComponent"],
             _components_create_update_post_form_create_update_post_form_component__WEBPACK_IMPORTED_MODULE_14__["CreateUpdatePostFormComponent"],
+            _components_post_status_post_status_component__WEBPACK_IMPORTED_MODULE_16__["PostStatusComponent"],
         ],
     })
 ], PostSharedModule);
@@ -4839,6 +4952,7 @@ let PostConverter = class PostConverter {
                 ? new Date(post.lastUpdatedAtIso8601)
                 : null,
             author: this.userConverter.toAuthor(post.author),
+            status: post.status == "PUBLISHED" ? _models_post_internal_models__WEBPACK_IMPORTED_MODULE_2__["PostStatus"].PUBLISHED : _models_post_internal_models__WEBPACK_IMPORTED_MODULE_2__["PostStatus"].WIP,
             searchKey: this.calculateSearchKey(post.title, post.tags),
         };
     }
@@ -4855,6 +4969,7 @@ let PostConverter = class PostConverter {
                 : null,
             searchKey: this.calculateSearchKey(post.title, post.tags),
             author: this.userConverter.toAuthor(post.author),
+            status: post.status == "PUBLISHED" ? _models_post_internal_models__WEBPACK_IMPORTED_MODULE_2__["PostStatus"].PUBLISHED : _models_post_internal_models__WEBPACK_IMPORTED_MODULE_2__["PostStatus"].WIP,
             bodyMarkdown: atob(post.bodyMarkdownBase64),
         };
     }
@@ -4916,10 +5031,11 @@ let PostConverter = class PostConverter {
             url: `/secure-api/user/posts-summaries`,
         };
     }
-    toCreatePostApiRequest(post) {
+    toCreatePostApiRequest(post, publish) {
         return {
             url: "/secure-api/posts",
             body: {
+                publish: publish,
                 title: post.title,
                 category: post.category,
                 tags: post.tags,
@@ -4927,10 +5043,11 @@ let PostConverter = class PostConverter {
             },
         };
     }
-    toUpdatePostApiRequest(post) {
+    toUpdatePostApiRequest(post, publish) {
         return {
             url: `/secure-api/posts/${post.slug}`,
             body: {
+                publish: publish,
                 title: post.title,
                 category: post.category,
                 tags: post.tags,
@@ -5465,6 +5582,90 @@ PostsState = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         providedIn: "root",
     })
 ], PostsState);
+
+
+
+/***/ }),
+
+/***/ "./src/app/modules/shared/components/button-with-options/button-option.component.ts":
+/*!******************************************************************************************!*\
+  !*** ./src/app/modules/shared/components/button-with-options/button-option.component.ts ***!
+  \******************************************************************************************/
+/*! exports provided: ButtonOptionComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ButtonOptionComponent", function() { return ButtonOptionComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+
+
+let ButtonOptionComponent = class ButtonOptionComponent {
+};
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
+], ButtonOptionComponent.prototype, "label", void 0);
+ButtonOptionComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: "app-button-option",
+        template: `<span class="mat-menu-item">{{ label }}</span>`,
+        styles: ["\n      span {\n        height: 3.5rem;\n        line-height: 3.5rem;\n      }\n    "]
+    })
+], ButtonOptionComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/modules/shared/components/button-with-options/button-with-options.component.scss":
+/*!**************************************************************************************************!*\
+  !*** ./src/app/modules/shared/components/button-with-options/button-with-options.component.scss ***!
+  \**************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (":host {\n  display: inline-flex;\n  align-items: center;\n  border-radius: 0.3rem;\n  overflow: hidden;\n  cursor: pointer;\n  color: var(--white-color);\n  background-color: var(--primary-color);\n  transition: var(--transition);\n  transition-property: background-color;\n}\n:host:hover, :host:active {\n  background-color: #2498ed;\n}\n.main-button {\n  padding: 0.6rem 1.1rem;\n  border-right: 1px solid #0573c3;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9zaGFyZWQvY29tcG9uZW50cy9idXR0b24td2l0aC1vcHRpb25zL0M6XFxkZXZcXHByb2plY3RzXFxhaGVudGV0aS1ibG9nXFxhaGVudGV0aS1ibG9nLXdlYmFwcFxcc3JjXFxtYWluXFxmcm9udGVuZC9zcmNcXGFwcFxcbW9kdWxlc1xcc2hhcmVkXFxjb21wb25lbnRzXFxidXR0b24td2l0aC1vcHRpb25zXFxidXR0b24td2l0aC1vcHRpb25zLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9tb2R1bGVzL3NoYXJlZC9jb21wb25lbnRzL2J1dHRvbi13aXRoLW9wdGlvbnMvYnV0dG9uLXdpdGgtb3B0aW9ucy5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLG9CQUFBO0VBQ0EsbUJBQUE7RUFDQSxxQkFBQTtFQUNBLGdCQUFBO0VBQ0EsZUFBQTtFQUNBLHlCQUFBO0VBQ0Esc0NBQUE7RUFDQSw2QkFBQTtFQUNBLHFDQUFBO0FDQ0Y7QURBRTtFQUVFLHlCQUFBO0FDQ0o7QURHQTtFQUNFLHNCQUFBO0VBQ0EsK0JBQUE7QUNBRiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvc2hhcmVkL2NvbXBvbmVudHMvYnV0dG9uLXdpdGgtb3B0aW9ucy9idXR0b24td2l0aC1vcHRpb25zLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3Qge1xyXG4gIGRpc3BsYXk6IGlubGluZS1mbGV4O1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgYm9yZGVyLXJhZGl1czogMC4zcmVtO1xyXG4gIG92ZXJmbG93OiBoaWRkZW47XHJcbiAgY3Vyc29yOiBwb2ludGVyO1xyXG4gIGNvbG9yOiB2YXIoLS13aGl0ZS1jb2xvcik7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tcHJpbWFyeS1jb2xvcik7XHJcbiAgdHJhbnNpdGlvbjogdmFyKC0tdHJhbnNpdGlvbik7XHJcbiAgdHJhbnNpdGlvbi1wcm9wZXJ0eTogYmFja2dyb3VuZC1jb2xvcjtcclxuICAmOmhvdmVyLFxyXG4gICY6YWN0aXZlIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICMyNDk4ZWQ7XHJcbiAgfVxyXG59XHJcblxyXG4ubWFpbi1idXR0b24ge1xyXG4gIHBhZGRpbmc6IDAuNnJlbSAxLjFyZW07XHJcbiAgYm9yZGVyLXJpZ2h0OiAxcHggc29saWQgIzA1NzNjMztcclxufVxyXG4iLCI6aG9zdCB7XG4gIGRpc3BsYXk6IGlubGluZS1mbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBib3JkZXItcmFkaXVzOiAwLjNyZW07XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIGN1cnNvcjogcG9pbnRlcjtcbiAgY29sb3I6IHZhcigtLXdoaXRlLWNvbG9yKTtcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tcHJpbWFyeS1jb2xvcik7XG4gIHRyYW5zaXRpb246IHZhcigtLXRyYW5zaXRpb24pO1xuICB0cmFuc2l0aW9uLXByb3BlcnR5OiBiYWNrZ3JvdW5kLWNvbG9yO1xufVxuOmhvc3Q6aG92ZXIsIDpob3N0OmFjdGl2ZSB7XG4gIGJhY2tncm91bmQtY29sb3I6ICMyNDk4ZWQ7XG59XG5cbi5tYWluLWJ1dHRvbiB7XG4gIHBhZGRpbmc6IDAuNnJlbSAxLjFyZW07XG4gIGJvcmRlci1yaWdodDogMXB4IHNvbGlkICMwNTczYzM7XG59Il19 */");
+
+/***/ }),
+
+/***/ "./src/app/modules/shared/components/button-with-options/button-with-options.component.ts":
+/*!************************************************************************************************!*\
+  !*** ./src/app/modules/shared/components/button-with-options/button-with-options.component.ts ***!
+  \************************************************************************************************/
+/*! exports provided: ButtonWithOptionsComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ButtonWithOptionsComponent", function() { return ButtonWithOptionsComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+
+
+let ButtonWithOptionsComponent = class ButtonWithOptionsComponent {
+    constructor() {
+        this.mainButtonClick = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+    }
+    mainButtonClickMethod() {
+        this.mainButtonClick.emit();
+    }
+};
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
+], ButtonWithOptionsComponent.prototype, "mainButtonLabel", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()
+], ButtonWithOptionsComponent.prototype, "mainButtonClick", void 0);
+ButtonWithOptionsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: "app-button-with-options",
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./button-with-options.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/button-with-options/button-with-options.component.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./button-with-options.component.scss */ "./src/app/modules/shared/components/button-with-options/button-with-options.component.scss")).default]
+    })
+], ButtonWithOptionsComponent);
 
 
 
@@ -7639,6 +7840,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_rounded_buttons_filter_rounded_button_filter_rounded_button_component__WEBPACK_IMPORTED_MODULE_57__ = __webpack_require__(/*! ./components/rounded-buttons/filter-rounded-button/filter-rounded-button.component */ "./src/app/modules/shared/components/rounded-buttons/filter-rounded-button/filter-rounded-button.component.ts");
 /* harmony import */ var _components_rounded_buttons_rounded_button_rounded_button_component__WEBPACK_IMPORTED_MODULE_58__ = __webpack_require__(/*! ./components/rounded-buttons/rounded-button/rounded-button.component */ "./src/app/modules/shared/components/rounded-buttons/rounded-button/rounded-button.component.ts");
 /* harmony import */ var _components_rounded_buttons_send_rounded_button_component__WEBPACK_IMPORTED_MODULE_59__ = __webpack_require__(/*! ./components/rounded-buttons/send-rounded-button.component */ "./src/app/modules/shared/components/rounded-buttons/send-rounded-button.component.ts");
+/* harmony import */ var _components_button_with_options_button_with_options_component__WEBPACK_IMPORTED_MODULE_60__ = __webpack_require__(/*! ./components/button-with-options/button-with-options.component */ "./src/app/modules/shared/components/button-with-options/button-with-options.component.ts");
+/* harmony import */ var _components_button_with_options_button_option_component__WEBPACK_IMPORTED_MODULE_61__ = __webpack_require__(/*! ./components/button-with-options/button-option.component */ "./src/app/modules/shared/components/button-with-options/button-option.component.ts");
+
+
 
 
 
@@ -7769,6 +7974,8 @@ SharedModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _components_rounded_buttons_upload_rounded_button_component__WEBPACK_IMPORTED_MODULE_55__["UploadRoundedButtonComponent"],
             _components_rounded_buttons_delete_rounded_button_component__WEBPACK_IMPORTED_MODULE_56__["DeleteRoundedButtonComponent"],
             _components_rounded_buttons_send_rounded_button_component__WEBPACK_IMPORTED_MODULE_59__["SendRoundedButtonComponent"],
+            _components_button_with_options_button_with_options_component__WEBPACK_IMPORTED_MODULE_60__["ButtonWithOptionsComponent"],
+            _components_button_with_options_button_option_component__WEBPACK_IMPORTED_MODULE_61__["ButtonOptionComponent"],
         ],
         exports: [
             _angular_router__WEBPACK_IMPORTED_MODULE_14__["RouterModule"],
@@ -7824,6 +8031,8 @@ SharedModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _components_rounded_buttons_upload_rounded_button_component__WEBPACK_IMPORTED_MODULE_55__["UploadRoundedButtonComponent"],
             _components_rounded_buttons_delete_rounded_button_component__WEBPACK_IMPORTED_MODULE_56__["DeleteRoundedButtonComponent"],
             _components_rounded_buttons_send_rounded_button_component__WEBPACK_IMPORTED_MODULE_59__["SendRoundedButtonComponent"],
+            _components_button_with_options_button_with_options_component__WEBPACK_IMPORTED_MODULE_60__["ButtonWithOptionsComponent"],
+            _components_button_with_options_button_option_component__WEBPACK_IMPORTED_MODULE_61__["ButtonOptionComponent"],
         ],
     })
 ], SharedModule);
