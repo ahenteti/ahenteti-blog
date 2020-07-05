@@ -22,7 +22,6 @@ import { TimeAgoPipe } from "time-ago-pipe";
 import { MatMenuModule } from "@angular/material/menu";
 import { TextareaAutoGrowDirective } from "./directives/textarea-auto-grow.directive";
 import { TextareaDisableSpellCheckDirective } from "./directives/textarea-disable-spellcheck.directive";
-import { LoginWithGithubComponent } from "./components/login-with-github/login-with-github.component";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { MatTableModule } from "@angular/material/table";
@@ -103,7 +102,6 @@ import { ButtonOptionComponent } from "./components/button-with-options/button-o
     TimeAgoPipe,
     TextareaAutoGrowDirective,
     TextareaDisableSpellCheckDirective,
-    LoginWithGithubComponent,
     RouterLinkComponent,
     NewRoundedButtonComponent,
     PageTitleComponent,
@@ -162,7 +160,6 @@ import { ButtonOptionComponent } from "./components/button-with-options/button-o
     TimeAgoPipe,
     TextareaAutoGrowDirective,
     TextareaDisableSpellCheckDirective,
-    LoginWithGithubComponent,
     RouterLinkComponent,
     NewRoundedButtonComponent,
     PageTitleComponent,
