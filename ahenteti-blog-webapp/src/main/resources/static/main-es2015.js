@@ -143,7 +143,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<form *ngIf=\"user.isAuthenticated\" #commentForm=\"ngForm\">\r\n  <div class=\"comment-input\">\r\n    <input type=\"text\" hidden name=\"slug\" [ngModel]=\"slug\" />\r\n    <app-user-avatar [user]=\"user\"></app-user-avatar>\r\n    <div class=\"textarea\">\r\n      <textarea\r\n        #commentTextarea\r\n        placeholder=\"Leave a comment...\"\r\n        name=\"value\"\r\n        rows=\"2\"\r\n        ngModel\r\n      ></textarea>\r\n    </div>\r\n    <app-send-rounded-button\r\n      (click)=\"onSubmit(commentForm)\"\r\n      data-tooltip=\"send your comment\"\r\n      class=\"tooltip-top send-button\"\r\n    ></app-send-rounded-button>\r\n  </div>\r\n</form>\r\n<div *ngIf=\"!user.isAuthenticated\" class=\"not-authenticated\">\r\n  <app-login-with-github suffix=\"to add new comment...\"></app-login-with-github>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<form *ngIf=\"user.isAuthenticated\" #commentForm=\"ngForm\">\r\n  <div class=\"comment-input\">\r\n    <input type=\"text\" hidden name=\"slug\" [ngModel]=\"slug\" />\r\n    <app-user-avatar [user]=\"user\"></app-user-avatar>\r\n    <div class=\"textarea\">\r\n      <textarea\r\n        #commentTextarea\r\n        placeholder=\"Leave a comment...\"\r\n        name=\"value\"\r\n        rows=\"2\"\r\n        ngModel\r\n      ></textarea>\r\n    </div>\r\n    <app-send-rounded-button\r\n      (click)=\"onSubmit(commentForm)\"\r\n      data-tooltip=\"send your comment\"\r\n      class=\"tooltip-top send-button\"\r\n    ></app-send-rounded-button>\r\n  </div>\r\n</form>\r\n<div *ngIf=\"!user.isAuthenticated\" class=\"not-authenticated\">\r\n  Please login to add comments\r\n</div>\r\n");
 
 /***/ }),
 
@@ -508,19 +508,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("<span class=\"iconify\" data-icon=\"ic:baseline-arrow-drop-down\"></span>\r\n");
-
-/***/ }),
-
-/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/login-with-github/login-with-github.component.html":
-/*!************************************************************************************************************************************!*\
-  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/login-with-github/login-with-github.component.html ***!
-  \************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<a href=\"/oauth2/authorization/github\" (click)=\"preLogin()\"\r\n>Login with <span class=\"iconify\" data-icon=\"fe:github\"></span>\r\n    {{ suffix }}</a\r\n>\r\n");
 
 /***/ }),
 
@@ -3130,7 +3117,7 @@ ThemeLocalStorage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("form {\n  margin-bottom: 2rem;\n}\n\n.comment-input {\n  display: flex;\n}\n\n.comment-input app-user-avatar {\n  flex-grow: 0;\n  flex-shrink: 0;\n  margin-right: var(--comment-user-avatar-margin-right);\n}\n\n.comment-input .textarea {\n  width: 100%;\n  position: relative;\n}\n\n.comment-input textarea {\n  position: relative;\n  height: 5.5rem;\n}\n\n.comment-input .textarea::before {\n  content: \"\";\n  position: absolute;\n  top: 1rem;\n  left: -1rem;\n  width: 0;\n  height: 0;\n  border-top: 1rem solid transparent;\n  border-right: 1rem solid var(--comment-background-color);\n  border-bottom: 1rem solid transparent;\n  border-left: none;\n  transition: var(--transition);\n  transition-property: color, background-color border-color;\n}\n\n.comment-input .send-button {\n  --rounded-button-size: 5.5rem;\n  flex-grow: 0;\n  flex-shrink: 0;\n  padding-left: 1rem;\n}\n\n.comment-submit {\n  display: flex;\n  justify-content: flex-end;\n}\n\n.not-authenticated {\n  display: flex;\n  margin-bottom: 2.5rem;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9wb3N0L3Bvc3QtY29tbWVudHMvY29tcG9uZW50cy9hZGQtcG9zdC1jb21tZW50L0M6XFxkZXZcXHByb2plY3RzXFxhaGVudGV0aS1ibG9nXFxhaGVudGV0aS1ibG9nLXdlYmFwcFxcc3JjXFxtYWluXFxmcm9udGVuZC9zcmNcXGFwcFxcbW9kdWxlc1xccG9zdFxccG9zdC1jb21tZW50c1xcY29tcG9uZW50c1xcYWRkLXBvc3QtY29tbWVudFxcYWRkLXBvc3QtY29tbWVudC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvbW9kdWxlcy9wb3N0L3Bvc3QtY29tbWVudHMvY29tcG9uZW50cy9hZGQtcG9zdC1jb21tZW50L2FkZC1wb3N0LWNvbW1lbnQuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL21vZHVsZXMvcG9zdC9wb3N0LWNvbW1lbnRzL2NvbXBvbmVudHMvYWRkLXBvc3QtY29tbWVudC9DOlxcZGV2XFxwcm9qZWN0c1xcYWhlbnRldGktYmxvZ1xcYWhlbnRldGktYmxvZy13ZWJhcHBcXHNyY1xcbWFpblxcZnJvbnRlbmQvc3JjXFxzdHlsZXNcXG1peGluLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRUE7RUFDRSxtQkFBQTtBQ0RGOztBRElBO0VBQ0UsYUFBQTtBQ0RGOztBREdFO0VFUkEsWUFBQTtFQUNBLGNBQUE7RUFDQSxxREFBQTtBRFFGOztBREVFO0VBQ0UsV0FBQTtFQUNBLGtCQUFBO0FDQUo7O0FER0U7RUFDRSxrQkFBQTtFQUNBLGNBQUE7QUNESjs7QURJRTtFQUNFLFdBQUE7RUFDQSxrQkFBQTtFQUNBLFNBQUE7RUFDQSxXQUFBO0VBQ0EsUUFBQTtFQUNBLFNBQUE7RUFDQSxrQ0FBQTtFQUNBLHdEQUFBO0VBQ0EscUNBQUE7RUFDQSxpQkFBQTtFQUNBLDZCQUFBO0VBQ0EseURBQUE7QUNGSjs7QURLRTtFQUNFLDZCQUFBO0VBQ0EsWUFBQTtFQUNBLGNBQUE7RUFDQSxrQkFBQTtBQ0hKOztBRE9BO0VBQ0UsYUFBQTtFQUNBLHlCQUFBO0FDSkY7O0FET0E7RUFDRSxhQUFBO0VBQ0EscUJBQUE7QUNKRiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvcG9zdC9wb3N0LWNvbW1lbnRzL2NvbXBvbmVudHMvYWRkLXBvc3QtY29tbWVudC9hZGQtcG9zdC1jb21tZW50LmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiQGltcG9ydCBcIi4uLy4uLy4uLy4uLy4uLy4uL3N0eWxlcy9taXhpblwiO1xyXG5cclxuZm9ybSB7XHJcbiAgbWFyZ2luLWJvdHRvbTogMnJlbTtcclxufVxyXG5cclxuLmNvbW1lbnQtaW5wdXQge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcblxyXG4gICYgYXBwLXVzZXItYXZhdGFyIHtcclxuICAgIEBpbmNsdWRlIGF2YXRhcjtcclxuICB9XHJcblxyXG4gICYgLnRleHRhcmVhIHtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIH1cclxuXHJcbiAgJiB0ZXh0YXJlYSB7XHJcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgICBoZWlnaHQ6IDUuNXJlbTtcclxuICB9XHJcblxyXG4gICYgLnRleHRhcmVhOjpiZWZvcmUge1xyXG4gICAgY29udGVudDogXCJcIjtcclxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgIHRvcDogMXJlbTtcclxuICAgIGxlZnQ6IC0xcmVtO1xyXG4gICAgd2lkdGg6IDA7XHJcbiAgICBoZWlnaHQ6IDA7XHJcbiAgICBib3JkZXItdG9wOiAxcmVtIHNvbGlkIHRyYW5zcGFyZW50O1xyXG4gICAgYm9yZGVyLXJpZ2h0OiAxcmVtIHNvbGlkIHZhcigtLWNvbW1lbnQtYmFja2dyb3VuZC1jb2xvcik7XHJcbiAgICBib3JkZXItYm90dG9tOiAxcmVtIHNvbGlkIHRyYW5zcGFyZW50O1xyXG4gICAgYm9yZGVyLWxlZnQ6IG5vbmU7XHJcbiAgICB0cmFuc2l0aW9uOiB2YXIoLS10cmFuc2l0aW9uKTtcclxuICAgIHRyYW5zaXRpb24tcHJvcGVydHk6IGNvbG9yLCBiYWNrZ3JvdW5kLWNvbG9yIGJvcmRlci1jb2xvcjtcclxuICB9XHJcblxyXG4gICYgLnNlbmQtYnV0dG9uIHtcclxuICAgIC0tcm91bmRlZC1idXR0b24tc2l6ZTogNS41cmVtO1xyXG4gICAgZmxleC1ncm93OiAwO1xyXG4gICAgZmxleC1zaHJpbms6IDA7XHJcbiAgICBwYWRkaW5nLWxlZnQ6IDFyZW07XHJcbiAgfVxyXG59XHJcblxyXG4uY29tbWVudC1zdWJtaXQge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAganVzdGlmeS1jb250ZW50OiBmbGV4LWVuZDtcclxufVxyXG5cclxuLm5vdC1hdXRoZW50aWNhdGVkIHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIG1hcmdpbi1ib3R0b206IDIuNXJlbTtcclxufVxyXG4iLCJmb3JtIHtcbiAgbWFyZ2luLWJvdHRvbTogMnJlbTtcbn1cblxuLmNvbW1lbnQtaW5wdXQge1xuICBkaXNwbGF5OiBmbGV4O1xufVxuLmNvbW1lbnQtaW5wdXQgYXBwLXVzZXItYXZhdGFyIHtcbiAgZmxleC1ncm93OiAwO1xuICBmbGV4LXNocmluazogMDtcbiAgbWFyZ2luLXJpZ2h0OiB2YXIoLS1jb21tZW50LXVzZXItYXZhdGFyLW1hcmdpbi1yaWdodCk7XG59XG4uY29tbWVudC1pbnB1dCAudGV4dGFyZWEge1xuICB3aWR0aDogMTAwJTtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xufVxuLmNvbW1lbnQtaW5wdXQgdGV4dGFyZWEge1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIGhlaWdodDogNS41cmVtO1xufVxuLmNvbW1lbnQtaW5wdXQgLnRleHRhcmVhOjpiZWZvcmUge1xuICBjb250ZW50OiBcIlwiO1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHRvcDogMXJlbTtcbiAgbGVmdDogLTFyZW07XG4gIHdpZHRoOiAwO1xuICBoZWlnaHQ6IDA7XG4gIGJvcmRlci10b3A6IDFyZW0gc29saWQgdHJhbnNwYXJlbnQ7XG4gIGJvcmRlci1yaWdodDogMXJlbSBzb2xpZCB2YXIoLS1jb21tZW50LWJhY2tncm91bmQtY29sb3IpO1xuICBib3JkZXItYm90dG9tOiAxcmVtIHNvbGlkIHRyYW5zcGFyZW50O1xuICBib3JkZXItbGVmdDogbm9uZTtcbiAgdHJhbnNpdGlvbjogdmFyKC0tdHJhbnNpdGlvbik7XG4gIHRyYW5zaXRpb24tcHJvcGVydHk6IGNvbG9yLCBiYWNrZ3JvdW5kLWNvbG9yIGJvcmRlci1jb2xvcjtcbn1cbi5jb21tZW50LWlucHV0IC5zZW5kLWJ1dHRvbiB7XG4gIC0tcm91bmRlZC1idXR0b24tc2l6ZTogNS41cmVtO1xuICBmbGV4LWdyb3c6IDA7XG4gIGZsZXgtc2hyaW5rOiAwO1xuICBwYWRkaW5nLWxlZnQ6IDFyZW07XG59XG5cbi5jb21tZW50LXN1Ym1pdCB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGp1c3RpZnktY29udGVudDogZmxleC1lbmQ7XG59XG5cbi5ub3QtYXV0aGVudGljYXRlZCB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIG1hcmdpbi1ib3R0b206IDIuNXJlbTtcbn0iLCJAbWl4aW4gYXZhdGFyIHtcclxuICBmbGV4LWdyb3c6IDA7XHJcbiAgZmxleC1zaHJpbms6IDA7XHJcbiAgbWFyZ2luLXJpZ2h0OiB2YXIoLS1jb21tZW50LXVzZXItYXZhdGFyLW1hcmdpbi1yaWdodCk7XHJcbn1cclxuIl19 */");
+/* harmony default export */ __webpack_exports__["default"] = ("form {\n  margin-bottom: 2rem;\n}\n\n.comment-input {\n  display: flex;\n}\n\n.comment-input app-user-avatar {\n  flex-grow: 0;\n  flex-shrink: 0;\n  margin-right: var(--comment-user-avatar-margin-right);\n}\n\n.comment-input .textarea {\n  width: 100%;\n  position: relative;\n}\n\n.comment-input textarea {\n  position: relative;\n  height: 5.5rem;\n}\n\n.comment-input .textarea::before {\n  content: \"\";\n  position: absolute;\n  top: 1rem;\n  left: -1rem;\n  width: 0;\n  height: 0;\n  border-top: 1rem solid transparent;\n  border-right: 1rem solid var(--comment-background-color);\n  border-bottom: 1rem solid transparent;\n  border-left: none;\n  transition: var(--transition);\n  transition-property: color, background-color border-color;\n}\n\n.comment-input .send-button {\n  --rounded-button-size: 5.5rem;\n  flex-grow: 0;\n  flex-shrink: 0;\n  padding-left: 1rem;\n}\n\n.comment-submit {\n  display: flex;\n  justify-content: flex-end;\n}\n\n.not-authenticated {\n  display: flex;\n  margin-bottom: 2.5rem;\n  font-weight: bold;\n  font-size: 1.8rem;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9wb3N0L3Bvc3QtY29tbWVudHMvY29tcG9uZW50cy9hZGQtcG9zdC1jb21tZW50L0M6XFxkZXZcXHByb2plY3RzXFxhaGVudGV0aS1ibG9nXFxhaGVudGV0aS1ibG9nLXdlYmFwcFxcc3JjXFxtYWluXFxmcm9udGVuZC9zcmNcXGFwcFxcbW9kdWxlc1xccG9zdFxccG9zdC1jb21tZW50c1xcY29tcG9uZW50c1xcYWRkLXBvc3QtY29tbWVudFxcYWRkLXBvc3QtY29tbWVudC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvbW9kdWxlcy9wb3N0L3Bvc3QtY29tbWVudHMvY29tcG9uZW50cy9hZGQtcG9zdC1jb21tZW50L2FkZC1wb3N0LWNvbW1lbnQuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL21vZHVsZXMvcG9zdC9wb3N0LWNvbW1lbnRzL2NvbXBvbmVudHMvYWRkLXBvc3QtY29tbWVudC9DOlxcZGV2XFxwcm9qZWN0c1xcYWhlbnRldGktYmxvZ1xcYWhlbnRldGktYmxvZy13ZWJhcHBcXHNyY1xcbWFpblxcZnJvbnRlbmQvc3JjXFxzdHlsZXNcXG1peGluLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRUE7RUFDRSxtQkFBQTtBQ0RGOztBRElBO0VBQ0UsYUFBQTtBQ0RGOztBREdFO0VFUkEsWUFBQTtFQUNBLGNBQUE7RUFDQSxxREFBQTtBRFFGOztBREVFO0VBQ0UsV0FBQTtFQUNBLGtCQUFBO0FDQUo7O0FER0U7RUFDRSxrQkFBQTtFQUNBLGNBQUE7QUNESjs7QURJRTtFQUNFLFdBQUE7RUFDQSxrQkFBQTtFQUNBLFNBQUE7RUFDQSxXQUFBO0VBQ0EsUUFBQTtFQUNBLFNBQUE7RUFDQSxrQ0FBQTtFQUNBLHdEQUFBO0VBQ0EscUNBQUE7RUFDQSxpQkFBQTtFQUNBLDZCQUFBO0VBQ0EseURBQUE7QUNGSjs7QURLRTtFQUNFLDZCQUFBO0VBQ0EsWUFBQTtFQUNBLGNBQUE7RUFDQSxrQkFBQTtBQ0hKOztBRE9BO0VBQ0UsYUFBQTtFQUNBLHlCQUFBO0FDSkY7O0FET0E7RUFDRSxhQUFBO0VBQ0EscUJBQUE7RUFDQSxpQkFBQTtFQUNBLGlCQUFBO0FDSkYiLCJmaWxlIjoic3JjL2FwcC9tb2R1bGVzL3Bvc3QvcG9zdC1jb21tZW50cy9jb21wb25lbnRzL2FkZC1wb3N0LWNvbW1lbnQvYWRkLXBvc3QtY29tbWVudC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIkBpbXBvcnQgXCIuLi8uLi8uLi8uLi8uLi8uLi9zdHlsZXMvbWl4aW5cIjtcclxuXHJcbmZvcm0ge1xyXG4gIG1hcmdpbi1ib3R0b206IDJyZW07XHJcbn1cclxuXHJcbi5jb21tZW50LWlucHV0IHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG5cclxuICAmIGFwcC11c2VyLWF2YXRhciB7XHJcbiAgICBAaW5jbHVkZSBhdmF0YXI7XHJcbiAgfVxyXG5cclxuICAmIC50ZXh0YXJlYSB7XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICB9XHJcblxyXG4gICYgdGV4dGFyZWEge1xyXG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gICAgaGVpZ2h0OiA1LjVyZW07XHJcbiAgfVxyXG5cclxuICAmIC50ZXh0YXJlYTo6YmVmb3JlIHtcclxuICAgIGNvbnRlbnQ6IFwiXCI7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICB0b3A6IDFyZW07XHJcbiAgICBsZWZ0OiAtMXJlbTtcclxuICAgIHdpZHRoOiAwO1xyXG4gICAgaGVpZ2h0OiAwO1xyXG4gICAgYm9yZGVyLXRvcDogMXJlbSBzb2xpZCB0cmFuc3BhcmVudDtcclxuICAgIGJvcmRlci1yaWdodDogMXJlbSBzb2xpZCB2YXIoLS1jb21tZW50LWJhY2tncm91bmQtY29sb3IpO1xyXG4gICAgYm9yZGVyLWJvdHRvbTogMXJlbSBzb2xpZCB0cmFuc3BhcmVudDtcclxuICAgIGJvcmRlci1sZWZ0OiBub25lO1xyXG4gICAgdHJhbnNpdGlvbjogdmFyKC0tdHJhbnNpdGlvbik7XHJcbiAgICB0cmFuc2l0aW9uLXByb3BlcnR5OiBjb2xvciwgYmFja2dyb3VuZC1jb2xvciBib3JkZXItY29sb3I7XHJcbiAgfVxyXG5cclxuICAmIC5zZW5kLWJ1dHRvbiB7XHJcbiAgICAtLXJvdW5kZWQtYnV0dG9uLXNpemU6IDUuNXJlbTtcclxuICAgIGZsZXgtZ3JvdzogMDtcclxuICAgIGZsZXgtc2hyaW5rOiAwO1xyXG4gICAgcGFkZGluZy1sZWZ0OiAxcmVtO1xyXG4gIH1cclxufVxyXG5cclxuLmNvbW1lbnQtc3VibWl0IHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGp1c3RpZnktY29udGVudDogZmxleC1lbmQ7XHJcbn1cclxuXHJcbi5ub3QtYXV0aGVudGljYXRlZCB7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBtYXJnaW4tYm90dG9tOiAyLjVyZW07XHJcbiAgZm9udC13ZWlnaHQ6IGJvbGQ7XHJcbiAgZm9udC1zaXplOiAxLjhyZW07XHJcbn1cclxuIiwiZm9ybSB7XG4gIG1hcmdpbi1ib3R0b206IDJyZW07XG59XG5cbi5jb21tZW50LWlucHV0IHtcbiAgZGlzcGxheTogZmxleDtcbn1cbi5jb21tZW50LWlucHV0IGFwcC11c2VyLWF2YXRhciB7XG4gIGZsZXgtZ3JvdzogMDtcbiAgZmxleC1zaHJpbms6IDA7XG4gIG1hcmdpbi1yaWdodDogdmFyKC0tY29tbWVudC11c2VyLWF2YXRhci1tYXJnaW4tcmlnaHQpO1xufVxuLmNvbW1lbnQtaW5wdXQgLnRleHRhcmVhIHtcbiAgd2lkdGg6IDEwMCU7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbn1cbi5jb21tZW50LWlucHV0IHRleHRhcmVhIHtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICBoZWlnaHQ6IDUuNXJlbTtcbn1cbi5jb21tZW50LWlucHV0IC50ZXh0YXJlYTo6YmVmb3JlIHtcbiAgY29udGVudDogXCJcIjtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICB0b3A6IDFyZW07XG4gIGxlZnQ6IC0xcmVtO1xuICB3aWR0aDogMDtcbiAgaGVpZ2h0OiAwO1xuICBib3JkZXItdG9wOiAxcmVtIHNvbGlkIHRyYW5zcGFyZW50O1xuICBib3JkZXItcmlnaHQ6IDFyZW0gc29saWQgdmFyKC0tY29tbWVudC1iYWNrZ3JvdW5kLWNvbG9yKTtcbiAgYm9yZGVyLWJvdHRvbTogMXJlbSBzb2xpZCB0cmFuc3BhcmVudDtcbiAgYm9yZGVyLWxlZnQ6IG5vbmU7XG4gIHRyYW5zaXRpb246IHZhcigtLXRyYW5zaXRpb24pO1xuICB0cmFuc2l0aW9uLXByb3BlcnR5OiBjb2xvciwgYmFja2dyb3VuZC1jb2xvciBib3JkZXItY29sb3I7XG59XG4uY29tbWVudC1pbnB1dCAuc2VuZC1idXR0b24ge1xuICAtLXJvdW5kZWQtYnV0dG9uLXNpemU6IDUuNXJlbTtcbiAgZmxleC1ncm93OiAwO1xuICBmbGV4LXNocmluazogMDtcbiAgcGFkZGluZy1sZWZ0OiAxcmVtO1xufVxuXG4uY29tbWVudC1zdWJtaXQge1xuICBkaXNwbGF5OiBmbGV4O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtZW5kO1xufVxuXG4ubm90LWF1dGhlbnRpY2F0ZWQge1xuICBkaXNwbGF5OiBmbGV4O1xuICBtYXJnaW4tYm90dG9tOiAyLjVyZW07XG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xuICBmb250LXNpemU6IDEuOHJlbTtcbn0iLCJAbWl4aW4gYXZhdGFyIHtcclxuICBmbGV4LWdyb3c6IDA7XHJcbiAgZmxleC1zaHJpbms6IDA7XHJcbiAgbWFyZ2luLXJpZ2h0OiB2YXIoLS1jb21tZW50LXVzZXItYXZhdGFyLW1hcmdpbi1yaWdodCk7XHJcbn1cclxuIl19 */");
 
 /***/ }),
 
@@ -6068,61 +6055,6 @@ DropdownIconComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
-/***/ "./src/app/modules/shared/components/login-with-github/login-with-github.component.scss":
-/*!**********************************************************************************************!*\
-  !*** ./src/app/modules/shared/components/login-with-github/login-with-github.component.scss ***!
-  \**********************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("a {\n  text-decoration: none;\n  color: var(--primary-color);\n  border: 1px solid var(--primary-color);\n  padding: 1rem 2rem;\n  border-radius: 0.3rem;\n  display: flex;\n  align-items: center;\n  transition: var(--transition);\n  transition-property: color, border-color background-color;\n}\na:hover {\n  background-color: var(--primary-color);\n  color: #eee;\n}\n.iconify {\n  margin: 0 0.8rem;\n  font-size: 2.2rem;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9zaGFyZWQvY29tcG9uZW50cy9sb2dpbi13aXRoLWdpdGh1Yi9DOlxcZGV2XFxwcm9qZWN0c1xcYWhlbnRldGktYmxvZ1xcYWhlbnRldGktYmxvZy13ZWJhcHBcXHNyY1xcbWFpblxcZnJvbnRlbmQvc3JjXFxhcHBcXG1vZHVsZXNcXHNoYXJlZFxcY29tcG9uZW50c1xcbG9naW4td2l0aC1naXRodWJcXGxvZ2luLXdpdGgtZ2l0aHViLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9tb2R1bGVzL3NoYXJlZC9jb21wb25lbnRzL2xvZ2luLXdpdGgtZ2l0aHViL2xvZ2luLXdpdGgtZ2l0aHViLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UscUJBQUE7RUFDQSwyQkFBQTtFQUNBLHNDQUFBO0VBQ0Esa0JBQUE7RUFDQSxxQkFBQTtFQUNBLGFBQUE7RUFDQSxtQkFBQTtFQUNBLDZCQUFBO0VBQ0EseURBQUE7QUNDRjtBRENFO0VBQ0Usc0NBQUE7RUFDQSxXQUFBO0FDQ0o7QURHQTtFQUNFLGdCQUFBO0VBQ0EsaUJBQUE7QUNBRiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvc2hhcmVkL2NvbXBvbmVudHMvbG9naW4td2l0aC1naXRodWIvbG9naW4td2l0aC1naXRodWIuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJhIHtcclxuICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XHJcbiAgY29sb3I6IHZhcigtLXByaW1hcnktY29sb3IpO1xyXG4gIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLXByaW1hcnktY29sb3IpO1xyXG4gIHBhZGRpbmc6IDFyZW0gMnJlbTtcclxuICBib3JkZXItcmFkaXVzOiAwLjNyZW07XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIHRyYW5zaXRpb246IHZhcigtLXRyYW5zaXRpb24pO1xyXG4gIHRyYW5zaXRpb24tcHJvcGVydHk6IGNvbG9yLCBib3JkZXItY29sb3IgYmFja2dyb3VuZC1jb2xvcjtcclxuXHJcbiAgJjpob3ZlciB7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1wcmltYXJ5LWNvbG9yKTtcclxuICAgIGNvbG9yOiAjZWVlO1xyXG4gIH1cclxufVxyXG5cclxuLmljb25pZnkge1xyXG4gIG1hcmdpbjogMCAwLjhyZW07XHJcbiAgZm9udC1zaXplOiAyLjJyZW07XHJcbn1cclxuIiwiYSB7XG4gIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcbiAgY29sb3I6IHZhcigtLXByaW1hcnktY29sb3IpO1xuICBib3JkZXI6IDFweCBzb2xpZCB2YXIoLS1wcmltYXJ5LWNvbG9yKTtcbiAgcGFkZGluZzogMXJlbSAycmVtO1xuICBib3JkZXItcmFkaXVzOiAwLjNyZW07XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIHRyYW5zaXRpb246IHZhcigtLXRyYW5zaXRpb24pO1xuICB0cmFuc2l0aW9uLXByb3BlcnR5OiBjb2xvciwgYm9yZGVyLWNvbG9yIGJhY2tncm91bmQtY29sb3I7XG59XG5hOmhvdmVyIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tcHJpbWFyeS1jb2xvcik7XG4gIGNvbG9yOiAjZWVlO1xufVxuXG4uaWNvbmlmeSB7XG4gIG1hcmdpbjogMCAwLjhyZW07XG4gIGZvbnQtc2l6ZTogMi4ycmVtO1xufSJdfQ== */");
-
-/***/ }),
-
-/***/ "./src/app/modules/shared/components/login-with-github/login-with-github.component.ts":
-/*!********************************************************************************************!*\
-  !*** ./src/app/modules/shared/components/login-with-github/login-with-github.component.ts ***!
-  \********************************************************************************************/
-/*! exports provided: LoginWithGithubComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginWithGithubComponent", function() { return LoginWithGithubComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _user_services_user_login_services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../user/services/user.login.services */ "./src/app/modules/user/services/user.login.services.ts");
-
-
-
-let LoginWithGithubComponent = class LoginWithGithubComponent {
-    constructor(userLoginServices) {
-        this.userLoginServices = userLoginServices;
-    }
-    preLogin() {
-        this.userLoginServices.preLogin();
-    }
-};
-LoginWithGithubComponent.ctorParameters = () => [
-    { type: _user_services_user_login_services__WEBPACK_IMPORTED_MODULE_2__["UserLoginServices"] }
-];
-tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
-], LoginWithGithubComponent.prototype, "suffix", void 0);
-LoginWithGithubComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: "app-login-with-github",
-        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./login-with-github.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/shared/components/login-with-github/login-with-github.component.html")).default,
-        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./login-with-github.component.scss */ "./src/app/modules/shared/components/login-with-github/login-with-github.component.scss")).default]
-    })
-], LoginWithGithubComponent);
-
-
-
-/***/ }),
-
 /***/ "./src/app/modules/shared/components/logo/logo-link.component.scss":
 /*!*************************************************************************!*\
   !*** ./src/app/modules/shared/components/logo/logo-link.component.scss ***!
@@ -7805,44 +7737,42 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material_menu__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @angular/material/menu */ "./node_modules/@angular/material/esm2015/menu.js");
 /* harmony import */ var _directives_textarea_auto_grow_directive__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./directives/textarea-auto-grow.directive */ "./src/app/modules/shared/directives/textarea-auto-grow.directive.ts");
 /* harmony import */ var _directives_textarea_disable_spellcheck_directive__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./directives/textarea-disable-spellcheck.directive */ "./src/app/modules/shared/directives/textarea-disable-spellcheck.directive.ts");
-/* harmony import */ var _components_login_with_github_login_with_github_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/login-with-github/login-with-github.component */ "./src/app/modules/shared/components/login-with-github/login-with-github.component.ts");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
-/* harmony import */ var _angular_material_table__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @angular/material/table */ "./node_modules/@angular/material/esm2015/table.js");
-/* harmony import */ var _angular_material_sort__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! @angular/material/sort */ "./node_modules/@angular/material/esm2015/sort.js");
-/* harmony import */ var _components_router_link_router_link_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./components/router-link/router-link.component */ "./src/app/modules/shared/components/router-link/router-link.component.ts");
-/* harmony import */ var _angular_material_form_field__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! @angular/material/form-field */ "./node_modules/@angular/material/esm2015/form-field.js");
-/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! @angular/material/input */ "./node_modules/@angular/material/esm2015/input.js");
-/* harmony import */ var _components_text_page_title_page_title_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./components/text/page-title/page-title.component */ "./src/app/modules/shared/components/text/page-title/page-title.component.ts");
-/* harmony import */ var _angular_material_chips__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! @angular/material/chips */ "./node_modules/@angular/material/esm2015/chips.js");
-/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! @angular/material/icon */ "./node_modules/@angular/material/esm2015/icon.js");
-/* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! @angular/material/tabs */ "./node_modules/@angular/material/esm2015/tabs.js");
-/* harmony import */ var _components_buttons_edit_button_edit_button_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./components/buttons/edit-button/edit-button.component */ "./src/app/modules/shared/components/buttons/edit-button/edit-button.component.ts");
-/* harmony import */ var _components_buttons_consult_button_consult_button_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./components/buttons/consult-button/consult-button.component */ "./src/app/modules/shared/components/buttons/consult-button/consult-button.component.ts");
-/* harmony import */ var ng2_simplemde__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ng2-simplemde */ "./node_modules/ng2-simplemde/lib/index.js");
-/* harmony import */ var _components_buttons_edit_button_edit_button_link_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./components/buttons/edit-button/edit-button-link.component */ "./src/app/modules/shared/components/buttons/edit-button/edit-button-link.component.ts");
-/* harmony import */ var _components_buttons_consult_button_consult_button_link_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./components/buttons/consult-button/consult-button-link.component */ "./src/app/modules/shared/components/buttons/consult-button/consult-button-link.component.ts");
-/* harmony import */ var _components_buttons_delete_button_delete_button_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./components/buttons/delete-button/delete-button.component */ "./src/app/modules/shared/components/buttons/delete-button/delete-button.component.ts");
-/* harmony import */ var _directives_input_disable_autocomplete_directive__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./directives/input-disable-autocomplete.directive */ "./src/app/modules/shared/directives/input-disable-autocomplete.directive.ts");
-/* harmony import */ var _components_buttons_previous_button_previous_button_component__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./components/buttons/previous-button/previous-button.component */ "./src/app/modules/shared/components/buttons/previous-button/previous-button.component.ts");
-/* harmony import */ var _components_buttons_next_button_next_button_component__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./components/buttons/next-button/next-button.component */ "./src/app/modules/shared/components/buttons/next-button/next-button.component.ts");
-/* harmony import */ var _components_buttons_load_more_button_load_more_button_component__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ./components/buttons/load-more-button/load-more-button.component */ "./src/app/modules/shared/components/buttons/load-more-button/load-more-button.component.ts");
-/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm2015/dialog.js");
-/* harmony import */ var _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! ./components/confirmation-dialog/confirmation-dialog.component */ "./src/app/modules/shared/components/confirmation-dialog/confirmation-dialog.component.ts");
-/* harmony import */ var _components_icons_dropdown_icon_dropdown_icon_component__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! ./components/icons/dropdown-icon/dropdown-icon.component */ "./src/app/modules/shared/components/icons/dropdown-icon/dropdown-icon.component.ts");
-/* harmony import */ var _layouts_manage_resources_page_layout__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__(/*! ./layouts/manage-resources-page.layout */ "./src/app/modules/shared/layouts/manage-resources-page.layout.ts");
-/* harmony import */ var _components_rounded_buttons_new_rounded_button_component__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__(/*! ./components/rounded-buttons/new-rounded-button.component */ "./src/app/modules/shared/components/rounded-buttons/new-rounded-button.component.ts");
-/* harmony import */ var _components_rounded_buttons_consult_rounded_button_component__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__(/*! ./components/rounded-buttons/consult-rounded-button.component */ "./src/app/modules/shared/components/rounded-buttons/consult-rounded-button.component.ts");
-/* harmony import */ var _components_rounded_buttons_edit_rounded_button_component__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(/*! ./components/rounded-buttons/edit-rounded-button.component */ "./src/app/modules/shared/components/rounded-buttons/edit-rounded-button.component.ts");
-/* harmony import */ var _components_rounded_buttons_download_rounded_button_component__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(/*! ./components/rounded-buttons/download-rounded-button.component */ "./src/app/modules/shared/components/rounded-buttons/download-rounded-button.component.ts");
-/* harmony import */ var _components_rounded_buttons_upload_rounded_button_component__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(/*! ./components/rounded-buttons/upload-rounded-button.component */ "./src/app/modules/shared/components/rounded-buttons/upload-rounded-button.component.ts");
-/* harmony import */ var _components_rounded_buttons_delete_rounded_button_component__WEBPACK_IMPORTED_MODULE_56__ = __webpack_require__(/*! ./components/rounded-buttons/delete-rounded-button.component */ "./src/app/modules/shared/components/rounded-buttons/delete-rounded-button.component.ts");
-/* harmony import */ var _components_rounded_buttons_filter_rounded_button_filter_rounded_button_component__WEBPACK_IMPORTED_MODULE_57__ = __webpack_require__(/*! ./components/rounded-buttons/filter-rounded-button/filter-rounded-button.component */ "./src/app/modules/shared/components/rounded-buttons/filter-rounded-button/filter-rounded-button.component.ts");
-/* harmony import */ var _components_rounded_buttons_rounded_button_rounded_button_component__WEBPACK_IMPORTED_MODULE_58__ = __webpack_require__(/*! ./components/rounded-buttons/rounded-button/rounded-button.component */ "./src/app/modules/shared/components/rounded-buttons/rounded-button/rounded-button.component.ts");
-/* harmony import */ var _components_rounded_buttons_send_rounded_button_component__WEBPACK_IMPORTED_MODULE_59__ = __webpack_require__(/*! ./components/rounded-buttons/send-rounded-button.component */ "./src/app/modules/shared/components/rounded-buttons/send-rounded-button.component.ts");
-/* harmony import */ var _components_button_with_options_button_with_options_component__WEBPACK_IMPORTED_MODULE_60__ = __webpack_require__(/*! ./components/button-with-options/button-with-options.component */ "./src/app/modules/shared/components/button-with-options/button-with-options.component.ts");
-/* harmony import */ var _components_button_with_options_button_option_component__WEBPACK_IMPORTED_MODULE_61__ = __webpack_require__(/*! ./components/button-with-options/button-option.component */ "./src/app/modules/shared/components/button-with-options/button-option.component.ts");
-
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+/* harmony import */ var _angular_material_table__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @angular/material/table */ "./node_modules/@angular/material/esm2015/table.js");
+/* harmony import */ var _angular_material_sort__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @angular/material/sort */ "./node_modules/@angular/material/esm2015/sort.js");
+/* harmony import */ var _components_router_link_router_link_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./components/router-link/router-link.component */ "./src/app/modules/shared/components/router-link/router-link.component.ts");
+/* harmony import */ var _angular_material_form_field__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! @angular/material/form-field */ "./node_modules/@angular/material/esm2015/form-field.js");
+/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! @angular/material/input */ "./node_modules/@angular/material/esm2015/input.js");
+/* harmony import */ var _components_text_page_title_page_title_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./components/text/page-title/page-title.component */ "./src/app/modules/shared/components/text/page-title/page-title.component.ts");
+/* harmony import */ var _angular_material_chips__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! @angular/material/chips */ "./node_modules/@angular/material/esm2015/chips.js");
+/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! @angular/material/icon */ "./node_modules/@angular/material/esm2015/icon.js");
+/* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! @angular/material/tabs */ "./node_modules/@angular/material/esm2015/tabs.js");
+/* harmony import */ var _components_buttons_edit_button_edit_button_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./components/buttons/edit-button/edit-button.component */ "./src/app/modules/shared/components/buttons/edit-button/edit-button.component.ts");
+/* harmony import */ var _components_buttons_consult_button_consult_button_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./components/buttons/consult-button/consult-button.component */ "./src/app/modules/shared/components/buttons/consult-button/consult-button.component.ts");
+/* harmony import */ var ng2_simplemde__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ng2-simplemde */ "./node_modules/ng2-simplemde/lib/index.js");
+/* harmony import */ var _components_buttons_edit_button_edit_button_link_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./components/buttons/edit-button/edit-button-link.component */ "./src/app/modules/shared/components/buttons/edit-button/edit-button-link.component.ts");
+/* harmony import */ var _components_buttons_consult_button_consult_button_link_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./components/buttons/consult-button/consult-button-link.component */ "./src/app/modules/shared/components/buttons/consult-button/consult-button-link.component.ts");
+/* harmony import */ var _components_buttons_delete_button_delete_button_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./components/buttons/delete-button/delete-button.component */ "./src/app/modules/shared/components/buttons/delete-button/delete-button.component.ts");
+/* harmony import */ var _directives_input_disable_autocomplete_directive__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./directives/input-disable-autocomplete.directive */ "./src/app/modules/shared/directives/input-disable-autocomplete.directive.ts");
+/* harmony import */ var _components_buttons_previous_button_previous_button_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./components/buttons/previous-button/previous-button.component */ "./src/app/modules/shared/components/buttons/previous-button/previous-button.component.ts");
+/* harmony import */ var _components_buttons_next_button_next_button_component__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./components/buttons/next-button/next-button.component */ "./src/app/modules/shared/components/buttons/next-button/next-button.component.ts");
+/* harmony import */ var _components_buttons_load_more_button_load_more_button_component__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./components/buttons/load-more-button/load-more-button.component */ "./src/app/modules/shared/components/buttons/load-more-button/load-more-button.component.ts");
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm2015/dialog.js");
+/* harmony import */ var _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! ./components/confirmation-dialog/confirmation-dialog.component */ "./src/app/modules/shared/components/confirmation-dialog/confirmation-dialog.component.ts");
+/* harmony import */ var _components_icons_dropdown_icon_dropdown_icon_component__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! ./components/icons/dropdown-icon/dropdown-icon.component */ "./src/app/modules/shared/components/icons/dropdown-icon/dropdown-icon.component.ts");
+/* harmony import */ var _layouts_manage_resources_page_layout__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! ./layouts/manage-resources-page.layout */ "./src/app/modules/shared/layouts/manage-resources-page.layout.ts");
+/* harmony import */ var _components_rounded_buttons_new_rounded_button_component__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__(/*! ./components/rounded-buttons/new-rounded-button.component */ "./src/app/modules/shared/components/rounded-buttons/new-rounded-button.component.ts");
+/* harmony import */ var _components_rounded_buttons_consult_rounded_button_component__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__(/*! ./components/rounded-buttons/consult-rounded-button.component */ "./src/app/modules/shared/components/rounded-buttons/consult-rounded-button.component.ts");
+/* harmony import */ var _components_rounded_buttons_edit_rounded_button_component__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__(/*! ./components/rounded-buttons/edit-rounded-button.component */ "./src/app/modules/shared/components/rounded-buttons/edit-rounded-button.component.ts");
+/* harmony import */ var _components_rounded_buttons_download_rounded_button_component__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(/*! ./components/rounded-buttons/download-rounded-button.component */ "./src/app/modules/shared/components/rounded-buttons/download-rounded-button.component.ts");
+/* harmony import */ var _components_rounded_buttons_upload_rounded_button_component__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(/*! ./components/rounded-buttons/upload-rounded-button.component */ "./src/app/modules/shared/components/rounded-buttons/upload-rounded-button.component.ts");
+/* harmony import */ var _components_rounded_buttons_delete_rounded_button_component__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(/*! ./components/rounded-buttons/delete-rounded-button.component */ "./src/app/modules/shared/components/rounded-buttons/delete-rounded-button.component.ts");
+/* harmony import */ var _components_rounded_buttons_filter_rounded_button_filter_rounded_button_component__WEBPACK_IMPORTED_MODULE_56__ = __webpack_require__(/*! ./components/rounded-buttons/filter-rounded-button/filter-rounded-button.component */ "./src/app/modules/shared/components/rounded-buttons/filter-rounded-button/filter-rounded-button.component.ts");
+/* harmony import */ var _components_rounded_buttons_rounded_button_rounded_button_component__WEBPACK_IMPORTED_MODULE_57__ = __webpack_require__(/*! ./components/rounded-buttons/rounded-button/rounded-button.component */ "./src/app/modules/shared/components/rounded-buttons/rounded-button/rounded-button.component.ts");
+/* harmony import */ var _components_rounded_buttons_send_rounded_button_component__WEBPACK_IMPORTED_MODULE_58__ = __webpack_require__(/*! ./components/rounded-buttons/send-rounded-button.component */ "./src/app/modules/shared/components/rounded-buttons/send-rounded-button.component.ts");
+/* harmony import */ var _components_button_with_options_button_with_options_component__WEBPACK_IMPORTED_MODULE_59__ = __webpack_require__(/*! ./components/button-with-options/button-with-options.component */ "./src/app/modules/shared/components/button-with-options/button-with-options.component.ts");
+/* harmony import */ var _components_button_with_options_button_option_component__WEBPACK_IMPORTED_MODULE_60__ = __webpack_require__(/*! ./components/button-with-options/button-option.component */ "./src/app/modules/shared/components/button-with-options/button-option.component.ts");
 
 
 
@@ -7911,26 +7841,26 @@ SharedModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         entryComponents: [
             _directives_tooltip_tooltip_component__WEBPACK_IMPORTED_MODULE_9__["TooltipComponent"],
             _components_text_text_with_icon_quote_component__WEBPACK_IMPORTED_MODULE_16__["QuoteComponent"],
-            _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_48__["ConfirmationDialogComponent"],
+            _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_47__["ConfirmationDialogComponent"],
         ],
         imports: [
             _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
             _angular_router__WEBPACK_IMPORTED_MODULE_14__["RouterModule"],
             _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["OverlayModule"],
             _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_12__["PortalModule"],
-            _angular_common_http__WEBPACK_IMPORTED_MODULE_27__["HttpClientModule"],
-            _angular_forms__WEBPACK_IMPORTED_MODULE_26__["FormsModule"],
-            ng2_simplemde__WEBPACK_IMPORTED_MODULE_39__["SimplemdeModule"].forRoot(),
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_26__["HttpClientModule"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_25__["FormsModule"],
+            ng2_simplemde__WEBPACK_IMPORTED_MODULE_38__["SimplemdeModule"].forRoot(),
             _angular_material_select__WEBPACK_IMPORTED_MODULE_13__["MatSelectModule"],
             _angular_material_menu__WEBPACK_IMPORTED_MODULE_22__["MatMenuModule"],
-            _angular_material_table__WEBPACK_IMPORTED_MODULE_28__["MatTableModule"],
-            _angular_material_sort__WEBPACK_IMPORTED_MODULE_29__["MatSortModule"],
-            _angular_material_form_field__WEBPACK_IMPORTED_MODULE_31__["MatFormFieldModule"],
-            _angular_material_input__WEBPACK_IMPORTED_MODULE_32__["MatInputModule"],
-            _angular_material_chips__WEBPACK_IMPORTED_MODULE_34__["MatChipsModule"],
-            _angular_material_icon__WEBPACK_IMPORTED_MODULE_35__["MatIconModule"],
-            _angular_material_tabs__WEBPACK_IMPORTED_MODULE_36__["MatTabsModule"],
-            _angular_material_dialog__WEBPACK_IMPORTED_MODULE_47__["MatDialogModule"],
+            _angular_material_table__WEBPACK_IMPORTED_MODULE_27__["MatTableModule"],
+            _angular_material_sort__WEBPACK_IMPORTED_MODULE_28__["MatSortModule"],
+            _angular_material_form_field__WEBPACK_IMPORTED_MODULE_30__["MatFormFieldModule"],
+            _angular_material_input__WEBPACK_IMPORTED_MODULE_31__["MatInputModule"],
+            _angular_material_chips__WEBPACK_IMPORTED_MODULE_33__["MatChipsModule"],
+            _angular_material_icon__WEBPACK_IMPORTED_MODULE_34__["MatIconModule"],
+            _angular_material_tabs__WEBPACK_IMPORTED_MODULE_35__["MatTabsModule"],
+            _angular_material_dialog__WEBPACK_IMPORTED_MODULE_46__["MatDialogModule"],
         ],
         declarations: [
             _components_text_section_title_section_title_component__WEBPACK_IMPORTED_MODULE_3__["SectionTitleComponent"],
@@ -7950,50 +7880,49 @@ SharedModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             time_ago_pipe__WEBPACK_IMPORTED_MODULE_21__["TimeAgoPipe"],
             _directives_textarea_auto_grow_directive__WEBPACK_IMPORTED_MODULE_23__["TextareaAutoGrowDirective"],
             _directives_textarea_disable_spellcheck_directive__WEBPACK_IMPORTED_MODULE_24__["TextareaDisableSpellCheckDirective"],
-            _components_login_with_github_login_with_github_component__WEBPACK_IMPORTED_MODULE_25__["LoginWithGithubComponent"],
-            _components_router_link_router_link_component__WEBPACK_IMPORTED_MODULE_30__["RouterLinkComponent"],
-            _components_rounded_buttons_new_rounded_button_component__WEBPACK_IMPORTED_MODULE_51__["NewRoundedButtonComponent"],
-            _components_text_page_title_page_title_component__WEBPACK_IMPORTED_MODULE_33__["PageTitleComponent"],
-            _components_buttons_edit_button_edit_button_component__WEBPACK_IMPORTED_MODULE_37__["EditButtonComponent"],
-            _components_buttons_consult_button_consult_button_component__WEBPACK_IMPORTED_MODULE_38__["ConsultButtonComponent"],
-            _components_buttons_edit_button_edit_button_link_component__WEBPACK_IMPORTED_MODULE_40__["EditButtonLinkComponent"],
-            _components_buttons_consult_button_consult_button_link_component__WEBPACK_IMPORTED_MODULE_41__["ConsultButtonLinkComponent"],
-            _components_buttons_delete_button_delete_button_component__WEBPACK_IMPORTED_MODULE_42__["DeleteButtonComponent"],
-            _directives_input_disable_autocomplete_directive__WEBPACK_IMPORTED_MODULE_43__["InputDisableAutoCompleteDirective"],
-            _components_buttons_previous_button_previous_button_component__WEBPACK_IMPORTED_MODULE_44__["PreviousButtonComponent"],
-            _components_buttons_next_button_next_button_component__WEBPACK_IMPORTED_MODULE_45__["NextButtonComponent"],
-            _components_buttons_load_more_button_load_more_button_component__WEBPACK_IMPORTED_MODULE_46__["LoadMoreButtonComponent"],
-            _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_48__["ConfirmationDialogComponent"],
-            _components_icons_dropdown_icon_dropdown_icon_component__WEBPACK_IMPORTED_MODULE_49__["DropdownIconComponent"],
-            _layouts_manage_resources_page_layout__WEBPACK_IMPORTED_MODULE_50__["ManageResourcesPageLayout"],
-            _components_rounded_buttons_rounded_button_rounded_button_component__WEBPACK_IMPORTED_MODULE_58__["RoundedButtonComponent"],
-            _components_rounded_buttons_filter_rounded_button_filter_rounded_button_component__WEBPACK_IMPORTED_MODULE_57__["FilterRoundedButtonComponent"],
-            _components_rounded_buttons_consult_rounded_button_component__WEBPACK_IMPORTED_MODULE_52__["ConsultRoundedButtonComponent"],
-            _components_rounded_buttons_edit_rounded_button_component__WEBPACK_IMPORTED_MODULE_53__["EditRoundedButtonComponent"],
-            _components_rounded_buttons_download_rounded_button_component__WEBPACK_IMPORTED_MODULE_54__["DownloadRoundedButtonComponent"],
-            _components_rounded_buttons_upload_rounded_button_component__WEBPACK_IMPORTED_MODULE_55__["UploadRoundedButtonComponent"],
-            _components_rounded_buttons_delete_rounded_button_component__WEBPACK_IMPORTED_MODULE_56__["DeleteRoundedButtonComponent"],
-            _components_rounded_buttons_send_rounded_button_component__WEBPACK_IMPORTED_MODULE_59__["SendRoundedButtonComponent"],
-            _components_button_with_options_button_with_options_component__WEBPACK_IMPORTED_MODULE_60__["ButtonWithOptionsComponent"],
-            _components_button_with_options_button_option_component__WEBPACK_IMPORTED_MODULE_61__["ButtonOptionComponent"],
+            _components_router_link_router_link_component__WEBPACK_IMPORTED_MODULE_29__["RouterLinkComponent"],
+            _components_rounded_buttons_new_rounded_button_component__WEBPACK_IMPORTED_MODULE_50__["NewRoundedButtonComponent"],
+            _components_text_page_title_page_title_component__WEBPACK_IMPORTED_MODULE_32__["PageTitleComponent"],
+            _components_buttons_edit_button_edit_button_component__WEBPACK_IMPORTED_MODULE_36__["EditButtonComponent"],
+            _components_buttons_consult_button_consult_button_component__WEBPACK_IMPORTED_MODULE_37__["ConsultButtonComponent"],
+            _components_buttons_edit_button_edit_button_link_component__WEBPACK_IMPORTED_MODULE_39__["EditButtonLinkComponent"],
+            _components_buttons_consult_button_consult_button_link_component__WEBPACK_IMPORTED_MODULE_40__["ConsultButtonLinkComponent"],
+            _components_buttons_delete_button_delete_button_component__WEBPACK_IMPORTED_MODULE_41__["DeleteButtonComponent"],
+            _directives_input_disable_autocomplete_directive__WEBPACK_IMPORTED_MODULE_42__["InputDisableAutoCompleteDirective"],
+            _components_buttons_previous_button_previous_button_component__WEBPACK_IMPORTED_MODULE_43__["PreviousButtonComponent"],
+            _components_buttons_next_button_next_button_component__WEBPACK_IMPORTED_MODULE_44__["NextButtonComponent"],
+            _components_buttons_load_more_button_load_more_button_component__WEBPACK_IMPORTED_MODULE_45__["LoadMoreButtonComponent"],
+            _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_47__["ConfirmationDialogComponent"],
+            _components_icons_dropdown_icon_dropdown_icon_component__WEBPACK_IMPORTED_MODULE_48__["DropdownIconComponent"],
+            _layouts_manage_resources_page_layout__WEBPACK_IMPORTED_MODULE_49__["ManageResourcesPageLayout"],
+            _components_rounded_buttons_rounded_button_rounded_button_component__WEBPACK_IMPORTED_MODULE_57__["RoundedButtonComponent"],
+            _components_rounded_buttons_filter_rounded_button_filter_rounded_button_component__WEBPACK_IMPORTED_MODULE_56__["FilterRoundedButtonComponent"],
+            _components_rounded_buttons_consult_rounded_button_component__WEBPACK_IMPORTED_MODULE_51__["ConsultRoundedButtonComponent"],
+            _components_rounded_buttons_edit_rounded_button_component__WEBPACK_IMPORTED_MODULE_52__["EditRoundedButtonComponent"],
+            _components_rounded_buttons_download_rounded_button_component__WEBPACK_IMPORTED_MODULE_53__["DownloadRoundedButtonComponent"],
+            _components_rounded_buttons_upload_rounded_button_component__WEBPACK_IMPORTED_MODULE_54__["UploadRoundedButtonComponent"],
+            _components_rounded_buttons_delete_rounded_button_component__WEBPACK_IMPORTED_MODULE_55__["DeleteRoundedButtonComponent"],
+            _components_rounded_buttons_send_rounded_button_component__WEBPACK_IMPORTED_MODULE_58__["SendRoundedButtonComponent"],
+            _components_button_with_options_button_with_options_component__WEBPACK_IMPORTED_MODULE_59__["ButtonWithOptionsComponent"],
+            _components_button_with_options_button_option_component__WEBPACK_IMPORTED_MODULE_60__["ButtonOptionComponent"],
         ],
         exports: [
             _angular_router__WEBPACK_IMPORTED_MODULE_14__["RouterModule"],
             _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["OverlayModule"],
             _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_12__["PortalModule"],
-            _angular_common_http__WEBPACK_IMPORTED_MODULE_27__["HttpClientModule"],
-            _angular_forms__WEBPACK_IMPORTED_MODULE_26__["FormsModule"],
-            ng2_simplemde__WEBPACK_IMPORTED_MODULE_39__["SimplemdeModule"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_26__["HttpClientModule"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_25__["FormsModule"],
+            ng2_simplemde__WEBPACK_IMPORTED_MODULE_38__["SimplemdeModule"],
             _angular_material_select__WEBPACK_IMPORTED_MODULE_13__["MatSelectModule"],
             _angular_material_menu__WEBPACK_IMPORTED_MODULE_22__["MatMenuModule"],
-            _angular_material_table__WEBPACK_IMPORTED_MODULE_28__["MatTableModule"],
-            _angular_material_sort__WEBPACK_IMPORTED_MODULE_29__["MatSortModule"],
-            _angular_material_form_field__WEBPACK_IMPORTED_MODULE_31__["MatFormFieldModule"],
-            _angular_material_input__WEBPACK_IMPORTED_MODULE_32__["MatInputModule"],
-            _angular_material_chips__WEBPACK_IMPORTED_MODULE_34__["MatChipsModule"],
-            _angular_material_icon__WEBPACK_IMPORTED_MODULE_35__["MatIconModule"],
-            _angular_material_tabs__WEBPACK_IMPORTED_MODULE_36__["MatTabsModule"],
-            _angular_material_dialog__WEBPACK_IMPORTED_MODULE_47__["MatDialogModule"],
+            _angular_material_table__WEBPACK_IMPORTED_MODULE_27__["MatTableModule"],
+            _angular_material_sort__WEBPACK_IMPORTED_MODULE_28__["MatSortModule"],
+            _angular_material_form_field__WEBPACK_IMPORTED_MODULE_30__["MatFormFieldModule"],
+            _angular_material_input__WEBPACK_IMPORTED_MODULE_31__["MatInputModule"],
+            _angular_material_chips__WEBPACK_IMPORTED_MODULE_33__["MatChipsModule"],
+            _angular_material_icon__WEBPACK_IMPORTED_MODULE_34__["MatIconModule"],
+            _angular_material_tabs__WEBPACK_IMPORTED_MODULE_35__["MatTabsModule"],
+            _angular_material_dialog__WEBPACK_IMPORTED_MODULE_46__["MatDialogModule"],
             _components_text_section_title_section_title_component__WEBPACK_IMPORTED_MODULE_3__["SectionTitleComponent"],
             _components_logo_logo_link_component__WEBPACK_IMPORTED_MODULE_4__["LogoLinkComponent"],
             _components_select_select_component__WEBPACK_IMPORTED_MODULE_5__["SelectComponent"],
@@ -8008,31 +7937,30 @@ SharedModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             time_ago_pipe__WEBPACK_IMPORTED_MODULE_21__["TimeAgoPipe"],
             _directives_textarea_auto_grow_directive__WEBPACK_IMPORTED_MODULE_23__["TextareaAutoGrowDirective"],
             _directives_textarea_disable_spellcheck_directive__WEBPACK_IMPORTED_MODULE_24__["TextareaDisableSpellCheckDirective"],
-            _components_login_with_github_login_with_github_component__WEBPACK_IMPORTED_MODULE_25__["LoginWithGithubComponent"],
-            _components_router_link_router_link_component__WEBPACK_IMPORTED_MODULE_30__["RouterLinkComponent"],
-            _components_rounded_buttons_new_rounded_button_component__WEBPACK_IMPORTED_MODULE_51__["NewRoundedButtonComponent"],
-            _components_text_page_title_page_title_component__WEBPACK_IMPORTED_MODULE_33__["PageTitleComponent"],
-            _components_buttons_edit_button_edit_button_component__WEBPACK_IMPORTED_MODULE_37__["EditButtonComponent"],
-            _components_buttons_consult_button_consult_button_component__WEBPACK_IMPORTED_MODULE_38__["ConsultButtonComponent"],
-            _components_buttons_edit_button_edit_button_link_component__WEBPACK_IMPORTED_MODULE_40__["EditButtonLinkComponent"],
-            _components_buttons_consult_button_consult_button_link_component__WEBPACK_IMPORTED_MODULE_41__["ConsultButtonLinkComponent"],
-            _components_buttons_delete_button_delete_button_component__WEBPACK_IMPORTED_MODULE_42__["DeleteButtonComponent"],
-            _directives_input_disable_autocomplete_directive__WEBPACK_IMPORTED_MODULE_43__["InputDisableAutoCompleteDirective"],
-            _components_buttons_previous_button_previous_button_component__WEBPACK_IMPORTED_MODULE_44__["PreviousButtonComponent"],
-            _components_buttons_next_button_next_button_component__WEBPACK_IMPORTED_MODULE_45__["NextButtonComponent"],
-            _components_buttons_load_more_button_load_more_button_component__WEBPACK_IMPORTED_MODULE_46__["LoadMoreButtonComponent"],
-            _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_48__["ConfirmationDialogComponent"],
-            _components_icons_dropdown_icon_dropdown_icon_component__WEBPACK_IMPORTED_MODULE_49__["DropdownIconComponent"],
-            _layouts_manage_resources_page_layout__WEBPACK_IMPORTED_MODULE_50__["ManageResourcesPageLayout"],
-            _components_rounded_buttons_filter_rounded_button_filter_rounded_button_component__WEBPACK_IMPORTED_MODULE_57__["FilterRoundedButtonComponent"],
-            _components_rounded_buttons_consult_rounded_button_component__WEBPACK_IMPORTED_MODULE_52__["ConsultRoundedButtonComponent"],
-            _components_rounded_buttons_edit_rounded_button_component__WEBPACK_IMPORTED_MODULE_53__["EditRoundedButtonComponent"],
-            _components_rounded_buttons_download_rounded_button_component__WEBPACK_IMPORTED_MODULE_54__["DownloadRoundedButtonComponent"],
-            _components_rounded_buttons_upload_rounded_button_component__WEBPACK_IMPORTED_MODULE_55__["UploadRoundedButtonComponent"],
-            _components_rounded_buttons_delete_rounded_button_component__WEBPACK_IMPORTED_MODULE_56__["DeleteRoundedButtonComponent"],
-            _components_rounded_buttons_send_rounded_button_component__WEBPACK_IMPORTED_MODULE_59__["SendRoundedButtonComponent"],
-            _components_button_with_options_button_with_options_component__WEBPACK_IMPORTED_MODULE_60__["ButtonWithOptionsComponent"],
-            _components_button_with_options_button_option_component__WEBPACK_IMPORTED_MODULE_61__["ButtonOptionComponent"],
+            _components_router_link_router_link_component__WEBPACK_IMPORTED_MODULE_29__["RouterLinkComponent"],
+            _components_rounded_buttons_new_rounded_button_component__WEBPACK_IMPORTED_MODULE_50__["NewRoundedButtonComponent"],
+            _components_text_page_title_page_title_component__WEBPACK_IMPORTED_MODULE_32__["PageTitleComponent"],
+            _components_buttons_edit_button_edit_button_component__WEBPACK_IMPORTED_MODULE_36__["EditButtonComponent"],
+            _components_buttons_consult_button_consult_button_component__WEBPACK_IMPORTED_MODULE_37__["ConsultButtonComponent"],
+            _components_buttons_edit_button_edit_button_link_component__WEBPACK_IMPORTED_MODULE_39__["EditButtonLinkComponent"],
+            _components_buttons_consult_button_consult_button_link_component__WEBPACK_IMPORTED_MODULE_40__["ConsultButtonLinkComponent"],
+            _components_buttons_delete_button_delete_button_component__WEBPACK_IMPORTED_MODULE_41__["DeleteButtonComponent"],
+            _directives_input_disable_autocomplete_directive__WEBPACK_IMPORTED_MODULE_42__["InputDisableAutoCompleteDirective"],
+            _components_buttons_previous_button_previous_button_component__WEBPACK_IMPORTED_MODULE_43__["PreviousButtonComponent"],
+            _components_buttons_next_button_next_button_component__WEBPACK_IMPORTED_MODULE_44__["NextButtonComponent"],
+            _components_buttons_load_more_button_load_more_button_component__WEBPACK_IMPORTED_MODULE_45__["LoadMoreButtonComponent"],
+            _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_47__["ConfirmationDialogComponent"],
+            _components_icons_dropdown_icon_dropdown_icon_component__WEBPACK_IMPORTED_MODULE_48__["DropdownIconComponent"],
+            _layouts_manage_resources_page_layout__WEBPACK_IMPORTED_MODULE_49__["ManageResourcesPageLayout"],
+            _components_rounded_buttons_filter_rounded_button_filter_rounded_button_component__WEBPACK_IMPORTED_MODULE_56__["FilterRoundedButtonComponent"],
+            _components_rounded_buttons_consult_rounded_button_component__WEBPACK_IMPORTED_MODULE_51__["ConsultRoundedButtonComponent"],
+            _components_rounded_buttons_edit_rounded_button_component__WEBPACK_IMPORTED_MODULE_52__["EditRoundedButtonComponent"],
+            _components_rounded_buttons_download_rounded_button_component__WEBPACK_IMPORTED_MODULE_53__["DownloadRoundedButtonComponent"],
+            _components_rounded_buttons_upload_rounded_button_component__WEBPACK_IMPORTED_MODULE_54__["UploadRoundedButtonComponent"],
+            _components_rounded_buttons_delete_rounded_button_component__WEBPACK_IMPORTED_MODULE_55__["DeleteRoundedButtonComponent"],
+            _components_rounded_buttons_send_rounded_button_component__WEBPACK_IMPORTED_MODULE_58__["SendRoundedButtonComponent"],
+            _components_button_with_options_button_with_options_component__WEBPACK_IMPORTED_MODULE_59__["ButtonWithOptionsComponent"],
+            _components_button_with_options_button_option_component__WEBPACK_IMPORTED_MODULE_60__["ButtonOptionComponent"],
         ],
     })
 ], SharedModule);
