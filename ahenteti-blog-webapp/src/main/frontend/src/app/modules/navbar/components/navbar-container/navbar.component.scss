@@ -20,6 +20,7 @@
 nav {
   margin: 0 auto;
   width: var(--main-page-width);
+  max-width: var(--max-main-page-width);
   height: var(--navbar-height);
   display: flex;
   align-items: center;
