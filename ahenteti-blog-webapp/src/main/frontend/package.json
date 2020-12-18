@@ -23,7 +23,7 @@
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
     "aos": "^3.0.0-beta.6",
-    "dompurify": "^2.0.10",
+    "dompurify": "^2.0.17",
     "highlight.js": "^10.0.1",
     "ionicons": "4.5.10-0",
     "marked": "^1.0.0",
