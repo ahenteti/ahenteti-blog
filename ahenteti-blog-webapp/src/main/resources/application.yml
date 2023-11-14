@@ -8,7 +8,9 @@ spring:
     url: ${AHENTETI_BLOG_DATASOURCE_URL}
     username: ${AHENTETI_BLOG_DATASOURCE_USERNAME}
     password: ${AHENTETI_BLOG_DATASOURCE_PASSWORD}
+    driverClassName: ${AHENTETI_BLOG_DATASOURCE_DRIVER_CLASSNAME}
   jpa:
+    database-platform: ${AHENTETI_BLOG_DATASOURCE_DATABASE_PLATFORM}
     properties:
       hibernate:
         # format_sql: true

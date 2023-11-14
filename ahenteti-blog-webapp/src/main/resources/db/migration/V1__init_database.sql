@@ -94,5 +94,5 @@ values (3, 'ahenteti', 'https://avatars3.githubusercontent.com/u/16677361?v=4', 
 insert into t_user_role (user_id, role_id) 
 values (3, 1);
 
-select setval('hibernate_sequence', 3, true);
+alter sequence hibernate_sequence restart with 4;
 
